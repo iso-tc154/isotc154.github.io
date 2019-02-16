@@ -1,0 +1,248 @@
+permalink: /about_us/ma/ma_links
+---
+= Relevant links to TDED MA folders/files
+
+
+
+
+
+<nav role="navigation">
+<ul id="menu-main-nav" class="sf-menu">
+<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current_page_ancestor menu-item-has-children">link:/about_us"><span><strong>About Us</strong><span class="navi-description[Who we are</span></span>]
+<ul class="sub-menu">
+	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[<span>JWG 1 – EDIFACT Syntax</span>]
+	<ul class="sub-menu">
+		<li id="item-5215"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/jwg1/sdmr[<span>Syntax DMR Procedures</span>]</li>
+	</ul>
+</li>
+	<li id="item-5007"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg3[<span>WG 3 – CCTS</span>]</li>
+	<li id="item-5013"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[<span>WG 4 – eLK</span>]</li>
+	<li id="item-5252"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[<span>CAT -- Chairman's Advisory Team</span>]</li>
+	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">link:/about_us/ma[<span>TDED Maintenance Agency</span>]
+	<ul class="sub-menu">
+		<li id="item-5581"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[<span>Membership of the TDED MA</span>]</li>
+		<li id="item-5585"  class=" menu-item menu-item-type-post_type menu-item-object-page ">link:/about_us/ma/ma_links[<span>Relevant links to TDED MA folders/files</span>]</li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects"><span><strong>Projects</strong><span class="navi-description[What we do</span></span>]
+<ul class="sub-menu">
+	<li id="item-5146"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-6422-2[<span>ISO NP 6422-2</span>]</li>
+	<li id="item-5149"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-14533[<span>ISO NP 14533</span>]</li>
+	<li id="item-5136"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-pwi-tr-6422-3[<span>ISO PWI TR 6422-3</span>]</li>
+	<li id="item-5173"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-9735-10[<span>ISO NP 9735-10</span>]</li>
+	<li id="item-5180"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-15000-5[<span>ISO NP 15000-5</span>]</li>
+	<li id="item-5184"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-17369[<span>ISO NP 17369</span>]</li>
+</ul>
+</li>
+<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/standards"><span><strong>Standards</strong><span class="navi-description[Our output</span></span>]
+<ul class="sub-menu">
+	<li id="item-5127"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-6422-12010[<span>ISO 6422-1:2010</span>]</li>
+	<li id="item-5131"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-73722005[<span>ISO 7372:2005</span>]</li>
+	<li id="item-5284"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84391990[<span>ISO 8439:1990</span>]</li>
+	<li id="item-5283"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84401986[<span>ISO 8440:1986</span>]</li>
+	<li id="item-5282"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-86012004[<span>ISO 8601:2004</span>]</li>
+	<li id="item-5323"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988[<span>ISO 9735:1988</span>]</li>
+	<li id="item-5322"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988amd-11992[<span>ISO 9735:1988/Amd 1:1992</span>]</li>
+	<li id="item-5326"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-12002[<span>ISO 9735-1:2002</span>]</li>
+	<li id="item-5325"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-22002[<span>ISO 9735-2:2002</span>]</li>
+	<li id="item-5370"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-32002[<span>ISO 9735-3:2002</span>]</li>
+	<li id="item-5369"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-42002[<span>ISO 9735-4:2002</span>]</li>
+	<li id="item-5368"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-52002[<span>ISO 9735-5:2002</span>]</li>
+	<li id="item-5367"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-62002[<span>ISO 9735-6:2002</span>]</li>
+	<li id="item-5366"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-72002[<span>ISO 9735-7:2002</span>]</li>
+	<li id="item-5365"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-82002[<span>ISO 9735-8:2002</span>]</li>
+	<li id="item-5364"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-92002[<span>ISO 9735-9:2002</span>]</li>
+	<li id="item-5363"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-102002[<span>ISO 9735-10:2002</span>]</li>
+	<li id="item-5392"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-12004[<span>ISO/TS 15000-1:2004</span>]</li>
+	<li id="item-5391"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-22004[<span>ISO/TS 15000-2:2004</span>]</li>
+	<li id="item-5390"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-32004[<span>ISO/TS 15000-3:2004</span>]</li>
+	<li id="item-5389"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-42004[<span>ISO/TS 15000-4:2004</span>]</li>
+	<li id="item-5388"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-52005[<span>ISO/TS 15000-5:2005</span>]</li>
+	<li id="item-5387"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-173692005[<span>ISO/TS 17369:2005</span>]</li>
+	<li id="item-5386"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-206252002[<span>ISO/TS 20625:2002</span>]</li>
+</ul>
+</li>
+<li id="item-4909"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/minutes"><span><strong>Minutes</strong><span class="navi-description[Announcements</span></span>]</li>
+<li id="item-4983"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/faq"><span><strong>FAQ</strong><span class="navi-description[Your questions</span></span>]</li>
+<li id="item-6479"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/isotc-154-2016-anual-meeting-details"><span><strong>Meetings</strong><span class="navi-description[2016 Meetings</span></span>]</li>
+</ul>
+</nav>
+</div><!-- END header-area -->
+</div><!-- END header-overlay -->
+</div><!-- END header-holder -->
+</header><!-- END header -->
+
+
+<div id="main" class="tt-slider-">
+
+
+<div class="main-area">
+
+<nav role="navigation" id="sub_nav" class="nav_right_sub_nav">
+	
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/jwg1/sdmr[Syntax DMR Procedures]</li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg3[WG 3 – CCTS]</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[WG 4 – eLK]</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[CAT -- Chairman's Advisory Team]</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page ">link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]</li>
+	</ul>
+</li>
+</ul>
+</nav><!-- END sub_nav -->
+
+
+&nbsp;
+
+<table border="0">
+<tbody>
+<tr>
+<th>UNTDED – ISO7372 MA website = <a title="JMA website link" href="http://www.iso.org/iso7372ma" target="_blank">www.iso.org/iso7372ma</a></th>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>For links listed below please click on the <b>@</b> to be redirected to the relevant site!</td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+
+<div style="float: left; width: 46%;">
+<table border="0">
+<tbody>
+<tr>
+<th colspan="2">TDED 2005 edition</th>
+</tr>
+<tr>
+<td>UNTDED 2005</td>
+<td><a title="UNTDED 2005" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10416613&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351087%26objAction%3Dbrowse%26viewType%3D1" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>ISO 7372:2005</td>
+<td><a title="ISO 7372:2005" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10416611&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351087%26objAction%3Dbrowse%26viewType%3D1" target="_blank">@</a></td>
+</tr>
+<tr>
+<td colspan="2"></td>
+</tr>
+<tr>
+<th colspan="2">Layout Key =&gt; TDED</th>
+</tr>
+<tr>
+<td>Suite of standards (a)</td>
+<td><a title="Suite of standards (a)" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7351005&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351001%26objAction%3Dbrowse%26sort%3Dname" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>Suite of standards (b)</td>
+<td><a title="Suite of standards (b)" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7351006&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351001%26objAction%3Dbrowse%26sort%3Dname" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>More on this Suite</td>
+<td><a title="More information" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7334168&amp;objAction=browse&amp;sort=name" target="_blank">@</a></td>
+</tr>
+<tr>
+<td colspan="2"></td>
+</tr>
+<tr>
+<th colspan="2">ISO</th>
+</tr>
+<tr>
+<td>ISO main website</td>
+<td><a title="ISO Main Page" href="http://www.iso.org" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>ISO/TC 154</td>
+<td><a title="ISO/TC154 Page" href="http://www.iso.org/iso/standards_development/technical_committees/list_of_iso_technical_committees/iso_technical_committee.htm?commid=53186" target="_blank">@</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="float: right; width: 46%;">
+<table border="0">
+<tbody>
+<tr>
+<th colspan="2">TDED all editions</th>
+</tr>
+<tr>
+<td>Scope</td>
+<td><a title="Scope" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=11421724&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D10431946%26objAction%3Dbrowse%26viewType%3D1" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>Overview</td>
+<td><a title="Overview" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=11214675&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D10482921%26objAction%3Dbrowse%26sort%3Dname" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>Links to previous editions</td>
+<td><a title="Previous Editions" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10417266&amp;objAction=browse&amp;viewType=1" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>More info on TDED</td>
+<td><a title="More information" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7409832&amp;objAction=browse&amp;viewType=1" target="_blank">@</a></td>
+</tr>
+<tr>
+<td colspan="2"></td>
+</tr>
+<tr>
+<th colspan="2">JMA</th>
+</tr>
+<tr>
+<td>Membership</td>
+<td><a title="Membership of the Joint Maintenance Agency" href="/about_us/jma/membership-of-the-joint-maintenance-agency">@</a></td>
+</tr>
+<tr>
+<td>Membership Links</td>
+<td><a title="Membership links" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7345306&amp;objAction=browse&amp;viewType=1" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>Meetings</td>
+<td><a title="Meetings" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=9728008&amp;objAction=browse&amp;sort=name" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>docs &amp; e-mails achieves</td>
+<td><a title="Docs and email archives" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7345413&amp;objAction=browse&amp;sort=name" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>mailto: cochairs + sec.</td>
+<td><a title="Send email to cochairs and secretary" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=12241553&amp;objAction=browse&amp;sort=name" target="_blank">@</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br style="clear: both;" /><br />
+<center></center>
+
+<table border="0">
+<tbody>
+<tr>
+<th colspan="2">UN/ECE</th>
+</tr>
+<tr>
+<td>UN/CEFACT</td>
+<td><a title="UN/CEFACT" href="http://www.unece.org/cefact/index.html" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>Alignment Project</td>
+<td><a title="Alignment Project" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=9101510&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D8361985%26objAction%3Dbrowse%26viewType%3D1" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>Trade Division Secretariat</td>
+<td><a title="Trade Division Secretariat" href="http://www.unece.org/tradewelcome/trade-home.html" target="_blank">@</a></td>
+</tr>
+<tr>
+<td>Transport Division Secretariat</td>
+<td><a title="Transport Division Secretariat" href="http://www.unece.org/trans/Welcome.html" target="_blank">@</a></td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+
