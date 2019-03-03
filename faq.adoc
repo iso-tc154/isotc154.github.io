@@ -166,8 +166,8 @@ For the long answer, see the table below that list examples of *requirements tha
 <td style="text-align: left;">[C18] The Dictionary Entry Name shall be concise and *shall not contain consecutive redundant words*</td>
 <td style="text-align: left;">Examples of entries not in conformance:
 
-<span style="font-size: 85%;">Address. Address Type *_Code. Code_*<br />
-Order Reference. Sales Order *_Identifier. Identifier_*<br />
+<span style="font-size: 85%;">Address. Address Type *_Code. Code_*
+Order Reference. Sales Order *_Identifier. Identifier_*
 Tax Category. Per Unit_ *_Amount. Amount_*</span></td>
 </tr>
 </tbody>
@@ -190,7 +190,7 @@ Tax Category. Per Unit_ *_Amount. Amount_*</span></td>
 <tbody>
 <tr>
 <td style="text-align: center;">Syntax Neutral data model</td>
-<td style="text-align: center;">XML only (syntax specific)<br />
+<td style="text-align: center;">XML only (syntax specific)
 Data model non-normative (optional)<a id="fnref:1" class="footnote" title="see footnote" href="#fn:1">[1]</a></td>
 </tr>
 <tr>
@@ -219,7 +219,7 @@ Data model non-normative (optional)<a id="fnref:1" class="footnote" title="see f
 </tr>
 <tr>
 <td style="text-align: center;">Core Component Type (CCT)</td>
-<td style="text-align: center;">Core Component Type<br />
+<td style="text-align: center;">Core Component Type
 (only basic definitions are provided)</td>
 </tr>
 <tr>

@@ -10,5 +10,5 @@ ISO 15000-1:2004 specifies the requirements for a collaboration-protocol profile
 * ISO/TS 15000-2:2004
 * ISO/TS 15000-3:2004
 * ISO/TS 15000-4:2004
-ISO/TS 15000-5:2005
+* ISO/TS 15000-5:2005
 

@@ -2,67 +2,9 @@ permalink: /contact
 ---
 = Contact
 
+Use the form below to contact this site's webmaster, the TC 154 chair or secretariat.
 
-
-
-
-</div><!-- END header-area -->
-</div><!-- END header-overlay -->
-</div><!-- END header-holder -->
-</header><!-- END header -->
-
-
-<div id="main" class="tt-slider-">
-
-
-<div class="main-area">
-
-        <main role="main" id="content" class="content_full_width contact_smartphone_content">
-            <div class="two_thirds">
-            	Use the form below to contact this site's webmaster, the TC 154 chair or secretariat.
-
-<div role='form' id='contact-form-4908'>
-<form action='#tt-contact-notify' method='post' class='contact-form commentsblock'>
-
-
-<div>
-		<label for='4908-name' class='name'>Name(required)</label>
-		<input type='text' name='4908-name' id='4908-name' value='' class='name'/>
-	</div>
-
-
-<div>
-		<label for='4908-email' class='grunion-field-label email'>Email(required)</label>
-		<input type='text' name='4908-email' id='4908-email' value='' class='email'/>
-	</div>
-
-
-<div>
-		<label for='4908-website' class='url'>Website</label>
-		<input type='text' name='4908-website' id='4908-website' value='' class='url'/>
-	</div>
-
-
-<div>
-		<label for='4908-comment' class='textarea'>Comment(required)</label>
-		<textarea name='4908-comment' id='contact-form-comment-4908-comment' rows='20'></textarea>
-	</div>
-
-	<p class='contact-submit'>
-		<input type='submit' value='SUBMIT' class='ka-form-submit'/>
-		<input type="hidden" id="_wpnonce" name="_wpnonce" value="af7676bbc6" /><input type="hidden" name="_wp_http_referer" value="/contact" />
-		<input type='hidden' name='contact-form-id' value='4908' />
-	
-
-</form>
-</div>&nbsp;
-
-            </div><!-- END two_thirds -->
-
-            <div class="one_third_last contact_smartphone">
-            	<div class="smartphone-wrap">
-                	*Add Widgets to this section in Wordpress Dashboard:*<br /><br /><ol><li>link:/wp-admin/widgets.php[Appearance > Widgets]</li><li>Add desired Widgets into<br />Contact Sidebar (iPhone)</li></ol>            	</div><!-- END smartphone-wrap -->
-            </div><!-- END one_third_last -->
-        <br class="clear" />
-        </main><!-- END main #content -->
-</div><!-- END main-area -->
+* Name (required)
+* Email (required)
+* Website
+* Comment (required)

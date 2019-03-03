@@ -16,7 +16,7 @@ This Amendment extended the supported character sets from character set A (ISO 6
 * Revised by: ISO 9735-6:1999
 * Revised by: ISO 9735-7:1999
 * Revised by: ISO 9735-8:1998
-Revised by: ISO 9735-9:1999
+* Revised by: ISO 9735-9:1999
 
 ==== Corrigenda, Amendments and other parts
 ISO 9735:1988

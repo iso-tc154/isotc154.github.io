@@ -3,9 +3,10 @@ permalink: /standards/isots-173692005
 = ISO/TS 17369:2005
 
 === Statistical data and metadata exchange (SDMX)
-==== Abstract
-ISO/TS 17369:2005 deals with statistical data and metadata exchange in six sections covering the following topics:
 
+==== Abstract
+
+ISO/TS 17369:2005 deals with statistical data and metadata exchange in six sections covering the following topics:
 
 * framework for SDMX standards;
 * SDMX information model;

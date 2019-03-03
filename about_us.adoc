@@ -1,134 +1,6 @@
 = About Us
 
-    <!-- <script type="text/javascript">
-      window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.isotc154.org\/wp-includes\/js\/wp-emoji-release.min.js"}};
-      !function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
-    </script> -->
-		<style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-<link rel='stylesheet' id='style-css'  href='/wp-content/themes/Karma/style.css' type='text/css' media='all' />
-<link rel='stylesheet' id='primary-color-css'  href='/wp-content/themes/Karma/css/karma-autumn.css' type='text/css' media='all' />
-<link rel='stylesheet' id='font-awesome-css'  href='/wp-content/themes/Karma/css/_font-awesome.css' type='text/css' media='all' />
-<link rel='stylesheet' id='mobile-css'  href='/wp-content/themes/Karma/css/_mobile.css' type='text/css' media='all' />
-<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js'></script>
-<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js'></script>
-<link rel='https://api.w.org/' href='/wp-json/' />
-permalink: /about_us
----
-
-
-
-
-
-<nav role="navigation">
-
-<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page  menu-item-has-children">link:/about_us">*About Us*<span class="navi-description[Who we are</span>]
-
-	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-	
-		link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
-	
-</li>
-	link:/about_us/wg3[WG 3 – CCTS]
-	link:/about_us/wg4[WG 4 – eLK]
-	link:/about_us/cat[CAT -- Chairman's Advisory Team]
-	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
-	
-		link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
-		link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
-	
-</li>
-
-</li>
-<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects">*Projects*<span class="navi-description[What we do</span>]
-
-	link:/projects/iso-np-6422-2[ISO NP 6422-2]
-	link:/projects/iso-np-14533[ISO NP 14533]
-	link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]
-	link:/projects/iso-np-9735-10[ISO NP 9735-10]
-	link:/projects/iso-np-15000-5[ISO NP 15000-5]
-	link:/projects/iso-np-17369[ISO NP 17369]
-
-</li>
-<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/standards">*Standards*<span class="navi-description[Our output</span>]
-
-	link:/standards/iso-6422-12010[ISO 6422-1:2010]
-	link:/standards/iso-73722005[ISO 7372:2005]
-	link:/standards/iso-84391990[ISO 8439:1990]
-	link:/standards/iso-84401986[ISO 8440:1986]
-	link:/standards/iso-86012004[ISO 8601:2004]
-	link:/standards/iso-97351988[ISO 9735:1988]
-	link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
-	link:/standards/iso-9735-12002[ISO 9735-1:2002]
-	link:/standards/iso-9735-22002[ISO 9735-2:2002]
-	link:/standards/iso-9735-32002[ISO 9735-3:2002]
-	link:/standards/iso-9735-42002[ISO 9735-4:2002]
-	link:/standards/iso-9735-52002[ISO 9735-5:2002]
-	link:/standards/iso-9735-62002[ISO 9735-6:2002]
-	link:/standards/iso-9735-72002[ISO 9735-7:2002]
-	link:/standards/iso-9735-82002[ISO 9735-8:2002]
-	link:/standards/iso-9735-92002[ISO 9735-9:2002]
-	link:/standards/iso-9735-102002[ISO 9735-10:2002]
-	link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]
-	link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]
-	link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]
-	link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]
-	link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]
-	link:/standards/isots-173692005[ISO/TS 17369:2005]
-	link:/standards/isots-206252002[ISO/TS 20625:2002]
-
-</li>
-link:/minutes">*Minutes*<span class="navi-description[Announcements</span>]
-link:/faq">*FAQ*<span class="navi-description[Your questions</span>]
-link:/isotc-154-2016-anual-meeting-details">*Meetings*<span class="navi-description[2016 Meetings</span>]
-
-</nav>
-</div><!-- END header-area -->
-</div><!-- END header-overlay -->
-</div><!-- END header-holder -->
-</header><!-- END header -->
-
-
-<div id="main" class="tt-slider-">
-
-
-<div class="main-area">
-
-<nav role="navigation" id="sub_nav" class="nav_right_sub_nav">
-
-
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-	
-		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/jwg1/sdmr[Syntax DMR Procedures]</li>
-	
-</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg3[WG 3 – CCTS]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[WG 4 – eLK]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[CAT -- Chairman's Advisory Team]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
-	
-		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]</li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]</li>
-	
-</li>
-
-</nav><!-- END sub_nav -->
-
-
-<h1>ISO/TC 154</h1>
-== Processes, data elements and documents in commerce, industry and administration
+== ISO/TC 154 Processes, data elements and documents in commerce, industry and administration
 
 * Secretariat: SAC
 * Secretary: link:mailto:zhangjf@cnis.gov.cn[ Mr Jianfang Zhang]
@@ -136,11 +8,11 @@ link:/isotc-154-2016-anual-meeting-details">*Meetings*<span class="navi-descript
 * ISO Central Secretariat contact: Mr. Brian Stanton
 * Creation date: 1972
 
-=== Scope:
+== Scope:
+
 International standardization and registration of business, and administration processes and supporting data used for information interchange between and within individual organizations and support for standardization activities in the field of industrial data.
 
 Development and maintenance of application specific meta standards for:
-
 
 * process specification (in the absence of development by other technical committees);
 * data specification with content;
@@ -148,72 +20,24 @@ Development and maintenance of application specific meta standards for:
 
 Development and maintenance of standards for
 
-
 * process identification (in the absence of development by other technical committees);
 * data identification.
 
 Maintenance of the EDIFACT-Syntax.
 
-<hr />
-Working Groups and Project Teams
+
+== Working Groups and Project Teams
 
 
 * JWG1/MA (EDIFACT Syntax)
 * WG 5 (Representation of dates and times)
-<li>WG 6 (Trusted eCommunication)
+* WG 6 (Trusted eCommunication)
 
-* PT1 -- Long term signature profiles
-* PT2 -- Trusted Communication Platforms for Electronic Documents
-* PT3 -- Trusted mobile e-document framework
+** PT1 -- Long term signature profiles
+** PT2 -- Trusted Communication Platforms for Electronic Documents
+** PT3 -- Trusted mobile e-document framework
 
-</li>
-<li>WG 7 (Digital Business)
+* WG 7 (Digital Business)
 
-* PT1 -- Business Semantics Thesaurus
-* PT2 -- XMLFACT
-
-</li>
-
-&nbsp;
-
-</main><!-- END main #content -->
-</div><!-- END main-area -->
-
-
-<div id="footer-top">&nbsp;</div><!-- END footer-top -->
-</div><!-- END main -->
-
-        <footer role="contentinfo" id="footer">
-
-            <div class="footer-overlay">
-
-                <div class="footer-content">
-                <div class="one_fourth tt-column"></div><div class="one_fourth tt-column"></div><div class="one_fourth tt-column"></div><div class="one_fourth_last tt-column"></div>                </div><!-- END footer-content -->
-
-                            </div><!-- END footer-overlay -->
-
-        <div id="footer_bottom">
-            <div class="info">
-            	                <div id="foot_left">&nbsp;                    			<div class="textwidget">Views on this site are those of ISO/TC 154/CAT and not necessarily those of ISO itself.
-
-</div>
-
-                </div><!-- END foot_left -->
-
-                <div id="foot_right">
-                                        
-                    <li id="menu-item-4469" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4469">link:/[Home]</li>
-<li id="menu-item-4811" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4811">link:/sitemap[Sitemap]</li>
-<li id="menu-item-4470" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4470">link:/category/news[News]</li>
-<li id="menu-item-5495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5495">link:/contact[Contact]</li>
-                    
-
-                </div><!-- END foot_right -->
-            </div><!-- END info -->
-        </div><!-- END footer_bottom -->
-                </footer><!-- END footer -->
-
-	</div><!-- END wrapper -->
-
-</body>
-</html>
+** PT1 -- Business Semantics Thesaurus
+** PT2 -- XMLFACT

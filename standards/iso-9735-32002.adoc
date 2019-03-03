@@ -19,7 +19,7 @@ Revises: ISO 9735-3:1998
 * ISO 9735-7:2002
 * ISO 9735-8:2002
 * ISO 9735-9:2002
-ISO 9735-10:2002
+* ISO 9735-10:2002
 
 ==== Note
 This edition is been identified as Syntax Version *4* within the UIB/S001/0002 and Syntax Release *1* within the UIB/S001/0076.

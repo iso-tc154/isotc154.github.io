@@ -2,250 +2,60 @@ permalink: /standards
 ---
 = Standards
 
+== International Standards
+
+* link:/iso-6422-12010[ISO 6422-1:2010] Layout key for trade documents -- Part 1: Paper-based documents
+
+* link:/documents/iso-73722005[ISO 7372:2005] Trade data interchange -- Trade data elements directory
+
+* link:/standards/iso-84391990[ISO 8439:1990] Forms design -- Basic layout
+
+* link:/standards/iso-84401986[ISO 8440:1986] Location of codes in trade documents
+
+* ISO 8440:1986/Cor 1:2000
+
+* link:/standards/iso-86012004[ISO 8601:2004] Data elements and interchange formats -- Information interchange -- Representation of dates and times
+
+* link:/standards/iso-97351988[ISO 9735:1988] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules
+
+* link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
+* link:/standards/iso-9735-12002[ISO 9735-1:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 1: Syntax rules common to all parts
+
+* link:/standards/iso-9735-22002[ISO 9735-2:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 2: Syntax rules specific to batch EDI
+
+* link:/standards/iso-9735-32002[ISO 9735-3:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 3: Syntax rules specific to interactive EDI
+
+* link:/standards/iso-9735-42002[ISO 9735-4:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 4: Syntax and service report message for batch EDI (message type -- CONTRL)
+
+* link:/standards/iso-9735-52002[ISO 9735-5:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 5: Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)
+
+* link:/standards/iso-9735-62002[ISO 9735-6:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 6: Secure authentication and acknowledgement message (message type -- AUTACK)
+
+* link:/standards/iso-9735-72002[ISO 9735-7:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 7: Security rules for batch EDI (confidentiality)
+
+* link:/standards/iso-9735-82002[ISO 9735-8:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 8: Associated data in EDI
+
+* link:/standards/iso-9735-92002[ISO 9735-9:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 9: Security key and certificate management message (message type- KEYMAN)
+
+* link:/standards/iso-9735-102002[ISO 9735-10:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 10: Syntax service directories
 
 
+== Technical Specifications
 
+* link:/standards/isots-15000-12004[ISO/TS 15000-1:2004] Electronic business eXtensible Markup Language (ebXML) -- Part 1: Collaboration-protocol profile and agreement specification (ebCPP)
 
-<nav role="navigation">
+* link:/standards/isots-15000-22004[ISO/TS 15000-2:2004] Electronic business eXtensible Markup Language (ebXML) -- Part 2: Message service specification (ebMS)
 
-<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us">*About Us*<span class="navi-description[Who we are</span>]
+* link:/standards/isots-15000-32004[ISO/TS 15000-3:2004] Electronic business eXtensible Markup Language (ebXML) -- Part 3: Registry information model specification (ebRIM)
 
-	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-	
-		link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
-	
-</li>
-	link:/about_us/wg3[WG 3 – CCTS]
-	link:/about_us/wg4[WG 4 – eLK]
-	link:/about_us/cat[CAT -- Chairman's Advisory Team]
-	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
-	
-		link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
-		link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
-	
-</li>
+* link:/standards/isots-15000-42004[ISO/TS 15000-4:2004] Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)
 
-</li>
-<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects">*Projects*<span class="navi-description[What we do</span>]
+* link:/standards/isots-15000-52005[ISO/TS 15000-5:2005] Electronic Business Extensible Markup Language (ebXML) -- Part 5: ebXML Core Components Technical Specification, Version 2.01 (ebCCTS)
 
-	link:/projects/iso-np-6422-2[ISO NP 6422-2]
-	link:/projects/iso-np-14533[ISO NP 14533]
-	link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]
-	link:/projects/iso-np-9735-10[ISO NP 9735-10]
-	link:/projects/iso-np-15000-5[ISO NP 15000-5]
-	link:/projects/iso-np-17369[ISO NP 17369]
+* ISO/TS 15000-5:2005/Amd 1:2011
 
-</li>
-<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page  menu-item-has-children">link:/standards">*Standards*<span class="navi-description[Our output</span>]
+* link:/standards/isots-173692005[ISO/TS 17369:2005] Statistical data and metadata exchange (SDMX)
 
-	link:/standards/iso-6422-12010[ISO 6422-1:2010]
-	link:/standards/iso-73722005[ISO 7372:2005]
-	link:/standards/iso-84391990[ISO 8439:1990]
-	link:/standards/iso-84401986[ISO 8440:1986]
-	link:/standards/iso-86012004[ISO 8601:2004]
-	link:/standards/iso-97351988[ISO 9735:1988]
-	link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
-	link:/standards/iso-9735-12002[ISO 9735-1:2002]
-	link:/standards/iso-9735-22002[ISO 9735-2:2002]
-	link:/standards/iso-9735-32002[ISO 9735-3:2002]
-	link:/standards/iso-9735-42002[ISO 9735-4:2002]
-	link:/standards/iso-9735-52002[ISO 9735-5:2002]
-	link:/standards/iso-9735-62002[ISO 9735-6:2002]
-	link:/standards/iso-9735-72002[ISO 9735-7:2002]
-	link:/standards/iso-9735-82002[ISO 9735-8:2002]
-	link:/standards/iso-9735-92002[ISO 9735-9:2002]
-	link:/standards/iso-9735-102002[ISO 9735-10:2002]
-	link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]
-	link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]
-	link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]
-	link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]
-	link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]
-	link:/standards/isots-173692005[ISO/TS 17369:2005]
-	link:/standards/isots-206252002[ISO/TS 20625:2002]
+* link:/standards/isots-206252002[ISO/TS 20625:2002] Electronic data interchange for administration, commerce and transport (EDIFACT) -- Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines
 
-</li>
-link:/minutes">*Minutes*<span class="navi-description[Announcements</span>]
-link:/faq">*FAQ*<span class="navi-description[Your questions</span>]
-link:/isotc-154-2016-anual-meeting-details">*Meetings*<span class="navi-description[2016 Meetings</span>]
-
-</nav>
-</div><!-- END header-area -->
-</div><!-- END header-overlay -->
-</div><!-- END header-holder -->
-</header><!-- END header -->
-
-
-<div id="main" class="tt-slider-">
-
-
-<div class="main-area">
-
-<nav role="navigation" id="sub_nav" class="nav_right_sub_nav">
-	
-
-
-
-
-
-
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-6422-12010[ISO 6422-1:2010]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-73722005[ISO 7372:2005]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84391990[ISO 8439:1990]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84401986[ISO 8440:1986]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-86012004[ISO 8601:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988[ISO 9735:1988]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-12002[ISO 9735-1:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-22002[ISO 9735-2:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-32002[ISO 9735-3:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-42002[ISO 9735-4:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-52002[ISO 9735-5:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-62002[ISO 9735-6:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-72002[ISO 9735-7:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-82002[ISO 9735-8:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-92002[ISO 9735-9:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-102002[ISO 9735-10:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-173692005[ISO/TS 17369:2005]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-206252002[ISO/TS 20625:2002]</li>
-
-</nav><!-- END sub_nav -->
-
-
-<h1 id="international_standards">International Standards</h1>
-
-<li>
-link:/iso-6422-12010" title="ISO 6422-1:2010[ISO 6422-1:2010] <br />
-Layout key for trade documents -- Part 1: Paper-based documents
-
-</li>
-<li>
-link:/documents/iso-73722005" title="ISO 7372:2005[ISO 7372:2005] <br />
-Trade data interchange -- Trade data elements directory
-
-</li>
-<li>
-link:/standards/iso-84391990" title="ISO 8439:1990[ISO 8439:1990] <br />
-Forms design -- Basic layout
-
-</li>
-<li>
-link:/standards/iso-84401986" title="ISO 8440:1986[ISO 8440:1986] <br />
-Location of codes in trade documents
-
-</li>
-<li>
-ISO 8440:1986/Cor 1:2000
-
-</li>
-<li>
-link:/standards/iso-86012004" title="ISO 8601:2004[ISO 8601:2004] <br />
-Data elements and interchange formats -- Information interchange -- Representation of dates and times
-
-</li>
-<li>
-link:/standards/iso-97351988" title="ISO 9735:1988[ISO 9735:1988]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules
-
-</li>
-<li>
-link:/standards/iso-97351988amd-11992" title="ISO 9735:1988/Amd 1:1992[ISO 9735:1988/Amd 1:1992]
-
-</li>
-<li>
-link:/standards/iso-9735-12002" title="ISO 9735-1:2002[ISO 9735-1:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 1: Syntax rules common to all parts
-
-</li>
-<li>
-link:/standards/iso-9735-22002" title="ISO 9735-2:2002[ISO 9735-2:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 2: Syntax rules specific to batch EDI
-
-</li>
-<li>
-link:/standards/iso-9735-32002" title="ISO 9735-3:2002[ISO 9735-3:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 3: Syntax rules specific to interactive EDI
-
-</li>
-<li>
-link:/standards/iso-9735-42002" title="ISO 9735-4:2002[ISO 9735-4:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 4: Syntax and service report message for batch EDI (message type -- CONTRL)
-
-</li>
-<li>
-link:/standards/iso-9735-52002" title="ISO 9735-5:2002[ISO 9735-5:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 5: Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)
-
-</li>
-<li>
-link:/standards/iso-9735-62002" title="ISO 9735-6:2002[ISO 9735-6:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 6: Secure authentication and acknowledgement message (message type -- AUTACK)
-
-</li>
-<li>
-link:/standards/iso-9735-72002" title="ISO 9735-7:2002[ISO 9735-7:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 7: Security rules for batch EDI (confidentiality)
-
-</li>
-<li>
-link:/standards/iso-9735-82002" title="ISO 9735-8:2002[ISO 9735-8:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 8: Associated data in EDI
-
-</li>
-<li>
-link:/standards/iso-9735-92002" title="ISO 9735-9:2002[ISO 9735-9:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 9: Security key and certificate management message (message type- KEYMAN)
-
-</li>
-<li>
-link:/standards/iso-9735-102002" title="ISO 9735-10:2002[ISO 9735-10:2002]<br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 10: Syntax service directories
-
-</li>
-
-<h1 id="technical_specifications">Technical Specifications</h1>
-
-<li>
-link:/standards/isots-15000-12004" title="ISO/TS 15000-1:2004[ISO/TS 15000-1:2004] <br />
-Electronic business eXtensible Markup Language (ebXML) -- Part 1: Collaboration-protocol profile and agreement specification (ebCPP)
-
-</li>
-<li>
-link:/standards/isots-15000-22004" title="ISO/TS 15000-2:2004[ISO/TS 15000-2:2004] <br />
-Electronic business eXtensible Markup Language (ebXML) -- Part 2: Message service specification (ebMS)
-
-</li>
-<li>
-link:/standards/isots-15000-32004" title="ISO/TS 15000-3:2004[ISO/TS 15000-3:2004] <br />
-Electronic business eXtensible Markup Language (ebXML) -- Part 3: Registry information model specification (ebRIM)
-
-</li>
-<li>
-link:/standards/isots-15000-42004" title="ISO/TS 15000-4:2004[ISO/TS 15000-4:2004] <br />
-Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)
-
-</li>
-<li>
-link:/standards/isots-15000-52005" title="ISO/TS 15000-5:2005[ISO/TS 15000-5:2005] <br />
-Electronic Business Extensible Markup Language (ebXML) -- Part 5: ebXML Core Components Technical Specification, Version 2.01 (ebCCTS)
-
-</li>
-<li>
-ISO/TS 15000-5:2005/Amd 1:2011
-
-</li>
-<li>
-link:/standards/isots-173692005" title="ISO/TS 17369:2005[ISO/TS 17369:2005] <br />
-Statistical data and metadata exchange (SDMX)
-
-</li>
-<li>
-link:/standards/isots-206252002" title="ISO/TS 20625:2002[ISO/TS 20625:2002] <br />
-Electronic data interchange for administration, commerce and transport (EDIFACT) -- Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines
-
-</li>
 
