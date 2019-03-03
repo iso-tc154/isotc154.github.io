@@ -11,42 +11,35 @@ JWG 1's main deliverable is the ISO 9735, EDIFACT – Application level syntax r
 
 * Version 1 – 1988;
 
-
 * Version 2 – 1990 with minor changes to segments UNG and UNH;
-
 
 * Version 3 – 1992 with additional character sets (UNOC to UNOF);
 
+* Version 4 – 1998/1999 with:
 
-<li>Version 4 – 1998/1999 with:
-
-* additional batch EDI features;
-* inclusion of ideographic character sets;
-* inclusion of the syntax directories;
-* inclusion of interactive EDI;
-* inclusion of CONTRL message type;
-* inclusion of security structures;
-* inclusion of security message types (AUTACK, KEYMAN);
-* inclusion of multi format EDI (non-EDIFACT data);
-* alignment of data field regarding the Y2K issue; and
-* inclusion of a technique to avoid segment collisions;
-
-</li>
+** additional batch EDI features;
+** inclusion of ideographic character sets;
+** inclusion of the syntax directories;
+** inclusion of interactive EDI;
+** inclusion of CONTRL message type;
+** inclusion of security structures;
+** inclusion of security message types (AUTACK, KEYMAN);
+** inclusion of multi format EDI (non-EDIFACT data);
+** alignment of data field regarding the Y2K issue; and
+** inclusion of a technique to avoid segment collisions;
 
 
-<li>Version 4, Release 1 – 2002 consisting of:
+* Version 4, Release 1 – 2002 consisting of:
 
-* *Part 1: *Syntax rules common to all parts
-* *Part 2: *Syntax rules specific for batch EDI
-* *Part 3: *Syntax rules specific for interactive EDI
-* *Part 4: *Syntax and service report message for batch EDI (message type – CONTRL)
-* *Part 5: *Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)
-* *Part 6: *Secure authentication and acknowledgement message (message type – AUTACK)
-* *Part 7: *Security rules for batch EDI (confidentiality)
-* *Part 8: *Associated data in EDI
-* *Part 9: *Security key and certificate management message (message type – KEYMAN)
-* *Part 10: *Syntax service directories
+** *Part 1: *Syntax rules common to all parts
+** *Part 2: *Syntax rules specific for batch EDI
+** *Part 3: *Syntax rules specific for interactive EDI
+** *Part 4: *Syntax and service report message for batch EDI (message type – CONTRL)
+** *Part 5: *Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)
+** *Part 6: *Secure authentication and acknowledgement message (message type – AUTACK)
+** *Part 7: *Security rules for batch EDI (confidentiality)
+** *Part 8: *Associated data in EDI
+** *Part 9: *Security key and certificate management message (message type – KEYMAN)
+** *Part 10: *Syntax service directories
 
-</li>
-
-Since the last publication in 2002 the JWG 1's work is concentrated on the maintenance of the service codes in process. Appropriate requests (DMRs) are handled by the group who is responsible for updating the UNSL (Syntax directories) and JSWG homepage accordingly (see link:http://www.gefeg.com/jswg[www.gefeg.com/jswg]). According a JWG 1 agreement (2010-10-23) the “2-per-year” update of the Service Code Lists will be performed in alignment with the updates of the corresponding UN/EDIFACT directories.
+Since the last publication in 2002 the JWG 1's work is concentrated on the maintenance of the service codes in process. Appropriate requests (DMRs) are handled by the group who is responsible for updating the UNSL (Syntax directories) and http://www.gefeg.com/jswg[JSWG homepage] accordingly. According a JWG 1 agreement (2010-10-23) the “2-per-year” update of the Service Code Lists will be performed in alignment with the updates of the corresponding UN/EDIFACT directories.

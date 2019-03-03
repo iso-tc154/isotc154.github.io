@@ -2,87 +2,8 @@ permalink: /about_us/wg3
 ---
 = WG 3 -- CCTS
 
-link:/about_us[About Us]
-	link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-		link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
-	link:/about_us/wg3[WG 3 – CCTS]
-	link:/about_us/wg4[WG 4 – eLK]
-	link:/about_us/cat[CAT -- Chairman's Advisory Team]
-	link:/about_us/ma[TDED Maintenance Agency]
-	link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
-	link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
-
-	link:/projects/iso-np-6422-2[ISO NP 6422-2]
-	link:/projects/iso-np-14533[ISO NP 14533]
-	link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]
-	link:/projects/iso-np-9735-10[ISO NP 9735-10]
-	link:/projects/iso-np-15000-5[ISO NP 15000-5]
-	link:/projects/iso-np-17369[ISO NP 17369]
-  link:/standards[Standards]
-
-	link:/standards/iso-6422-12010[ISO 6422-1:2010]
-	link:/standards/iso-73722005[ISO 7372:2005]
-	link:/standards/iso-84391990[ISO 8439:1990]
-	link:/standards/iso-84401986[ISO 8440:1986]
-	link:/standards/iso-86012004[ISO 8601:2004]
-	link:/standards/iso-97351988[ISO 9735:1988]
-	link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
-	link:/standards/iso-9735-12002[ISO 9735-1:2002]
-	link:/standards/iso-9735-22002[ISO 9735-2:2002]
-	link:/standards/iso-9735-32002[ISO 9735-3:2002]
-	link:/standards/iso-9735-42002[ISO 9735-4:2002]
-	link:/standards/iso-9735-52002[ISO 9735-5:2002]
-	link:/standards/iso-9735-62002[ISO 9735-6:2002]
-	link:/standards/iso-9735-72002[ISO 9735-7:2002]
-	link:/standards/iso-9735-82002[ISO 9735-8:2002]
-	link:/standards/iso-9735-92002[ISO 9735-9:2002]
-	link:/standards/iso-9735-102002[ISO 9735-10:2002]
-	link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]
-	link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]
-	link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]
-	link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]
-	link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]
-	link:/standards/isots-173692005[ISO/TS 17369:2005]
-	link:/standards/isots-206252002[ISO/TS 20625:2002]
-
-link:/minutes">*Minutes*<span class="navi-description[Announcements</span>]
-link:/faq">*FAQ*<span class="navi-description[Your questions</span>]
-link:/isotc-154-2016-anual-meeting-details">*Meetings*<span class="navi-description[2016 Meetings</span>]
-
-</nav>
-</div><!-- END header-area -->
-</div><!-- END header-overlay -->
-</div><!-- END header-holder -->
-</header><!-- END header -->
-
-
-<div id="main" class="tt-slider-">
-
-
-<div class="main-area">
-
-<nav role="navigation" id="sub_nav" class="nav_right_sub_nav">
-	
-
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-	
-		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/jwg1/sdmr[Syntax DMR Procedures]</li>
-	
-</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page ">link:/about_us/wg3[WG 3 – CCTS]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[WG 4 – eLK]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[CAT -- Chairman's Advisory Team]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
-	
-		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]</li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]</li>
-	
-</li>
-
-</nav><!-- END sub_nav -->
-
-
 === ISO TS 15000-5 (ebXML Core Components Technical Specification, Version 2.01(ebCCTS))
+
 ==== Background
 ISO TS 15000-5 was first published in 2005, based on the UN/CEFACT publication of the Core Component Technical Specification 2.01. In 2008 it was reviewed and confirmed by ISO/TC 154 for continued publication. In 2011, ISO published Amendment 1 to ISO TS 15000-5, based on corrigendum published by UN/CEFACT.
 
@@ -92,30 +13,18 @@ The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Mary Kay 
 
 ==== Approved Recommendation
 
-<li>
-Upgrade 15000-5 to an International Standard.
+* Upgrade 15000-5 to an International Standard.
 
+* Reasons for this choice
 
-<li>
-Reasons for this choice
+** The Core Component Library (CCL) based on this TS is widely used.
+** The ISOTC 154 library alignment project has chosen this as the basis for alignment
+** The ebMoU Management Group recommends this for global semantic harmonization
 
+* Next Steps
 
-* The Core Component Library (CCL) based on this TS is widely used.
-* The ISOTC 154 library alignment project has chosen this as the basis for alignment
-* The ebMoU Management Group recommends this for global semantic harmonization
-
-</li>
-<li>
-Next Steps
-
-
-* Make changes to the specification
-* Include the published amendment in the document
-* Remove references no longer applicable, such as to UN/CEFACT, where appropriate
-* Remove the constraint language chapter
-* Update or remove the data types
-
-</li>
-
-</li>
-
+** Make changes to the specification
+** Include the published amendment in the document
+** Remove references no longer applicable, such as to UN/CEFACT, where appropriate
+** Remove the constraint language chapter
+** Update or remove the data types
