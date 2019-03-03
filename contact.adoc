@@ -26,13 +26,13 @@ permalink: /contact
 
 
 <div>
-		<label for='4908-name' class='name'>Name<span>(required)</span></label>
+		<label for='4908-name' class='name'>Name(required)</label>
 		<input type='text' name='4908-name' id='4908-name' value='' class='name'/>
 	</div>
 
 
 <div>
-		<label for='4908-email' class='grunion-field-label email'>Email<span>(required)</span></label>
+		<label for='4908-email' class='grunion-field-label email'>Email(required)</label>
 		<input type='text' name='4908-email' id='4908-email' value='' class='email'/>
 	</div>
 
@@ -44,7 +44,7 @@ permalink: /contact
 
 
 <div>
-		<label for='4908-comment' class='textarea'>Comment<span>(required)</span></label>
+		<label for='4908-comment' class='textarea'>Comment(required)</label>
 		<textarea name='4908-comment' id='contact-form-comment-4908-comment' rows='20'></textarea>
 	</div>
 

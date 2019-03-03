@@ -2,140 +2,26 @@ permalink: /standards/iso-9735-102002
 ---
 = ISO 9735-10:2002
 
-
-
-
-
-<nav role="navigation">
-<ul id="menu-main-nav" class="sf-menu">
-<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us"><span>*About Us*<span class="navi-description[Who we are</span></span>]
-<ul class="sub-menu">
-	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[<span>JWG 1 – EDIFACT Syntax</span>]
-	<ul class="sub-menu">
-		<li id="item-5215"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/jwg1/sdmr[<span>Syntax DMR Procedures</span>]</li>
-	</ul>
-</li>
-	<li id="item-5007"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg3[<span>WG 3 – CCTS</span>]</li>
-	<li id="item-5013"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[<span>WG 4 – eLK</span>]</li>
-	<li id="item-5252"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[<span>CAT -- Chairman's Advisory Team</span>]</li>
-	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[<span>TDED Maintenance Agency</span>]
-	<ul class="sub-menu">
-		<li id="item-5581"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[<span>Membership of the TDED MA</span>]</li>
-		<li id="item-5585"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/ma_links[<span>Relevant links to TDED MA folders/files</span>]</li>
-	</ul>
-</li>
-</ul>
-</li>
-<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects"><span>*Projects*<span class="navi-description[What we do</span></span>]
-<ul class="sub-menu">
-	<li id="item-5146"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-6422-2[<span>ISO NP 6422-2</span>]</li>
-	<li id="item-5149"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-14533[<span>ISO NP 14533</span>]</li>
-	<li id="item-5136"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-pwi-tr-6422-3[<span>ISO PWI TR 6422-3</span>]</li>
-	<li id="item-5173"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-9735-10[<span>ISO NP 9735-10</span>]</li>
-	<li id="item-5180"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-15000-5[<span>ISO NP 15000-5</span>]</li>
-	<li id="item-5184"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-17369[<span>ISO NP 17369</span>]</li>
-</ul>
-</li>
-<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">link:/standards"><span>*Standards*<span class="navi-description[Our output</span></span>]
-<ul class="sub-menu">
-	<li id="item-5127"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-6422-12010[<span>ISO 6422-1:2010</span>]</li>
-	<li id="item-5131"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-73722005[<span>ISO 7372:2005</span>]</li>
-	<li id="item-5284"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84391990[<span>ISO 8439:1990</span>]</li>
-	<li id="item-5283"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84401986[<span>ISO 8440:1986</span>]</li>
-	<li id="item-5282"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-86012004[<span>ISO 8601:2004</span>]</li>
-	<li id="item-5323"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988[<span>ISO 9735:1988</span>]</li>
-	<li id="item-5322"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988amd-11992[<span>ISO 9735:1988/Amd 1:1992</span>]</li>
-	<li id="item-5326"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-12002[<span>ISO 9735-1:2002</span>]</li>
-	<li id="item-5325"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-22002[<span>ISO 9735-2:2002</span>]</li>
-	<li id="item-5370"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-32002[<span>ISO 9735-3:2002</span>]</li>
-	<li id="item-5369"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-42002[<span>ISO 9735-4:2002</span>]</li>
-	<li id="item-5368"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-52002[<span>ISO 9735-5:2002</span>]</li>
-	<li id="item-5367"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-62002[<span>ISO 9735-6:2002</span>]</li>
-	<li id="item-5366"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-72002[<span>ISO 9735-7:2002</span>]</li>
-	<li id="item-5365"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-82002[<span>ISO 9735-8:2002</span>]</li>
-	<li id="item-5364"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-92002[<span>ISO 9735-9:2002</span>]</li>
-	<li id="item-5363"  class=" menu-item menu-item-type-post_type menu-item-object-page ">link:/standards/iso-9735-102002[<span>ISO 9735-10:2002</span>]</li>
-	<li id="item-5392"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-12004[<span>ISO/TS 15000-1:2004</span>]</li>
-	<li id="item-5391"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-22004[<span>ISO/TS 15000-2:2004</span>]</li>
-	<li id="item-5390"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-32004[<span>ISO/TS 15000-3:2004</span>]</li>
-	<li id="item-5389"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-42004[<span>ISO/TS 15000-4:2004</span>]</li>
-	<li id="item-5388"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-52005[<span>ISO/TS 15000-5:2005</span>]</li>
-	<li id="item-5387"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-173692005[<span>ISO/TS 17369:2005</span>]</li>
-	<li id="item-5386"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-206252002[<span>ISO/TS 20625:2002</span>]</li>
-</ul>
-</li>
-<li id="item-4909"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/minutes"><span>*Minutes*<span class="navi-description[Announcements</span></span>]</li>
-<li id="item-4983"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/faq"><span>*FAQ*<span class="navi-description[Your questions</span></span>]</li>
-<li id="item-6479"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/isotc-154-2016-anual-meeting-details"><span>*Meetings*<span class="navi-description[2016 Meetings</span></span>]</li>
-</ul>
-</nav>
-</div><!-- END header-area -->
-</div><!-- END header-overlay -->
-</div><!-- END header-holder -->
-</header><!-- END header -->
-
-
-<div id="main" class="tt-slider-">
-
-
-<div class="main-area">
-
-<nav role="navigation" id="sub_nav" class="nav_right_sub_nav">
-	
-<ul class="sub-menu">
-
-
-</ul>
-
-<ul class="sub-menu">
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-6422-12010[ISO 6422-1:2010]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-73722005[ISO 7372:2005]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84391990[ISO 8439:1990]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84401986[ISO 8440:1986]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-86012004[ISO 8601:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988[ISO 9735:1988]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-12002[ISO 9735-1:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-22002[ISO 9735-2:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-32002[ISO 9735-3:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-42002[ISO 9735-4:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-52002[ISO 9735-5:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-62002[ISO 9735-6:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-72002[ISO 9735-7:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-82002[ISO 9735-8:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-92002[ISO 9735-9:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page ">link:/standards/iso-9735-102002[ISO 9735-10:2002]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-173692005[ISO/TS 17369:2005]</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-206252002[ISO/TS 20625:2002]</li>
-</ul>
-</nav><!-- END sub_nav -->
-
-
-<h4>Electronic data interchange for administration, commerce and transport (EDIFACT) &#8212; Application level syntax rules (Syntax version number: 4, Syntax release number: 1) &#8212; Part 10: Syntax service directories</h4>
-<h5>Abstract</h5>
+=== Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 10: Syntax service directories
+==== Abstract
 This part of ISO 9735 specifies the syntax service directories of all parts of the ISO 9735 series.
 
-<h5>Revision information</h5>
+==== Revision information
 Revises: ISO 9735-10:1998
 
-<h5>Corrigenda, Amendments and other parts</h5>
-ISO 9735-1:2002<br />
-ISO 9735-2:2002<br />
-ISO 9735-3:2002<br />
-ISO 9735-4:2002<br />
-ISO 9735-5:2002<br />
-ISO 9735-6:2002<br />
-ISO 9735-7:2002<br />
-ISO 9735-8:2002<br />
+==== Corrigenda, Amendments and other parts
+* ISO 9735-1:2002
+* ISO 9735-2:2002
+* ISO 9735-3:2002
+* ISO 9735-4:2002
+* ISO 9735-5:2002
+* ISO 9735-6:2002
+* ISO 9735-7:2002
+* ISO 9735-8:2002
 ISO 9735-9:2002
 
-<h5>Note</h5>
-This edition is been identified as Syntax Version <b>4</b> within the UNB/S001/0002 and Syntax Release <b>1</b> within the UNB/S001/0076 for BATCH EDI or as Syntax Version <b>4</b> within the UIB/S001/0002 and Syntax Release <b>1</b> within the UIB/S001/0076 for Interactive EDI.
+==== Note
+This edition is been identified as Syntax Version *4* within the UNB/S001/0002 and Syntax Release *1* within the UNB/S001/0076 for BATCH EDI or as Syntax Version *4* within the UIB/S001/0002 and Syntax Release *1* within the UIB/S001/0076 for Interactive EDI.
 
 See link:/faq[FAQ page] for the entry describing the differences amongst the various Syntax versions.
 

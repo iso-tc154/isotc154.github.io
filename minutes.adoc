@@ -17,67 +17,67 @@
 
 
 <nav role="navigation">
-<ul id="menu-main-nav" class="sf-menu">
-<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us"><span>*About Us*<span class="navi-description[Who we are</span></span>]
-<ul class="sub-menu">
-	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[<span>JWG 1 – EDIFACT Syntax</span>]
-	<ul class="sub-menu">
-		<li id="item-5215"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/jwg1/sdmr[<span>Syntax DMR Procedures</span>]</li>
-	</ul>
+
+<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us">*About Us*<span class="navi-description[Who we are</span>]
+
+	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
+	
+		link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
+	
 </li>
-	<li id="item-5007"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg3[<span>WG 3 – CCTS</span>]</li>
-	<li id="item-5013"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[<span>WG 4 – eLK</span>]</li>
-	<li id="item-5252"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[<span>CAT -- Chairman's Advisory Team</span>]</li>
-	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[<span>TDED Maintenance Agency</span>]
-	<ul class="sub-menu">
-		<li id="item-5581"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[<span>Membership of the TDED MA</span>]</li>
-		<li id="item-5585"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/ma_links[<span>Relevant links to TDED MA folders/files</span>]</li>
-	</ul>
+	link:/about_us/wg3[WG 3 – CCTS]
+	link:/about_us/wg4[WG 4 – eLK]
+	link:/about_us/cat[CAT -- Chairman's Advisory Team]
+	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
+	
+		link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
+		link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
+	
 </li>
-</ul>
+
 </li>
-<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects"><span>*Projects*<span class="navi-description[What we do</span></span>]
-<ul class="sub-menu">
-	<li id="item-5146"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-6422-2[<span>ISO NP 6422-2</span>]</li>
-	<li id="item-5149"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-14533[<span>ISO NP 14533</span>]</li>
-	<li id="item-5136"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-pwi-tr-6422-3[<span>ISO PWI TR 6422-3</span>]</li>
-	<li id="item-5173"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-9735-10[<span>ISO NP 9735-10</span>]</li>
-	<li id="item-5180"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-15000-5[<span>ISO NP 15000-5</span>]</li>
-	<li id="item-5184"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-17369[<span>ISO NP 17369</span>]</li>
-</ul>
+<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects">*Projects*<span class="navi-description[What we do</span>]
+
+	link:/projects/iso-np-6422-2[ISO NP 6422-2]
+	link:/projects/iso-np-14533[ISO NP 14533]
+	link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]
+	link:/projects/iso-np-9735-10[ISO NP 9735-10]
+	link:/projects/iso-np-15000-5[ISO NP 15000-5]
+	link:/projects/iso-np-17369[ISO NP 17369]
+
 </li>
-<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/standards"><span>*Standards*<span class="navi-description[Our output</span></span>]
-<ul class="sub-menu">
-	<li id="item-5127"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-6422-12010[<span>ISO 6422-1:2010</span>]</li>
-	<li id="item-5131"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-73722005[<span>ISO 7372:2005</span>]</li>
-	<li id="item-5284"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84391990[<span>ISO 8439:1990</span>]</li>
-	<li id="item-5283"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84401986[<span>ISO 8440:1986</span>]</li>
-	<li id="item-5282"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-86012004[<span>ISO 8601:2004</span>]</li>
-	<li id="item-5323"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988[<span>ISO 9735:1988</span>]</li>
-	<li id="item-5322"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988amd-11992[<span>ISO 9735:1988/Amd 1:1992</span>]</li>
-	<li id="item-5326"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-12002[<span>ISO 9735-1:2002</span>]</li>
-	<li id="item-5325"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-22002[<span>ISO 9735-2:2002</span>]</li>
-	<li id="item-5370"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-32002[<span>ISO 9735-3:2002</span>]</li>
-	<li id="item-5369"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-42002[<span>ISO 9735-4:2002</span>]</li>
-	<li id="item-5368"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-52002[<span>ISO 9735-5:2002</span>]</li>
-	<li id="item-5367"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-62002[<span>ISO 9735-6:2002</span>]</li>
-	<li id="item-5366"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-72002[<span>ISO 9735-7:2002</span>]</li>
-	<li id="item-5365"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-82002[<span>ISO 9735-8:2002</span>]</li>
-	<li id="item-5364"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-92002[<span>ISO 9735-9:2002</span>]</li>
-	<li id="item-5363"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-102002[<span>ISO 9735-10:2002</span>]</li>
-	<li id="item-5392"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-12004[<span>ISO/TS 15000-1:2004</span>]</li>
-	<li id="item-5391"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-22004[<span>ISO/TS 15000-2:2004</span>]</li>
-	<li id="item-5390"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-32004[<span>ISO/TS 15000-3:2004</span>]</li>
-	<li id="item-5389"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-42004[<span>ISO/TS 15000-4:2004</span>]</li>
-	<li id="item-5388"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-52005[<span>ISO/TS 15000-5:2005</span>]</li>
-	<li id="item-5387"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-173692005[<span>ISO/TS 17369:2005</span>]</li>
-	<li id="item-5386"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-206252002[<span>ISO/TS 20625:2002</span>]</li>
-</ul>
+<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/standards">*Standards*<span class="navi-description[Our output</span>]
+
+	link:/standards/iso-6422-12010[ISO 6422-1:2010]
+	link:/standards/iso-73722005[ISO 7372:2005]
+	link:/standards/iso-84391990[ISO 8439:1990]
+	link:/standards/iso-84401986[ISO 8440:1986]
+	link:/standards/iso-86012004[ISO 8601:2004]
+	link:/standards/iso-97351988[ISO 9735:1988]
+	link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
+	link:/standards/iso-9735-12002[ISO 9735-1:2002]
+	link:/standards/iso-9735-22002[ISO 9735-2:2002]
+	link:/standards/iso-9735-32002[ISO 9735-3:2002]
+	link:/standards/iso-9735-42002[ISO 9735-4:2002]
+	link:/standards/iso-9735-52002[ISO 9735-5:2002]
+	link:/standards/iso-9735-62002[ISO 9735-6:2002]
+	link:/standards/iso-9735-72002[ISO 9735-7:2002]
+	link:/standards/iso-9735-82002[ISO 9735-8:2002]
+	link:/standards/iso-9735-92002[ISO 9735-9:2002]
+	link:/standards/iso-9735-102002[ISO 9735-10:2002]
+	link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]
+	link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]
+	link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]
+	link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]
+	link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]
+	link:/standards/isots-173692005[ISO/TS 17369:2005]
+	link:/standards/isots-206252002[ISO/TS 20625:2002]
+
 </li>
-<li id="item-4909"  class=" menu-item menu-item-type-post_type menu-item-object-page  current_page_parent">link:/minutes"><span>*Minutes*<span class="navi-description[Announcements</span></span>]</li>
-<li id="item-4983"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/faq"><span>*FAQ*<span class="navi-description[Your questions</span></span>]</li>
-<li id="item-6479"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/isotc-154-2016-anual-meeting-details"><span>*Meetings*<span class="navi-description[2016 Meetings</span></span>]</li>
-</ul>
+link:/minutes">*Minutes*<span class="navi-description[Announcements</span>]
+link:/faq">*FAQ*<span class="navi-description[Your questions</span>]
+link:/isotc-154-2016-anual-meeting-details">*Meetings*<span class="navi-description[2016 Meetings</span>]
+
 </nav>
 </div><!-- END header-area -->
 </div><!-- END header-overlay -->
@@ -102,29 +102,29 @@
 </div><!-- END post_title -->
 
 <div class="post_content">
-<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>15 February 2017, 15:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call
+=== 15 February 2017, 15:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), Mei-Li Chen (MLC)<br />
 *Excused:* JianFang Zhang (JFZ), Jasmine Chang (JC), Peter Rybar (PR), Bernd Bösler (BB)
 
 <ol>
-<li>Approval of Agenda – *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2017-02-01[15 February 2017 Meeting Minutes] – *approved*</li>
+* Approval of Agenda – *approved*
+* Approval of link:/cat-draft-minutes-2017-02-01[15 February 2017 Meeting Minutes] – *approved*
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Henry supports Brian's suggestion that we should create a RA instead of MA</li>
-<li>CAT to review the differences, as defined in the latest ISO Directives, in order to come to a ...</li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2017-02-15" rel="bookmark" title="Continue reading CAT Draft Minutes 2017-02-15">
-	<span>Continue Reading →</span></a>
+
+* Henry supports Brian's suggestion that we should create a RA instead of MA
+<li>CAT to review the differences, as defined in the latest ISO Directives, in order to come to a ...</li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2017-02-15" rel="bookmark" title="Continue reading CAT Draft Minutes 2017-02-15">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">15</span>
+	15
     <br />
-    <span class="month">FEB</span>
+    FEB
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2017-02-15#post-comments[<span>0</span>]
+	link:/cat-draft-minutes-2017-02-15#post-comments[0]
 </div><!-- END post_comments -->
 
 
@@ -147,38 +147,38 @@
 </div><!-- END post_title -->
 
 <div class="post_content">
-<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>01 February, 15:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call
+=== 01 February, 15:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Peter Rybar (PR)<br />
 *Excused:* Bernd Bösler (BB), Mei-Li Chen (MLC), Jasmine Chang (JC)
 
 <ol>
-<li>Approval of Agenda – *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2017-01-04[04 January 2017 Meeting Minutes] – *approved*</li>
+* Approval of Agenda – *approved*
+* Approval of link:/cat-draft-minutes-2017-01-04[04 January 2017 Meeting Minutes] – *approved*
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Currently addressing final comments from Brian regarding the formation of an MA vs RA.</li>
-</ul>
+
+* Currently addressing final comments from Brian regarding the formation of an MA vs RA.
+
 </li>
 <li>WG 5 (Representation of dates and times)
-<ul>
-<li>Awaiting DIS Ballot announcement from ISO/CS</li>
-</ul>
+
+* Awaiting DIS Ballot announcement from ISO/CS
+
 </li>
 <li>WG 6 (Trusted eCommunication)
-<ul>
-<li>External Liaison with ETSI ...</li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2017-02-01" rel="bookmark" title="Continue reading CAT Draft Minutes 2017-02-01">
-	<span>Continue Reading →</span></a>
+
+<li>External Liaison with ETSI ...</li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2017-02-01" rel="bookmark" title="Continue reading CAT Draft Minutes 2017-02-01">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">1</span>
+	1
     <br />
-    <span class="month">FEB</span>
+    FEB
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2017-02-01#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2017-02-01#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -201,42 +201,42 @@
 </div><!-- END post_title -->
 
 <div class="post_content">
-<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>04 January 2017, 15:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call
+=== 04 January 2017, 15:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), Jasmine Chang (JC), Mei-Li Chen (MLC), Peter Rybar (PR), Bernd Bösler (BB), JianFang Zhang (JFZ)<br />
 *Excused:* Francois Vuilleumier (FV)
 
 <ol>
-<li>Approval of Agenda – *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-12-21[21 December 2016 Meeting Minutes] – *approved*</li>
+* Approval of Agenda – *approved*
+* Approval of link:/cat-draft-minutes-2016-12-21[21 December 2016 Meeting Minutes] – *approved*
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Awaiting final decision from ISO/CS (Brian)</li>
-</ul>
+
+* Awaiting final decision from ISO/CS (Brian)
+
 </li>
 <li>WG 5 (Representation of dates and times)
-<ul>
-<li>Out for ballot, closing 2017-03-23</li>
-</ul>
+
+* Out for ballot, closing 2017-03-23
+
 </li>
 <li>WG 6 (Trusted eCommunication)
-<ul>
+
 <li>PT1 -- Long term signature profiles
-<ul>
+
 <li>ISO/DIS 14533-3 -- Ballot closed 2016-12-27
-<ul>
-<li>PT to ...</li></ul></li></ul></li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2017-01-04" rel="bookmark" title="Continue reading CAT Draft Minutes 2017-01-04">
-	<span>Continue Reading →</span></a>
+
+<li>PT to ...</li></li></li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2017-01-04" rel="bookmark" title="Continue reading CAT Draft Minutes 2017-01-04">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">4</span>
+	4
     <br />
-    <span class="month">JAN</span>
+    JAN
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2017-01-04#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2017-01-04#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -259,40 +259,40 @@
 </div><!-- END post_title -->
 
 <div class="post_content">
-<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>21 December 2016, 15:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call
+=== 21 December 2016, 15:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), Mei-Li Chen (MLC)   <br />
 *Excused:* Jasmine Chang (JC), Bernd Bösler (BB), Peter Rybar (PR), JianFang Zhang (JFZ)
 
 <ol>
-<li>Approval of Agenda – *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-11-23[23 November 2016 Meeting Minutes] – *approved*</li>
+* Approval of Agenda – *approved*
+* Approval of link:/cat-draft-minutes-2016-11-23[23 November 2016 Meeting Minutes] – *approved*
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Awaiting final decision from ISO/CS (Brian) </li>
-</ul>
+
+* Awaiting final decision from ISO/CS (Brian) 
+
 </li>
 <li>WG 5 (Representation of dates and times)
-<ul>
-<li>Awaiting final decision from ISO/CS (Brian) </li>
-</ul>
+
+* Awaiting final decision from ISO/CS (Brian) 
+
 </li>
 <li>WG 6 (Trusted eCommunication)
-<ul>
+
 <li>PT1 -- Long term signature profiles
-<ul>
-<li>Awaiting ...</li></ul></li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-12-21" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-12-21">
-	<span>Continue Reading →</span></a>
+
+<li>Awaiting ...</li></li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-12-21" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-12-21">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">21</span>
+	21
     <br />
-    <span class="month">DEC</span>
+    DEC
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2016-12-21#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2016-12-21#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -315,33 +315,33 @@
 </div><!-- END post_title -->
 
 <div class="post_content">
-<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>23 November 2016, 15:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call
+=== 23 November 2016, 15:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)
 
 <ol>
-<li>Approval of Agenda – *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-09-28[28 September 2016 Meeting Minutes] – *approved*</li>
+* Approval of Agenda – *approved*
+* Approval of link:/cat-draft-minutes-2016-09-28[28 September 2016 Meeting Minutes] – *approved*
 <li>ISO/TC 154 Plenary Recap
-<ul>
-<li>Resolutions -- *reviewed*</li>
-<li>Action items -- *reviewed*</li>
-</ul>
+
+* Resolutions -- *reviewed*
+* Action items -- *reviewed*
+
 </li>
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>K-DN updated Brian (ISO/CS) on our decision to stick with an MA instead of RA because of the need to process DMRs that ...</li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-11-23" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-11-23">
-	<span>Continue Reading →</span></a>
+
+<li>K-DN updated Brian (ISO/CS) on our decision to stick with an MA instead of RA because of the need to process DMRs that ...</li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-11-23" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-11-23">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">24</span>
+	24
     <br />
-    <span class="month">NOV</span>
+    NOV
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2016-11-23#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2016-11-23#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -364,46 +364,46 @@
 </div><!-- END post_title -->
 
 <div class="post_content">
-<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>14 September 2016, 14:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call
+=== 14 September 2016, 14:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)<br />
 *Excused:* Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)
 
 <ol>
-<li>Approval of Agenda -- *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-09-14[14 September 2016 Meeting Minutes] -- *approved*</li>
+* Approval of Agenda -- *approved*
+* Approval of link:/cat-draft-minutes-2016-09-14[14 September 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
+
 <li>Feedback from ISO/CS
-<ul>
-<li>_Awaiting comments from ISO/CS_</li>
-</ul>
+
+* _Awaiting comments from ISO/CS_
+
 </li>
-</ul>
+
 </li>
 <li>WG 5 (Representation of dates and times)
-<ul>
+
 <li>ISO/CD 8601 Part 1 &amp; 2 Ballot Results
-<ul>
-<li>*Nothing to report since last CAT meeting*</li>
-</ul>
+
+* *Nothing to report since last CAT meeting*
+
 </li>
-</ul>
+
 </li>
 <li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 -- Long ...</li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-09-28" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-09-28">
-	<span>Continue Reading →</span></a>
+
+<li>PT1 -- Long ...</li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-09-28" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-09-28">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">28</span>
+	28
     <br />
-    <span class="month">SEP</span>
+    SEP
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2016-09-28#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2016-09-28#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -426,44 +426,44 @@
 </div><!-- END post_title -->
 
 <div class="post_content">
-<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>14 September 2016, 14:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call
+=== 14 September 2016, 14:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)<br />
 *Excused:* Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 
 <ol>
-<li>Approval of Agenda -- *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-08-31[31 August 2016 Meeting Minutes] -- *approved*</li>
+* Approval of Agenda -- *approved*
+* Approval of link:/cat-draft-minutes-2016-08-31[31 August 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
+
 <li>Feedback from ISO/CS
-<ul>
-<li>_Awaiting comments from ISO/CS_</li>
-</ul>
+
+* _Awaiting comments from ISO/CS_
+
 </li>
-</ul>
+
 </li>
 <li>WG 5 (Representation of dates and times)
-<ul>
+
 <li>ISO/CD 8601 Part 1 &amp; 2 Ballot Results
-<ul>
-<li>_Approved with no negative vote or required technical corrections (comments)_</li>
-</ul>
+
+* _Approved with no negative vote or required technical corrections (comments)_
+
 </li>
 <li>Next step
-<ul>
-<li>_Preparing for ..._</li></ul></li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-09-14" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-09-14">
-	<span>Continue Reading →</span></a>
+
+<li>_Preparing for ..._</li></li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-09-14" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-09-14">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">15</span>
+	15
     <br />
-    <span class="month">SEP</span>
+    SEP
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2016-09-14#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2016-09-14#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -487,41 +487,41 @@
 
 <div class="post_content">
 <h3 id="isotc154catconferencecall">ISO/TC 154 CAT Conference Call</h3>
-<h4 id="31august201614:00utc">31 August 2016, 14:00 UTC</h4>
+== 31 August 2016, 14:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)<br />
 *Excused:* Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 
 <ol>
-<li>Approval of Agenda -- *approved* with addition under 8. Other business</li>
-<li>Approval of link:/cat-draft-minutes-2016-08-17[17 August 2016 Meeting Minutes] -- *approved*</li>
+* Approval of Agenda -- *approved* with addition under 8. Other business
+* Approval of link:/cat-draft-minutes-2016-08-17[17 August 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
-<ul>
+
 <li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Feedback from ISO/CS -- Nothing to report</li>
-</ul>
+
+* Feedback from ISO/CS -- Nothing to report
+
 </li>
 <li>WG 5 (Representation of dates and times)
-<ul>
+
 <li>ISO 8601 Part 1 &amp; 2 update
-<ul>
-<li>Out for CD ballot closing 2016–09–03</li>
-</ul>
+
+* Out for CD ballot closing 2016–09–03
+
 </li>
-</ul>
+
 </li>
 <li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 -- Long ...</li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-08-31" rel="bookmark" title="Continue reading CAT Draft Minutes 2016–08–31">
-	<span>Continue Reading →</span></a>
+
+<li>PT1 -- Long ...</li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-08-31" rel="bookmark" title="Continue reading CAT Draft Minutes 2016–08–31">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">31</span>
+	31
     <br />
-    <span class="month">AUG</span>
+    AUG
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2016-08-31#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2016-08-31#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -545,37 +545,37 @@
 
 <div class="post_content">
 <h3 id="isotc154catconferencecall">ISO/TC 154 CAT Conference Call</h3>
-<h4 id="17august201614:00utc">17 August 2016, 14:00 UTC</h4>
+== 17 August 2016, 14:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)<br />
 *Excused:* Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)
 
 <ol>
-<li>Approval of Agenda -- *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-08-03[03 August 2016 Meeting Minutes] -- *approved*</li>
+* Approval of Agenda -- *approved*
+* Approval of link:/cat-draft-minutes-2016-08-03[03 August 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax) -- Nothing to report</li>
+
+* JWG1/MA (EDIFACT Syntax) -- Nothing to report
 <li>WG 5 (Representation of dates and times)
-<ul>
+
 <li>ISO 8601 Part 1 &amp; 2 update
-<ul>
-<li>Out for CD ballot closing 2016–09–03</li>
-</ul>
+
+* Out for CD ballot closing 2016–09–03
+
 </li>
-</ul>
+
 </li>
 <li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 -- Long term signature profiles for PDF advanced electronic ...</li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-08-17" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-08-17">
-	<span>Continue Reading →</span></a>
+
+<li>PT1 -- Long term signature profiles for PDF advanced electronic ...</li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-08-17" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-08-17">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">17</span>
+	17
     <br />
-    <span class="month">AUG</span>
+    AUG
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2016-08-17#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2016-08-17#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -599,37 +599,37 @@
 
 <div class="post_content">
 <h3 id="isotc154catconferencecall">ISO/TC 154 CAT Conference Call</h3>
-<h4 id="03august201614:00utc">03 August<a id="MMDHTMLSCROLLPOINT"></a> 2016, 14:00 UTC</h4>
+== 03 August<a id="MMDHTMLSCROLLPOINT"></a> 2016, 14:00 UTC
 *Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)<br />
 *Excused:* Francois Vuilleumier (FV), Mei-Li Chen (MLC)
 
 <ol>
-<li>Approval of Agenda -- *approved* with addition of “ODIF Update” under item 8.</li>
-<li>Approval of link:/cat-draft-minutes-2016-07-20[20 July 2016 Meeting Minutes] -- *approved*</li>
+* Approval of Agenda -- *approved* with addition of “ODIF Update” under item 8.
+* Approval of link:/cat-draft-minutes-2016-07-20[20 July 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax) -- Nothing to report</li>
+
+* JWG1/MA (EDIFACT Syntax) -- Nothing to report
 <li>WG 5 (Representation of dates and times)
-<ul>
+
 <li>ISO 8601 Part 1 &amp; 2 update
-<ul>
-<li>Out for CD ballot closing 2016–09–03</li>
-</ul>
+
+* Out for CD ballot closing 2016–09–03
+
 </li>
-</ul>
+
 </li>
 <li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 -- Long ...</li></ul></li></ul></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-08-03" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-08-03">
-	<span>Continue Reading →</span></a>
+
+<li>PT1 -- Long ...</li></li></li></ol><a class="ka_button small_button small_black" href="/cat-draft-minutes-2016-08-03" rel="bookmark" title="Continue reading CAT Draft Minutes 2016-08-03">
+	Continue Reading →</a>
 <div class="post_date">
-	<span class="day date updated">3</span>
+	3
     <br />
-    <span class="month">AUG</span>
+    AUG
 </div><!-- END post_date -->
 
 <div class="post_comments">
-	link:/cat-draft-minutes-2016-08-03#post-comments[<span>1</span>]
+	link:/cat-draft-minutes-2016-08-03#post-comments[1]
 </div><!-- END post_comments -->
 
 
@@ -644,11 +644,11 @@
 
         </div><!-- END post_footer -->
 </article><!-- END blog_wrap --><div class="karma-pages">
-<span class="pages">Page 1 of 14</span>&nbsp;<span class="current">1</span>link:/minutes/page/2" class="page" title="2">2</a><a href="/minutes/page/3" class="page" title="3">3</a><a href="/minutes/page/4" class="page" title="4">4</a><a href="/minutes/page/5" class="page" title="5">5</a><span class="extend">...</span><a href="/minutes/page/14" class="last" title="&raquo;[&raquo;]</div>
+Page 1 of 14</span>&nbsp;<span class="current">1</span>link:/minutes/page/2" class="page" title="2">2</a><a href="/minutes/page/3" class="page" title="3">3</a><a href="/minutes/page/4" class="page" title="4">4</a><a href="/minutes/page/5" class="page" title="5">5</a><span class="extend">...<a href="/minutes/page/14" class="last" title="&raquo;[&raquo;]</div>
 </main><!-- END main #content -->
 
 <aside role="complementary" id="sidebar" class="sidebar_blog">
-		<div class="sidebar-widget">		<h3>Recent Posts</h3>		<ul>
+== Recent Posts
 					<li>
 				link:/cat-draft-minutes-2017-02-15[CAT Draft Minutes 2017-02-15]
 						</li>
@@ -664,8 +664,8 @@
 					<li>
 				link:/cat-draft-minutes-2016-11-23[CAT Draft Minutes 2016-11-23]
 						</li>
-				</ul>
-		</div>		<div class="sidebar-widget"><h3>Archives</h3>		<ul>
+				
+== Archives
 			<li><a href='/2017/02'>February 2017</a>&nbsp;(2)</li>
 	<li><a href='/2017/01'>January 2017</a>&nbsp;(1)</li>
 	<li><a href='/2016/12'>December 2016</a>&nbsp;(1)</li>
@@ -731,8 +731,8 @@
 	<li><a href='/2011/10'>October 2011</a>&nbsp;(1)</li>
 	<li><a href='/2011/09'>September 2011</a>&nbsp;(1)</li>
 	<li><a href='/2011/06'>June 2011</a>&nbsp;(2)</li>
-		</ul>
-</div><div class="sidebar-widget"><h3>Categories</h3>		<ul>
+		
+== Categories
 	<li class="cat-item cat-item-13"><a href="/category/news/announcement" >Announcement</a> (2)
 </li>
 	<li class="cat-item cat-item-16"><a href="/category/news/call-for-experts" >Call for Experts</a> (4)
@@ -749,8 +749,8 @@
 </li>
 	<li class="cat-item cat-item-52"><a href="/category/news/reports" >Reports</a> (1)
 </li>
-		</ul>
-</div><div class="sidebar-widget"><h3>Tags</h3><div class="tagcloud"><a href='/tag/action-list' class='tag-link-33 tag-link-position-1' title='1 topic' style='font-size: 12px;'>action list</a>
+		
+== Tags
 <a href='/tag/afact' class='tag-link-42 tag-link-position-2' title='8 topics' style='font-size: 13.423357664234px;'>AFACT</a>
 <a href='/tag/ballots' class='tag-link-104 tag-link-position-3' title='7 topics' style='font-size: 13.313868613139px;'>Ballots</a>
 <a href='/tag/cat' class='tag-link-79 tag-link-position-4' title='4 topics' style='font-size: 12.875912408759px;'>CAT</a>

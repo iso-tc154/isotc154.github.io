@@ -7,67 +7,67 @@ permalink: /about_us/jwg1/sdmr
 
 
 <nav role="navigation">
-<ul id="menu-main-nav" class="sf-menu">
-<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current_page_ancestor menu-item-has-children">link:/about_us"><span><strong>About Us</strong><span class="navi-description[Who we are</span></span>]
-<ul class="sub-menu">
-	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">link:/about_us/jwg1[<span>JWG 1 – EDIFACT Syntax</span>]
-	<ul class="sub-menu">
-		<li id="item-5215"  class=" menu-item menu-item-type-post_type menu-item-object-page ">link:/about_us/jwg1/sdmr[<span>Syntax DMR Procedures</span>]</li>
-	</ul>
+
+<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current_page_ancestor menu-item-has-children">link:/about_us"><strong>About Us</strong><span class="navi-description[Who we are</span>]
+
+	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
+	
+		link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
+	
 </li>
-	<li id="item-5007"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg3[<span>WG 3 – CCTS</span>]</li>
-	<li id="item-5013"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[<span>WG 4 – eLK</span>]</li>
-	<li id="item-5252"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[<span>CAT -- Chairman's Advisory Team</span>]</li>
-	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[<span>TDED Maintenance Agency</span>]
-	<ul class="sub-menu">
-		<li id="item-5581"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[<span>Membership of the TDED MA</span>]</li>
-		<li id="item-5585"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/ma_links[<span>Relevant links to TDED MA folders/files</span>]</li>
-	</ul>
+	link:/about_us/wg3[WG 3 – CCTS]
+	link:/about_us/wg4[WG 4 – eLK]
+	link:/about_us/cat[CAT -- Chairman's Advisory Team]
+	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
+	
+		link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
+		link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
+	
 </li>
-</ul>
+
 </li>
-<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects"><span><strong>Projects</strong><span class="navi-description[What we do</span></span>]
-<ul class="sub-menu">
-	<li id="item-5146"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-6422-2[<span>ISO NP 6422-2</span>]</li>
-	<li id="item-5149"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-14533[<span>ISO NP 14533</span>]</li>
-	<li id="item-5136"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-pwi-tr-6422-3[<span>ISO PWI TR 6422-3</span>]</li>
-	<li id="item-5173"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-9735-10[<span>ISO NP 9735-10</span>]</li>
-	<li id="item-5180"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-15000-5[<span>ISO NP 15000-5</span>]</li>
-	<li id="item-5184"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/projects/iso-np-17369[<span>ISO NP 17369</span>]</li>
-</ul>
+<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects"><strong>Projects</strong><span class="navi-description[What we do</span>]
+
+	link:/projects/iso-np-6422-2[ISO NP 6422-2]
+	link:/projects/iso-np-14533[ISO NP 14533]
+	link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]
+	link:/projects/iso-np-9735-10[ISO NP 9735-10]
+	link:/projects/iso-np-15000-5[ISO NP 15000-5]
+	link:/projects/iso-np-17369[ISO NP 17369]
+
 </li>
-<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/standards"><span><strong>Standards</strong><span class="navi-description[Our output</span></span>]
-<ul class="sub-menu">
-	<li id="item-5127"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-6422-12010[<span>ISO 6422-1:2010</span>]</li>
-	<li id="item-5131"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-73722005[<span>ISO 7372:2005</span>]</li>
-	<li id="item-5284"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84391990[<span>ISO 8439:1990</span>]</li>
-	<li id="item-5283"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-84401986[<span>ISO 8440:1986</span>]</li>
-	<li id="item-5282"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-86012004[<span>ISO 8601:2004</span>]</li>
-	<li id="item-5323"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988[<span>ISO 9735:1988</span>]</li>
-	<li id="item-5322"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-97351988amd-11992[<span>ISO 9735:1988/Amd 1:1992</span>]</li>
-	<li id="item-5326"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-12002[<span>ISO 9735-1:2002</span>]</li>
-	<li id="item-5325"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-22002[<span>ISO 9735-2:2002</span>]</li>
-	<li id="item-5370"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-32002[<span>ISO 9735-3:2002</span>]</li>
-	<li id="item-5369"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-42002[<span>ISO 9735-4:2002</span>]</li>
-	<li id="item-5368"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-52002[<span>ISO 9735-5:2002</span>]</li>
-	<li id="item-5367"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-62002[<span>ISO 9735-6:2002</span>]</li>
-	<li id="item-5366"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-72002[<span>ISO 9735-7:2002</span>]</li>
-	<li id="item-5365"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-82002[<span>ISO 9735-8:2002</span>]</li>
-	<li id="item-5364"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-92002[<span>ISO 9735-9:2002</span>]</li>
-	<li id="item-5363"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/iso-9735-102002[<span>ISO 9735-10:2002</span>]</li>
-	<li id="item-5392"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-12004[<span>ISO/TS 15000-1:2004</span>]</li>
-	<li id="item-5391"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-22004[<span>ISO/TS 15000-2:2004</span>]</li>
-	<li id="item-5390"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-32004[<span>ISO/TS 15000-3:2004</span>]</li>
-	<li id="item-5389"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-42004[<span>ISO/TS 15000-4:2004</span>]</li>
-	<li id="item-5388"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-15000-52005[<span>ISO/TS 15000-5:2005</span>]</li>
-	<li id="item-5387"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-173692005[<span>ISO/TS 17369:2005</span>]</li>
-	<li id="item-5386"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/standards/isots-206252002[<span>ISO/TS 20625:2002</span>]</li>
-</ul>
+<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/standards"><strong>Standards</strong><span class="navi-description[Our output</span>]
+
+	link:/standards/iso-6422-12010[ISO 6422-1:2010]
+	link:/standards/iso-73722005[ISO 7372:2005]
+	link:/standards/iso-84391990[ISO 8439:1990]
+	link:/standards/iso-84401986[ISO 8440:1986]
+	link:/standards/iso-86012004[ISO 8601:2004]
+	link:/standards/iso-97351988[ISO 9735:1988]
+	link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
+	link:/standards/iso-9735-12002[ISO 9735-1:2002]
+	link:/standards/iso-9735-22002[ISO 9735-2:2002]
+	link:/standards/iso-9735-32002[ISO 9735-3:2002]
+	link:/standards/iso-9735-42002[ISO 9735-4:2002]
+	link:/standards/iso-9735-52002[ISO 9735-5:2002]
+	link:/standards/iso-9735-62002[ISO 9735-6:2002]
+	link:/standards/iso-9735-72002[ISO 9735-7:2002]
+	link:/standards/iso-9735-82002[ISO 9735-8:2002]
+	link:/standards/iso-9735-92002[ISO 9735-9:2002]
+	link:/standards/iso-9735-102002[ISO 9735-10:2002]
+	link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]
+	link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]
+	link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]
+	link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]
+	link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]
+	link:/standards/isots-173692005[ISO/TS 17369:2005]
+	link:/standards/isots-206252002[ISO/TS 20625:2002]
+
 </li>
-<li id="item-4909"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/minutes"><span><strong>Minutes</strong><span class="navi-description[Announcements</span></span>]</li>
-<li id="item-4983"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/faq"><span><strong>FAQ</strong><span class="navi-description[Your questions</span></span>]</li>
-<li id="item-6479"  class=" menu-item menu-item-type-post_type menu-item-object-page">link:/isotc-154-2016-anual-meeting-details"><span><strong>Meetings</strong><span class="navi-description[2016 Meetings</span></span>]</li>
-</ul>
+link:/minutes"><strong>Minutes</strong><span class="navi-description[Announcements</span>]
+link:/faq"><strong>FAQ</strong><span class="navi-description[Your questions</span>]
+link:/isotc-154-2016-anual-meeting-details"><strong>Meetings</strong><span class="navi-description[2016 Meetings</span>]
+
 </nav>
 </div><!-- END header-area -->
 </div><!-- END header-overlay -->
@@ -82,35 +82,34 @@ permalink: /about_us/jwg1/sdmr
 
 <nav role="navigation" id="sub_nav" class="nav_right_sub_nav">
 
-<ul class="sub-menu">
+
 	<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-	<ul class="sub-menu">
+	
 		<li class="menu-item menu-item-type-post_type menu-item-object-page ">link:/about_us/jwg1/sdmr[Syntax DMR Procedures]</li>
-	</ul>
+	
 </li>
 	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg3[WG 3 – CCTS]</li>
 	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/wg4[WG 4 – eLK]</li>
 	<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/cat[CAT -- Chairman's Advisory Team]</li>
 	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
-	<ul class="sub-menu">
+	
 		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]</li>
 		<li class="menu-item menu-item-type-post_type menu-item-object-page">link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]</li>
-	</ul>
+	
 </li>
-</ul>
+
 </nav><!-- END sub_nav -->
 
 
 &nbsp;
 
-<h2>Joint syntax working group (with UNECE)</h2>
-<h3>Syntax Data Maintenance Request Submission &amp; Processing Procedures</h3>
-&nbsp;
+== Joint syntax working group (with UNECE)
+== Syntax Data Maintenance Request Submission and Processing Procedures
 
 <ol>
 <ol>
 <li>IntroductionSyntax Data Maintenance Requests (Syntax DMRs) serve as the means to apply enhancements to ISO 9735 (Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules). These Syntax DMRs fall into three categories:
-<ul>
+
 <li><strong>Service code DMRs</strong><br />
 DMRs proposing changes and/or additions which are against ISO 9735/V.3 and/or ISO 9735/V.4 related to codes for data elements beginning with ‘0’.</li>
 <li><strong>Service directory DMRs</strong><br />
@@ -119,7 +118,7 @@ DMRs against ISO 9735/V.4 which are related to segments beginning with ‘U’; 
 Service directory DMRs against ISO 9735/V.3 are no longer applicable.</li>
 <li><strong>Syntax rule DMRs</strong><br />
 DMRs proposing changes or enhancements to any of the syntax rules and associated text specified in the latest release of ISO 9735/V.4 (which includes the service messages AUTACK, CONTRL and KEYMAN).</li>
-</ul>
+
 </li>
 </ol>
 </ol>
@@ -130,21 +129,21 @@ Syntax rule DMRs against ISO 9735/V.3 are no longer applicable.
 <ol type="I">
 <li>Submission of Service code DMRs
 <ol type="i">
-<li><strong>Service code DMRs</strong> shall be directly submitted to the ISO/TC 154/JWG 1 (JSWG)<a id="refX" href="#X"><sup>[1]</sup></a> using the web form specifically designed for this purpose. The form can be accessed through the JWG 1 web site: <a title="ISO/TC 154 JWG1 Website" href="http://www.gefeg.com/jswg" target="_blank">http://www.gefeg.com/jswg</a>.</li>
+* <strong>Service code DMRs</strong> shall be directly submitted to the ISO/TC 154/JWG 1 (JSWG)<a id="refX" href="#X"><sup>[1]</sup></a> using the web form specifically designed for this purpose. The form can be accessed through the JWG 1 web site: <a title="ISO/TC 154 JWG1 Website" href="http://www.gefeg.com/jswg" target="_blank">http://www.gefeg.com/jswg</a>.
 <li>In addition <strong>Service code DMRs</strong> can be submitted:
-<ul>
-<li>via the UNECE CEFACT secretariat,</li>
-<li>automatically (as result of new directory [d/e 0054] and/or message type addition [d/e 0065] of which the information has to be provided by the UNECE secretariat to the JWG 1 secretariat one month before the scheduled release of the UN/EDIFACT directory set.</li>
-</ul>
+
+* via the UNECE CEFACT secretariat,
+* automatically (as result of new directory [d/e 0054] and/or message type addition [d/e 0065] of which the information has to be provided by the UNECE secretariat to the JWG 1 secretariat one month before the scheduled release of the UN/EDIFACT directory set.
+
 </li>
 </ol>
 </li>
 <li>Submission of Service directory DMRs and Syntax rule DMRs
 <ol type="i">
-<li><strong>Service directory DMRs</strong> and <strong>Syntax rule DMRs</strong> shall be directly submitted to the JWG 1 secretariat.</li>
+* <strong>Service directory DMRs</strong> and <strong>Syntax rule DMRs</strong> shall be directly submitted to the JWG 1 secretariat.
 <li><strong>Service directory DMRs</strong> and <strong>Syntax rule DMRs</strong> shall be forwarded to the JWG 1 secretariat either:
-<ul>
-<li>in electronic form as e-mail text; or</li>
+
+* in electronic form as e-mail text; or
 <li>as an attachment to an e-mail in MS Word or RTF format.
 and be addressed to: _bernd.boesler@din.de_</li>
 <li>Those without an e-mail capability should send their Syntax DMRs by fax or letter to the JWG 1 secretariat at:
@@ -156,27 +155,27 @@ DIN<br />
 att. Mr. Boesler<br />
 D -- 10772 Berlin<br />
 Germany</li>
-</ul>
+
 </li>
 </ol>
 </li>
 </ol>
 </li>
 </ol>
-<ul>
-<li>Processing (Review) of Syntax DMRs</li>
-</ul>
+
+* Processing (Review) of Syntax DMRs
+
 <ol type="I">
-<li>Syntax DMRs as submitted to the JWG 1 secretariat will be allocated a JWG 1 log number which will be communicated back to the submittor as a confirmation of receipt of the DMR.</li>
-<li>For <strong>Service code DMRs</strong> submitted via the JWG 1 web site, these will be allocated a JWG 1 log number and acknowledged automatically.</li>
+* Syntax DMRs as submitted to the JWG 1 secretariat will be allocated a JWG 1 log number which will be communicated back to the submittor as a confirmation of receipt of the DMR.
+* For <strong>Service code DMRs</strong> submitted via the JWG 1 web site, these will be allocated a JWG 1 log number and acknowledged automatically.
 <li><strong>Service directory DMRs</strong> and <strong>Syntax rule DMRs</strong> shall be circulated by the JWG 1 secretariat to the experts of JWG 1.
 The function of the review shall be to approve the DMR (minor change) or to become a Work Item to be processed by JWG 1. If a DMR is rejected, the reason for the rejection shall be given. Whatever the outcome of the review, the party that submitted the DMR to the JWG 1 shall be notified by the JWG 1 secretariat of the result, including where necessary the reason for a rejection.
 
 DMRs approved as Work Items for JWG 1 shall be processed according to the approved JWG 1 procedures for the progression of its Work Items as set out in the attached Annex.</li>
 </ol>
-<ul>
-<li>Publication of approved Syntax DMRs</li>
-</ul>
+
+* Publication of approved Syntax DMRs
+
 <ol type="I">
 <li>Publication of approved Service code DMRs
 Approved <strong>Service code DMRs</strong> shall be applied to the appropriate Service Code List Directories (ISO 9735/V.4 and/or ISO 9735/V.3) and made available as a new directory release at the JWG 1 web site (link:http://www.gefeg.com/jswg" target="_blank[http://www.gefeg.com/jswg]) with the same frequency as that applied to the user UN/EDIFACT Directories (currently two releases per year).

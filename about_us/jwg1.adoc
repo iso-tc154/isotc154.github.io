@@ -8,45 +8,45 @@ The secretariat was held by Peter Wilson (UK) before in 1998 Bernd Bösler (DE/D
 
 JWG 1's main deliverable is the ISO 9735, EDIFACT – Application level syntax rules, with the following versions:
 
-<ul>
-<li>Version 1 – 1988;</li>
-</ul>
-<ul>
-<li>Version 2 – 1990 with minor changes to segments UNG and UNH;</li>
-</ul>
-<ul>
-<li>Version 3 – 1992 with additional character sets (UNOC to UNOF);</li>
-</ul>
-<ul>
+
+* Version 1 – 1988;
+
+
+* Version 2 – 1990 with minor changes to segments UNG and UNH;
+
+
+* Version 3 – 1992 with additional character sets (UNOC to UNOF);
+
+
 <li>Version 4 – 1998/1999 with:
-<ul>
-<li>additional batch EDI features;</li>
-<li>inclusion of ideographic character sets;</li>
-<li>inclusion of the syntax directories;</li>
-<li>inclusion of interactive EDI;</li>
-<li>inclusion of CONTRL message type;</li>
-<li>inclusion of security structures;</li>
-<li>inclusion of security message types (AUTACK, KEYMAN);</li>
-<li>inclusion of multi format EDI (non-EDIFACT data);</li>
-<li>alignment of data field regarding the Y2K issue; and</li>
-<li>inclusion of a technique to avoid segment collisions;</li>
-</ul>
+
+* additional batch EDI features;
+* inclusion of ideographic character sets;
+* inclusion of the syntax directories;
+* inclusion of interactive EDI;
+* inclusion of CONTRL message type;
+* inclusion of security structures;
+* inclusion of security message types (AUTACK, KEYMAN);
+* inclusion of multi format EDI (non-EDIFACT data);
+* alignment of data field regarding the Y2K issue; and
+* inclusion of a technique to avoid segment collisions;
+
 </li>
-</ul>
-<ul>
+
+
 <li>Version 4, Release 1 – 2002 consisting of:
-<ul>
-<li>*Part 1: *Syntax rules common to all parts</li>
-<li>*Part 2: *Syntax rules specific for batch EDI</li>
-<li>*Part 3: *Syntax rules specific for interactive EDI</li>
-<li>*Part 4: *Syntax and service report message for batch EDI (message type – CONTRL)</li>
-<li>*Part 5: *Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)</li>
-<li>*Part 6: *Secure authentication and acknowledgement message (message type – AUTACK)</li>
-<li>*Part 7: *Security rules for batch EDI (confidentiality)</li>
-<li>*Part 8: *Associated data in EDI</li>
-<li>*Part 9: *Security key and certificate management message (message type – KEYMAN)</li>
-<li>*Part 10: *Syntax service directories</li>
-</ul>
+
+* *Part 1: *Syntax rules common to all parts
+* *Part 2: *Syntax rules specific for batch EDI
+* *Part 3: *Syntax rules specific for interactive EDI
+* *Part 4: *Syntax and service report message for batch EDI (message type – CONTRL)
+* *Part 5: *Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)
+* *Part 6: *Secure authentication and acknowledgement message (message type – AUTACK)
+* *Part 7: *Security rules for batch EDI (confidentiality)
+* *Part 8: *Associated data in EDI
+* *Part 9: *Security key and certificate management message (message type – KEYMAN)
+* *Part 10: *Syntax service directories
+
 </li>
-</ul>
+
 Since the last publication in 2002 the JWG 1's work is concentrated on the maintenance of the service codes in process. Appropriate requests (DMRs) are handled by the group who is responsible for updating the UNSL (Syntax directories) and JSWG homepage accordingly (see link:http://www.gefeg.com/jswg[www.gefeg.com/jswg]). According a JWG 1 agreement (2010-10-23) the “2-per-year” update of the Service Code Lists will be performed in alignment with the updates of the corresponding UN/EDIFACT directories.
