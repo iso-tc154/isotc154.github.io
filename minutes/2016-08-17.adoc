@@ -1,153 +1,124 @@
-		<title>CAT Draft Minutes 2016-08-17</title>
-		<link>http://www.isotc154.org/cat-draft-minutes-2016-08-17</link>
-		<comments>http://www.isotc154.org/cat-draft-minutes-2016-08-17#comments</comments>
-		<pubDate>Wed, 17 Aug 2016 15:12:17 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-				<category><![CDATA[CAT Minutes]]></category>
-		<category><![CDATA[Ballots]]></category>
-		<category><![CDATA[ISO 8601]]></category>
-		<category><![CDATA[ISO CS]]></category>
-		<category><![CDATA[OAGi]]></category>
-		<category><![CDATA[Plenary]]></category>
+= CAT Draft Minutes 2016-08-17
+permalink: "/minutes/2016-08-17"
+date: "17 Aug 2016 15:12:17 +0000"
+category: CAT Minutes
+category: Ballots
+category: ISO 8601
+category: ISO CS
+category: OAGi
+category: Plenary
 
-		<guid isPermaLink="false">http://www.isotc154.org/?p=6769</guid>
-		<description><![CDATA[ISO/TC 154 CAT Conference Call<br />
-17 August 2016, 14:00 UTC<br />
-Participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)<br />
-Excused: Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)<br />
-<br />
-Approval of Agenda -- approved<br />
-Approval of 03 August 2016 Meeting Minutes -- approved<br />
-Working Group and Project Team Updates<br />
-<br />
-JWG1/MA (EDIFACT Syntax) -- Nothing to report<br />
-WG 5 (Representation of dates and times)<br />
-<br />
-ISO 8601 Part 1 &#38; 2 update<br />
-<br />
-Out for CD ballot closing 2016–09–03<br />
-<br />
-<br ...]]></description>
-				<content:encoded><![CDATA[<h3 id="isotc154catconferencecall">ISO/TC 154 CAT Conference Call</h3>
-<h4 id="17august201614:00utc">17 August 2016, 14:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call, 17 August 2016, 14:00 UTC
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)
 Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)
 
-<ol>
-<li>Approval of Agenda -- *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-08-03[03 August 2016 Meeting Minutes] -- *approved*</li>
-<li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax) -- Nothing to report</li>
-<li>WG 5 (Representation of dates and times)
-<ul>
-<li>ISO 8601 Part 1 &amp; 2 update
-<ul>
-<li>Out for CD ballot closing 2016–09–03</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
-<ul>
-<li>ISO/CD 14533–3 Update
-<ul>
-<li>Out for DIS Ballotcurrent with ISO/CS for preparation (12 week, closing 2016–11–??)</li>
-</ul>
-</li>
-<li>ISO/NP 14533–4 “Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)” Update
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>PT2 -- Trusted Communication Platforms for Electronic Documents
-<ul>
-<li>ISO/WD 19626–1 “TCP for Electronic Documents -- Part 1”
-<ul>
-<li>Out for NWIP &amp; WD Ballot (closing 2016–10–11)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>PT3 -- Trusted mobile e-document framework
-<ul>
-<li>ISO/WD 20415 “TMEF” Ballot
-<ul>
-<li>Out for NWIP &amp; WD Ballot (closing 2016–10–11)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Liaison Updates -- Nothing to report</li>
-<li>MoU/MG Update -- Nothing to report</li>
-<li>Old Business
-<ul>
-<li>ISO/TC 154 Chairmanship Update
-<ul>
-<li>TMB approved appointment for 2017–2020.</li>
-</ul>
-</li>
-<li>ISO/TC 154 Plenary Update
-<ul>
-<li>Review of Schedule and Draft Agendas
-<ul>
-<li>Need to send WG Agendas out.</li>
-</ul>
-</li>
-<li>Review of Expert Registration via ISOTC154.org
-<ul>
-<li>Only 2 registrations so far, need to ensure experts are registering for room size calculations</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>OAGi (Open Applications Group, Inc.) Fast-Track of “OAGIS – A Specification for an Enterprise Canonical Model”
-<ul>
-<li>K-DN, BB &amp; JC still reviewing the submission documents for compliance to ISO format.</li>
-<li>K-DN to contact Brian (TPM) to ensure the format with the DVD is acceptable.</li>
-</ul>
-</li>
-<li>ISO/NP TS 21887 Business Semantics Thesaurus (BST)
-<ul>
-<li>Out for NWIP &amp; WD Ballot (closing 2016–09–11)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>New Business
-<ul>
-<li>None</li>
-</ul>
-</li>
-<li>Other Business
-<ul>
-<li>ISO/TMB Deliverable 1 -- Dos and Donts
-<ul>
-<li>K-DN presented the Joint ISO/IEC Workshop output about improving the technical work</li>
-</ul>
-</li>
-<li>ISO Simple Template vs STD Template
-<ul>
-<li>Discussion about the STD’s lack of being useful to those that *do not use MS Word under Windows*. Because ISO/TC 154 editors are using Mac OS and Linux OS, they can only use the _Simple Template_.</li>
-<li><a id="MMDHTMLSCROLLPOINT"></a>Since ISO is now publishing its Standards in *ePub</strong> format, it would make more sense to make a valuable a <strong>ePub Template*. This would allow true cross platform and ePub tool use, eliminating the WS restrictions to use commercial word processor on single OS.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Next Meeting: *31 August 2016, starting at 14:00 UTC*</li>
-</ol>
-]]></content:encoded>
 
-<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2016-08-17/feed</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-		</item>
-		<item>
+== Approval of Agenda  -- *approved*
+== Approval of link:/cat-draft-minutes-2016-08-03[03 August 2016 Meeting Minutes] -- *approved*
+== Working Group and Project Team Updates
 
+=== JWG1/MA (EDIFACT Syntax) -- Nothing to report
+=== WG 5 (Representation of dates and times)
+
+* ISO 8601 Part 1 & 2 update
+
+* Out for CD ballot closing 2016–09–03
+
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* ISO/CD 14533–3 Update
+
+* Out for DIS Ballotcurrent with ISO/CS for preparation (12 week, closing 2016–11–??)
+
+
+* ISO/NP 14533–4 “Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)” Update
+
+* Nothing to report
+
+
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* ISO/WD 19626–1 “TCP for Electronic Documents -- Part 1”
+
+* Out for NWIP & WD Ballot (closing 2016–10–11)
+
+
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* ISO/WD 20415 “TMEF” Ballot
+
+* Out for NWIP & WD Ballot (closing 2016–10–11)
+
+
+
+
+
+
+
+
+=== Liaison Updates -- Nothing to report
+=== MoU/MG Update -- Nothing to report
+=== Old Business
+
+* ISO/TC 154 Chairmanship Update
+
+* TMB approved appointment for 2017–2020.
+
+
+* ISO/TC 154 Plenary Update
+
+* Review of Schedule and Draft Agendas
+
+* Need to send WG Agendas out.
+
+
+* Review of Expert Registration via ISOTC154.org
+
+* Only 2 registrations so far, need to ensure experts are registering for room size calculations
+
+
+
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of “OAGIS – A Specification for an Enterprise Canonical Model”
+
+* K-DN, BB & JC still reviewing the submission documents for compliance to ISO format.
+* K-DN to contact Brian (TPM) to ensure the format with the DVD is acceptable.
+
+
+* ISO/NP TS 21887 Business Semantics Thesaurus (BST)
+
+* Out for NWIP & WD Ballot (closing 2016–09–11)
+
+
+
+
+=== New Business
+
+* None
+
+
+=== Other Business
+
+* ISO/TMB Deliverable 1 -- Dos and Donts
+
+* K-DN presented the Joint ISO/IEC Workshop output about improving the technical work
+
+
+* ISO Simple Template vs STD Template
+
+* Discussion about the STD’s lack of being useful to those that *do not use MS Word under Windows*. Because ISO/TC 154 editors are using Mac OS and Linux OS, they can only use the _Simple Template_.
+* Since ISO is now publishing its Standards in *ePub* format, it would make more sense to make a valuable a *ePub Template*. This would allow true cross platform and ePub tool use, eliminating the WS restrictions to use commercial word processor on single OS.
+
+
+
+
+* Next Meeting: *31 August 2016, starting at 14:00 UTC*

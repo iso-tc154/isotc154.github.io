@@ -47,22 +47,23 @@ ISO is a non-governmental organization (NGO). Therefore, unlike the United Natio
 
 === Is UBL 2.1 in conformance with ISO/TS 15000-5:2005?
 
-
 The questions was raised because of a statement on the UBL Home page, which states:
 
-_"`UBL was the first published data format specification produced in full conformance with UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.`"_
+[quote]
+____
+UBL was the first published data format specification produced in full conformance with UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.
+____
 
 *For a standard to claim full conformance it must satisfy 100% of all the mandatory ‘requirements’ found in the ‘normative’ sections.*
 
 ISO/TS 15000–5:2005 (and UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01) both contain the same statements defining conformance as:
 
-
 * Applications will be considered to be in full conformance with this technical specification if they comply with the content of normative sections, rules and definitions.
 * Section 4.2 defines sections 6,7,8 and 9 as being normative.
 
-The short answer is that *UBL 2.1 is not in conformance</strong> with either version since it _<strong>breaks at least one mandatory rule!*_
+The short answer is that *UBL 2.1 is not in conformance* with either version since it *_breaks at least one mandatory rule!_*
 
-For the long answer, see the table below that list examples of *requirements that are not met* by UBL 2.1 to be in  conformance:
+For the long answer, see the table below that list examples of *requirements that are not met* by UBL 2.1 to be in conformance:
 
 [cols="a,a",options="header"]
 |===
@@ -85,7 +86,7 @@ For the long answer, see the table below that list examples of *requirements tha
 |Does *not* include any Aggregate Business Information Entities
 
 
-|[B8] The Data Type, on which a Basic Business Information Entity Property *is based, shall itself be similar</strong> to the Data Type on which the corresponding Basic Core Component Property <strong>is based</strong> (i.e. it <strong>shall either* be the same Data Type or a more restricted one)
+|[B8] The Data Type, on which a Basic Business Information Entity Property *is based, shall itself be similar</strong> to the Data Type on which the corresponding Basic Core Component Property *is based* (i.e. it *shall either* be the same Data Type or a more restricted one)
 |Does *not* include any Basic Core Component Properties
 
 
@@ -185,25 +186,29 @@ _As defined in the basic code table of ISO 646 *with the exceptions* of lower ca
 
 To be in conformance with ISO 9735 any product, including message instances, must observe the restrictions and only use uppercase letters when using UNOA as the syntax identifier.
 
+
 === What are the differences amongst the various versions of ISO 9735?
 
-
-
 ==== Introduction
+
 The EDIFACT Application Level Syntax Rules (ISO 9735) Level represent the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing.  In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI.  The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
 
 Version 4, consisted originally of 9 parts, which was approved in October 1998. Release 1 of version 4, added part 10 in 2002.
 
 ==== Version 1
+
 First published in 1988, this particular version no longer supports recent releases of the UN/EDIFACT directories.  The directory version/release has changed from a numeric notation (eg. 91.2) to an alphanumeric format (eg. D.99B).  In the UNG (Functional group header) and the UNH (Message header) service segments the corresponding data elements (0052/0054) are defined as being numeric.
 
 ==== Version 2
+
 Version 2 is represented by Version 1 plus Corrigendum 1 published in 1990, the syntax rules specified in Version 2 remained unchanged from Version 1 with the exception that the alphanumeric version/release format is supported and the status of the message release number (0054) and controlling agency (0051) were changed from conditional to mandatory.
 
 ==== Version 3
+
 Version 3 is represented by Version 2 plus Amendment 1, published in 1992.  Amendment 1 extended the supported character sets from character set A (ISO 646 with the exception of lower case letters and certain graphic characters) and B (ISO 646 with the exception of certain graphic characters) to the character sets C through F (covering Latin, Cyrillic and Greek alphabets).
 
 ==== Version 4
+
 Version 4 represents a significant revision to the syntax rules and supersedes the earlier publications.  It is not fully upward compatible with Version 3 (eg. a single set of default service characters are defined in Version 4, where the level A and B character sets in earlier versions, each specified separate service characters).
 
 While messages specified in the D.99A and earlier UN/EDIFACT Directories may use Versions 2, 3 and 4 of the syntax rules, it should be noted that messages specified in the D.99B and later UN/EDIFACT Directories that use features specific to Version 4 (eg. repeating composite data elements), these messages must use Version 4 of the syntax rules.
@@ -274,3 +279,5 @@ It is based upon a similar CONTRL service message developed and published as sep
 *Part 9* is a new part, which has been added to the syntax rules.  It provides an optional capability of managing security keys and certificates using the KEYMAN message.
 
 *Part 10* was added with the publication of Release 1. For maintenance reasons of the Syntax service directories this part was extracted and updated from each of the relevant annex parts of the ISO 9735 series, first edition, published in 1998 and 1999.
+
+

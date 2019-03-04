@@ -1,127 +1,103 @@
+= CAT Draft Minutes 2016-03-16
+permalink: "/minutes/2016-03-16"
+date: "16 Mar 2016 16:55:27 +0000"
+category: CAT Minutes
+category: Plenary
+category: Semantic Interoperability
+category: TC 8
+category: UNECE
+== ISO/TC154 CAT Conference Call, 02 March 2016, 14:00 UTC
 
-		<title>CAT Draft Minutes 2016-03-16</title>
-		<link>http://www.isotc154.org/cat-draft-minutes-2016-03-16</link>
-		<comments>http://www.isotc154.org/cat-draft-minutes-2016-03-16#comments</comments>
-		<pubDate>Wed, 16 Mar 2016 16:55:27 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-				<category><![CDATA[CAT Minutes]]></category>
-		<category><![CDATA[Plenary]]></category>
-		<category><![CDATA[Semantic Interoperability]]></category>
-		<category><![CDATA[TC 8]]></category>
-		<category><![CDATA[UNECE]]></category>
+Participants:: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Bernd Bösler (BB), Jasmine Chang (JC)
+Excused:: Sue Probert (SP), Peter Rybar (PR)
 
-		<guid isPermaLink="false">http://www.isotc154.org/?p=6631</guid>
-		<description><![CDATA[ISO/TC154 CAT Conference Call<br />
-02 March 2016, 14:00 UTC<br />
-Participants: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Bernd Bösler (BB), Jasmine Chang (JC)<br />
-Excused: Sue Probert (SP), Peter Rybar (PR)<br />
-<br />
-Approval of Agenda &#8211; approved with the addition of Business Semantic Thesaurus ISO/TS 16668, formally BSR under New Business<br />
-Approval of 02 March 2016 Meeting Minutes &#8211; approved<br />
-Working Group and Project Team Updates<br />
-<br />
-JWG1/MA (EDIFACT Syntax)<br />
-<br />
-Nothing to report<br />
-<br />
-<br ...]]></description>
-				<content:encoded><![CDATA[<p>ISO/TC154 CAT Conference Call</p>
-<p>02 March 2016, 14:00 UTC</p>
-<p>Participants: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Bernd Bösler (BB), Jasmine Chang (JC)<br />
-Excused: Sue Probert (SP), Peter Rybar (PR)</p>
-<ol>
-<li>Approval of Agenda &#8211; approved with the addition of Business Semantic Thesaurus ISO/TS 16668, formally BSR under New Business</li>
-<li>Approval of <a href="http://www.isotc154.org/cat-draft-minutes-2016-03-02">02 March 2016 Meeting Minutes</a> &#8211; approved</li>
-<li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax)
-<ul type="circle">
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>WG 5 (Representation of dates and times)
-<ul type="circle">
-<li>Both NWIP and CD Ballots have been send out for both ISO 8601 Parts.</li>
-</ul>
-</li>
-<li>WG 6 (Trusted eCommunication)</li>
-</ul>
-</li>
-<ul type="circle">
-<li>General
-<ul type="circle">
-<li>WG 6 Secretariat Ballot</li>
-</ul>
-</li>
-<ul type="circle">
-<li>Result: JC was approved to serve as WG 6 Secretariat.</li>
-</ul>
-<li>PT1 &#8211; Long term signature profiles for PDF advanced electronic signatures (PAdES)
-<ul type="circle">
-<li>Team is still addressing the comments before requesting a new ballot.</li>
-</ul>
-</li>
-<li>PT2 &#8211; Trusted Communication Platforms for Electronic Documents
-<ul type="circle">
-<li>Upcoming PT call scheduled for 17 March. K-DN encourage JC to move the meeting tome to Morning for EU and afternoon for Asian participants. Currently Asian members need to participate during the late evening, early night.</li>
-</ul>
-</li>
-<li>PT3 &#8211; Trusted mobile e-document framework</li>
-</ul>
-<ul type="circle">
-<li>JC informed CAT that Mr. Lee will hold the first meeting soon.</li>
-</ul>
-<li>Liaison Updates
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>MoU/MG Update
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>Old Business
-<ul>
-<li>CAT&#8217;s comments on UNECE&#8217;s &#8220;Proposed Strategic Framework 2016&#8221;
-<ul type="circle">
-<li>No response was received. Item closed</li>
-</ul>
-</li>
-<li>CAT&#8217;s response to UN/CEFACT Bureau email regarding UNECE Recommendation 1
-<ul type="circle">
-<li>No response was received. Item closed</li>
-</ul>
-</li>
-<li>ISO Letter to IMO (WCO Data Model)
-<ul type="circle">
-<li>Response send to ISO/TC 8 about TC 154&#8217;s main concern the issue surrounding the promotion of ISO 28005 which is not using ISO 15000-5. TC 8 agreed to work with us in the future on a possible way forward</li>
-</ul>
-</li>
-<li>UNECE&#8217;s comments about misleading CAT minutes 2015-12-09</li>
-</ul>
-</li>
-<ul type="circle">
-<li>No further exchanges. Item closed</li>
-</ul>
-<li>New Business
-<ul>
-<li>ISO/TC 154 Chairmanship (2017- )
-<ul type="circle">
-<li>Current term is ending at end of 2016. A second term of 3 years is possible for K-DN. No other candidate was being identified. For K-DN to stand for another term he requires some sponsorship for attending future TC 154 plenaries.</li>
-</ul>
-</li>
-<li>Business Semantic Thesaurus ISO/TS 16668, formally BSR</li>
-</ul>
-</li>
-<ul type="circle">
-<li>K-DN raided the topic of updating the original &#8220;&#8221;ISO/TS 16668 &#8211; Basic Semantic Repository&#8221; that was withdrawn because of ISO/TS 15000-5. However, as learned from the PoC on Semantic Interoperability, ISO 15000-5 is about data and message components, not the semantic meaning of Business concepts. During the PoC much of the original BSR was reused, which should now be applied for the rewrite.</li>
-</ul>
-<li>Other Business</li>
-<li>Next Meeting: 30 March 2016, starting at 14:00 UTC</li>
-</ol>
-]]></content:encoded>
-			<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2016-03-16/feed</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-		</item>
-		<item>
+== Approval of Agenda  -- approved with the addition of Business Semantic Thesaurus ISO/TS 16668, formally BSR under New Business
+== Approval of link:2016-03-02[02 March 2016 Meeting Minutes] -- approved
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax)
+
+* Nothing to report
+
+
+=== WG 5 (Representation of dates and times)
+
+* Both NWIP and CD Ballots have been send out for both ISO 8601 Parts.
+
+
+=== WG 6 (Trusted eCommunication)
+
+
+
+* General
+
+* WG 6 Secretariat Ballot
+
+
+
+* Result: JC was approved to serve as WG 6 Secretariat.
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* Team is still addressing the comments before requesting a new ballot.
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* Upcoming PT call scheduled for 17 March. K-DN encourage JC to move the meeting tome to Morning for EU and afternoon for Asian participants. Currently Asian members need to participate during the late evening, early night.
+
+
+* PT3 -- Trusted mobile e-document framework
+
+
+* JC informed CAT that Mr. Lee will hold the first meeting soon.
+
+=== Liaison Updates
+
+* Nothing to report
+
+
+=== MoU/MG Update
+
+* Nothing to report
+
+
+=== Old Business
+
+* CAT's comments on UNECE's "`Proposed Strategic Framework 2016`"
+
+* No response was received. Item closed
+
+
+* CAT's response to UN/CEFACT Bureau email regarding UNECE Recommendation 1
+
+* No response was received. Item closed
+
+
+* ISO Letter to IMO (WCO Data Model)
+
+* Response send to ISO/TC 8 about TC 154's main concern the issue surrounding the promotion of ISO 28005 which is not using ISO 15000-5. TC 8 agreed to work with us in the future on a possible way forward
+
+
+* UNECE's comments about misleading CAT minutes 2015-12-09
+
+
+
+* No further exchanges. Item closed
+
+=== New Business
+
+* ISO/TC 154 Chairmanship (2017- )
+
+* Current term is ending at end of 2016. A second term of 3 years is possible for K-DN. No other candidate was being identified. For K-DN to stand for another term he requires some sponsorship for attending future TC 154 plenaries.
+
+
+* Business Semantic Thesaurus ISO/TS 16668, formally BSR
+
+
+
+* K-DN raided the topic of updating the original "`ISO/TS 16668 Basic Semantic Repository`" that was withdrawn because of ISO/TS 15000-5. However, as learned from the PoC on Semantic Interoperability, ISO 15000-5 is about data and message components, not the semantic meaning of Business concepts. During the PoC much of the original BSR was reused, which should now be applied for the rewrite.
+
+=== Other Business
+* Next Meeting: 30 March 2016, starting at 14:00 UTC
+

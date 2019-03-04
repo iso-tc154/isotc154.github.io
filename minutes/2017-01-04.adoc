@@ -1,120 +1,95 @@
-		<title>CAT Draft Minutes 2017-01-04</title>
-		<link>http://www.isotc154.org/cat-draft-minutes-2017-01-04</link>
-		<comments>http://www.isotc154.org/cat-draft-minutes-2017-01-04#comments</comments>
-		<pubDate>Wed, 04 Jan 2017 18:03:58 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-				<category><![CDATA[CAT Minutes]]></category>
-		<category><![CDATA[Ballots]]></category>
-		<category><![CDATA[ISO 14533]]></category>
-		<category><![CDATA[ISO 8601]]></category>
-		<category><![CDATA[ISO CS]]></category>
-		<category><![CDATA[OAGi]]></category>
+= CAT Draft Minutes 2017-01-04
+permalink: "/minutes/2017-01-04"
+date: "04 Jan 2017 18:03:58 +0000"
+category: CAT Minutes
+category: Ballots
+category: ISO 14533
+category: ISO 8601
+category: ISO CS
+category: OAGi
 
-		<guid isPermaLink="false">http://www.isotc154.org/?p=6817</guid>
-		<description><![CDATA[ISO/TC 154 CAT Conference Call<br />
-04 January 2017, 15:00 UTC<br />
-Participants: Klaus-Dieter Naujok (K-DN), Jasmine Chang (JC), Mei-Li Chen (MLC), Peter Rybar (PR), Bernd Bösler (BB), JianFang Zhang (JFZ)<br />
-Excused: Francois Vuilleumier (FV)<br />
-<br />
-Approval of Agenda – approved<br />
-Approval of 21 December 2016 Meeting Minutes – approved<br />
-Working Group and Project Team Updates<br />
-<br />
-JWG1/MA (EDIFACT Syntax)<br />
-<br />
-Awaiting final decision from ISO/CS (Brian)<br />
-<br />
-<br />
-WG 5 (Representation of dates and times)<br />
-<br />
-Out for ballot, closing 2017-03-23<br ...]]></description>
-				<content:encoded><![CDATA[<h3>ISO/TC 154 CAT Conference Call</h3>
-<h4>04 January 2017, 15:00 UTC</h4>
+== ISO/TC 154 CAT Conference Call, 04 January 2017, 15:00 UTC
 Participants::  Klaus-Dieter Naujok (K-DN), Jasmine Chang (JC), Mei-Li Chen (MLC), Peter Rybar (PR), Bernd Bösler (BB), JianFang Zhang (JFZ)
 Excused::  Francois Vuilleumier (FV)
 
-<ol>
-<li>Approval of Agenda – *approved*</li>
-<li>Approval of link:/cat-draft-minutes-2016-12-21[21 December 2016 Meeting Minutes] – *approved*</li>
-<li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Awaiting final decision from ISO/CS (Brian)</li>
-</ul>
-</li>
-<li>WG 5 (Representation of dates and times)
-<ul>
-<li>Out for ballot, closing 2017-03-23</li>
-</ul>
-</li>
-<li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 -- Long term signature profiles
-<ul>
-<li>ISO/DIS 14533-3 -- Ballot closed 2016-12-27
-<ul>
-<li>PT to address comments and determine if they are *only* minor editorial.</li>
-</ul>
-</li>
-<li>ISO/NP 14533-4
-<ul>
-<li>Out for Ballot -- closing 2017-02-04</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>PT2 -- Trusted Communication Platforms for Electronic Documents
-<ul>
-<li>JC prepared revised version to be distributed via LiveLink to WG for review and comments.</li>
-<li>If no comments are received the document can go out for CD ballot.</li>
-<li>If comments are received a WG WebEx call is needed to review and resolve the comments *before* a possible CD ballot.</li>
-</ul>
-</li>
-<li>PT3 -- Trusted mobile e-document framework
-<ul>
-<li>Mr. Lee is currently working on a revised version, no date set for WG review.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>WG 7 (Digital Business)
-<ul>
-<li>ISO/CS did setup WG on LiveLink
-<ul>
-<li>JFZ needs to change the secretariat and convener assignment from DIN to SAC.</li>
-</ul>
-</li>
-<li>PT1 -- Business Semantics Thesaurus
-<ul>
-<li>Awaiting nomination of experts from the *Call for Participation*</li>
-</ul>
-</li>
-<li>PT2 -- XMLFACT
-<ul>
-<li>K-DN to start preparing NWIP.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Liaison Updates</li>
-<li>Old Business
-<ul>
-<li>OAGi (Open Applications Group, Inc.) Fast-Track of &#8220;OAGIS – A Specification for an Enterprise Business Canonical Model&#8221;
-<ul>
-<li>Received latest update today. FV, BB and K-DN to review before submitting to Brian (ISO/CS) for final review.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>New Business</li>
-<li>Other Business</li>
-<li>Next Meeting: *18 January 2017, starting at 15:00 UTC*</li>
-</ol>
-]]></content:encoded>
-			<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2017-01-04/feed</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-		</item>
-		<item>
+
+== Approval of Agenda  – *approved*
+== Approval of link:/cat-draft-minutes-2016-12-21[21 December 2016 Meeting Minutes] – *approved*
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax)
+
+* Awaiting final decision from ISO/CS (Brian)
+
+
+=== WG 5 (Representation of dates and times)
+
+* Out for ballot, closing 2017-03-23
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles
+
+* ISO/DIS 14533-3 -- Ballot closed 2016-12-27
+
+* PT to address comments and determine if they are *only* minor editorial.
+
+
+* ISO/NP 14533-4
+
+* Out for Ballot -- closing 2017-02-04
+
+
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* JC prepared revised version to be distributed via LiveLink to WG for review and comments.
+* If no comments are received the document can go out for CD ballot.
+* If comments are received a WG WebEx call is needed to review and resolve the comments *before* a possible CD ballot.
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* Mr. Lee is currently working on a revised version, no date set for WG review.
+
+
+
+
+* WG 7 (Digital Business)
+
+* ISO/CS did setup WG on LiveLink
+
+* JFZ needs to change the secretariat and convener assignment from DIN to SAC.
+
+
+* PT1 -- Business Semantics Thesaurus
+
+* Awaiting nomination of experts from the *Call for Participation*
+
+
+* PT2 -- XMLFACT
+
+* K-DN to start preparing NWIP.
+
+
+
+
+
+
+=== Liaison Updates
+=== Old Business
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`"
+
+* Received latest update today. FV, BB and K-DN to review before submitting to Brian (ISO/CS) for final review.
+
+
+
+
+=== New Business
+=== Other Business
+* Next Meeting: *18 January 2017, starting at 15:00 UTC*
+
+

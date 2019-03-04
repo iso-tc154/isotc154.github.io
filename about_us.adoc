@@ -2,13 +2,14 @@
 
 == ISO/TC 154 Processes, data elements and documents in commerce, industry and administration
 
-* Secretariat: SAC
-* Secretary: link:mailto:zhangjf@cnis.gov.cn[ Mr Jianfang Zhang]
-* Chairperson: Mr Klaus-Dieter Naujok until end 2020
-* ISO Central Secretariat contact: Mr. Brian Stanton
+* Secretariat: http://www.sac.gov.cn[SAC]
+* Secretary: mailto:zhangjf@cnis.gov.cn[Mr Jianfang Zhang]
+* Chairperson: Ms Hongru (Judy) Zhu
+* ISO Technical Programme Manager: mailto:sarmiento@iso.org[Ms Sonia Sarmiento]
+* ISO Editorial Programme Manager: mailto:chen@iso.org[Mrs Yvonne Chen]
 * Creation date: 1972
 
-== Scope:
+== Scope
 
 International standardization and registration of business, and administration processes and supporting data used for information interchange between and within individual organizations and support for standardization activities in the field of industrial data.
 
@@ -18,7 +19,7 @@ Development and maintenance of application specific meta standards for:
 * data specification with content;
 * forms-layout (paper / electronic).
 
-Development and maintenance of standards for
+Development and maintenance of standards for:
 
 * process identification (in the absence of development by other technical committees);
 * data identification.
@@ -27,7 +28,6 @@ Maintenance of the EDIFACT-Syntax.
 
 
 == Working Groups and Project Teams
-
 
 * JWG1/MA (EDIFACT Syntax)
 * WG 5 (Representation of dates and times)

@@ -1,126 +1,99 @@
+= CAT Draft Minutes 2016-02-17
+permalink: "/minutes/2016-02-17"
+date: "17 Feb 2016 21:48:36 +0000"
+category: CAT Minutes
+category: IMO
+category: ISO 14533
+category: ISO 8601
+category: ISO CS
+category: WCO
 
-		<title>CAT Draft Minutes 2016-02-17</title>
-		<link>http://www.isotc154.org/cat-draft-minutes-2016-02-17</link>
-		<comments>http://www.isotc154.org/cat-draft-minutes-2016-02-17#comments</comments>
-		<pubDate>Wed, 17 Feb 2016 21:48:36 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-				<category><![CDATA[CAT Minutes]]></category>
-		<category><![CDATA[IMO]]></category>
-		<category><![CDATA[ISO 14533]]></category>
-		<category><![CDATA[ISO 8601]]></category>
-		<category><![CDATA[ISO CS]]></category>
-		<category><![CDATA[WCO]]></category>
+== ISO/TC154 CAT Conference Call, 17 February 2016, 15:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC), Sue Probert (SP), Peter Rybar (PR)
+Excused::  Bernd Bösler (BB)
 
-		<guid isPermaLink="false">http://www.isotc154.org/?p=6618</guid>
-		<description><![CDATA[ISO/TC154 CAT Conference Call<br />
-17 February 2016, 15:00 UTC<br />
-Participants: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC), Sue Probert (SP), Peter Rybar (PR)<br />
-Excused: Bernd Bösler (BB)<br />
-<br />
-Approval of Agenda &#8211; approved with the addition of UBL related to JTC 1&#8217;s ballot under Old Business<br />
-Approval of 03 February 2016 Meeting Minutes &#8211; approved<br />
-Working Group and Project Team Updates<br />
-<br />
-JWG1/MA (EDIFACT Syntax)<br />
-<br />
-Nothing to report<br />
-<br />
-<br />
-WG ...]]></description>
-				<content:encoded><![CDATA[<h3>ISO/TC154 CAT Conference Call</h3>
-<h4>17 February 2016, 15:00 UTC</h4>
-<p><strong>Participants:</strong> Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC), Sue Probert (SP), Peter Rybar (PR)<br />
-<strong>Excused:</strong> Bernd Bösler (BB)</p>
-<ol>
-<li>Approval of Agenda &#8211; <strong>approved</strong> with the addition of UBL related to JTC 1&#8217;s ballot under Old Business</li>
-<li>Approval of <a href="http://www.isotc154.org/cat-draft-minutes-2016-02-03">03 February 2016 Meeting Minutes</a> &#8211; <strong>approved</strong></li>
-<li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>WG 5 (Representation of dates and times)
-<ul>
-<li>K-DN: Reported that WG 5 has completed both WDs and NWIP (Form 4) and recommends that CAT approve that both parts go out for NWIP and CD ballots.</li>
-<li>CAT agreed to ballot both ISO 8601 Parts at the same time as NWIP and CD.</li>
-<li>Regarding the objection by Henry Cuschieri (ISO/CS) during the last MoU/MG meeting for ISO/TC 154&#8217;s to circulate both NWIP and CD Ballots for feedback about the many extensions and proposed solution regarding the midnight issue, <strong>nothing has been forthcoming from Henry</strong>, who agreed to look into this, regarding a possible way forward.</li>
-<li>Since CAT was unable to identify any rules forbidding the sharing with the MoU/MG, CAT agreed that K-DN, SP, BB and FV draft a message to Henry and Brian Stanton, copy to Howard Mason, asking to get a copy of the rules in question that forbid ISO/TC 154 to circulate the NWIP and CDs for ISO 8601 Parts 1 &amp; 2.</li>
-</ul>
-</li>
-<li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 &#8211; Long term signature profiles for PDF advanced electronic signatures (PAdES)
-<ul>
-<li>PR: provided an update on the current work to address CD ballot comments.</li>
-</ul>
-</li>
-<li>PT2 &#8211; Trusted Communication Platforms for Electronic Documents
-<ul>
-<li>JFZ: Reminded JC that the PWI deadline is approaching fast and that therefore a NWIP needs to be balloted before December 2016.</li>
-<li>K-DN: Reminded JC that project teams need to start discussion via WebEx on the first draft that was made available 3 months ago.</li>
-</ul>
-</li>
-<li>PT3 &#8211; Trusted mobile e-document framework
-<ul>
-<li>JFZ: Reminded JC that the PWI deadline is approaching fast and that therefore a NWIP needs to be balloted before December 2016.</li>
-<li>K-DN: Reminded JC that project teams need to start discussion via WebEx on the first draft that was made available 3 months ago.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Liaison Updates
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>MoU/MG Update
-<ul>
-<li>PoC on Semantic Interoperability
-<ul>
-<li>Still no comments have been received so far regarding the Marketing Documents out for comments by MoU/MG members. Deadline is end of February</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Old Business
-<ul>
-<li>CAT&#8217;s comments on UNECE&#8217;s &#8220;Proposed Strategic Framework 2016&#8221;
-<ul>
-<li>No response was received</li>
-</ul>
-</li>
-<li>CAT&#8217;s response to UN/CEFACT Bureau email regarding UNECE Recommendation 1
-<ul>
-<li>No response was received</li>
-</ul>
-</li>
-<li>JTC 1 &#8211; ISO/IEC 19845 UBL
-<ul>
-<li>SP: Gave a update on the BSI disapproval that was ignored by JTC 1 and ISO/CS, putting in question the JTC 1&#8217;s fast-track process.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>New Business
-<ul>
-<li>ISO Letter to IMO (WCO Data Model)
-<ul>
-<li>SP: Gave an update about the IMO compendium as maintained by WCO and the related issues.</li>
-<li>K-DN: Provided an update on the question raised with ISO/CS regarding a letter under the ISO name to the IMO that supports the work of WCO regarding the IMO compendium. CAT inquiry is about who send the letter and why was there no discussion on the content, especially since the ISO position expressed within the document is in direct opposition to that of ISO/TC 154.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Other Business</li>
-<li>Next Meeting: <strong>02 March 2016, starting at 15:00 UTC</strong></li>
-</ol>
-]]></content:encoded>
-			<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2016-02-17/feed</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-		</item>
-	</channel>
-</rss>
+== Approval of Agenda  -- *approved* with the addition of UBL related to JTC 1's ballot under Old Business
+== Approval of link:2016-02-03[03 February 2016 Meeting Minutes] -- *approved*
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax)
+
+* Nothing to report
+
+
+=== WG 5 (Representation of dates and times)
+
+* K-DN: Reported that WG 5 has completed both WDs and NWIP (Form 4) and recommends that CAT approve that both parts go out for NWIP and CD ballots.
+* CAT agreed to ballot both ISO 8601 Parts at the same time as NWIP and CD.
+* Regarding the objection by Henry Cuschieri (ISO/CS) during the last MoU/MG meeting for ISO/TC 154's to circulate both NWIP and CD Ballots for feedback about the many extensions and proposed solution regarding the midnight issue, *nothing has been forthcoming from Henry*, who agreed to look into this, regarding a possible way forward.
+* Since CAT was unable to identify any rules forbidding the sharing with the MoU/MG, CAT agreed that K-DN, SP, BB and FV draft a message to Henry and Brian Stanton, copy to Howard Mason, asking to get a copy of the rules in question that forbid ISO/TC 154 to circulate the NWIP and CDs for ISO 8601 Parts 1 & 2.
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* PR: provided an update on the current work to address CD ballot comments.
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* JFZ: Reminded JC that the PWI deadline is approaching fast and that therefore a NWIP needs to be balloted before December 2016.
+* K-DN: Reminded JC that project teams need to start discussion via WebEx on the first draft that was made available 3 months ago.
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* JFZ: Reminded JC that the PWI deadline is approaching fast and that therefore a NWIP needs to be balloted before December 2016.
+* K-DN: Reminded JC that project teams need to start discussion via WebEx on the first draft that was made available 3 months ago.
+
+
+
+
+
+
+=== Liaison Updates
+
+* Nothing to report
+
+
+=== MoU/MG Update
+
+* PoC on Semantic Interoperability
+
+* Still no comments have been received so far regarding the Marketing Documents out for comments by MoU/MG members. Deadline is end of February
+
+
+
+
+=== Old Business
+
+* CAT's comments on UNECE's "`Proposed Strategic Framework 2016`"
+
+* No response was received
+
+
+* CAT's response to UN/CEFACT Bureau email regarding UNECE Recommendation 1
+
+* No response was received
+
+
+* JTC 1 -- ISO/IEC 19845 UBL
+
+* SP: Gave a update on the BSI disapproval that was ignored by JTC 1 and ISO/CS, putting in question the JTC 1's fast-track process.
+
+
+
+
+=== New Business
+
+* ISO Letter to IMO (WCO Data Model)
+
+* SP: Gave an update about the IMO compendium as maintained by WCO and the related issues.
+* K-DN: Provided an update on the question raised with ISO/CS regarding a letter under the ISO name to the IMO that supports the work of WCO regarding the IMO compendium. CAT inquiry is about who send the letter and why was there no discussion on the content, especially since the ISO position expressed within the document is in direct opposition to that of ISO/TC 154.
+
+
+
+
+=== Other Business
+* Next Meeting: *02 March 2016, starting at 15:00 UTC*

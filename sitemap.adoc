@@ -2,268 +2,196 @@ permalink: /sitemap
 ---
 = Sitemap
 
-
-
-
-
-</div><!-- END header-area -->
-</div><!-- END header-overlay -->
-</div><!-- END header-holder -->
-</header><!-- END header -->
-
-
-<div id="main" class="tt-slider-">
-
-
-<div class="main-area">
-
-		<main role="main" id="content">
-        	<div class="one_third">
 == Pages
 
-link:/about_us[About Us]
+* link:/about_us[About Us]
 
-	<li id="menu-item-5004" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5004">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-	
-		<li id="menu-item-5215" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5215">link:/about_us/jwg1/sdmr[Syntax DMR Procedures]</li>
-	
-</li>
-	<li id="menu-item-5007" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5007">link:/about_us/wg3[WG 3 – CCTS]</li>
-	<li id="menu-item-5013" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5013">link:/about_us/wg4[WG 4 – eLK]</li>
-	<li id="menu-item-5252" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5252">link:/about_us/cat[CAT -- Chairman's Advisory Team]</li>
-	<li id="menu-item-5034" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5034">link:/about_us/ma[TDED Maintenance Agency]
-	
-		<li id="menu-item-5581" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5581">link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]</li>
-		<li id="menu-item-5585" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5585">link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]</li>
-	
-</li>
+** link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
+** link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
+** link:/about_us/wg3[WG 3 – CCTS]
+** link:/about_us/wg4[WG 4 – eLK]
+** link:/about_us/cat[CAT -- Chairman's Advisory Team]
+** link:/about_us/ma[TDED Maintenance Agency]
+** link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
+** link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
 
-</li>
-<li id="menu-item-4922" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-4922">link:/projects[Projects]
+* link:/projects[Projects]
 
-	<li id="menu-item-5146" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5146">link:/projects/iso-np-6422-2[ISO NP 6422-2]</li>
-	<li id="menu-item-5149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5149">link:/projects/iso-np-14533[ISO NP 14533]</li>
-	<li id="menu-item-5136" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5136">link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]</li>
-	<li id="menu-item-5173" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5173">link:/projects/iso-np-9735-10[ISO NP 9735-10]</li>
-	<li id="menu-item-5180" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5180">link:/projects/iso-np-15000-5[ISO NP 15000-5]</li>
-	<li id="menu-item-5184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5184">link:/projects/iso-np-17369[ISO NP 17369]</li>
+** link:/projects/iso-np-6422-2[ISO NP 6422-2]
+** link:/projects/iso-np-14533[ISO NP 14533]
+** link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]
+** link:/projects/iso-np-9735-10[ISO NP 9735-10]
+** link:/projects/iso-np-15000-5[ISO NP 15000-5]
+** link:/projects/iso-np-17369[ISO NP 17369]
 
-</li>
-<li id="menu-item-4912" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-4912">link:/standards[Standards]
+* link:/standards[Standards]
 
-	<li id="menu-item-5127" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5127">link:/standards/iso-6422-12010[ISO 6422-1:2010]</li>
-	<li id="menu-item-5131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5131">link:/standards/iso-73722005[ISO 7372:2005]</li>
-	<li id="menu-item-5284" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5284">link:/standards/iso-84391990[ISO 8439:1990]</li>
-	<li id="menu-item-5283" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5283">link:/standards/iso-84401986[ISO 8440:1986]</li>
-	<li id="menu-item-5282" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5282">link:/standards/iso-86012004[ISO 8601:2004]</li>
-	<li id="menu-item-5323" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5323">link:/standards/iso-97351988[ISO 9735:1988]</li>
-	<li id="menu-item-5322" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5322">link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]</li>
-	<li id="menu-item-5326" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5326">link:/standards/iso-9735-12002[ISO 9735-1:2002]</li>
-	<li id="menu-item-5325" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5325">link:/standards/iso-9735-22002[ISO 9735-2:2002]</li>
-	<li id="menu-item-5370" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5370">link:/standards/iso-9735-32002[ISO 9735-3:2002]</li>
-	<li id="menu-item-5369" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5369">link:/standards/iso-9735-42002[ISO 9735-4:2002]</li>
-	<li id="menu-item-5368" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5368">link:/standards/iso-9735-52002[ISO 9735-5:2002]</li>
-	<li id="menu-item-5367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5367">link:/standards/iso-9735-62002[ISO 9735-6:2002]</li>
-	<li id="menu-item-5366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5366">link:/standards/iso-9735-72002[ISO 9735-7:2002]</li>
-	<li id="menu-item-5365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5365">link:/standards/iso-9735-82002[ISO 9735-8:2002]</li>
-	<li id="menu-item-5364" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5364">link:/standards/iso-9735-92002[ISO 9735-9:2002]</li>
-	<li id="menu-item-5363" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5363">link:/standards/iso-9735-102002[ISO 9735-10:2002]</li>
-	<li id="menu-item-5392" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5392">link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]</li>
-	<li id="menu-item-5391" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5391">link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]</li>
-	<li id="menu-item-5390" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5390">link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]</li>
-	<li id="menu-item-5389" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5389">link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]</li>
-	<li id="menu-item-5388" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5388">link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]</li>
-	<li id="menu-item-5387" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5387">link:/standards/isots-173692005[ISO/TS 17369:2005]</li>
-	<li id="menu-item-5386" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5386">link:/standards/isots-206252002[ISO/TS 20625:2002]</li>
+** link:/standards/iso-6422-12010[ISO 6422-1:2010]
+** link:/standards/iso-73722005[ISO 7372:2005]
+** link:/standards/iso-84391990[ISO 8439:1990]
+** link:/standards/iso-84401986[ISO 8440:1986]
+** link:/standards/iso-86012004[ISO 8601:2004]
+** link:/standards/iso-97351988[ISO 9735:1988]
+** link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
+** link:/standards/iso-9735-12002[ISO 9735-1:2002]
+** link:/standards/iso-9735-22002[ISO 9735-2:2002]
+** link:/standards/iso-9735-32002[ISO 9735-3:2002]
+** link:/standards/iso-9735-42002[ISO 9735-4:2002]
+** link:/standards/iso-9735-52002[ISO 9735-5:2002]
+** link:/standards/iso-9735-62002[ISO 9735-6:2002]
+** link:/standards/iso-9735-72002[ISO 9735-7:2002]
+** link:/standards/iso-9735-82002[ISO 9735-8:2002]
+** link:/standards/iso-9735-92002[ISO 9735-9:2002]
+** link:/standards/iso-9735-102002[ISO 9735-10:2002]
+** link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]
+** link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]
+** link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]
+** link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]
+** link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]
+** link:/standards/isots-173692005[ISO/TS 17369:2005]
+** link:/standards/isots-206252002[ISO/TS 20625:2002]
 
-</li>
-<li id="menu-item-4909" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4909">link:/minutes[Minutes]</li>
-<li id="menu-item-4983" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4983">link:/faq[FAQ]</li>
-<li id="menu-item-6479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6479">link:/isotc-154-2016-anual-meeting-details[Meetings]</li>
-            </div><!-- END one_third -->
+
+* link:/minutes[Minutes]
+* link:/faq[FAQ]
+* link:/isotc-154-2016-anual-meeting-details[Meetings]
+
 
 == Posts
-	<li><a href='/cat-draft-minutes-2017-02-15'>CAT Draft Minutes 2017-02-15</a></li>
-	<li><a href='/cat-draft-minutes-2017-02-01'>CAT Draft Minutes 2017-02-01</a></li>
-	<li><a href='/cat-draft-minutes-2017-01-04'>CAT Draft Minutes 2017-01-04</a></li>
-	<li><a href='/cat-draft-minutes-2016-12-21'>CAT Draft Minutes 2016-12-21</a></li>
-	<li><a href='/cat-draft-minutes-2016-11-23'>CAT Draft Minutes 2016-11-23</a></li>
-	<li><a href='/cat-draft-minutes-2016-09-28'>CAT Draft Minutes 2016-09-28</a></li>
-	<li><a href='/cat-draft-minutes-2016-09-14'>CAT Draft Minutes 2016-09-14</a></li>
-	<li><a href='/cat-draft-minutes-2016-08-31'>CAT Draft Minutes 2016–08–31</a></li>
-	<li><a href='/cat-draft-minutes-2016-08-17'>CAT Draft Minutes 2016-08-17</a></li>
-	<li><a href='/cat-draft-minutes-2016-08-03'>CAT Draft Minutes 2016-08-03</a></li>
-	<li><a href='/cat-draft-minutes-2016-07-20'>CAT Draft Minutes 2016-07-20</a></li>
-	<li><a href='/cat-draft-minutes-2016-07-06'>CAT Draft Minutes 2016-07-06</a></li>
-	<li><a href='/cat-draft-minutes-2016-06-22'>CAT Draft Minutes 2016-06-22</a></li>
-	<li><a href='/cat-draft-minutes-2016-06-08'>CAT Draft Minutes 2016-06-08</a></li>
-	<li><a href='/cat-draft-minutes-2016-05-25'>CAT Draft Minutes 2016-05-25</a></li>
-	<li><a href='/cat-draft-minutes-2016-05-11'>CAT Draft Minutes 2016-05-11</a></li>
-	<li><a href='/cat-draft-minutes-2016-04-27'>CAT Draft Minutes 2016-04-27</a></li>
-	<li><a href='/cat-draft-minutes-2016-04-13'>CAT Draft Minutes 2016-04-13</a></li>
-	<li><a href='/cat-draft-minutes-2016-03-30'>CAT Draft Minutes 2016–03–30</a></li>
-	<li><a href='/cat-draft-minutes-2016-03-16'>CAT Draft Minutes 2016-03-16</a></li>
-	<li><a href='/cat-draft-minutes-2016-03-02'>CAT Draft Minutes 2016-03-02</a></li>
-	<li><a href='/cat-draft-minutes-2016-02-17'>CAT Draft Minutes 2016-02-17</a></li>
-	<li><a href='/cat-draft-minutes-2016-02-03'>CAT Draft Minutes 2016-02-03</a></li>
-	<li><a href='/cat-draft-minutes-2016-01-20'>CAT Draft Minutes 2016-01-20</a></li>
-	<li><a href='/cat-draft-minutes-2015-12-09'>CAT Draft Minutes 2015-12-09</a></li>
-	<li><a href='/cat-draft-minutes-2015-11-25'>CAT Draft Minutes 2015–11–25</a></li>
-	<li><a href='/cat-draft-minutes-2015-11-11'>CAT Draft Minutes 2015-11-11</a></li>
-	<li><a href='/cat-draft-minutes-2015-10-28'>CAT Draft Minutes 2015–10–28</a></li>
-	<li><a href='/cat-minutes-2015-09-30'>CAT Minutes 2015-09-30</a></li>
-	<li><a href='/cat-minutes-2015-09-02'>CAT Minutes 2015-09-02</a></li>
-	<li><a href='/cat-minutes-2015-08-19'>CAT Minutes 2015-08-19</a></li>
-	<li><a href='/cat-minutes-2015-07-08'>CAT Minutes 2015-07-08</a></li>
-	<li><a href='/cat-minutes-2015-06-24'>CAT Minutes 2015-06-24</a></li>
-	<li><a href='/cat-minutes-2015-06-10'>CAT Minutes 2015-06-10</a></li>
-	<li><a href='/cat-minutes-2015-05-27'>CAT Minutes 2015-05-27</a></li>
-	<li><a href='/cat-minutes-2015-05-13'>CAT Minutes 2015-05-13</a></li>
-	<li><a href='/cat-minutes-2015-04-29'>CAT Minutes 2015-04-29</a></li>
-	<li><a href='/cat-minutes-2015-04-15'>CAT Minutes 2015-04-15</a></li>
-	<li><a href='/cat-minutes-2015-04-01'>CAT Minutes 2015-04-01</a></li>
-	<li><a href='/cat-minutes-2015-03-04'>CAT Minutes 2015-03-04</a></li>
-	<li><a href='/cat-minutes-2015-02-04'>CAT Minutes 2015-02-04</a></li>
-	<li><a href='/cat-minutes-2015-01-07'>CAT Minutes 2015-01-07</a></li>
-	<li><a href='/cat-minutes-2014-12-10'>CAT Minutes 2014-12-10</a></li>
-	<li><a href='/cat-minutes-2014-11-26'>CAT Minutes 2014-11-26</a></li>
-	<li><a href='/cat-minutes-2014-10-15'>CAT Minutes 2014-10-15</a></li>
-	<li><a href='/cat-minutes-2014-10-01'>CAT Minutes 2014-10-01</a></li>
-	<li><a href='/cat-minutes-2014-09-17'>CAT Minutes 2014-09-17</a></li>
-	<li><a href='/cat-minutes-2014-09-03'>CAT Minutes 2014-09-03</a></li>
-	<li><a href='/cat-minutes-2014-08-20'>CAT Minutes 2014-08-20</a></li>
-	<li><a href='/cat-minutes-2014-08-06'>CAT Minutes 2014-08-06</a></li>
-	<li><a href='/cat-minutes-2014-07-23'>CAT Minutes 2014-07-23</a></li>
-	<li><a href='/cat-minutes-2014-07-09'>CAT Minutes 2014-07-09</a></li>
-	<li><a href='/cat-minutes-2014-06-25'>CAT Minutes 2014-06-25</a></li>
-	<li><a href='/cat-minutes-2014-06-11'>CAT Minutes 2014-06-11</a></li>
-	<li><a href='/cat-minutes-2014-05-28'>CAT Minutes 2014-05-28</a></li>
-	<li><a href='/cat-minutes-2014-05-14'>CAT Minutes 2014-05-14</a></li>
-	<li><a href='/cat-minutes-2014-04-30'>CAT Minutes 2014-04-30</a></li>
-	<li><a href='/cat-minutes-2014-04-16'>CAT Minutes 2014-04-16</a></li>
-	<li><a href='/cat-minutes-2014-04-02'>CAT Minutes 2014-04-02</a></li>
-	<li><a href='/cat-minutes-2014-03-19'>CAT Minutes 2014-03-19</a></li>
-	<li><a href='/cat-minutes-2014-02-19'>CAT Minutes 2014-02-19</a></li>
-	<li><a href='/cat-minutes-2014-02-05'>CAT Minutes 2014-02-05</a></li>
-	<li><a href='/cat-minutes-2014-01-22'>CAT Minutes 2014-01-22</a></li>
-	<li><a href='/cat-minutes-2014-01-08'>CAT Minutes 2014-01-08</a></li>
-	<li><a href='/cat-minutes-2013-12-11'>CAT Minutes 2013-12-11</a></li>
-	<li><a href='/cat-minutes-2013-11-03'>CAT Minutes 2013-11-03</a></li>
-	<li><a href='/cat-minutes-2013-10-02'>CAT Minutes 2013-10-02</a></li>
-	<li><a href='/cat-minutes-2013-09-18'>CAT Minutes 2013-09-18</a></li>
-	<li><a href='/cat-minutes-2013-09-04'>CAT Minutes 2013-09-04</a></li>
-	<li><a href='/cat-minutes-2013-08-21'>CAT Minutes 2013-08-21</a></li>
-	<li><a href='/cat-minutes-2013-08-07'>CAT Minutes 2013-08-07</a></li>
-	<li><a href='/cat-minutes-2013-07-24'>CAT Minutes 2013-07-24</a></li>
-	<li><a href='/cat-minutes-2013-07-10'>CAT Minutes 2013–07–10</a></li>
-	<li><a href='/cat-minutes-2013-06-26'>CAT Minutes 2013-06-26</a></li>
-	<li><a href='/cat-minutes-2013-06-12'>CAT Minutes 2013-06-12</a></li>
-	<li><a href='/cat-minutes-2013-05-29'>CAT Minutes 2013-05-29</a></li>
-	<li><a href='/cat-minutes-2013-05-15'>CAT Minutes 2013-05-15</a></li>
-	<li><a href='/cat-minutes-2013-05-01'>CAT Minutes 2013-05-01</a></li>
-	<li><a href='/cat-minutes-2013-04-03'>CAT Minutes 2013-04-03</a></li>
-	<li><a href='/cat-minutes-2013-03-20'>CAT Minutes 2013-03-20</a></li>
-	<li><a href='/cat-minutes-2013-03-06'>CAT Minutes 2013-03-06</a></li>
-	<li><a href='/cat-minutes-2013-02-20'>CAT Minutes 2013-02-20</a></li>
-	<li><a href='/cat-minutes-2013-02-06'>CAT Minutes 2013-02-06</a></li>
-	<li><a href='/cat-minutes-2013-01-23'>CAT Minutes 2013–01–23</a></li>
-	<li><a href='/cat-minutes-2013-01-09'>CAT Minutes 2013-01-09</a></li>
-	<li><a href='/cat-minutes-2012-12-12'>CAT Minutes 2012-12-12</a></li>
-	<li><a href='/cat-minutes-2012-11-28'>CAT Minutes 2012-11-28</a></li>
-	<li><a href='/cat-minutes-2012-11-14'>CAT Minutes 2012-11-14</a></li>
-	<li><a href='/cat-minutes-2012-10-03'>CAT Minutes 2012-10-03</a></li>
-	<li><a href='/cat-minutes-2012-09-05'>CAT Minutes 2012-09-05</a></li>
-	<li><a href='/cat-minutes-2012-08-22'>CAT Minutes 2012-08-22</a></li>
-	<li><a href='/cat-minutes-2012-08-08'>CAT Minutes 2012-08-08</a></li>
-	<li><a href='/cat-minutes-2012-07-25'>CAT Minutes 2012-07-25</a></li>
-	<li><a href='/new-and-improved-isoiec-17024-standard-for-personnel-certification-programmes'>New and improved ISO/IEC 17024 standard for personnel certification programmes</a></li>
-	<li><a href='/iso-9001-in-the-supply-chain'>ISO 9001 in the supply chain</a></li>
-	<li><a href='/cat-minutes-2012-07-11'>CAT Minutes 2012-07-11</a></li>
-	<li><a href='/app-version-of-iso-focus-magazine-now-available'>App version of ISO Focus+ magazine now available</a></li>
-	<li><a href='/cat-minutes-2012-06-27'>CAT Minutes 2012-06-27</a></li>
-	<li><a href='/cat-minutes-2012-06-13'>CAT Minutes 2012-06-13</a></li>
-	<li><a href='/cat-minutes-2012-05-30'>CAT Minutes 2012-05-30</a></li>
-	<li><a href='/iso-standard-provides-global-solution-for-legal-entity-identification-for-financial-services'>ISO standard provides global solution for legal entity identification for financial services</a></li>
-	<li><a href='/isos-2011-annual-report-looks-to-the-future'>ISO's 2011 Annual Report looks to the future&#8230;</a></li>
-	<li><a href='/isos-magazine-focuses-on-standards-and-crisis-management'>ISO's magazine focuses on standards and crisis management</a></li>
-	<li><a href='/cat-minutes-2012-05-16'>CAT Minutes 2012-05-16</a></li>
-	<li><a href='/digital-object-identifier-doi-becomes-an-iso-standard'>Digital object identifier (DOI) becomes an ISO standard</a></li>
-	<li><a href='/cat-minutes-2012-05-01'>CAT Minutes 2012-05-01</a></li>
-	<li><a href='/mpeg-the-standards-experts-behind-the-dvd-industry-celebrate-100th-meeting'>MPEG -- the standards experts behind the DVD industry -- celebrate 100th meeting</a></li>
-	<li><a href='/iso-focus-steers-towards-maritime-solutions'>ISO Focus+ steers towards maritime solutions</a></li>
-	<li><a href='/project-proposal-open-data-interchange-framework-odif'>Project Proposal -- Open Data Interchange Framework (ODIF)</a></li>
-	<li><a href='/cat-minutes-2012-04-04'>CAT Minutes 2012-04-04</a></li>
-	<li><a href='/iso-focus-magazine-puts-spotlight-on-services'>ISO Focus+ magazine puts spotlight on services</a></li>
-	<li><a href='/adobe-extensible-metadata-platform-xmp-becomes-an-iso-standard'>Adobe Extensible Metadata Platform (XMP) becomes an ISO standard</a></li>
-	<li><a href='/cat-minutes-2012-03-07'>CAT Minutes 2012-03-07</a></li>
-	<li><a href='/cat-minutes-2012-02-22'>CAT Minutes 2012-02-22</a></li>
-	<li><a href='/isotc-154-report-to-uncefact-plenary'>ISO/TC 154 Report to UN/CEFACT Plenary</a></li>
-	<li><a href='/cat-minutes-2012-02-08'>CAT Minutes 2012-02-08</a></li>
-	<li><a href='/isotc-154-public-web-site-announcement'>ISO/TC 154 Public Web Site Announcement</a></li>
-	<li><a href='/personal-health-data-better-protected-by-iso-standard'>Personal health data better protected by ISO standard</a></li>
-	<li><a href='/cat-minutes-2012-01-25'>CAT Minutes 2012-01-25</a></li>
-	<li><a href='/isoiec-plug-and-play-standard-enables-seamless-technology'>ISO/IEC plug and play standard enables seamless technology</a></li>
-	<li><a href='/cat-minutes-2012-01-11'>CAT Minutes 2012-01-11</a></li>
-	<li><a href='/cat-minutes-2011-12-14'>CAT Minutes 2011-12-14</a></li>
-	<li><a href='/cat-minutes-2011-11-30'>CAT Minutes 2011-11-30</a></li>
-	<li><a href='/call-for-experts-for-the-revision-of-iso-ts-15000-5'>Call for experts for the revision of ISO TS 15000-5</a></li>
-	<li><a href='/call-for-experts-for-the-revision-of-iso-9735-10'>Call for experts for the revision of ISO 9735-10</a></li>
-	<li><a href='/isotc-154-liaison-letter-2011'>ISO/TC 154 Liaison Letter 2011</a></li>
-	<li><a href='/call-for-experts-for-isotc-154wg-4-electronic-layout-key'>Call for experts for ISO/TC 154/WG 4 "`Electronic Layout Key`"</a></li>
-	<li><a href='/cat-minutes-2011-11-16'>CAT Minutes 2011-11-16</a></li>
-	<li><a href='/cat-minutes-2011-11-02'>CAT Minutes 2011-11-02</a></li>
-	<li><a href='/call-for-experts-on-revision-of-isots-173692005-sdmx'>Call for experts on revision of ISO/TS 17369:2005 -- SDMX</a></li>
-	<li><a href='/draft-minutes-30th-plenary-meeting-isotc-154-geneva-2011-09-14'>Draft minutes 30th plenary meeting ISOTC 154 Geneva, 2011-09-14</a></li>
-	<li><a href='/message-from-the-chairman'>Message from the Chairman</a></li>
-	<li><a href='/appointment-of-mr-naujok-as-chairman'>Appointment of Mr. Naujok as Chairman</a></li>
-                   
-			</div><!-- END one_third -->
 
-			<div class="one_third_last sitemap-last">
-== Contact
-    *Email:* link:mailto:admin@isotc154.net[admin AT isotc154 DOT net]
-			</div><!-- END one_third_last -->
-		</main><!-- END main #content -->
+* link:/minutes/2017-02-15[CAT Draft Minutes 2017-02-15]
+* link:/minutes/2017-02-01[CAT Draft Minutes 2017-02-01]
+* link:/minutes/2017-01-04[CAT Draft Minutes 2017-01-04]
+* link:/minutes/2016-12-21[CAT Draft Minutes 2016-12-21]
+* link:/minutes/2016-11-23[CAT Draft Minutes 2016-11-23]
+* link:/minutes/2016-09-28[CAT Draft Minutes 2016-09-28]
+* link:/minutes/2016-09-14[CAT Draft Minutes 2016-09-14]
+* link:/minutes/2016-08-31[CAT Draft Minutes 2016–08–31]
+* link:/minutes/2016-08-17[CAT Draft Minutes 2016-08-17]
+* link:/minutes/2016-08-03[CAT Draft Minutes 2016-08-03]
+* link:/minutes/2016-07-20[CAT Draft Minutes 2016-07-20]
+* link:/minutes/2016-07-06[CAT Draft Minutes 2016-07-06]
+* link:/minutes/2016-06-22[CAT Draft Minutes 2016-06-22]
+* link:/minutes/2016-06-08[CAT Draft Minutes 2016-06-08]
+* link:/minutes/2016-05-25[CAT Draft Minutes 2016-05-25]
+* link:/minutes/2016-05-11[CAT Draft Minutes 2016-05-11]
+* link:/minutes/2016-04-27[CAT Draft Minutes 2016-04-27]
+* link:/minutes/2016-04-13[CAT Draft Minutes 2016-04-13]
+* link:/minutes/2016-03-30[CAT Draft Minutes 2016–03–30]
+* link:/minutes/2016-03-16[CAT Draft Minutes 2016-03-16]
+* link:/minutes/2016-03-02[CAT Draft Minutes 2016-03-02]
+* link:/minutes/2016-02-17[CAT Draft Minutes 2016-02-17]
 
-        <aside role="complementary" id="sidebar" class="right_sidebar">
-			        </aside><!-- END sidebar -->
-</div><!-- END main-area -->
+== Old Posts (lost)
 
-
-<div id="footer-top">&nbsp;</div><!-- END footer-top -->
-</div><!-- END main -->
-
-        <footer role="contentinfo" id="footer">
-
-            <div class="footer-overlay">
-
-                <div class="footer-content">
-                <div class="one_fourth tt-column"></div><div class="one_fourth tt-column"></div><div class="one_fourth tt-column"></div><div class="one_fourth_last tt-column"></div>                </div><!-- END footer-content -->
-
-                            </div><!-- END footer-overlay -->
-
-        <div id="footer_bottom">
-            <div class="info">
-            	                <div id="foot_left">&nbsp;                    			<div class="textwidget">Views on this site are those of ISO/TC 154/CAT and not necessarily those of ISO itself.
-
-</div>
-
-                </div><!-- END foot_left -->
-
-                <div id="foot_right">
-                                        
-                    <li id="menu-item-4469" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4469">link:/[Home]</li>
-<li id="menu-item-4811" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-4811">link:/sitemap[Sitemap]</li>
-<li id="menu-item-4470" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4470">link:/category/news[News]</li>
-<li id="menu-item-5495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5495">link:/contact[Contact]</li>
-                    
-
-                </div><!-- END foot_right -->
-            </div><!-- END info -->
-        </div><!-- END footer_bottom -->
-                </footer><!-- END footer -->
-
-	</div><!-- END wrapper -->
-
-</body>
-</html>
+* link:/cat-draft-minutes-2016-02-03[CAT Draft Minutes 2016-02-03]
+* link:/cat-draft-minutes-2016-01-20[CAT Draft Minutes 2016-01-20]
+* link:/cat-draft-minutes-2015-12-09[CAT Draft Minutes 2015-12-09]
+* link:/cat-draft-minutes-2015-11-25[CAT Draft Minutes 2015–11–25]
+* link:/cat-draft-minutes-2015-11-11[CAT Draft Minutes 2015-11-11]
+* link:/cat-draft-minutes-2015-10-28[CAT Draft Minutes 2015–10–28]
+* link:/cat-minutes-2015-09-30[CAT Minutes 2015-09-30]
+* link:/cat-minutes-2015-09-02[CAT Minutes 2015-09-02]
+* link:/cat-minutes-2015-08-19[CAT Minutes 2015-08-19]
+* link:/cat-minutes-2015-07-08[CAT Minutes 2015-07-08]
+* link:/cat-minutes-2015-06-24[CAT Minutes 2015-06-24]
+* link:/cat-minutes-2015-06-10[CAT Minutes 2015-06-10]
+* link:/cat-minutes-2015-05-27[CAT Minutes 2015-05-27]
+* link:/cat-minutes-2015-05-13[CAT Minutes 2015-05-13]
+* link:/cat-minutes-2015-04-29[CAT Minutes 2015-04-29]
+* link:/cat-minutes-2015-04-15[CAT Minutes 2015-04-15]
+* link:/cat-minutes-2015-04-01[CAT Minutes 2015-04-01]
+* link:/cat-minutes-2015-03-04[CAT Minutes 2015-03-04]
+* link:/cat-minutes-2015-02-04[CAT Minutes 2015-02-04]
+* link:/cat-minutes-2015-01-07[CAT Minutes 2015-01-07]
+* link:/cat-minutes-2014-12-10[CAT Minutes 2014-12-10]
+* link:/cat-minutes-2014-11-26[CAT Minutes 2014-11-26]
+* link:/cat-minutes-2014-10-15[CAT Minutes 2014-10-15]
+* link:/cat-minutes-2014-10-01[CAT Minutes 2014-10-01]
+* link:/cat-minutes-2014-09-17[CAT Minutes 2014-09-17]
+* link:/cat-minutes-2014-09-03[CAT Minutes 2014-09-03]
+* link:/cat-minutes-2014-08-20[CAT Minutes 2014-08-20]
+* link:/cat-minutes-2014-08-06[CAT Minutes 2014-08-06]
+* link:/cat-minutes-2014-07-23[CAT Minutes 2014-07-23]
+* link:/cat-minutes-2014-07-09[CAT Minutes 2014-07-09]
+* link:/cat-minutes-2014-06-25[CAT Minutes 2014-06-25]
+* link:/cat-minutes-2014-06-11[CAT Minutes 2014-06-11]
+* link:/cat-minutes-2014-05-28[CAT Minutes 2014-05-28]
+* link:/cat-minutes-2014-05-14[CAT Minutes 2014-05-14]
+* link:/cat-minutes-2014-04-30[CAT Minutes 2014-04-30]
+* link:/cat-minutes-2014-04-16[CAT Minutes 2014-04-16]
+* link:/cat-minutes-2014-04-02[CAT Minutes 2014-04-02]
+* link:/cat-minutes-2014-03-19[CAT Minutes 2014-03-19]
+* link:/cat-minutes-2014-02-19[CAT Minutes 2014-02-19]
+* link:/cat-minutes-2014-02-05[CAT Minutes 2014-02-05]
+* link:/cat-minutes-2014-01-22[CAT Minutes 2014-01-22]
+* link:/cat-minutes-2014-01-08[CAT Minutes 2014-01-08]
+* link:/cat-minutes-2013-12-11[CAT Minutes 2013-12-11]
+* link:/cat-minutes-2013-11-03[CAT Minutes 2013-11-03]
+* link:/cat-minutes-2013-10-02[CAT Minutes 2013-10-02]
+* link:/cat-minutes-2013-09-18[CAT Minutes 2013-09-18]
+* link:/cat-minutes-2013-09-04[CAT Minutes 2013-09-04]
+* link:/cat-minutes-2013-08-21[CAT Minutes 2013-08-21]
+* link:/cat-minutes-2013-08-07[CAT Minutes 2013-08-07]
+* link:/cat-minutes-2013-07-24[CAT Minutes 2013-07-24]
+* link:/cat-minutes-2013-07-10[CAT Minutes 2013–07–10]
+* link:/cat-minutes-2013-06-26[CAT Minutes 2013-06-26]
+* link:/cat-minutes-2013-06-12[CAT Minutes 2013-06-12]
+* link:/cat-minutes-2013-05-29[CAT Minutes 2013-05-29]
+* link:/cat-minutes-2013-05-15[CAT Minutes 2013-05-15]
+* link:/cat-minutes-2013-05-01[CAT Minutes 2013-05-01]
+* link:/cat-minutes-2013-04-03[CAT Minutes 2013-04-03]
+* link:/cat-minutes-2013-03-20[CAT Minutes 2013-03-20]
+* link:/cat-minutes-2013-03-06[CAT Minutes 2013-03-06]
+* link:/cat-minutes-2013-02-20[CAT Minutes 2013-02-20]
+* link:/cat-minutes-2013-02-06[CAT Minutes 2013-02-06]
+* link:/cat-minutes-2013-01-23[CAT Minutes 2013–01–23]
+* link:/cat-minutes-2013-01-09[CAT Minutes 2013-01-09]
+* link:/cat-minutes-2012-12-12[CAT Minutes 2012-12-12]
+* link:/cat-minutes-2012-11-28[CAT Minutes 2012-11-28]
+* link:/cat-minutes-2012-11-14[CAT Minutes 2012-11-14]
+* link:/cat-minutes-2012-10-03[CAT Minutes 2012-10-03]
+* link:/cat-minutes-2012-09-05[CAT Minutes 2012-09-05]
+* link:/cat-minutes-2012-08-22[CAT Minutes 2012-08-22]
+* link:/cat-minutes-2012-08-08[CAT Minutes 2012-08-08]
+* link:/cat-minutes-2012-07-25[CAT Minutes 2012-07-25]
+* link:/new-and-improved-isoiec-17024-standard-for-personnel-certification-programmes[New and improved ISO/IEC 17024 standard for personnel certification programmes]
+* link:/iso-9001-in-the-supply-chain[ISO 9001 in the supply chain]
+* link:/cat-minutes-2012-07-11[CAT Minutes 2012-07-11]
+* link:/app-version-of-iso-focus-magazine-now-available[App version of ISO Focus+ magazine now available]
+* link:/cat-minutes-2012-06-27[CAT Minutes 2012-06-27]
+* link:/cat-minutes-2012-06-13[CAT Minutes 2012-06-13]
+* link:/cat-minutes-2012-05-30[CAT Minutes 2012-05-30]
+* link:/iso-standard-provides-global-solution-for-legal-entity-identification-for-financial-services[ISO standard provides global solution for legal entity identification for financial services]
+* link:/isos-2011-annual-report-looks-to-the-future[ISO's 2011 Annual Report looks to the future&#8230;]
+* link:/isos-magazine-focuses-on-standards-and-crisis-management[ISO's magazine focuses on standards and crisis management]
+* link:/cat-minutes-2012-05-16[CAT Minutes 2012-05-16]
+* link:/digital-object-identifier-doi-becomes-an-iso-standard[Digital object identifier (DOI) becomes an ISO standard]
+* link:/cat-minutes-2012-05-01[CAT Minutes 2012-05-01]
+* link:/mpeg-the-standards-experts-behind-the-dvd-industry-celebrate-100th-meeting[MPEG -- the standards experts behind the DVD industry -- celebrate 100th meeting]
+* link:/iso-focus-steers-towards-maritime-solutions[ISO Focus+ steers towards maritime solutions]
+* link:/project-proposal-open-data-interchange-framework-odif[Project Proposal -- Open Data Interchange Framework (ODIF)]
+* link:/cat-minutes-2012-04-04[CAT Minutes 2012-04-04]
+* link:/iso-focus-magazine-puts-spotlight-on-services[ISO Focus+ magazine puts spotlight on services]
+* link:/adobe-extensible-metadata-platform-xmp-becomes-an-iso-standard[Adobe Extensible Metadata Platform (XMP) becomes an ISO standard]
+* link:/cat-minutes-2012-03-07[CAT Minutes 2012-03-07]
+* link:/cat-minutes-2012-02-22[CAT Minutes 2012-02-22]
+* link:/isotc-154-report-to-uncefact-plenary[ISO/TC 154 Report to UN/CEFACT Plenary]
+* link:/cat-minutes-2012-02-08[CAT Minutes 2012-02-08]
+* link:/isotc-154-public-web-site-announcement[ISO/TC 154 Public Web Site Announcement]
+* link:/personal-health-data-better-protected-by-iso-standard[Personal health data better protected by ISO standard]
+* link:/cat-minutes-2012-01-25[CAT Minutes 2012-01-25]
+* link:/isoiec-plug-and-play-standard-enables-seamless-technology[ISO/IEC plug and play standard enables seamless technology]
+* link:/cat-minutes-2012-01-11[CAT Minutes 2012-01-11]
+* link:/cat-minutes-2011-12-14[CAT Minutes 2011-12-14]
+* link:/cat-minutes-2011-11-30[CAT Minutes 2011-11-30]
+* link:/call-for-experts-for-the-revision-of-iso-ts-15000-5[Call for experts for the revision of ISO TS 15000-5]
+* link:/call-for-experts-for-the-revision-of-iso-9735-10[Call for experts for the revision of ISO 9735-10]
+* link:/isotc-154-liaison-letter-2011[ISO/TC 154 Liaison Letter 2011]
+* link:/call-for-experts-for-isotc-154wg-4-electronic-layout-key[Call for experts for ISO/TC 154/WG 4 "`Electronic Layout Key`"]
+* link:/cat-minutes-2011-11-16[CAT Minutes 2011-11-16]
+* link:/cat-minutes-2011-11-02[CAT Minutes 2011-11-02]
+* link:/call-for-experts-on-revision-of-isots-173692005-sdmx[Call for experts on revision of ISO/TS 17369:2005 -- SDMX]
+* link:/draft-minutes-30th-plenary-meeting-isotc-154-geneva-2011-09-14[Draft minutes 30th plenary meeting ISOTC 154 Geneva, 2011-09-14]
+* link:/message-from-the-chairman[Message from the Chairman]
+* link:/appointment-of-mr-naujok-as-chairman[Appointment of Mr. Naujok as Chairman]

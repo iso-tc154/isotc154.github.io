@@ -1,129 +1,102 @@
+= CAT Draft Minutes 2016-04-27
+permalink: "/minutes/2016-04-27"
+date: "27 Apr 2016 22:27:00 +0000"
+category: CAT Minutes
+category: CAT
+category: ISO 14533
+category: ISO 8601
+category: Plenary
 
-		<title>CAT Draft Minutes 2016-04-27</title>
-		<link>http://www.isotc154.org/cat-draft-minutes-2016-04-27</link>
-		<comments>http://www.isotc154.org/cat-draft-minutes-2016-04-27#comments</comments>
-		<pubDate>Wed, 27 Apr 2016 22:27:00 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-				<category><![CDATA[CAT Minutes]]></category>
-		<category><![CDATA[CAT]]></category>
-		<category><![CDATA[ISO 14533]]></category>
-		<category><![CDATA[ISO 8601]]></category>
-		<category><![CDATA[Plenary]]></category>
+== ISO/TC154 CAT Conference Call, 27 April 2016, 14:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Peter Rybar (PR), Jasmine Chang (JC), Francois Vuilleumier (FV), Bernd Bösler (BB)
+Excused::  Sue Probert (SP)
 
-		<guid isPermaLink="false">http://www.isotc154.org/?p=6658</guid>
-		<description><![CDATA[ISO/TC154 CAT Conference Call<br />
-27 April 2016, 14:00 UTC<br />
-Participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Peter Rybar (PR), Jasmine Chang (JC), Francois Vuilleumier (FV), Bernd Bösler (BB)<br />
-Excused: Sue Probert (SP)<br />
-<br />
-Approval of Agenda &#8211; approved<br />
-Approval of 27 April 2016 Meeting Minutes &#8211; approved<br />
-Working Group and Project Team Updates<br />
-<br />
-JWG1/MA (EDIFACT Syntax)<br />
-<br />
-Nothing to report<br />
-<br />
-<br />
-WG 5 (Representation of dates and times)<br />
-<br />
-The two ballots closed. K-DN to check with SOSMT and BSI to ...]]></description>
-				<content:encoded><![CDATA[<h3 id="isotc154catconferencecall">ISO/TC154 CAT Conference Call</h3>
-<h4 id="april20161400utc">27 April 2016, 14:00 UTC</h4>
-<p><strong>Participants:</strong> Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Peter Rybar (PR), Jasmine Chang (JC), Francois Vuilleumier (FV), Bernd Bösler (BB)<br />
-<strong>Excused:</strong> Sue Probert (SP)</p>
-<ol>
-<li>Approval of Agenda &#8211; <strong>approved</strong></li>
-<li>Approval of <a href="http://www.isotc154.org/cat-draft-minutes-2016-04-27">27 April 2016 Meeting Minutes</a> &#8211; <strong>approved</strong></li>
-<li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax)
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>WG 5 (Representation of dates and times)
-<ul>
-<li>The two ballots closed. K-DN to check with SOSMT and BSI to change vote on ISO 8601–1 &amp; 8601–2 NWIP Ballots from accepting attached CD from 20.00 (Preparatory stage started) to 30.00 (Committee draft (CD) registered).</li>
-</ul>
-</li>
-<li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 &#8211; Long term signature profiles for PDF advanced electronic signatures (PAdES)
-<ul>
-<li>PT finished its work, ready for DIS Ballot.</li>
-</ul>
-</li>
-<li>PT2 &#8211; Trusted Communication Platforms for Electronic Documents
-<ul>
-<li>Progressing, next meeting will scheduled next week.</li>
-</ul>
-</li>
-<li>PT3 &#8211; Trusted mobile e-document framework
-<ul>
-<li>Meeting scheduled 5 May.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Liaison Updates
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>MoU/MG Update
-<ul>
-<li>Nothing to report</li>
-</ul>
-</li>
-<li>Old Business
-<ul>
-<li>ISO/TC 154 Chairmanship Update
-<ul>
-<li>JFZ to send notice to ISO/TMB about K-DN standing for another term as TC chairperson.</li>
-</ul>
-</li>
-<li>Business Semantic Thesaurus ISO/TS 16668, formally BSR
-<ul>
-<li>DIN is currently asking its members to act as proposer for the project.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>New Business
-<ul>
-<li>UN/CEFACT Plenary Update
-<ul>
-<li>Preliminary meeting schedule:
-<ul>
-<li>17 Oct &#8211; WG 6/PT 1 &#8211; all day</li>
-<li>18 Oct &#8211; WG 6/PT 2 &#8211; morning</li>
-<li>18 Oct &#8211; WG 6/PT 3 &#8211; afternoon</li>
-<li>19 Oct &#8211; WG 5 &#8211; all day</li>
-<li>20 Oct &#8211; NWIP (TBA) &#8211; morning</li>
-<li>20 Oct &#8211; WG 5 &#8211; afternoon</li>
-<li>21 Oct &#8211; ISO/TC 154 Plenary &#8211; all day</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Other Business
-<ul>
-<li>CAT Membership
-<ul>
-<li>Question was raised about sensitivity of a possible conflict with a member being on the leadership committee of the TC and an external liaison organization. It was agreed to avoid any such conflict that no CAT member should be a member of another internal ISO TC or external liaison leadership group, such as steering groups, executive group and/or bureau. This is to protect the member from being put in a conflicting position to report to either organizations what is being addressed by the other organization in question.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Next Meeting: <strong>11 May 2016, starting at 14:00 UTC</strong></li>
-</ol>
-]]></content:encoded>
-			<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2016-04-27/feed</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-		</item>
-		<item>
+== Approval of Agenda  -- *approved*
+== Approval of link:2016-04-27[27 April 2016 Meeting Minutes] -- *approved*
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax)
+
+* Nothing to report
+
+
+=== WG 5 (Representation of dates and times)
+
+* The two ballots closed. K-DN to check with SOSMT and BSI to change vote on ISO 8601–1 & 8601–2 NWIP Ballots from accepting attached CD from 20.00 (Preparatory stage started) to 30.00 (Committee draft (CD) registered).
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* PT finished its work, ready for DIS Ballot.
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* Progressing, next meeting will scheduled next week.
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* Meeting scheduled 5 May.
+
+
+
+
+
+
+=== Liaison Updates
+
+* Nothing to report
+
+
+=== MoU/MG Update
+
+* Nothing to report
+
+
+=== Old Business
+
+* ISO/TC 154 Chairmanship Update
+
+* JFZ to send notice to ISO/TMB about K-DN standing for another term as TC chairperson.
+
+
+* Business Semantic Thesaurus ISO/TS 16668, formally BSR
+
+* DIN is currently asking its members to act as proposer for the project.
+
+
+
+
+=== New Business
+
+* UN/CEFACT Plenary Update
+
+* Preliminary meeting schedule:
+
+* 17 Oct -- WG 6/PT 1 -- all day
+* 18 Oct -- WG 6/PT 2 -- morning
+* 18 Oct -- WG 6/PT 3 -- afternoon
+* 19 Oct -- WG 5 -- all day
+* 20 Oct -- NWIP (TBA) -- morning
+* 20 Oct -- WG 5 -- afternoon
+* 21 Oct -- ISO/TC 154 Plenary -- all day
+
+
+
+
+
+
+=== Other Business
+
+* CAT Membership
+
+* Question was raised about sensitivity of a possible conflict with a member being on the leadership committee of the TC and an external liaison organization. It was agreed to avoid any such conflict that no CAT member should be a member of another internal ISO TC or external liaison leadership group, such as steering groups, executive group and/or bureau. This is to protect the member from being put in a conflicting position to report to either organizations what is being addressed by the other organization in question.
+
+
+
+
+* Next Meeting: *11 May 2016, starting at 14:00 UTC*
+

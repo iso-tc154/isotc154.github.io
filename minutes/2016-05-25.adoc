@@ -1,132 +1,116 @@
-		<title>CAT Draft Minutes 2016-05-25</title>
-		<link>http://www.isotc154.org/cat-draft-minutes-2016-05-25</link>
-		<comments>http://www.isotc154.org/cat-draft-minutes-2016-05-25#comments</comments>
-		<pubDate>Thu, 26 May 2016 22:30:51 +0000</pubDate>
-		<dc:creator><![CDATA[admin]]></dc:creator>
-				<category><![CDATA[CAT Minutes]]></category>
-		<category><![CDATA[ISO 8601]]></category>
-		<category><![CDATA[ISO CS]]></category>
-		<category><![CDATA[ODIF]]></category>
-		<category><![CDATA[Plenary]]></category>
-		<category><![CDATA[Semantic Interoperability]]></category>
+= CAT Draft Minutes 2016-05-25
+permalink: "/minutes/2016-05-25"
+date: "26 May 2016 22:30:51 +0000"
+category: CAT Minutes
+category: ISO 8601
+category: ISO CS
+category: ODIF
+category: Plenary
+category: Semantic Interoperability
 
-		<guid isPermaLink="false">http://www.isotc154.org/?p=6682</guid>
-		<description><![CDATA[ISO/TC154 CAT Conference Call<br />
-25 May 2016, 14:00 UTC<br />
-Participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)<br />
-<br />
-Approval of Agenda -- approved<br />
-Approval of 11 May 2016 Meeting Minutes -- approved<br />
-Working Group and Project Team Updates<br />
-<br />
-JWG1/MA (EDIFACT Syntax) -- Nothing to report<br />
-WG 5 (Representation of dates and times)<br />
-<br />
-ISO 8601 Part 1 &#38; 2 update<br />
-<br />
-Both NWIP and CD registration was approved.<br />
-WG 5 already disposed of all comments and is preparing the ...]]></description>
-				<content:encoded><![CDATA[<h3 id="isotc154catconferencecall">ISO/TC154 CAT Conference Call</h3>
-<h4 id="25may201614:00utc">25 May 2016, 14:00 UTC</h4>
-*Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
+== ISO/TC154 CAT Conference Call, 25 May 2016, 14:00 UTC
+Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
 
-<ol>
-<li>Approval of Agenda -- *approved*</li>
-<li><a id="MMDHTMLSCROLLPOINT"></a>Approval of link:/cat-draft-minutes-2016-05-11[11 May 2016 Meeting Minutes] -- *approved*</li>
-<li>Working Group and Project Team Updates
-<ul>
-<li>JWG1/MA (EDIFACT Syntax) -- Nothing to report</li>
-<li>WG 5 (Representation of dates and times)
-<ul>
-<li>ISO 8601 Part 1 &amp; 2 update
-<ul>
-<li>Both NWIP and CD registration was approved.</li>
-<li>WG 5 already disposed of all comments and is preparing the drafts for the CD ballot</li>
-<li>Next call scheduled for 07 June</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>WG 6 (Trusted eCommunication)
-<ul>
-<li>PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
-<ul>
-<li>ISO/CD 14533–3 Update
-<ul>
-<li>A new draft has been prepared for a possible DIS ballot</li>
-<li>Because the CD received major negative comments there needs to be either a TC ballot to get support for the DIs ballot, or have another CD ballot.</li>
-<li>Because the timing is better for a quick CD ballot CAT approved the CD ballot.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>PT2 -- Trusted Communication Platforms for Electronic Documents
-<ul>
-<li>ISO/WD_19626–1 “TCP for Electronic Documents-Part 1” Update
-<ul>
-<li>Further meetings are scheduled to finalize the document.</li>
-<li>Next step after finalization is to get WG support for dual NWIP and WD ballot.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>PT3 -- Trusted mobile e-document framework
-<ul>
-<li>ISO/WD 20415 “TMEF” Update
-<ul>
-<li>Agreement was reached to finalize the document for possible ballot.</li>
-<li>Awaiting WG support for dual NWIP and WD ballot.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Liaison Updates -- Nothing to report</li>
-<li>MoU/MG Update -- Nothing to report</li>
-<li>Old Business
-<ul>
-<li>ISO/TC 154 Chairmanship Update
-<ul>
-<li>JFZ to write letter to inform ISO/TMB that SAC is nominating K-DN to a second term as TC Chair.</li>
-</ul>
-</li>
-<li>Business Semantic Thesaurus NWIP for TS, formally ISO/TS 16668 BSR
-<ul>
-<li>Germany agreed to propose the NWIP.</li>
-<li>BB and K-DN to draft the NWIP.</li>
-</ul>
-</li>
-<li>ISO/TC 154 Plenary Update
-<ul>
-<li>JFZ has distribute announcement and agenda to membership.</li>
-</ul>
-</li>
-<li>ISO/DTR 18262 ODIF (stage 50.00)
-<ul>
-<li>CAT agreed to revise the current DTR to serve as a internal framework for ISO/TC 154.</li>
-<li>K-DN agree to create the first revision to be available for the upcoming plenary.</li>
-</ul>
-</li>
-<li>ISO/CS Objection to disseminate Drafts of both ISO/CD 8601 parts to MoU/MG.
-<ul>
-<li>ISO/CS provided TC with a procedure in response to the MoU/MG request to distribute the ISO 8601 NWIP and CD.</li>
-<li>CAT agreed to provide the ISO/CS with its final response:<br />
-<blockquote>_Since the resolution is directed towards ISO/CS it is your [ISO/CS’s] responsibility to provide a response to the MoU/MG how to fulfill their request._
 
-_ISO/TC 154 has reported twice to the MoU/MG outlining the changes to the revised ISO 8601 which triggered the MoU/MG request to have both drafts distributed to its membership. It was Henry’s objection, stating that current rules don’t allow this, which resulted in the above mention resolution._
+== Approval of Agenda  -- *approved*
+* Approval of link:/cat-draft-minutes-2016-05-11[11 May 2016 Meeting Minutes] -- *approved*
 
-_It is CAT’s view that the proposed procedure does not address the main request of the MoU/MG to allow the circulation of the drafts. However, since the MoU/MG resolution asks the ISO/CS for a mechanics, not ISO/TC 154, we will standby until the MoU/MG and ISO/CS have agreed to a solution agreeable to both sides satisfaction._
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>New Business</li>
-<li>Other Business</li>
-<li>Next Meeting: *08 June 2016, starting at 14:00 UTC*</li>
-</ol>
-]]></content:encoded>
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax) -- Nothing to report
+=== WG 5 (Representation of dates and times)
+
+* ISO 8601 Part 1 & 2 update
+
+* Both NWIP and CD registration was approved.
+* WG 5 already disposed of all comments and is preparing the drafts for the CD ballot
+* Next call scheduled for 07 June
+
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* ISO/CD 14533–3 Update
+
+* A new draft has been prepared for a possible DIS ballot
+* Because the CD received major negative comments there needs to be either a TC ballot to get support for the DIs ballot, or have another CD ballot.
+* Because the timing is better for a quick CD ballot CAT approved the CD ballot.
+
+
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* ISO/WD_19626–1 “TCP for Electronic Documents-Part 1” Update
+
+* Further meetings are scheduled to finalize the document.
+* Next step after finalization is to get WG support for dual NWIP and WD ballot.
+
+
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* ISO/WD 20415 “TMEF” Update
+
+* Agreement was reached to finalize the document for possible ballot.
+* Awaiting WG support for dual NWIP and WD ballot.
+
+
+
+
+
+
+
+
+=== Liaison Updates -- Nothing to report
+=== MoU/MG Update -- Nothing to report
+=== Old Business
+
+* ISO/TC 154 Chairmanship Update
+
+* JFZ to write letter to inform ISO/TMB that SAC is nominating K-DN to a second term as TC Chair.
+
+
+* Business Semantic Thesaurus NWIP for TS, formally ISO/TS 16668 BSR
+
+* Germany agreed to propose the NWIP.
+* BB and K-DN to draft the NWIP.
+
+
+* ISO/TC 154 Plenary Update
+
+* JFZ has distribute announcement and agenda to membership.
+
+
+* ISO/DTR 18262 ODIF (stage 50.00)
+
+* CAT agreed to revise the current DTR to serve as a internal framework for ISO/TC 154.
+* K-DN agree to create the first revision to be available for the upcoming plenary.
+
+
+* ISO/CS Objection to disseminate Drafts of both ISO/CD 8601 parts to MoU/MG.
+
+* ISO/CS provided TC with a procedure in response to the MoU/MG request to distribute the ISO 8601 NWIP and CD.
+* CAT agreed to provide the ISO/CS with its final response:
+
+[quote]
+____
+Since the resolution is directed towards ISO/CS it is your [ISO/CS’s] responsibility to provide a response to the MoU/MG how to fulfill their request.
+
+ISO/TC 154 has reported twice to the MoU/MG outlining the changes to the revised ISO 8601 which triggered the MoU/MG request to have both drafts distributed to its membership. It was Henry’s objection, stating that current rules don’t allow this, which resulted in the above mention resolution.
+
+It is CAT’s view that the proposed procedure does not address the main request of the MoU/MG to allow the circulation of the drafts. However, since the MoU/MG resolution asks the ISO/CS for a mechanics, not ISO/TC 154, we will standby until the MoU/MG and ISO/CS have agreed to a solution agreeable to both sides satisfaction.
+____
+
+
+
+
+
+=== New Business
+=== Other Business
+* Next Meeting: *08 June 2016, starting at 14:00 UTC*
+
