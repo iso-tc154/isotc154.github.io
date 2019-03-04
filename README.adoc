@@ -1,7 +1,7 @@
 = ISO/TC 154 Resources site: www.isotc154.org
 
-image:https://travis-ci.com/ISO-TC154/www.isotc154.org.svg?branch=master[
-	Build Status, link="https://travis-ci.com/ISO-TC154/www.isotc154.org"]
+image:https://travis-ci.com/riboseinc/www.isotc154.org.svg?branch=master[
+	Build Status, link="https://travis-ci.com/riboseinc/www.isotc154.org"]
 
 == Introduction
 
