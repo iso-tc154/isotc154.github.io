@@ -2,9 +2,9 @@ permalink: /isotc-154-2016-anual-meeting-details
 ---
 = ISO/TC 154 -- 2016 Anual Meeting Details
 
-The *2016 Annual ISO/TC 154 Plenary* has been confirmed to be held on *21 October 2016 at DIN in Berlin, Germany*.
+The *2016 Annual ISO/TC 154 Plenary* has been confirmed to be held on *21 October 2016 at DIN in Berlin, Germany*.
 
-ISO/TC 154's Working Groups and Project Teams will also confirmed to hold their meetings from *17 to 20 October at DIN*.
+ISO/TC 154's Working Groups and Project Teams will also confirmed to hold their meetings from *17 to 20 October at DIN*.
 
 This page provides links to the various information pages. Please use the links below to access the relevant information:
 
@@ -19,8 +19,8 @@ This page provides links to the various information pages. Please use the links 
 * link:/isotc-154-2016-anual-meeting-details/isotc154wg5-agenda[ISO/TC 154/WG 5 -- Date and Time]
 * link:/isotc-154-2016-anual-meeting-details/isotc154wg6-agenda[ISO/TC 154/WG 6 -- Trusted eCommunication]
 * link:/isotc-154-2016-anual-meeting-details/isotc154wg6pt1-agenda[ISO/TC 154/WG 6/PT 1 -- Long Term Signature Profiles ]
-* link:/isotc-154-2016-anual-meeting-details/isotc154wg6pt2-agenda[ISO/TC 154/WG 6/PT 2 -- TCP for e-Documents ]
-* link:/isotc-154-2016-anual-meeting-details/isotc154wg6pt3-agenda[ISO/TC 154/WG 6/PT 3 -- TMEF]
+* link:/isotc-154-2016-anual-meeting-details/isotc154wg6pt2-agenda[ISO/TC 154/WG 6/PT 2 -- TCP for e-Documents ]
+* link:/isotc-154-2016-anual-meeting-details/isotc154wg6pt3-agenda[ISO/TC 154/WG 6/PT 3 -- TMEF]
 * link:/isotc-154-2016-anual-meeting-details/isotc154nwip-agenda[ISO/TC 154 NWIPs Review]
 * link:/wp-content/uploads/Berlin2016/ISO-TC154_N0815_draft_agenda_of_2016_35th_plenary_meeting.pdf[ISO/TC 154 Plenary Meeting]
 

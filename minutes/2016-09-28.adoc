@@ -1,0 +1,163 @@
+		<title>CAT Draft Minutes 2016-09-28</title>
+		<link>http://www.isotc154.org/cat-draft-minutes-2016-09-28</link>
+		<pubDate>Wed, 28 Sep 2016 15:18:05 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[CAT Minutes]]></category>
+		<category><![CDATA[Ballots]]></category>
+		<category><![CDATA[ISO 14533]]></category>
+		<category><![CDATA[ISO CS]]></category>
+		<category><![CDATA[NWIP]]></category>
+		<category><![CDATA[Plenary]]></category>
+		<category><![CDATA[TC 154]]></category>
+
+		<guid isPermaLink="false">http://www.isotc154.org/?p=6789</guid>
+		<description><![CDATA[ISO/TC 154 CAT Conference Call<br />
+14 September 2016, 14:00 UTC<br />
+Participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)<br />
+Excused: Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)<br />
+<br />
+Approval of Agenda -- approved<br />
+Approval of 14 September 2016 Meeting Minutes -- approved<br />
+Working Group and Project Team Updates<br />
+<br />
+JWG1/MA (EDIFACT Syntax)<br />
+<br />
+Feedback from ISO/CS<br />
+<br />
+Awaiting comments from ISO/CS<br />
+<br />
+<br />
+<br />
+<br />
+WG 5 (Representation of dates and times)<br />
+<br />
+ISO/CD ...]]></description>
+				<content:encoded><![CDATA[<h3>ISO/TC 154 CAT Conference Call</h3>
+<h4>14 September 2016, 14:00 UTC</h4>
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)
+Excused::  Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)
+
+<ol>
+<li>Approval of Agenda -- *approved*</li>
+<li>Approval of link:/cat-draft-minutes-2016-09-14[14 September 2016 Meeting Minutes] -- *approved*</li>
+<li>Working Group and Project Team Updates
+<ul>
+<li>JWG1/MA (EDIFACT Syntax)
+<ul>
+<li>Feedback from ISO/CS
+<ul>
+<li>_Awaiting comments from ISO/CS_</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WG 5 (Representation of dates and times)
+<ul>
+<li>ISO/CD 8601 Part 1 &amp; 2 Ballot Results
+<ul>
+<li>*Nothing to report since last CAT meeting*</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WG 6 (Trusted eCommunication)
+<ul>
+<li>PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+<ul>
+<li>ISO/DIS 14533-3 Ballot (12 week, closing 2016–11–??)
+<ul>
+<li>_Awaiting finalization of ballot by ISO/CD_</li>
+</ul>
+</li>
+<li>ISO/NP 14533–4 &#8220;Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)&#8221; Update -- *Nothing to report*</li>
+</ul>
+</li>
+<li>PT2 -- Trusted Communication Platforms for Electronic Documents
+<ul>
+<li>ISO/WD_19626-1 &#8220;TCP for Electronic Documents-Part 1&#8221; Ballot (closing 2016-10-11)</li>
+</ul>
+</li>
+<li>PT3 -- Trusted mobile e-document framework
+<ul>
+<li>ISO/WD 20415 &#8220;TMEF&#8221; Ballot (closing 2016-10-11)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Liaison Updates -- *Nothing to report*</li>
+<li>MoU/MG Update -- *Nothing to report*</li>
+<li>Old Business
+<ul>
+<li>ISO/TC 154 Plenary Update
+<ul>
+<li>Final review of Schedule and Draft Agendas
+<ul>
+<li>Update of &#8220;New Work Item Proposals Review&#8221; Agenda
+<ul>
+<li>_Added proposal from Luxembourg (Value Stream Management (VSM)) to the draft agenda of the &#8220;New Work Item Proposals Review&#8221; meeting_</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Final review of WG Expert Registration via ISOTC154.org
+<ul>
+<li>Current count (in Person/WebEx):
+<ul>
+<li>JWG 1 -- 12/0</li>
+<li>WG 5  -- 12/1</li>
+<li>WG 6  -- 15/0</li>
+<li>NWIP  -- 13/0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Final review of ISO/TC 154 Plenary Registrations
+<ul>
+<li>Current count (in Person/WebEx):
+<ul>
+<li>Plenary -- 17</li>
+<li>Dinner  -- 13+3</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ISO/NP TS <del>21887</del>/21981 Business Semantics Thesaurus (BST)
+<ul>
+<li>_Due to an system error a duplicate ISO number (21887) was assigned, the new number is now &#8220;21981&#8221;_.</li>
+<li>Ballot Results
+<ul>
+<li>_Project approved with no negative vote and enough expert nominations_</li>
+<li>_UK comments are about changes to the NWIP. Since it was approved without a negative vote, nor did UK provide a rational for any of their changes, no further action will be taken._ </li>
+<li>_The result of the ballot was 50% approved as the stage 20.00, and 50% approved as the WG stage 20.20. However, since most of the 20.00 votes came from those who decided &#8220;not&#8221; to participate, their choice has be negated, since no comments were provided why they did not support the attached WD. Therefore, since those who agreed to participate in the work supported a 20.20 status (3 approved out of 5), CAT agreed to register the project with a 20.20 status._</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>OAGi (Open Applications Group, Inc.) Fast-Track of &#8220;OAGIS – A Specification for an Enterprise Business Canonical Model&#8221;
+<ul>
+<li>_OAGi revised their submission based on the received comments from ISO/CS for minor corrections._</li>
+<li>_Awaiting ISO/CS's final comments on the revised submission for Fast-track._</li>
+</ul>
+</li>
+<li>Request for a copy of the WCO Data Model
+<ul>
+<li>Update from FV
+<ul>
+<li>_FV has been in contact with a number of parties to determine what the correct avenue is to engage with WCO Secretariat not only about the data model but also in their participation in the BST project_. </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>New Business</li>
+<li>Other Business</li>
+<li>Next Meeting: *26 October 2016, starting at 14:00 UTC*</li>
+</ol>
+]]></content:encoded>
+			</item>
+		<item>

@@ -1,0 +1,156 @@
+		<title>CAT Draft Minutes 2016-09-14</title>
+		<link>http://www.isotc154.org/cat-draft-minutes-2016-09-14</link>
+		<comments>http://www.isotc154.org/cat-draft-minutes-2016-09-14#comments</comments>
+		<pubDate>Thu, 15 Sep 2016 14:22:22 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[CAT Minutes]]></category>
+		<category><![CDATA[Ballots]]></category>
+		<category><![CDATA[ISO 8601]]></category>
+		<category><![CDATA[ODIF]]></category>
+		<category><![CDATA[Plenary]]></category>
+		<category><![CDATA[Semantic Interoperability]]></category>
+
+		<guid isPermaLink="false">http://www.isotc154.org/?p=6784</guid>
+		<description><![CDATA[ISO/TC 154 CAT Conference Call<br />
+14 September 2016, 14:00 UTC<br />
+Participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)<br />
+Excused: Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)<br />
+<br />
+Approval of Agenda -- approved<br />
+Approval of 31 August 2016 Meeting Minutes -- approved<br />
+Working Group and Project Team Updates<br />
+<br />
+JWG1/MA (EDIFACT Syntax)<br />
+<br />
+Feedback from ISO/CS<br />
+<br />
+Awaiting comments from ISO/CS<br />
+<br />
+<br />
+<br />
+<br />
+WG 5 (Representation of dates and times)<br />
+<br />
+ISO/CD ...]]></description>
+				<content:encoded><![CDATA[<h3>ISO/TC 154 CAT Conference Call</h3>
+<h4>14 September 2016, 14:00 UTC</h4>
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
+Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
+
+<ol>
+<li>Approval of Agenda -- *approved*</li>
+<li>Approval of link:/cat-draft-minutes-2016-08-31[31 August 2016 Meeting Minutes] -- *approved*</li>
+<li>Working Group and Project Team Updates
+<ul>
+<li>JWG1/MA (EDIFACT Syntax)
+<ul>
+<li>Feedback from ISO/CS
+<ul>
+<li>_Awaiting comments from ISO/CS_</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WG 5 (Representation of dates and times)
+<ul>
+<li>ISO/CD 8601 Part 1 &amp; 2 Ballot Results
+<ul>
+<li>_Approved with no negative vote or required technical corrections (comments)_</li>
+</ul>
+</li>
+<li>Next step
+<ul>
+<li>_Preparing for DIS ballot, final text for review at the Berlin WG meeting_</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WG 6 (Trusted eCommunication)
+<ul>
+<li>PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+<ul>
+<li>ISO/DIS 14533-3 Ballot (*12 week, closing 2016–11–??*)</li>
+<li>ISO/NP 14533–4 &#8220;Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)&#8221; Update -- *Nothing to report*</li>
+</ul>
+</li>
+<li>PT2 -- Trusted Communication Platforms for Electronic Documents
+<ul>
+<li>ISO/WD_19626-1 &#8220;TCP for Electronic Documents-Part 1&#8221; Ballot (*closing 2016-10-11*)</li>
+</ul>
+</li>
+<li>PT3 -- Trusted mobile e-document framework
+<ul>
+<li>ISO/WD 20415 &#8220;TMEF&#8221; Ballot (*closing 2016-10-11*)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Liaison Updates -- *Nothing to report*</li>
+<li>MoU/MG Update -- *Nothing to report*</li>
+<li>Old Business
+<ul>
+<li>ISO/TC 154 Plenary Update
+<ul>
+<li>Review of Schedule and Draft Agendas</li>
+<li>Review of Expert Registration via ISOTC154.org</li>
+</ul>
+</li>
+<li>ISO/NP TS 21887 Business Semantics Thesaurus (BST)
+<ul>
+<li>Ballot Results
+<ul>
+<li>_Project approved with no negative vote and enough expert nominations_</li>
+<li>_UK comments request change throughout the document to replace &#8220;Semantics&#8221; with &#8220;Ontology&#8221;. No need to address comments now since the UK votes yes and no *no* vote was received._</li>
+</ul>
+</li>
+<li>Next step
+<ul>
+<li>_Schedule a session in Berlin to start work and address UK comments._</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>OAGi (Open Applications Group, Inc.) Fast-Track of &#8220;OAGIS – A Specification for an Enterprise Business Canonical Model&#8221;
+<ul>
+<li>_Received comments from ISO/CS for minor corrections to the submission._</li>
+<li>_Awaiting OAGi's final revised submission for Fast-track (DIS) ballot._</li>
+</ul>
+</li>
+<li>Request for a copy of the WCO Data Model
+<ul>
+<li>_FV to contact his WCO connection for advice_</li>
+</ul>
+</li>
+<li>Convert ISO/TS 20625 to an IS as &#8220;Rules for generation of XML scheme files (XSD) from EDIFACT Messages&#8221;
+<ul>
+<li>_Schedule a session in Berlin to check on support for this project_</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>New Business
+<ul>
+<li>EU MSP Rolling Plan
+<ul>
+<li>_Provided ISO/CS with our related WG 3 work for item &#8220;3.5.4 Electronic identification and trust services including e-signatures_</li>
+</ul>
+</li>
+<li>CITES Request for participation
+<ul>
+<li>_Agreed to invite CITES as guest to our Berlin meeting_</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Other Business</li>
+<li>Next Meeting: *28 September 2016, starting at 14:00 UTC*</li>
+</ol>
+]]></content:encoded>
+
+
+<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2016-09-14/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>

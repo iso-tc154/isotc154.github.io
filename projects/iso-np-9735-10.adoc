@@ -6,5 +6,5 @@ permalink: /projects/iso-np-9735-10
 
 This part of ISO 9735 specifies the syntax service directories for all parts of the ISO 9735 series. It has been first published in 2002 and contains in the informative Annex A a "`snapshot`" of the then actual syntax code list directory (release 40005 of 2001-05-19).
 
-The Annex A was provided to illustrate the usage of the coded data elements shown in the service simple data elements directory. After more than 10 years the Annex A is out-of-date and has to be updated by implementing all syntax code list releases published after the 2002 issue of ISO 9735-10.
+The Annex A was provided to illustrate the usage of the coded data elements shown in the service simple data elements directory. After more than 10 years the Annex A is out-of-date and has to be updated by implementing all syntax code list releases published after the 2002 issue of ISO 9735-10.
 

@@ -1,0 +1,130 @@
+
+		<title>CAT Draft Minutes 2016–03–30</title>
+		<link>http://www.isotc154.org/cat-draft-minutes-2016-03-30</link>
+		<comments>http://www.isotc154.org/cat-draft-minutes-2016-03-30#comments</comments>
+		<pubDate>Thu, 31 Mar 2016 15:39:23 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[CAT Minutes]]></category>
+		<category><![CDATA[ISO CS]]></category>
+		<category><![CDATA[Semantic Interoperability]]></category>
+		<category><![CDATA[UN/CEFACT]]></category>
+
+		<guid isPermaLink="false">http://www.isotc154.org/?p=6637</guid>
+		<description><![CDATA[ISO/TC154 CAT Conference Call<br />
+30 March 2016, 14:00 UTC<br />
+Participants: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC)<br />
+Excused: Sue Probert (SP), Peter Rybar (PR), Bernd Bösler (BB)<br />
+<br />
+Approval of Agenda &#8211; approved<br />
+Approval of 16 March 2016 Meeting Minutes &#8211; approved<br />
+Working Group and Project Team Updates<br />
+<br />
+JWG1/MA (EDIFACT Syntax)<br />
+<br />
+Nothing to report<br />
+<br />
+<br />
+WG 5 (Representation of dates and times)<br />
+<br />
+Both NWIP and CD Ballots have ...]]></description>
+				<content:encoded><![CDATA[<p><b>ISO/TC154 CAT Conference Call</b></p>
+<p><b>30 March 2016, 14:00 UTC</b></p>
+<p><b>Participants:</b> Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC)<br />
+<b>Excused:</b> Sue Probert (SP), Peter Rybar (PR), Bernd Bösler (BB)</p>
+<ol>
+<li>Approval of Agenda &#8211; <b>approved</b></li>
+<li>Approval of <a href="http://www.isotc154.org/cat-draft-minutes-2016-03-16">16 March 2016 Meeting Minutes</a> &#8211; <b>approved</b></li>
+<li>Working Group and Project Team Updates
+<ul>
+<li>JWG1/MA (EDIFACT Syntax)
+<ul>
+<li>Nothing to report</li>
+</ul>
+</li>
+<li>WG 5 (Representation of dates and times)
+<ul>
+<li>Both NWIP and CD Ballots have been send out for both ISO 8601 Parts.</li>
+</ul>
+</li>
+<li>WG 6 (Trusted eCommunication)
+<ul>
+<li>PT1 &#8211; Long term signature profiles for PDF advanced electronic signatures (PAdES)
+<ul>
+<li>Still resolving last minute changes before asking for the next ballot.</li>
+</ul>
+</li>
+<li>PT2 &#8211; Trusted Communication Platforms for Electronic Documents
+<ul>
+<li>1st WebEx was cancelled because of low attendance. Next call tomorrow.</li>
+</ul>
+</li>
+<li>PT3 &#8211; Trusted mobile e-document framework
+<ul>
+<li>The 1st call was held without proper announcement via LiveLink. The WG Secretariat (JC) was reminded that all meeting announcement, agendas and minutes must be distributed as official WG numbered documents using LiveLink, not only the only collaboration system.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Liaison Updates
+<ul>
+<li>Nothing to report</li>
+</ul>
+</li>
+<li>MoU/MG Update
+<ul>
+<li>Nothing to report</li>
+</ul>
+</li>
+<li>Old Business
+<ul>
+<li>ISO/TC 154 Chairmanship (2017- )
+<ul>
+<li>Correspond to next call.</li>
+</ul>
+</li>
+<li>Business Semantic Thesaurus ISO/TS 16668, formally BSR
+<ul>
+<li>Feedback from ISO CS (Brain) regarding the use of ISO 16668:
+<ul>
+<li>If TC 154 feels that the new standard still basically corresponds to the scope of ISO/TS 16668:2000, then yes, it would be possible for you to continue with “16668”.<br />
+If TC 154 does this, it will of course need to modify the scope of the proposed NP as appropriate (although a change in title in itself wouldn’t be a problem).<br />
+Please note that, as the TS has been withdrawn since 2004, I believe that we would need to include a statement in the Foreword explaining that the original TS was withdrawn for 12 years. On the other hand, if you wish to use a new number for the new standard, then this would be ok as well.</li>
+</ul>
+</li>
+<li>It was agreed to assign a new number taking into account the fact that there was some opposition to the BSR that may resurface.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>New Business
+<ul>
+<li>UN/CEFACT Plenary
+<ul>
+<li>CAT reviewed plenary document ECE/TRADE/C/CEFACT/2016/20, UN/CEFACT Prospective Directions, and identified two issues to be passed on to Brian as the ISO HoD to UN/CEFACT:
+<ul>
+<li>Section B. Providing semantic interoperability suggest that “UN/CEFACT shall be the semantic hub for all of our internal deliverables and will also aim to coordinate and bring together the needs of other organizations.”
+<ul>
+<li>TC 154 has no issue with UN/CEFACT&#8217;s internal goals, but it is unclear what the goal is regarding “bring[ing] together the needs of other organizations”, especially how this works with a Semantic Hub?</li>
+</ul>
+</li>
+<li>Section H. Enhancing cooperative activities with other standards bodies through bilateral agreements.
+<ul>
+<li>For over three decades UNECE (via WP.4 and now UN/CEFACT) and ISO (via TC 154) have enjoyed a close relationship that involve 5 ISO standards (ISO 6422, 7372, 8601, 9735 and 15000-5) that were jointly developed. There is no mention within this section about this special bond, especially since over the last few years this bond has encountered some stress. It would be nice for UN/CEFACT&#8217;s leadership to ensure ISO/TC 154 that they are still an important partner.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Other Business</li>
+<li>Next Meeting: <strong>13 April 2016, starting at 14:00 UTC</strong></li>
+</ol>
+]]></content:encoded>
+			<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2016-03-30/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>

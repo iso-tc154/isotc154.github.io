@@ -2,114 +2,55 @@ permalink: /faq
 ---
 = FAQ
 
-<nav role="navigation">
-
-<li id="item-4937"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us">*About Us*<span class="navi-description[Who we are</span>]
-
-	<li id="item-5004"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-	
-		link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
-	
-</li>
-	link:/about_us/wg3[WG 3 – CCTS]
-	link:/about_us/wg4[WG 4 – eLK]
-	link:/about_us/cat[CAT -- Chairman's Advisory Team]
-	<li id="item-5034"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/about_us/ma[TDED Maintenance Agency]
-	
-		link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
-		link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
-	
-</li>
-
-</li>
-<li id="item-4922"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/projects">*Projects*<span class="navi-description[What we do</span>]
-
-	link:/projects/iso-np-6422-2[ISO NP 6422-2]
-	link:/projects/iso-np-14533[ISO NP 14533]
-	link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3]
-	link:/projects/iso-np-9735-10[ISO NP 9735-10]
-	link:/projects/iso-np-15000-5[ISO NP 15000-5]
-	link:/projects/iso-np-17369[ISO NP 17369]
-
-</li>
-<li id="item-4912"  class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">link:/standards">*Standards*<span class="navi-description[Our output</span>]
-
-	link:/standards/iso-6422-12010[ISO 6422-1:2010]
-	link:/standards/iso-73722005[ISO 7372:2005]
-	link:/standards/iso-84391990[ISO 8439:1990]
-	link:/standards/iso-84401986[ISO 8440:1986]
-	link:/standards/iso-86012004[ISO 8601:2004]
-	link:/standards/iso-97351988[ISO 9735:1988]
-	link:/standards/iso-97351988amd-11992[ISO 9735:1988/Amd 1:1992]
-	link:/standards/iso-9735-12002[ISO 9735-1:2002]
-	link:/standards/iso-9735-22002[ISO 9735-2:2002]
-	link:/standards/iso-9735-32002[ISO 9735-3:2002]
-	link:/standards/iso-9735-42002[ISO 9735-4:2002]
-	link:/standards/iso-9735-52002[ISO 9735-5:2002]
-	link:/standards/iso-9735-62002[ISO 9735-6:2002]
-	link:/standards/iso-9735-72002[ISO 9735-7:2002]
-	link:/standards/iso-9735-82002[ISO 9735-8:2002]
-	link:/standards/iso-9735-92002[ISO 9735-9:2002]
-	link:/standards/iso-9735-102002[ISO 9735-10:2002]
-	link:/standards/isots-15000-12004[ISO/TS 15000-1:2004]
-	link:/standards/isots-15000-22004[ISO/TS 15000-2:2004]
-	link:/standards/isots-15000-32004[ISO/TS 15000-3:2004]
-	link:/standards/isots-15000-42004[ISO/TS 15000-4:2004]
-	link:/standards/isots-15000-52005[ISO/TS 15000-5:2005]
-	link:/standards/isots-173692005[ISO/TS 17369:2005]
-	link:/standards/isots-206252002[ISO/TS 20625:2002]
-
-</li>
-link:/minutes">*Minutes*<span class="navi-description[Announcements</span>]
-link:/faq">*FAQ*<span class="navi-description[Your questions</span>]
-link:/isotc-154-2016-anual-meeting-details">*Meetings*<span class="navi-description[2016 Meetings</span>]
-
-</nav>
-</div><!-- END header-area -->
-</div><!-- END header-overlay -->
-</div><!-- END header-holder -->
-</header><!-- END header -->
-
-
-<div id="main" class="tt-slider-">
-
-
-<div class="main-area">
-		<div id="horizontal_nav">
-
-
-
-
-
-		</div><!-- END horizontal_nav -->
-
-    <main role="main" id="content" class="content_full_width">
 == General
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-general-0' href='/wp_super_faq/what-does-conformance-to-a-standard-mean' title='What does conformance to a Standard mean?' rel='question'>&#9654; What does conformance to a Standard mean?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-general-0-answer' style=' zoom: 1;'>*Conformance</strong> to a standard means that products, services or implementations that claim such, <strong>must satisfy 100% of all the mandatory "`requirements'</strong> <strong>found in the &#8216;normative`" sections.*
+
+=== What does conformance to a Standard mean?
+
+
+*Conformance* to a standard means that products, services or implementations that claim such, must satisfy 100% of all the mandatory "`requirements`" found in the "`normative`" sections.
 
 For example, ISO/TS 15000-5:2005 and ISO 15000-5:2014 define conformance as:
 
-<p style="padding-left: 30px;">_Applications will be considered to be in full conformance with this technical specification if they comply with the content of normative sections, rules and definitions._
+_Applications will be considered to be in full conformance with this technical specification if they comply with the content of normative sections, rules and definitions._
 
 ISO/TS 15000-5:2005 defines in 4.2 that sections 6, 7, 8 and 9 are normative.
 
 ISO 15000-5:2014 defines in 4.1 the set of rules that must be implemented in addition to the various normative sections and annexes.
 
-Other ISO/TC 154 Standards, such as ISO 9735 and ISO 14533, contain conformance statements that are more complex because these standards are multi-part with normative references amongst these parts and/or reference other standards as normative that need to be conformed to as well.</div>
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-general-1' href='/wp_super_faq/what-is-iso' title='What is ISO?' rel='question'>&#9654; What is ISO?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-general-1-answer' style=' zoom: 1;'>Not "`what&#8221;, but &#8220;who`"! Our standards are often highly technical -- and they need to be -- but they're developed for people by people. So who we are is a network of the national standards institutes of some 163 countries, with a central office in Geneva, Switzerland, that coordinates the system and publishes the finished standards.</div>
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-general-2' href='/wp_super_faq/what-does-international-standardization-mean' title='What does "`international standardization&#8221; mean?' rel='question'>&#9654; What does &#8220;international standardization`" mean?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-general-2-answer' style=' zoom: 1;'>When the large majority of products or services in a particular business or industry sector conform to International Standards, a state of industry-wide standardization can be said to exist. This is achieved through consensus agreements between national delegations representing all the economic stakeholders concerned -- suppliers, users and, often, governments. They agree on specifications and criteria to be applied consistently in the classification of materials, the manufacture of products and the provision of services. In this way, International Standards provide a reference framework, or a common technological language, between suppliers and their customers -- which facilitates trade and the transfer of technology.</div>
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-general-3' href='/wp_super_faq/can-anyone-join-iso' title='Can anyone join ISO?' rel='question'>&#9654; Can anyone join ISO?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-general-3-answer' style=' zoom: 1;'>Not as individuals or as enterprises -- although both have a range of opportunities for taking part in ISO's work, or in contributing to the development of standards through the ISO member in their country. Membership of ISO is open to national standards institutes or similar organizations most representative of standardization in their country (one member in each country). Full members each have one vote, whatever the size or strength of the economy of the country concerned. This means that they can all make their voices heard in the development of standards which are important to their country's industry. ISO also has two categories of membership for countries with fewer resources. Although such members do not have a vote, they can remain up to date on standardization developments. Lists of the three categories of ISO members are available on ISO Online.</div>
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-general-4' href='/wp_super_faq/what-is-isos-relation-to-governments' title='What is ISO's relation to governments?' rel='question'>&#9654; What is ISO's relation to governments?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-general-4-answer' style=' zoom: 1;'>ISO is a non-governmental organization (NGO). Therefore, unlike the United Nations, the national members of ISO are not delegations of the governments of those countries. As far as those national members are concerned, some are wholly private sector in origin, others are private sector organizations but have a special mandate from their governments on matters related to standardization, while still others are part of the governmental framework of their countries. In addition, government experts often participate in ISO's standards' development work. So, while ISO is an NGO, it receives input from the public sector as it does from the private sector.</div>
-== ISO 15000-5 (Core Component Specification)
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-iso-15000-5-core-component-specification-5' href='/wp_super_faq/is-ubl-2-1-in-conformance-with-isots-15000-52005' title='Is UBL 2.1 in conformance with ISO/TS 15000-5:2005?' rel='question'>&#9654; Is UBL 2.1 in conformance with ISO/TS 15000-5:2005?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-iso-15000-5-core-component-specification-5-answer' style=' zoom: 1;'>The questions was raised because of a statement on the UBL Home page, which states:
+Other ISO/TC 154 Standards, such as ISO 9735 and ISO 14533, contain conformance statements that are more complex because these standards are multi-part with normative references amongst these parts and/or reference other standards as normative that need to be conformed to as well.
 
-<p style="padding-left: 30px;">_"`UBL was the first published data format specification produced in full conformance with UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.`"_
+=== What is ISO?
+
+
+Not "`what`", but "`who`"! Our standards are often highly technical -- and they need to be -- but they're developed for people by people. So who we are is a network of the national standards institutes of some 163 countries, with a central office in Geneva, Switzerland, that coordinates the system and publishes the finished standards.
+
+
+=== What does "`international standardization`" mean?
+
+
+When the large majority of products or services in a particular business or industry sector conform to International Standards, a state of industry-wide standardization can be said to exist. This is achieved through consensus agreements between national delegations representing all the economic stakeholders concerned -- suppliers, users and, often, governments. They agree on specifications and criteria to be applied consistently in the classification of materials, the manufacture of products and the provision of services. In this way, International Standards provide a reference framework, or a common technological language, between suppliers and their customers -- which facilitates trade and the transfer of technology.
+
+
+=== Can anyone join ISO?
+
+
+Not as individuals or as enterprises -- although both have a range of opportunities for taking part in ISO's work, or in contributing to the development of standards through the ISO member in their country. Membership of ISO is open to national standards institutes or similar organizations most representative of standardization in their country (one member in each country). Full members each have one vote, whatever the size or strength of the economy of the country concerned. This means that they can all make their voices heard in the development of standards which are important to their country's industry. ISO also has two categories of membership for countries with fewer resources. Although such members do not have a vote, they can remain up to date on standardization developments. Lists of the three categories of ISO members are available on ISO Online.
+
+
+=== What is ISO's relation to governments?
+
+
+ISO is a non-governmental organization (NGO). Therefore, unlike the United Nations, the national members of ISO are not delegations of the governments of those countries. As far as those national members are concerned, some are wholly private sector in origin, others are private sector organizations but have a special mandate from their governments on matters related to standardization, while still others are part of the governmental framework of their countries. In addition, government experts often participate in ISO's standards' development work. So, while ISO is an NGO, it receives input from the public sector as it does from the private sector.
+
+
+== ISO 15000-5 (Core Component Specification)
+
+=== Is UBL 2.1 in conformance with ISO/TS 15000-5:2005?
+
+
+The questions was raised because of a statement on the UBL Home page, which states:
+
+_"`UBL was the first published data format specification produced in full conformance with UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.`"_
 
 *For a standard to claim full conformance it must satisfy 100% of all the mandatory ‘requirements’ found in the ‘normative’ sections.*
 
@@ -123,135 +64,116 @@ The short answer is that *UBL 2.1 is not in conformance</strong> with either ver
 
 For the long answer, see the table below that list examples of *requirements that are not met* by UBL 2.1 to be in  conformance:
 
-<table width="100%">
-<colgroup>
-<col style="text-align: left; width: 50%;" />
-<col style="text-align: left; width: 50%;" /> </colgroup>
-<thead>
-<tr>
-<th style="text-align: left;">ISO TS/15000–5:2005 Normative Rules</th>
-<th style="text-align: left;">OASIS UBL 2.1 Library Entries</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">[B3] A Basic Business Information Entity *shall be based* on a Basic Core Component</td>
-<td style="text-align: left;">Does *not* include any Basic Core Components</td>
-</tr>
-<tr>
-<td style="text-align: left;">[B4] An Association Business Information Entity *shall be based* on an Association Core Components</td>
-<td style="text-align: left;">Does *not* include any Association Core Components</td>
-</tr>
-<tr>
-<td style="text-align: left;">[B5] An Aggregate Business Information Entity *shall be based* on an Aggregate Core Component</td>
-<td style="text-align: left;">Does *not* include any Aggregate Core Components.</td>
-</tr>
-<tr>
-<td style="text-align: left;">[B7] A Business Information Entity Property of an Aggregate Business Information Entity *shall be based* on a Core Component Property of the corresponding Aggregate Core Component</td>
-<td style="text-align: left;">Does *not* include any Aggregate Business Information Entities</td>
-</tr>
-<tr>
-<td style="text-align: left;">[B8] The Data Type, on which a Basic Business Information Entity Property *is based, shall itself be similar</strong> to the Data Type on which the corresponding Basic Core Component Property <strong>is based</strong> (i.e. it <strong>shall either* be the same Data Type or a more restricted one)</td>
-<td style="text-align: left;">Does *not* include any Basic Core Component Properties</td>
-</tr>
-<tr>
-<td style="text-align: left;">[B9] The Aggregate Business Information Entity, on which an Association Business Information Entity Property *is based, shall itself be based* on the Aggregate Core Component on which the corresponding Association Core Component Property is based</td>
-<td style="text-align: left;">Does *not* include any Aggregate Core Components or Association Core Components</td>
-</tr>
-<tr>
-<td style="text-align: left;">[C1] Each Core Component Type, Basic Core Component, Association Core Component or Aggregate Core Component *must have its own unique semantic definition within the library of which it is a part*. The definition shall be developed first and the Dictionary Entry Name shall be extracted from it. Comments can be used to further clarify the definition, to provide examples and/or to reference a recognized standard</td>
-<td style="text-align: left;">There are *no publicly published* core components that allow this rule to be followed</td>
-</tr>
-<tr>
-<td style="text-align: left;">[C18] The Dictionary Entry Name shall be concise and *shall not contain consecutive redundant words*</td>
-<td style="text-align: left;">Examples of entries not in conformance:
+[cols="a,a",options="header"]
+|===
+|ISO TS/15000–5:2005 Normative Rules
+|OASIS UBL 2.1 Library Entries
 
-<span style="font-size: 85%;">Address. Address Type *_Code. Code_*
-Order Reference. Sales Order *_Identifier. Identifier_*
-Tax Category. Per Unit_ *_Amount. Amount_*</span></td>
-</tr>
-</tbody>
-</table>
-&nbsp;
-</div>
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-iso-15000-5-core-component-specification-6' href='/wp_super_faq/what-are-the-differences-between-iso-15000-5-standards-and-oasis-ubl-specification' title='What are the differences between ISO 15000-5 and OASIS' UBL?' rel='question'>&#9654; What are the differences between ISO 15000-5 and OASIS' UBL?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-iso-15000-5-core-component-specification-6-answer' style=' zoom: 1;'>The table below shows on the left side the required parts defined within ISO 15000–5:2014. The right side shows the corresponding parts, if available, within OASIS’ UBL 2.0 and 2.1.
+|[B3] A Basic Business Information Entity *shall be based* on a Basic Core Component
+|Does *not* include any Basic Core Components
 
-<table width="100%">
-<colgroup>
-<col style="text-align: center;" />
-<col style="text-align: center;" /> </colgroup>
-<thead>
-<tr>
-<th style="text-align: center;">ISO 15000–5:2014</th>
-<th style="text-align: center;">OASIS UBL 2.0 and 2.1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">Syntax Neutral data model</td>
-<td style="text-align: center;">XML only (syntax specific)
-Data model non-normative (optional)<a id="fnref:1" class="footnote" title="see footnote" href="#fn:1">[1]</a></td>
-</tr>
-<tr>
-<td style="text-align: center;">Can be used to create other syntax solutions</td>
-<td style="text-align: center;">*Cannot* be used to create other syntax solutions</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">*Normative Categories of building blocks:*<a id="fnref:2" class="footnote" title="see footnote" href="#fn:2">[2]</a></td>
-<td style="text-align: center;">*Current building blocks:*</td>
-</tr>
-<tr>
-<td style="text-align: center;">Basic Core Component (BCC)</td>
-<td style="text-align: center;">–</td>
-</tr>
-<tr>
-<td style="text-align: center;">Association Core Component (ASCC)</td>
-<td style="text-align: center;">–</td>
-</tr>
-<tr>
-<td style="text-align: center;">Aggregate Core Component (ACC)</td>
-<td style="text-align: center;">–</td>
-</tr>
-<tr>
-<td style="text-align: center;">Core Component Type (CCT)</td>
-<td style="text-align: center;">Core Component Type
-(only basic definitions are provided)</td>
-</tr>
-<tr>
-<td style="text-align: center;">Basic Business Information Entity (BBIE);</td>
-<td style="text-align: center;">UBL BBIEs</td>
-</tr>
-<tr>
-<td style="text-align: center;">Association Business Information Entity (ASBIE)</td>
-<td style="text-align: center;">UBL ASBIEs</td>
-</tr>
-<tr>
-<td style="text-align: center;">Aggregate Business Information Entity (ABIE)</td>
-<td style="text-align: center;">UBL ABIEs</td>
-</tr>
-</tbody>
-</table>
-&nbsp;
 
-_Implementations are considered to be *in full conformance* with ISO 15000–5:2014 if they *comply with the content of normative clauses, rules and definitions*._<a id="fnref:3" class="footnote" title="see footnote" href="#fn:3">[3]</a>
+|[B4] An Association Business Information Entity *shall be based* on an Association Core Components
+|Does *not* include any Association Core Components
 
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn:1">OASIS UBL 2.1 Specification, 2013 November, http://docs.oasis-open.org/ubl/os-UBL–2.1/UBL–2.1.html <a class="reversefootnote" title="return to article" href="#fnref:1"> ↩</a></li>
-<li id="fn:2">ISO 15000–5:2014, Section 4 and 5 <a class="reversefootnote" title="return to article" href="#fnref:2"> ↩</a></li>
-<li id="fn:3">ISO 15000–5:2014, Section 6 <a class="reversefootnote" title="return to article" href="#fnref:3"> ↩</a></li>
-</ol>
-</div>
-</div>
+
+|[B5] An Aggregate Business Information Entity *shall be based* on an Aggregate Core Component
+|Does *not* include any Aggregate Core Components.
+
+
+|[B7] A Business Information Entity Property of an Aggregate Business Information Entity *shall be based* on a Core Component Property of the corresponding Aggregate Core Component
+|Does *not* include any Aggregate Business Information Entities
+
+
+|[B8] The Data Type, on which a Basic Business Information Entity Property *is based, shall itself be similar</strong> to the Data Type on which the corresponding Basic Core Component Property <strong>is based</strong> (i.e. it <strong>shall either* be the same Data Type or a more restricted one)
+|Does *not* include any Basic Core Component Properties
+
+
+|[B9] The Aggregate Business Information Entity, on which an Association Business Information Entity Property *is based, shall itself be based* on the Aggregate Core Component on which the corresponding Association Core Component Property is based
+|Does *not* include any Aggregate Core Components or Association Core Components
+
+
+|[C1] Each Core Component Type, Basic Core Component, Association Core Component or Aggregate Core Component *must have its own unique semantic definition within the library of which it is a part*. The definition shall be developed first and the Dictionary Entry Name shall be extracted from it. Comments can be used to further clarify the definition, to provide examples and/or to reference a recognized standard
+|There are *no publicly published* core components that allow this rule to be followed
+
+
+|[C18] The Dictionary Entry Name shall be concise and *shall not contain consecutive redundant words*
+|Examples of entries not in conformance:
+
+Address. Address Type _Code_. _Code_
+
+Order Reference. Sales Order _Identifier_. _Identifier_
+
+Tax Category. Per Unit _Amount_. _Amount_
+
+|===
+
+
+=== What are the differences between ISO 15000-5 and OASIS' UBL?
+
+
+The table below shows on the left side the required parts defined within ISO 15000–5:2014. The right side shows the corresponding parts, if available, within OASIS’ UBL 2.0 and 2.1.
+
+[cols="a,a",options="header"]
+|===
+|ISO 15000–5:2014
+|OASIS UBL 2.0 and 2.1
+
+|Syntax Neutral data model
+|XML only (syntax specific)
+
+Data model non-normative (optional)
+
+footnote:[OASIS UBL 2.1 Specification, 2013 November, http://docs.oasis-open.org/ubl/os-UBL–2.1/UBL–2.1.html]
+
+|Can be used to create other syntax solutions
+|*Cannot* be used to create other syntax solutions
+
+|
+|
+
+|*Normative Categories of building blocks:* footnote:[ISO 15000–5:2014, Section 4 and 5]
+|*Current building blocks:*
+
+
+|Basic Core Component (BCC)
+|–
+
+
+|Association Core Component (ASCC)
+|–
+
+
+|Aggregate Core Component (ACC)
+|–
+
+
+|Core Component Type (CCT)
+|Core Component Type (only basic definitions are provided)
+
+
+|Basic Business Information Entity (BBIE);
+|UBL BBIEs
+
+
+|Association Business Information Entity (ASBIE)
+|UBL ASBIEs
+
+
+|Aggregate Business Information Entity (ABIE)
+|UBL ABIEs
+
+|===
+
+Implementations are considered to be *in full conformance* with ISO 15000–5:2014 if they *comply with the content of normative clauses, rules and definitions*. footnote:[ISO 15000–5:2014, Section 6]
+
+
 == ISO 9735 (EDIFACT Syntax)
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-iso-9735-edifact-syntax-7' href='/wp_super_faq/does-unoa-as-syntax-identifier-allow-lowercase-characters-a-z' title='Does UNOA as Syntax Identifier allow lowercase characters (a-z)?' rel='question'>&#9654; Does UNOA as Syntax Identifier allow lowercase characters (a-z)?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-iso-9735-edifact-syntax-7-answer' style=' zoom: 1;'>The answer is for all versions of ISO 9735 a absolute *NO* !
+
+=== Does UNOA as Syntax Identifier allow lowercase characters (a-z)?
+
+
+The answer is for all versions of ISO 9735 a absolute *NO*!
 
 Syntax data element 0001 (Syntax Identifier) is defined as:
 
@@ -259,12 +181,14 @@ _Coded identification of the agency controlling the syntax, and of the character
 
 The definition for the UMOA code value within the code list of 0001 is:
 
-_As defined in the basic code table of ISO 646 *with the exceptions* of lower case letters, alternative graphic character allocations and national or application-oriented graphic character allocations._
+_As defined in the basic code table of ISO 646 *with the exceptions* of lower case letters, alternative graphic character allocations and national or application-oriented graphic character allocations._
 
 To be in conformance with ISO 9735 any product, including message instances, must observe the restrictions and only use uppercase letters when using UNOA as the syntax identifier.
-</div>
-=== <a class='wp-super-faq-question-closed' id='wp-super-faq-question-iso-9735-edifact-syntax-8' href='/wp_super_faq/9735-q1' title='What are the differences amongst the various versions of ISO 9735?' rel='question'>&#9654; What are the differences amongst the various versions of ISO 9735?</a>
-<div class='wp-super-faq-answer' id='wp-super-faq-question-iso-9735-edifact-syntax-8-answer' style=' zoom: 1;'>
+
+=== What are the differences amongst the various versions of ISO 9735?
+
+
+
 ==== Introduction
 The EDIFACT Application Level Syntax Rules (ISO 9735) Level represent the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing.  In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI.  The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
 
@@ -302,19 +226,19 @@ The Version 4 syntax rules comprise 10 individual parts:
 
 In addition, enhancements have been made to the batch interchange; group; and message header segments (UNB; UNG; and UNH).
 
-<i>Character repertoires:</i> Because of the widening use of ISO 9735, it has become necessary to extend its coverage to include all character repertoires covered by ISO 8859, Parts 1-9 (Information processing -- 8-Bit single -- byte coded graphic character sets); the code extension techniques covered by ISO 2022 (with certain restrictions on its use within an interchange); and partial use of the techniques covered by ISO/IEC 10646-1.
+Character repertoires:: Because of the widening use of ISO 9735, it has become necessary to extend its coverage to include all character repertoires covered by ISO 8859, Parts 1-9 (Information processing -- 8-Bit single -- byte coded graphic character sets); the code extension techniques covered by ISO 2022 (with certain restrictions on its use within an interchange); and partial use of the techniques covered by ISO/IEC 10646-1.
 
-<i>Dependency notes:</i> These provide a formal notation to express relationships within UN/EDIFACT message, segment and composite data element specifications.
+Dependency notes:: These provide a formal notation to express relationships within UN/EDIFACT message, segment and composite data element specifications.
 
-<i>Repeating data elements:</i> The specification of multiple occurrences of a message within a group or within an interchange; a group within an interchange; and a segment group and/or a segment within a message, which existed in the previous version of the syntax rules, has been extended in the current version.  The additional capability for the specification of multiple occurrences of a stand-alone data element and/or of a composite data element within a segment has been introduced.
+Repeating data elements:: The specification of multiple occurrences of a message within a group or within an interchange; a group within an interchange; and a segment group and/or a segment within a message, which existed in the previous version of the syntax rules, has been extended in the current version.  The additional capability for the specification of multiple occurrences of a stand-alone data element and/or of a composite data element within a segment has been introduced.
 
-<i>UNB -- Interchange header segment:</i> This segment has been enhanced to permit the identification of the service code list directory version number; identification of the character encoding scheme; and internal sub-identification of the sender and recipient.  In addition, to conform to year 2000 requirements, the date format in this segment has been extended.
+UNB -- Interchange header segment:: This segment has been enhanced to permit the identification of the service code list directory version number; identification of the character encoding scheme; and internal sub-identification of the sender and recipient.  In addition, to conform to year 2000 requirements, the date format in this segment has been extended.
 
-<i>UNG -- Group header segment:</i> This segment has been re-named and its function changed to permit one or more message types and/or packages to be contained in the group.  As a result, certain data elements, which are now redundant, have been marked for deletion.  In addition, to conform to year 2000 requirements, the date format in this segment has been extended.
+UNG -- Group header segment:: This segment has been re-named and its function changed to permit one or more message types and/or packages to be contained in the group.  As a result, certain data elements, which are now redundant, have been marked for deletion.  In addition, to conform to year 2000 requirements, the date format in this segment has been extended.
 
-<i>UNH -- Message header segment:</i> This segment has been enhanced to permit the identification of a message subset, of a related message implementation guideline, and of a related scenario.
+UNH -- Message header segment:: This segment has been enhanced to permit the identification of a message subset, of a related message implementation guideline, and of a related scenario.
 
-<i>UGH/UGT -- Anti-collision segment group:</i> An addition has been made in this version of the syntax rules to permit the prevention of segment collision, by use of the UGH/UGT segment group.  This technique may be used in a UN/EDIFACT message specification when it is not otherwise possible to ensure unambiguous identification of each message segment upon receipt.
+UGH/UGT -- Anti-collision segment group:: An addition has been made in this version of the syntax rules to permit the prevention of segment collision, by use of the UGH/UGT segment group.  This technique may be used in a UN/EDIFACT message specification when it is not otherwise possible to ensure unambiguous identification of each message segment upon receipt.
 
 *Part 2* is specific to batch EDI and is a re-draft of corresponding sections in the previous version of the syntax rules. It is identical, except for minor changes to terminology, and for clarification of the use of segment groups.
 
@@ -350,6 +274,3 @@ It is based upon a similar CONTRL service message developed and published as sep
 *Part 9* is a new part, which has been added to the syntax rules.  It provides an optional capability of managing security keys and certificates using the KEYMAN message.
 
 *Part 10* was added with the publication of Release 1. For maintenance reasons of the Syntax service directories this part was extracted and updated from each of the relevant annex parts of the ISO 9735 series, first edition, published in 1998 and 1999.
-
-</div>
-

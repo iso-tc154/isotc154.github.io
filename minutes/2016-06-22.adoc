@@ -1,0 +1,109 @@
+		<title>CAT Draft Minutes 2016-06-22</title>
+		<link>http://www.isotc154.org/cat-draft-minutes-2016-06-22</link>
+		<comments>http://www.isotc154.org/cat-draft-minutes-2016-06-22#comments</comments>
+		<pubDate>Wed, 22 Jun 2016 15:11:15 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[CAT Minutes]]></category>
+		<category><![CDATA[ISO 14533]]></category>
+		<category><![CDATA[ISO 8601]]></category>
+		<category><![CDATA[ISO CS]]></category>
+		<category><![CDATA[MoU/MG]]></category>
+
+		<guid isPermaLink="false">http://www.isotc154.org/?p=6690</guid>
+		<description><![CDATA[ISO/TC 154 CAT Conference Call<br />
+22 June 2016, 14:00 UTC<br />
+Participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Mei-Li Chen (MLC)<br />
+<br />
+Approval of Agenda -- approved<br />
+Approval of 08 June 2016 Meeting Minutes -- approved<br />
+Working Group and Project Team Updates<br />
+<br />
+JWG1/MA (EDIFACT Syntax) -- Nothing to report<br />
+WG 5 (Representation of dates and times)<br />
+<br />
+ISO 8601 Part 1 &#38; 2 update<br />
+<br />
+Agreed to final text for both CDs<br />
+Next call scheduled for 05 ...]]></description>
+				<content:encoded><![CDATA[<h3>ISO/TC 154 CAT Conference Call</h3>
+<h4>22 June 2016, 14:00 UTC</h4>
+*Participants:* Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Mei-Li Chen (MLC)
+
+<ol>
+<li>Approval of Agenda -- *approved*</li>
+<li>Approval of link:/cat-draft-minutes-2016-06-08[08 June 2016 Meeting Minutes] -- *approved*</li>
+<li>Working Group and Project Team Updates
+<ul>
+<li>JWG1/MA (EDIFACT Syntax) -- Nothing to report</li>
+<li>WG 5 (Representation of dates and times)
+<ul>
+<li>ISO 8601 Part 1 &amp; 2 update
+<ul>
+<li>Agreed to final text for both CDs</li>
+<li>Next call scheduled for 05 June to accept both drafts for CD ballot.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WG 6 (Trusted eCommunication)
+<ul>
+<li>PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+<ul>
+<li>ISO/CD 14533-3 Update
+<ul>
+<li>Awaiting CD ballot closure (21 July 2016)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PT2 -- Trusted Communication Platforms for Electronic Documents
+<ul>
+<li>ISO/WD 19626-1 &#8220;TCP for Electronic Documents -- Part 1&#8221; Update
+<ul>
+<li>JC has prepared WD using new &#8220;simple&#8221; template. </li>
+<li>Next step is to create NWIP for review at next CAT meeting.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PT3 -- Trusted mobile e-document framework
+<ul>
+<li>ISO/WD 20415 &#8220;TMEF&#8221; Update
+<ul>
+<li>Project team leader (Mr. Lee) is currently preparing final WD using the new &#8220;simple&#8221; template..</li>
+<li>Awaiting WG support for dual NWIP and WD ballot.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Liaison Updates -- Nothing to report</li>
+<li>MoU/MG Update -- Nothing to report</li>
+<li>Old Business
+<ul>
+<li>ISO/TC 154 Chairmanship Update
+<ul>
+<li>Awaiting response from ISO/TMB for nomination of K-DN by SAC. </li>
+</ul>
+</li>
+<li>ISO/CS Objection to disseminate Drafts of both ISO/CD 8601 parts to MoU/MG.
+<ul>
+<li>*Issue is closed* since ISO/CS has not provided MoU/MG with a mechanics for distribution. As far as ISO/TC 154 is concerned it has done everything possible to encourage ISO and MoU/MG members to join the work.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>New Business</li>
+<li>Other Business</li>
+<li>Next Meeting: *06 July 2016, starting at 14:00 UTC*</li>
+</ol>
+]]></content:encoded>
+
+
+<wfw:commentRss>http://www.isotc154.org/cat-draft-minutes-2016-06-22/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>

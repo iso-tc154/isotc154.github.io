@@ -395,12 +395,12 @@ Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 <div class="post_content">
 <h3 id="isotc154catconferencecall">ISO/TC 154 CAT Conference Call</h3>
 == 31 August 2016, 14:00 UTC
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
-Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
+Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 
 <ol>
-* Approval of Agenda -- *approved* with addition under 8. Other business
-* Approval of link:/cat-draft-minutes-2016-08-17[17 August 2016 Meeting Minutes] -- *approved*
+* Approval of Agenda -- *approved* with addition under 8. Other business
+* Approval of link:/cat-draft-minutes-2016-08-17[17 August 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
 
 <li>JWG1/MA (EDIFACT Syntax)
@@ -453,12 +453,12 @@ Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 <div class="post_content">
 <h3 id="isotc154catconferencecall">ISO/TC 154 CAT Conference Call</h3>
 == 17 August 2016, 14:00 UTC
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)
-Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)
+Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)
 
 <ol>
-* Approval of Agenda -- *approved*
-* Approval of link:/cat-draft-minutes-2016-08-03[03 August 2016 Meeting Minutes] -- *approved*
+* Approval of Agenda -- *approved*
+* Approval of link:/cat-draft-minutes-2016-08-03[03 August 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
 
 * JWG1/MA (EDIFACT Syntax) -- Nothing to report
@@ -506,13 +506,13 @@ Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)
 
 <div class="post_content">
 <h3 id="isotc154catconferencecall">ISO/TC 154 CAT Conference Call</h3>
-== 03 August<a id="MMDHTMLSCROLLPOINT"></a> 2016, 14:00 UTC
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
-Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC)
+== 03 August<a id="MMDHTMLSCROLLPOINT"></a> 2016, 14:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
+Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC)
 
 <ol>
-* Approval of Agenda -- *approved* with addition of “ODIF Update” under item 8.
-* Approval of link:/cat-draft-minutes-2016-07-20[20 July 2016 Meeting Minutes] -- *approved*
+* Approval of Agenda -- *approved* with addition of “ODIF Update” under item 8.
+* Approval of link:/cat-draft-minutes-2016-07-20[20 July 2016 Meeting Minutes] -- *approved*
 <li>Working Group and Project Team Updates
 
 * JWG1/MA (EDIFACT Syntax) -- Nothing to report
