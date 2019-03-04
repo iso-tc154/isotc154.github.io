@@ -1,0 +1,14 @@
+---
+permalink: /standards/iso-73722005
+---
+= ISO 7372:2005
+
+== Trade data interchange -- Trade data elements directory
+=== Abstract
+ISO 7372:2005 lists standard data elements intended to facilitate open interchange of data in international trade.
+
+The standard data elements listed can be used with any method for data interchange on paper documents as well as with other means of data processing and communication.
+
+=== Revision information
+Revises: ISO 7372:1993
+

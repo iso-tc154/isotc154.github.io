@@ -1,0 +1,106 @@
+---
+permalink: "/minutes/2016-03-16"
+date: "16 Mar 2016 16:55:27 +0000"
+category: CAT Minutes
+category: Plenary
+category: Semantic Interoperability
+category: TC 8
+category: UNECE
+---
+= CAT Draft Minutes 2016-03-16
+
+== ISO/TC154 CAT Conference Call, 02 March 2016, 14:00 UTC
+
+Participants:: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Bernd Bösler (BB), Jasmine Chang (JC)
+Excused:: Sue Probert (SP), Peter Rybar (PR)
+
+== Approval of Agenda  -- approved with the addition of Business Semantic Thesaurus ISO/TS 16668, formally BSR under New Business
+== Approval of link:2016-03-02[02 March 2016 Meeting Minutes] -- approved
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax)
+
+* Nothing to report
+
+
+=== WG 5 (Representation of dates and times)
+
+* Both NWIP and CD Ballots have been send out for both ISO 8601 Parts.
+
+
+=== WG 6 (Trusted eCommunication)
+
+
+
+* General
+
+* WG 6 Secretariat Ballot
+
+
+
+* Result: JC was approved to serve as WG 6 Secretariat.
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* Team is still addressing the comments before requesting a new ballot.
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* Upcoming PT call scheduled for 17 March. K-DN encourage JC to move the meeting tome to Morning for EU and afternoon for Asian participants. Currently Asian members need to participate during the late evening, early night.
+
+
+* PT3 -- Trusted mobile e-document framework
+
+
+* JC informed CAT that Mr. Lee will hold the first meeting soon.
+
+=== Liaison Updates
+
+* Nothing to report
+
+
+=== MoU/MG Update
+
+* Nothing to report
+
+
+=== Old Business
+
+* CAT's comments on UNECE's "`Proposed Strategic Framework 2016`"
+
+* No response was received. Item closed
+
+
+* CAT's response to UN/CEFACT Bureau email regarding UNECE Recommendation 1
+
+* No response was received. Item closed
+
+
+* ISO Letter to IMO (WCO Data Model)
+
+* Response send to ISO/TC 8 about TC 154's main concern the issue surrounding the promotion of ISO 28005 which is not using ISO 15000-5. TC 8 agreed to work with us in the future on a possible way forward
+
+
+* UNECE's comments about misleading CAT minutes 2015-12-09
+
+
+
+* No further exchanges. Item closed
+
+=== New Business
+
+* ISO/TC 154 Chairmanship (2017- )
+
+* Current term is ending at end of 2016. A second term of 3 years is possible for K-DN. No other candidate was being identified. For K-DN to stand for another term he requires some sponsorship for attending future TC 154 plenaries.
+
+
+* Business Semantic Thesaurus ISO/TS 16668, formally BSR
+
+
+
+* K-DN raided the topic of updating the original "`ISO/TS 16668 Basic Semantic Repository`" that was withdrawn because of ISO/TS 15000-5. However, as learned from the PoC on Semantic Interoperability, ISO 15000-5 is about data and message components, not the semantic meaning of Business concepts. During the PoC much of the original BSR was reused, which should now be applied for the rewrite.
+
+=== Other Business
+* Next Meeting: 30 March 2016, starting at 14:00 UTC
+

@@ -1,0 +1,111 @@
+---
+permalink: "/minutes/2017-02-01"
+date: "01 Feb 2017 15:46:48 +0000"
+category: CAT Minutes
+category: ETSI
+category: ISO 14533
+category: ISO CS
+category: Liaison
+category: NWIP
+category: TC 154
+---
+= CAT Draft Minutes 2017-02-01
+
+== ISO/TC 154 CAT Conference Call, 01 February, 15:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Peter Rybar (PR)
+Excused::  Bernd Bösler (BB), Mei-Li Chen (MLC), Jasmine Chang (JC)
+
+
+== Approval of Agenda  – *approved*
+== Approval of link:/cat-draft-minutes-2017-01-04[04 January 2017 Meeting Minutes] – *approved*
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax)
+
+* Currently addressing final comments from Brian regarding the formation of an MA vs RA.
+
+
+=== WG 5 (Representation of dates and times)
+
+* Awaiting DIS Ballot announcement from ISO/CS
+
+
+=== WG 6 (Trusted eCommunication)
+
+* External Liaison with ETSI STF 523
+
+* Since this request is for WG 6 to participate in ETSI STF 523, ETSI needs to formally request the liaison providing the rational and identifying the ETSI project(s) they want TC 154/WG to participate in. After receiving the ETSI request, there needs to be a TC ballot approving the WG liaison.
+* It should be noted that TC 154 has a Liaison A with ETSI, which is bi-directional. However there has been a lack of active participation by that liaison with in our work.
+
+
+* PT1 -- Long term signature profiles
+
+* DIS Ballot closed 2016-12-27
+* Currently disposing of editorial comments.
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* No update available.
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* No update available
+
+
+
+
+* WG 7 (Digital Business)
+
+* JF has setup WG 7 on LiveLink.
+* PT1 -- Business Semantics Thesaurus
+
+* Awaiting end of call for participation
+
+
+* PT2 -- XMLFACT
+
+* Awaiting end of call for participation
+
+
+
+
+
+
+=== Liaison Updates -- Nothing to report
+=== MoU/MG Update -- Nothing to report
+=== Old Business
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`"
+
+* Received latest version from OAGi. Currently under review by FV and BB before submitting to ISO/CS.
+
+
+
+
+=== New Business
+
+* TMB -- New platform for Meeting Participant (MP) for all TC/SC/WG meetings starting end of March.
+
+* Not sure how this will affect our workflow, will have to await final details.
+
+
+* New TPM -- Henry Cushier
+
+* ISO/CS underwent a reorganization with Brian Stanton now serving as Editorial Programme Manager only and Henry being our new TPM.
+
+
+* New Project -- “StreaM”
+
+* JF did not receive any reply for either joining the project or leading it from other TC.
+* TC 154 will start alone and issue a NWIP ballot.
+* The project will be under WG 7.
+
+
+
+
+=== Other Business
+* Next Meeting: *15 February 2017, starting at 15:00 UTC*
+
+

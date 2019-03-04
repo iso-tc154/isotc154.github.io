@@ -1,4 +1,5 @@
-permalink: /about_us/ma/ma_links
+---
+permalink: /about/ma/ma_links
 ---
 = Relevant links to TDED MA folders/files
 
@@ -68,7 +69,7 @@ http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7409832&amp;objAction=b
 
 
 Membership
-link:/about_us/jma/membership-of-the-joint-maintenance-agency[Membership of the Joint Maintenance Agency]
+link:/about/jma/membership-of-the-joint-maintenance-agency[Membership of the Joint Maintenance Agency]
 
 
 Membership Links

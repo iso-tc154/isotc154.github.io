@@ -1,0 +1,137 @@
+---
+permalink: "/minutes/2016-08-31"
+date: "31 Aug 2016 15:21:34 +0000"
+category: CAT Minutes
+category: AFACT
+category: Ballots
+category: EDIFACT
+category: Semantic Interoperability
+category: WCO
+---
+= CAT Draft Minutes 2016–08–31
+
+== ISO/TC 154 CAT Conference Call, 31 August 2016, 14:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
+Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
+
+
+== Approval of Agenda  -- *approved* with addition under 8. Other business
+== Approval of link:/cat-draft-minutes-2016-08-17[17 August 2016 Meeting Minutes] -- *approved*
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax)
+
+* Feedback from ISO/CS -- Nothing to report
+
+
+=== WG 5 (Representation of dates and times)
+
+* ISO 8601 Part 1 & 2 update
+
+* Out for CD ballot closing 2016–09–03
+
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* ISO/CD 14533–3 Update
+
+* Out for DIS Ballot, current with ISO/CS for preparation (12 week, closing 2016–11–??)
+* DIS ballot preparation are still with the ISO/CS. No feedback on a completion date, start of the ballot.
+
+
+* ISO/NP 14533–4 “Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)” Update
+
+* Nothing to report
+
+
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* ISO/WD 19626–1 “TCP for Electronic Documents -- Part 1”
+
+* Out for NWIP & WD Ballot (closing 2016–10–11)
+
+
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* ISO/WD 20415 “TMEF” Ballot
+
+* Out for NWIP & WD Ballot (closing 2016–10–11)
+
+
+
+
+
+
+
+
+=== Liaison Updates
+
+* AFACT Liaison Report -- CAT thanks AFACT for their report.
+
+
+=== MoU/MG Update -- Nothing to report
+=== Old Business
+
+* ISO/TC 154 Plenary Update
+
+* Review of Schedule and Draft Agendas
+
+* Need to send WG Agendas out.
+
+
+* Review of Expert Registration via ISOTC154.org
+
+* Only 4 registrations so far, need to ensure experts are registering for room size calculations
+
+
+
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of “OAGIS – A Specification for an Enterprise Canonical Model”
+
+* Feedback from ISO/CS
+
+* Nothing to report
+
+
+
+
+* ISO/NP TS 21887 Business Semantics Thesaurus (BST)
+
+* Out for NWIP & WD Ballot (closing 2016–09–11)
+
+
+
+
+=== New Business
+
+* Request for a copy of the WCO Data Model
+
+* JFZ to contact WCO Secretariat for a copy of their Data Model in XMI for possible input to our BST project.
+
+
+* Convert ISO/TS 20625 to an IS as “Rules for generation of XML scheme files (XSD) from EDIFACT Messages”
+
+* K-DN showed a sample of an XSD based on ISO/TS 20625 that is a direct, one-on-one, transformation from EDIFACT to XML syntax.
+* CAT to review the possibility to create a new NWIP to create a XML counter part to ISO 9735.
+
+
+
+
+=== Other Business
+
+* ISO input into EU MSP Rolling Plan
+
+* CAT members to review the various section within the EU plan to identify any ISO/TC 154 work items that address the requirements for standardization.
+
+
+
+
+* Next Meeting: *14 September 2016, starting at 14:00 UTC*

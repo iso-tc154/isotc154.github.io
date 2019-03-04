@@ -1,0 +1,99 @@
+---
+permalink: "/minutes/2016-06-08"
+date: "09 Jun 2016 22:36:12 +0000"
+category: CAT Minutes
+category: ISO 8601
+category: ISO CS
+category: Liaison
+category: MoU/MG
+---
+= CAT Draft Minutes 2016-06-08
+
+== ISO/TC 154 CAT Conference Call, 08 June 2016, 14:00 UTC
+Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
+
+
+== Approval of Agenda  -- *approved*
+== Approval of link:/cat-draft-minutes-2016-05-25[25 May 2016 Meeting Minutes] -- *approved*
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax) -- Nothing to report
+=== WG 5 (Representation of dates and times)
+
+* ISO 8601 Part 1 & 2 update
+
+* Agreed to all changes, now preparing new draft
+* Next call scheduled for 21 June
+
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* ISO/CD 14533-3 Update
+
+* A second CD ballot has been issued
+
+
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* ISO/WD_19626-1 "`TCP for Electronic Documents-Part 1`" Update
+
+* Further meetings are scheduled to finalize the document.
+* Next step after finalization is to get WG support for dual NWIP and WD ballot.
+
+
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* ISO/WD 20415 "`TMEF`" Update
+
+* Agreement was reached to finalize the document for possible ballot.
+* Awaiting WG support for dual NWIP and WD ballot.
+
+
+
+
+
+
+
+
+=== Liaison Updates -- Nothing to report
+=== MoU/MG Update
+
+* Short MoU/MG report was given, nothing that needs ISO/TC 154's immediate attention or possible action.
+* As a follow-up to the importance of the "`Liaison`" relationships, CAT agreed that all Liaison Notifications received by JFZ shall be forwarded to CAT members for review and possible recommendations for actions.
+
+
+=== Old Business
+
+* ISO/TC 154 Chairmanship Update
+
+* JFZ has filled request for 2nd term of K-DN with TMB.
+
+
+* Business Semantic Thesaurus NWIP for TS, formally ISO/TS 16668 BSR
+
+* BB and K-DN to draft the NWIP.
+
+
+* ISO/DTR 18262 ODIF (stage 50.00)
+
+* K-DN agree to create the first revision to be available for the upcoming plenary.
+
+
+* ISO/CS Objection to disseminate Drafts of both ISO/CD 8601 parts to MoU/MG.
+
+* Issue is closed since ISO/CS has not provided MoU/MG with a mechanics for distribution. As far as ISO/TC 154 is concerned it has done everything possible to encourage ISO and MoU/MG members to join the work.
+
+
+
+
+=== New Business
+=== Other Business
+* Next Meeting: *22 June 2016, starting at 14:00 UTC*

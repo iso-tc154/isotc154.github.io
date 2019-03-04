@@ -1,4 +1,5 @@
-permalink: /about_us/ma
+---
+permalink: /about/ma
 ---
 = TDED Maintenance Agency
 

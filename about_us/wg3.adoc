@@ -1,17 +1,19 @@
-permalink: /about_us/wg3
+---
+permalink: /about/wg3
 ---
 = WG 3 -- CCTS
 
-=== ISO TS 15000-5 (ebXML Core Components Technical Specification, Version 2.01(ebCCTS))
+== ISO TS 15000-5 (ebXML Core Components Technical Specification, Version 2.01(ebCCTS))
 
-==== Background
+=== Background
+
 ISO TS 15000-5 was first published in 2005, based on the UN/CEFACT publication of the Core Component Technical Specification 2.01. In 2008 it was reviewed and confirmed by ISO/TC 154 for continued publication. In 2011, ISO published Amendment 1 to ISO TS 15000-5, based on corrigendum published by UN/CEFACT.
 
 During the ISO/TC 154 Plenary held in Geneva in September 2010 a small team was tasked with developing this position paper on the future of ISO 15000-5, based on a recommendation from the UK HoD that the TS be made an International Standard.
 
 The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Mary Kay Blantz (US).
 
-==== Approved Recommendation
+=== Approved Recommendation
 
 * Upgrade 15000-5 to an International Standard.
 

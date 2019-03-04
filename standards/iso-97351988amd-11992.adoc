@@ -1,0 +1,29 @@
+---
+permalink: /standards/iso-97351988amd-11992
+---
+= ISO 9735:1988/Amd 1:1992
+
+== Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules
+=== AMENDMENT 1
+=== Abstract
+This Amendment extended the supported character sets from character set A (ISO 646 with the exception of lower case letters and certain graphic characters) and B (ISO 646 with the exception of certain graphic characters) to the character sets C through F (covering Latin, Cyrillic and Greek alphabets).
+
+=== Revision information
+* Revised by: ISO 9735-1:1998
+* Revised by: ISO 9735-2:1998
+* Revised by: ISO 9735-3:1998
+* Revised by: ISO 9735-4:1998
+* Revised by: ISO 9735-5:1999
+* Revised by: ISO 9735-6:1999
+* Revised by: ISO 9735-7:1999
+* Revised by: ISO 9735-8:1998
+* Revised by: ISO 9735-9:1999
+
+=== Corrigenda, Amendments and other parts
+ISO 9735:1988
+
+=== Note
+This edition is been identified as Syntax Version *3* within the UNB/S001/0002.
+
+See link:/faq[FAQ page] for the entry describing the differences amongst the various Syntax versions.
+

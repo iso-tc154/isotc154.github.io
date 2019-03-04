@@ -1,8 +1,0 @@
-permalink: /projects/iso-np-14533
----
-= ISO NP 14533
-
-== Long Term Signature profiles for EDI Data and Electronic Documents
-
-This standard specifies the requirement for enabling verification of a digital signature over a long period of time. This standard specifies neither new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which has already existed. This standard specifies which elements should be chosen, in order to enable verification of a digital signature over a long period of time among the elements defined in CMS Advanced Electronic Signatures (CAdES) which is the extended specification of Cryptographic message syntax (CMS) used widely.
-

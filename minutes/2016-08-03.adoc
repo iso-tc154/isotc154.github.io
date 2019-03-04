@@ -1,0 +1,118 @@
+---
+permalink: "/minutes/2016-08-03"
+date: "03 Aug 2016 15:08:45 +0000"
+category: CAT Minutes
+category: ISO 14533
+category: ISO 8601
+category: NWIP
+category: OAGi
+category: Plenary
+---
+= CAT Draft Minutes 2016-08-03
+
+== ISO/TC 154 CAT Conference Call, 03 August 2016, 14:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
+Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC)
+
+
+== Approval of Agenda  -- *approved* with addition of “ODIF Update” under item 8.
+== Approval of link:/cat-draft-minutes-2016-07-20[20 July 2016 Meeting Minutes] -- *approved*
+== Working Group and Project Team Updates
+
+=== JWG1/MA (EDIFACT Syntax) -- Nothing to report
+=== WG 5 (Representation of dates and times)
+
+* ISO 8601 Part 1 & 2 update
+
+* Out for CD ballot closing 2016–09–03
+
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+* PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* ISO/CD 14533–3 Update
+
+* CD ballot closed 21 July without comments, now being submitted to ISO/CS for DIS Ballot
+
+
+* ISO/NP 14533–4 “Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)”
+
+* PR gave a quick outline of the proposed new part.
+* A meeting of PT 1 to address the details, including the creation of a NWIP, is scheduled for the upcoming WG 6/PT 1 session in Berlin.
+* PR was asked to include JC in all future correspondence regarding the preliminary work on part 4.
+
+
+
+
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* ISO/WD 19626–1 “TCP for Electronic Documents -- Part 1” Update
+
+* Request for NWIP and WD or CD registration TC Ballot
+
+* Approved for ballot, to be send out by 15 August.
+
+
+
+
+
+
+* PT3 -- Trusted mobile e-document framework
+
+* ISO/WD 20415 “TMEF” Update
+
+* Request for NWIP and WD or CD registration TC Ballot
+
+* Approved for ballot, to be send out by 15 August.
+
+
+
+
+
+
+
+
+
+
+=== Liaison Updates -- Nothing to report
+=== MoU/MG Update -- Nothing to report
+=== Old Business
+
+* ISO/TC 154 Chairmanship Update
+
+* No TMB feedback received yet
+
+
+* ISO/TC 154 Plenary Update
+
+* Review of Schedule and Draft Agendas
+
+* Approved with out changes, to be distributed as official WG documents.
+
+
+* Review of meeting related information on ISOTC154.org
+
+* Approved with out changes
+
+
+
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of “OAGIS – A Specification for an Enterprise Canonical Model”
+
+* Agreed to move ahead with submission
+* K-DN, BB & JC to review the submission documents for compliance to ISO format.
+* K-DN to contact OAGi to have a WebEx call next week to go over the documentation.
+
+
+
+
+=== New Business
+
+* None
+
+
+=== Other Business
+* Next Meeting: *17 August 2016, starting at 14:00 UTC*

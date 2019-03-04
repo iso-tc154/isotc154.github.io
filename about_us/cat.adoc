@@ -1,3 +1,4 @@
+---
 permalink: /cat
 ---
 = CAT -- Chairman's Advisory Team

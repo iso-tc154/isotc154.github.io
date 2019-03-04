@@ -1,4 +1,5 @@
-permalink: /about_us/ma/membership-of-the-tded-maintenance-agency
+---
+permalink: /about/ma/membership-of-the-tded-maintenance-agency
 ---
 = Membership of the TDED Maintenance Agency
 

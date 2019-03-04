@@ -1,8 +1,0 @@
-permalink: /standards/iso-84391990
----
-= ISO 8439:1990
-
-=== Forms design -- Basic layout
-==== Abstract
-This International Standard is about Forms (paper), Stationery, Information handling, Data handling, Data layout, Layout, Design, Area, Dimensions, Commercial documents, Administrative documents, Industrial, Size Forms design. This Standard specifies overall sizes, image areas, their division and data fields within the various forms.
-

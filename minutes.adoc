@@ -1,3 +1,4 @@
+---
 permalink: /minutes
 ---
 = Minutes Announcements

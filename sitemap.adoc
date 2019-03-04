@@ -1,19 +1,20 @@
+---
 permalink: /sitemap
 ---
 = Sitemap
 
 == Pages
 
-* link:/about_us[About Us]
+* link:/about[About Us]
 
-** link:/about_us/jwg1[JWG 1 – EDIFACT Syntax]
-** link:/about_us/jwg1/sdmr[Syntax DMR Procedures]
-** link:/about_us/wg3[WG 3 – CCTS]
-** link:/about_us/wg4[WG 4 – eLK]
-** link:/about_us/cat[CAT -- Chairman's Advisory Team]
-** link:/about_us/ma[TDED Maintenance Agency]
-** link:/about_us/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
-** link:/about_us/ma/ma_links[Relevant links to TDED MA folders/files]
+** link:/about/jwg1[JWG 1 – EDIFACT Syntax]
+** link:/about/jwg1/sdmr[Syntax DMR Procedures]
+** link:/about/wg3[WG 3 – CCTS]
+** link:/about/wg4[WG 4 – eLK]
+** link:/about/cat[CAT -- Chairman's Advisory Team]
+** link:/about/ma[TDED Maintenance Agency]
+** link:/about/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
+** link:/about/ma/ma_links[Relevant links to TDED MA folders/files]
 
 * link:/projects[Projects]
 

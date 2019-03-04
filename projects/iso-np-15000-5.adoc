@@ -1,0 +1,14 @@
+---
+permalink: /projects/iso-np-15000-5
+---
+= ISO NP 15000-5
+
+== Electronic Business Extensible Markup Language (ebXML) – Part 5: ebXML Core Components Technical Specification, Version 2.01 (ebCCTS)
+
+This part of ISO 15000 describes and specifies a new approach to the well-understood problem of the lack of information interoperability between applications in the e-business arena. Traditionally, standards for the exchange of business data have been focused on static message definitions that have not enabled a sufficient degree of interoperability or flexibility. A more flexible and interoperable way of standardizing Business Semantics is required. The "`Core Component`" solution described in this specification presents a methodology for developing a common set of semantic building blocks that represent the general types of business data in use today and provides for the creation of new business vocabularies and restructuring of existing business vocabularies.
+
+This part of ISO 15000 has been published in 2005 as Technical Specification (TS). The revision of ISO/TS 15000-5 has been initiated for submission as an International Standard for the following reasons:
+
+* The UN/CEFACT Core Component Library (CCL) based on this TS is widely used;
+* The ISO/TC 154 7372 MA library alignment project has chosen this as the basis for alignment with UN/EDIFACT and UN/CEFACT CCL;
+* ebMoU Management Team recommends this specification for global semantic harmonization.

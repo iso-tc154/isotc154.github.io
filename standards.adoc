@@ -1,12 +1,13 @@
+---
 permalink: /standards
 ---
 = Standards
 
 == International Standards
 
-* link:/iso-6422-12010[ISO 6422-1:2010] Layout key for trade documents -- Part 1: Paper-based documents
+* link:/standards/iso-6422-12010[ISO 6422-1:2010] Layout key for trade documents -- Part 1: Paper-based documents
 
-* link:/documents/iso-73722005[ISO 7372:2005] Trade data interchange -- Trade data elements directory
+* link:/standards/iso-73722005[ISO 7372:2005] Trade data interchange -- Trade data elements directory
 
 * link:/standards/iso-84391990[ISO 8439:1990] Forms design -- Basic layout
 
