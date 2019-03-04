@@ -12,6 +12,7 @@ permalink: /minutes
 
 
 == Categories
+
 * link:/category/news/announcement[Announcement]
 
 * link:/category/news/call-for-experts[Call for Experts]

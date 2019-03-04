@@ -1,0 +1,38 @@
+= ISO/TC 154 Resources site: www.isotc154.org
+
+image:https://travis-ci.com/ISO-TC154/www.isotc154.org.svg?branch=master[
+	Build Status, link="https://travis-ci.com/ISO-TC154/www.isotc154.org"]
+
+== Introduction
+
+The ISO/TC 154 Resources site is used to publish resources and files
+relating to or referenced by ISO/TC 154 standards.
+
+This repository is used to build and deploy the
+https://www.isotc154.org site.
+
+This repository is jointly managed by ISO/TC 154 and Ribose.
+
+
+== Building the site
+
+[source,sh]
+----
+# initializes/fetches the submodules
+make update-init update-modules
+
+# removes site artifacts
+make clean
+
+# makes _site
+make all
+----
+
+
+== Updating HMMG HTML
+
+. Update the repo at https://github.com/ISO-TC154/hmmg-html
+
+. Go to the https://github.com/ISO-TC154/www.isotc154.org repo, run `make update-modules` (make sure the submodule has been initialized with `make update-init`). Commit the updated `hmmg-html` tag.
+
+. The site will get rebuilt and deployed!
