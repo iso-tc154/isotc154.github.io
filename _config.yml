@@ -1,12 +1,20 @@
-title: Resource site for ISO/TC 154
-title_html: Resource site for&nbsp;ISO/TC&nbsp;154
+title: Resource site for ISO/TC 154 processes, data elements and documents in commerce, industry and administration
+title_html: TC&nbsp;154 Resources
 
 email: open.source@ribose.com
 
+committee:
+  id: 154
+  name: Processes, data elements and documents in commerce, industry and administration
+  link: https://committee.iso.org/home/tc154
+
 description: >-
   Resource site for ISO/TC 154
+  processes, data elements and documents in commerce, industry and administration
 
-tagline: ""
+tagline: >-
+  Resources for ISO/TC 154
+  processes, data elements and documents in commerce, industry and administration
 
 baseurl: ""
 url: "https://www.isotc154.org"

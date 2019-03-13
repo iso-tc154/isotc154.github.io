@@ -1,6 +1,12 @@
 ---
+layout: home
+nav_items: [about]
 ---
-= Welcome to ISO/TC 154
+:page-liquid:
+
+
+[.section]
+== Welcome to ISO/TC 154
 
 It is the vision of ISO/TC 154 that all parties in the value chain use standardized data exchange to reduce cost in managing the processes in the private and public domain and to foster trade facilitation.
 
@@ -8,6 +14,7 @@ The mission of ISO/TC 154 is both to undertake and to facilitate the development
 
 These standards cover data exchange regardless of the media used.
 
+[.section]
 == Working together
 
 Wherever possible, ISO/TC 154 fosters harmonisation between and within international standards development organizations, particularly through the Memorandum of Understanding between the International Electrotechnical Commission, the International Organization for Standardization, the International Telecommunication Union and the United Nations Economic Commission for Europe concerning standardization in the field of electronic business.
@@ -15,9 +22,6 @@ Wherever possible, ISO/TC 154 fosters harmonisation between and within internati
 === ISO/TC 154/JWG 1
 
 ISO/TC 154/JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group (JSWG)`" with the UN/ECE in order to develop and maintain the EDIFACT syntax. Since the publication of the syntax version 1 in 1988 the standard has been revised and amended several times until the current version 4, release 1. With its publication in 2002 the work in JWG 1 is mainly concentrated on the twice-per-year update of the syntax codes directory (in alignment with the EDIFACT user directories) on the corresponding JSWG website.
-
-
-
 
 === ISO/TC 154/WG 3
 
