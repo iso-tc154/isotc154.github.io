@@ -1,5 +1,5 @@
 ---
-permalink: "/minutes/2016-07-20"
+permalink: "/minutes/2016-07-20"/
 date: "20 Jul 2016 15:47:22 +0000"
 category: CAT Minutes
 category: Ballots

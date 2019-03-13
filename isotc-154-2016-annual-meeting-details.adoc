@@ -1,5 +1,5 @@
 ---
-permalink: /isotc-154-2016-anual-meeting-details
+permalink: /isotc-154-2016-anual-meeting-details/
 ---
 = ISO/TC 154 -- 2016 Anual Meeting Details
 

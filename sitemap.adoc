@@ -1,5 +1,5 @@
 ---
-permalink: /sitemap
+permalink: /sitemap/
 ---
 = Sitemap
 

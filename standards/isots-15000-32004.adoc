@@ -1,5 +1,5 @@
 ---
-permalink: /standards/isots-15000-32004
+permalink: /standards/isots-15000-32004/
 ---
 = ISO/TS 15000-3:2004
 

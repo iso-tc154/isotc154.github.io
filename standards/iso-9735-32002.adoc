@@ -1,5 +1,5 @@
 ---
-permalink: /standards/iso-9735-32002
+permalink: /standards/iso-9735-32002/
 ---
 = ISO 9735-3:2002
 

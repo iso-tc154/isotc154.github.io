@@ -1,5 +1,5 @@
 ---
-permalink: /standards/iso-97351988amd-11992
+permalink: /standards/iso-97351988amd-11992/
 ---
 = ISO 9735:1988/Amd 1:1992
 

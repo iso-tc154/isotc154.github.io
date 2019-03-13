@@ -1,5 +1,5 @@
 ---
-permalink: /standards/iso-73722005
+permalink: /standards/iso-73722005/
 ---
 = ISO 7372:2005
 

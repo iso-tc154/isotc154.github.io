@@ -1,5 +1,5 @@
 ---
-permalink: /standards/isots-173692005
+permalink: /standards/isots-173692005/
 ---
 = ISO/TS 17369:2005
 

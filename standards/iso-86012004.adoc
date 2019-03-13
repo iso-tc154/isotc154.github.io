@@ -1,5 +1,5 @@
 ---
-permalink: /standards/iso-86012004
+permalink: /standards/iso-86012004/
 ---
 = ISO 8601:2004
 

@@ -1,5 +1,5 @@
 ---
-permalink: /standards/iso-9735-62002
+permalink: /standards/iso-9735-62002/
 ---
 = ISO 9735-6:2002
 

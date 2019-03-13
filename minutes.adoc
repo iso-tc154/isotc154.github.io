@@ -1,5 +1,5 @@
 ---
-permalink: /minutes
+permalink: /minutes/
 ---
 = Minutes Announcements
 

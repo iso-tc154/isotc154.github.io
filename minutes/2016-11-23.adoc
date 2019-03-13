@@ -1,5 +1,5 @@
 ---
-permalink: "/minutes/2016-11-23"
+permalink: "/minutes/2016-11-23"/
 date: "24 Nov 2016 22:50:58 +0000"
 category: CAT Minutes
 category: Ballots

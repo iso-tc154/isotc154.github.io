@@ -1,5 +1,5 @@
 ---
-permalink: "/minutes/2016-12-21"
+permalink: "/minutes/2016-12-21"/
 date: "21 Dec 2016 15:35:21 +0000"
 category: CAT Minutes
 category: ebMoU

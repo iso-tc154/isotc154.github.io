@@ -1,5 +1,5 @@
 ---
-permalink: "minutes/2017-02-15"
+permalink: "minutes/2017-02-15"/
 date: 2017-02-15T16:36:53Z
 categories:
 - CAT Minutes

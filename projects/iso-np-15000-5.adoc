@@ -1,5 +1,5 @@
 ---
-permalink: /projects/iso-np-15000-5
+permalink: /projects/iso-np-15000-5/
 ---
 = ISO NP 15000-5
 

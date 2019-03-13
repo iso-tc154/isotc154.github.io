@@ -1,5 +1,5 @@
 ---
-permalink: /about/wg4
+permalink: /about/wg4/
 ---
 = WG 4 -- eLK
 

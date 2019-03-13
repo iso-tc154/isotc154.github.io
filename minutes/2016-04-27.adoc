@@ -1,5 +1,5 @@
 ---
-permalink: "/minutes/2016-04-27"
+permalink: "/minutes/2016-04-27"/
 date: "27 Apr 2016 22:27:00 +0000"
 category: CAT Minutes
 category: CAT

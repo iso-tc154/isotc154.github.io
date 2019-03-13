@@ -1,5 +1,5 @@
 ---
-permalink: /about/jwg1/sdmr
+permalink: /about/jwg1/sdmr/
 ---
 = Syntax DMR Submission Processing Procedures
 

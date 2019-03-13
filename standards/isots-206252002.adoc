@@ -1,5 +1,5 @@
 ---
-permalink: /standards/isots-206252002
+permalink: /standards/isots-206252002/
 ---
 = ISO/TS 20625:2002
 

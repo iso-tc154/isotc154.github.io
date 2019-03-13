@@ -1,5 +1,5 @@
 ---
-permalink: "/minutes/2016-06-08"
+permalink: "/minutes/2016-06-08"/
 date: "09 Jun 2016 22:36:12 +0000"
 category: CAT Minutes
 category: ISO 8601

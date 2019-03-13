@@ -1,5 +1,5 @@
 ---
-permalink: /standards/iso-84401986
+permalink: /standards/iso-84401986/
 ---
 = ISO 8440:1986
 

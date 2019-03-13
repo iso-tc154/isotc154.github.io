@@ -1,5 +1,5 @@
 ---
-permalink: /about/wg3
+permalink: /about/wg3/
 ---
 = WG 3 -- CCTS
 

@@ -1,5 +1,5 @@
 ---
-permalink: /standards/iso-84391990
+permalink: /standards/iso-84391990/
 ---
 = ISO 8439:1990
 
