@@ -3,9 +3,16 @@ group-id: ma
 group-name: "TDED Maintenance Agency"
 order: 9
 ---
-= TDED Maintenance Agency
+= UN TDED -- ISO 7372 Joint Maintenance Agency (JMA)
 
-== Introduction
+== General
+
+UN TDED -- ISO 7372 Joint Maintenance Agency (JMA) was established in the late 80's to maintain the *Trade Data Element Directory* (TDED) issued by UN/ECE as UNTDED and also by ISO/TC154 as ISO 7372.
+
+The joint publication lists standard data elements intended to facilitate open interchange of data in international trade. The standard data elements listed can be used with any method for data interchange on paper documents as well as with other paperless means of data processing and communication.
+
+
+== The Trade Data Elements Directory (TDED)
 
 The *Trade Data Elements Directory (TDED)* is also known as the United Nations Trade Data Elements Directory (*UNTDED*) and as the International Standard *ISO 7372*. In this Directory, each data element has 2 normative attributes: a 4 digit numerical tag and a free text description/definition. In addition, informative attributes provide e.g. name, character representation, bridging information to the relevant SAD box number, IMO FAL Form, etc.
 
@@ -54,79 +61,52 @@ http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7345306&amp;objAction=b
 
 == Relevant links
 
-UNTDED – ISO7372 MA website:: http://www.iso.org/iso7372ma[JMA website link]
+http://www.iso.org/iso7372ma[UNTDED – ISO7372 JMA website]
 
 
 === TDED 2005 edition
 
-UNTDED 2005::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10416613&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351087%26objAction%3Dbrowse%26viewType%3D1[UNTDED 2005]
 
-
-ISO 7372:2005::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10416611&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351087%26objAction%3Dbrowse%26viewType%3D1[ISO 7372:2005]
 
 
 
 === Layout Key, TDED
 
-
-Suite of standards (a)::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7351005&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351001%26objAction%3Dbrowse%26sort%3Dname[Suite of standards (a)]
 
-
-Suite of standards (b)::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7351006&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351001%26objAction%3Dbrowse%26sort%3Dname[Suite of standards (b)]
 
-
-More on this Suite::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7334168&amp;objAction=browse&amp;sort=name[More information]
 
 
 === TDED all editions
 
-Scope::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=11421724&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D10431946%26objAction%3Dbrowse%26viewType%3D1[Scope]
 
-
-Overview::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=11214675&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D10482921%26objAction%3Dbrowse%26sort%3Dname[Overview]
 
-
-Links to previous editions::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10417266&amp;objAction=browse&amp;viewType=1[Previous Editions]
 
-
-More info on TDED::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7409832&amp;objAction=browse&amp;viewType=1[More information]
 
 
 
 === JMA
 
-Meetings::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=9728008&amp;objAction=browse&amp;sort=name[Meetings]
 
-
-Docs & e-mails archives::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7345413&amp;objAction=browse&amp;sort=name[Docs and email archives]
 
 
 === UN/ECE
 
-
-UN/CEFACT::
 http://www.unece.org/cefact/index.html[UN/CEFACT]
 
-
-Alignment Project::
 http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=9101510&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D8361985%26objAction%3Dbrowse%26viewType%3D1[Alignment Project]
 
-
-Trade Division Secretariat::
 http://www.unece.org/tradewelcome/trade-home.html[Trade Division Secretariat]
 
-
-Transport Division Secretariat::
 http://www.unece.org/trans/Welcome.html[Transport Division Secretariat]
 

@@ -7,13 +7,18 @@ order: 2
 
 NOTE: Please see link:/procedures/sdmr[Syntax Data Maintenance Request Submission and Processing Procedures (SDMR)] for SDMR procedures.
 
+== General
+
+ISO/TC 154/JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group (JSWG)`" with the UN/ECE in order to develop and maintain the EDIFACT syntax. Since the publication of the syntax version 1 in 1988 the standard has been revised and amended several times until the current version 4, release 1. With its publication in 2002 the work in JWG 1 is mainly concentrated on the twice-per-year update of the syntax codes directory (in alignment with the EDIFACT user directories) on the corresponding JSWG website.
+
 == Scope
 
-The scope of JWG1 also includes the maintaince, update and extend of ISO 9735.
+The scope of JWG1 also includes the maintenance, update and extend of ISO 9735.
 
 == History
 
 The *Joint Working Group 1*, formally known as _Joint Syntax Working Group (JSWG)_, started its work in the late 80s to produce the so called version 1 of the EDIFACT syntax (published by ISO as ISO 9735:1988). The membership comprises experts from both UN/ECE and ISO level.
+
 
 == Secretariat
 

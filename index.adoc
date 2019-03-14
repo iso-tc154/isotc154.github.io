@@ -19,26 +19,22 @@ These standards cover data exchange regardless of the media used.
 
 Wherever possible, ISO/TC 154 fosters harmonisation between and within international standards development organizations, particularly through the Memorandum of Understanding between the International Electrotechnical Commission, the International Organization for Standardization, the International Telecommunication Union and the United Nations Economic Commission for Europe concerning standardization in the field of electronic business.
 
-=== ISO/TC 154/JWG 1
+[.section]
+== Standards
 
-ISO/TC 154/JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group (JSWG)`" with the UN/ECE in order to develop and maintain the EDIFACT syntax. Since the publication of the syntax version 1 in 1988 the standard has been revised and amended several times until the current version 4, release 1. With its publication in 2002 the work in JWG 1 is mainly concentrated on the twice-per-year update of the syntax codes directory (in alignment with the EDIFACT user directories) on the corresponding JSWG website.
+Our standards can be found on our link:/standards[Standards] page.
 
-=== ISO/TC 154/WG 3
+[.section]
+== Projects
 
-ISO/TC 154/WG 3 was established upon the former "`CCTS`" ad-hoc group of ISO/TC 154 in March 2006. The purpose is to maintain the ISO/TS 15000-5 "`Core Components Technical Specification, V2.01`" in close liaison with UN/CEFACT.
+Existing and proposed projects can be found on our link:/projects[Projects] page.
 
-The Core Components Technical Specification provides a way to identify, capture and maximize the re-use of business information to support and enhance information interoperability across multiple business situations.
+[.section]
+== About us
 
+Our organizational structure and work groups are described in detail on our link:/about[About Us] page.
 
+[.section]
+== Frequently asked questions
 
-=== ISO/TC 154/WG 4
-
-ISO/TC 154/WG 4 was established (formally as JWG 2) in 2006 for the purpose of developing an electronic version of the UN Layout Key (equivalent to ISO 6422:1985). The standard(s) should base on the relationship between the underlying core components and the presentation aspects of the Layout Key. In addition the standard(s) should allow others to derive aligned electronic documents based on the electronic Layout Key in a similar way to the development of aligned paper documents based on the original UNLK for Trade Documents.
-
-
-=== UN TDED -- ISO 7372 Joint Maintenance Agency
-
-UN TDED -- ISO 7372 Joint Maintenance Agency (JMA) was established in the late 80's to maintain the *Trade Data Element Directory* (TDED) issued by UN/ECE as UNTDED and also by ISO/TC154 as ISO 7372.
-
-The joint publication lists standard data elements intended to facilitate open interchange of data in international trade. The standard data elements listed can be used with any method for data interchange on paper documents as well as with other paperless means of data processing and communication.
-
+Common questions about ISO/TC 154 and its standards are answered in our link:/faq[FAQ] page.

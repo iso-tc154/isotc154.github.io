@@ -5,6 +5,11 @@ order: 3
 ---
 = WG 3 -- CCTS
 
+ISO/TC 154/WG 3 was established upon the former "`CCTS`" ad-hoc group of ISO/TC 154 in March 2006. The purpose is to maintain the ISO/TS 15000-5 "`Core Components Technical Specification, V2.01`" in close liaison with UN/CEFACT.
+
+The Core Components Technical Specification provides a way to identify, capture and maximize the re-use of business information to support and enhance information interoperability across multiple business situations.
+
+
 == ISO TS 15000-5 (ebXML Core Components Technical Specification, Version 2.01(ebCCTS))
 
 === Background

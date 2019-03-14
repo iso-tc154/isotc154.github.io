@@ -5,7 +5,15 @@ order: 4
 ---
 = WG 4 -- eLK
 
+== General
+
+ISO/TC 154/WG 4 was established (formally as JWG 2) in 2006 for the purpose of developing an electronic version of the UN Layout Key (equivalent to ISO 6422:1985). The standard(s) should base on the relationship between the underlying core components and the presentation aspects of the Layout Key. In addition the standard(s) should allow others to derive aligned electronic documents based on the electronic Layout Key in a similar way to the development of aligned paper documents based on the original UNLK for Trade Documents.
+
+== History
+
 Working Group 4 (originally named JWG 2) was established during the UN/CEFACT Forum meeting in Vancouver, March 2006 and comprises experts both from UN/ECE and ISO level. The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Michael Dill (DE).
+
+== Current work
 
 WG 4 is developing an electronic version of the UNLK (equivalent to ISO 6422:1985). This entails the development of a meta level standard and a methodology for the description of intelligent electronic forms.
 

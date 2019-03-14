@@ -6,7 +6,7 @@ email: open.source@ribose.com
 committee:
   id: 154
   name: Processes, data elements and documents in commerce, industry and administration
-  link: https://committee.iso.org/home/tc154
+  link: /
 
 description: >-
   ISO/TC 154 Committee site
@@ -43,6 +43,9 @@ collections:
     output: true
     permalink: /:collection/:date/
   standards:
+    output: true
+    permalink: /:collection/:name/
+  projects:
     output: true
     permalink: /:collection/:name/
   groups:
