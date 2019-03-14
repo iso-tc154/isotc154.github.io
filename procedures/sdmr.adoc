@@ -1,0 +1,89 @@
+---
+permalink: /procedures/sdmr/
+---
+= Joint syntax working group (with UN/ECE): Syntax Data Maintenance Request Submission and Processing Procedures
+
+Joint syntax working group (with UN/ECE): Syntax Data Maintenance Request Submission and Processing Procedures
+
+== Introduction
+
+Syntax Data Maintenance Requests (Syntax DMRs) serve as the means to apply enhancements to ISO 9735 (Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules).
+
+== Types of Syntax DMRs
+
+These Syntax DMRs fall into three categories:
+
+Service code DMRs:: DMRs proposing changes and/or additions which are against ISO 9735/V.3 and/or ISO 9735/V.4 related to codes for data elements beginning with ‘0’.
+
+Service directory DMRs:: DMRs against ISO 9735/V.4 which are related to segments beginning with ‘U’; composite data elements beginning with ‘S’; data elements beginning with ‘0‘. Service directory DMRs against ISO 9735/V.3 are no longer applicable.
+
+Syntax rule DMRs:: DMRs proposing changes or enhancements to any of the syntax rules and associated text specified in the latest release of ISO 9735/V.4 (which includes the service messages AUTACK, CONTRL and KEYMAN).
+
+Syntax rule DMRs against ISO 9735/V.3 are no longer applicable.
+
+== Submission of Syntax DMRs
+
+=== Submission of Service code DMRs
+
+*Service code DMRs* shall be directly submitted to the ISO/TC 154/JWG 1 (JSWG) footnote:[JSWG (Joint Syntax Working Group) = Name of ISO/TC 154/JWG 1] using the web form specifically designed for this purpose.
+
+The form can be accessed through the JWG 1 web site: http://www.gefeg.com/jswg[ISO/TC 154 JWG 1 Website].
+
+In addition Service code DMRs can be submitted:
+
+* via the UN/ECE CEFACT secretariat,
+
+* automatically (as result of new directory [d/e 0054] and/or message type addition [d/e 0065] of which the information has to be provided by the UN/ECE secretariat to the JWG 1 secretariat one month before the scheduled release of the UN/EDIFACT directory set.
+
+
+=== Submission of Service directory DMRs and Syntax rule DMRs
+
+*Service directory DMRs* and *Syntax rule DMRs* shall be directly submitted to the JWG 1 secretariat.
+
+*Service directory DMRs* and *Syntax rule DMRs* shall be forwarded to the JWG 1 secretariat either:
+
+. in electronic form as e-mail text; or
+
+. as an attachment to an e-mail in MS Word or RTF format, and be addressed to: bernd.boesler@din.de
+
+. Those without an e-mail capability should send their Syntax DMRs by fax or letter to the JWG 1 secretariat at: +
+--
+Fax: +49 30 2601-42488
+
+Address:
+
+DIN +
+att. Mr. Boesler +
+D-10772 Berlin +
+Germany
+--
+
+== Processing (Review) of Syntax DMRs
+
+* Syntax DMRs as submitted to the JWG 1 secretariat will be allocated a JWG 1 log number which will be communicated back to the submittor as a confirmation of receipt of the DMR.
+
+* For *Service code DMRs* submitted via the JWG 1 web site, these will be allocated a JWG 1 log number and acknowledged automatically.
+
+* *Service directory DMRs* and *Syntax rule DMRs* shall be circulated by the JWG 1 secretariat to the experts of JWG 1.
+
+** The function of the review shall be to approve the DMR (minor change) or to become a Work Item to be processed by JWG 1. If a DMR is rejected, the reason for the rejection shall be given. Whatever the outcome of the review, the party that submitted the DMR to the JWG 1 shall be notified by the JWG 1 secretariat of the result, including where necessary the reason for a rejection.
+
+** DMRs approved as Work Items for JWG 1 shall be processed according to the approved JWG 1 procedures for the progression of its Work Items as set out in the attached Annex.
+
+
+== Publication of approved Syntax DMRs
+
+=== Publication of approved Service code DMRs
+
+Approved *Service code DMRs* shall be applied to the appropriate Service Code List Directories (ISO 9735/V.4 and/or ISO 9735/V.3) and made available as a new directory release at the http://www.gefeg.com/jswg[JWG 1 web site] with the same frequency as that applied to the user UN/EDIFACT Directories (currently two releases per year).
+
+The JWG 1 secretariat shall provide the Service Code Publication Team footnote:[Members of the Service Code Publication Team are appointed by the JWG 1 convener and secretariat.], one month before the next scheduled UN/EDIFACT directory, with all approved *Service code DMRs*.
+
+These DMRs shall be applied to the appropriate Service Code List Directories (ISO 9735/V.4 and/or ISO 9735/V.3) and made available as a new directory release at the http://www.gefeg.com/jswg[JWG 1 web site] at the date provided by the JWG 1 secretariat. To ensure proper publication alignment with the UN/EDIFACT Directory set the web host provider, currently GEFEG, will be informed by the JWG 1 secretariat when to make the new web content available to the Public.
+
+=== Publication of approved Service directory DMRs and Service rule DMRs
+
+Approved Work Items for changing/updating the Service directory and/or the Syntax rules will lead to a new edition of the affected Part(s) of the ISO 9735 standard series and the relevant entries on the JWG 1 web site.
+
+
+

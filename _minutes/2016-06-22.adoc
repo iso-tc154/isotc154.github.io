@@ -1,0 +1,99 @@
+---
+permalink: "/minutes/2016-06-22/"
+publish-date: "2016-06-22T15:11:15Z"
+categories: [CAT Minutes, ISO 14533, ISO 8601, ISO CS, MoU/MG]
+title: CAT Draft Minutes 2016-06-22
+---
+= CAT Draft Minutes 2016-06-22
+
+== ISO/TC 154 CAT Conference Call, 22 June 2016, 14:00 UTC
+Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Mei-Li Chen (MLC)
+
+
+== Approval of Agenda
+
+*Approved*
+
+== Approval of link:/minutes/2016-06-08[08 June 2016 Meeting Minutes]
+
+*Approved*.
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+Nothing to report.
+
+=== WG 5 (Representation of dates and times)
+
+* ISO 8601 Part 1 & 2 update
+
+* Agreed to final text for both CDs
+* Next call scheduled for 05 June to accept both drafts for CD ballot.
+
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* ISO/CD 14533-3 Update
+
+** Awaiting CD ballot closure (21 July 2016)
+
+
+
+
+==== PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* ISO/WD 19626-1 "`TCP for Electronic Documents -- Part 1`" Update
+
+** JC has prepared WD using new "`simple`" template.
+** Next step is to create NWIP for review at next CAT meeting.
+
+
+
+
+==== PT3 -- Trusted mobile e-document framework
+
+* ISO/WD 20415 "`TMEF`" Update
+
+** Project team leader (Mr. Lee) is currently preparing final WD using the new "`simple`" template..
+** Awaiting WG support for dual NWIP and WD ballot.
+
+
+
+
+
+
+
+
+== Liaison Updates
+
+Nothing to report.
+
+== MoU/MG Update
+
+Nothing to report.
+
+== Old Business
+
+=== ISO/TC 154 Chairmanship Update
+
+* Awaiting response from ISO/TMB for nomination of K-DN by SAC.
+
+=== ISO/CS Objection to disseminate Drafts of both ISO/CD 8601 parts to MoU/MG.
+
+* *Issue is closed* since ISO/CS has not provided MoU/MG with a mechanics for distribution. As far as ISO/TC 154 is concerned it has done everything possible to encourage ISO and MoU/MG members to join the work.
+
+
+
+
+== New Business
+== Other Business
+
+
+=== Next Meeting
+
+*06 July 2016, starting at 14:00 UTC*

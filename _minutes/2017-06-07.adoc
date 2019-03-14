@@ -1,0 +1,83 @@
+---
+permalink: "minutes/2017-06-07/"
+publish-date: "2017-06-07T00:00:00Z"
+categories:  [CAT Minutes, ISO CS, Liaison]
+title: CAT Draft Minutes 2017-06-07
+---
+= ISO/TC 154 CAT meeting 2017-06-07
+
+== Agenda
+
+. Approval of Agenda
+. New TC chair
+** Introduction of Klaus’s resignation
+** Introduction of new TC chair
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+=== WG 5 (Representation of dates and times)
+
+* ISO/DIS 8601-1 Ballot Disposition
+* ISO/DIS 8601-2 Ballot Disposition
+* Call for new WG 5 convener (or disbandment of WG 5 and allocate both ISO 8601 projects to the TC)
+* Liaison eligibility of Ray
+
+=== WG 6 (Trusted eCommunication)
+
+* External Liaison with ETSI STF 523
+
+==== PT1 –ISO 14533 Long term signature profiles
+
+* ISO 14533-3
+* ISO/WD 14533-4
+
+==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+
+=== WG 7 (digital Business)
+
+* New WG 7 convener
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+==== PT2- ISO/WD 22468 Value Stream Management (VSM)
+
+==== PT3 – XMLFACT
+
+* ISO/DTR 18262 ODIF
+
+== Liaison Updates
+
+* MoU/MG
+** 38th MoU/MG meeting: 26 April 2017 (08:00-16:00 UTC) + 27 April 2017 (08:00-14:00 UTC)
+
+
+== Old Business
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+
+== Open Ballots
+
+* Systematic Reviews:
+** Result of SR ISO/TS 20625:2002 (vers 3) "`Electronic data interchange for administration, commerce and transport (EDIFACT) – Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines`"
+** ISO 6422-1:2010 (vers 2) "`Layout key for trade documents – Part 1: Paper-based documents`" closing 2017-06-05
+** ISO 8439:1990 (vers 5) "`Forms design – Basic layout`" closing 2017-06-05
+** ISO 8440:1986 (vers 5) "`Location of codes in trade documents`" closing 2017-06-05
+
+== Other Business
+
+=== New ISO Meetings platform
+
+* Presentation sessions for ISO Meetings platform
+
+=== ISO policy regarding the extension of DIS ballot dates
+
+=== New guidelines for the submission of text and graphics to ISO/CS
+
+
+== Next Meeting
+
+(TBD) 5 July 2017, starting at 16:00 (UTC +8:00)

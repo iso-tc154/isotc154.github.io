@@ -1,0 +1,23 @@
+---
+standard-identifier: ISO/TS 15000-4:2004
+standard-type: TS
+title: "ISO/TS 15000-4:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)"
+---
+= ISO/TS 15000-4:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)
+
+== Abstract
+
+ISO 15000-4:2004 defines the interface between the registry and the registry clients, as well as the interaction protocols, message definitions and XML schema. The interface is intended to function as the basis for a more complete definition of the ebXML registry requirements in the future. The ebXML Registry provides a set of services that enable sharing of information between interested parties for the purpose of enabling business process integration between such parties based on the ebXML specifications. The shared information is maintained as objects in a repository and managed by the ebXML Registry Services defined in this document.
+
+== Revision information
+
+Withdrawn.
+
+== Corrigenda, Amendments and other parts
+
+* ISO/TS 15000-1:2004
+* ISO/TS 15000-2:2004
+* ISO/TS 15000-3:2004
+* ISO/TS 15000-4:2004
+* ISO/TS 15000-5:2005/Amd 1:2011
+

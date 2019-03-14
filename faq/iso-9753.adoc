@@ -1,0 +1,115 @@
+---
+permalink: /faq/iso-9753/
+---
+= ISO 9735 (EDIFACT Syntax) Frequently Asked Questions
+
+== Does UNOA as Syntax Identifier allow lowercase characters (a-z)?
+
+
+The answer is for all versions of ISO 9735 a absolute *NO*!
+
+Syntax data element 0001 (Syntax Identifier) is defined as:
+
+_Coded identification of the agency controlling the syntax, and of the character repertoire used in an interchange._
+
+The definition for the UMOA code value within the code list of 0001 is:
+
+_As defined in the basic code table of ISO 646 *with the exceptions* of lower case letters, alternative graphic character allocations and national or application-oriented graphic character allocations._
+
+To be in conformance with ISO 9735 any product, including message instances, must observe the restrictions and only use uppercase letters when using UNOA as the syntax identifier.
+
+
+== What are the differences amongst the various versions of ISO 9735?
+
+=== Introduction
+
+The EDIFACT Application Level Syntax Rules (ISO 9735) Level represent the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing.  In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI.  The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
+
+Version 4, consisted originally of 9 parts, which was approved in October 1998. Release 1 of version 4, added part 10 in 2002.
+
+=== Version 1
+
+First published in 1988, this particular version no longer supports recent releases of the UN/EDIFACT directories.  The directory version/release has changed from a numeric notation (eg. 91.2) to an alphanumeric format (eg. D.99B).  In the UNG (Functional group header) and the UNH (Message header) service segments the corresponding data elements (0052/0054) are defined as being numeric.
+
+=== Version 2
+
+Version 2 is represented by Version 1 plus Corrigendum 1 published in 1990, the syntax rules specified in Version 2 remained unchanged from Version 1 with the exception that the alphanumeric version/release format is supported and the status of the message release number (0054) and controlling agency (0051) were changed from conditional to mandatory.
+
+=== Version 3
+
+Version 3 is represented by Version 2 plus Amendment 1, published in 1992.  Amendment 1 extended the supported character sets from character set A (ISO 646 with the exception of lower case letters and certain graphic characters) and B (ISO 646 with the exception of certain graphic characters) to the character sets C through F (covering Latin, Cyrillic and Greek alphabets).
+
+=== Version 4
+
+Version 4 represents a significant revision to the syntax rules and supersedes the earlier publications.  It is not fully upward compatible with Version 3 (eg. a single set of default service characters are defined in Version 4, where the level A and B character sets in earlier versions, each specified separate service characters).
+
+While messages specified in the D.99A and earlier UN/EDIFACT Directories may use Versions 2, 3 and 4 of the syntax rules, it should be noted that messages specified in the D.99B and later UN/EDIFACT Directories that use features specific to Version 4 (eg. repeating composite data elements), these messages must use Version 4 of the syntax rules.
+
+The Version 4 syntax rules comprise 10 individual parts:
+
+
+* Part 1: Syntax rules common to all parts, together with syntax service directories for each of the parts
+* Part 2: Syntax rules specific to batch EDI
+* Part 3: Syntax rules specific to interactive EDI
+* Part 4: Syntax and service report message for batch EDI (message type -- CONTRL)
+* Part 5: Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)
+* Part 6: Secure authentication and acknowledgement message (message type -- AUTACK)
+* Part 7: Security rules for batch EDI (confidentiality)
+* Part 8: Associated data in EDI
+* Part 9: Security key and certificate management message (message type -- KEYMAN)
+* Part 10: Syntax service directories
+
+*Part 1* is a re-draft of corresponding sections in the previous version of syntax rules. It consists of the rules common to all parts of Version 4 of the syntax, and includes the definitions and service directories for all parts.  The basic syntax rules specified in this part remain unchanged from Version 3, with the exception that the coverage of character repertoires has been extended, and two new techniques have been introduced (the provision for "`dependency notes`" and the introduction of a service repetition character, to support the capability of permitting multiple occurrences (repeats) of stand-alone and/or composite data elements).  Both of these techniques are used in other parts of Version 4 of the syntax rules, and are available for specification in UN/EDIFACT messages that utilise these rules.
+
+In addition, enhancements have been made to the batch interchange; group; and message header segments (UNB; UNG; and UNH).
+
+Character repertoires:: Because of the widening use of ISO 9735, it has become necessary to extend its coverage to include all character repertoires covered by ISO 8859, Parts 1-9 (Information processing -- 8-Bit single -- byte coded graphic character sets); the code extension techniques covered by ISO 2022 (with certain restrictions on its use within an interchange); and partial use of the techniques covered by ISO/IEC 10646-1.
+
+Dependency notes:: These provide a formal notation to express relationships within UN/EDIFACT message, segment and composite data element specifications.
+
+Repeating data elements:: The specification of multiple occurrences of a message within a group or within an interchange; a group within an interchange; and a segment group and/or a segment within a message, which existed in the previous version of the syntax rules, has been extended in the current version.  The additional capability for the specification of multiple occurrences of a stand-alone data element and/or of a composite data element within a segment has been introduced.
+
+UNB -- Interchange header segment:: This segment has been enhanced to permit the identification of the service code list directory version number; identification of the character encoding scheme; and internal sub-identification of the sender and recipient.  In addition, to conform to year 2000 requirements, the date format in this segment has been extended.
+
+UNG -- Group header segment:: This segment has been re-named and its function changed to permit one or more message types and/or packages to be contained in the group.  As a result, certain data elements, which are now redundant, have been marked for deletion.  In addition, to conform to year 2000 requirements, the date format in this segment has been extended.
+
+UNH -- Message header segment:: This segment has been enhanced to permit the identification of a message subset, of a related message implementation guideline, and of a related scenario.
+
+UGH/UGT -- Anti-collision segment group:: An addition has been made in this version of the syntax rules to permit the prevention of segment collision, by use of the UGH/UGT segment group.  This technique may be used in a UN/EDIFACT message specification when it is not otherwise possible to ensure unambiguous identification of each message segment upon receipt.
+
+*Part 2* is specific to batch EDI and is a re-draft of corresponding sections in the previous version of the syntax rules. It is identical, except for minor changes to terminology, and for clarification of the use of segment groups.
+
+*Part 3* is a new part, which has been added to the syntax rules. It provides for the exchange of UN/EDIFACT messages in an interactive (conversational) EDI environment.  Interactive EDI (I-EDI) is characterised by the following:
+
+
+* a formalised association between the two parties using a dialogue,
+* the ability, dynamically, to direct the course of the I-EDI transaction, depending upon the result of earlier exchanges within the dialogue,
+* short response times,
+* all the messages exchanged within one dialogue relate to the same business transaction,
+* a transaction is a controlled set of dialogues that can take place between two or more parties.
+
+These characteristics differentiate I-EDI from batch EDI (as specified in Part 2).  For consistency and in order to simplify the implementation of the syntax rules for those users who wish to utilise both batch and interactive processing, this part of the rules has been aligned as far as possible with the batch syntax rules.
+
+*Part 4* of the syntax rules provides the capability for the automatic preparation of the CONTRL message in response to a received interchange, group, message or package:
+
+
+* to acknowledge a correct syntactical structure; or
+* to reject an incorrect syntactical structure.
+
+In the case of rejection, the message lists any syntactical errors or unsupported functions encountered.  In addition to the above, the message may be used to indicate only the receipt of an interchange.
+
+It is based upon a similar CONTRL service message developed and published as separate document for use with earlier versions of the syntax rules.
+
+*Part 5* is a new part, which has been added to the syntax rules.  It provides an optional capability of securing batch UN/EDIFACT structures.  It provides a method to address message/package level, group level, and interchange level security for authenticity, integrity and non-repudiation of origin, in accordance with established security mechanisms.
+
+*Part 6* is a new part, which has been added to the syntax rules.  It provides an optional capability of securing batch UN/EDIFACT structures, ie. messages, packages, groups or interchanges, by means of a secure authentication and acknowledgement message, AUTACK.
+
+*Part 7* is a new part, which has been added to the syntax rules. It provides an optional capability of applying confidentiality to a batch UN/EDIFACT structures.  It provides a method to address message/package level, group level and interchange level security for confidentiality in accordance with established security mechanisms.
+
+*Part 8* is a new part, which has been added to the syntax rules.  It provides an optional capability of associating a package of data, which contains an object bounded by EDIFACT service segments as envelopes.  The option permits the transfer within an UN/EDIFACT interchange of data which can be created by other applications, such as STEP (Standard for The Exchange of Product model data), CAD (Computer Aided Design), etc., and which cannot be carried by means of an UN/EDIFACT message.
+
+*Part 9* is a new part, which has been added to the syntax rules.  It provides an optional capability of managing security keys and certificates using the KEYMAN message.
+
+*Part 10* was added with the publication of Release 1. For maintenance reasons of the Syntax service directories this part was extracted and updated from each of the relevant annex parts of the ISO 9735 series, first edition, published in 1998 and 1999.
+
+

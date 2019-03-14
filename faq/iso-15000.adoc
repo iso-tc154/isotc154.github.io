@@ -1,0 +1,130 @@
+---
+permalink: /faq/iso-15000/
+---
+= ISO 15000 Frequently Asked Questions
+
+== ISO 15000-5 (Core Component Specification)
+
+=== Is UBL 2.1 in conformance with ISO/TS 15000-5:2005?
+
+The questions was raised because of a statement on the UBL Home page, which states:
+
+[quote]
+____
+UBL was the first published data format specification produced in full conformance with UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.
+____
+
+*For a standard to claim full conformance it must satisfy 100% of all the mandatory ‘requirements’ found in the ‘normative’ sections.*
+
+ISO/TS 15000–5:2005 (and UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01) both contain the same statements defining conformance as:
+
+* Applications will be considered to be in full conformance with this technical specification if they comply with the content of normative sections, rules and definitions.
+* Section 4.2 defines sections 6,7,8 and 9 as being normative.
+
+The short answer is that *UBL 2.1 is not in conformance* with either version since it *_breaks at least one mandatory rule!_*
+
+For the long answer, see the table below that list examples of *requirements that are not met* by UBL 2.1 to be in conformance:
+
+[cols="a,a",options="header"]
+|===
+|ISO TS/15000–5:2005 Normative Rules
+|OASIS UBL 2.1 Library Entries
+
+|[B3] A Basic Business Information Entity *shall be based* on a Basic Core Component
+|Does *not* include any Basic Core Components
+
+
+|[B4] An Association Business Information Entity *shall be based* on an Association Core Components
+|Does *not* include any Association Core Components
+
+
+|[B5] An Aggregate Business Information Entity *shall be based* on an Aggregate Core Component
+|Does *not* include any Aggregate Core Components.
+
+
+|[B7] A Business Information Entity Property of an Aggregate Business Information Entity *shall be based* on a Core Component Property of the corresponding Aggregate Core Component
+|Does *not* include any Aggregate Business Information Entities
+
+
+|[B8] The Data Type, on which a Basic Business Information Entity Property *is based, shall itself be similar</strong> to the Data Type on which the corresponding Basic Core Component Property *is based* (i.e. it *shall either* be the same Data Type or a more restricted one)
+|Does *not* include any Basic Core Component Properties
+
+
+|[B9] The Aggregate Business Information Entity, on which an Association Business Information Entity Property *is based, shall itself be based* on the Aggregate Core Component on which the corresponding Association Core Component Property is based
+|Does *not* include any Aggregate Core Components or Association Core Components
+
+
+|[C1] Each Core Component Type, Basic Core Component, Association Core Component or Aggregate Core Component *must have its own unique semantic definition within the library of which it is a part*. The definition shall be developed first and the Dictionary Entry Name shall be extracted from it. Comments can be used to further clarify the definition, to provide examples and/or to reference a recognized standard
+|There are *no publicly published* core components that allow this rule to be followed
+
+
+|[C18] The Dictionary Entry Name shall be concise and *shall not contain consecutive redundant words*
+|Examples of entries not in conformance:
+
+Address. Address Type _Code_. _Code_
+
+Order Reference. Sales Order _Identifier_. _Identifier_
+
+Tax Category. Per Unit _Amount_. _Amount_
+
+|===
+
+
+=== What are the differences between ISO 15000-5 and OASIS' UBL?
+
+
+The table below shows on the left side the required parts defined within ISO 15000–5:2014. The right side shows the corresponding parts, if available, within OASIS’ UBL 2.0 and 2.1.
+
+[cols="a,a",options="header"]
+|===
+|ISO 15000–5:2014
+|OASIS UBL 2.0 and 2.1
+
+|Syntax Neutral data model
+|XML only (syntax specific)
+
+Data model non-normative (optional)
+
+footnote:[OASIS UBL 2.1 Specification, 2013 November, http://docs.oasis-open.org/ubl/os-UBL–2.1/UBL–2.1.html]
+
+|Can be used to create other syntax solutions
+|*Cannot* be used to create other syntax solutions
+
+|
+|
+
+|*Normative Categories of building blocks:* footnote:[ISO 15000–5:2014, Section 4 and 5]
+|*Current building blocks:*
+
+
+|Basic Core Component (BCC)
+|–
+
+
+|Association Core Component (ASCC)
+|–
+
+
+|Aggregate Core Component (ACC)
+|–
+
+
+|Core Component Type (CCT)
+|Core Component Type (only basic definitions are provided)
+
+
+|Basic Business Information Entity (BBIE);
+|UBL BBIEs
+
+
+|Association Business Information Entity (ASBIE)
+|UBL ASBIEs
+
+
+|Aggregate Business Information Entity (ABIE)
+|UBL ABIEs
+
+|===
+
+Implementations are considered to be *in full conformance* with ISO 15000–5:2014 if they *comply with the content of normative clauses, rules and definitions*. footnote:[ISO 15000–5:2014, Section 6]
+

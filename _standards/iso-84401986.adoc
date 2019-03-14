@@ -1,0 +1,16 @@
+---
+standard-identifier: ISO 8440:1986
+standard-type: international
+title: "ISO 8440:1986 Location of codes in trade documents"
+---
+= ISO 8440:1986 Location of codes in trade documents
+
+== Abstract
+
+Specification of the location of document and field code designation and coded data entries in documents used in international trade. Suitable for automatic data processing (ADP) systems. Based on a Recommendation adopted by the Working Party on Facilitation of International Trade Procedures of the United Nations Economic Commission for Europe (UN/ECE).
+
+== Corrigenda, Amendments and other parts
+
+
+ISO 8440:1986/Cor 1:2000
+

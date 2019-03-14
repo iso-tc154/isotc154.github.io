@@ -1,0 +1,96 @@
+---
+permalink: "/minutes/2016-04-13/"
+publish-date: "2016-04-13T15:11:41Z"
+categories: [CAT Minutes, ISO 14533, ISO 8601, Plenary, UN/CEFACT]
+title: CAT Draft Minutes 2016-04-13
+---
+= CAT Draft Minutes 2016-04-13
+
+== ISO/TC154 CAT Conference Call, 13 April 2016, 14:00 UTC
+
+Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Peter Rybar (PR), Jasmine Chang (JC)
+
+Excused:: Sue Probert (SP), Francois Vuilleumier (FV), Bernd Bösler (BB)
+
+== Approval of Agenda
+
+*Approved*
+
+== Approval of link:/minutes/2016-03-30[30 March 2016 Meeting Minutes]
+
+*Approved*.
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+* Nothing to report
+
+
+=== WG 5 (Representation of dates and times)
+
+* Both NWIP and CD Ballots will close 23 April. So far 5 votes have been received all in support, including those from UK and Germany.
+
+
+=== WG 6 (Trusted eCommunication)
+
+==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* Almost done, just some minor editing changes. Since comments are only editorial, CAT to review at next the call to send this out as a DIS ballot.
+
+
+==== PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* Call-in problems reported, due to improper announcement. JC was reminded that all WebEx calls need to be announced with an agenda formally by issuing a WG 6 N-document via LiveLink.
+
+
+==== PT3 -- Trusted mobile e-document framework
+
+* The 1st call was held without proper announcement via LiveLink. Same issue as with PT 2.
+
+
+
+
+
+
+== Liaison Updates
+
+* Nothing to report
+
+
+== MoU/MG Update
+
+* Nothing to report
+
+
+== Old Business
+
+=== ISO/TC 154 Chairmanship (2017- )
+
+* K-DN informed CAT that he is willing to serve for another 3 years as TC Chair. JF to inform ISO/CS.
+
+
+=== Business Semantic Thesaurus ISO/TS 16668, formally BSR
+
+* DIN is currently asking its members to act as proposer for the project.
+
+
+
+
+== New Business
+
+=== UN/CEFACT Plenary
+
+* Forwarded our comments to Brian (ISO/CS) who has taken note of our comments and will follow up.
+
+
+
+
+== Other Business
+
+
+
+=== Next Meeting
+
+*13 April 2016, starting at 14:00 UTC*
+

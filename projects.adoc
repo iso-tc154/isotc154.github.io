@@ -1,38 +1,21 @@
 ---
 permalink: /projects/
 ---
+:page-liquid:
 = Projects
 
 == Current projects
 
-=== link:/projects/iso-np-6422-2[ISO NP 6422-2 -- Layout key for trade documents — Part 2: Electronic documents]
-
-NOTE: This WI has been canceled and instead the new PWI TR 6422-3 has been created. (see below)
-
-=== link:/projects/iso-np-14533[ISO NP 14533 Long Term Signature profiles for EDI Data and Electronic Documents]
-
-This WI has been modified to create two parts:
-
-* ISO/DIS 14533-1: Processes, data elements and documents in commerce, industry and administration — Long term signature profiles — Part 1: Long term signature profiles for CMS Advanced Electronic Signatures (CAdES)
-
-* ISO/DIS 14533-2: Processes, data elements and documents in commerce, industry and administration — Long term signature profiles — Part 2: Long term signature profiles for XML Advanced Electronic Signatures (XAdES)
+{% assign projects = site.projects | where:"project-status","current" %}
+{% for project in projects %}
+* link:{{ project.url }}[{{ project.title }}]
+{% endfor %}
 
 
 == New Work Items in progress to be started (Call for Experts)
 
-=== ISO PWI TR 6422-3 Analysis for user requirements for layout key of trade documents — Part 3:
+{% assign projects = site.projects | where:"project-status","new" %}
+{% for project in projects %}
+* link:{{ project.url }}[{{ project.title }}]
+{% endfor %}
 
-link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3 -- Analysis for user requirements for layout key of trade documents].
-
-=== ISO 9735-10 Rev
-
-Revision of link:/projects/iso-np-9735-10[ISO 9735-10 -- EDIFACT -- Syntax service directories].
-
-=== ISO NP 15000-5 ebXML – Part 5: ebCCTS
-
-Revision of link:/projects/iso-np-15000-5[ISO/TS 15000-5 -- ebCCTS], as an International Standard.
-
-
-=== ISO NP 17369 Statistical data and metadata exchange (SDMX)
-
-Revision of link:/projects/iso-np-17369[ISO/TS 17369 – Statistical data and metadata exchange (SDMX)], as an International Standard (IS).

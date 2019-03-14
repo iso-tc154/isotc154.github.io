@@ -1,0 +1,19 @@
+---
+project-identifier: iso-np-6422-2
+project-status: current
+title: ISO NP 6422-2
+---
+= ISO NP 6422-2 Layout key for trade documents -- Part 2: Electronic documents
+
+NOTE: This WI has been canceled and instead the new link:/projects/iso-pwi-tr-6422-3[PWI TR 6422-3] has been created.
+
+The proposed work item should be part 2 of the ISO 6422 Layout key standard.
+
+ISO 6422-2 specifies the layout key for electronic documents equivalent to the paper-based documents as specified in ISO 6422-1.
+
+ISO 6422:1985 shall become part 1 of the ISO 6422 Layout key standard.
+
+ISO 6422: This International Standard specifies a key for the layout of documents relating to administrative, commercial, productive and distributive activities constituting trade, irrespective whether these documents are completed in handwriting, by mechanical or automatic equipment or by reproduction. It is intended particularly for the designing of aligned series of forms employing a reproducible master in a one-run method of document preparation. Documents prepared in this way are regarded as originals and copies in the same manner as documents prepared by other methods.
+
+The ISO 6422 standard series are based on the relationship between the underlying core components and the presentation aspects of the layout key. Each part of the ISO 6422 standard series allows to derive aligned documents based on the relevant layout key, either paper-based or electronically.
+

@@ -38,6 +38,39 @@ powered_by:
   title: Ribose
   logo_path: /assets/logo-ribose.svg
 
+collections:
+  minutes:
+    output: true
+    permalink: /:collection/:date/
+  standards:
+    output: true
+    permalink: /:collection/:name/
+  groups:
+    output: true
+    permalink: /about/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "minutes"
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: "standards"
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: "groups"
+    values:
+      layout: post
+
 nav:
   home:
     url: /
@@ -51,6 +84,12 @@ nav:
   standards:
     url: /standards
     title: Standards
+  projects:
+    url: /projects
+    title: Projects
+  sdmr:
+    url: /procedures/sdmr
+    title: JWG 1 SDMR
 
 exclude:
   - Gemfile

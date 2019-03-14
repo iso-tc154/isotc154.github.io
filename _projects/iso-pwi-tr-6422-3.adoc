@@ -1,0 +1,24 @@
+---
+project-identifier: iso-pwi-tr-6422-3
+project-status: new
+title: ISO PWI TR 6422-3
+---
+= ISO PWI TR 6422-3 Layout key for trade documents -- Part 3: Analysis for user requirements for layout key of trade documents
+
+This Work Item is for the development of a Technical Report regarding the progress of ISO 6422 "`Layout key for trade documents.`" This project was initiated to provide more clearance on an appropriate extension of ISO 6422 for electronic documents as already registered as Work Item ISO 6422-2.
+
+The foreseen Technical Report will reflect the different views of interested parties on their business needs and provide guidance how to proceed with ISO 6422 as relevant ISO standard. The minimal requirements for the ISO/TR project are as follows:
+
+* provide a linkage to the "`paper-based documents`" part (ISO 6422-1:2010);
+* be independent of any messaging syntax (grammar);
+* provide linkage/reference to ISO 7372/TDED;
+* taking into account the requirements of international trade to map current paper based documents into the electronic environment.
+
+In order to start with the work in ISO/TC 154/WG 4 this call of experts shall ensure to incorporate all interested parties. The experts especially should have knowledge of:
+
+* Single Administrative Documents (SAD) used in international trade;
+* the UN layout key and the UNTDED / EDED (EDIFACT Directory of Data Elements);
+* the conversion of paper-documents into electronic documents; and
+* semantic web specifications like Web Ontology Language (OWL) and Resource Description Framework (RDF).
+
+

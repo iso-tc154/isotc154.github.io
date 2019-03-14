@@ -1,0 +1,121 @@
+---
+permalink: "/minutes/2016-07-06/"
+publish-date: "2016-07-08T14:45:15Z"
+categories: [CAT Minutes, ISO 14533, ISO 8601, NWIP, Plenary, Semantic Interoperability]
+title: CAT Draft Minutes 2016-07-06
+---
+= CAT Draft Minutes 2016-07-06
+
+== ISO/TC 154 CAT Conference Call, 06 July 2016, 14:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)
+Excused::  Bernd Bösler (BB)
+
+
+== Approval of Agenda
+
+*Approved*
+
+== Approval of link:/minutes/2016-06-22[22 June 2016 Meeting Minutes]
+
+*Approved*.
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+Nothing to report.
+
+=== WG 5 (Representation of dates and times)
+
+* ISO 8601 Part 1 & 2 update
+
+** Agreed to CD ballot for both parts
+
+=== WG 6 (Trusted eCommunication)
+
+==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
+
+* ISO/CD 14533-3 Update
+
+** Awaiting ballot closure (21 July)
+
+
+
+
+==== PT2 -- Trusted Communication Platforms for Electronic Documents
+
+* ISO/WD 19626-1 "`TCP for Electronic Documents -- Part 1`" Update
+
+** Request for NWIP and WD or CD registration TC Ballot
+
+** Deferred to next CAT meeting
+
+
+
+
+
+
+==== PT3 -- Trusted mobile e-document framework
+
+* ISO/WD 20415 "`TMEF`" Update
+
+** Request for NWIP and WD or CD registration TC Ballot
+
+** Deferred to next CAT meeting
+
+
+
+
+
+
+
+
+
+
+== Liaison Updates
+
+Nothing to report.
+
+== MoU/MG Update
+
+Nothing to report.
+
+== Old Business
+
+=== ISO/TC 154 Chairmanship Update
+
+* No TMB feedback received yet
+
+
+=== ISO/TC 154 Plenary Update
+
+* K-DN to create online registration form for our October face-to-face WG and PT meetings.
+
+
+
+
+== New Business
+
+=== Request for NWIP and WD registration TC Ballot for "`Business Semantic Thesaurus (BST)`"
+
+* CAT agreed to issue a NWIP ballot (8 weeks) with WD attached for registration.
+
+
+=== ISO/PWI 9735-11 -- User guide for migrating of EDIFACT syntax to version 4 &#8212; Part 11
+
+* Item deferred to consult with BB for further direction.
+
+
+=== ISO/PWI 19625 -- Alignment project between ISO 7372, UN/EDIFACT EDED+UNCL and UNCEFACT/CCL
+
+* JFZ to cancel project as there has been no MA meeting since our Berlin plenary (2013) because their work is on hold (tded097). Therefore no work on a DTR Draft as per ISO/TC 154 Resolution 010/2013 (N0728), effectively canceling the project.
+
+
+
+
+== Other Business
+
+
+=== Next Meeting
+
+*20 July 2016, starting at 14:00 UTC*

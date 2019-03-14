@@ -1,17 +1,14 @@
 ---
 permalink: /minutes/
 ---
-= Minutes Announcements
+:page-liquid:
+= CAT Meetings
 
-== Recent Posts
+{% for minutes in site.minutes %}
+* link:{{ minutes.url }}[{{ minutes.title }}]
+{% endfor %}
 
-* link:/minutes/2017-02-15[CAT Draft Minutes 2017-02-15]
-* link:/minutes/2017-02-01[CAT Draft Minutes 2017-02-01]
-* link:/minutes/2017-01-04[CAT Draft Minutes 2017-01-04]
-* link:/minutes/2016-12-21[CAT Draft Minutes 2016-12-21]
-* link:/minutes/2016-11-23[CAT Draft Minutes 2016-11-23]
-
-
+////
 == Categories
 
 * link:/category/news/announcement[Announcement]
@@ -74,5 +71,6 @@ permalink: /minutes/
 * link:/tag/tc-211[TC 211]
 * link:/tag/ubl[UBL]
 * link:/tag/uncefact[UN/CEFACT]
-* link:/tag/unece[UNECE]
+* link:/tag/unece[UN/ECE]
 * link:/tag/wco[WCO]
+////

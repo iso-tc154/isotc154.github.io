@@ -1,0 +1,96 @@
+---
+permalink: "/minutes/2016-12-21/"
+publish-date: 2016-12-21T15:35:21Z
+categories: [CAT Minutes, ebMoU, ISO CS, MoU/MG, NWIP, Resolutions]
+title: CAT Draft Minutes 2016-12-21
+---
+= CAT Draft Minutes 2016-12-21
+
+== ISO/TC 154 CAT Conference Call, 21 December 2016, 15:00 UTC
+Participants::  Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
+Excused::  Jasmine Chang (JC), Bernd Bösler (BB), Peter Rybar (PR), JianFang Zhang (JFZ)
+
+
+== Approval of Agenda
+
+*Approved*
+== Approval of link:/minutes/2016-11-23[23 November 2016 Meeting Minutes]
+
+*Approved*
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+* Awaiting final decision from ISO/CS (Brian)
+
+
+=== WG 5 (Representation of dates and times)
+
+* Awaiting final decision from ISO/CS (Brian)
+
+
+=== WG 6 (Trusted eCommunication)
+
+==== PT1 -- Long term signature profiles
+
+* Awaiting ballot closures for:
+
+* ISO/DIS 14533-3 -- 2016-12-27
+* ISO/NP 14533-4 -- 2017-02-04
+
+
+
+
+==== PT2 -- Trusted Communication Platforms for Electronic Documents
+
+*nothing to report*
+
+==== PT3 -- Trusted mobile e-document framework
+
+*nothing to report*
+
+
+=== WG 7 (Digital Business)
+
+* Awaiting creation of the WG on LiveLink from ISO/CS
+
+==== PT1 -- Business Semantics Thesaurus
+
+*due to the lack of having the WG setup by ISO/CS on LiveLink the work is on hold*
+
+==== PT2 -- XMLFACT
+
+*due to the lack of having the WG setup by ISO/CS on LiveLink the work is on hold*
+
+
+
+
+== Liaison Updates
+
+== MoU/MG Update -- 07/08 December Meeting
+
+* The following resolutions were approved that are relevant to ISO/TC 154:
+
+** *Resolution 16/12* -- MoU/MG notes the work on the ISO 8000 data quality series of standards and encourages its participating organisations, especially ISO/TC 46, ISO/TC 154, ISO/TC 215, ISO/IEC JTC 1/SC 32, and UN/ECE, to explore their respective requirements, to take advantage of liaison opportunities, and coordinate as appropriate with ISO/TC 184/SC 4/WG 13.
+** *Resolution 16/18* --  MoU/MG noted the presentation on preliminary work item "`StreaM`" submitted to ISO/TC 154 and recommends that the concepts be circulated among the chairmen of ISO/TC 184, IEC/TC 65, ISO SMCC and IEC/SEG 7, for advice and feedback to the leadership of ISO/TC 154.
+** *Revised Resolution R15/02* (taken ISO/TC 154's Resolution 2016-13 &#8216;_Distribution of approved NWIP_&#8216; in to account) -- All MoU/MG organizations are requested to distribute brief descriptions of all their relevant, proposed, preliminary and new work items via the MoU/MG mailing list.
+MoU/MG recommends that all relevant approved new work items from the MoU/MG members shall be disseminated to the MoU/MG mailing list for information and possible action at the earliest stage.
+
+
+
+
+== Old Business
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`" -- *nothing to report*
+
+
+== New Business
+
+== Other Business
+
+
+=== Next Meeting
+
+*04 January 2017, starting at 15:00 UTC*
+
+

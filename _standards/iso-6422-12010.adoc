@@ -1,0 +1,14 @@
+---
+standard-identifier: ISO 6422-1:2010
+standard-type: international
+title: "ISO 6422-1:2010 Layout key for trade documents -- Part 1: Paper-based documents"
+---
+= ISO 6422-1:2010 Layout key for trade documents -- Part 1: Paper-based documents
+
+== Abstract
+ISO 6422-1:2010 specifies a key for the layout of documents relating to administrative, commercial, productive and distributive activities constituting trade, irrespective of whether these documents are completed in handwriting, by mechanical or automatic equipment or by reproduction. It is intended particularly for the designing of aligned series of forms employing a reproducible master in a one-run method of document preparation.
+
+== Revision information
+
+Revises: ISO 6422:1985
+
