@@ -26,7 +26,7 @@ link:/projects/iso-pwi-tr-6422-3[ISO PWI TR 6422-3 -- Analysis for user requirem
 
 === ISO 9735-10 Rev
 
-Revision of link:/projects/iso-9735-10-rev[ISO 9735-10 -- EDIFACT -- Syntax service directories].
+Revision of link:/projects/iso-np-9735-10[ISO 9735-10 -- EDIFACT -- Syntax service directories].
 
 === ISO NP 15000-5 ebXML – Part 5: ebCCTS
 
@@ -35,4 +35,4 @@ Revision of link:/projects/iso-np-15000-5[ISO/TS 15000-5 -- ebCCTS], as an Inter
 
 === ISO NP 17369 Statistical data and metadata exchange (SDMX)
 
-Revision of link:/projects/iso-np-17369-statistical-data-and-metadata-exchange-sdmx[ISO/TS 17369 – Statistical data and metadata exchange (SDMX)], as an International Standard (IS).
+Revision of link:/projects/iso-np-17369[ISO/TS 17369 – Statistical data and metadata exchange (SDMX)], as an International Standard (IS).

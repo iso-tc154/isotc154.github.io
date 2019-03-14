@@ -13,8 +13,8 @@ permalink: /sitemap/
 ** link:/about/wg4[WG 4 – eLK]
 ** link:/about/cat[CAT -- Chairman's Advisory Team]
 ** link:/about/ma[TDED Maintenance Agency]
-** link:/about/ma/membership-of-the-tded-maintenance-agency[Membership of the TDED MA]
-** link:/about/ma/ma_links[Relevant links to TDED MA folders/files]
+** link:/about/ma/membership[Membership of the TDED MA]
+** link:/about/ma/links[Relevant links to TDED MA folders/files]
 
 * link:/projects[Projects]
 
