@@ -1,5 +1,7 @@
 ---
-permalink: /about/wg3/
+group-id: wg3
+group-name: "WG 3 -- CCTS"
+order: 3
 ---
 = WG 3 -- CCTS
 

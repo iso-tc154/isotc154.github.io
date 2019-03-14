@@ -1,5 +1,7 @@
 ---
-permalink: /about/cat/
+group-id: cat
+group-name: "CAT -- Chairman's Advisory Team"
+order: 1
 ---
 = CAT -- Chairman's Advisory Team
 
@@ -9,5 +11,5 @@ The group's membership comprises of the TC 154 chair and secretariat, and the WG
 
 The group's mandate is to assist in identifying issues and topics that need to be discussed and may even be resolved by the team, or may need to be agenda items for the next upcoming meeting.
 
-The group's minutes and reports are available via the link:/news[News/Announcement] page under the link:/category/news/cat-minutes[CAT minutes] category.
+The group's minutes and reports are available via the link:/minutes[CAT minutes] page.
 

@@ -47,7 +47,7 @@ collections:
     permalink: /:collection/:name/
   groups:
     output: true
-    permalink: /about/:name/
+    group-id: :name
 
 defaults:
   - scope:

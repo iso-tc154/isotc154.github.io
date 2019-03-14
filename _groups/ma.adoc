@@ -1,0 +1,132 @@
+---
+group-id: ma
+group-name: "TDED Maintenance Agency"
+order: 9
+---
+= TDED Maintenance Agency
+
+== Introduction
+
+The *Trade Data Elements Directory (TDED)* is also known as the United Nations Trade Data Elements Directory (*UNTDED*) and as the International Standard *ISO 7372*. In this Directory, each data element has 2 normative attributes: a 4 digit numerical tag and a free text description/definition. In addition, informative attributes provide e.g. name, character representation, bridging information to the relevant SAD box number, IMO FAL Form, etc.
+
+The ISO Council, in accordance with the http://www.iso.org/iso/standards_development/processes_and_procedures/iso_iec_directives_and_iso_supplement.htm[ISO Directives] (Annex 1G), has established in the late 80's an ISO 7372 Maintenance Agency (ISO 7372 MA).
+
+The ISO 7372 MA together with the maintenance function set up by the UN/ECE WP.4 Working Party on Facilitation of International Trade Procedures (now UN[ECE]/CEFACT), constitute the TDED *Maintenance Agency*, hereafter referred to as *MA*.
+
+The UN/ECE, through the Trade and Transport Divisions and the ISO through its Central Secretariat jointly provide the Secretariat for the MA. This joint secretariat has appointed a MA *Secretary*.
+
+== Role of the Maintenance Agency
+
+The MA, as authorized by the UN/ECE WP.4 and by the ISO Council, is entrusted with the following functions:
+
+* To add to or to eliminate data elements from TDED and to assign numeric identifiers (tags) in accordance with the rules provided in Section 5 of TDED;
+* To inform interested parties appropriately of such changes, etc.;
+* To prepare periodically and disseminate amendment sheets to users in order to allow proper up-dating of TDED;
+
+* To establish as required, in the normal course of work, additional rules for the practical application of the principles for:
+
+** selecting data elements and assigning them a name and a numeric identifier (tag);
+** grouping data elements into broad categories;
+** the presentation of standard data elements and their use for international trade information interchange.
+
+
+== Membership of the TDED Maintenance Agency
+
+The following inter-governmental and non-governmental organisations are each a full member of the TDED MA (source:
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7345306&amp;objAction=browse&amp;viewType=1[TDED 2005 edition, sub-section 2.3 + latest updates]):
+
+
+* CCC Customs Cooperation Council (see WCO)
+* CIT International Railway Transport Committee
+* FIATA International Federation of Freight Forwarders Associations
+* IATA International Air Transport Association
+* ICC International Chamber of Commerce
+* ICS International Chamber of Shipping
+* IMO International Maritime Organization
+* IRU International Road Transport Union
+* OASIS Organization for the Advancement of Structured Information Standards: UBL TC Universal Business Language Technical Committee
+* UIC International Union of Railways
+* UN/CEFACT UN/ECE (Economic Commission for Europe) Centre for Trade Facilitation and Electronic Business
+* UNCTAD United Nations Conference on Trade and Development
+* UPU Universal Postal Union
+* WCO World Customs Organization, established as CCC
+
+
+== Relevant links
+
+UNTDED – ISO7372 MA website:: http://www.iso.org/iso7372ma[JMA website link]
+
+
+=== TDED 2005 edition
+
+UNTDED 2005::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10416613&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351087%26objAction%3Dbrowse%26viewType%3D1[UNTDED 2005]
+
+
+ISO 7372:2005::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10416611&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351087%26objAction%3Dbrowse%26viewType%3D1[ISO 7372:2005]
+
+
+
+=== Layout Key, TDED
+
+
+Suite of standards (a)::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7351005&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351001%26objAction%3Dbrowse%26sort%3Dname[Suite of standards (a)]
+
+
+Suite of standards (b)::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7351006&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D7351001%26objAction%3Dbrowse%26sort%3Dname[Suite of standards (b)]
+
+
+More on this Suite::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7334168&amp;objAction=browse&amp;sort=name[More information]
+
+
+=== TDED all editions
+
+Scope::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=11421724&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D10431946%26objAction%3Dbrowse%26viewType%3D1[Scope]
+
+
+Overview::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=11214675&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D10482921%26objAction%3Dbrowse%26sort%3Dname[Overview]
+
+
+Links to previous editions::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=10417266&amp;objAction=browse&amp;viewType=1[Previous Editions]
+
+
+More info on TDED::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7409832&amp;objAction=browse&amp;viewType=1[More information]
+
+
+
+=== JMA
+
+Meetings::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=9728008&amp;objAction=browse&amp;sort=name[Meetings]
+
+
+Docs & e-mails archives::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7345413&amp;objAction=browse&amp;sort=name[Docs and email archives]
+
+
+=== UN/ECE
+
+
+UN/CEFACT::
+http://www.unece.org/cefact/index.html[UN/CEFACT]
+
+
+Alignment Project::
+http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=9101510&amp;objAction=Open&amp;nexturl=%2Flivelink%2Flivelink%3Ffunc%3Dll%26objId%3D8361985%26objAction%3Dbrowse%26viewType%3D1[Alignment Project]
+
+
+Trade Division Secretariat::
+http://www.unece.org/tradewelcome/trade-home.html[Trade Division Secretariat]
+
+
+Transport Division Secretariat::
+http://www.unece.org/trans/Welcome.html[Transport Division Secretariat]
+

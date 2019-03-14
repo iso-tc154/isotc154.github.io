@@ -1,9 +1,10 @@
 ---
 permalink: /about/
 ---
-= About Us
+:page-liquid:
+= About ISO/TC 154
 
-== ISO/TC 154 Processes, data elements and documents in commerce, industry and administration
+* Name: Processes, data elements and documents in commerce, industry and administration
 
 * Secretariat: http://www.sac.gov.cn[SAC]
 * Secretary: mailto:zhangjf@cnis.gov.cn[Mr Jianfang Zhang]
@@ -32,15 +33,7 @@ Maintenance of the EDIFACT-Syntax.
 
 == Working Groups and Project Teams
 
-* JWG1/MA (EDIFACT Syntax)
-* WG 5 (Representation of dates and times)
-* WG 6 (Trusted eCommunication)
-
-** PT1 -- Long term signature profiles
-** PT2 -- Trusted Communication Platforms for Electronic Documents
-** PT3 -- Trusted mobile e-document framework
-
-* WG 7 (Digital Business)
-
-** PT1 -- Business Semantics Thesaurus
-** PT2 -- XMLFACT
+{% assign groups = site.groups | sort: "order" %}
+{% for group in groups %}
+* link:{{ group.url }}[{{ group.title }}]
+{% endfor %}

@@ -1,5 +1,7 @@
 ---
-permalink: /about/wg4/
+group-id: wg4
+group-name: "WG 4 -- eLK"
+order: 4
 ---
 = WG 4 -- eLK
 

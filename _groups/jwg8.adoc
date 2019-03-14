@@ -1,0 +1,15 @@
+---
+group-id: jwg8
+group-name: "JWG 8 -- Logistics data contents and process"
+order: 8
+---
+= JWG 8 (with UN/ECE) -- Logistics data contents and process
+
+Established by ISO/TC 154 in collaboration with UNECE through UN/CEFACT.
+
+== Scope
+
+The scope of JWG8 is to develop process, data elements related standards that are used for data exchanging between e-commerce platform and the related logistics information service providers etc to facilitate on-line trade.
+
+== Convenorship
+

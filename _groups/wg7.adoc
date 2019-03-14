@@ -1,0 +1,18 @@
+---
+group-id: wg7
+group-name: "WG 7 -- Digital Business"
+order: 7
+---
+= WG 7 -- Digital Business
+
+== Scope
+
+A key task of WG7 is to enhance interoperability by developing technical specifications in support of semantics, digital innovations and associated concepts that enable standardized cross-enterprise solutions.
+
+Furthermore, the provision of accessible or open data and related frameworks in the field of e-commerce helps to align business processes and foster global collaboration and interchange.
+
+== Organization
+
+* PT1 -- Long term signature profiles
+* PT2 -- Trusted Communication Platforms for Electronic Documents
+* PT3 -- Trusted mobile e-document framework
