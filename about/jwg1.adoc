@@ -43,4 +43,4 @@ JWG 1's main deliverable is the ISO 9735, EDIFACT – Application level syntax r
 ** *Part 9: *Security key and certificate management message (message type – KEYMAN)
 ** *Part 10: *Syntax service directories
 
-Since the last publication in 2002 the JWG 1's work is concentrated on the maintenance of the service codes in process. Appropriate requests (DMRs) are handled by the group who is responsible for updating the UNSL (Syntax directories) and http://www.gefeg.com/jswg[JSWG homepage] accordingly. According a JWG 1 agreement (2010-10-23) the “2-per-year” update of the Service Code Lists will be performed in alignment with the updates of the corresponding UN/EDIFACT directories.
+Since the last publication in 2002 the JWG 1's work is concentrated on the maintenance of the service codes in process. Appropriate requests (DMRs) are handled by the group who is responsible for updating the UNSL (Syntax directories) and http://www.gefeg.com/jswg[JSWG homepage] accordingly. According a JWG 1 agreement (2010-10-23) the "`2-per-year`" update of the Service Code Lists will be performed in alignment with the updates of the corresponding UN/EDIFACT directories.

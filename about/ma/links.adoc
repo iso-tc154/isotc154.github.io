@@ -1,5 +1,5 @@
 ---
-permalink: /about/ma/ma_links/
+permalink: /about/ma/links/
 ---
 = Relevant links to TDED MA folders/files
 

@@ -7,10 +7,10 @@ Working Group 4 (originally named JWG 2) was established during the UN/CEFACT Fo
 
 WG 4 is developing an electronic version of the UNLK (equivalent to ISO 6422:1985). This entails the development of a meta level standard and a methodology for the description of intelligent electronic forms.
 
-A first New Work Item Proposal (NWIP) was set up as ISO/NP 25557 “electronic Layout Key” to be balloted within ISO/TC 154. The appropriate ballot in spring 2006 failed due to that only 3 members agreed to participate. With an amended NWIP a second ballot was started in September 2006 (deadline 2006-12-15), with the result again being negative.
+A first New Work Item Proposal (NWIP) was set up as ISO/NP 25557 "`electronic Layout Key`" to be balloted within ISO/TC 154. The appropriate ballot in spring 2006 failed due to that only 3 members agreed to participate. With an amended NWIP a second ballot was started in September 2006 (deadline 2006-12-15), with the result again being negative.
 
 During the ballots it was realized that there was a lack of information regarding the envisaged standard especially in combination with the existing ISO 6422:1985. Therefore the working group decided, in agreement with its parent body ISO/TC 154, to launch an appropriate ISO process in order to publish the existing ISO 6422:1985 within a framework of a suite where the original ISO 6422 became unchanged Part 1 and the "`electronic Layout Key`" would become Part 2.
 
 ISO 6422-1 was published in 2010 and another preparatory WI for the progress of the foreseen
 link:/projects/iso-np-6422-2[ISO 6422-2] was initiated. Due to necessary investigations in September 2011 it was decided to develop first a Technical Report
-(see link:/projects/iso-pwi-tr-6422-3[ISO/PWI TS 6422-3]) regarding the progress of ISO 6422 “Layout key for trade documents.” This project shall provide more clarification on an appropriate extension of ISO 6422 for electronic documents as already registered with ISO/NP 6422-2.
+(see link:/projects/iso-pwi-tr-6422-3[ISO/PWI TS 6422-3]) regarding the progress of ISO 6422 "`Layout key for trade documents.`" This project shall provide more clarification on an appropriate extension of ISO 6422 for electronic documents as already registered with ISO/NP 6422-2.
