@@ -1,4 +1,4 @@
-title: Resource site for ISO/TC 154 processes, data elements and documents in commerce, industry and administration
+title: ISO/TC 154 Committee site
 title_html: ISO/TC&nbsp;154
 
 email: open.source@ribose.com
@@ -9,8 +9,8 @@ committee:
   link: https://committee.iso.org/home/tc154
 
 description: >-
-  Resource site for ISO/TC 154
-  processes, data elements and documents in commerce, industry and administration
+  ISO/TC 154 Committee site
+  Processes, data elements and documents in commerce, industry and administration
 
 tagline: >-
   Resources
@@ -28,8 +28,10 @@ social:
     - url: https://www.linkedin.com/groups/4222374
 
 footer_nav:
-  - url: https://committee.iso.org/home/tc154
-    title: Committee Site
+  - url: https://www.gefeg.com/jswg/
+    title: JWG 1 Site
+  # - url: https://committee.iso.org/home/tc154
+  #   title: Committee Site
 
 powered_by:
   url: https://open.ribose.com
