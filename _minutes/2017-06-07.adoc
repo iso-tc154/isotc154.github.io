@@ -8,76 +8,165 @@ title: CAT Draft Minutes 2017-06-07
 
 == Agenda
 
-. Approval of Agenda
-. New TC chair
-** Introduction of Klaus’s resignation
-** Introduction of new TC chair
+=== Approval of Agenda
+
+Basically Approved with the following condition:
+
+* We will not discuss the items in the agenda if the related person is not
+present.
+
+=== New TC chair
+
+* Introduction of Klaus's resignation
+**  Klaus has resigned, ISO/TC 154 express special thanks for his strong leadership to ISO/TC154. Wish him all the best.
+
+* Introduction of new TC chair
+** Judy Zhu from Alibaba group as the acting chair as asked by Henry from the email offline, and a month TMB ballot for the chair nomination is ongoing, and the formal nomination will come out in July.
 
 == Working Group and Project Team Updates
 
 === JWG 1/MA (EDIFACT Syntax)
 
+No discussion.
+
+
 === WG 5 (Representation of dates and times)
 
 * ISO/DIS 8601-1 Ballot Disposition
+** finished
 * ISO/DIS 8601-2 Ballot Disposition
+** finished
+
+* The disposed comments for the two parts are still needed to be check again by the working group before the submission to ISO/CS for their FDIS ballots.
+
+
 * Call for new WG 5 convener (or disbandment of WG 5 and allocate both ISO 8601 projects to the TC)
+** Chris is not willing to be the convener for his time reason. And acting chair asked if any other volunteer, till now nobody.
+** The issue will continue at next CAT meeting.
+
 * Liaison eligibility of Ray
+** Ray is dealing with his liaison eligibility via TC 46, the result is still waiting.
 
 === WG 6 (Trusted eCommunication)
 
-* External Liaison with ETSI STF 523
+==== External Liaison with ETSI STF 523
 
-==== PT1 –ISO 14533 Long term signature profiles
+Jasmine will attend ETSI meeting next week as liaison officer. She will send the liaison report to TC secretariat after the meeting.
+
+==== PT1 – ISO 14533 Long term signature profiles
 
 * ISO 14533-3
-* ISO/WD 14533-4
+** finished.
 
-==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+* ISO/WD 14533-4
+** will be finished soon
+
+
+==== PT2 – ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+* CD ballot of ISO 19626-1 was initiated, and will be closed at 21st July.
+* Jasmine is forwarding the project of ISO 19626-2, and will submit the draft before this plenary meeting in October 2017.
+
 
 ==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
 
+ISO/WD 20415 was shared with WG6 members during 2 months (May, June), will be submitted as CD soon.
+
 === WG 7 (digital Business)
 
-* New WG 7 convener
+==== New WG 7 convener
+
+Professor Peter Plapper is willing to take over WG7 convener based on the jianfang's information. His convener ballot was initiated via CIB ballot for two weeks, and will be closed on16th June.
 
 ==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
+No discussion. Someone who can take over the project is preferred/ The issue will be discussed at next CAT meeting.
+
 ==== PT2- ISO/WD 22468 Value Stream Management (VSM)
+
+No discussion.
 
 ==== PT3 – XMLFACT
 
-* ISO/DTR 18262 ODIF
+It is PWI, no discussion.
+
+==== ISO/DTR 18262 ODIF
+
+
+. The project was a very old project and at DTR stage;
+. For the reason of klaus's resign, a new project leader is needed if we still hope the project to keep alive for the possible white paper.
+. Jianfang will try to look for the new project leader.
+
 
 == Liaison Updates
 
-* MoU/MG
-** 38th MoU/MG meeting: 26 April 2017 (08:00-16:00 UTC) + 27 April 2017 (08:00-14:00 UTC)
+=== MoU/MG
 
+==== 38th MoU/MG meeting: 26 April 2017 (08:00-16:00 UTC) + 27 April 2017 (08:00-14:00 UTC)
+
+* There are several resolutions and actions related to our TC, such as Resolution 17/01, Resolution 17/04, Action 17/01.
+* Continue to discuss the issue at next CAT meeting since the relative persons are not present.
 
 == Old Business
 
-* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+
+Waiting for the submission from OAGIS for the NWIP and DIS ballot (Fast-track) if they finish the final draft.
+
 
 == Open Ballots
 
-* Systematic Reviews:
-** Result of SR ISO/TS 20625:2002 (vers 3) "`Electronic data interchange for administration, commerce and transport (EDIFACT) – Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines`"
-** ISO 6422-1:2010 (vers 2) "`Layout key for trade documents – Part 1: Paper-based documents`" closing 2017-06-05
-** ISO 8439:1990 (vers 5) "`Forms design – Basic layout`" closing 2017-06-05
-** ISO 8440:1986 (vers 5) "`Location of codes in trade documents`" closing 2017-06-05
+=== Systematic Reviews
+
+==== Result of SR ISO/TS 20625:2002 (vers 3) "`Electronic data interchange for administration, commerce and transport (EDIFACT) – Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines`"
+
+* The voting results is with 6 confirm, 0 revise/amend, and 0 withdraw
+* It is still confirmation for TS. The result has been submitted to ISO/CS.
+
+==== ISO 6422-1:2010 (vers 2) "`Layout key for trade documents – Part 1: Paper-based documents`" closing 2017-06-05
+
+Voting results with 7 Confirm, 0 Revise/Amend and 0 Withdraw.
+· It is confirmation, and the result will be submitted to ISO/CS.
+
+==== ISO 8439:1990 (vers 5) "`Forms design – Basic layout`" closing 2017-06-05
+
+Voting results with 8 Confirm, 0 Revise/Amend and 0 Withdraw.
+· It is confirmation, and the result will be submitted to ISO/CS.
+
+==== ISO 8440:1986 (vers 5) "`Location of codes in trade documents`" closing 2017-06-05
+
+ Voting results with 8 Confirm, 0 Revise/Amend and 0 Withdraw. · It is confirmation, and the result will be submitted to ISO/CS.
 
 == Other Business
 
 === New ISO Meetings platform
 
-* Presentation sessions for ISO Meetings platform
+==== Presentation sessions for ISO Meetings platform
+
+Registrations of participants in ISO Meetings Platform (TMB resolution 40/2017)
+will be mandatory for all TC, SC and WG meetings since 2017-10-01.
+New ISO Meetings platform is now live and can access from the ISO portal.
 
 === ISO policy regarding the extension of DIS ballot dates
 
+According to the TMB Resolution 30/2017, ISO will no longer grant any extensions for DIS ballots since 2017-05-01.
+
+
 === New guidelines for the submission of text and graphics to ISO/CS
 
+This document(N883) gives instructions for the required format of text, math, tables and graphics. This document should be read by ISO committee Chairs and Secretaries and the ISO Members, especially by project editors.
 
 == Next Meeting
 
-(TBD) 5 July 2017, starting at 16:00 (UTC +8:00)
+5 July 2017, starting at 16:00 (UTC +8:00)
+
+* Two options for CAT meeting was discussed, Doodle or regular call on the fixed calendar every month. Doodle is not fit for Jasmine because of security policy with lots of limitations in her company. So based on the situation,
+
+* CAT meeting will be regularly held at first Wednesday every month, start from Beijing Time 4:00 PM (UTC+8), so that everyone may remember the date easily and book their time earlier. If any special conflict or requirement, then we can adjust the time.
+
+* The next meeting will start at 4:00 pm (UTC+8), July 5th, 2017.
+
+* The meeting notice will be sent out usually a week in advance, at least 3 days in advance. If there is a special situation for the CAT meeting date, such as festival, we may change the CAT time case by case. Jianfang will send the notice about CAT meeting time to all of us.
+
+* Welcome any thoughts, comments and suggestions freely to Judy after the meeting. You may know more about Judy and track the information of the meeting on Judy's blog. https://judy2017blog.wordpress.com/
+

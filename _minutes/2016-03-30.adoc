@@ -70,7 +70,7 @@ approved
 
 ** If TC 154 feels that the new standard still basically corresponds to the scope of ISO/TS 16668:2000, then yes, it would be possible for you to continue with "`16668`".
 
-** If TC 154 does this, it will of course need to modify the scope of the proposed NP as appropriate (although a change in title in itself wouldn’t be a problem).
+** If TC 154 does this, it will of course need to modify the scope of the proposed NP as appropriate (although a change in title in itself wouldn't be a problem).
 
 ** Please note that, as the TS has been withdrawn since 2004, I believe that we would need to include a statement in the Foreword explaining that the original TS was withdrawn for 12 years. On the other hand, if you wish to use a new number for the new standard, then this would be ok as well.
 

@@ -13,9 +13,9 @@ Syntax Data Maintenance Requests (Syntax DMRs) serve as the means to apply enhan
 
 These Syntax DMRs fall into three categories:
 
-Service code DMRs:: DMRs proposing changes and/or additions which are against ISO 9735/V.3 and/or ISO 9735/V.4 related to codes for data elements beginning with ‘0’.
+Service code DMRs:: DMRs proposing changes and/or additions which are against ISO 9735/V.3 and/or ISO 9735/V.4 related to codes for data elements beginning with '0'.
 
-Service directory DMRs:: DMRs against ISO 9735/V.4 which are related to segments beginning with ‘U’; composite data elements beginning with ‘S’; data elements beginning with ‘0‘. Service directory DMRs against ISO 9735/V.3 are no longer applicable.
+Service directory DMRs:: DMRs against ISO 9735/V.4 which are related to segments beginning with 'U'; composite data elements beginning with 'S'; data elements beginning with '0'. Service directory DMRs against ISO 9735/V.3 are no longer applicable.
 
 Syntax rule DMRs:: DMRs proposing changes or enhancements to any of the syntax rules and associated text specified in the latest release of ISO 9735/V.4 (which includes the service messages AUTACK, CONTRL and KEYMAN).
 

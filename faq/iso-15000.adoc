@@ -11,12 +11,12 @@ The questions was raised because of a statement on the UBL Home page, which stat
 
 [quote]
 ____
-UBL was the first published data format specification produced in full conformance with UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.
+UBL was the first published data format specification produced in full conformance with UN/CEFACT's ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.
 ____
 
-*For a standard to claim full conformance it must satisfy 100% of all the mandatory ‘requirements’ found in the ‘normative’ sections.*
+*For a standard to claim full conformance it must satisfy 100% of all the mandatory 'requirements' found in the 'normative' sections.*
 
-ISO/TS 15000–5:2005 (and UN/CEFACT’s ebXML Core Components Technical Specification (CCTS) Version 2.01) both contain the same statements defining conformance as:
+ISO/TS 15000–5:2005 (and UN/CEFACT's ebXML Core Components Technical Specification (CCTS) Version 2.01) both contain the same statements defining conformance as:
 
 * Applications will be considered to be in full conformance with this technical specification if they comply with the content of normative sections, rules and definitions.
 * Section 4.2 defines sections 6,7,8 and 9 as being normative.
@@ -73,7 +73,7 @@ Tax Category. Per Unit _Amount_. _Amount_
 === What are the differences between ISO 15000-5 and OASIS' UBL?
 
 
-The table below shows on the left side the required parts defined within ISO 15000–5:2014. The right side shows the corresponding parts, if available, within OASIS’ UBL 2.0 and 2.1.
+The table below shows on the left side the required parts defined within ISO 15000–5:2014. The right side shows the corresponding parts, if available, within OASIS' UBL 2.0 and 2.1.
 
 [cols="a,a",options="header"]
 |===

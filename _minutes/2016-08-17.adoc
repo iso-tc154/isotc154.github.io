@@ -125,7 +125,7 @@ Nothing to report.
 
 === ISO Simple Template vs STD Template
 
-* Discussion about the STD’s lack of being useful to those that *do not use MS Word under Windows*. Because ISO/TC 154 editors are using Mac OS and Linux OS, they can only use the _Simple Template_.
+* Discussion about the STD's lack of being useful to those that *do not use MS Word under Windows*. Because ISO/TC 154 editors are using Mac OS and Linux OS, they can only use the _Simple Template_.
 * Since ISO is now publishing its Standards in *ePub* format, it would make more sense to make a valuable a *ePub Template*. This would allow true cross platform and ePub tool use, eliminating the WS restrictions to use commercial word processor on single OS.
 
 
