@@ -1,0 +1,16 @@
+---
+member-id: judy-zhu
+name: Hongru (Judy) Zhu
+role: chair
+---
+= Hongru (Judy) Zhu
+
+image:/assets/images/members/judy-zhu.png[]
+
+Hongru (Judy) Zhu is the General Manager of Standardization Department in Alibaba Group, and she is also a senior expert in security. She has 17 years of professional standardization experiences. She serves as ISO 154 chair, W3C Board member, FIDO board member, CCSA TC 11 vice chair, 3GPP TSG SA3 vice chair, NGMN P-SEC security project leader, etc. In ISO, her team actively participated in ISO TC154, ISO/IEC JTC1/SC27, ISO TC290, etc.
+
+Hongru (Judy) Zhu got a lot of experiences from her previous leadership positions in various standard organizations. She also has skills and experiences in standardization strategy and standard deployment.
+
+Before Hongru (Judy) Zhu joined Alibaba in 2014, she served in Bell-labs Alcatel-lucent and China Mobile. She had submitted more than 300 standard contributions, and 20 academic papers, and 30 patents in U.S and China by proven ability of creative thinking and innovation. She is the author of the book “3rd Generation Mobile Telecommunication Security”(in Chinese).
+
+Her personal site is at https://judy2017blog.wordpress.com/

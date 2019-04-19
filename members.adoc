@@ -1,0 +1,10 @@
+---
+permalink: /members/
+---
+:page-liquid:
+= Members of ISO/TC 154
+
+{% assign members = site.members | sort: "name" %}
+{% for member in members %}
+* link:{{ member.url }}[{{ member.name }} ({{ member.role }})]
+{% endfor %}

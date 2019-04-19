@@ -37,3 +37,4 @@ Maintenance of the EDIFACT-Syntax.
 {% for group in groups %}
 * link:{{ group.url }}[{{ group.title }}]
 {% endfor %}
+

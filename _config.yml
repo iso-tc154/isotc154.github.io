@@ -51,6 +51,9 @@ collections:
   groups:
     output: true
     group-id: :name
+  members:
+    output: true
+    member-id: :name
 
 defaults:
   - scope:
