@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 8439:1990
-standard-type: international
-title: "ISO 8439:1990 Forms design -- Basic layout"
+name: ISO 8439:1990
+type: international
+title: "Forms design -- Basic layout"
 ---
-= ISO 8439:1990 Forms design -- Basic layout
 
 == Abstract
 

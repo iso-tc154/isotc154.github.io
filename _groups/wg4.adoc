@@ -1,13 +1,21 @@
 ---
-group-id: wg4
-group-name: "WG 4 -- eLK"
+id: wg4
+name: WG 4
+title: eLK
 order: 4
+featured_on_home: true
 ---
-= WG 4 -- eLK
 
-== General
+ISO/TC 154/WG 4 was established (formally as JWG 2) in 2006
+for the purpose of developing an electronic version of the UN Layout Key
+(equivalent to ISO 6422:1985).
+The standard(s) should base on the relationship between the underlying core components
+and the presentation aspects of the Layout Key.
+In addition the standard(s) should allow others to derive aligned electronic documents
+based on the electronic Layout Key in a similar way to the development of aligned paper documents
+based on the original UNLK for Trade Documents.
 
-ISO/TC 154/WG 4 was established (formally as JWG 2) in 2006 for the purpose of developing an electronic version of the UN Layout Key (equivalent to ISO 6422:1985). The standard(s) should base on the relationship between the underlying core components and the presentation aspects of the Layout Key. In addition the standard(s) should allow others to derive aligned electronic documents based on the electronic Layout Key in a similar way to the development of aligned paper documents based on the original UNLK for Trade Documents.
+// more
 
 == History
 

@@ -1,7 +1,7 @@
 ---
 permalink: /faq/iso-9753/
+title: ISO 9735 (EDIFACT Syntax) Frequently Asked Questions
 ---
-= ISO 9735 (EDIFACT Syntax) Frequently Asked Questions
 
 == Does UNOA as Syntax Identifier allow lowercase characters (a-z)?
 

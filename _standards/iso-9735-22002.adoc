@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 9735-2:2002
-standard-type: international
-title: "ISO 9735-2:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 2: Syntax rules specific to batch EDI"
+name: ISO 9735-2:2002
+type: international
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 2: Syntax rules specific to batch EDI"
 ---
-= ISO 9735-2:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 2: Syntax rules specific to batch EDI
 
 == Abstract
 

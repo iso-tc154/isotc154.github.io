@@ -1,40 +1,24 @@
 ---
 layout: home
-nav_items: [about]
+
+banner_includes:
+  - title: Welcome to&nbsp;ISO/TC&nbsp;154
+    image_path: /assets/img/welcome_illo.png
+    image_alt: Photo of the headquarters
+    body: >-
+
+      <p>
+        It is the vision of ISO/TC 154 that all parties in the value chain
+        use standardized data exchange to reduce cost in managing the processes
+        in the private and public domain and to foster trace facilitation.
+
+      <p>
+        The mission of ISO/TC 154 is both to undertake and to facilitate
+        the development and maintenance of international standards for data exchange
+        in the value chain.
+
+      <p>
+        These standards cover data exchange regardless of the media used.
+
 ---
 :page-liquid:
-
-
-[.section]
-== Welcome to ISO/TC 154
-
-It is the vision of ISO/TC 154 that all parties in the value chain use standardized data exchange to reduce cost in managing the processes in the private and public domain and to foster trade facilitation.
-
-The mission of ISO/TC 154 is both to undertake and to facilitate the development and maintenance of international standards for data exchange in the value chain.
-
-These standards cover data exchange regardless of the media used.
-
-[.section]
-== Working together
-
-Wherever possible, ISO/TC 154 fosters harmonisation between and within international standards development organizations, particularly through the Memorandum of Understanding between the International Electrotechnical Commission, the International Organization for Standardization, the International Telecommunication Union and the United Nations Economic Commission for Europe concerning standardization in the field of electronic business.
-
-[.section]
-== Standards
-
-Our standards can be found on our link:/standards[Standards] page.
-
-[.section]
-== Projects
-
-Existing and proposed projects can be found on our link:/projects[Projects] page.
-
-[.section]
-== About us
-
-Our organizational structure and work groups are described in detail on our link:/about[About Us] page.
-
-[.section]
-== Frequently asked questions
-
-Common questions about ISO/TC 154 and its standards are answered in our link:/faq[FAQ] page.

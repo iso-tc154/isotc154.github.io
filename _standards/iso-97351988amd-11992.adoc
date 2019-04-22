@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 9735:1988/Amd-1:1992
-standard-type: international
-title: "ISO 9735:1988/Amd 1:1992 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules AMENDMENT 1"
+name: ISO 9735:1988/Amd-1:1992
+type: international
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules AMENDMENT 1"
 ---
-= ISO 9735:1988/Amd 1:1992 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules AMENDMENT 1
 
 == Abstract
 This Amendment extended the supported character sets from character set A (ISO 646 with the exception of lower case letters and certain graphic characters) and B (ISO 646 with the exception of certain graphic characters) to the character sets C through F (covering Latin, Cyrillic and Greek alphabets).

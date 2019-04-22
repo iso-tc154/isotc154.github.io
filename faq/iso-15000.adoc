@@ -1,7 +1,7 @@
 ---
 permalink: /faq/iso-15000/
+title: ISO 15000 Frequently Asked Questions
 ---
-= ISO 15000 Frequently Asked Questions
 
 == ISO 15000-5 (Core Component Specification)
 

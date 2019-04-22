@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% if page.title %}{{ page.title | escape }} — {% else %}{{ site.title | escape }} — {% endif %}{{ site.description }}</title>
+
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/android-chrome-192x192.png" sizes="192x192" />
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/images/mstile-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-LRlmVvLKVApDVGuspQFnRQJjkv0P7/YFrw84YYQtmYG4nK8c+M+NlmYDCv0rKWpG" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/style.css" | relative_url }}" />
+
+    {% if page.stylesheets and layout.stylesheets %}
+      {% assign extra_stylesheets = page.stylesheets | concat: layout.stylesheets %}
+    {% else %}
+      {% assign extra_stylesheets = page.stylesheets | default: layout.stylesheets %}
+    {% endif %}
+    {% for link in extra_stylesheets %}
+      <link href="{{ link.href }}" rel="stylesheet">
+    {% endfor %}
+
+    <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | relative_url }}" />
+
+    {% if jekyll.environment == 'production' and site.google_analytics %}
+      {% include google_analytics.html %}
+    {% endif %}
+
+  </head>
+
+  <body class="{{ page.html_class | default: layout.html_class }} layout--{{ page.layout }}">
+    <header class="top-bar">
+      <div class="container">
+        <div class="iso-logo">
+          <a href="/" class="logo-link">
+            <img src="{{ "/assets/img/logo-iso-noninverted.svg" | relative_url }}" alt="ISO">
+          </a>
+        </div>
+
+        <h1>
+          <a href="/" class="logo-link">
+            ISO/TC 154
+          </a>
+        </h1>
+
+        {% assign nav_items = page.nav_items | default: layout.nav_items | default: site.primary_nav_items %}
+        <ul role="nav" class="priority-nav" aria-label="main site menu">
+          {% for item in nav_items %}
+            {% assign item_data = site.nav[item] %}
+
+            {% assign first_component_of_current_url = page.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
+            {% assign first_component_of_link_url = item_data.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
+            {% if first_component_of_current_url == first_component_of_link_url %}
+              {% assign active = true %}
+            {% else %}
+              {% assign active = false %}
+            {% endif %}
+
+            {% if item_data %}
+              <li class="{% if active %}selected{% endif %}">
+                <a href="{{ item_data.url }}">{{ item_data.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </header>
+
+    {{ content }}
+
+    {% if site.awards and page.hide_awards != true %}
+      <p class="awards">
+        <i class="fa fa-certificate icon"></i>
+        Winner of 
+        {% for award in site.awards %}
+          <span class="award">the <a href="{{ award.path }}"
+            >{{ award.title }}</a>{%- unless forloop.last -%}, {% endunless %}</span>{% endfor %}.
+      </p>
+    {% endif %}
+
+    <footer>
+      <div class="container">
+        <div class="row1">
+          <div class="logo">
+            <a href="https://iso.org/" class="logo-link">
+              <img src="{{ "/assets/img/logo-iso-noninverted.svg" | relative_url }}" alt="ISO">
+            </a>
+          </div>
+
+          <ul role="nav" class="links" aria-label="footer links">
+            {% assign footer_nav_items = page.footer_nav_items | default: layout.footer_nav_items | default: site.footer_nav_items %}
+            {% for item in footer_nav_items %}
+              {% assign item_data = site.nav[item] %}
+              <li><a href="{{ item_data.url }}">{{ item_data.title }}</a>
+            {% endfor %}
+          </ul>
+
+          <div class="powered-by">
+            <span class="powered-by__text">Powered by</span>
+            <a class="powered-by__org" href="https://open.ribose.com/">
+              <img
+                src="{{ "/assets/img/logo-ribose.svg" | relative_url }}"
+                alt="Ribose">
+            </a>
+          </div>
+        </div>
+
+        <div class="row2">
+          <p class="copyright">
+            &copy; All Rights Reserved
+          </p>
+
+          <ul class="social-links">
+            {% for link in site.social.links %}
+              <li>
+                <a href="{{ link.url }}">
+                  {% if link.url contains "twitter.com" %}
+                    <i class="fab fa-twitter"></i>
+                  {% elsif link.url contains "github.com" %}
+                    <i class="fab fa-github"></i>
+                  {% elsif link.url contains "facebook.com" %}
+                    <i class="fab fa-facebook"></i>
+                  {% elsif link.url contains "linkedin.com" %}
+                    <i class="fab fa-linkedin"></i>
+                  {% else %}
+                    {{ link.title }}
+                  {% endif %}
+                </a>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    {% if page.scripts and layout.scripts %}
+      {% assign extra_scripts = page.scripts | concat: layout.scripts %}
+    {% else %}
+      {% assign extra_scripts = page.scripts | default: layout.scripts %}
+    {% endif %}
+    {% for script in extra_scripts %}
+      <script src="{{ script.src }}"></script>
+    {% endfor %}
+
+  </body>
+</html>

@@ -1,10 +1,9 @@
 ---
-group-id: wg7
-group-name: "WG 7 -- Digital Business"
+id: wg7
+name: WG 7
+title: Digital Business
 order: 7
 ---
-= WG 7 -- Digital Business
-
 == Scope
 
 A key task of WG7 is to enhance interoperability by developing technical specifications in support of semantics, digital innovations and associated concepts that enable standardized cross-enterprise solutions.

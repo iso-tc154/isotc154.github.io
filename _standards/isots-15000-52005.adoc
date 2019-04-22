@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO/TS 15000-5:2005
-standard-type: TS
-title: "ISO/TS 15000-5:2005 Electronic Business Extensible Markup Language (ebXML) -- Part 5: ebXML Core Components Technical Specification, Version 2.01 (ebCCTS)"
+name: ISO/TS 15000-5:2005
+type: TS
+title: "Electronic Business Extensible Markup Language (ebXML) -- Part 5: ebXML Core Components Technical Specification, Version 2.01 (ebCCTS)"
 ---
-= ISO/TS 15000-5:2005 Electronic Business Extensible Markup Language (ebXML) -- Part 5: ebXML Core Components Technical Specification, Version 2.01 (ebCCTS)
 
 == Abstract
 ISO/TS 15000-5:2005 can be employed wherever business information is being shared or exchanged amongst and between enterprises, governmental agencies, and/or other organisations in an open and worldwide environment.

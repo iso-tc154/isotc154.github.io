@@ -1,15 +1,12 @@
 ---
-group-id: jwg1
-group-name: "JWG 1 -- EDIFACT Syntax"
+id: jwg1
+name: JWG 1 (with UN/ECE)
+title: EDIFACT Syntax
 order: 2
+featured_on_home: true
 ---
-= JWG 1 (with UN/ECE) -- EDIFACT Syntax
 
-NOTE: Please see link:/procedures/sdmr[Syntax Data Maintenance Request Submission and Processing Procedures (SDMR)] for SDMR procedures.
-
-== General
-
-ISO/TC 154/JWG 1 was established in the late 80's as so called
+JWG 1 was established in the late 80's as so called
 "`Joint Syntax Working Group (JSWG)`" with the UN/ECE in order to
 develop and maintain the EDIFACT syntax. Since the publication of
 the syntax version 1 in 1988 the standard has been revised and
@@ -18,6 +15,10 @@ its publication in 2002 the work in JWG 1 is mainly concentrated on
 the twice-per-year update of the syntax codes directory (in
 alignment with the EDIFACT user directories) on the corresponding
 JSWG website.
+
+// more
+
+NOTE: Please see link:/procedures/sdmr[Syntax Data Maintenance Request Submission and Processing Procedures (SDMR)] for SDMR procedures.
 
 == Scope
 

@@ -2,6 +2,11 @@
 permalink: /about/
 ---
 :page-liquid:
+
+++++
+<main>
+++++
+
 = About ISO/TC 154
 
 * Name: Processes, data elements and documents in commerce, industry and administration
@@ -35,6 +40,9 @@ Maintenance of the EDIFACT-Syntax.
 
 {% assign groups = site.groups | sort: "order" %}
 {% for group in groups %}
-* link:{{ group.url }}[{{ group.title }}]
+* {% if group.name %}{{ group.name }} — {% endif %} link:{{ group.url }}[{{ group.title }}]
 {% endfor %}
 
+++++
+</main>
+++++

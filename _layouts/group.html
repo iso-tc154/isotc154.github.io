@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+<main>
+  <h2 class="entity">
+    {% if page.name %}<span class="id">{{ page.name }}</span>{% endif %}
+    <span class="type">group</span>
+  </h2>
+  <h1 class="headline">{{ page.title }}</h1>
+
+  {{ page.content }}
+</main>

@@ -1,0 +1,33 @@
+---
+permalink: /projects/
+title: Projects
+html_class: projects
+layout: default
+---
+
+<div class="with-aside">
+  <main>
+    <section>
+      <h2>Current projects</h2>
+
+      {% assign projects = site.projects | where: "status", "current" %}
+      {% for project in projects %}
+        {% include project_item.html project=project %}
+      {% endfor %}
+    </section>
+
+
+    <section>
+      <h2>New Work Items in progress to be started (Call for Experts)</h2>
+
+      {% assign projects = site.projects | where: "status", "new" %}
+      {% for project in projects %}
+        {% include project_item.html project=project %}
+      {% endfor %}
+    </section>
+  </main>
+
+  <aside class="project-list">
+    {% include projects_nav.html active_project_id=page.id %}
+  </aside>
+</div>

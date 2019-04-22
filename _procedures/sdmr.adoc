@@ -1,9 +1,8 @@
 ---
+wg: Joint syntax working group (with UN/ECE)
+title: Syntax Data Maintenance Request Submission and Processing Procedures
 permalink: /procedures/sdmr/
 ---
-= Joint syntax working group (with UN/ECE): Syntax Data Maintenance Request Submission and Processing Procedures
-
-Joint syntax working group (with UN/ECE): Syntax Data Maintenance Request Submission and Processing Procedures
 
 == Introduction
 

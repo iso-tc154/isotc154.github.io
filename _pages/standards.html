@@ -1,0 +1,31 @@
+---
+permalink: /standards/
+title: Standards
+html_class: standards
+layout: default
+---
+<div class="with-aside">
+  <main>
+    <h2>International Standards</h2>
+
+    <section>
+      {% assign standards = site.standards | where: "type", "international" %}
+      {% for standard in standards %}
+        {% include standard_item.html standard=standard %}
+      {% endfor %}
+    </section>
+
+    <section>
+      <h2>Technical Specifications</h2>
+
+      {% assign standards = site.standards | where: "type", "TS" %}
+      {% for standard in standards %}
+        {% include standard_item.html standard=standard %}
+      {% endfor %}
+    </section>
+  </main>
+
+  <aside class="standard-list">
+    {% include standards_nav.html %}
+  </aside>
+</div>

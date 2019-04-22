@@ -1,7 +1,8 @@
 ---
 permalink: /faq/
+layout: faq
+title: Frequently Asked Questions
 ---
-= Frequently Asked Questions
 
 == Specific standards
 
@@ -10,10 +11,10 @@ For FAQs relating to specific standards, please see:
 * link:/faq/iso-9753[ISO 9735 (EDIFACT Syntax) Frequently Asked Questions]
 * link:/faq/iso-15000[ISO 15000 Frequently Asked Questions]
 
+
 == General questions
 
 === What does conformance to a Standard mean?
-
 
 *Conformance* to a standard means that products, services or implementations that claim such, must satisfy 100% of all the mandatory "`requirements`" found in the "`normative`" sections.
 
@@ -27,27 +28,22 @@ ISO 15000-5:2014 defines in 4.1 the set of rules that must be implemented in add
 
 Other ISO/TC 154 Standards, such as ISO 9735 and ISO 14533, contain conformance statements that are more complex because these standards are multi-part with normative references amongst these parts and/or reference other standards as normative that need to be conformed to as well.
 
-=== What is ISO?
 
+=== What is ISO?
 
 Not "`what`", but "`who`"! Our standards are often highly technical -- and they need to be -- but they're developed for people by people. So who we are is a network of the national standards institutes of some 163 countries, with a central office in Geneva, Switzerland, that coordinates the system and publishes the finished standards.
 
 
 === What does "`international standardization`" mean?
 
-
 When the large majority of products or services in a particular business or industry sector conform to International Standards, a state of industry-wide standardization can be said to exist. This is achieved through consensus agreements between national delegations representing all the economic stakeholders concerned -- suppliers, users and, often, governments. They agree on specifications and criteria to be applied consistently in the classification of materials, the manufacture of products and the provision of services. In this way, International Standards provide a reference framework, or a common technological language, between suppliers and their customers -- which facilitates trade and the transfer of technology.
 
 
 === Can anyone join ISO?
-
 
 Not as individuals or as enterprises -- although both have a range of opportunities for taking part in ISO's work, or in contributing to the development of standards through the ISO member in their country. Membership of ISO is open to national standards institutes or similar organizations most representative of standardization in their country (one member in each country). Full members each have one vote, whatever the size or strength of the economy of the country concerned. This means that they can all make their voices heard in the development of standards which are important to their country's industry. ISO also has two categories of membership for countries with fewer resources. Although such members do not have a vote, they can remain up to date on standardization developments. Lists of the three categories of ISO members are available on ISO Online.
 
 
 === What is ISO's relation to governments?
 
-
 ISO is a non-governmental organization (NGO). Therefore, unlike the United Nations, the national members of ISO are not delegations of the governments of those countries. As far as those national members are concerned, some are wholly private sector in origin, others are private sector organizations but have a special mandate from their governments on matters related to standardization, while still others are part of the governmental framework of their countries. In addition, government experts often participate in ISO's standards' development work. So, while ISO is an NGO, it receives input from the public sector as it does from the private sector.
-
-

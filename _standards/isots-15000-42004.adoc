@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO/TS 15000-4:2004
-standard-type: TS
-title: "ISO/TS 15000-4:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)"
+name: ISO/TS 15000-4:2004
+type: TS
+title: "Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)"
 ---
-= ISO/TS 15000-4:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)
 
 == Abstract
 

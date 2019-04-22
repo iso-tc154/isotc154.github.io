@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 8601:2004
-standard-type: international
-title: "ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times"
+name: ISO 8601:2004
+type: international
+title: "Data elements and interchange formats -- Information interchange -- Representation of dates and times"
 ---
-= ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times
 
 == Abstract
 

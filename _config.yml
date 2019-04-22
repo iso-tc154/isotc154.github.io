@@ -3,17 +3,6 @@ title_html: ISO/TC&nbsp;154
 
 email: open.source@ribose.com
 
-committee:
-  id: 154
-  name: Processes, data elements and documents in commerce, industry and administration
-  links:
-    - url: /about
-      title: About
-    - url: /members
-      title: Members
-    - url: /procedures/sdmr
-      title: JWG 1 SDMR
-
 description: >-
   ISO/TC 154 Committee site
   Processes, data elements and documents in commerce, industry and administration
@@ -24,7 +13,9 @@ tagline: >-
 baseurl: ""
 url: "https://www.isotc154.org"
 
-theme: jekyll-theme-isotc211
+markdown: kramdown
+
+excerpt_separator: "// more"
 
 social:
   links:
@@ -33,18 +24,24 @@ social:
     - url: https://www.facebook.com/groups/236669159734679/
     - url: https://www.linkedin.com/groups/4222374
 
-footer_nav:
-  - url: https://www.gefeg.com/jswg/
-    title: JWG 1 Site
-  # - url: https://committee.iso.org/home/tc154
-  #   title: Committee Site
+footer_nav_items:
+  - home
+  - sitemap
+  - news
+  - contact
 
-powered_by:
-  url: https://open.ribose.com
-  title: Ribose
-  logo_path: /assets/logo-ribose.svg
+primary_nav_items:
+  - about
+  - projects
+  - standards
+  - minutes
+  - faq
+  - meetings
 
 collections:
+  pages:
+    output: true
+    permalink: /:name/
   minutes:
     output: true
     permalink: /:collection/:date/
@@ -52,6 +49,9 @@ collections:
     output: true
     permalink: /:collection/:name/
   projects:
+    output: true
+    permalink: /:collection/:name/
+  procedures:
     output: true
     permalink: /:collection/:name/
   groups:
@@ -63,47 +63,67 @@ collections:
 
 defaults:
   - scope:
-      path: ""
-      type: "minutes"
+      path: "faq"
     values:
-      layout: post
+      layout: faq
   - scope:
       path: ""
-      type: "standards"
+      type: minutes
     values:
-      layout: post
+      layout: minutes
   - scope:
       path: ""
-      type: "projects"
+      type: standards
     values:
-      layout: post
+      layout: standard
   - scope:
       path: ""
-      type: "groups"
+      type: projects
     values:
-      layout: post
+      layout: project
+  - scope:
+      path: ""
+      type: procedures
+    values:
+      layout: procedures
+  - scope:
+      path: ""
+      type: groups
+    values:
+      layout: group
 
 nav:
-  items:
-    - id: home
-      url: /
-      title: Home
-      description: Committee site & latest news
-    - id: news
-      url: /posts
-      title: News & Articles
-    - id: projects
-      url: /projects
-      title: Projects
-      description: Ongoing projects
-    - id: standards
-      url: /standards
-      title: Standards
-      description: Published standards
-    - id: faq
-      url: /faq
-      title: FAQ
-      description: Commonly asked questions and answers
+  about:
+    url: /about/
+    title: About
+  faq:
+    url: /faq/
+    title: FAQ
+  standards:
+    url: /standards/
+    title: Standards
+  projects:
+    url: /projects/
+    title: Projects
+  minutes:
+    url: /minutes/
+    title: Minutes
+  meetings:
+    url: /meetings/
+    title: Meetings
+
+  home:
+    url: /
+    title: Home
+  sitemap:
+    url: /sitemap/
+    title: Sitemap
+  news:
+    url: /news/
+    title: News
+  contact:
+    url: /contact
+    title: Contact
 
 exclude:
   - Gemfile
@@ -111,18 +131,5 @@ exclude:
   - Makefile
   - deploy.sh
   - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+  - vendor
   - .sass-cache/
-
-header_pages:
-  - index.adoc
-  - about.adoc
-  - contact.adoc
-  - faq.adoc
-  - minutes.adoc
-  - projects.adoc
-  - standards.adoc
-

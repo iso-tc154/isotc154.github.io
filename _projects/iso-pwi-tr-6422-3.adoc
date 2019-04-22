@@ -1,10 +1,13 @@
 ---
-project-identifier: iso-pwi-tr-6422-3
-project-status: new
-title: ISO PWI TR 6422-3
+id: iso-pwi-tr-6422-3
+name: ISO PWI TR 6422-3
+title: >-
+  Layout key for trade documents --
+  Part 3: Analysis for user requirements for layout key of trade documents
+status: new
+excerpt:
 ---
-= ISO PWI TR 6422-3 Layout key for trade documents -- Part 3: Analysis for user requirements for layout key of trade documents
-
+// more
 This Work Item is for the development of a Technical Report regarding the progress of ISO 6422 "`Layout key for trade documents.`" This project was initiated to provide more clearance on an appropriate extension of ISO 6422 for electronic documents as already registered as Work Item ISO 6422-2.
 
 The foreseen Technical Report will reflect the different views of interested parties on their business needs and provide guidance how to proceed with ISO 6422 as relevant ISO standard. The minimal requirements for the ISO/TR project are as follows:

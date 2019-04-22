@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<div class="with-aside">
+  <main>
+    <header>
+      <h1>{{ page.subtitle }}</h1>
+      <h2>{{ page.title }}</h2>
+      <div class="date">
+        <span class="day">{{ page.date | date: "%d" }}</span>
+        <span class="month">{{ page.date | date: "%b" }}</span>
+      </div>
+    </header>
+
+    {{ page.content }}
+  </main>
+
+  <aside class="standard-list">
+    {% include minutes_nav.html active_minutes_permalink=page.permalink %}
+  </aside>
+</div>

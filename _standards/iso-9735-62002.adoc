@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 9735-6:2002
-standard-type: international
-title: "ISO 9735-6:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 6: Secure authentication and acknowledgement message (message type -- AUTACK)"
+name: ISO 9735-6:2002
+type: international
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 6: Secure authentication and acknowledgement message (message type -- AUTACK)"
 ---
-= ISO 9735-6:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 6: Secure authentication and acknowledgement message (message type -- AUTACK)
 
 == Abstract
 This part of ISO 9735 for EDIFACT security defines the secure authentication and acknowledgement message AUTACK.

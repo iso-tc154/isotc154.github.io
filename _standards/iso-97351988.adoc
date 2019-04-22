@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 9735:1988
-standard-type: international
-title: "ISO 9735:1988 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules"
+name: ISO 9735:1988
+type: international
+title: "Electric data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules"
 ---
-= ISO 9735:1988 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules
 
 == Abstract
 This International Standard gives syntax rules for the preparation of messages to be interchanged between partners in the fields of administration, commerce and transport.

@@ -1,11 +1,12 @@
 ---
-project-identifier: iso-np-6422-2
-project-status: current
-title: ISO NP 6422-2
+id: iso-np-6422-2
+name: ISO NP 6422-2
+title: "Layout key for trade documents -- Part 2: Electronic documents"
+status: current
 ---
-= ISO NP 6422-2 Layout key for trade documents -- Part 2: Electronic documents
-
 NOTE: This WI has been canceled and instead the new link:/projects/iso-pwi-tr-6422-3[PWI TR 6422-3] has been created.
+
+// more
 
 The proposed work item should be part 2 of the ISO 6422 Layout key standard.
 

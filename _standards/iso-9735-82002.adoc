@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 9735-8:2002
-standard-type: international
+name: ISO 9735-8:2002
+type: international
 title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 8: Associated data in EDI"
 ---
-= ISO 9735-8:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 8: Associated data in EDI
 
 == Abstract
 This part of ISO 9735 specifies syntax rules for associated data in EDI to be interchanged between computer application systems. This provides a method to transfer data which cannot be carried by means of either a batch or interactive EDIFACT message. The data may be created by other applications (such as STEP, CAD, etc.), and is referred to in this part as associated data.

@@ -1,0 +1,268 @@
+.minutes-header-with-date {
+  position: relative;
+  padding-right: 6em;
+
+  .date {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 5em;
+    height: 5em;
+    font-weight: bold;
+    line-height: 1;
+    transform: translateY(-50%);
+
+    .day {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: $borderColor2;
+      font-size: 5em;
+    }
+    .month {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translateY(-100%);
+      text-transform: uppercase;
+    }
+  }
+}
+
+body.minutes,
+body.layout--minutes,
+body.layout--minutes_tag_index {
+  .participants.dlist {
+    border-color: $borderColor2;
+    border-style: solid;
+    border-width: 1px 0 1px 0;
+    padding: 1.25em 0;
+
+    dt {
+      font-weight: bold;
+      position: relative;
+
+      display: flex;
+      flex-flow: row nowrap;
+
+      &:before {
+        display: block;
+        width: 1em;
+        height: 1em;
+        margin-right: .8em;
+        position: relative;
+        top: 2px;
+        content: " ";
+        background-position: center center;
+        background-size: cover;
+
+        // Excused
+        background-image: url(/assets/img/fa/minus-circle-solid.svg);
+      }
+
+      &:first-child:before {
+        // Participants
+        background-image: url(/assets/img/fa/check-solid.svg);
+      }
+
+      &:after {
+        content: ":";
+      }
+    }
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      dl, dt, dd, p {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      dl {
+        display: flex;
+        flex-flow: row wrap;
+
+        dt {
+          flex-shrink: 1;
+          flex-grow: 0;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          flex-basis: 20%;
+        }
+        dd {
+          flex: 1;
+          flex-basis: 80%;
+        }
+      }
+    }
+  }
+}
+
+body.layout--minutes_tag_index,
+body.minutes {
+  article.minutes {
+    margin-bottom: 3em;
+
+    header {
+      @extend .minutes-header-with-date;
+
+      .title {
+        margin: 0 0 .3em 0;
+        font-size: 160%;
+
+        a:link, a:visited {
+          color: inherit;
+        }
+      }
+    }
+
+    .subtitle {
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      font-weight: bold;
+      font-size: 100%;
+      color: $linkColor;
+    }
+
+    .excerpt {
+      padding-left: 1.8em;
+      font-size: 83%;
+      margin-bottom: 2em;
+
+      .readmore, .participants {
+        font-size: 110%;
+        margin-left: -1.8em;
+      }
+      .readmore {
+        font-weight: bold;
+      }
+    }
+
+    footer {
+      background: $borderColor1;
+      padding: 1.2em 1.8em;
+      display: flex;
+      flex-flow: row nowrap;
+      font-size: 90%;
+
+      .category {
+        margin-right: 1em;
+      }
+      .category, .tags {
+        .label {
+          font-weight: bold;
+          margin-right: .5em;
+        }
+        .content {
+          a:link, a:visited {
+            color: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+
+body.layout--minutes {
+  @include asciidoc-markup();
+
+  main > header {
+    margin-bottom: 3em;
+    @extend .minutes-header-with-date;
+
+    > h1 {
+      margin: 0;
+      color: lighten($textColor, 40);
+      font-weight: normal;
+    }
+    > h2 {
+      margin-top: 0;
+      font-size: 160%;
+    }
+  }
+}
+
+body.layout--minutes,
+body.layout--minutes_tag_index,
+body.minutes {
+  .with-aside {
+    @include wideContainer();
+
+    aside {
+      ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      section {
+        margin-bottom: 2em;
+
+        > .title {
+          letter-spacing: .1em;
+        }
+      }
+
+      .recent, .categories {
+        li {
+          border-bottom: 1px solid $borderColor1;
+          padding-bottom: .7em;
+          margin-bottom: .7em;
+          font-size: 90%;
+          white-space: nowrap;
+
+          a {
+            color: $linkColor;
+          }
+          &:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+          }
+          &.active {
+            font-weight: bold;
+            position: relative;
+
+            &:before {
+              position: absolute;
+              left: -2em;
+              top: -.15em;
+              content: "→";
+              display: block;
+            }
+          }
+        }
+      }
+      .tags {
+        font-size: 90%;
+        ul {
+          display: flex;
+          flex-flow: row wrap;
+        }
+        li {
+          padding: .2em .6em;
+          border-radius: 1em;
+          border: 1px solid $borderColor1;
+          margin-right: .5em;
+          margin-bottom: .5em;
+        }
+      }
+    }
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      display: flex;
+      flex-flow: row nowrap;
+
+      aside {
+        flex-basis: 20vw;
+        margin-left: 3vw;
+        border-left: 1px solid $borderColor1;
+        padding-left: 5vw;
+      }
+    }
+    @media screen and (min-width: $widescreenBreakpoint) {
+      aside {
+        flex-basis: 20vw;
+      }
+    }
+  }
+}

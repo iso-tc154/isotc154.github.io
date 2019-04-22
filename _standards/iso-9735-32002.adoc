@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 9735-3:2002
-standard-type: international
-title: "ISO 9735-3:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 3: Syntax rules specific to interactive EDI"
+name: ISO 9735-3:2002
+type: international
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 3: Syntax rules specific to interactive EDI"
 ---
-= ISO 9735-3:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 3: Syntax rules specific to interactive EDI
 
 == Abstract
 This part of ISO 9735 specifies syntax rules specifically for the transfer of interactive messages to be interchanged between computer application systems. For the transfer of packages in an interactive environment, see ISO 9735-8.

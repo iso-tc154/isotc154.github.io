@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO/TS 17369:2005
-standard-type: TS
-title: "ISO/TS 17369:2005 Statistical data and metadata exchange (SDMX)"
+name: ISO/TS 17369:2005
+type: TS
+title: "Statistical data and metadata exchange (SDMX)"
 ---
-= ISO/TS 17369:2005 Statistical data and metadata exchange (SDMX)
 
 == Abstract
 

@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO/TS 15000-1:2004
-standard-type: TS
-title: "ISO/TS 15000-1:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 1: Collaboration-protocol profile and agreement specification (ebCPP)"
+name: ISO/TS 15000-1:2004
+type: TS
+title: "Electronic business eXtensible Markup Language (ebXML) -- Part 1: Collaboration-protocol profile and agreement specification (ebCPP)"
 ---
-= ISO/TS 15000-1:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 1: Collaboration-protocol profile and agreement specification (ebCPP)
 
 == Abstract
 ISO 15000-1:2004 specifies the requirements for a collaboration-protocol profile (CPP), and a collaboration-protocol agreement (CPA). The CPP describes a trading partner's technical capabilities for performing electronic business. The CPA describes the agreement between two trading partners on the technical capabilities they will use for a specific electronic-business collaboration. Included in the CPP and CPA are details of transport, messaging (using ISO 15000-2:2004), security constraints, and binding to a business-process-specification document that contains the definition of the interactions between the two parties while engaging in a specified electronic business collaboration. ISO 15000-1:2004 defines the mark-up language vocabulary for creating the electronic CPPs and CPAs and includes examples of a pair of CPPs and a CPA derived from them, the process specification document referenced by the CPPs and CPA, and the XML schema governing the structures of CPPs and CPAs. A prospective trading partner may publish one or more CPPs. A CPA for a business collaboration between two trading partners is derived by combining one CPP from each trading partner. The "`legal`" terms and conditions of a Business agreement are outside the scope of ISO 15000-1:2004.

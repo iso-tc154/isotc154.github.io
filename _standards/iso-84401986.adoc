@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 8440:1986
-standard-type: international
-title: "ISO 8440:1986 Location of codes in trade documents"
+name: ISO 8440:1986
+type: international
+title: "Location of codes in trade documents"
 ---
-= ISO 8440:1986 Location of codes in trade documents
 
 == Abstract
 

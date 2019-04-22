@@ -1,10 +1,9 @@
 ---
-group-id: wg6
-group-name: "WG 6 -- Trusted eCommunications"
+id: wg6
+name: WG 6
+title: Trusted eCommunications
 order: 6
 ---
-= WG 6 -- Trusted eCommunications
-
 == Scope
 
 The scope of WG6 related to business transactions of TC154 scope such as e-commerce, e-industry and e-administration. It focuses on reliable and identifiable methods, requirements and technology which can be retained such as legally binding e-transactions between communication entities for long periods.

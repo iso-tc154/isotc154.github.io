@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO/TS 20625:2002
-standard-type: TS
-title: "ISO/TS 20625:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines"
+name: ISO/TS 20625:2002
+type: TS
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines"
 ---
-= ISO/TS 20625:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines
 
 == Abstract
 

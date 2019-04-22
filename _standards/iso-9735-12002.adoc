@@ -1,11 +1,8 @@
 ---
-standard-identifier: ISO 9735-1:2002
-standard-type: international
-title: "ISO 9735-1:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 1: Syntax rules common to all parts"
+name: ISO 9735-1:2002
+type: international
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 1: Syntax rules common to all parts"
 ---
-= ISO 9735-1:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 1: Syntax rules common to all parts
-
-== Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 1: Syntax rules common to all parts
 
 == Abstract
 This part of ISO 9735 specifies common syntax rules for the formatting of batch and interactive messages to be interchanged between computer application systems. It includes the terms and definitions for all parts of ISO 9735.

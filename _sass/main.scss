@@ -1,0 +1,257 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  &:link, &:visited {
+    color: inherit;
+    text-decoration: none;
+
+    main & {
+      color: $linkColor;
+    }
+  }
+}
+
+body > main {
+  @include wideContainer();
+}
+
+main {
+  > header {
+    margin-bottom: 3em;
+  }
+  &, & > header {
+    > .entity {
+      margin: 0;
+      color: lighten($textColor, 40);
+      font-weight: normal;
+
+      .id {
+        margin-right: 1em;
+      }
+      .type {
+        font-size: .8rem;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        vertical-align: middle;
+        font-weight: bold;
+        white-space: nowrap;
+
+        padding: .4em .8em;
+        background: $primaryColor;
+        color: white;
+      }
+    }
+    > .headline {
+      margin-top: 0;
+      font-size: 160%;
+    }
+  }
+
+  > section {
+    margin-bottom: 3em;
+  }
+}
+
+
+header.top-bar {
+  background-color: $primaryColor;
+  color: white;
+
+  margin-bottom: 3em;
+
+  > .container {
+    @include wideContainer();
+
+    height: $headerH / 1.7;
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      height: $headerH;
+    }
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  a, a:link, a:visited {
+    color: inherit;
+  }
+
+  .iso-logo {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    margin-left: -.7em;
+
+    img {
+      display: block;
+
+      // White on primary color
+      -webkit-filter: invert(1);
+      filter: invert(1);
+
+      height: $logoSide / 1.5;
+      width: $logoSide / 1.5;
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        height: $logoSide;
+        width: $logoSide;
+      }
+    }
+  }
+
+  h1 {
+    flex: 1;
+    margin: 0;
+    white-space: nowrap;
+    font-size: 135%;
+  }
+
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .priority-nav {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    align-self: stretch;
+    font-size: 90%;
+    letter-spacing: .02em;
+    overflow-x: auto;
+    margin-left: 1em;
+
+    li {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+      a {
+        text-transform: uppercase;
+        padding: 0 .4em;
+
+        @media screen and (min-width: $bigscreenBreakpoint) {
+          padding: 1em .7em;
+        }
+        @media screen and (min-width: $widescreenBreakpoint) {
+          padding: 1em 1.4em;
+        }
+      }
+      &.selected {
+        background-color: rgba(white, 0.2);
+      }
+    }
+  }
+}
+
+body > footer {
+  margin-top: 4em;
+
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 90%;
+
+  background: #F6F6F6;
+
+  > .container {
+    @include wideContainer();
+  }
+
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .row1 {
+    border-bottom: 1px solid $borderColor2;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      flex-flow: row nowrap;
+    }
+
+    .logo {
+      margin-left: -.7em;
+      position: relative;
+      z-index: 2;
+
+      img {
+        height: $logoSide;
+        width: $logoSide;
+      }
+    }
+
+    .links {
+      display: flex;
+      flex-flow: row wrap;
+      flex: 1;
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        flex-flow: row nowrap;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 1;
+      }
+
+      > * {
+        margin: 0 .5em;
+      }
+    }
+
+    .powered-by {
+      display: flex;
+      flex-flow: column nowrap;
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        flex-flow: row nowrap;
+      }
+
+      position: relative;
+      z-index: 2;
+
+      .powered-by__text {
+        margin-right: .5em;
+      }
+
+      img {
+        height: 1.2em;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  .row2 {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    padding: 1em 0;
+
+    .copyright {
+      flex: 1;
+      white-space: nowrap;
+    }
+
+    .social-links {
+      display: flex;
+      flex-flow: row nowrap;
+
+      > * {
+        margin-left: .5em;
+      }
+    }
+  }
+}

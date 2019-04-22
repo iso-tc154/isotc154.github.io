@@ -1,0 +1,9 @@
+<ul>
+  {% for project in site.projects %}
+    {% if include.active_project_id and include.active_project_id == project.id %}
+      <li class="active"><span class="name">{{ project.name }}</span>
+    {% else %}
+      <li><a class="name" href="{{ project.url }}">{{ project.name }}</a>
+    {% endif %}
+  {% endfor %}
+</ul>

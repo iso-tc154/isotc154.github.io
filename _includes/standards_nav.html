@@ -1,0 +1,9 @@
+<ul>
+  {% for standard in site.standards %}
+    {% if include.active_standard_name and include.active_standard_name == standard.name %}
+      <li class="active"><span class="name">{{ standard.name }}</span>
+    {% else %}
+      <li><a class="name" href="{{ standard.url }}">{{ standard.name }}</a>
+    {% endif %}
+  {% endfor %}
+</ul>

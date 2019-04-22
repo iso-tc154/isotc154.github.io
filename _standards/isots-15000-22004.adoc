@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO/TS 15000-2:2004
-standard-type: TS
-title: "ISO/TS 15000-2:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 2: Message service specification (ebMS)"
+name: ISO/TS 15000-2:2004
+type: TS
+title: "Electronic business eXtensible Markup Language (ebXML) -- Part 2: Message service specification (ebMS)"
 ---
-= ISO/TS 15000-2:2004 Electronic business eXtensible Markup Language (ebXML) -- Part 2: Message service specification (ebMS)
 
 == Abstract
 

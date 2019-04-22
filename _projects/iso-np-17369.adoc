@@ -1,14 +1,14 @@
 ---
-project-identifier: iso-np-17369
-project-status: new
-title: ISO NP 17369
+id: iso-np-17369
+name: ISO NP 17369
+title: Statistical data and metadata exchange (SDMX) Revision
+status: new
 ---
-= ISO NP 17369 Statistical data and metadata exchange (SDMX) Revision
+// more
 
 == Goal
 
 Revision of link:/standards/isots-173692005[ISO/TS 17369 – Statistical data and metadata exchange (SDMX)], as an International Standard (IS).
-
 
 == Scope
 

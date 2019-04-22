@@ -1,9 +1,11 @@
 ---
-project-identifier: iso-np-15000-5
-project-status: new
-title: ISO NP 15000-5
+id: iso-np-15000-5
+name: ISO NP 15000-5
+title: "ebXML – Part 5: ebCCTS Revision"
+status: new
+excerpt:
 ---
-= ISO NP 15000-5 ebXML – Part 5: ebCCTS Revision
+// more
 
 == Goal
 

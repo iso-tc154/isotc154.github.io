@@ -1,0 +1,47 @@
+---
+layout: default
+
+stylesheets:
+  - href: "https://unpkg.com/flickity@2/dist/flickity.min.css"
+
+scripts:
+  - src: "https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
+  - src: "/assets/js/slider.js"
+---
+
+<main>
+
+  <section class="hero">
+    {% for banner in page.banner_includes %}
+      {% assign layout_name = banner.layout | default: "default" %}
+      <section class="banner banner--{{ layout_name }}">
+        {% assign layout_path = "hero_banners/" | append: layout_name | append: ".html" %}
+        {% include {{ layout_path }} banner=banner %} 
+      </section>
+    {% endfor %}
+  </section>
+
+  {{ content }}
+
+  <section class="groups">
+    {% assign groups = site.groups | where: "featured_on_home", true | sort: "order" | slice: 0, 4 %}
+    {% for group in groups %}
+      <article class="group">
+        <h3>
+          <a href="{{ group.url }}">
+            {% if group.name %}
+              ISO/TC 154/{{ group.name }}
+            {% else %}
+              {{ group.title }}
+            {% endif %}
+          </a>
+        </h3>
+
+        <div class="description">
+          {{ group.excerpt }}
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+
+</main>

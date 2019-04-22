@@ -1,9 +1,8 @@
 ---
-standard-identifier: ISO 9735-9:2002
-standard-type: international
-title: "ISO 9735-9:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 9: Security key and certificate management message (message type- KEYMAN)"
+name: ISO 9735-9:2002
+type: international
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 9: Security key and certificate management message (message type- KEYMAN)"
 ---
-= ISO 9735-9:2002 Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -- Part 9: Security key and certificate management message (message type- KEYMAN)
 
 == Abstract
 This part of ISO 9735 for batch EDIFACT security defines the security key and certificate management message KEYMAN.

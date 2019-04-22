@@ -1,10 +1,9 @@
 ---
-group-id: jwg8
-group-name: "JWG 8 -- Logistics data contents and process"
+id: jwg8
+name: JWG 8 (with UN/ECE)
+title: Logistics data contents and process
 order: 8
 ---
-= JWG 8 (with UN/ECE) -- Logistics data contents and process
-
 Established by ISO/TC 154 in collaboration with UNECE through UN/CEFACT.
 
 == Scope
