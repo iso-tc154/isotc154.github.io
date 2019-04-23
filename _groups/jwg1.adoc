@@ -9,15 +9,28 @@ NOTE: Please see link:/procedures/sdmr[Syntax Data Maintenance Request Submissio
 
 == General
 
-ISO/TC 154/JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group (JSWG)`" with the UN/ECE in order to develop and maintain the EDIFACT syntax. Since the publication of the syntax version 1 in 1988 the standard has been revised and amended several times until the current version 4, release 1. With its publication in 2002 the work in JWG 1 is mainly concentrated on the twice-per-year update of the syntax codes directory (in alignment with the EDIFACT user directories) on the corresponding JSWG website.
+ISO/TC 154/JWG 1 was established in the late 80's as so called
+"`Joint Syntax Working Group (JSWG)`" with the UN/ECE in order to
+develop and maintain the EDIFACT syntax. Since the publication of
+the syntax version 1 in 1988 the standard has been revised and
+amended several times until the current version 4, release 1. With
+its publication in 2002 the work in JWG 1 is mainly concentrated on
+the twice-per-year update of the syntax codes directory (in
+alignment with the EDIFACT user directories) on the corresponding
+JSWG website.
 
 == Scope
 
-The scope of JWG1 also includes the maintenance, update and extend of ISO 9735.
+The scope of JWG1 also includes the maintenance, update and extend
+of ISO 9735.
 
 == History
 
-The *Joint Working Group 1*, formally known as _Joint Syntax Working Group (JSWG)_, started its work in the late 80s to produce the so called version 1 of the EDIFACT syntax (published by ISO as ISO 9735:1988). The membership comprises experts from both UN/ECE and ISO level.
+The *Joint Working Group 1*, formally known as _Joint Syntax
+Working Group (JSWG)_, started its work in the late 80s to produce
+the so called version 1 of the EDIFACT syntax (published by ISO as
+ISO 9735:1988). The membership comprises experts from both UN/ECE
+and ISO level.
 
 
 == Secretariat
@@ -38,24 +51,30 @@ Sue Probert (UK/BSI) (2018 - )
 
 === Previous convenors
 
-* Don Trafford (UK) (initial - September 2007) (In memory please see link:http://www.dontrafford.com)
+* Don Trafford (UK) (initial - September 2007) (In memory please
+see link:http://www.dontrafford.com)
 * Klaus-Dieter Naujok (DE) (September 2007 - 2018)
 
 == Deliverables
 
-JWG 1's main deliverable is the ISO 9735, EDIFACT – Application level syntax rules, with the following versions:
+JWG 1's main deliverable is the ISO 9735, EDIFACT – Application
+level syntax rules, with the following versions:
 
 * Version 4, Release 1 – 2002 consisting of:
 
 ** Part 1: Syntax rules common to all parts
 ** Part 2: Syntax rules specific for batch EDI
 ** Part 3: Syntax rules specific for interactive EDI
-** Part 4: Syntax and service report message for batch EDI (message type – CONTRL)
-** Part 5: Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)
-** Part 6: Secure authentication and acknowledgement message (message type – AUTACK)
+** Part 4: Syntax and service report message for batch EDI (message
+type – CONTRL)
+** Part 5: Security rules for batch EDI (authenticity, integrity
+and non-repudiation of origin)
+** Part 6: Secure authentication and acknowledgement message
+(message type – AUTACK)
 ** Part 7: Security rules for batch EDI (confidentiality)
 ** Part 8: Associated data in EDI
-** Part 9: Security key and certificate management message (message type – KEYMAN)
+** Part 9: Security key and certificate management message (message
+type – KEYMAN)
 ** Part 10: Syntax service directories
 
 * Version 4 – 1998/1999 with:
@@ -77,4 +96,11 @@ JWG 1's main deliverable is the ISO 9735, EDIFACT – Application level syntax r
 
 * Version 1 – 1988;
 
-Since the last publication in 2002 the JWG 1's work is concentrated on the maintenance of the service codes in process. Appropriate requests (DMRs) are handled by the group who is responsible for updating the UNSL (Syntax directories) and http://www.gefeg.com/jswg[JSWG homepage] accordingly. According a JWG 1 agreement (2010-10-23) the "`2-per-year`" update of the Service Code Lists will be performed in alignment with the updates of the corresponding UN/EDIFACT directories.
+Since the last publication in 2002 the JWG 1's work is concentrated
+on the maintenance of the service codes in process. Appropriate
+requests (DMRs) are handled by the group who is responsible for
+updating the UNSL (Syntax directories) and
+http://www.gefeg.com/jswg[JSWG homepage] accordingly. According to
+a JWG 1 agreement (2010-10-23) the "`2-per-year`" update of the
+Service Code Lists will be performed in alignment with the updates
+of the corresponding UN/EDIFACT directories.
