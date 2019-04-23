@@ -7,4 +7,12 @@ role: project-leader-23354
 
 image:/assets/images/members/linda-wang.png[]
 
-Lin (Linda) Wang received her PhD degree in information system from Beijing Jiaotong University in 2009. She is a standard expert in the standardization department of Alibaba Group, and has served in ZTE corporation and DT mobile. She has research and standardization experience on Cross-border eCommerce and trade facilitation (e.g. UN/CEFACT), Internet of Things (e.g. IEEE, Wi-Fi Alliance), Internet of Industry (e.g. National AII Alliance) and Automotive (e.g. CCSA TC11 automotive WG). She published 18 articles (12 articles indexed by SCI/EI) and applied for 16 patents.
+Lin (Linda) Wang received her PhD degree in information system from
+Beijing Jiaotong University in 2009. She is a standard expert in
+the standardization department of Alibaba Group, and has served in
+ZTE corporation and DT mobile. She has research and standardization
+experience on Cross-border eCommerce and trade facilitation (e.g.
+UN/CEFACT), Internet of Things (e.g. IEEE, Wi-Fi Alliance),
+Internet of Industry (e.g. National AII Alliance) and Automotive
+(e.g. CCSA TC11 automotive WG). She published 18 articles (12
+articles indexed by SCI/EI) and applied for 16 patents.

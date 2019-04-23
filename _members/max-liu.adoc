@@ -9,6 +9,14 @@ role: jwg8-convenor
 
 image:/assets/images/members/max-liu.png[]
 
-Dapeng (Max) Liu is a Senior Manager in the standardization department of Alibaba Group. He has served in the Chinese Academy of Sciences, and the Research Institute of China Mobile Communications Co., Ltd. He serves as the chair of Bluetooth Smart home Subgroup, alternative board of Lora Alliance, co-chair of W3C web commerce interest group, secretary general of IoT Connectivity Alliance, co- chair of IETF DMM Working Group , vice-chair of the IEEE 802.21c WG, Secretary of the IE802.11aq WG, etc. He published four IETF RFC standards and one IEEE standard, and more than 20 patents have been applied in China and abroad.
+Dapeng (Max) Liu is a Senior Manager in the standardization
+department of Alibaba Group. He has served in the Chinese Academy
+of Sciences. He serves as the chair of Bluetooth Smart home
+Subgroup, alternative board of Lora Alliance, co-chair of W3C web
+commerce interest group, secretary general of IoT Connectivity
+Alliance, co- chair of IETF DMM Working Group , vice-chair of the
+IEEE 802.21c WG, Secretary of the IE802.11aq WG, etc. He published
+four IETF RFC standards and one IEEE standard, and more than 20
+patents have been applied in China and abroad.
 
 https://www.linkedin.com/in/dapeng-max-liu/
