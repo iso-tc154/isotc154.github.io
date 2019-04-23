@@ -6,14 +6,20 @@ email: open.source@ribose.com
 committee:
   id: 154
   name: Processes, data elements and documents in commerce, industry and administration
-  link: /
+  links:
+    - url: /about
+      title: About
+    - url: /members
+      title: Members
+    - url: /procedures/sdmr
+      title: JWG 1 SDMR
 
 description: >-
   ISO/TC 154 Committee site
   Processes, data elements and documents in commerce, industry and administration
 
 tagline: >-
-  Resources
+  Official site
 
 baseurl: ""
 url: "https://www.isotc154.org"
@@ -78,24 +84,26 @@ defaults:
       layout: post
 
 nav:
-  home:
-    url: /
-    title: Home
-  about:
-    url: /about
-    title: About ISO/TC 154
-  faq:
-    url: /faq
-    title: FAQ
-  standards:
-    url: /standards
-    title: Standards
-  projects:
-    url: /projects
-    title: Projects
-  sdmr:
-    url: /procedures/sdmr
-    title: JWG 1 SDMR
+  items:
+    - id: home
+      url: /
+      title: Home
+      description: Committee site & latest news
+    - id: news
+      url: /posts
+      title: News & Articles
+    - id: projects
+      url: /projects
+      title: Projects
+      description: Ongoing projects
+    - id: standards
+      url: /standards
+      title: Standards
+      description: Published standards
+    - id: faq
+      url: /faq
+      title: FAQ
+      description: Commonly asked questions and answers
 
 exclude:
   - Gemfile
