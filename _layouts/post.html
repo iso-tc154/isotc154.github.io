@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<div class="with-aside">
+  <main>
+    <header>
+      <h1 class="entity">
+        <span class="id">{{ page.name }}</span>
+        <span class="type">post</span>
+      </h1>
+      <h2 class="headline">{{ page.title }}</h2>
+    </header>
+
+    {{ page.content }}
+  </main>
+
+  <aside class="post-list">
+    {% include posts_nav.html active_post_id=page.id %}
+  </aside>
+</div>

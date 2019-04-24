@@ -32,6 +32,7 @@ footer_nav_items:
 
 primary_nav_items:
   - about
+  - posts
   - projects
   - standards
   - minutes
@@ -52,6 +53,9 @@ collections:
     output: true
     permalink: /:collection/:name/
   procedures:
+    output: true
+    permalink: /:collection/:name/
+  posts:
     output: true
     permalink: /:collection/:name/
   groups:
@@ -93,6 +97,11 @@ defaults:
       type: groups
     values:
       layout: group
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
 
 nav:
   about:
@@ -104,6 +113,9 @@ nav:
   standards:
     url: /standards/
     title: Standards
+  posts:
+    url: /posts/
+    title: News
   projects:
     url: /projects/
     title: Projects

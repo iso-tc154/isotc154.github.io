@@ -1,0 +1,9 @@
+<ul>
+  {% for post in site.posts %}
+    {% if include.active_post_id and include.active_post_id == post.id %}
+      <li class="active"><span class="name">{{ post.title }}</span>
+    {% else %}
+      <li><a class="name" href="{{ post.url }}">{{ post.title }}</a>
+    {% endif %}
+  {% endfor %}
+</ul>
