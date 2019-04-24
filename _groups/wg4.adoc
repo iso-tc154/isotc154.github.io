@@ -5,6 +5,7 @@ title: eLK
 order: 4
 featured_on_home: true
 ---
+:page-liquid:
 
 ISO/TC 154/WG 4 was established (formally as JWG 2) in 2006
 for the purpose of developing an electronic version of the UN Layout Key

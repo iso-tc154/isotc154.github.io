@@ -10,8 +10,8 @@ permalink: /about/
 
 = About ISO/TC 154
 
-{% assign secretary = (site.members | where: "member-id", "jianfang-zhang" | first) %}
-{% assign chair = (site.members | where: "member-id", "judy-zhu" | first) %}
+{% assign secretary = site.members | where: "member-id", "jianfang-zhang" | first %}
+{% assign chair = site.members | where: "member-id", "judy-zhu" | first %}
 
 * Name: Processes, data elements and documents in commerce, industry and administration
 

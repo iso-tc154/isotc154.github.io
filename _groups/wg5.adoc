@@ -4,6 +4,8 @@ name: WG 5
 title: Date and time
 order: 5
 ---
+:page-liquid:
+
 == Scope
 
 The scope of WG5 is to provide a common platform for all date and time stakeholders, to enable a unified, interoperable of date and time across populations and systems. Specifically, the work involves the standardization of concepts and semantics related to date and time, systems and processes that use or measure date and time, and the interoperability of information systems that utilize date and time.
@@ -17,8 +19,12 @@ The scope of WG5 is to provide a common platform for all date and time stakehold
 
 === Current convenor
 
-Ronald Tse (CalConnect) (2019/04 - )
+{% assign convenor = site.members | where: "member-id", "ronald-tse" | first %}
+
+link:{{ convenor.url }}[{{ convenor.name }}] (CalConnect) (2019/04 - )
 
 === Previous convenors
 
-* Ray Denenberg (ISO/TC 46) (2018 - 2019/04)
+{% assign convenor = site.members | where: "member-id", "ray-denenberg" | first %}
+
+link:{{ convenor.url }}[{{ convenor.name }}] (ISO/TC 46) (2018 - 2019/04)

@@ -5,6 +5,7 @@ title: EDIFACT Syntax
 order: 2
 featured_on_home: true
 ---
+:page-liquid:
 
 JWG 1 was established in the late 80's as so called
 "`Joint Syntax Working Group (JSWG)`" with the UN/ECE in order to
@@ -48,7 +49,7 @@ Bernd Bösler (DE/DIN) (1998 - )
 
 === Current convenor
 
-{% assign convenor = (site.members | where: "member-id", "sue-probert" | first) %}
+{% assign convenor = site.members | where: "member-id", "sue-probert" | first %}
 
 link:{{ convenor.url }}[{{ convenor.name }}] (UK/BSI) (2018 - )
 
@@ -56,7 +57,7 @@ link:{{ convenor.url }}[{{ convenor.name }}] (UK/BSI) (2018 - )
 === Previous convenors
 
 * Don Trafford (UK) (initial - September 2007) (In memory please
-see link:http://www.dontrafford.com)
+see http://www.dontrafford.com)
 * Klaus-Dieter Naujok (DE) (September 2007 - 2018)
 
 == Deliverables

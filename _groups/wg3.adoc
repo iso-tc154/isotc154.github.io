@@ -5,6 +5,7 @@ title: CCTS
 order: 3
 featured_on_home: true
 ---
+:page-liquid:
 
 WG 3 was established upon the former "`CCTS`" ad-hoc group of ISO/TC 154 in March 2006.
 The purpose is to maintain the ISO/TS 15000-5 "`Core Components Technical Specification, V2.01`"

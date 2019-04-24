@@ -4,6 +4,7 @@ title: UN TDED — ISO 7372 Joint Maintenance Agency (JMA)
 order: 9
 featured_on_home: true
 ---
+:page-liquid:
 
 The agency was established in the late 80's
 to maintain the *Trade Data Element Directory* (TDED) issued by UN/ECE as UNTDED and also by ISO/TC154 as ISO 7372.

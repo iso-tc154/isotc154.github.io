@@ -4,6 +4,8 @@ name: JWG 8 (with UN/ECE)
 title: Logistics data contents and process
 order: 8
 ---
+:page-liquid:
+
 Established by ISO/TC 154 in collaboration with UNECE through UN/CEFACT.
 
 == Scope
@@ -14,7 +16,7 @@ The scope of JWG8 is to develop process, data elements related standards that ar
 
 === Current convenor
 
-{% assign convenor = (site.members | where: "member-id", "max-liu" | first) %}
+{% assign convenor = site.members | where: "member-id", "max-liu" | first %}
 
 link:{{ convenor.url }}[{{ convenor.name }}] (CN/SAC) (initial 2018 -)
 

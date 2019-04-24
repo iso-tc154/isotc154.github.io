@@ -4,6 +4,8 @@ name: WG 6
 title: Trusted eCommunications
 order: 6
 ---
+:page-liquid:
+
 == Scope
 
 The scope of WG6 related to business transactions of TC154 scope such as e-commerce, e-industry and e-administration. It focuses on reliable and identifiable methods, requirements and technology which can be retained such as legally binding e-transactions between communication entities for long periods.
@@ -19,7 +21,7 @@ WG6 also covers considerations about trusted e-communications, in the environmen
 
 === Current convenor
 
-{% assign convenor = (site.members | where: "member-id", "jasmine-chang" | first) %}
+{% assign convenor = site.members | where: "member-id", "jasmine-chang" | first %}
 
 link:{{ convenor.url }}[{{ convenor.name }}] (KR/KATS) (initial 2014 -)
 

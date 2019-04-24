@@ -4,6 +4,8 @@ name: CAT
 title: Chairman's Advisory Team
 order: 1
 ---
+:page-liquid:
+
 The Chairman's Advisory Team (CAT) is an ad-hoc group setup by the TC 154 chair to assist him on the administrative side of running the TC.
 
 The group's membership comprises of the TC 154 chair and secretariat, and the WG/JWG/JMA conveners and secretariats.

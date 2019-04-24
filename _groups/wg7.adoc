@@ -4,6 +4,8 @@ name: WG 7
 title: Digital Business
 order: 7
 ---
+:page-liquid:
+
 == Scope
 
 A key task of WG7 is to enhance interoperability by developing technical specifications in support of semantics, digital innovations and associated concepts that enable standardized cross-enterprise solutions.
@@ -20,7 +22,7 @@ Furthermore, the provision of accessible or open data and related frameworks in 
 
 === Current convenor
 
-{% assign convenor = (site.members | where: "member-id", "peter-plapper" | first) %}
+{% assign convenor = site.members | where: "member-id", "peter-plapper" | first %}
 
 link:{{ convenor.url }}[{{ convenor.name }}] (initial 2014 -)
 
