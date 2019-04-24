@@ -117,8 +117,10 @@ body.layout--home {
   }
 
   .groups {
-    display: flex;
-    flex-flow: row nowrap;
+    @media screen and (min-width: $bigscreenBreakpoint)  {
+      display: flex;
+      flex-flow: row nowrap;
+    }
 
     > .group {
       flex: 1;
