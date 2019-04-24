@@ -1,0 +1,15 @@
+---
+layout: post
+title:  ISO/TC 154 site migration completed!
+date:   2019-04-24 00:00:00 +0800
+categories: site update
+excerpt: >-
+  <p>
+  The ISO/TC 154 site has been re-launched with the new provider <a href="https://www.ribose.com">Ribose</a>.
+---
+The ISO/TC 154 resources site have been re-launched from the previous provider (thank you Klaus!) to the new provider https://www.ribose.com[Ribose].
+
+This action is performed in accordance with ISO/TC 154 *Resolution XXX*,
+"`Offer from Ribose for hosting isotc154.org`".
+
+A number of improvements are planned. Stay tuned!
