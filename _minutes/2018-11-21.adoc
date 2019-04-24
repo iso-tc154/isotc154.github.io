@@ -1,0 +1,243 @@
+---
+permalink: "/minutes/2018-11-21/"
+date: 2018-11-21T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2018-11-21
+---
+= ISO/TC 154 CAT meeting 2018-11-21
+
+Date::
+8:00-9:00pm Beijing Time (UTC+8)
+
+[.participants]
+Participants::
+Hongru (Judy) Zhu, Jianfang Zhang, Ray Denenberg, Jasmine, Ronald Tse, Anders Grangard, Yan Zhang, Peter Rybar, Sue Probert, Dapeng(Max) Liu, Linda Wang.
+
+Excused:: Peter Plapper
+
+Secretariat::
+JianFang Zhang
+
+Chair::
+Hongru (Judy) Zhu
+
+== Approval of Agenda
+
+Approved.
+
+== Approval of 19th Sep 2018 CAG Meeting Minutes
+
+Approved and all
+AP2, AP3 and AP5 are still open.
+
+== 11th -12th Oct 2018 Plenary Meeting Minutes, Resolutions and Actions
+
+Chair shared the progress on the plenary meeting. Any comments on the plenary meeting minutes, resolutions or actions, can be sent by email to Chair and Jianfang.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+==== ISO/PWI 9735-11
+
+Yan Zhang reported that Anders is working on the form4 of PWI 9735-11. For the change time of JWG1 secretary, DIN was still on the discussion. Chair mentioned that it was not a big issue and Yan and Anders can go ahead on the JWG1 work.
+
+
+
+=== WG 5 (Representation of dates and times)
+
+Ray reported that the 8601-1 and 8601-2 are both under the FDIS ballot period. Ronald reported the progress of the three new PWIs in oral.
+
+==== ISO/FDIS 8601-1
+
+==== ISO/FDIS 8601-2
+
+==== ISO/PWI “ Date and time — Concepts and vocabulary”
+
+First draft is ready based on the terms and concepts described in ISO/FDIS 8601-2 and ISO/FDIS 8601-2. NWIP planed to be submitted before end of December 2018.
+
+==== ISO/PWI “ Date and time — Timezone”
+
+First draft planed to be ready by end of December 2018. NWIP planed to be submitted before end of January 2019.
+
+==== ISO/PWI “ Date and time — Codes for calendar systems”
+
+First draft was close to ready. Especially thanked to Ray and the bibliographic community for contributing a list of calendars. NWIP planed to be submitted before end of December 2018.
+
+Ronald will share his report by email after the meeting.
+
+More experts should be invited to join in the project. Jianfang, Ronald and Sue will work with the experts’ list of the three PWIs.
+
+*AP48: Jianfang, Ronald and Sue work together with the experts’ list of the three new PWIs in WG5.*
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+Jasmine reported the progress of WG6 projects. Jianfang mentioned that the status of ISO 20415 was in the 8 weeks’ transition period and the DIS ballot will be open after that.
+
+==== PT1 -ISO 14533 Long term signature profiles
+
+===== ISO/PWI 14533-2
+
+Masashi Sato.
+
+WG6 circulation
+
+===== ISO/CD 14533-4
+
+Peter Rybar.
+
+CD ballot comments resolution.
+
+
+==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+===== ISO/DIS 19626-1
+
+DIS ballot apporved.
+
+===== ISO/WD 19626-2
+
+CD drafting.
+
+==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+
+Yongkon Lee.
+
+In the 8 weeks’ transition period and the DIS ballot will be open after that.
+
+=== WG 7 (Digital Business)
+
+Peter Plapper.
+
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+Anders.
+
+Jianfang sent the two normative reference standards ISO 25964-1 and ISO 25964-2 to Anders. Anders was working on the draft of 21981 and these two standards are important references.
+
+As it discussed in the plenary meeting, the issue of 21981 will be discussed in the next MoU/MG meeting.
+
+
+==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+
+Peter Plapper.
+
+No discussion due to the absence of Peter Plapper.
+
+==== PT3- ISO/DTR 18262 ODIF @Jianfang
+
+Planed to update the new version and have a teleconference within WG7 in March 2019.
+
+The issue of ODIF will be discussed in the next MoU/MG meeting.
+
+
+
+=== JWG8 (Logistics data contents and process)
+
+Dapeng (Max) Liu.
+
+* ISO/AWI 23354 – Business requirements for end-to-end visibility of logistics flow
+* ISO/PWI 23355- Visibility data interchange between logistics information service providers
+* ISO/PWI 23356- Visibility logistics data interchange interface
+
+Max reported that AWI 23354 was under the comments resolution and PWI 23355 was under the draft updating according to the comments received in the plenary meeting.
+
+The time of next JWG8 meeting will be discussed among JWG8 members to make sure it is a joint work between ISO and UNECE.
+
+Jianfang established the experts’ list of JWG8 and Chinese experts registration would be completed after the Chinese internal process.
+
+*AP49: Jianfang, Max and Sue work together to provide the experts’ list of JWG8 and make sure it is the joint work.*
+
+
+=== ISO 7372/UNTDED JMA
+
+Sue.
+
+==== ISO/PWI “Alignment between ISO 7372, UN/EDIFACT EDED+UNCL and UN/CEFACT/CCL”
+
+Sue reported that they are working on the new PWI.
+
+== New PWIs
+
+Ronald reported the status and plan on the three PWIs.
+
+* ISO/PWI “Standardization documents — Metanorma — Document metamodel”
+* ISO/PWI “Standardization documents — Metanorma — Representation in XML”
+
+First drafts were estimated to be ready by the end of December 2018. NWIP was planed to be submmitted before the end of January 2019.
+
+* ISO/PWI “ Directory — Standardized profile — Persons and organizations”
+
+Data models had been, and had taken input from ISO/TC 211. First draft estimated to be ready by mid February 2019 after the CalConnect meeting in Zurich (February 2019). NWIP was planed to be submmitted before the end of March 2019.
+
+Chair indicated that where to do the three PWIs should be considered. Since it is in the PWI period, TC has long time to consider about that issue.  Jianfang will work together with Ronald to establish the expert list and call for more experts, not only one person is doing this standard.
+
+== Old Business
+
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
+
+ISO 15000 OASIS submision. No progress.
+
+== Open Ballots
+
+* ISO/DIS 19626-1, end at 2018-10-18
+** Approved
+* CIB ISO/TC 154 business plan version 2018 2018-11-13
+** Approved
+* FDIS ISO/FDIS 8601-1 2018-12-26
+** Waiting for the result
+* FDIS ISO/FDIS 8601-2 2018-12-26
+** Waiting for the result
+* SR ISO 7372:2005 (Ed 3, vers 3) 2019-03-04
+** Waiting for the result
+
+
+
+== Other Business
+
+=== MoU／MG meeting
+
+The next MoU/MG meeting will be held in Dec. 5th. The secretary Jianfang will represent Chair to attend the MoU/MG meeting Since Chair will not be available during the week of MoU/MG meeting,.
+
+The ISO TC154 report to MoU/MG meeting will include the one year archivements on the ISO TC154 and some issues for discussion such as 8601 wide usage, BST and ODIF projects.
+
+The draft of the report will be shared among CAG members and members can add questions or other informations to be shared in the MoU/MG meeting.
+
+
+== Next Meeting
+
+Next Meeting: 2018-12-19, 8:00-9:00pm (UTC+8)
+
+After the discussion, the time of next meeting was scheduled in Dec.20th, 8:00-9:00pm (UTC+8).
+
+Chair gave thanks to all of the attendants for the CAG meeting on 21th November and everyone’s good job!
+
+
+== Ongoing action point summary
+
+|===
+|No| Action points| Owner| Deadline
+
+|31
+|David provides the draft in ISO version with the guide from Jianfang. （OAGi）
+|@Jianfang,David
+|2018/12/31
+
+|48
+|Jianfang, Ronald and Sue work together with the experts’ list of the three new PWIs in WG5.
+|@Jianfang,Ronald,Sue
+|2018/12/20
+
+|49
+|Jianfang, Max and Sue work together to provide the experts’ list of JWG8 and make sure it is the joint work.
+|@Jianfang, Max, Sue
+|2018/12/20
+
+
+|===

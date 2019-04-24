@@ -1,0 +1,250 @@
+---
+permalink: "/minutes/2018-12-20/"
+date: 2018-12-20T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2018-12-20
+---
+= ISO/TC 154 CAT meeting 2018-12-20
+
+Date::
+8:00-9:00pm Beijing Time (UTC+8)
+
+[.participants]
+Participants::
+Hongru (Judy) Zhu, Ray Denenberg, Jasmine, Ronald Tse, Peter Plapper, Anders Grangard, Yan Zhang, Peter Rybar, Sue Probert, Dapeng(Max) Liu, Linda Wang.
+
+Excused:: Jianfang Zhang
+
+Secretariat::
+JianFang Zhang
+
+Chair::
+Hongru (Judy) Zhu
+
+== Approval of Agenda
+
+Approved.
+
+== Approval of 21th Nov 2018 CAG Meeting Minutes
+
+Approved.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+==== Continuation of ISO/TC154 JWG1 Secretariat
+
+TC received the letter (N1004) of good news that DIN will continue the secretary of JWG1.
+
+
+==== ISO/PWI 9735-11
+
+Yan Zhang reported that JWG1 received the form4 and outline of PWI 9735-11 from Anders.JWG1 will work on the “draft project plan” section of form4 and technical details, Jianfang will help for the NP submission procedure.
+
+AP50: Yan discusses with Jianfang for the procedure of 9735-11 NP submission and also JWG1 shall propose some project plan firstly and then deliver to CAG on Feb about the draft plan.
+
+
+
+=== WG 5 (Representation of dates and times)
+
+==== ISO/FDIS 8601-1 and ISO/FDIS 8601-2
+
+Ray reported that the 8601-1 and 8601-2 are both under the FDIS ballot period, which will be ended in the end of the next week.
+
+==== New PWIs
+
+Ronald reported the progress of the three new PWIs. The email of Call for experts was sent but didn’t receive the feedback until now.
+
+More experts should be invited to join in the project and the experts resource are in still a problem.
+
+* ISO/PWI “ Date and time — Concepts and vocabulary”
+First draft is ready and NWIP planed to be submitted before end of December 2018.
+* ISO/PWI “ Date and time — Timezone”
+IATA collabarted on the timezone project, the draft planed to be ready by end of December 2018.
+* ISO/PWI “ Date and time — Codes for calendar systems”
+
+Expert from British library was working together on the calendars. The draft planed to be ready by end of December 2018.
+
+
+=== WG 6 (Trusted eCommunication)
+
+Jasmine.
+
+Jasmine reported the progress of WG6 projects.
+
+==== PT1 -ISO 14533 Long term signature profiles
+
+===== ISO/PWI 14533-2
+
+Naoto Miyachi.
+
+The project is waiting for revision draft from Japanese experts.
+
+Jasmine will talk with Peter Rybar about the relationship with 14533-4 project.
+
+
+===== ISO/CD 14533-4
+
+Peter Rybar.
+
+DIS ballot comments resolution.
+
+
+==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+===== ISO/DIS 19626-1
+
+DIS ballot comments resolution.
+
+===== ISO/WD 19626-2
+
+CD draft may be ready in January or February.
+
+==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+
+Yongkon Lee.
+
+The project is in DIS ballot which will be ended in March, 2019.
+
+More experts from other countries should be involved in the projects. Which we need to discuss together on how to go forward.
+
+
+=== WG 7 (Digital Business)
+
+Peter Plapper and Anders reported the progress of WG7 projects.
+
+A potential new work item “blockchain based for digital business” proposed by Youngkon Lee was discussed in WG7. The scope matches the WG7 scope and WG7 agreed to take it. Jasmine suggests that the first draft should be discussed in Korea group firstly because Korea group has not talked about it yet. Peter Plapper will send email to Jasmine and cc to secretary.
+
+*AP51: Peter Plapper sends email about potential new work item “blockchain based for digital business” to Jasmine and cc to secretary.*
+
+The online registration for the next TC154 plenary meeting (which will be held in Luxembourg in Oct. 14th -18th 2019) is scheduled to be open around March 2019. Peter Plapper will try to provide the detailed location information before February or March. The exact deadline will be done after the discussion with Jianfang.
+
+*AP52: Jianfang discusses with Peter Plapper on the deadline and also how many rooms required etc of providing the location information for the next TC154 plenary meeting.*
+
+
+
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+Anders.
+
+The updated draft will be ready on the beginning of January.
+
+MoU/MG meeting made a resolution about MoU/MG members to join in BST project, which will likely have a better chance after the updated draft is ready.
+
+Chair mentioned that although there is resolution from MoU/MG, the lack of expert resources is still there. All of us need to consider how to encourage more people to join in the TC154 projects.
+
+
+
+==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+
+Peter Plapper.
+
+The project was under the CD ballot comments resolution.
+
+==== PT3- ISO/DTR 18262 ODIF @Jianfang
+
+MoU/MG meeting made a resolution about MoU/MG members to join in ODIF project.
+
+A virtual meeting within WG7 was scheduled in March 2019 to discuss the updated draft, comment disposition, and the identified 4 options in the history document N707.
+
+
+
+
+=== JWG8 (Logistics data contents and process)
+
+Dapeng (Max) Liu.
+
+* ISO/AWI 23354 – Business requirements for end-to-end visibility of logistics flow
+* ISO/PWI 23355- Visibility data interchange between logistics information service providers
+* ISO/PWI 23356- Visibility logistics data interchange interface
+
+Max reported that AWI 23354 was under the comments resolution and UNECE will work together on the draft updating. PWI 23355 was working on the form4 and draft updating.
+
+Sue mentioned that UNECE will working on the draft of AWI 23354 and PWI 23355 form4 in the first week of January, and will share the draft with UNECE members in January or February UNECE interim meeting in Paris for further participations. Sue will work with Max for the presentation.
+
+Chair encouraged sue involve more UNECE experts join in the projects.
+
+
+
+
+=== ISO 7372/UNTDED JMA
+
+Sue.
+
+==== ISO/PWI “Alignment between ISO 7372, UN/EDIFACT EDED+UNCL and UN/CEFACT/CCL”
+
+Sue reported that they are working on the new PWI and two UNECE experts will join in the project.
+
+Chair suggested sue provide slides in the next CAG meeting on the details about the project timeline, plan and member list.
+
+*AP53: Sue provides slides in the next CAG meeting on the details about the project timeline, plan and member, experts list.*
+
+
+== New PWIs
+
+Ronald reported the status and plan on the three PWIs.
+
+* ISO/PWI “Standardization documents — Metanorma — Document metamodel”
+* ISO/PWI “Standardization documents — Metanorma — Representation in XML”
+
+First drafts of the two projects were estimated to be ready by the end of December 2018. NWIP was planed to be submmitted before the end of January 2019.
+
+* ISO/PWI “ Directory — Standardized profile — Persons and organizations”
+
+Two liaisons were joined in the project.First draft estimated to be ready by mid February 2019 after the CalConnect meeting in Zurich (February 2019). NWIP was planed to be submmitted before the end of March 2019.
+
+== Old Business
+
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
+
+ISO 15000 OASIS submision. No progress.
+
+== Open Ballots
+
+No discussion (secretary is not available for this meeting)
+
+* FDIS ISO/FDIS 8601-1 2018-12-26
+* FDIS ISO/FDIS 8601-2 2018-12-26
+* SR ISO 7372:2005 (Ed 3, vers 3) 2019-03-04
+* DIS ISO/DIS 20415 2019-03-13
+
+
+== Other Business
+
+=== MoU／MG meeting
+
+There are three MoU/MG resolutions related to TC154:
+
+. Resolution 18/02.
+MoU/MG encourages interested experts to participate in and contribute to ISO/TC154 work on ISO/PRF TR 18262 on open data interchange framework.
+
+. Resolution 18/03.
+MoU/MG calls for members to participate through liaisons in the works of ISO 7372/UNECE-UNTDED Joint Maintenance Agency (JMA) in the revision of ISO 7372 and the UNTDED.
+
+. Resolution 18/04.
+MoU/MG encourages its members to reference in their standards the revised ISO 8601 series of standards on date and time.
+
+
+=== Possibility liaison from ISO/IEC/JTC1/SC41
+
+TC received the liaison document (N1005) from ISO/IEC/JTC1/SC41. Since the scope of SC41(IoT) is wide and materials need to be reviewed, Chair suggest WG convenores consider the relationship between SC41 and WG, which will be discussed in the next CAG meeting.
+
+*AP54: WG convenors consider the relationship between SC41 and WG and provides info before Feb 18th by email to the chair and CAT group.*
+
+
+== Action Review
+
+The TC154 CAG Actions list document was provided and two actions (AP31 and AP48) were still ongoing. The updated actions list document including new actions will be shared after the meeting.
+
+
+== Next Meeting
+
+Next Meeting: 2019-02-18 monday, 8:00-9:00pm (UTC+8)
+
+Chair gave thanks to all of the attendants for the CAG meeting on 20th December and everyone’s good job!
+

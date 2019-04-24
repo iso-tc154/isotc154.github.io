@@ -1,12 +1,12 @@
 ---
-permalink: "/minutes/2017-06-07/"
+permalink: "/agenda/2017-06-07/"
 date: 2017-06-07T00:00:00Z
-cat: CAT Minutes
+cat: CAT Agenda
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ISO CS, Liaison]
-title: ISO/TC 154 CAT Meeting Minutes 2017-06-07
+title: ISO/TC 154 CAT Meeting Agenda 2017-06-07
 ---
-= ISO/TC 154 CAT meeting 2017-06-07
+= ISO/TC 154 CAT meeting agenda 2017-06-07
 
 == Agenda
 

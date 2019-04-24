@@ -1,0 +1,225 @@
+---
+permalink: "/minutes/2018-09-19/"
+date: 2018-09-19T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2018-09-19
+---
+= ISO/TC 154 CAT meeting 2018-09-19
+
+Date::
+8:00-9:00pm Beijing Time (UTC+8)
+
+[.participants]
+Participants::
+Hongru (Judy) Zhu, Anders Grangard, Jianfang Zhang, Ray Denenberg, Ronald Tse, Mei-li Chen, Yan Zhang, Peter Plapper, Dapeng(Max) Liu, Linda Wang
+
+Excused:: Jasmine, Sue Probert, Lance, Mary Kay Blantz, Chris Nelson, khouja Ahmed, Peter Rybar
+
+Secretariat::
+JianFang Zhang
+
+Chair::
+Hongru (Judy) Zhu
+
+== Agenda
+
+=== Approval of Agenda
+
+Approved.
+
+=== Approval of 22th Aug 2018 Meeting Minutes
+
+Approved and all
+AP2, AP3 and AP5 are still open.
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+Yan reported that JWG1 agenda was uploaded to the JWG1 website by JWG1 secretary (DIN).
+
+Potential PWI of part 11 will be discussed in Hangzhou JWG1 meeting and have recommendation by the group, and then it will be discussed in plenary meeting for potential PWI resolution.
+
+Thanks secretary (DIN) for set up the teleconference by zoom for Hangzhou JWG1 meeting so that member can attend the meeting remotely instead of in person.
+
+
+
+=== WG 5 (Representation of dates and times)
+
+Ray reported that 8601-2 will be completed next Monday at the latest, so that 8601-1 and 8601-2 will be submitted together for FDIS ballot before plenary meeting with sufficient two weeks’ time preparation. Chair said that it is not necessary to submit the FDIS ballot before plenary meeting, and the decision is up to Ray.
+
+Ray mentioned that he plan to step down as WG 5 Convener after ISO 8601 is published. He recommended Ronald Tse as a candidate to replace him. This will be discussed at the WG 5 Hangzhou meeting. Chair appreciated his work for WG5 and and the resolution will be made in plenary meeting.
+
+Ray will attend the Hangzhou meeting remotely and Ron will chair the meeting.
+
+
+
+=== WG 6 (Trusted eCommunication)
+
+As for Jasmine’s absence, WG6 report slides was discussed.
+
+==== PT1 -ISO 14533 Long term signature profiles
+
+===== ISO/PWI 14533-2
+
+Masashi Sato.
+
+Jasmine will ask the issue to ETSI and make potential resolution in plenary meeting. Secretary mentioned that this project is in PWI not in WD.
+
+===== ISO/CD 14533-4
+
+Peter Rybar.
+
+CD ballot has closed, and comment disposition will be discussed at Hangzhou meeting.
+
+
+
+==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+===== ISO/DIS 19626-1
+
+DIS ballot will end in 10.18.
+
+===== ISO/WD 19626-2
+
+The draft was circulated within TC/154 Korean committee members, will be discussed at Hangzhou meeting.
+
+==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+
+The draft was circulated in WG6 and will be discussed in Hangzhou WG6 meeting before the DIS ballot.
+
+
+=== WG 7 (Digital Business)
+
+Christof shared the progress of WG7 on behalf of Peter Plapper, appreciated his job.
+
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+Anders.
+
+The issues and draft will be discussed in the Hangzhou meeting.
+
+==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+
+Peter Plapper.
+
+Peter Plapper reported that comments  disposition of CD ballot will be discussed at Hangzhou meeting.
+
+==== PT3- ISO/DTR 18262 ODIF @Jianfang
+
+The first draft and comment disposition has finished, and will be discussed in WG7 Hangzhou meeting.
+
+
+
+=== JWG8 (Logistics data contents and process)
+
+Dapeng (Max) Liu.
+
+* ISO/AWI 23354 – Business requirements for end-to-end visibility of logistics flow
+* ISO/PWI 23355- Visibility data interchange between logistics information service providers
+* ISO/PWI 23356- Visibility logistics data interchange interface
+
+Max reported that NP ballot of 23354 was passed and the group was working on the comment disposition. PWI 23355 draft and  Form4 was discussed firstly and will be discussed in Hangzhou meeting for potential resolutions.
+
+Chair congratulations to the approval of NP 23354 and Max as JWG8 convenor.
+
+
+=== ISO 7372/UNTDED JMA
+
+Sue.
+
+Sue was absence. Yan mentioned that she is working on the JMA Hangzhou agenda. Chair said that Sue email her that the JMA agenda would be completed in next Monday.
+
+== Old Business
+
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
+
+No progress.
+
+== Open Ballots
+
+* DIS ISO/DIS 19626-1, end at 2018-10-18
+
+Waiting for the result.
+
+== Other Business
+
+=== TC154 Business plan
+
+Chair said that the draft was updated and will be discussed in Hangzhou plenary meeting to involve more members to review. She mentioned that the business plan might include the relationship to SDGs, which will also be discussed in the Hangzhou plenary meeting.
+
+=== ISO/TC 154 meeting in Oct
+
+Chair checked the number of registration (around 30 members) and thanks everyone’s preparation for the upcoming Hangzhou meeting. There will be a social event in Wednesday hosted by Alibaba.
+
+
+== Next Meeting
+
+Next Meeting: 2018-10-11,Hangzhou Plenary meeting
+
+Chair gave thanks to all of the attendants for the CAG meeting on 19th September and everyone’s good job! See you in Hangzhou!
+
+== Ongoing action point summary
+
+|===
+|No| Action points| Owner| Deadline
+
+|20
+|WG convenors send the draft of WG meeting agenda to secretary and then upload to the WG website seperatly.
+|@ISO7372MA Sue
+|2018/10/07
+
+|22
+|Two FDIS ballots for 8601-1 and 8601-2 need to be started together before Plenary meeting.
+|@Jianfang, Ray,Ron
+|2018/10/07
+
+|24
+|Jasmine sends the 19626-2 CD draft to Jianfang and Jianfang submits the 19626-2 CD draft after the plenary meeting.
+|@Jianfang, Jasmine
+|2018 Oct
+
+|25
+|Jasmine sends the 20415 DIS draft to Jianfang Jianfang submit the 20415 DIS ballot after the plenary meeting.
+|@ Jianfang, Jasmine
+|2018 Oct
+
+|30
+|UN/ECE side needs to decide who will be the co-chair (Sue or Mary)
+|@Sue
+|2018 Oct
+
+|31
+|David provides the draft in ISO version with the guide from Jianfang. （OAGi）
+|@Jianfang,David
+|2018/12/31
+
+|37
+|TC will have a discussion in the plenary meeting for the project 21981. If there are little people working on it, we need to think about the reason and have new plan for the future.
+|@Anders, Chair, Jianfang
+|2018/10/12
+
+|40
+|JWG1 initiate PWI discussion in the Hangzhou meeting.
+|@Anders,Yan
+|2018/10/12
+
+|44
+|Offline discussion about business plan section1.2 comments.
+|@Yan, Linda,Jianfang
+|2018/10/07
+
+|45
+|TC decide the liaison with ISO IEC／JTC1/SC29/WG11 MPEG in plenary meeting
+|@Chair,Jianfang
+|2018/10/12
+
+|47
+|TC decide the liaison with PC317 in plenary meeting
+|@Chair,Jianfang
+|2018/10/12
+
+|===
