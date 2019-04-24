@@ -1,7 +1,12 @@
 ---
+layout: default
 permalink: /contact/
+title: Contact
 ---
-= Contact
+
+++++
+<main>
+++++
 
 Use the form below to contact this site's webmaster, the TC 154 chair or secretariat.
 
@@ -9,3 +14,7 @@ Use the form below to contact this site's webmaster, the TC 154 chair or secreta
 * Email (required)
 * Website
 * Comment (required)
+
+++++
+</main>
+++++
