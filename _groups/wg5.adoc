@@ -3,8 +3,13 @@ id: wg5
 name: WG 5
 title: Date and time
 order: 5
+featured_on_home: true
 ---
 :page-liquid:
+
+WG 5 provides a common platform for all date and time stakeholders, to enable a unified, interoperable of date and time across populations and systems. It publishes the ISO 8601 family of standards in ubiquitous use today.
+
+// more
 
 == Scope
 

@@ -3,7 +3,6 @@ id: wg4
 name: WG 4
 title: eLK
 order: 4
-featured_on_home: true
 ---
 :page-liquid:
 

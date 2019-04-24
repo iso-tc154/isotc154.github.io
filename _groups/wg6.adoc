@@ -3,8 +3,13 @@ id: wg6
 name: WG 6
 title: Trusted eCommunications
 order: 6
+featured_on_home: true
 ---
 :page-liquid:
+
+WG6 was established in 2014 to develop and standardize methods used to facilitate trusted electronic and business transactions, including those in e-commerce, e-industry and e-administration. It also covers considerations of trusted and legally binding electronic communications in the mobile, IoT and cloud environments.
+
+// more
 
 == Scope
 

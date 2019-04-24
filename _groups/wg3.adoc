@@ -3,7 +3,6 @@ id: wg3
 name: WG 3
 title: CCTS
 order: 3
-featured_on_home: true
 ---
 :page-liquid:
 

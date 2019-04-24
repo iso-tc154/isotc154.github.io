@@ -2,7 +2,6 @@
 id: ma
 title: UN TDED — ISO 7372 Joint Maintenance Agency (JMA)
 order: 9
-featured_on_home: true
 ---
 :page-liquid:
 
