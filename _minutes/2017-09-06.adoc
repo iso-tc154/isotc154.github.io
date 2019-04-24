@@ -1,0 +1,181 @@
+---
+permalink: "minutes/2017-09-06/"
+publish-date: "2017-09-06T00:00:00Z"
+categories:  [CAT Minutes, ISO CS, Liaison]
+title: CAT Draft Minutes 2017-09-06
+---
+= ISO/TC 154 CAT meeting 2017-09-06
+
+Date::
+8:00-9:20pm Beijing Time (UTC+8)
+
+Participants::
+Hongru (Judy) Zhu, Ray Denenberg, Jasmine Jang, Christof Oberhansen, Anders Grangard, Mei-Li Chen, Linda Wang, Dapeng (Max) Liu
+
+Regrets:: Roman, Peter Ryber, Peter Plapper
+
+Secretariat::
+JianFang Zhang
+
+Chair::
+Hongru (Judy) Zhu
+
+== Agenda
+
+=== Approval of Agenda
+
+Approved.
+
+=== Approval of 26 July 2017 Meeting Minutes
+
+Approved.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+The replacement of the JWG 1 by a Registration Authority (RA) or Maintenance Agency (MA) will be further discussed and solved at the coming TC plenary meeting.
+
+Chairs Judy and Jianfang may consider to prepare a proposal for the plenary meeting based on the previous CAT meeting discussion.
+
+=== WG 5 (Representation of dates and times)
+
+==== Confirmation of new WG 5 convener
+
+The CIB ballot (closed on Aug.23) approved that Ray Denenberg to be the new WG5 convener. Since ANSI is not the P member of TC154, so as an internal liaison representative of ISO/TC 46, Ray cannot be formally registered as convener, but CAT agrees that he still can serves as informal convener to forward ISO 8601 until the publication. Jianfang will support him if necessary.
+
+==== ISO/DIS 8601-1 Ballot Disposition
+
+Bernd finished the FDIS draft on July 31st, and Ray had some comments for this draft on Aug,17th. It will take two months for the working group discussion.
+
+==== ISO/DIS 8601-2 Ballot Disposition
+
+Ray finished the resolution of comments of ISO/DIS 8601-2 and the FDIS draft on Aug.23. It will also take two months for the working group discussion. Since Part 2 is the extension of 8601, TC will synchronize the information with other related organizations such as ITU, GS1,UN/ CEFACT, etc
+
+
+=== WG 6 (Trusted eCommunication)
+
+==== PT1 –ISO 14533 Long term signature profiles
+
+* ISO/WD 14533-4 - Peter regrets for this call, but he sent
+email by saying it is with an incorporated comments for WG6
+reviews will be available next week.
+
+==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+* ISO/CD 19626-1 [fundamentals] - WG6 convener Jasmine introduced that The ETSI comment will be resolved at WG6 virtual meeting during the plenary week. She also announce its presentation plan at the block chain mini conference on 30th UN/CEFACT Forum.
+
+* ISO/WD 19626-2 [applications] - Jasmine introduced the 19626-2 schedule for its submission until 2nd week, October. It will be discussed at WG 6 virtual meeting during the plenary week.
+
+==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+
+Yongkon Lee completed the revision of ISO 20415. And after
+Jasmine shares its comments on the WG6 members and
+confirms its CD ballot, Jianfang will initiate the CD.
+
+=== WG 7 (digital Business)
+
+Christof Oberhausen represented Peter Plapper.
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+Christof introduced that the working draft study was initiated at stage 20.20, and Anders will take the project leader, jianfang will initiate the CIB ballot after the meeting and send the project draft to Anders after the meeting.
+
+Great work had been done for this project, but there are still lots of work to be done in the future. The project may be put on hold before some more subject experts and important stakeholders to be involved. Anders needs to talk with Peter Plapper offline for further work of this project.
+
+PS: Anders is also the GS1 liaison member and UN/CEFACT vice-chair, Anders will participate in the WG7 work and WG7 meetings as the project leader of ISO 21981, and for the CAT meeting, later he can only attend the CAT meetings if necessary to save the time resource.
+
+==== PT2- ISO/WD 22468 Value Stream Management (VSM)
+
+Christof introduced that the project is still in stage 20, active P-member countries are Luxemburg, Netherlands, Germany, China and South Korea. Need to confirm the availability of Linda Wang from China as the national expert.
+
+Judy will ask Linda Wang if she will join the VSM project after the meeting.
+
+National experts will receive updated version of norm draft in Q IV/ 2017. The preparatory stage will be ended in Q I/2018 and start the standard development stage.
+
+The cooperation with ISO/TC 184 is still waiting for the response from its management board. And chair suggested it is not a rush.
+
+Jianfang will connect with TC184 after the group finished the updated version.
+
+
+==== PT3 – XMLFACT
+
+This project is cancelled.
+
+=== New informal ad-hoc group
+
+A new informal ad hoc group: Max from Alibaba introduced the new progress, and it caused many people attention. The further decision will be made in the coming plenary meeting. Chair also suggested the people who have comments needs to discuss more with Max offline as possible to save CAT meeting time
+
+Details:
+
+
+Dapeng (Max) Liu from Alibaba report the ad hoc group progress after the two ad hoc group meetings, including the new project object, scope, gap analysis, potential new projects and the next step of ad hoc group. The ad hoc group proposed following recommendations to be discussed and decided in the plenary meeting:
+
+. Create PWIs (Preliminary Work Item) based on the new project discussions.
+
+** PWI 1: Business requirements for visibility of logistics traffic flow “end-to-end”(title is TBD)
+
+** PWI 2:“Data exchange between logistics information providers ”(title is TBD)
+
+** PWI 3:“Abstract APIs/interfaces to connect logistics information providers ”(title is TBD)
+
+. Set up a new working group with the title ”Logistics data elements and process”(title is TBD) to forward the above project and other potential new projects.
+
+Jasmine mentioned about the UN/CEFACT MMT project and WCO single window related projects. Anders mentioned that he support the proposal of ad hoc group. MMT is a high level standards for transportation, the TC may consider to link those related standards. Anders suggested the TC should be open to consider the collaboration with related organizations. Since he has experiences on WCO data model and related projects, he will meet WCO later and will have informal discussion with them.
+
+Max, Jasmine and related experts will continue the offline discussion.
+
+The proposal will be made on the plenary meeting and more discussion & suggestions will be given there, Max will confirm the related procedures with Jianfang.
+
+=== ISO/DTR 18262 ODIF
+
+Will be discussed on the plenary meeting.
+
+== Old Business
+
+No discussion.
+
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+
+== Open Ballots
+
+No discussion.
+
+* Systematic Reviews:
+** ISO 14533-2:2012 start at 2017-07-15, end at 2017-12-04
+
+== Other Business
+
+=== TC154 new public website
+
+The CIB ballot of the setting up a communication group for the TC154 website was approved. The communication group resource will be merged together with CAT members. Jianfang will be in charge of further offline works.
+
+=== IPCSA A-liaison application
+
+Liasion application was received, and furtherly wait Henry from ISO/CS to check the IPCSA’s identity before TC take the related application process.
+
+=== UN/CEFACT A-liaison application
+
+In Principle CAT meeting likes to liasion with CEFACT. But also UN/ECE is A-liasion member with TC154, UN/CEFACT belongs to the UN/ECE. The UN/CEFACT bureau meeting decided to communicate with TC154 and be willing to participate in the plenary meeting. Jianfang will confirm the ISO procedure for the identity problem of UN/CEFACT before the ballot is initiated. If UN/CEFACT becomes the A-liaison member someday, it is necessary for UN/CEFACT to appoint the liaison officer to support the further work in TC154.
+
+=== CalConnect liaison request
+
+CalConnect officer Ronald wants to be a liaison with ISO/TC 154 since 8601 referenced IETF RFC 5545 developed by CalConnect, since RFC 5545 is old now, so CalConnect think they could help on updating.
+
+Considering the reference is from IETF rather than CalConnect, Decision will be made later after further discussion in the coming weeks after Mrs chair, Jianfang, Ray and Ron conference call in the coming weeks.
+
+=== Virtual plenary meeting
+
+2017-10-27, starting at 16:00, end at 20:00 (UTC +8:00)
+
+Remind members to register on the ISO meeting platform before the deadline 2017-10-13, Jianfang will send a new invitations to some new liaison members besides the website registration.
+
+
+== Next Meeting
+
+11 Oct 2017, starting at 8:00pm (UTC +8:00)
+
+The week of Oct. 4th is China National Day. TC decided to change the time of next CAT meeting to Oct.11th, 2017.
+
+Chair gave thanks to all of the attendants for the CAT meeting on 6th Sept and everyone’s good job!

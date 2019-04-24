@@ -1,0 +1,208 @@
+---
+permalink: "minutes/2018-03-15/"
+publish-date: "2018-03-15T00:00:00Z"
+categories:  [CAT Minutes, ISO CS, Liaison]
+title: CAT Draft Minutes 2018-03-15
+---
+= ISO/TC 154 CAT meeting 2018-03-15
+
+Date::
+8:00-9:00pm Beijing Time (UTC+8)
+
+Participants::
+Peter Rybar, Jasmine, Sue Probert, Ray Denenberg, Peter Plapper, Dapeng (Max) Liu, Mei-li Chen, Christof Oberhausen, Ahmed KHOUJA
+
+Regrets:: Yan Zhang, Anders Grangard, Mary Kay Blantz, Linda Wang, Ronald Tse
+
+Secretariat::
+JianFang Zhang
+
+Chair::
+Hongru (Judy) Zhu
+
+== Agenda
+
+=== Approval of Agenda
+
+Approved.
+
+=== Approval of 17th January 2018 Meeting Minutes and APs check
+
+Approved and all
+APs has been finished except AP2.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+Yan and Anders were vacant for this meeting.
+
+
+=== WG 5 (Representation of dates and times)
+
+Ray.
+
+Ray shared the progress of WG5, appreciated his job. Very good progress.
+
+* ISO/DIS 8601-1 Ballot Disposition
+* ISO/DIS 8601-2 Ballot Disposition
+
+
+Ray reported that most of 8601-1 editing and revising work has been done, he will organize the WG review session in the coming weeks, Ray anticipate the work on part 1 to be completed by May.
+
+The work group starts to look after 8601-2, there is still outstanding issue about repeating rule due to different proposal. Feedback from WG is welcomed. Chair reminded them to follow ISO commonsense and make necessary revise for the editorial changes in the DIS stage when considering potential changes. The work is estimated to be completed by June.
+
+
+=== WG 6 (Trusted eCommunication)
+
+Jasmine and Peter Rybar gave a presentation on the progress of WG6, appreciated their job.
+
+AP: Jasmine provides support to Peter on CD procedure.
+
+==== PT1 –ISO 14533 Long term signature profiles
+
+===== ISO/WD 14533-4
+
+Peter Rybar reported 14533-4 is at stage WD, they had updated the document according to previous comments, will have next WG meeting on 16th March and project meeting on 19th March. Then considering CD ballot afterward. Chair asked WG convener to assist on operational procedure.
+
+===== ISO 14533-2
+
+
+
+==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+===== ISO/CD 19626-1
+
+Jasmine reported that they are still working on revising the DIS draft document, they plan to circulate the draft within WG6 by the end of March. The CD ballot might be started in May/June.
+
+
+===== ISO/PWI 19626-2
+
+The NP voting was successfully completed, it’s on WD stage and the comments are analyzed, the comment resolution meeting is scheduled in April.
+
+==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+
+Jasmine reported that they finished comment resolution and are preparing DIS draft, the circulation of DIS draft will be planned afterward.
+
+
+=== WG 7 (Digital Business)
+
+Peter Plapper.
+
+Peter Plapper shared the progress on the work of WG7, appreciated his job.
+
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+The work will be started in the beginning of 2018. Peter asked for share the volunteer list received by TC154. Anders is waiting for the feedback of the draft from MoU/MG group experts.
+
+==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+
+
+Peter reported that project experts have received current version of norm draft, he will organize web meeting once receive the feedback from all these experts. Peter also introduce the benefits of the project.
+
+==== PT3 - ISO/DTR 18262 ODIF
+
+Peter introduced the current status of the project, Jianfang reported that he is still working on the comments from early project discussion. Sue asked to join in the project. Agreed.
+
+=== JWG8 (Logistics data contents and process)
+
+Max gave a presentation about the work of JWG8, and shared the progress,
+appreciated his job.
+
+* PWI 1 - Business requirements for end-to-end visibility of logistics flow
+* PWI 2- Visibility data interchange between logistics information service
+providers
+* PWI 3- Visibility logistics data interchange interface
+
+Max reported that they are working on revising PWI 1 draft according to comment resolutions, they are planning to submit NWIP at early April. The first version of PWI 2 draft could be provided by the end of April.
+
+AP: Max needs to deal with the NWIP preparation together with Jianfang as soon as possible before the end of March and kick off the NWIP ballot in April.
+
+
+
+=== ISO 7372/UNTDED JMA
+
+Open now. Sue introduced that experts from UNECE started to work on the 2005 ToR, since the group it is JMA, a representative from ISO is needed. Chair asked Sue to discuss with Jianfang to find proper one. Chair reminded that it needs to have some progress before October Plenary Meeting.
+
+AP: Work on the ToR update in ISO 7372/UNTDED JMA.
+
+== Old Business
+
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+
+No report.
+
+== Open Ballots
+
+* SR ISO 17369:2013 ballot starts at 2018-01-15, end at 2018-06-04
+
+Still open.
+
+== Other Business
+
+=== TC154 new public website
+
+
+ISO/TC 154/CAG has been created and all CAG members have been registered in ISO. All related update will be posted on the website and members will be notified via email.
+
+The current public website (https://www.iso.org/committee/53186.html) is maintained by ISO/CS, it is basically including most of TC154 information such as introduction and projects. TC is considering the necessity of having a formal official public website with the URL: https://committee.iso.org/home/tc154, which is aligned with other TCs’ official public website. If new website need to be established, more new information and material about TC are needed. Otherwise TC will keep current one as TC public website. Volunteers on discussion and material providing are welcomed.
+
+AP: TC154 new public website: Work with Jiangfang to provide webiste content information. The information consistency between previous website and this new website need to be considered.
+
+=== TC154 Business plan
+
+A revised edition of business plan would be given to WG conveners in April/May to help understanding the direction of TC. WGs conveners need to consider to update/define WG scopes according to & based on new business plan. Volunteers on this topic is welcomed.
+
+AP: Business Plan update on the each WG scope
+
+=== New Project Tool Training
+As there is no request received for the training, it is closed.
+
+=== TMB Information Update
+
+TMB Communiqué issue Nr_58 has been send to all CAG member to learn ISO update.
+
+
+
+== Next Meeting
+
+Next Meeting: 2018-05-09 , 8:00-9:00pm (UTC+8)
+
+Chair gave thanks to all of the attendants for the CAG meeting on 15th March and everyone’s good job!
+
+
+
+== Action point summary
+
+|===
+|No| Action points| Owner| Deadline
+
+|1
+|Jasmine provides support to Peter on CD procedure.
+|@Jasmine
+|2018-5-09
+
+|2
+|Max needs to deal with the NWIP preparation together with Jianfang as soon as possible before the end of March and kick off the NWIP ballot in April.
+|@Max, Jianfang
+|Apr. 2018
+
+|3
+|Work on the ToR update in ISO 7372/UNTDED JMA.
+|@Sue, Jianfang or other ISO co-chair
+|Oct. 2018
+
+|4
+|TC154 new public website: Work with Jiangfang to provide webiste content information. Also the information consistency between previous website and this new website need to be considered.
+|@Jianfang and @All
+|Long Term
+
+|5
+|Business Plan update on the each WG scope
+|@Chair, @all conveners, @Jianfang @linda
+| 2018-06-05
+
+|===
+

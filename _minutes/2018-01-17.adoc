@@ -1,0 +1,204 @@
+---
+permalink: "minutes/2018-01-17/"
+publish-date: "2018-01-17T00:00:00Z"
+categories:  [CAT Minutes, ISO CS, Liaison]
+title: CAT Draft Minutes 2018-01-17
+---
+= ISO/TC 154 CAT meeting 2018-01-17
+
+Date::
+8:00-9:30pm Beijing Time (UTC+8)
+
+Participants::
+Peter Rybar, Jasmine, Yan Zhang, Sue Probert, Ray Denenberg, Peter Plapper, Mary Kay
+Blantz, Ronald Tse, Linda Wang, Dapeng (Max) Liu, Mei-li Chen
+
+Regrets:: Anders Grangard
+
+Secretariat::
+JianFang Zhang
+
+Chair::
+Hongru (Judy) Zhu
+
+== Agenda
+
+=== Approval of Agenda
+
+Approved.
+
+=== Approval of 06th December 2017 Meeting Minutes
+
+Approved.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+Yan Zhang.
+
+Gregor Roschkowski from DIN is assigned as the Secretariat of JWG1. He will be added in the mail list and be invited to attend next CAT meeting.
+
+Yan reported that there is no progress from last plenary meeting, in the future, JWG1 will do some research about potential projects based on Anders’ input, possibly it will have actual project initiated before mid of 2018.
+
+Jianfang will help JWG1 convener to give clear WG members list for the purpose of better organizing WG works.
+
+
+
+=== WG 5 (Representation of dates and times)
+
+Ray.
+
+WG5 convener Ray shared the progress of WG5, appreciated his job.
+
+* ISO/DIS 8601-1 Ballot Disposition
+* ISO/DIS 8601-2 Ballot Disposition
+
+CalConnect proposed some comments about “level” and “recurrence”, which will be discussed within WG5 conference call later. Ray will organize WG meeting in the following months and try to see if they can make consensus and deal with comments, Ray shall report the progress in next CAT meeting in March. Sue expressed she could introduce expert to assist technical discussion.
+
+CalConnect proposes a new project idea about Time zone，it will be discussed within WG 5.
+
+=== WG 6 (Trusted eCommunication)
+
+Jasmine and Peter Rybar gave a presentation on the progress of WG6, appreciated their job.
+
+
+==== PT1 –ISO 14533 Long term signature profiles
+
+===== ISO/WD 14533-4
+
+WG received some comments and did thorough discussion about 14533-4, will update the document and discuss within the group next month.
+
+===== ISO 14533-2
+
+Peter Rybar reported 14533-2 NP has not been started, they are still preparing for it.
+
+Jianfang reported the new project tool training could be organized, please let TC secretariat know if anyone is interested.
+
+
+==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+===== ISO/CD 19626-1
+
+Jasmine reported WG reviewed the comments with ETSI and resolved most of them. DIS version will be submitted in March 2018.
+
+===== ISO/PWI 19626-2
+
+It is on the NWIP ballot process, will be ended at 02-02-2018.
+
+==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+
+Peter Rybar reported that there will be WebEx meeting for comment
+discussion soon.
+
+
+=== WG 7 (Digital Business)
+
+Peter Plapper.
+
+Peter Plapper gave a presentation on the report of WG7, and shared the
+progress of WG7, appreciated his job.
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+Anders is waiting for the feedback of the draft from MoU/MG group
+experts.
+
+
+==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+
+Peter Plapper reported that the project draft will be given out four months later.
+
+==== PT3 - ISO/DTR 18262 ODIF
+
+Jianfang reported that he is still working on understanding the history documents.
+
+=== JWG8 (Logistics data contents and process)
+
+Max gave a presentation about the work of JWG8, and shared the progress,
+appreciated his job.
+
+* PWI 1 - Business requirements for end-to-end visibility of logistics flow
+* PWI 2- Visibility data interchange between logistics information service
+providers
+* PWI 3- Visibility logistics data interchange interface
+
+Max reported that the outline and content of PWI 1 had been discussed and draft document will be given for further discussion. The work on PWI 2 and PWI 3 will start soon, welcome experts to join group discussion. Ron from CalConnect also expressed interest to join the PWI2.
+
+The most important thing here is to make the PWI into the NP stage. Related PWIs progress will be synced to UNECE by inviting their experts to attend the JWG8 PWIs discussion.
+
+=== ISO 7372/UNTDED JMA
+
+ISO and UNECE are still discussing about ToR. It needs to be finalized first before
+work proceed. More resources are needed.
+
+
+== Old Business
+
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+
+No update, TC will wait for David’s response.
+
+== Open Ballots
+
+* ISO/NP 19626-2 ballot starts at 2017-11-10, end at 2018-02-02
+
+ISO system will automatically send two reminders before it is end.
+
+== Other Business
+
+=== TC154 new public website
+
+Secretary Jianfang will take care of it together with henry ISO CS.
+
+=== TC154 Business plan
+
+Jianfang and Linda will work on baseline and hold the review session in the business plan group, then with CAT group, TC review etc. A brief baseline could be provided to the business plan draft group before April.
+
+
+== Next Meeting
+
+Next Meeting: 2018-03-14 , 8:00-9:00pm (UTC+8)
+
+Chair gave thanks to all of the attendants for the CAT meeting on 17th Jan. and everyone’s good job!
+
+
+== Action point summary
+
+|===
+|No| Action points| Owner| Deadline
+
+|1
+|Jianfang helps to give the members list to yan and update the member mail list of JWG1
+|@Jianfang
+|2018-3-11
+
+
+|2
+|Organize WG5 conference call to talk about technical issues of 8601-2 and share the progress (whether or not with consensus) in next CAT.
+|@Ray
+|2018-3-14
+
+|3
+|Ron contact Max to join PWI2 discussion
+|@Max and Ron
+|2018-3-14
+
+|4
+|Training planning, contact jianfang to show your interests offline and also decide the training time
+|@all, jianfang
+|2018
+
+|5
+|Provide JWG8 PWIs project plan to let TC members know the progress
+|@Max
+|2018-3-14
+
+|6
+|Provide report material for the CAT meeting to TC chair and secretariat at least one day before CAT meeting
+|@ALL convenors and related project owner
+|2018-3-12
+
+|===
+

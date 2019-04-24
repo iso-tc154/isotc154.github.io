@@ -6,6 +6,18 @@ title: CAT Draft Minutes 2017-06-07
 ---
 = ISO/TC 154 CAT meeting 2017-06-07
 
+Date::
+  4:00pm UTC+8, June 7th, 2017
+
+Participants::
+Hongru (Judy) Zhu, JianFang Zhang, Jasmine Chang, Francois Vuilleumier (only in the start), Peter Ryber, Chris Nelson, Linda Wang
+
+Excused::
+Roman Grahle, Bernd Bösler, Peter Plapper, Mei-Li Chen, Henry Cuschieri
+
+Chair::
+Hongru (Judy) Zhu (Acting Chair)
+
 == Agenda
 
 === Approval of Agenda

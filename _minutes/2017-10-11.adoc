@@ -1,0 +1,146 @@
+---
+permalink: "minutes/2017-10-11/"
+publish-date: "2017-10-11T00:00:00Z"
+categories:  [CAT Minutes, ISO CS, Liaison]
+title: CAT Draft Minutes 2017-10-11
+---
+= ISO/TC 154 CAT meeting 2017-10-11
+
+Date::
+8:00-9:20pm Beijing Time (UTC+8)
+
+Participants::
+Judy Zhu, Mr zhang, Ray Denenberg, Christof Oberhansen, Kouja, Linda Wang, Dapeng (Max)
+Liu
+
+Regrets:: Roman, Peter ryber, Peter plapper, Jasmine
+
+Secretariat::
+JianFang Zhang
+
+Chair::
+Hongru (Judy) Zhu
+
+== Agenda
+
+=== Approval of Agenda
+
+Approved.
+
+=== Approval of 6th September 2017 Meeting Minutes
+
+Approved.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+Will be discussed on the plenary meeting.
+
+=== WG 5 (Representation of dates and times)
+
+
+==== ISO/DIS 8601-1 Ballot Disposition
+
+
+==== ISO/DIS 8601-2 Ballot Disposition
+
+Ray uploaded the FDIS draft on the old TC154 website for experts review. Since he doesn’t know the WG5 member list, jianfang will help him to send to the working group members and try to help him to set up the webex WG5 meeting for the FDIS draft review of 8601-1 and 8601-2. Ray will prepare the WG5 report for the plenary meeting. Chair shall try her best to adapt to Ray’s time, he may join the plenary meeting later for the time difference (around 5:30am, Washington time), to catch the session of WG report.
+
+=== WG 6 (Trusted eCommunication)
+
+No discussion, Jasmine missed this meeting.
+
+==== PT1 –ISO 14533 Long term signature profiles
+
+* ISO/WD 14533-4
+
+==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+
+=== WG 7 (digital Business)
+
+==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+
+Anders had an offline discussion with Peter Plapper and received input
+from experts, and plan to hold the conference call for further discussion.
+
+==== PT2- ISO/WD 22468 Value Stream Management (VSM)
+
+Linda Wang will not be available to join the project for the limited time. There is no template for the working group report. Every leader can prepare by themselves.
+The WG7 report will be prepared for the plenary meeting including the status update of projects and the progress of cooperation with TC184.
+
+=== Ad-hoc group
+
+
+Dapeng (Max) Liu from Alibaba report the ad hoc group progress after the September CAT meeting. The ad hoc group meeting was held in Sep.26th, three proposed PWIs were discussed in detail including the objectives, scope,outline and concepts draft. Sue probert(BSI HoD and UN/CEFACT Vice-Chair) joined the meeting, and proposed to create a joint working group between UN/CEFACT and TC154 for the further co-work. Most attendees agree with her idea but the group hasn’t make the conclusion yet.
+
+AP: The group will continue the discussions to make an updated proposal before the plenary meeting.
+
+AP: The ad hoc group will also prepare the materials to introduce the concepts of the three proposed PWIs and send to the ad hoc group members for their reveiew in advance before the plenary meeting.
+
+
+
+=== ISO/DTR 18262 ODIF
+
+Did not discuss.
+
+== Old Business
+
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+
+Jianfang sent email to David (OAGi ) for the updated standrad draft, But David did not reply still, TC will wait for David’s response.
+
+
+== Open Ballots
+
+Still open.
+
+* Systematic Reviews:
+** ISO 14533-2:2012 start at 2017-07-15, end at 2017-12-04
+
+* ISO/CD 20415 ballot starts at 2017-09-12, end at 2017-11-21
+
+== Other Business
+
+=== TC154 new public website
+
+Jianfang sent the website application to Henry. Since Henry is out of office this
+month, the website may be set up next month.
+
+=== IPCSA A-liaison application
+
+IPCSA’s eligibility was confirmed by the CS, Jianfang initiated the IPCSA A-liaison ballot which will be closed on Nov.10th.
+
+=== UN/CEFACT A-liaison application
+
+Since UN/ECE is A-liasion member with TC154, and UN/CEFACT belongs to the UN/ECE, there is no need for set up this A-liaison.
+
+=== CalConnect liaison request
+
+Mrs chair, Jianfang and Ron had a conference call about the liaison application. Since Calconnect is willing to work together with TC154 on 8601 related projects, and Calconnect’s eligibility was confirmed by the CS, Jianfang initiated the Calconnect A-liaison ballot which will be closed on Nov.10th.
+
+Welcome Ray to help Ronald Tse (Director of External Relationships at CalConnect) to join the WG5 in the future and work together for the 8601 project.
+
+=== Virtual plenary meeting
+
+2017-10-27, starting at 16:00, end at 20:00 (UTC +8:00)
+
+Chair kindly suggested below:
+
+A-liaison member. Jianfang will invite IPCSA and Calconnect experts for the plenary meeting.
+
+Jianfang will send the updated plenary meeting agenda soon in this week. Liaison officer may prepare the liaison report for the plenary meeting.
+
+The plenary meeting needs one more person for the resolutions editing committee besides Jianfang and Linda. Volunteers can send email to Chair.
+
+== Next Meeting
+
+2017-10-27 ,starting at 16:00, end at 20:00 (UTC +8:00)
+
+Since Nov. 1st is very close to the plenary meeting, the next CAT meeting will be held on Dec. 6th, starting at 8:00pm (UTC +8:00)
+
+Chair gave thanks to all of the attendants for the CAT meeting on 11th Oct. and everyone’s good job!
+
