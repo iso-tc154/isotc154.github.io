@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-07-20/"
-publish-date: "2016-07-20T15:47:22Z"
-categories: [CAT Minutes, Ballots, ISO 14533, NWIP, OAGi, ODIF, Semantic Interoperability]
-title: CAT Draft Minutes 2016-07-20
+date: 2016-07-20T15:47:22Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [Ballots, ISO 14533, NWIP, OAGi, ODIF, Semantic Interoperability]
+title: ISO/TC 154 CAT Meeting Minutes 2016-07-20
 ---
-= CAT Draft Minutes 2016-07-20
+= ISO/TC 154 CAT Meeting Minutes 2016-07-20
 
 == ISO/TC 154 CAT Conference Call, 20 July 2016, 14:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)
 Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC).
 
@@ -29,7 +32,7 @@ Nothing to report.
 
 * ISO 8601 Part 1 & 2 update
 
-** CD ballot started, ending 2016–09–03
+** CD ballot started, ending 2016-09-03
 
 
 
@@ -38,7 +41,7 @@ Nothing to report.
 
 ==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
 
-* ISO/CD 14533–3 Update
+* ISO/CD 14533-3 Update
 
 ** Awaiting ballot closure (21 July)
 
@@ -47,7 +50,7 @@ Nothing to report.
 
 ==== PT2 -- Trusted Communication Platforms for Electronic Documents
 
-* ISO/WD 19626–1 "`TCP for Electronic Documents -- Part 1`" Update
+* ISO/WD 19626-1 "`TCP for Electronic Documents -- Part 1`" Update
 
 ** Request for NWIP and WD or CD registration TC Ballot
 
@@ -96,7 +99,7 @@ Nothing to report.
 
 * NWIP and WD registration TC Ballot for "`Business Semantic Thesaurus (BST)`"
 
-* NWIP with WD issued, ballot closing 2016–09–11
+* NWIP with WD issued, ballot closing 2016-09-11
 
 
 
@@ -113,7 +116,7 @@ Nothing to report.
 
 == Other Business
 
-=== ODIF (ISO/DTR 18262–2016_20160711) update
+=== ODIF (ISO/DTR 18262-2016_20160711) update
 
 * K-DN provided update on the rewrite that will only apply for internal ISO/TC 154 use.
 

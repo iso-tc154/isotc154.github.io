@@ -3,9 +3,8 @@ member-id: linda-wang
 name: Lin (Linda) Wang
 role: project-leader-23354
 ---
-= Lin (Linda) Wang
 
-image:/assets/images/members/linda-wang.png[]
+image:/assets/images/members/linda-wang.jpg[]
 
 Lin (Linda) Wang received her PhD degree in information system from
 Beijing Jiaotong University in 2009. She is a standard expert in

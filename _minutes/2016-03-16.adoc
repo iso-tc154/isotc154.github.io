@@ -1,13 +1,16 @@
 ---
 permalink: "/minutes/2016-03-16/"
-publish-date: "2016-03-16T16:55:27Z"
-categories: [CAT Minutes, Plenary, Semantic Interoperability, TC 8, UN/ECE]
-title: CAT Draft Minutes 2016-03-16
+date: 2016-03-16T16:55:27Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [Plenary, Semantic Interoperability, TC 8, UN/ECE]
+title: ISO/TC 154 CAT Meeting Minutes 2016-03-16
 ---
-= CAT Draft Minutes 2016-03-16
+= ISO/TC 154 CAT Meeting Minutes 2016-03-16
 
-== ISO/TC154 CAT Conference Call, 02 March 2016, 14:00 UTC
+Date:: 02 March 2016, 14:00 UTC
 
+[.participants]
 Participants:: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Bernd Bösler (BB), Jasmine Chang (JC)
 Excused:: Sue Probert (SP), Peter Rybar (PR)
 

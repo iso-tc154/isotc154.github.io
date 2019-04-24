@@ -13,7 +13,12 @@ The scope of WG5 is to provide a common platform for all date and time stakehold
 * ISO 8601-1:2019 was published on 2019-02-25
 * ISO 8601-2:2019 was published on 2019-02-25
 
-== Convenor
+== Convenorship
 
+=== Current convenor
 
+Ronald Tse (CalConnect) (2019/04 - )
 
+=== Previous convenors
+
+* Ray Denenberg (ISO/TC 46) (2018 - 2019/04)

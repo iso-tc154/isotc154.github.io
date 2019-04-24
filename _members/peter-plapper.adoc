@@ -1,0 +1,15 @@
+---
+member-id: peter-plapper
+name: Peter Plapper
+role: convener-wg7
+---
+
+image:/assets/images/members/peter-plapper.jpg[]
+
+Peter is Convener of ISO/TC 154 WG7.
+
+TBD.
+
+* Personal site: https://plapper.com
+* LinkedIn profile: https://www.linkedin.com/in/peter-plapper-5514a74a/
+* Twitter: https://twitter.com/PeterPlapper

@@ -1,19 +1,22 @@
 ---
-permalink: "minutes/2017-12-06/"
-publish-date: "2017-12-06T00:00:00Z"
-categories:  [CAT Minutes, ISO CS, Liaison]
-title: CAT Draft Minutes 2017-12-06
+permalink: "/minutes/2017-12-06/"
+date: 2017-12-06T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2017-12-06
 ---
 = ISO/TC 154 CAT meeting 2017-12-06
 
 Date::
 8:00-9:10pm Beijing Time (UTC+8)
 
+[.participants]
 Participants::
 Peter Ryber, Jasmine, Yan Zhang, Sue Probert, Anders Grangard, Ronald Tse, Linda Wang,
 Dapeng (Max) Liu
 
-Regrets:: Ray Denenberg, Peter Plapper
+Excused:: Ray Denenberg, Peter Plapper
 
 Secretariat::
 JianFang Zhang
@@ -73,7 +76,7 @@ Jasmine.
 
 Based on the recent email discussion, chair kindly reminded that WG convener and project leader should make sure that the project was discussed fully by all project members, some member did not review this enough. Secretary should provide the corresponding ISO process guide and IT tools such as livelink guide.
 
-==== PT1 –ISO 14533 Long term signature profiles
+==== PT1 -ISO 14533 Long term signature profiles
 
 ===== ISO/WD 14533-4
 
@@ -81,7 +84,7 @@ Webex comment resolution meeting held in 12-04,next meeting will be in 12-20. Af
 
 ===== ISO 14533-2
 
-==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/CD19626-1
 
@@ -95,7 +98,7 @@ DIS version will submit until March 2018.
 On the NWIP ballot process.
 
 
-==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
 
 CD ballot was finalized successfully at 2017-11-21.One comment from Belgium is whether it differs from ISO 12812 Mobile Financial Services or not. Webex meeting will be held soon.
 
@@ -104,7 +107,7 @@ CD ballot was finalized successfully at 2017-11-21.One comment from Belgium is w
 
 Peter Plapper.
 
-==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 This project was also discussed in the MoU/MG meeting. It is a long-term intention. Anders plans to hold the conference call for further discussion.
 
@@ -143,7 +146,7 @@ Chair suggest both designated chairpersons should be validated by ISO Central Se
 
 == Old Business
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
 
 No update, TC will wait for David’s response.
 

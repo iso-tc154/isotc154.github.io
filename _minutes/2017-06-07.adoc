@@ -1,14 +1,17 @@
 ---
-permalink: "minutes/2017-06-07/"
-publish-date: "2017-06-07T00:00:00Z"
-categories:  [CAT Minutes, ISO CS, Liaison]
-title: CAT Draft Minutes 2017-06-07
+permalink: "/minutes/2017-06-07/"
+date: 2017-06-07T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2017-06-07
 ---
 = ISO/TC 154 CAT meeting 2017-06-07
 
 Date::
   4:00pm UTC+8, June 7th, 2017
 
+[.participants]
 Participants::
 Hongru (Judy) Zhu, JianFang Zhang, Jasmine Chang, Francois Vuilleumier (only in the start), Peter Ryber, Chris Nelson, Linda Wang
 
@@ -65,7 +68,7 @@ No discussion.
 
 Jasmine will attend ETSI meeting next week as liaison officer. She will send the liaison report to TC secretariat after the meeting.
 
-==== PT1 – ISO 14533 Long term signature profiles
+==== PT1 - ISO 14533 Long term signature profiles
 
 * ISO 14533-3
 ** finished.
@@ -74,13 +77,13 @@ Jasmine will attend ETSI meeting next week as liaison officer. She will send the
 ** will be finished soon
 
 
-==== PT2 – ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2 - ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 * CD ballot of ISO 19626-1 was initiated, and will be closed at 21st July.
 * Jasmine is forwarding the project of ISO 19626-2, and will submit the draft before this plenary meeting in October 2017.
 
 
-==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
 
 ISO/WD 20415 was shared with WG6 members during 2 months (May, June), will be submitted as CD soon.
 
@@ -90,7 +93,7 @@ ISO/WD 20415 was shared with WG6 members during 2 months (May, June), will be su
 
 Professor Peter Plapper is willing to take over WG7 convener based on the jianfang's information. His convener ballot was initiated via CIB ballot for two weeks, and will be closed on16th June.
 
-==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 No discussion. Someone who can take over the project is preferred/ The issue will be discussed at next CAT meeting.
 
@@ -98,7 +101,7 @@ No discussion. Someone who can take over the project is preferred/ The issue wil
 
 No discussion.
 
-==== PT3 – XMLFACT
+==== PT3 - XMLFACT
 
 It is PWI, no discussion.
 
@@ -121,7 +124,7 @@ It is PWI, no discussion.
 
 == Old Business
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
 
 Waiting for the submission from OAGIS for the NWIP and DIS ballot (Fast-track) if they finish the final draft.
 
@@ -130,17 +133,17 @@ Waiting for the submission from OAGIS for the NWIP and DIS ballot (Fast-track) i
 
 === Systematic Reviews
 
-==== Result of SR ISO/TS 20625:2002 (vers 3) "`Electronic data interchange for administration, commerce and transport (EDIFACT) – Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines`"
+==== Result of SR ISO/TS 20625:2002 (vers 3) "`Electronic data interchange for administration, commerce and transport (EDIFACT) - Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines`"
 
 * The voting results is with 6 confirm, 0 revise/amend, and 0 withdraw
 * It is still confirmation for TS. The result has been submitted to ISO/CS.
 
-==== ISO 6422-1:2010 (vers 2) "`Layout key for trade documents – Part 1: Paper-based documents`" closing 2017-06-05
+==== ISO 6422-1:2010 (vers 2) "`Layout key for trade documents - Part 1: Paper-based documents`" closing 2017-06-05
 
 Voting results with 7 Confirm, 0 Revise/Amend and 0 Withdraw.
 · It is confirmation, and the result will be submitted to ISO/CS.
 
-==== ISO 8439:1990 (vers 5) "`Forms design – Basic layout`" closing 2017-06-05
+==== ISO 8439:1990 (vers 5) "`Forms design - Basic layout`" closing 2017-06-05
 
 Voting results with 8 Confirm, 0 Revise/Amend and 0 Withdraw.
 · It is confirmation, and the result will be submitted to ISO/CS.

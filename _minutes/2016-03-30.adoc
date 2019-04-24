@@ -1,5 +1,5 @@
 ---
-title: CAT Draft Minutes 2016-03-30
+title: ISO/TC 154 CAT Meeting Minutes 2016-03-30
 subtitle: ISO/TC154 CAT Conference Call
 
 cat: CAT Minutes

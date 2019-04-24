@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-09-14/"
-publish-date: "2016-09-15T14:22:22Z"
-categories: [CAT Minutes, Ballots, ISO 8601, ODIF, Plenary, Semantic Interoperability]
-title: CAT Draft Minutes 2016-09-14
+date: 2016-09-15T14:22:22Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [Ballots, ISO 8601, ODIF, Plenary, Semantic Interoperability]
+title: ISO/TC 154 CAT Meeting Minutes 2016-09-14
 ---
-= CAT Draft Minutes 2016-09-14
+= ISO/TC 154 CAT Meeting Minutes 2016-09-14
 
 == ISO/TC 154 CAT Conference Call, 14 September 2016, 14:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
 Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 
@@ -48,8 +51,8 @@ Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 
 ==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
 
-* ISO/DIS 14533-3 Ballot (*12 week, closing 2016–11–??*)
-* ISO/NP 14533–4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`" Update
+* ISO/DIS 14533-3 Ballot (*12 week, closing 2016-11-??*)
+* ISO/NP 14533-4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`" Update
 
 *Nothing to report*
 
@@ -97,7 +100,7 @@ Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 ** _Schedule a session in Berlin to start work and address UK comments._
 
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical Model`"
 
 * _Received comments from ISO/CS for minor corrections to the submission._
 * _Awaiting OAGi's final revised submission for Fast-track (DIS) ballot._

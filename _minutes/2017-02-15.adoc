@@ -1,13 +1,17 @@
 ---
-permalink: "minutes/2017-02-15/"
-publish-date: 2017-02-15T16:36:53Z
-categories:  [CAT Minutes, ETSI, ISO 14533, ISO CS, Liaison]
-title: CAT Draft Minutes 2017-02-15
+permalink: "/minutes/2017-02-15/"
+date: 2017-02-15T16:36:53Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ETSI, ISO 14533, ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2017-02-15
 ---
-= CAT Draft Minutes 2017-02-15
+= ISO/TC 154 CAT meeting 2017-02-15
 
-== ISO/TC 154 CAT Conference Call, 15 February 2017, 15:00 UTC
+Date::
+15 February 2017, 15:00 UTC
 
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
 Excused::  JianFang Zhang (JFZ), Jasmine Chang (JC), Peter Rybar (PR), Bernd Bösler (BB)
 
@@ -69,7 +73,7 @@ Excused::  JianFang Zhang (JFZ), Jasmine Chang (JC), Peter Rybar (PR), Bernd Bö
 
 == Old Business
 
-* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`"
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical Model`"
 ** Under final review by FV, BB and KDN before possible submission for DIS (Fast-track)
 
 

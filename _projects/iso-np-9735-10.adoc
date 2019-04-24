@@ -2,8 +2,8 @@
 id: iso-np-9735-10
 name: ISO NP 9735-10
 title: >-
-  Electronic data interchange for administration, commerce and transport (EDIFACT) –
-  Application level syntax rules (Syntax version number: 4, Syntax release number: 1) –
+  Electronic data interchange for administration, commerce and transport (EDIFACT) -
+  Application level syntax rules (Syntax version number: 4, Syntax release number: 1) -
   Part 10: Syntax service directories
 revision: yes
 status: new

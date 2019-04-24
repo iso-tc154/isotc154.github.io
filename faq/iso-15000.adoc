@@ -11,12 +11,12 @@ The questions was raised because of a statement on the UBL Home page, which stat
 
 [quote]
 ____
-UBL was the first published data format specification produced in full conformance with UN/CEFACT's ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000–5:2005.
+UBL was the first published data format specification produced in full conformance with UN/CEFACT's ebXML Core Components Technical Specification (CCTS) Version 2.01 -- ISO TS/15000-5:2005.
 ____
 
 *For a standard to claim full conformance it must satisfy 100% of all the mandatory 'requirements' found in the 'normative' sections.*
 
-ISO/TS 15000–5:2005 (and UN/CEFACT's ebXML Core Components Technical Specification (CCTS) Version 2.01) both contain the same statements defining conformance as:
+ISO/TS 15000-5:2005 (and UN/CEFACT's ebXML Core Components Technical Specification (CCTS) Version 2.01) both contain the same statements defining conformance as:
 
 * Applications will be considered to be in full conformance with this technical specification if they comply with the content of normative sections, rules and definitions.
 * Section 4.2 defines sections 6,7,8 and 9 as being normative.
@@ -27,7 +27,7 @@ For the long answer, see the table below that list examples of *requirements tha
 
 [cols="a,a",options="header"]
 |===
-|ISO TS/15000–5:2005 Normative Rules
+|ISO TS/15000-5:2005 Normative Rules
 |OASIS UBL 2.1 Library Entries
 
 |[B3] A Basic Business Information Entity *shall be based* on a Basic Core Component
@@ -73,11 +73,11 @@ Tax Category. Per Unit _Amount_. _Amount_
 === What are the differences between ISO 15000-5 and OASIS' UBL?
 
 
-The table below shows on the left side the required parts defined within ISO 15000–5:2014. The right side shows the corresponding parts, if available, within OASIS' UBL 2.0 and 2.1.
+The table below shows on the left side the required parts defined within ISO 15000-5:2014. The right side shows the corresponding parts, if available, within OASIS' UBL 2.0 and 2.1.
 
 [cols="a,a",options="header"]
 |===
-|ISO 15000–5:2014
+|ISO 15000-5:2014
 |OASIS UBL 2.0 and 2.1
 
 |Syntax Neutral data model
@@ -85,7 +85,7 @@ The table below shows on the left side the required parts defined within ISO 150
 
 Data model non-normative (optional)
 
-footnote:[OASIS UBL 2.1 Specification, 2013 November, http://docs.oasis-open.org/ubl/os-UBL–2.1/UBL–2.1.html]
+footnote:[OASIS UBL 2.1 Specification, 2013 November, http://docs.oasis-open.org/ubl/os-UBL-2.1/UBL-2.1.html]
 
 |Can be used to create other syntax solutions
 |*Cannot* be used to create other syntax solutions
@@ -93,20 +93,20 @@ footnote:[OASIS UBL 2.1 Specification, 2013 November, http://docs.oasis-open.org
 |
 |
 
-|*Normative Categories of building blocks:* footnote:[ISO 15000–5:2014, Section 4 and 5]
+|*Normative Categories of building blocks:* footnote:[ISO 15000-5:2014, Section 4 and 5]
 |*Current building blocks:*
 
 
 |Basic Core Component (BCC)
-|–
+|-
 
 
 |Association Core Component (ASCC)
-|–
+|-
 
 
 |Aggregate Core Component (ACC)
-|–
+|-
 
 
 |Core Component Type (CCT)
@@ -126,5 +126,5 @@ footnote:[OASIS UBL 2.1 Specification, 2013 November, http://docs.oasis-open.org
 
 |===
 
-Implementations are considered to be *in full conformance* with ISO 15000–5:2014 if they *comply with the content of normative clauses, rules and definitions*. footnote:[ISO 15000–5:2014, Section 6]
+Implementations are considered to be *in full conformance* with ISO 15000-5:2014 if they *comply with the content of normative clauses, rules and definitions*. footnote:[ISO 15000-5:2014, Section 6]
 

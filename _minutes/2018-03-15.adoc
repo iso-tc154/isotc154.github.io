@@ -1,18 +1,21 @@
 ---
-permalink: "minutes/2018-03-15/"
-publish-date: "2018-03-15T00:00:00Z"
-categories:  [CAT Minutes, ISO CS, Liaison]
-title: CAT Draft Minutes 2018-03-15
+permalink: "/minutes/2018-03-15/"
+date: 2018-03-15T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2018-03-15
 ---
 = ISO/TC 154 CAT meeting 2018-03-15
 
 Date::
 8:00-9:00pm Beijing Time (UTC+8)
 
+[.participants]
 Participants::
 Peter Rybar, Jasmine, Sue Probert, Ray Denenberg, Peter Plapper, Dapeng (Max) Liu, Mei-li Chen, Christof Oberhausen, Ahmed KHOUJA
 
-Regrets:: Yan Zhang, Anders Grangard, Mary Kay Blantz, Linda Wang, Ronald Tse
+Excused:: Yan Zhang, Anders Grangard, Mary Kay Blantz, Linda Wang, Ronald Tse
 
 Secretariat::
 JianFang Zhang
@@ -60,7 +63,7 @@ Jasmine and Peter Rybar gave a presentation on the progress of WG6, appreciated 
 
 AP: Jasmine provides support to Peter on CD procedure.
 
-==== PT1 –ISO 14533 Long term signature profiles
+==== PT1 -ISO 14533 Long term signature profiles
 
 ===== ISO/WD 14533-4
 
@@ -70,7 +73,7 @@ Peter Rybar reported 14533-4 is at stage WD, they had updated the document accor
 
 
 
-==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/CD 19626-1
 
@@ -81,7 +84,7 @@ Jasmine reported that they are still working on revising the DIS draft document,
 
 The NP voting was successfully completed, it’s on WD stage and the comments are analyzed, the comment resolution meeting is scheduled in April.
 
-==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
 
 Jasmine reported that they finished comment resolution and are preparing DIS draft, the circulation of DIS draft will be planned afterward.
 
@@ -93,7 +96,7 @@ Peter Plapper.
 Peter Plapper shared the progress on the work of WG7, appreciated his job.
 
 
-==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 The work will be started in the beginning of 2018. Peter asked for share the volunteer list received by TC154. Anders is waiting for the feedback of the draft from MoU/MG group experts.
 
@@ -130,7 +133,7 @@ AP: Work on the ToR update in ISO 7372/UNTDED JMA.
 
 == Old Business
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
 
 No report.
 

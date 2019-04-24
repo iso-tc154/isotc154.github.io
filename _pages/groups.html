@@ -1,0 +1,21 @@
+---
+permalink: /groups/
+title: Working Groups and Project Teams
+html_class: projects
+layout: default
+---
+<div class="with-aside">
+  <main>
+    <section>
+      <h2>Working Groups and Project Teams</h2>
+
+      {% assign groups = site.groups | sort: "order" %}
+      {% for group in groups %}
+      <li><a href="{{ group.url }}">{% if group.name %}{{ group.name }} — {% endif %} {{ group.title }}</a></li>
+      {% endfor %}
+
+    </section>
+
+  </main>
+
+</div>

@@ -15,3 +15,12 @@ Furthermore, the provision of accessible or open data and related frameworks in 
 * PT1 -- Long term signature profiles
 * PT2 -- Trusted Communication Platforms for Electronic Documents
 * PT3 -- Trusted mobile e-document framework
+
+== Convenorship
+
+=== Current convenor
+
+{% assign convenor = (site.members | where: "member-id", "peter-plapper" | first) %}
+
+link:{{ convenor.url }}[{{ convenor.name }}] (initial 2014 -)
+

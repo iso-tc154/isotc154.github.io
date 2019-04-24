@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-03-02/"
-publish-date: "2016-03-02T19:50:49Z"
-categories: [CAT Minutes, ISO 8601, Liaison, TC 8, UBL, UN/ECE, WCO]
-title: CAT Draft Minutes 2016-03-02
+date: 2016-03-02T19:50:49Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ISO 8601, Liaison, TC 8, UBL, UN/ECE, WCO]
+title: ISO/TC 154 CAT Meeting Minutes 2016-03-02
 ---
-= CAT Draft Minutes 2016-03-02
+= ISO/TC 154 CAT Meeting Minutes 2016-03-02
 
-== ISO/TC154 CAT Conference Call, 02 March 2016, 15:00 UTC
+Date:: 02 March 2016, 15:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC)
 Excused::  Bernd Bösler (BB), Sue Probert (SP), Peter Rybar (PR)
 

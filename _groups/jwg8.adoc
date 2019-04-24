@@ -12,3 +12,12 @@ The scope of JWG8 is to develop process, data elements related standards that ar
 
 == Convenorship
 
+=== Current convenor
+
+{% assign convenor = (site.members | where: "member-id", "max-liu" | first) %}
+
+link:{{ convenor.url }}[{{ convenor.name }}] (CN/SAC) (initial 2018 -)
+
+== Secretariat
+
+KATS

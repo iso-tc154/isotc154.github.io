@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-06-08/"
-publish-date: "2016-06-09T22:36:12Z"
-categories: [CAT Minutes, ISO 8601, ISO CS, Liaison, MoU/MG]
-title: CAT Draft Minutes 2016-06-08
+date: 2016-06-09T22:36:12Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ISO 8601, ISO CS, Liaison, MoU/MG]
+title: ISO/TC 154 CAT Meeting Minutes 2016-06-08
 ---
-= CAT Draft Minutes 2016-06-08
+= ISO/TC 154 CAT Meeting Minutes 2016-06-08
 
 == ISO/TC 154 CAT Conference Call, 08 June 2016, 14:00 UTC
+[.participants]
 Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
 
 

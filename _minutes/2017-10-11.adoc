@@ -1,19 +1,22 @@
 ---
-permalink: "minutes/2017-10-11/"
-publish-date: "2017-10-11T00:00:00Z"
-categories:  [CAT Minutes, ISO CS, Liaison]
-title: CAT Draft Minutes 2017-10-11
+permalink: "/minutes/2017-10-11/"
+date: 2017-10-11T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2017-10-11
 ---
 = ISO/TC 154 CAT meeting 2017-10-11
 
 Date::
 8:00-9:20pm Beijing Time (UTC+8)
 
+[.participants]
 Participants::
 Judy Zhu, Mr zhang, Ray Denenberg, Christof Oberhansen, Kouja, Linda Wang, Dapeng (Max)
 Liu
 
-Regrets:: Roman, Peter ryber, Peter plapper, Jasmine
+Excused:: Roman, Peter ryber, Peter plapper, Jasmine
 
 Secretariat::
 JianFang Zhang
@@ -52,17 +55,17 @@ Ray uploaded the FDIS draft on the old TC154 website for experts review. Since h
 
 No discussion, Jasmine missed this meeting.
 
-==== PT1 –ISO 14533 Long term signature profiles
+==== PT1 -ISO 14533 Long term signature profiles
 
 * ISO/WD 14533-4
 
-==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
-==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
 
 === WG 7 (digital Business)
 
-==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Anders had an offline discussion with Peter Plapper and received input
 from experts, and plan to hold the conference call for further discussion.
@@ -89,7 +92,7 @@ Did not discuss.
 
 == Old Business
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
 
 Jianfang sent email to David (OAGi ) for the updated standrad draft, But David did not reply still, TC will wait for David’s response.
 

@@ -1,7 +1,7 @@
 <section class="recent">
   <h3 class="title">Recent minutes</h3>
   <ul>
-    {% assign recent_minutes = site.minutes | slice: 0, 6 %}
+    {% assign recent_minutes = site.minutes | sort: 'date' | reverse | slice: 0, 6 %}
     {% for minutes in recent_minutes %}
       <li><a class="name" href="{{ minutes.url }}">{{ minutes.title }}</a>
     {% endfor %}

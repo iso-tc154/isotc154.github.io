@@ -65,7 +65,7 @@ http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=7345306&amp;objAction=b
 
 == Relevant links
 
-http://www.iso.org/iso7372ma[UNTDED – ISO7372 JMA website]
+http://www.iso.org/iso7372ma[UNTDED - ISO7372 JMA website]
 
 
 === TDED 2005 edition

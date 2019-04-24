@@ -1,0 +1,9 @@
+---
+member-id: ray-denenberg
+name: Ray Denenberg
+role: member
+---
+
+// image:/assets/images/members/judy-zhu.jpg[]
+
+Ray was the ISO/TC 154/WG 5 Convener from 2018 to 2019/04.

@@ -26,7 +26,7 @@ social:
 
 footer_nav_items:
   - home
-  - sitemap
+  #- sitemap
   - news
   - contact
 
@@ -36,7 +36,7 @@ primary_nav_items:
   - standards
   - minutes
   - faq
-  - meetings
+  - members
 
 collections:
   pages:
@@ -57,9 +57,11 @@ collections:
   groups:
     output: true
     group-id: :name
+    permalink: /:collection/:name/
   members:
     output: true
     member-id: :name
+    permalink: /:collection/:name/
 
 defaults:
   - scope:
@@ -105,19 +107,22 @@ nav:
   projects:
     url: /projects/
     title: Projects
+  groups:
+    url: /groups/
+    title: Groups
+  members:
+    url: /members/
+    title: Members
   minutes:
     url: /minutes/
     title: Minutes
-  meetings:
-    url: /meetings/
-    title: Meetings
 
   home:
     url: /
     title: Home
-  sitemap:
-    url: /sitemap/
-    title: Sitemap
+  # sitemap:
+  #   url: /sitemap/
+  #   title: Sitemap
   news:
     url: /news/
     title: News

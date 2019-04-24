@@ -1,12 +1,17 @@
 ---
 permalink: "/minutes/2016-12-21/"
-publish-date: 2016-12-21T15:35:21Z
-categories: [CAT Minutes, ebMoU, ISO CS, MoU/MG, NWIP, Resolutions]
-title: CAT Draft Minutes 2016-12-21
+date: 2016-12-21T15:35:21Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ebMoU, ISO CS, MoU/MG, NWIP, Resolutions]
+title: ISO/TC 154 CAT Meeting Minutes 2016-12-21
 ---
-= CAT Draft Minutes 2016-12-21
+= ISO/TC 154 CAT meeting 2016-12-21
 
-== ISO/TC 154 CAT Conference Call, 21 December 2016, 15:00 UTC
+Date::
+21 December 2016, 15:00 UTC
+
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
 Excused::  Jasmine Chang (JC), Bernd Bösler (BB), Peter Rybar (PR), JianFang Zhang (JFZ)
 
@@ -81,7 +86,7 @@ MoU/MG recommends that all relevant approved new work items from the MoU/MG memb
 
 == Old Business
 
-* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`" -- *nothing to report*
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical Model`" -- *nothing to report*
 
 
 == New Business

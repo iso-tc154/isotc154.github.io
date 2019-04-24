@@ -1,18 +1,21 @@
 ---
-permalink: "minutes/2017-09-06/"
-publish-date: "2017-09-06T00:00:00Z"
-categories:  [CAT Minutes, ISO CS, Liaison]
-title: CAT Draft Minutes 2017-09-06
+permalink: "/minutes/2017-09-06/"
+date: 2017-09-06T00:00:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags:  [ISO CS, Liaison]
+title: ISO/TC 154 CAT Meeting Minutes 2017-09-06
 ---
 = ISO/TC 154 CAT meeting 2017-09-06
 
 Date::
 8:00-9:20pm Beijing Time (UTC+8)
 
+[.participants]
 Participants::
 Hongru (Judy) Zhu, Ray Denenberg, Jasmine Jang, Christof Oberhansen, Anders Grangard, Mei-Li Chen, Linda Wang, Dapeng (Max) Liu
 
-Regrets:: Roman, Peter Ryber, Peter Plapper
+Excused:: Roman, Peter Ryber, Peter Plapper
 
 Secretariat::
 JianFang Zhang
@@ -56,19 +59,19 @@ Ray finished the resolution of comments of ISO/DIS 8601-2 and the FDIS draft on 
 
 === WG 6 (Trusted eCommunication)
 
-==== PT1 –ISO 14533 Long term signature profiles
+==== PT1 -ISO 14533 Long term signature profiles
 
 * ISO/WD 14533-4 - Peter regrets for this call, but he sent
 email by saying it is with an incorporated comments for WG6
 reviews will be available next week.
 
-==== PT2 –ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 * ISO/CD 19626-1 [fundamentals] - WG6 convener Jasmine introduced that The ETSI comment will be resolved at WG6 virtual meeting during the plenary week. She also announce its presentation plan at the block chain mini conference on 30th UN/CEFACT Forum.
 
 * ISO/WD 19626-2 [applications] - Jasmine introduced the 19626-2 schedule for its submission until 2nd week, October. It will be discussed at WG 6 virtual meeting during the plenary week.
 
-==== PT3 – ISO/WD 20415 Trusted mobile e-document framework
+==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
 
 Yongkon Lee completed the revision of ISO 20415. And after
 Jasmine shares its comments on the WG6 members and
@@ -78,7 +81,7 @@ confirms its CD ballot, Jianfang will initiate the CD.
 
 Christof Oberhausen represented Peter Plapper.
 
-==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Christof introduced that the working draft study was initiated at stage 20.20, and Anders will take the project leader, jianfang will initiate the CIB ballot after the meeting and send the project draft to Anders after the meeting.
 
@@ -99,7 +102,7 @@ The cooperation with ISO/TC 184 is still waiting for the response from its manag
 Jianfang will connect with TC184 after the group finished the updated version.
 
 
-==== PT3 – XMLFACT
+==== PT3 - XMLFACT
 
 This project is cancelled.
 
@@ -136,7 +139,7 @@ Will be discussed on the plenary meeting.
 
 No discussion.
 
-* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical`"
+* OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical`"
 
 == Open Ballots
 

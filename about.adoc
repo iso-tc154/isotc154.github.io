@@ -1,4 +1,5 @@
 ---
+title: About ISO/TC 154
 permalink: /about/
 ---
 :page-liquid:
@@ -9,11 +10,14 @@ permalink: /about/
 
 = About ISO/TC 154
 
+{% assign secretary = (site.members | where: "member-id", "jianfang-zhang" | first) %}
+{% assign chair = (site.members | where: "member-id", "judy-zhu" | first) %}
+
 * Name: Processes, data elements and documents in commerce, industry and administration
 
 * Secretariat: http://www.sac.gov.cn[SAC]
-* Secretary: mailto:zhangjf@cnis.gov.cn[Mr Jianfang Zhang]
-* Chairperson: Ms Hongru (Judy) Zhu
+* Secretary: link:{{ secretary.url }}[{{ secretary.name }}]
+* Chairperson: link:{{ chair.url }}[{{ chair.name }}]
 * ISO Technical Programme Manager: mailto:sarmiento@iso.org[Ms Sonia Sarmiento]
 * ISO Editorial Programme Manager: mailto:chen@iso.org[Mrs Yvonne Chen]
 * Creation date: 1972

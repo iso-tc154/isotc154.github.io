@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2017-01-04/"
-publish-date: "2017-01-04T18:03:58Z"
-categories: [CAT Minutes, Ballots, ISO 14533, ISO 8601, ISO CS, OAGi]
-title: CAT Draft Minutes 2017-01-04
+date: 2017-01-04T18:03:58Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [Ballots, ISO 14533, ISO 8601, ISO CS, OAGi]
+title: ISO/TC 154 CAT Meeting Minutes 2017-01-04
 ---
-= CAT Draft Minutes 2017-01-04
+= ISO/TC 154 CAT Meeting Minutes 2017-01-04
 
 == ISO/TC 154 CAT Conference Call, 04 January 2017, 15:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), Jasmine Chang (JC), Mei-Li Chen (MLC), Peter Rybar (PR), Bernd Bösler (BB), JianFang Zhang (JFZ)
 Excused::  Francois Vuilleumier (FV)
 
@@ -81,7 +84,7 @@ Excused::  Francois Vuilleumier (FV)
 
 == Old Business
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical Model`"
 
 * Received latest update today. FV, BB and K-DN to review before submitting to Brian (ISO/CS) for final review.
 

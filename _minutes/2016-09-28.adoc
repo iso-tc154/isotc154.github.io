@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-09-28/"
-publish-date: "2016-09-28T15:18:05Z"
-categories: [CAT Minutes, Ballots, ISO 14533, ISO CS, NWIP, Plenary, TC 154]
-title: CAT Draft Minutes 2016-09-28
+date: 2016-09-28T15:18:05Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [Ballots, ISO 14533, ISO CS, NWIP, Plenary, TC 154]
+title: ISO/TC 154 CAT Meeting Minutes 2016-09-28
 ---
-= CAT Draft Minutes 2016-09-28
+= ISO/TC 154 CAT Meeting Minutes 2016-09-28
 
 == ISO/TC 154 CAT Conference Call, 14 September 2016, 14:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)
 Excused::  Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)
 
@@ -43,12 +46,12 @@ Excused::  Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chan
 
 ==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
 
-* ISO/DIS 14533-3 Ballot (12 week, closing 2016–11–??)
+* ISO/DIS 14533-3 Ballot (12 week, closing 2016-11-??)
 
 ** _Awaiting finalization of ballot by ISO/CD_
 
 
-* ISO/NP 14533–4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`" Update
+* ISO/NP 14533-4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`" Update
 
 ** *Nothing to report*
 
@@ -117,7 +120,7 @@ Excused::  Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chan
 ** _The result of the ballot was 50% approved as the stage 20.00, and 50% approved as the WG stage 20.20. However, since most of the 20.00 votes came from those who decided "`not`" to participate, their choice has be negated, since no comments were provided why they did not support the attached WD. Therefore, since those who agreed to participate in the work supported a 20.20 status (3 approved out of 5), CAT agreed to register the project with a 20.20 status._
 
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical Model`"
 
 * _OAGi revised their submission based on the received comments from ISO/CS for minor corrections._
 * _Awaiting ISO/CS's final comments on the revised submission for Fast-track._

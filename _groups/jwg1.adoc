@@ -48,7 +48,10 @@ Bernd Bösler (DE/DIN) (1998 - )
 
 === Current convenor
 
-Sue Probert (UK/BSI) (2018 - )
+{% assign convenor = (site.members | where: "member-id", "sue-probert" | first) %}
+
+link:{{ convenor.url }}[{{ convenor.name }}] (UK/BSI) (2018 - )
+
 
 === Previous convenors
 

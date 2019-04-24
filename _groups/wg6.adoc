@@ -14,3 +14,15 @@ WG6 also covers considerations about trusted e-communications, in the environmen
 
 * PT1 -- Business Semantics Thesaurus
 * PT2 -- XMLFACT
+
+== Convenorship
+
+=== Current convenor
+
+{% assign convenor = (site.members | where: "member-id", "jasmine-chang" | first) %}
+
+link:{{ convenor.url }}[{{ convenor.name }}] (KR/KATS) (initial 2014 -)
+
+== Secretariat
+
+KATS

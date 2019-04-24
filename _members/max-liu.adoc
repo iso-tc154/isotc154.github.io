@@ -3,11 +3,8 @@ member-id: max-liu
 name: Dapeng (Max) Liu
 role: jwg8-convenor
 ---
-= Dapeng (Max) Liu
 
-//JWG8 convenor
-
-image:/assets/images/members/max-liu.png[]
+image:/assets/images/members/max-liu.jpg[]
 
 Dapeng (Max) Liu is a Senior Manager in the standardization
 department of Alibaba Group. He has served in the Chinese Academy

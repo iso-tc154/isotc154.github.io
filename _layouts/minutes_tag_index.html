@@ -14,9 +14,10 @@ layout: default
     {% endif %}
 
     {% assign all_minutes = page.items | default: site.minutes %}
+    {% assign all_minutes = all_minutes | sort: 'date' | reverse %}
 
     {% for minutes in all_minutes %}
-      {% if minutes.subtitle and minutes.cat %}
+      {% if minutes.cat %}
       {% comment %} ^^^ checks that structure was migrated {% endcomment %}
 
       <article class="minutes">

@@ -3,14 +3,14 @@ layout: home
 
 banner_includes:
   - title: Welcome to&nbsp;ISO/TC&nbsp;154
-    image_path: /assets/img/welcome_illo.png
-    image_alt: Photo of the headquarters
+    image_path: /assets/img/welcome_illo.jpg
+    image_alt: ISO Headquarters
     body: >-
 
       <p>
         It is the vision of ISO/TC 154 that all parties in the value chain
         use standardized data exchange to reduce cost in managing the processes
-        in the private and public domain and to foster trace facilitation.
+        in the private and public domain and to foster trade facilitation.
 
       <p>
         The mission of ISO/TC 154 is both to undertake and to facilitate

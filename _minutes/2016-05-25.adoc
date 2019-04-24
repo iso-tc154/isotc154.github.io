@@ -1,13 +1,16 @@
 ---
 permalink: "/minutes/2016-05-25/"
-publish-date: "2016-05-26T22:30:51Z"
-categories: [CAT Minutes, ISO 8601, ISO CS, ODIF, Plenary, Semantic Interoperability]
-title: CAT Draft Minutes 2016-05-25
+date: 2016-05-26T22:30:51Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ISO 8601, ISO CS, ODIF, Plenary, Semantic Interoperability]
+title: ISO/TC 154 CAT Meeting Minutes 2016-05-25
 ---
-= CAT Draft Minutes 2016-05-25
+= ISO/TC 154 CAT Meeting Minutes 2016-05-25
 
-== ISO/TC154 CAT Conference Call, 25 May 2016, 14:00 UTC
+Date:: 25 May 2016, 14:00 UTC
 
+[.participants]
 Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
 
 == Approval of Agenda
@@ -37,7 +40,7 @@ Nothing to report.
 
 ==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
 
-* ISO/CD 14533–3 Update
+* ISO/CD 14533-3 Update
 
 ** A new draft has been prepared for a possible DIS ballot
 ** Because the CD received major negative comments there needs to be either a TC ballot to get support for the DIs ballot, or have another CD ballot.
@@ -48,7 +51,7 @@ Nothing to report.
 
 ==== PT2 -- Trusted Communication Platforms for Electronic Documents
 
-* ISO/WD_19626–1 "`TCP for Electronic Documents-Part 1`" Update
+* ISO/WD_19626-1 "`TCP for Electronic Documents-Part 1`" Update
 
 ** Further meetings are scheduled to finalize the document.
 ** Next step after finalization is to get WG support for dual NWIP and WD ballot.

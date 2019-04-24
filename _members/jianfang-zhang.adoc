@@ -1,0 +1,10 @@
+---
+member-id: jianfang-zhang
+name: Jianfang Zhang
+role: secretariat
+---
+
+//image:/assets/images/members/jianfang-zhang.jpg[]
+
+Jianfang is the secretariat of ISO/TC 154 and project leader of ISO/TR 18262 ODIF.
+He is an expert representative of SAC.

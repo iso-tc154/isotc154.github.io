@@ -1,12 +1,16 @@
 ---
 permalink: "/minutes/2016-11-23/"
-publish-date: "2016-11-23T22:50:58Z"
-categories: [CAT Minutes, Ballots, ISO 14533, ISO 8601, MoU/MG, Semantic Interoperability]
-title: CAT Draft Minutes 2016-11-23
+date: 2016-11-23T22:50:58Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [Ballots, ISO 14533, ISO 8601, MoU/MG, Semantic Interoperability]
+title: ISO/TC 154 CAT Meeting Minutes 2016-11-23
 ---
-= CAT Draft Minutes 2016-11-23
+= ISO/TC 154 CAT Meeting Minutes 2016-11-23
 
 == ISO/TC 154 CAT Conference Call, 23 November 2016, 15:00 UTC
+
+[.participants]
 Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)
 
 
@@ -92,7 +96,7 @@ Nothing to report.
 
 == Old Business
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Business Canonical Model`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Business Canonical Model`"
 
 * Awaiting final version from OAGi based on ISO/CS feedback.
 

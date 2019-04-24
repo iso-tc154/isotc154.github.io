@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-04-27/"
-publish-date: "2016-04-27T22:27:00Z"
-categories: [CAT Minutes, CAT, ISO 14533, ISO 8601, Plenary]
-title: CAT Draft Minutes 2016-04-27
+date: 2016-04-27T22:27:00Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [CAT, ISO 14533, ISO 8601, Plenary]
+title: ISO/TC 154 CAT Meeting Minutes 2016-04-27
 ---
-= CAT Draft Minutes 2016-04-27
+= ISO/TC 154 CAT Meeting Minutes 2016-04-27
 
-== ISO/TC154 CAT Conference Call, 27 April 2016, 14:00 UTC
+Date:: 27 April 2016, 14:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Peter Rybar (PR), Jasmine Chang (JC), Francois Vuilleumier (FV), Bernd Bösler (BB)
 Excused::  Sue Probert (SP)
 
@@ -27,7 +30,7 @@ Excused::  Sue Probert (SP)
 
 === WG 5 (Representation of dates and times)
 
-* The two ballots closed. K-DN to check with SOSMT and BSI to change vote on ISO 8601–1 & 8601–2 NWIP Ballots from accepting attached CD from 20.00 (Preparatory stage started) to 30.00 (Committee draft (CD) registered).
+* The two ballots closed. K-DN to check with SOSMT and BSI to change vote on ISO 8601-1 & 8601-2 NWIP Ballots from accepting attached CD from 20.00 (Preparatory stage started) to 30.00 (Committee draft (CD) registered).
 
 
 === WG 6 (Trusted eCommunication)

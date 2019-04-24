@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-07-06/"
-publish-date: "2016-07-08T14:45:15Z"
-categories: [CAT Minutes, ISO 14533, ISO 8601, NWIP, Plenary, Semantic Interoperability]
-title: CAT Draft Minutes 2016-07-06
+date: 2016-07-08T14:45:15Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ISO 14533, ISO 8601, NWIP, Plenary, Semantic Interoperability]
+title: ISO/TC 154 CAT Meeting Minutes 2016-07-06
 ---
-= CAT Draft Minutes 2016-07-06
+= ISO/TC 154 CAT Meeting Minutes 2016-07-06
 
 == ISO/TC 154 CAT Conference Call, 06 July 2016, 14:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)
 Excused::  Bernd Bösler (BB)
 

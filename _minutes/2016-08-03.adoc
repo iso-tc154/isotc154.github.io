@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-08-03/"
-publish-date: "2016-08-03T15:08:45Z"
-categories: [CAT Minutes, ISO 14533, ISO 8601, NWIP, OAGi, Plenary]
-title: CAT Draft Minutes 2016-08-03
+date: 2016-08-03T15:08:45Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ISO 14533, ISO 8601, NWIP, OAGi, Plenary]
+title: ISO/TC 154 CAT Meeting Minutes 2016-08-03
 ---
-= CAT Draft Minutes 2016-08-03
+= ISO/TC 154 CAT Meeting Minutes 2016-08-03
 
 == ISO/TC 154 CAT Conference Call, 03 August 2016, 14:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
 Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC)
 
@@ -29,7 +32,7 @@ Nothing to report.
 
 * ISO 8601 Part 1 & 2 update
 
-* Out for CD ballot closing 2016–09–03
+* Out for CD ballot closing 2016-09-03
 
 
 
@@ -38,12 +41,12 @@ Nothing to report.
 
 ==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
 
-* ISO/CD 14533–3 Update
+* ISO/CD 14533-3 Update
 
 ** CD ballot closed 21 July without comments, now being submitted to ISO/CS for DIS Ballot
 
 
-* ISO/NP 14533–4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`"
+* ISO/NP 14533-4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`"
 
 ** PR gave a quick outline of the proposed new part.
 ** A meeting of PT 1 to address the details, including the creation of a NWIP, is scheduled for the upcoming WG 6/PT 1 session in Berlin.
@@ -54,7 +57,7 @@ Nothing to report.
 
 ==== PT2 -- Trusted Communication Platforms for Electronic Documents
 
-* ISO/WD 19626–1 "`TCP for Electronic Documents -- Part 1`" Update
+* ISO/WD 19626-1 "`TCP for Electronic Documents -- Part 1`" Update
 
 ** Request for NWIP and WD or CD registration TC Ballot
 
@@ -110,7 +113,7 @@ Nothing to report.
 
 
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Canonical Model`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Canonical Model`"
 
 * Agreed to move ahead with submission
 * K-DN, BB & JC to review the submission documents for compliance to ISO format.

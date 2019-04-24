@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-08-17/"
-publish-date: "2016-08-17T15:12:17Z"
-categories: [CAT Minutes, Ballots, ISO 8601, ISO CS, OAGi, Plenary]
-title: CAT Draft Minutes 2016-08-17
+date: 2016-08-17T15:12:17Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [Ballots, ISO 8601, ISO CS, OAGi, Plenary]
+title: ISO/TC 154 CAT Meeting Minutes 2016-08-17
 ---
-= CAT Draft Minutes 2016-08-17
+= ISO/TC 154 CAT Meeting Minutes 2016-08-17
 
 == ISO/TC 154 CAT Conference Call, 17 August 2016, 14:00 UTC
+[.participants]
 Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)
 Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)
 
@@ -26,7 +29,7 @@ Nothing to report.
 
 * ISO 8601 Part 1 & 2 update
 
-* Out for CD ballot closing 2016–09–03
+* Out for CD ballot closing 2016-09-03
 
 
 
@@ -35,12 +38,12 @@ Nothing to report.
 
 ==== PT1 -- Long term signature profiles for PDF advanced electronic signatures (PAdES)
 
-* ISO/CD 14533–3 Update
+* ISO/CD 14533-3 Update
 
-** Out for DIS Ballotcurrent with ISO/CS for preparation (12 week, closing 2016–11–??)
+** Out for DIS Ballotcurrent with ISO/CS for preparation (12 week, closing 2016-11-??)
 
 
-* ISO/NP 14533–4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`" Update
+* ISO/NP 14533-4 "`Attributes pointing to external Proof of Existence objects used in Long term signature formats (PoEAttributes)`" Update
 
 ** Nothing to report
 
@@ -49,9 +52,9 @@ Nothing to report.
 
 ==== PT2 -- Trusted Communication Platforms for Electronic Documents
 
-* ISO/WD 19626–1 "`TCP for Electronic Documents -- Part 1`"
+* ISO/WD 19626-1 "`TCP for Electronic Documents -- Part 1`"
 
-** Out for NWIP & WD Ballot (closing 2016–10–11)
+** Out for NWIP & WD Ballot (closing 2016-10-11)
 
 
 
@@ -60,7 +63,7 @@ Nothing to report.
 
 * ISO/WD 20415 "`TMEF`" Ballot
 
-** Out for NWIP & WD Ballot (closing 2016–10–11)
+** Out for NWIP & WD Ballot (closing 2016-10-11)
 
 
 
@@ -81,7 +84,7 @@ Nothing to report.
 
 === ISO/TC 154 Chairmanship Update
 
-* TMB approved appointment for 2017–2020.
+* TMB approved appointment for 2017-2020.
 
 
 === ISO/TC 154 Plenary Update
@@ -98,7 +101,7 @@ Nothing to report.
 
 
 
-=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS – A Specification for an Enterprise Canonical Model`"
+=== OAGi (Open Applications Group, Inc.) Fast-Track of "`OAGIS - A Specification for an Enterprise Canonical Model`"
 
 * K-DN, BB & JC still reviewing the submission documents for compliance to ISO format.
 * K-DN to contact Brian (TPM) to ensure the format with the DVD is acceptable.
@@ -106,7 +109,7 @@ Nothing to report.
 
 === ISO/NP TS 21887 Business Semantics Thesaurus (BST)
 
-* Out for NWIP & WD Ballot (closing 2016–09–11)
+* Out for NWIP & WD Ballot (closing 2016-09-11)
 
 
 

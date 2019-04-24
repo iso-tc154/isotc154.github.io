@@ -1,13 +1,16 @@
 ---
 permalink: "/minutes/2016-04-13/"
-publish-date: "2016-04-13T15:11:41Z"
-categories: [CAT Minutes, ISO 14533, ISO 8601, Plenary, UN/CEFACT]
-title: CAT Draft Minutes 2016-04-13
+date: 2016-04-13T15:11:41Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ISO 14533, ISO 8601, Plenary, UN/CEFACT]
+title: ISO/TC 154 CAT Meeting Minutes 2016-04-13
 ---
-= CAT Draft Minutes 2016-04-13
+= ISO/TC 154 CAT Meeting Minutes 2016-04-13
 
-== ISO/TC154 CAT Conference Call, 13 April 2016, 14:00 UTC
+Date:: 13 April 2016, 14:00 UTC
 
+[.participants]
 Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Peter Rybar (PR), Jasmine Chang (JC)
 
 Excused:: Sue Probert (SP), Francois Vuilleumier (FV), Bernd Bösler (BB)

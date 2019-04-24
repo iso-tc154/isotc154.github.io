@@ -1,12 +1,15 @@
 ---
 permalink: "/minutes/2016-06-22/"
-publish-date: "2016-06-22T15:11:15Z"
-categories: [CAT Minutes, ISO 14533, ISO 8601, ISO CS, MoU/MG]
-title: CAT Draft Minutes 2016-06-22
+date: 2016-06-22T15:11:15Z
+cat: CAT Minutes
+subtitle: ISO/TC154 CAT Conference Call
+tags: [ISO 14533, ISO 8601, ISO CS, MoU/MG]
+title: ISO/TC 154 CAT Meeting Minutes 2016-06-22
 ---
-= CAT Draft Minutes 2016-06-22
+= ISO/TC 154 CAT Meeting Minutes 2016-06-22
 
 == ISO/TC 154 CAT Conference Call, 22 June 2016, 14:00 UTC
+[.participants]
 Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Mei-Li Chen (MLC)
 
 
