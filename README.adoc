@@ -16,8 +16,12 @@ This repository is jointly managed by ISO/TC 154 and Ribose.
 
 == Content management
 
-NOTE: Excerpt separator, where allowed, should be in this form: `// more`.
-This has been specified in _config.yml to match AsciiDoc’s comment syntax.
+* **Excerpt separator**, where allowed, should be in this form: `// more`.
+  This has been specified in _config.yml to match AsciiDoc’s comment syntax.
+* If title, name, etc. is required by YAML frontmatter,
+  **avoid** specifying main title in content with AsciiDoc’s equal sign
+  to avoid relying on implicit behavior and order of interpretation.
+  Start document contents with text, or second-level heading (AsciiDoc’s double equal sign).
 
 === Groups
 
