@@ -26,10 +26,10 @@ The scope of WG5 is to provide a common platform for all date and time stakehold
 
 {% assign convenor = site.members | where: "member-id", "ronald-tse" | first %}
 
-link:{{ convenor.url }}[{{ convenor.name }}] (CalConnect) (2019/04 - )
+link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2019/04 - )
 
 === Previous convenors
 
 {% assign convenor = site.members | where: "member-id", "ray-denenberg" | first %}
 
-link:{{ convenor.url }}[{{ convenor.name }}] (ISO/TC 46) (2018 - 2019/04)
+link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2018 - 2019/04)

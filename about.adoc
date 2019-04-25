@@ -16,8 +16,8 @@ permalink: /about/
 * Name: Processes, data elements and documents in commerce, industry and administration
 
 * Secretariat: http://www.sac.gov.cn[SAC]
-* Secretary: link:{{ secretary.url }}[{{ secretary.name }}]
-* Chairperson: link:{{ chair.url }}[{{ chair.name }}]
+* Secretary: link:{{ secretary.url }}[{{ secretary.name }}] ({{ secretary.affiliation }})
+* Chairperson: link:{{ chair.url }}[{{ chair.name }}] ({{ chair.affiliation }})
 * ISO Technical Programme Manager: mailto:sarmiento@iso.org[Ms Sonia Sarmiento]
 * ISO Editorial Programme Manager: mailto:chen@iso.org[Mrs Yvonne Chen]
 * Creation date: 1972
