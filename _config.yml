@@ -35,9 +35,10 @@ primary_nav_items:
   - posts
   - projects
   - standards
+  - groups
+  - members
   - minutes
   - faq
-  - members
 
 collections:
   pages:
