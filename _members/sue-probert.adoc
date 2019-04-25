@@ -2,6 +2,7 @@
 member-id: sue-probert
 name: Sue Probert
 role: cochair-7372
+affiliation: BSI, United Kingdom
 ---
 
 image:/assets/images/members/sue-probert.jpg[]

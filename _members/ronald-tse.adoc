@@ -2,6 +2,7 @@
 member-id: ronald-tse
 name: Ronald Tse
 role: convener-wg5
+affiliation: CalConnect, Liaison
 ---
 
 image:/assets/images/members/ronald-tse.jpg[]

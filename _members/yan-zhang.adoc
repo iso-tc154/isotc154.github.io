@@ -2,6 +2,7 @@
 member-id: yan-zhang
 name: Yan Zhang
 role: convener-jwg1
+affiliation: UN/ECE, Liaison
 ---
 
 image:/assets/images/members/yan-zhang.jpg[]

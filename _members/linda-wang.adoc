@@ -2,7 +2,7 @@
 member-id: linda-wang
 name: Lin (Linda) Wang
 role: project-leader-23354
-layout: member
+affiliation: SAC, China
 ---
 
 image:/assets/images/members/linda-wang.jpg[]

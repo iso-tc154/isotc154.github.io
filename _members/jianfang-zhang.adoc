@@ -2,6 +2,7 @@
 member-id: jianfang-zhang
 name: Jianfang Zhang
 role: secretariat
+affiliation: SAC, China
 ---
 
 //image:/assets/images/members/jianfang-zhang.jpg[]

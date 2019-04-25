@@ -2,6 +2,7 @@
 member-id: ray-denenberg
 name: Ray Denenberg
 role: member
+affiliation: ISO/TC 46, Liaison
 ---
 
 // image:/assets/images/members/judy-zhu.jpg[]
