@@ -8,10 +8,10 @@ module Jekyll
         @dir = dir
         @name = 'index.html'
 
-        self.read_yaml(File.join(base, "_layouts"), "minutes_tag_index.html")
+        self.read_yaml(File.join(base, "_layouts"), "minutes_index.html")
         self.data['tag'] = tag
         self.data['items'] = items
-        self.data['layout'] = 'minutes_tag_index'
+        self.data['layout'] = 'minutes_index'
         self.data['title'] = "Tag #{tag} — minutes"
         self.process(@name)
       end

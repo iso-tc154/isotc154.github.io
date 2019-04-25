@@ -33,7 +33,7 @@
 
 body.minutes,
 body.layout--minutes,
-body.layout--minutes_tag_index {
+body.layout--minutes_index {
   .participants.dlist {
     border-color: $borderColor2;
     border-style: solid;
@@ -97,7 +97,7 @@ body.layout--minutes_tag_index {
   }
 }
 
-body.layout--minutes_tag_index,
+body.layout--minutes_index,
 body.minutes {
   article.minutes {
     margin-bottom: 3em;
@@ -182,7 +182,7 @@ body.layout--minutes {
 }
 
 body.layout--minutes,
-body.layout--minutes_tag_index,
+body.layout--minutes_index,
 body.minutes {
   .with-aside {
     aside {
