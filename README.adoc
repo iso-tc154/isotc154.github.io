@@ -14,6 +14,133 @@ https://www.isotc154.org site.
 This repository is jointly managed by ISO/TC 154 and Ribose.
 
 
+== Content management
+
+NOTE: Excerpt separator, where allowed, should be in this form: `// more`.
+This has been specified in _config.yml to match AsciiDoc’s comment syntax.
+
+=== Groups
+
+Each document excepts the following frontmatter YAML structure:
+
+[source,yaml]
+--
+id: wg3
+# Required. Shorthand for the group. Used in URLs, for example.
+
+name: WG 3
+# Optional, but good to have. Human-readable group identifier.
+
+title: UN TDED — ISO 7372 Joint Maintenance Agency (JMA)
+# Required. Full group name, excluding identifier specified under name.
+
+order: 9
+# Determines order in group listing/index.
+
+featured_on_home: true
+# Determines whether the group is selected to be shown on site index page.
+--
+
+For groups selected to be featured on site index,
+content after frontmatter MUST specify excerpt separator.
+Text before excerpt separator will be shown on project index,
+and therefore should be focusing on group origin and purpose.
+This initial part should be well-written and avoid complex formatting
+(such as images), since it can’t be accommodated by site layout.
+
+=== Projects
+
+Each document requires following frontmatter YAML structure:
+
+[source,yaml]
+--
+id: iso-np-6422-2
+# Project ID with dashes
+
+name: ISO NP 6422-2
+# Human-readable project ID
+
+title: "Layout key for trade documents -- Part 2: Electronic documents"
+# Descriptive project title, excluding the ID specified under name
+
+status: current
+# Either “new” or “current”
+--
+
+The content following frontmatter may specify excerpt separator.
+Content before excerpt separator will be shown on project index.
+
+=== Standards
+
+Each document request following frontmatter YAML structure:
+
+[source,yaml]
+--
+name: ISO/TS 15000-4:2004
+# Full standard reference / ID
+
+type: TS
+# “TS” or “international”
+
+title: "Electronic business eXtensible Markup Language (ebXML) -- Part 4: Registry services specification (ebRS)"
+# Full readable standard title, excluding the ID specified under name
+--
+
+=== Minutes
+
+Requires YAML in following format:
+
+[source,yaml]
+--
+# *** Below are required.
+
+title: ISO/TC 154 CAT Meeting Minutes YYYY-MM-DD
+permalink: "/minutes/YYYY-MM-DD/"
+date: YYYY-MM-DDTHH:MM:SSZ
+
+# *** Below are prescribed by layout; omit at own risk, pages may look incorrect or broken.
+
+subtitle: ISO/TC154 CAT Conference Call
+
+cat: CAT Minutes
+# Primary category
+
+tags:  [tag 1, tag 2]
+# Tag names may contain slashes and regular whitespaces.
+# Exclude primary category here.
+
+participants:
+  - Name 1 <string>
+  - Name 2 <string>
+excused:
+  - Name 3 <string>
+  - Name 4 <string>
+
+# *** Below are optional.
+
+scheduled_time: Date/time, possibly with range <string>
+secretariat: Name 5 <string>
+chair: Name 6 <string>
+
+excerpt: >-
+  <p>
+    Agenda: approved.
+  </p>
+# Allowed HTML tags: <a>, <p>, <ul>, <ol> <li>.
+--
+
+Following YAML excepted agenda notes, beginning with second-level heading
+(AsciiDoc’s double equal sign).
+
+
+== Content migration
+
+None of the minutes were adapted to the new YAML format, except for these two:
+
+- 2016-03-30 (IMPORTANT: May specify factually incorrect `scheduled_time`)
+- 2018-01-17
+
+
 == Building the site
 
 ////
