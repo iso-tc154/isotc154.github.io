@@ -5,15 +5,19 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [ebMoU, ISO CS, MoU/MG, NWIP, Resolutions]
 title: ISO/TC 154 CAT Meeting Minutes 2016-12-21
+scheduled_time: 21 December 2016, 15:00 UTC
+
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - Francois Vuilleumier (FV)
+  - Mei-Li Chen (MLC)
+
+excused:
+  - Jasmine Chang (JC)
+  - Bernd Bösler (BB)
+  - Peter Rybar (PR)
+  - JianFang Zhang (JFZ)
 ---
-= ISO/TC 154 CAT meeting 2016-12-21
-
-Date::
-21 December 2016, 15:00 UTC
-
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
-Excused::  Jasmine Chang (JC), Bernd Bösler (BB), Peter Rybar (PR), JianFang Zhang (JFZ)
 
 
 == Approval of Agenda

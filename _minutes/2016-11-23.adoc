@@ -5,15 +5,16 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [Ballots, ISO 14533, ISO 8601, MoU/MG, Semantic Interoperability]
 title: ISO/TC 154 CAT Meeting Minutes 2016-11-23
+scheduled_time: 23 November 2016, 15:00 UTC
+
+participants: Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Francois Vuilleumier (FV)
+  - Bernd Bösler (BB)
+  - Peter Rybar (PR)
+  - Mei-Li Chen (MLC)
+  - Jasmine Chang (JC)
 ---
-= ISO/TC 154 CAT Meeting Minutes 2016-11-23
-
-== ISO/TC 154 CAT Conference Call, 23 November 2016, 15:00 UTC
-
-[.participants]
-Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)
-
-
 == Approval of Agenda
 
 *Approved*

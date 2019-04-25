@@ -5,14 +5,20 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [Plenary, Semantic Interoperability, TC 8, UN/ECE]
 title: ISO/TC 154 CAT Meeting Minutes 2016-03-16
+scheduled_time: 02 March 2016, 14:00 UTC
+
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - Francois Vuilleumier (FV)
+  - JianFang Zhang (JFZ)
+  - Mei-Li Chen (MLC)
+  - Bernd Bösler (BB)
+  - Jasmine Chang (JC)
+
+excused:
+  - Sue Probert (SP)
+  - Peter Rybar (PR)
 ---
-= ISO/TC 154 CAT Meeting Minutes 2016-03-16
-
-Date:: 02 March 2016, 14:00 UTC
-
-[.participants]
-Participants:: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Bernd Bösler (BB), Jasmine Chang (JC)
-Excused:: Sue Probert (SP), Peter Rybar (PR)
 
 == Approval of Agenda
 

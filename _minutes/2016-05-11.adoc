@@ -5,12 +5,15 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [ISO 14533, ISO 8601, ISO CS, MoU/MG, Plenary, Semantic Interoperability]
 title: ISO/TC 154 CAT Meeting Minutes 2016-05-11
+scheduled_time: 11 May 2016, 14:00 UTC
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Mei-Li Chen (MLC)
+  - Jasmine Chang (JC)
+  - Francois Vuilleumier (FV)
+  - Bernd Bösler (BB)
 ---
-= ISO/TC 154 CAT Meeting Minutes 2016-05-11
-
-Date:: 11 May 2016, 14:00 UTC
-[.participants]
-Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC), Francois Vuilleumier (FV), Bernd Bösler (BB)
 
 == Approval of Agenda
 

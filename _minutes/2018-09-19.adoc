@@ -5,31 +5,37 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2018-09-19
+scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
+
+participants:
+  - Hongru (Judy) Zhu
+  - Anders Grangard
+  - Jianfang Zhang
+  - Ray Denenberg
+  - Ronald Tse
+  - Mei-li Chen
+  - Yan Zhang
+  - Peter Plapper
+  - Dapeng(Max) Liu
+  - Linda Wang
+
+excused:
+  - Jasmine
+  - Sue Probert
+  - Lance
+  - Mary Kay Blantz
+  - Chris Nelson
+  - khouja Ahmed
+  - Peter Rybar
+secretariat: JianFang Zhang
+chair: Hongru (Judy) Zhu
 ---
-= ISO/TC 154 CAT meeting 2018-09-19
 
-Date::
-8:00-9:00pm Beijing Time (UTC+8)
-
-[.participants]
-Participants::
-Hongru (Judy) Zhu, Anders Grangard, Jianfang Zhang, Ray Denenberg, Ronald Tse, Mei-li Chen, Yan Zhang, Peter Plapper, Dapeng(Max) Liu, Linda Wang
-
-Excused:: Jasmine, Sue Probert, Lance, Mary Kay Blantz, Chris Nelson, khouja Ahmed, Peter Rybar
-
-Secretariat::
-JianFang Zhang
-
-Chair::
-Hongru (Judy) Zhu
-
-== Agenda
-
-=== Approval of Agenda
+== Approval of Agenda
 
 Approved.
 
-=== Approval of 22th Aug 2018 Meeting Minutes
+== Approval of 22th Aug 2018 Meeting Minutes
 
 Approved and all
 AP2, AP3 and AP5 are still open.

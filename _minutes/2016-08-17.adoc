@@ -5,13 +5,19 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [Ballots, ISO 8601, ISO CS, OAGi, Plenary]
 title: ISO/TC 154 CAT Meeting Minutes 2016-08-17
----
-= ISO/TC 154 CAT Meeting Minutes 2016-08-17
+scheduled_time: 17 August 2016, 14:00 UTC
 
-== ISO/TC 154 CAT Conference Call, 17 August 2016, 14:00 UTC
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)
-Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC), Peter Rybar (PR)
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Bernd Bösler (BB)
+  - Jasmine Chang (JC)
+
+excused:
+  - Francois Vuilleumier (FV)
+  - Mei-Li Chen (MLC)
+  - Peter Rybar (PR)
+---
 
 
 == Approval of Agenda

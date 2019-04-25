@@ -5,15 +5,19 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ETSI, ISO 14533, ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2017-02-15
+scheduled_time: 15 February 2017, 15:00 UTC
+
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - Francois Vuilleumier (FV)
+  - Mei-Li Chen (MLC)
+
+excused:
+  - JianFang Zhang (JFZ)
+  - Jasmine Chang (JC)
+  - Peter Rybar (PR)
+  - Bernd Bösler (BB)
 ---
-= ISO/TC 154 CAT meeting 2017-02-15
-
-Date::
-15 February 2017, 15:00 UTC
-
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
-Excused::  JianFang Zhang (JFZ), Jasmine Chang (JC), Peter Rybar (PR), Bernd Bösler (BB)
 
 == Approval of Agenda
 

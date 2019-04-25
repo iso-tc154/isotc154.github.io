@@ -5,13 +5,19 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [Ballots, ISO 14533, ISO CS, NWIP, Plenary, TC 154]
 title: ISO/TC 154 CAT Meeting Minutes 2016-09-28
----
-= ISO/TC 154 CAT Meeting Minutes 2016-09-28
+scheduled_time: 14 September 2016, 14:00 UTC
 
-== ISO/TC 154 CAT Conference Call, 14 September 2016, 14:00 UTC
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)
-Excused::  Bernd Bösler (BB), Peter Rybar (PR), Mei-Li Chen (MLC), Jasmine Chang (JC)
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Francois Vuilleumier (FV)
+
+excused:
+  - Bernd Bösler (BB)
+  - Peter Rybar (PR)
+  - Mei-Li Chen (MLC)
+  - Jasmine Chang (JC)
+---
 
 
 == Approval of Agenda

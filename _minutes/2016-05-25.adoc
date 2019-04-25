@@ -5,13 +5,13 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [ISO 8601, ISO CS, ODIF, Plenary, Semantic Interoperability]
 title: ISO/TC 154 CAT Meeting Minutes 2016-05-25
+scheduled_time: 25 May 2016, 14:00 UTC
+participants: Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Jasmine Chang (JC)
+  - Francois Vuilleumier (FV)
+
 ---
-= ISO/TC 154 CAT Meeting Minutes 2016-05-25
-
-Date:: 25 May 2016, 14:00 UTC
-
-[.participants]
-Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
 
 == Approval of Agenda
 

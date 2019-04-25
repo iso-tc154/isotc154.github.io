@@ -5,13 +5,19 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [AFACT, Ballots, EDIFACT, Semantic Interoperability, WCO]
 title: ISO/TC 154 CAT Meeting Minutes 2016-08-31
----
-= ISO/TC 154 CAT Meeting Minutes 2016-08-31
+scheduled_time: 31 August 2016, 14:00 UTC
 
-== ISO/TC 154 CAT Conference Call, 31 August 2016, 14:00 UTC
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV), Mei-Li Chen (MLC)
-Excused::  Bernd Bösler (BB), Jasmine Chang (JC), Peter Rybar (PR)
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Francois Vuilleumier (FV)
+  - Mei-Li Chen (MLC)
+
+excused:
+  - Bernd Bösler (BB)
+  - Jasmine Chang (JC)
+  - Peter Rybar (PR)
+---
 
 
 == Approval of Agenda

@@ -5,25 +5,28 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2017-06-07
+scheduled_time:   4:00pm UTC+8, June 7th, 2017
+
+participants:
+  - Hongru (Judy) Zhu
+  - JianFang Zhang
+  - Jasmine Chang
+  - Francois Vuilleumier (only in the start)
+  - Peter Ryber
+  - Chris Nelson
+  - Linda Wang
+
+excused:
+  - Roman Grahle
+  - Bernd Bösler
+  - Peter Plapper
+  - Mei-Li Chen
+  - Henry Cuschieri
 ---
-= ISO/TC 154 CAT meeting 2017-06-07
+Chair:: Hongru (Judy) Zhu (Acting Chair)
 
-Date::
-  4:00pm UTC+8, June 7th, 2017
 
-[.participants]
-Participants::
-Hongru (Judy) Zhu, JianFang Zhang, Jasmine Chang, Francois Vuilleumier (only in the start), Peter Ryber, Chris Nelson, Linda Wang
-
-Excused::
-Roman Grahle, Bernd Bösler, Peter Plapper, Mei-Li Chen, Henry Cuschieri
-
-Chair::
-Hongru (Judy) Zhu (Acting Chair)
-
-== Agenda
-
-=== Approval of Agenda
+== Approval of Agenda
 
 Basically Approved with the following condition:
 

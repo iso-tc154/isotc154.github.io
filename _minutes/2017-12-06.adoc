@@ -5,38 +5,35 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2017-12-06
+scheduled_time: 8:00-9:10pm Beijing Time (UTC+8)
+
+participants:
+  - Peter Ryber
+  - Jasmine
+  - Yan Zhang
+  - Sue Probert
+  - Anders Grangard
+  - Ronald Tse
+  - Linda Wang
+  - Dapeng (Max) Liu
+
+excused:
+  - Ray Denenberg
+  - Peter Plapper
+secretariat: JianFang Zhang
+chair: Hongru (Judy) Zhu
 ---
-= ISO/TC 154 CAT meeting 2017-12-06
 
-Date::
-8:00-9:10pm Beijing Time (UTC+8)
-
-[.participants]
-Participants::
-Peter Ryber, Jasmine, Yan Zhang, Sue Probert, Anders Grangard, Ronald Tse, Linda Wang,
-Dapeng (Max) Liu
-
-Excused:: Ray Denenberg, Peter Plapper
-
-Secretariat::
-JianFang Zhang
-
-Chair::
-Hongru (Judy) Zhu
-
-
-== Agenda
-
-=== Approval of Agenda
+== Approval of Agenda
 
 Approved.
 
-=== Approval of 11th October 2017 Meeting Minutes
+== Approval of 11th October 2017 Meeting Minutes
 
 Approved.
 
 
-=== 27th Oct 2017 Plenary Meeting Minutes, Resolutions and Actions
+== 27th Oct 2017 Plenary Meeting Minutes, Resolutions and Actions
 
 Simple discussion has been made. Chair asked people to continue the discussion on the meeting minutes, and also only the edit changes can be made on the meeting minutes. The main revision to the meeting minutes and actions can be made with TC approval later.
 

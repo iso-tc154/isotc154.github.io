@@ -29,13 +29,12 @@ secretariat: JianFang Zhang
 chair: Hongru (Judy) Zhu
 ---
 
-== Agenda
 
-=== Approval of Agenda
+== Approval of Agenda
 
 Approved.
 
-=== Approval of 06th December 2017 Meeting Minutes
+== Approval of 06th December 2017 Meeting Minutes
 
 Approved.
 

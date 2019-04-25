@@ -5,14 +5,16 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [ISO 14533, ISO 8601, NWIP, Plenary, Semantic Interoperability]
 title: ISO/TC 154 CAT Meeting Minutes 2016-07-06
+scheduled_time: 06 July 2016, 14:00 UTC
+
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Francois Vuilleumier (FV)
+
+excused:
+  - Bernd Bösler (BB)
 ---
-= ISO/TC 154 CAT Meeting Minutes 2016-07-06
-
-== ISO/TC 154 CAT Conference Call, 06 July 2016, 14:00 UTC
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Francois Vuilleumier (FV)
-Excused::  Bernd Bösler (BB)
-
 
 == Approval of Agenda
 

@@ -5,31 +5,34 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2018-03-15
+scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
+
+participants:
+  - Peter Rybar
+  - Jasmine
+  - Sue Probert
+  - Ray Denenberg
+  - Peter Plapper
+  - Dapeng (Max) Liu
+  - Mei-li Chen
+  - Christof Oberhausen
+  - Ahmed KHOUJA
+
+excused:
+  - Yan Zhang
+  - Anders Grangard
+  - Mary Kay Blantz
+  - Linda Wang
+  - Ronald Tse
+secretariat: JianFang Zhang
+chair: Hongru (Judy) Zhu
 ---
-= ISO/TC 154 CAT meeting 2018-03-15
 
-Date::
-8:00-9:00pm Beijing Time (UTC+8)
-
-[.participants]
-Participants::
-Peter Rybar, Jasmine, Sue Probert, Ray Denenberg, Peter Plapper, Dapeng (Max) Liu, Mei-li Chen, Christof Oberhausen, Ahmed KHOUJA
-
-Excused:: Yan Zhang, Anders Grangard, Mary Kay Blantz, Linda Wang, Ronald Tse
-
-Secretariat::
-JianFang Zhang
-
-Chair::
-Hongru (Judy) Zhu
-
-== Agenda
-
-=== Approval of Agenda
+== Approval of Agenda
 
 Approved.
 
-=== Approval of 17th January 2018 Meeting Minutes and APs check
+== Approval of 17th January 2018 Meeting Minutes and APs check
 
 Approved and all
 APs has been finished except AP2.

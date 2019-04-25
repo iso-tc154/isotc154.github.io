@@ -5,32 +5,30 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2017-10-11
+scheduled_time: 8:00-9:20pm Beijing Time (UTC+8)
+
+participants:
+  - Judy Zhu
+  - Mr zhang
+  - Ray Denenberg
+  - Christof Oberhansen
+  - Kouja
+  - Linda Wang
+  - Dapeng (Max) Liu
+excused:
+  - Roman
+  - Peter ryber
+  - Peter plapper
+  - Jasmine
+secretariat: JianFang Zhang
+chair: Hongru (Judy) Zhu
 ---
-= ISO/TC 154 CAT meeting 2017-10-11
 
-Date::
-8:00-9:20pm Beijing Time (UTC+8)
-
-[.participants]
-Participants::
-Judy Zhu, Mr zhang, Ray Denenberg, Christof Oberhansen, Kouja, Linda Wang, Dapeng (Max)
-Liu
-
-Excused:: Roman, Peter ryber, Peter plapper, Jasmine
-
-Secretariat::
-JianFang Zhang
-
-Chair::
-Hongru (Judy) Zhu
-
-== Agenda
-
-=== Approval of Agenda
+== Approval of Agenda
 
 Approved.
 
-=== Approval of 6th September 2017 Meeting Minutes
+== Approval of 6th September 2017 Meeting Minutes
 
 Approved.
 

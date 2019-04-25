@@ -5,13 +5,20 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [CAT, ISO 14533, ISO 8601, Plenary]
 title: ISO/TC 154 CAT Meeting Minutes 2016-04-27
----
-= ISO/TC 154 CAT Meeting Minutes 2016-04-27
+scheduled_time: 27 April 2016, 14:00 UTC
 
-Date:: 27 April 2016, 14:00 UTC
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Peter Rybar (PR), Jasmine Chang (JC), Francois Vuilleumier (FV), Bernd Bösler (BB)
-Excused::  Sue Probert (SP)
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Mei-Li Chen (MLC)
+  - Peter Rybar (PR)
+  - Jasmine Chang (JC)
+  - Francois Vuilleumier (FV)
+  - Bernd Bösler (BB)
+
+excused:
+  - Sue Probert (SP)
+---
 
 == Approval of Agenda
 

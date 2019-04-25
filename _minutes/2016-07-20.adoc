@@ -5,13 +5,18 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [Ballots, ISO 14533, NWIP, OAGi, ODIF, Semantic Interoperability]
 title: ISO/TC 154 CAT Meeting Minutes 2016-07-20
----
-= ISO/TC 154 CAT Meeting Minutes 2016-07-20
+scheduled_time: 20 July 2016, 14:00 UTC
 
-== ISO/TC 154 CAT Conference Call, 20 July 2016, 14:00 UTC
-[.participants]
-Participants::  Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Bernd Bösler (BB), Jasmine Chang (JC)
-Excused::  Francois Vuilleumier (FV), Mei-Li Chen (MLC).
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - JianFang Zhang (JFZ)
+  - Bernd Bösler (BB)
+  - Jasmine Chang (JC)
+
+excused:
+  - Francois Vuilleumier (FV)
+  - Mei-Li Chen (MLC)
+---
 
 
 == Approval of Agenda

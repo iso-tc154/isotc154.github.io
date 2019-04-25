@@ -5,24 +5,26 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2019-03-20
+scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
+
+participants:
+  - Hongru (Judy) Zhu
+  - Ray Denenberg
+  - Anders Grangard
+  - Jasmine
+  - Ronald Tse
+  - Peter Plapper
+  - Meili-Chen
+  - Sue Probert
+  - Dapeng(Max) Liu
+  - Linda Wang
+  - Jianfang Zhang
+
+excused:
+  - Yan Zhang
+secretariat: JianFang Zhang
+chair: Hongru (Judy) Zhu
 ---
-= ISO/TC 154 CAT meeting 2019-03-20
-
-Date::
-8:00-9:00pm Beijing Time (UTC+8)
-
-[.participants]
-Participants::
-Hongru (Judy) Zhu, Ray Denenberg, Anders Grangard, Jasmine, Ronald Tse, Peter Plapper, Meili-Chen, Sue Probert, Dapeng(Max) Liu, Linda Wang, Jianfang Zhang
-
-Excused:: Yan Zhang
-
-Secretariat::
-JianFang Zhang
-
-Chair::
-Hongru (Judy) Zhu
-
 == Approval of Agenda
 
 Approved.

@@ -5,14 +5,10 @@ cat: CAT Minutes
 subtitle: ISO/TC154 CAT Conference Call
 tags: [ISO 14533, ISO 8601, ISO CS, MoU/MG]
 title: ISO/TC 154 CAT Meeting Minutes 2016-06-22
+scheduled_time: 22 June 2016, 14:00 UTC
+
+participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Mei-Li Chen (MLC)
 ---
-= ISO/TC 154 CAT Meeting Minutes 2016-06-22
-
-== ISO/TC 154 CAT Conference Call, 22 June 2016, 14:00 UTC
-[.participants]
-Participants:: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Mei-Li Chen (MLC)
-
-
 == Approval of Agenda
 
 *Approved*
