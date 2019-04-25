@@ -10,4 +10,3 @@ The standard data elements listed can be used with any method for data interchan
 
 == Revision information
 Revises: ISO 7372:1993
-
