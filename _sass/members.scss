@@ -1,0 +1,9 @@
+body.layout--member {
+  main {
+    h1 {
+      font-size: 240%;
+    }
+
+    @include asciidoc-markup();
+  }
+}

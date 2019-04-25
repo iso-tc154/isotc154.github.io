@@ -2,6 +2,7 @@
 member-id: max-liu
 name: Dapeng (Max) Liu
 role: convenor-jwg8
+layout: member
 ---
 
 image:/assets/images/members/max-liu.jpg[]
