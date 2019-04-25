@@ -34,7 +34,7 @@
 body.minutes,
 body.layout--minutes,
 body.layout--minutes_index {
-  .participants.dlist {
+  .event-data {
     border-color: $borderColor2;
     border-style: solid;
     border-width: 1px 0 1px 0;
@@ -57,13 +57,17 @@ body.layout--minutes_index {
         content: " ";
         background-position: center center;
         background-size: cover;
+      }
 
-        // Excused
+      &.event-time:before {
+        background-image: url(/assets/img/fa/clock.svg);
+      }
+
+      &.excused:before {
         background-image: url(/assets/img/fa/minus-circle-solid.svg);
       }
 
-      &:first-child:before {
-        // Participants
+      &.participants:before {
         background-image: url(/assets/img/fa/check-solid.svg);
       }
 
@@ -124,13 +128,9 @@ body.minutes {
     }
 
     .excerpt {
-      padding-left: 1.8em;
-      font-size: 83%;
       margin-bottom: 2em;
 
-      .readmore, .participants {
-        font-size: 110%;
-        margin-left: -1.8em;
+      .readmore, .event-data {
       }
       .readmore {
         font-weight: bold;

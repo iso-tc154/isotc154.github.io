@@ -7,12 +7,29 @@ tags: [ISO CS, Semantic Interoperability, UN/CEFACT]
 
 date: 2016-03-30T15:39:23Z
 permalink: "/minutes/2016-03-30/"
+
+scheduled_time: 8:00-9:30pm Beijing Time (UTC+8)
+# XXX: Time may be wrong here
+
+participants:
+  - Klaus-Dieter Naujok (K-DN)
+  - Francois Vuilleumier (FV)
+  - JianFang Zhang (JFZ)
+  - Mei-Li Chen (MLC)
+  - Jasmine Chang (JC)
+
+excused:
+  - Sue Probert (SP)
+  - Peter Rybar (PR)
+  - Bernd Bösler (BB)
+
+excerpt: >-
+  <p>
+    Agenda: approved.
+  </p>
+
 ---
 :page-liquid:
-
-[.participants]
-Participants:: Klaus-Dieter Naujok (K-DN), Francois Vuilleumier (FV), JianFang Zhang (JFZ), Mei-Li Chen (MLC), Jasmine Chang (JC)
-Excused:: Sue Probert (SP), Peter Rybar (PR), Bernd Bösler (BB)
 
 == Approval of Agenda
 

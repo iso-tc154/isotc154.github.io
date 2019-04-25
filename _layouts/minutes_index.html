@@ -17,9 +17,6 @@ layout: default
     {% assign all_minutes = all_minutes | sort: 'date' | reverse %}
 
     {% for minutes in all_minutes %}
-      {% if minutes.cat %}
-      {% comment %} ^^^ checks that structure was migrated {% endcomment %}
-
       <article class="minutes">
         <header aria-label="header for {{ minutes.title }}">
           <h1 class="title">
@@ -34,13 +31,20 @@ layout: default
           </div>
         </header>
 
-        <section class="excerpt">
-          {{ minutes.content | truncatewords: 50 }}
+        {% include minutes_data.html event=minutes %}
 
-          <p class="readmore">
-            <a href="{{ minutes.url }}">Continue reading &rarr;</a>
-          </p>
-        </section>
+        {% assign excerpt_length = minutes.excerpt | size %}
+        {% assign content_length = minutes.content | size %}
+
+        {% if minutes.excerpt and excerpt_length < content_length %}
+          <section class="excerpt">
+            {{ minutes.excerpt }}
+
+            <p class="readmore">
+              <a href="{{ minutes.url }}">Continue reading &rarr;</a>
+            </p>
+          </section>
+        {% endif %}
 
         <footer>
           <section class="category">
@@ -59,8 +63,6 @@ layout: default
           </section>
         </footer>
       </article>
-
-      {% endif %}
     {% endfor %}
   </main>
 
