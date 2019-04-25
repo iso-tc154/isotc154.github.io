@@ -21,7 +21,7 @@ This has been specified in _config.yml to match AsciiDoc’s comment syntax.
 
 === Groups
 
-Each document excepts the following frontmatter YAML structure:
+Each document expects the following frontmatter YAML structure:
 
 [source,yaml]
 --
@@ -72,7 +72,7 @@ Content before excerpt separator will be shown on project index.
 
 === Standards
 
-Each document request following frontmatter YAML structure:
+Each document requires following frontmatter YAML structure:
 
 [source,yaml]
 --
@@ -129,7 +129,7 @@ excerpt: >-
 # Allowed HTML tags: <a>, <p>, <ul>, <ol> <li>.
 --
 
-Following YAML excepted agenda notes, beginning with second-level heading
+Following YAML expected agenda notes, beginning with second-level heading
 (AsciiDoc’s double equal sign).
 
 
