@@ -118,15 +118,27 @@ body.layout--home {
   }
 
   .groups {
+    * { box-sizing: border-box; }
+
     @media screen and (min-width: $bigscreenBreakpoint)  {
+      display: flex;
+      flex-flow: row wrap;
+    }
+    @media screen and (min-width: $widescreenBreakpoint)  {
       display: flex;
       flex-flow: row nowrap;
     }
 
     > .group {
-      flex: 1;
       box-sizing: border-box;
       padding-right: 2em;
+
+      @media screen and (min-width: $bigscreenBreakpoint)  {
+        flex-basis: 50%;
+      }
+      @media screen and (min-width: $widescreenBreakpoint)  {
+        flex: 1;
+      }
 
       &:last-child {
         padding-right: 0;
