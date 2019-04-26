@@ -4,7 +4,7 @@
     const hero = document.querySelector('.hero');
     const banners = hero.querySelectorAll('.banner');
 
-    if (banners.length > 0) {
+    if (banners.length > 1) {
       hero.classList.add('with-flickity');
 
       const flkt = new Flickity(hero, {
