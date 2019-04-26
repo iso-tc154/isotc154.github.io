@@ -179,6 +179,24 @@ Example markup:
 // other table rows…
 --
 
+=== News and articles (aka posts)
+
+A document in posts collection is expected to contain regular Jekyll post frontmatter
+(date, title); **no** permalink.
+
+Posts may also specify “see also” items in frontmatter:
+
+[source,yaml]
+====
+see_also:
+- link: https://www.iso.org/news/ref2379.html
+  title: ISO press release
+====
+
+Posts should specify sensible excerpts. Separate excerpt with excerpt separator;
+ensure content before the separator does not contain special formatting.
+Excerpts are shown in certain cases, e.g. on post index for latest featured post.
+
 == Content migration
 
 None of the minutes were adapted to the new YAML format, except for these two:
