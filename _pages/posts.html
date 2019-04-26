@@ -3,6 +3,7 @@ permalink: /posts/
 title: News & Articles
 html_class: news
 layout: default
+excerpt: ""
 ---
 <div class="with-aside">
   <main>
@@ -28,14 +29,8 @@ layout: default
               <a class="permalink" href="{{ post.url }}">Permalink</a>
             {% endif %}
           </footer>
-        {% endif %}
 
-        {% comment %}
-          Not using else here since it causes Jekyll to throw up,
-          possibly https://github.com/jekyll/jekyll/issues/7380
-        {% endcomment %}
-
-        {% unless forloop.first %}
+        {% else %}
           <footer>
             <span class="date">
               {{ post.date | date_to_long_string }}
@@ -43,7 +38,7 @@ layout: default
             &emsp;
             <a class="permalink more" href="{{ post.url }}">Continue reading &rarr;</a>
           </footer>
-        {% endunless %}
+        {% endif %}
       </article>
     {% endfor %}
   </main>
