@@ -32,8 +32,16 @@ table {
   }
 }
 
-body > main {
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+}
+
+body > main,
+body > .with-aside {
   @include wideContainer();
+  flex: 1;
 }
 
 main {
@@ -74,8 +82,6 @@ main {
 }
 
 body > .with-aside {
-  @include wideContainer();
-
   aside {
     ul, li {
       margin: 0;
