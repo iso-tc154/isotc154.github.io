@@ -197,13 +197,6 @@ Posts should specify sensible excerpts. Separate excerpt with excerpt separator;
 ensure content before the separator does not contain special formatting.
 Excerpts are shown in certain cases, e.g. on post index for latest featured post.
 
-== Content migration
-
-None of the minutes were adapted to the new YAML format, except for these two:
-
-- 2016-03-30 (IMPORTANT: May specify factually incorrect `scheduled_time`)
-- 2018-01-17
-
 
 == Building the site
 
