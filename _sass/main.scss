@@ -82,6 +82,12 @@ main {
 }
 
 body > .with-aside {
+  @media screen and (max-width: $bigscreenBreakpoint) {
+    main {
+      margin-bottom: 3em;
+    }
+  }
+
   aside {
     ul, li {
       margin: 0;
