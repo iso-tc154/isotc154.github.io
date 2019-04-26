@@ -3,10 +3,12 @@ layout: post
 title:  ISO 8601-1:2019 and ISO 8601-2:2019 now published
 date:   2019-03-25 00:00:00 +0800
 categories: site update
-excerpt: >-
-  <p>
-  ISO 8601-1:2019 and ISO 8601-2:2019 now published.
 ---
 
-ISO 8601-1:2019 and ISO 8601-2:2019 has been published on 2019-03-25.
-
+ISO 8601-1:2019
+and
+ISO 8601-2:2019
+have been published on 25th of March 2019.
+Among the interesting new features of the standard is extensions
+that support expression of uncertain, approximate or partially specified dates,
+including divisions of a year such as seasons.
