@@ -1,0 +1,43 @@
+body.news {
+  main {
+    display: flex;
+    flex-flow: row wrap;
+
+    > * {
+      box-sizing: border-box;
+    }
+  }
+
+  article.post {
+    flex-basis: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 1em;
+
+    footer {
+      font-size: 1rem;
+    }
+
+    .title {
+      flex: 1;
+      a:link, a:visited {
+        color: inherit;
+      }
+    }
+    .date {
+      color: silver;
+    }
+
+    &.latest {
+      flex-basis: 100%;
+      font-size: 120%;
+      margin-bottom: 2em;
+
+      .title {
+        font-weight: normal;
+        font-size: 160%;
+        margin-bottom: .2em;
+      }
+    }
+  }
+}
