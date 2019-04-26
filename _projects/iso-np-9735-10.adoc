@@ -12,7 +12,7 @@ excerpt:
 // more
 == Goal
 
-Revision of link:/standard/iso-97351988[ISO 9735-10 -- EDIFACT -- Syntax service directories]
+Revision of link:/standards/iso-97351988[ISO 9735-10 -- EDIFACT -- Syntax service directories]
 
 
 == Scope
