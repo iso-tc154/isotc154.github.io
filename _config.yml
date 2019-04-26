@@ -31,7 +31,7 @@ footer_nav_items:
 
 primary_nav_items:
   - about
-  - posts
+  - news
   - projects
   - standards
   - groups
@@ -113,9 +113,6 @@ nav:
   standards:
     url: /standards/
     title: Standards
-  posts:
-    url: /posts/
-    title: News
   projects:
     url: /projects/
     title: Projects
@@ -136,7 +133,7 @@ nav:
   #   url: /sitemap/
   #   title: Sitemap
   news:
-    url: /news/
+    url: /posts/
     title: News
   contact:
     url: /contact
