@@ -163,6 +163,10 @@ Example markup:
 
 [source,asciidoc]
 --
+// …
+
+== Ongoing action point summary
+
 [.action-points]
 |===
 |No| Action points| Owner| Deadline
@@ -172,7 +176,7 @@ Example markup:
 |@ISO7372MA Sue
 |2018/10/07
 
-// etc.
+// other table rows…
 --
 
 == Content migration
