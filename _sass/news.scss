@@ -1,3 +1,12 @@
+body.layout--post {
+  footer {
+    font-size: 1rem;
+  }
+  .date {
+    color: silver;
+  }
+}
+
 body.news {
   main {
     display: flex;
@@ -9,7 +18,7 @@ body.news {
     }
   }
 
-  article.post {
+  article.post, main.post {
     flex-basis: 50%;
     display: flex;
     flex-flow: column nowrap;
