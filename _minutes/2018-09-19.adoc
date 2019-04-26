@@ -170,6 +170,7 @@ Chair gave thanks to all of the attendants for the CAG meeting on 19th September
 
 == Ongoing action point summary
 
+[.action-summary]
 |===
 |No| Action points| Owner| Deadline
 

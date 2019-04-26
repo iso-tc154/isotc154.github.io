@@ -223,6 +223,7 @@ Chair gave thanks to all of the attendants for the CAG meeting on 21th November 
 
 == Ongoing action point summary
 
+[.action-summary]
 |===
 |No| Action points| Owner| Deadline
 

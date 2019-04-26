@@ -226,6 +226,7 @@ After the discussion, the next meeting will be held in 2018-09-19, 8:00-9:00pm (
 
 == Ongoing action point summary
 
+[.action-summary]
 |===
 |No| Action points| Owner| Deadline
 
