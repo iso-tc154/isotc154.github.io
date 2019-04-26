@@ -122,6 +122,11 @@ body > .with-aside {
       > .title {
         letter-spacing: .1em;
       }
+      ul li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     section.tags {
