@@ -12,6 +12,17 @@ layout: default
     </header>
 
     {{ page.content }}
+
+    {% if page.see_also %}
+      <footer>
+        <h3>See also</h3>
+        <ul>
+        {% for i in page.see_also %}
+          <li><a href="{{ i.link }}">{{ i.title }}</a>
+        {% endfor %}
+        </ul>
+      </footer>
+    {% endif %}
   </main>
 
   <aside class="post-list">
