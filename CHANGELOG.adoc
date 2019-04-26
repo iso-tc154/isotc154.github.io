@@ -2,8 +2,11 @@
 
 == 0.2
 
-Added custom styling for action point tables used in minutes.
-See “Minutes” in “Content management” section in README.
+* Added custom styling for action point tables used in minutes.
+  See “Minutes” in “Content management” section in README.
+
+* BREAKING: Member documents have updated frontmatter requirements (see README).
+  Updated member page layout.
 
 == 0.1
 
