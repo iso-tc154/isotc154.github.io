@@ -129,9 +129,6 @@ nav:
   home:
     url: /
     title: Home
-  # sitemap:
-  #   url: /sitemap/
-  #   title: Sitemap
   news:
     url: /posts/
     title: News
