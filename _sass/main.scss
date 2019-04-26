@@ -15,6 +15,23 @@ a {
   }
 }
 
+table {
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  width: 100%;
+
+  td, th {
+    padding: 6px;
+    text-align: left;
+  }
+  th {
+    border-bottom: 1px solid $borderColor2;
+  }
+  tbody tr:nth-child(even) {
+    background-color: $borderColor1;
+  }
+}
+
 body > main {
   @include wideContainer();
 }
