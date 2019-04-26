@@ -1,11 +1,10 @@
 ---
 member-id: linda-wang
+picture: linda-wang.jpg
 name: Lin (Linda) Wang
 role: project-leader-23354
 affiliation: SAC, China
 ---
-
-image:/assets/images/members/linda-wang.jpg[]
 
 Lin (Linda) Wang received her PhD degree in information system from
 Beijing Jiaotong University in 2009. She is a standard expert in

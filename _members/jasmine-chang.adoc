@@ -1,11 +1,11 @@
 ---
 member-id: jasmine-chang
+picture: jasmine-chang.jpg
 name: Jasmine Jaegyong Chang
 role: convener-wg6
 affiliation: KATS, Korea, Republic of
 ---
 
-image:/assets/images/members/jasmine-chang.jpg[]
 
 Jasmine is Convener of ISO/TC 154 WG6 and project leader of ISO 19626.
 

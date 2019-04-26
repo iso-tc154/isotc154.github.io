@@ -3,10 +3,15 @@ layout: default
 ---
 
 <main>
-  <header>
+  <header class="{% if page.picture %}with-pic{% endif %}">
+    {% if page.picture %}
+      <img class="picture" src="/assets/images/members/{{ page.picture }}">
+    {% endif %}
+
     <h2 class="entity"><span class="type">member</span></h2>
     <h1 class="headline">{{ page.name }}</h1>
-    <h3>Representing {{ page.affiliation }}</h3>
+
+    <p>Representing {{ page.affiliation }}</p>
   </header>
 
   {{ content }}

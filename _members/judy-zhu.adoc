@@ -1,11 +1,10 @@
 ---
 member-id: judy-zhu
+picture: judy-zhu.jpg
 name: Hongru (Judy) Zhu
 role: chair
 affiliation: SAC, China
 ---
-
-image:/assets/images/members/judy-zhu.jpg[]
 
 Hongru (Judy) Zhu is the General Manager of Standardization
 Department in Alibaba Group, and she is also a senior expert in

@@ -1,11 +1,11 @@
 ---
 member-id: peter-plapper
+picture: peter-plapper.jpg
 name: Peter Plapper
 role: convener-wg7
 affiliation: ILNAS, Luxembourg
 ---
 
-image:/assets/images/members/peter-plapper.jpg[]
 
 Peter is Convener of ISO/TC 154 WG7.
 

@@ -23,6 +23,23 @@ This repository is jointly managed by ISO/TC 154 and Ribose.
   to avoid relying on implicit behavior and order of interpretation.
   Start document contents with text, or second-level heading (AsciiDoc’s double equal sign).
 
+=== Members
+
+Each document in the members collection is expected to have the following
+frontmatter:
+
+[source,yaml]
+--
+member-id: name-with-dashes
+name: Full Name
+role: role-with-dashes
+affiliation: Organization, country (freeform)
+
+picture: file-name-with.extension
+# Picture is optional.
+# Filename must be relative to /assets/images/memebrs/ directory.
+--
+
 === Groups
 
 Each document expects the following frontmatter YAML structure:

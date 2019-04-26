@@ -1,9 +1,33 @@
+$userPicW: 14rem;
+$userPicGap: 1rem;
+
 body.layout--member {
   main {
+    @include asciidoc-markup();
+
     h1 {
       font-size: 240%;
     }
 
-    @include asciidoc-markup();
+    header {
+      &.with-pic {
+        overflow: hidden;
+
+        .picture {
+          max-width: 14rem;
+        }
+
+        @media screen and (min-width: $bigscreenBreakpoint) {
+          padding-left: $userPicW + $userPicGap;
+
+          .picture {
+            display: block;
+            width: $userPicW;
+            margin-left: -$userPicW - $userPicGap;
+            float: left;
+          }
+        }
+      }
+    }
   }
 }

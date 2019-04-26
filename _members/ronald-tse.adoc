@@ -1,11 +1,10 @@
 ---
 member-id: ronald-tse
+picture: ronald-tse.jpg
 name: Ronald Tse
 role: convener-wg5
 affiliation: CalConnect, Liaison
 ---
-
-image:/assets/images/members/ronald-tse.jpg[]
 
 Ronald Tse is the Founder and CEO of Ribose, leading its strategic development and technology roadmap. He graduated from Brown University with bachelor's degrees magna cum laude in Computer Science and Biology, and a master's degree in Computer Science.
 
