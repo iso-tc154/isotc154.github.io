@@ -162,7 +162,7 @@ Apply `.action-points` class to ongoing action point summary tables.
 Example markup:
 
 [source,asciidoc]
-====
+--
 ++++
 [.action-points]
 |===
@@ -175,7 +175,7 @@ Example markup:
 
 // etc.
 ++++
-====
+--
 
 == Content migration
 
