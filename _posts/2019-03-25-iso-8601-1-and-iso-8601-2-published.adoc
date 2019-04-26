@@ -3,6 +3,9 @@ layout: post
 title:  ISO 8601-1:2019 and ISO 8601-2:2019 now published
 date:   2019-03-25 00:00:00 +0800
 categories: site update
+see_also:
+- link: https://www.iso.org/news/ref2379.html
+  title: ISO press release
 ---
 
 ISO 8601-1:2019
