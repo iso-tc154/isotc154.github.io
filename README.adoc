@@ -92,6 +92,8 @@ title: "Electronic business eXtensible Markup Language (ebXML) -- Part 4: Regist
 
 === Minutes
 
+==== YAML frontmatter
+
 Requires YAML in following format:
 
 [source,yaml]
@@ -136,6 +138,25 @@ excerpt: >-
 Following YAML expected agenda notes, beginning with second-level heading
 (AsciiDoc’s double equal sign).
 
+==== Action point summary
+
+Apply `.action-points` class to ongoing action point summary tables.
+
+Example markup:
+
+[source,asciidoc]
+====
+[.action-points]
+|===
+|No| Action points| Owner| Deadline
+
+|20
+|WG convenors send the draft of WG meeting agenda to secretary and then upload to the WG website seperatly.
+|@ISO7372MA Sue
+|2018/10/07
+
+// etc.
+====
 
 == Content migration
 
