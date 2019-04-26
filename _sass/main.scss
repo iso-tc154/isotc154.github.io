@@ -109,6 +109,30 @@ body > .with-aside {
         }
       }
     }
+
+    section {
+      margin-bottom: 2em;
+
+      > .title {
+        letter-spacing: .1em;
+      }
+    }
+
+    section.tags {
+      font-size: 90%;
+
+      ul {
+        display: flex;
+        flex-flow: row wrap;
+      }
+      li {
+        padding: .2em .6em;
+        border-radius: 1em;
+        border: 1px solid $borderColor1;
+        margin-right: .5em;
+        margin-bottom: .5em;
+      }
+    }
   }
 
   @media screen and (min-width: $bigscreenBreakpoint) {
