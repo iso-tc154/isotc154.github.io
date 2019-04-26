@@ -163,7 +163,6 @@ Example markup:
 
 [source,asciidoc]
 --
-++++
 [.action-points]
 |===
 |No| Action points| Owner| Deadline
@@ -174,7 +173,6 @@ Example markup:
 |2018/10/07
 
 // etc.
-++++
 --
 
 == Content migration
