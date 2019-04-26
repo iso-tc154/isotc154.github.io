@@ -28,6 +28,7 @@ footer_nav_items:
   - home
   - news
   - contact
+  - jwg1site
 
 primary_nav_items:
   - about
@@ -135,6 +136,9 @@ nav:
   contact:
     url: /contact
     title: Contact
+  jwg1site:
+    url: https://www.gefeg.com/jswg/
+    title: JWG 1 site
 
 exclude:
   - Gemfile
