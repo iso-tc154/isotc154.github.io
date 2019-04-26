@@ -58,7 +58,6 @@ body.layout--home {
         .text {
           margin-right: 2em;
           font-size: 120%;
-          padding-bottom: 2em;
 
           .title {
             font-size: 240%;
@@ -79,6 +78,11 @@ body.layout--home {
     }
 
     &.with-flickity {
+      .banner {
+        .text {
+          padding-bottom: 2em;
+        }
+      }
       .flickity-page-dots {
         bottom: .5em;
         // Nudges slider dots slightly
