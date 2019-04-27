@@ -206,7 +206,7 @@ Excerpts are shown in certain cases, e.g. on post index for latest featured post
 
 When specifying titles and similar strings,
 reduce the potential for awkward linebreaks in end site layout
-by using non-breaking space `pass:[&nbsp;]` instead of normal whitespace.
+by using non-breaking space `+\&nbsp;+` instead of normal whitespace.
 
 Linebreaks are considered “awkward” where newline happen after
 e.g. hanging prepositions, particles and articles.
@@ -234,7 +234,7 @@ to the reader:
   (with UN/ECE)
 
 (Where these values appear in page’s meta title,
-HTML entities such as `pass:[&nbsp;]` are stripped.)
+HTML entities such as `+\&nbsp;+` are stripped.)
 
 
 == Building the site
