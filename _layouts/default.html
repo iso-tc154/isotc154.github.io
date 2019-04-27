@@ -7,7 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% if page.title %}{{ page.title | escape }} — {% else %}{{ site.title | escape }} — {% endif %}{{ site.description }}</title>
+    <title>
+      {% if page.layout == 'group' %}
+        {{ page.name | strip_html }}: {{ page.title | strip_html }}
+      {% else %}
+        {% assign page_title = page.title | default: site.title %}
+        {{ page_title | escape }}
+      {% endif %}
+
+      — {{ site.description }}
+    </title>
 
     <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/images/android-chrome-192x192.png" sizes="192x192" />
