@@ -213,16 +213,15 @@ e.g. hanging prepositions, particles and articles.
 Example of awkward linebreak in group name, how it would look on a rendered page
 if viewport is too narrow to fit the name in one line:
 
-[source]
-====
+++++
 JWG 1 (with
 UN/ECE)
-====
+++++
 
 The way to solve that is to give hints to the browser as to where whitespace
 shouldn’t be broken if possible:
 
-[source]
+[source,yaml]
 ====
 ---
 id: jwg1
@@ -233,11 +232,10 @@ name: JWG&nbsp;1 (with&nbsp;UN/ECE)
 With that solution, browser will break the line in a way that is less disruptive
 to the reader:
 
-[source]
-====
+++++
 JWG 1
 (with UN/ECE)
-====
+++++
 
 (Where these values appear in page’s meta title,
 HTML entities such as `&nbsp;` are stripped.)
