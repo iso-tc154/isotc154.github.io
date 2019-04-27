@@ -8,6 +8,7 @@ source "https://rubygems.org"
 
 # __________________ JEKYLL BELOW __________________
 
+gem "nokogiri"
 gem "jekyll", "~> 3.8.5"
 
 # If you have any plugins, put them here!

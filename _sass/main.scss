@@ -11,6 +11,16 @@ a {
 
     main & {
       color: $linkColor;
+
+      &.anchor-link {
+        opacity: 0.2;
+        font-size: 80%;
+        margin-left: .5em;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 }
