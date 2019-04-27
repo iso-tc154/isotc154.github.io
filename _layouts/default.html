@@ -12,7 +12,7 @@
         {{ page.name | strip_html }}: {{ page.title | strip_html }}
       {% else %}
         {% assign page_title = page.title | default: site.title %}
-        {{ page_title | escape }}
+        {{ page_title | strip_html | escape }}
       {% endif %}
 
       — {{ site.description }}
