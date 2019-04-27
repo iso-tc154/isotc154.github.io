@@ -23,6 +23,8 @@ This repository is jointly managed by ISO/TC 154 and Ribose.
   to avoid relying on implicit behavior and order of interpretation.
   Start document contents with text, or second-level heading (AsciiDoc’s double equal sign).
 
+Pay attention to **style recommendations** below.
+
 === Members
 
 Each document in the members collection is expected to have the following
@@ -196,6 +198,49 @@ see_also:
 Posts should specify sensible excerpts. Separate excerpt with excerpt separator;
 ensure content before the separator does not contain special formatting.
 Excerpts are shown in certain cases, e.g. on post index for latest featured post.
+
+
+== Style recommendations
+
+=== Awkward linebreaks
+
+When specifying titles and similar strings,
+reduce the potential for awkward linebreaks in end site layout
+by using non-breaking space`&nbsp;` instead of normal whitespace.
+
+Linebreaks are considered “awkward” where newline happen after
+e.g. hanging prepositions, particles and articles.
+Example of awkward linebreak in group name, how it would look on a rendered page
+if viewport is too narrow to fit the name in one line:
+
+[source]
+====
+JWG 1 (with
+UN/ECE)
+====
+
+The way to solve that is to give hints to the browser as to where whitespace
+shouldn’t be broken if possible:
+
+[source]
+====
+---
+id: jwg1
+name: JWG&nbsp;1 (with&nbsp;UN/ECE)
+---
+====
+
+With that solution, browser will break the line in a way that is less disruptive
+to the reader:
+
+[source]
+====
+JWG 1
+(with UN/ECE)
+====
+
+(Where these values appear in page’s meta title,
+HTML entities such as `&nbsp;` are stripped.)
 
 
 == Building the site
