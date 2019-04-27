@@ -46,10 +46,12 @@ body.layout--minutes_index {
 
       display: flex;
       flex-flow: row nowrap;
+      white-space: nowrap;
 
       &:before {
         display: block;
         width: 1em;
+        min-width: 1em;
         height: 1em;
         margin-right: .8em;
         position: relative;
@@ -91,10 +93,16 @@ body.layout--minutes_index {
           text-overflow: ellipsis;
           overflow: hidden;
           flex-basis: 20%;
+
+          &:before {
+            flex: 0;
+            overflow: hidden;
+          }
         }
         dd {
           flex: 1;
           flex-basis: 80%;
+          padding-left: .5em;
         }
       }
     }
