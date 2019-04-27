@@ -216,7 +216,7 @@ if viewport is too narrow to fit the name in one line:
   JWG 1 (with
   UN/ECE)
 
-The way to solve that is to give hints to the browser as to where whitespace
+The way to solve that is to give hints to the browser as to where the line
 shouldn’t be broken if possible:
 
 [source,yaml]
