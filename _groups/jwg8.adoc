@@ -32,10 +32,6 @@ JWG 8 was established in October 2018 by ISO/TC 154 in collaboration with UN/ECE
 
 link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (initial 2018 - )
 
-== Secretariat
-
-KATS
-
 
 == Active projects
 
