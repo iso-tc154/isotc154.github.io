@@ -1,8 +1,26 @@
 ---
 member-id: ray-denenberg
+picture: ray-denenberg.jpg
 name: Ray Denenberg
 role: member
 affiliation: ISO/TC 46, Liaison
 ---
 
-Ray was the ISO/TC 154/WG 5 Convener from 2018 to 2019/04.
+Ray is recently retired from the Library of Congress where he spent
+the past 36 years, during which he was the principal author or
+editor of many bibliographic related protocols and schemes
+including Z39.50; SRU/CQL; MODS, MADS, and PRIMIS XML Schemas; and
+EDTF (the Extended Date and Time format, developed at the Library
+of Congress, which is an integral part of ISO 8601-2019 Part 2 -
+Extensions) and several IETF RFCs.
+
+He has contributed to the development of many other ISO, NISO, IETF, and W3C standards and
+has represented LC in the W3C for the past 20 years. For the past
+several years he has been the principal ontologist for the
+development of BIBFRAME (the bibliographic framework based on
+linked data and RDF, to eventually replace the MARC bibliographic
+format).
+
+Although retired, Ray remains engaged with several of
+these efforts.
+Ray was the Convenor of ISO/TC 154/WG 5 from 2018 to 2019/04.
