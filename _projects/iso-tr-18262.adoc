@@ -1,0 +1,33 @@
+---
+id: iso-tr-18262
+name: ISO/TR 18262
+title: "Processes, data elements and documents in commerce, industry and administration- Open data interchange framework"
+status: current
+---
+ISO/TR 18262 identifies technical specifications and standards that
+are being maintained, developed or given consideration in work
+programmes of UN/CEFACT and ISO/TC 154 and strategies that respond
+to stakeholder requirements for the open interchange of structured
+data in support of administration, commerce and trade.
+
+// more
+
+== Goal
+
+The purpose of the Open Data Interchange Framework is to define a consistent and timely way to address and resolve issues of gaps, overlaps, and counterproductive standardization efforts through:
+
+. description of a coordinated framework, fostering an integrated work program to meet stakeholder needs in administration, commerce and trade;
+
+. description of a collaboration process, involving business processes and supporting data that facilitate the open electronic interchange of structured data.
+
+== Scope
+
+The overall scope of the Open Data Interchange Framework is:
+
+. the identification of technical specifications and standards that are being maintained, developed or given consideration in work programmes and strategies that respond to stakeholder requirements for the open interchange of structured data in support of administration, commerce and trade;
+
+. identifying relationships and dependencies between the above specifications and standards;
+
+. the identification and definition of what is missing under “a” in order to provide a complete technical framework;
+
+. recommendations concerning ways forward, such as the division of labour to avoid duplication of work and to foster coherence in work programmes and strategies.
