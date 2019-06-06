@@ -1,0 +1,222 @@
+---
+title: ISO/TC 154 CAT Meeting Minutes 2019-06-05 (preliminary)
+subtitle: ISO/TC154 CAT Conference Call
+cat: CAT Minutes
+tags:  [ISO CS, Liaison]
+date: 2019-06-05T00:00:00Z
+permalink: "/minutes/2019-06-05/"
+scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
+
+participants:
+  - Hongru (Judy) Zhu
+  - Jianfang Zhang
+  - Yan Zhang
+  - Anders Grangard
+  - Jasmine Chang
+  - Ronald Tse
+  - Dapeng (Max) Liu
+  - Lin (Linda) Wang
+
+excused:
+  - Peter Plapper
+  - Sue Probert
+
+excerpt: >-
+  <p>
+    Agenda: approved.
+  </p>
+
+secretariat: JianFang Zhang
+chair: Hongru (Judy) Zhu
+---
+== Approval of Agenda
+
+Approved.
+
+== Approval of 24th April 2019 CAG Meeting Minutes
+
+Approved.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+==== ISO/PWI 9735-11
+
+Yan.
+
+// TBD
+
+
+=== WG 5 (Representation of dates and times)
+
+Ronald.
+
+// TBD
+
+
+==== ISO 8601-1:2019 and ISO 8601-2:2019
+
+// TBD
+
+
+==== ISO/AWI 34000“ Date and time — Concepts and vocabulary”
+
+// TBD
+
+==== ISO/PWI 34200“ Date and time — Timezone”
+
+// TBD
+
+==== ISO/NP 34300 “ Date and time — Codes for calendar systems”
+
+// TBD
+
+
+=== WG 6 (Trusted eCommunication)
+
+Jasmine.
+
+// TBD
+
+
+==== PT1: ISO 14533 Long term signature profiles
+
+===== ISO/PWI 14533-2
+
+Naoto Miyachi.
+
+// TBD
+
+===== ISO/DIS 14533-4
+
+Peter Rybar.
+
+// TBD
+
+
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+
+Jasmine.
+
+===== ISO/DIS 19626-1
+
+// TBD
+
+===== ISO/WD 19626-2
+
+// TBD
+
+==== PT3 - ISO/DIS 20415 Trusted mobile e-document framework
+
+Yongkon Lee.
+
+// TBD
+
+=== WG 7 (Digital Business)
+
+Peter Plapper.
+
+// TBD
+
+==== PT1 – ISO/WD TS 21981 Business Semantics Thesaurus (BST)
+
+Anders.
+
+==== PT2: ISO/CD 22468 Value Stream Management (VSM)
+
+Peter Plapper.
+
+==== PT3: ISO/PRF TR 18262 ODIF
+
+Jianfang.
+
+
+=== JWG8 (Logistics data contents and process)
+
+Dapeng (Max) Liu.
+
+// TBD
+
+==== ISO/CD 23354 – Business requirements for end-to-end visibility of logistics flow
+
+// TBD
+
+==== ISO/PWI 23355- Visibility data interchange between logistics information service providers
+
+// TBD
+
+
+==== ISO/PWI 23356- Visibility logistics data interchange interface
+
+// TBD
+
+
+=== New PWIs
+
+==== ISO/PWI 36001 “Standardization documents — Metanorma — Document metamodel”
+
+==== ISO/PWI 36002 “Standardization documents — Metanorma — Representation in XML”
+
+==== ISO/PWI 56001 “ Directory — Standardized profile — Persons and organizations”
+
+
+== Open Ballots
+
+* NP  ISO/NP 34300 2019-06-27
+
+* NP  ISO 9735-11    2019-08-07
+
+* SR	ISO 9735:1988 (vers 3)	2019-06-04
+
+* SR	ISO 9735-1:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-2:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-3:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-4:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-5:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-6:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-7:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-8:2002 (Ed 2, vers 3)	2019-06-04
+
+* SR	ISO 9735-9:2002 (Ed 2, vers 3)    2019-06-04
+
+* SR	ISO 15000-5:2014	            2019-09-02
+
+
+
+
+== Other Business
+
+=== Oct 2019 Plenary meeting
+
+// TBD
+
+=== Possibility liaison from ISO/IEC/JTC1/SC41
+
+// TBD
+
+=== New 154 Website
+
+// TBD
+
+=== Questionnaire on ISO TCs' experience of working with SMART standards
+
+// TBD
+
+== Action Review
+
+
+== Next Meeting
+
+Next Meeting: 2019-07-05 Friday, 4:00-5:00pm (UTC+8)
+
+//Chair gave thanks to all of the attendants for the CAG meeting on 5th June and everyone’s good job!
+
