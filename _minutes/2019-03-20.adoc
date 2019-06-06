@@ -67,7 +67,7 @@ Ray and Ronald will discuss the convenor transition date. Chair welcome Ray to c
 
 Ronald reported the progress of the three new PWIs. Chair suggest that project of ISO/PWI 34002“ Date and time — Timezone” needs more time to involve more experts before the NP submission, in order to make sure that at least 5 P-members support the project.
 
-Ronald also reported that BIPM will not establish the A-liaison relationship with ISO TC154 due to the lack of their resource, but BIPM experts will help review the projects of date and time.
+Ronald also reported that BIPM will not establish the A-liaison relationship with ISO/TC 154 due to the lack of their resource, but BIPM experts will help review the projects of date and time.
 
 
 
@@ -179,7 +179,7 @@ Sue.
 
 Sue reported that under ISO procedures, Maintenance Agencies cannot be “Joint.” The UNECE feels strongly that this work is a core UN deliverable, it needs to be 100% aligned to other UN/CEFACT deliverables and as such cannot be maintained outside of UN/CEFACT at this time.
 
-UN/CEFACT will launch a revision of the current UNTDED as a UN/CEFACT project after its Plenary. ISO TC154 members are welcome to join the development work. Once the development work has been completed, the UNECE will submit the final draft for Public Review to ISO TC154 in order to go through the appropriate ISO approval procedures to ensure that the deliverable ISO 7372 is aligned with the update, if TC154 so wish.
+UN/CEFACT will launch a revision of the current UNTDED as a UN/CEFACT project after its Plenary. ISO/TC 154 members are welcome to join the development work. Once the development work has been completed, the UNECE will submit the final draft for Public Review to ISO/TC 154 in order to go through the appropriate ISO approval procedures to ensure that the deliverable ISO 7372 is aligned with the update, if TC154 so wish.
 
 
 *AP63: Sue shares the presentation about the ISO/PWI 23899 project timeline, plan and member list in the next CAG meeting.*
@@ -240,7 +240,7 @@ Max, Ronald, Jianfang and Linda offline worked on the liaison letter. Chair sugg
 
 An invitation letter has been emailed to ITU to invite ITU to be liaison with ISO/TC 154.
 
-Ronald reported that ITU approved the A-liaison with ISO TC154 internally and plan to publish the standard in ITU. Chair emphasized that Ronald should find a contact person in ITU-T and monitor the progress of timezone project in ITU to make sure the work obeys the IPR policy and related procedures in ISO. Jianfang will help with this issue.
+Ronald reported that ITU approved the A-liaison with ISO/TC 154 internally and plan to publish the standard in ITU. Chair emphasized that Ronald should find a contact person in ITU-T and monitor the progress of timezone project in ITU to make sure the work obeys the IPR policy and related procedures in ISO. Jianfang will help with this issue.
 
 
 === Possibility new 154 website
@@ -266,7 +266,7 @@ AP 55, 56 and 59 was done. AP57 and AP58 is ongoing.
 
 AP53(Sue) was delayed and planned to be done in the next CAG meeting (revised as AP64).
 
-Chair mentioned that the purpose of checking the status of APs is to reminder CAG member to complete the APs to make sure the progress on the ISO TC154 projects.
+Chair mentioned that the purpose of checking the status of APs is to reminder CAG member to complete the APs to make sure the progress on the ISO/TC 154 projects.
 
 
 

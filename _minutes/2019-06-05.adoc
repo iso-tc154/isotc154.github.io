@@ -181,7 +181,7 @@ As for a potential new working group for the 3 new PWIs, there are several propo
 
 . ISO experts join the Calconnect working group. But this may seem like not ISO work then. So I don’t think it can be approved by ISO procedure.
 
-. Calconnect members (around 14 experts) join the ISO TC154 potential new working group or SG.
+. Calconnect members (around 14 experts) join the ISO/TC 154 potential new working group or SG.
 
 ==== ISO/PWI 36001 "`Standardization documents — Metanorma — Document metamodel`"
 

@@ -11,9 +11,9 @@ Department in Alibaba Group, and she is also a senior expert in
 cybersecurity. With 18 years of professional standardization
 experiences, Judy has served as a number of important positions in
 various national and international standard organizations, such as
-the ISO TC154 chair, board member of FIDO, CCSA TC 11 vice chair,
+the ISO/TC 154 chair, board member of FIDO, CCSA TC 11 vice chair,
 and she has served various leadership positions in 3GPP, CCSA,
-NIST, etc. In ISO, her team actively participated in ISO TC154,
+NIST, etc. In ISO, her team actively participated in ISO/TC 154,
 ISO/IEC JTC1/SC27, ISO TC290, etc.
 
 Hongru (Judy) Zhu got a lot of experiences from her previous
