@@ -2,6 +2,7 @@
 name: ISO 8601-2:2019
 type: international
 title: "Date and time -- Representations for information interchange -- Part 2: Extensions"
+publication-date: 2019-03-25
 ---
 
 == Introduction
