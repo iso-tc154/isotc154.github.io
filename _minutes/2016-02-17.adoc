@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-02-17/"
 date: 2016-02-17T21:48:36Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [IMO, ISO 14533, ISO 8601, ISO CS, WCO]
 title: ISO/TC 154 CAT Meeting Minutes 2016-02-17
 scheduled_time: 17 February 2016, 15:00 UTC

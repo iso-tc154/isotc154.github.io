@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-03-16/"
 date: 2016-03-16T16:55:27Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [Plenary, Semantic Interoperability, TC 8, UN/ECE]
 title: ISO/TC 154 CAT Meeting Minutes 2016-03-16
 scheduled_time: 02 March 2016, 14:00 UTC

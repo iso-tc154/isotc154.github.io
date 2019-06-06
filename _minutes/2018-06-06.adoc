@@ -2,7 +2,7 @@
 permalink: "/minutes/2018-06-06/"
 date: 2018-06-06T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2018-06-06
 scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
@@ -163,7 +163,7 @@ AP29: Max sends the new version of draft to Jianfang tonight. Jianfang start the
 
 Sue was absent.
 
-Jianfang said that there is an expert from SAC who is ready for the position of co-chair from ISO side, and it is going on the internal China procedure at first. Chair said that the two co-chairs can be nominated by UNECE and ISO/TC154
+Jianfang said that there is an expert from SAC who is ready for the position of co-chair from ISO side, and it is going on the internal China procedure at first. Chair said that the two co-chairs can be nominated by UNECE and ISO/TC 154
 
 AP30: UN/ECE side needs to decide who will be the co-chair (Sue or Mary)
 

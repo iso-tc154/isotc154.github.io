@@ -2,7 +2,7 @@
 permalink: "/minutes/2018-03-15/"
 date: 2018-03-15T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2018-03-15
 scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)

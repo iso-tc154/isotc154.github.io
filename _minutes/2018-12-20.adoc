@@ -2,7 +2,7 @@
 permalink: "/minutes/2018-12-20/"
 date: 2018-12-20T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2018-12-20
 scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
@@ -38,7 +38,7 @@ Approved.
 
 === JWG 1/MA (EDIFACT Syntax)
 
-==== Continuation of ISO/TC154 JWG1 Secretariat
+==== Continuation of ISO/TC 154 JWG1 Secretariat
 
 TC received the letter (N1004) of good news that DIN will continue the secretary of JWG1.
 
@@ -223,7 +223,7 @@ No discussion (secretary is not available for this meeting)
 There are three MoU/MG resolutions related to TC154:
 
 . Resolution 18/02.
-MoU/MG encourages interested experts to participate in and contribute to ISO/TC154 work on ISO/PRF TR 18262 on open data interchange framework.
+MoU/MG encourages interested experts to participate in and contribute to ISO/TC 154 work on ISO/PRF TR 18262 on open data interchange framework.
 
 . Resolution 18/03.
 MoU/MG calls for members to participate through liaisons in the works of ISO 7372/UNECE-UNTDED Joint Maintenance Agency (JMA) in the revision of ISO 7372 and the UNTDED.

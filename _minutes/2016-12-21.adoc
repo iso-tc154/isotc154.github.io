@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-12-21/"
 date: 2016-12-21T15:35:21Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [ebMoU, ISO CS, MoU/MG, NWIP, Resolutions]
 title: ISO/TC 154 CAT Meeting Minutes 2016-12-21
 scheduled_time: 21 December 2016, 15:00 UTC

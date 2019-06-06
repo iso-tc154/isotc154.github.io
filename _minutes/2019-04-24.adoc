@@ -1,6 +1,6 @@
 ---
 title: ISO/TC 154 CAT Meeting Minutes 2019-04-24
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 cat: CAT Minutes
 tags:  [ISO CS, Liaison]
 date: 2019-04-24T00:00:00Z
@@ -181,7 +181,7 @@ No discussion.
 
 * DIS	ISO/DIS 14533-4	2019-04-24
 * NP	ISO/NP 34000	2019-04-29
-* CIB	ballot for ITU-T to establish A-liaison with ISO/TC154	2019-05-10
+* CIB	ballot for ITU-T to establish A-liaison with ISO/TC 154	2019-05-10
 * CD  ISO/CD 23354 2019-05-27
 * NP	ISO/NP 34000	2019-04-29
 * SR	ISO 9735:1988 (vers 3)	2019-06-04

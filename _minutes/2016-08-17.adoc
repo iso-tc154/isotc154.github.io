@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-08-17/"
 date: 2016-08-17T15:12:17Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [Ballots, ISO 8601, ISO CS, OAGi, Plenary]
 title: ISO/TC 154 CAT Meeting Minutes 2016-08-17
 scheduled_time: 17 August 2016, 14:00 UTC

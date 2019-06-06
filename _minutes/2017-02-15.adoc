@@ -2,7 +2,7 @@
 permalink: "/minutes/2017-02-15/"
 date: 2017-02-15T16:36:53Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ETSI, ISO 14533, ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2017-02-15
 scheduled_time: 15 February 2017, 15:00 UTC

@@ -125,7 +125,7 @@ date: YYYY-MM-DDTHH:MM:SSZ
 
 # *** Below are prescribed by layout; omit at own risk, pages may look incorrect or broken.
 
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 
 cat: CAT Minutes
 # Primary category

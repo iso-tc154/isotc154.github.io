@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-03-02/"
 date: 2016-03-02T19:50:49Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [ISO 8601, Liaison, TC 8, UBL, UN/ECE, WCO]
 title: ISO/TC 154 CAT Meeting Minutes 2016-03-02
 scheduled_time: 02 March 2016, 15:00 UTC

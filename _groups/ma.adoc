@@ -6,7 +6,7 @@ order: 9
 :page-liquid:
 
 The agency was established in the late 80's
-to maintain the *Trade Data Element Directory* (TDED) issued by UN/ECE as UNTDED and also by ISO/TC154 as ISO 7372.
+to maintain the *Trade Data Element Directory* (TDED) issued by UN/ECE as UNTDED and also by ISO/TC 154 as ISO 7372.
 
 The joint publication lists standard data elements intended to facilitate
 open interchange of data in international trade.

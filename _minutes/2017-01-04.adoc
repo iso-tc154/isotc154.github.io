@@ -2,7 +2,7 @@
 permalink: "/minutes/2017-01-04/"
 date: 2017-01-04T18:03:58Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [Ballots, ISO 14533, ISO 8601, ISO CS, OAGi]
 title: ISO/TC 154 CAT Meeting Minutes 2017-01-04
 scheduled_time: 04 January 2017, 15:00 UTC

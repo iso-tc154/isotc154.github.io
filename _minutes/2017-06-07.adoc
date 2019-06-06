@@ -2,7 +2,7 @@
 permalink: "/minutes/2017-06-07/"
 date: 2017-06-07T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2017-06-07
 scheduled_time:   4:00pm UTC+8, June 7th, 2017
@@ -36,7 +36,7 @@ present.
 === New TC chair
 
 * Introduction of Klaus's resignation
-**  Klaus has resigned, ISO/TC 154 express special thanks for his strong leadership to ISO/TC154. Wish him all the best.
+**  Klaus has resigned, ISO/TC 154 express special thanks for his strong leadership to ISO/TC 154. Wish him all the best.
 
 * Introduction of new TC chair
 ** Judy Zhu from Alibaba group as the acting chair as asked by Henry from the email offline, and a month TMB ballot for the chair nomination is ongoing, and the formal nomination will come out in July.

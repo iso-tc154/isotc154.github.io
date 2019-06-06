@@ -2,7 +2,7 @@
 permalink: "/minutes/2018-01-17/"
 date: 2018-01-17T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2018-01-17
 

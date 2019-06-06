@@ -1,6 +1,6 @@
 ---
 title: ISO/TC 154 CAT Meeting Minutes 2019-06-05
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 cat: CAT Minutes
 tags:  [ISO CS, Liaison]
 date: 2019-06-05T00:00:00Z
@@ -200,7 +200,7 @@ Jianfang reported that the system review of all ISO 9735 standards was finished 
 * SR ISO 15000-5:2014 2019-09-02
 * DIS ISO/DIS 14533-42019-04-24
 * NP ISO/NP 34000	2019-04-29
-* CIB ballot for ITU-T to establish A-liaison with ISO/TC154	2019-05-10
+* CIB ballot for ITU-T to establish A-liaison with ISO/TC 154	2019-05-10
 * CD ISO/CD 23354 2019-05-27
 * SR ISO 9735:1988 (vers 3)	2019-06-04
 * SR ISO 9735-1:2002 (Ed 2, vers 3)	2019-06-04

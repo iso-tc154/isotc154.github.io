@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-05-11/"
 date: 2016-05-11T22:57:03Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [ISO 14533, ISO 8601, ISO CS, MoU/MG, Plenary, Semantic Interoperability]
 title: ISO/TC 154 CAT Meeting Minutes 2016-05-11
 scheduled_time: 11 May 2016, 14:00 UTC

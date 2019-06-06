@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-09-28/"
 date: 2016-09-28T15:18:05Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [Ballots, ISO 14533, ISO CS, NWIP, Plenary, TC 154]
 title: ISO/TC 154 CAT Meeting Minutes 2016-09-28
 scheduled_time: 14 September 2016, 14:00 UTC

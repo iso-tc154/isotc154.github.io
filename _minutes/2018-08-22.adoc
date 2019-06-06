@@ -2,7 +2,7 @@
 permalink: "/minutes/2018-08-22/"
 date: 2018-08-22T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2018-08-22
 scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
@@ -161,7 +161,7 @@ No discussion due to the time limit.
 == Open Ballots
 
 * Ballot for the liaison officer to ISO/PC 317, end at 2018-07-26
-* CIB vote for the ISO/TC154/WG6 convener, end at 2018-08-11
+* CIB vote for the ISO/TC 154/WG6 convener, end at 2018-08-11
 * ISO/NP 23354: CIB ballot starts at 2018-06-07, end at 2018-08-30
 * CD ISO/CD 14533-4, end at 2018-09-11
 * CD ISO/CD 22468, end at 2018-09-14

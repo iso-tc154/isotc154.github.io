@@ -2,7 +2,7 @@
 permalink: "/minutes/2017-10-11/"
 date: 2017-10-11T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2017-10-11
 scheduled_time: 8:00-9:20pm Beijing Time (UTC+8)

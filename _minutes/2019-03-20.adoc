@@ -2,7 +2,7 @@
 permalink: "/minutes/2019-03-20/"
 date: 2019-03-20T00:00:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags:  [ISO CS, Liaison]
 title: ISO/TC 154 CAT Meeting Minutes 2019-03-20
 scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
@@ -238,7 +238,7 @@ Max, Ronald, Jianfang and Linda offline worked on the liaison letter. Chair sugg
 
 === Possibility liaison with ITU
 
-An invitation letter has been emailed to ITU to invite ITU to be liaison with ISO/TC154.
+An invitation letter has been emailed to ITU to invite ITU to be liaison with ISO/TC 154.
 
 Ronald reported that ITU approved the A-liaison with ISO TC154 internally and plan to publish the standard in ITU. Chair emphasized that Ronald should find a contact person in ITU-T and monitor the progress of timezone project in ITU to make sure the work obeys the IPR policy and related procedures in ISO. Jianfang will help with this issue.
 

@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-04-27/"
 date: 2016-04-27T22:27:00Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [CAT, ISO 14533, ISO 8601, Plenary]
 title: ISO/TC 154 CAT Meeting Minutes 2016-04-27
 scheduled_time: 27 April 2016, 14:00 UTC

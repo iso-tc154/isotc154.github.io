@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-07-20/"
 date: 2016-07-20T15:47:22Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [Ballots, ISO 14533, NWIP, OAGi, ODIF, Semantic Interoperability]
 title: ISO/TC 154 CAT Meeting Minutes 2016-07-20
 scheduled_time: 20 July 2016, 14:00 UTC

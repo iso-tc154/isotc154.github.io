@@ -2,7 +2,7 @@
 permalink: "/minutes/2016-08-03/"
 date: 2016-08-03T15:08:45Z
 cat: CAT Minutes
-subtitle: ISO/TC154 CAT Conference Call
+subtitle: ISO/TC 154 CAT Conference Call
 tags: [ISO 14533, ISO 8601, NWIP, OAGi, Plenary]
 title: ISO/TC 154 CAT Meeting Minutes 2016-08-03
 scheduled_time: 03 August 2016, 14:00 UTC
