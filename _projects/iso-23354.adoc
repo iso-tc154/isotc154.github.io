@@ -1,0 +1,35 @@
+---
+id: iso-23354
+name: ISO/CD 23354
+title: "Business requirements for end-to-end visibility of logistics flow"
+status: current
+---
+
+== Scope
+
+This standard specifies three business requirements for the visibility of logistics traffic flow based on the use cases and gap analysis in Annex A.
+
+It includes:
+
+. LISS network architecture requirements
+. visibility data interchange requirements between LISSs, and
+. visibility data interface and process requirements for a LISS network.
+
+Furthermore, the standard describes the requirement for a guideline for business participants and stakeholders in LISS Network such as logistics information service providers, Single Window/SSP operators, data providers and logistics data users.
+
+== Who needs this standard?
+
+* For logistics information service system operator: Business requirements guideline for establishing data connection with other logistics information service systems, and satisfy different data providers and users’ requirements.
+
+* For single window operator: Business requirements guideline for establishing and managing the information system and initiation of public data sharing.
+
+* For logistics authorities: Business requirements guideline for interchanges specific logistics data through logistics information service systems network to improve their own business service capability.
+
+* For users: Business requirements guideline for obtaining specific logistics data through logistics information service systems network for their own business.
+
+
+== Project leader
+
+{% assign leader = site.members | where: "member-id", "linda-wang" | first %}
+
+link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})

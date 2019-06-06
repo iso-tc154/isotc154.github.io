@@ -1,0 +1,38 @@
+---
+id: iso-34000
+name: ISO/WD 34000
+title: "Date and time -- Concepts and vocabulary"
+status: current
+---
+
+== Purpose
+
+ISO Recommendations and Standards relating to date and time concepts
+have been available since 1971.
+
+This document presents terms and definitions for selected concepts
+relevant to date and time concepts and of their representation.
+
+Specifically, the terminology presented in this document:
+
+* serve as a sound basis in the understanding of date and time;
+* guide new developments in the field by underpinning mutual understanding; and
+* serve as a quick and handy reference for those newly inaugurated to this field.
+
+Most terms in this document were sourced from <<ISO8601-1>> and <<ISO8601-2>>.
+
+== Scope
+
+This document provides a concept system and a standard set of
+terminology related to date and time, from basic concepts to those of
+their representation.
+
+The scope of the vocabulary provided in this document corresponds to
+that of ISO/TC 154/WG 5: Representation of dates and times.
+
+
+== References
+
+* [[[ISO8601-1,ISO 8601-1]]], _Date and time -- Representations for information interchange -- Part 1: Basic rules_
+
+* [[[ISO8601-2,ISO 8601-2]]], _Date and time -- Representations for information interchange -- Part 2: Extensions_

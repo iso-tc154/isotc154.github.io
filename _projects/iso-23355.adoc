@@ -1,0 +1,33 @@
+---
+id: iso-23355
+name: ISO/WD 23355
+title: "Visibility data interchange between logistics information service providers"
+status: current
+---
+
+== Scope
+
+This standard specifies a common framework to clarify what kind of logistics visibility data and how they should be interchanged among different logistics information service providers in order to enable efficient and effective visibility data querying.
+
+Objects including:
+
+* Vessel and Cargo in maritime transport
+* Vehicle and Cargo in road transport
+* Flight and Cargo in air transport
+* Train and Cargo in railway transport
+* Customs, Quarantine & Inspections and OGA clearance process
+
+
+== Who needs this standard?
+
+* This standard can be used by logistics information service providers (e.g PCS, CCS, Freight forwarder system etc.) for establishing data connection with other logistics information service systems and satisfy different data providers and users’ requirements.
+
+* Single window operators can establish and manage the information system and initiate public data sharing based on this standard. Logistics authorities and logistics data users can also use this standard to track the logistics flow and optimize their services.
+
+
+== Project leaders
+
+* Yizhou Wu
+
+{% assign leader = site.members | where: "member-id", "max-liu" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})

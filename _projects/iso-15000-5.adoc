@@ -1,13 +1,13 @@
 ---
-id: iso-np-15000-5
-name: ISO NP 15000-5
+id: iso-15000-5
+name: ISO/NP 15000-5
 title: "ebXML - Part 5: ebCCTS Revision"
 status: new
 excerpt:
 ---
 // more
 
-== Goal
+== Purpose
 
 Revision of link:/standards/isots-15000-52005[ISO/TS 15000-5 -- ebCCTS], as an International Standard.
 

@@ -1,6 +1,6 @@
 ---
-id: iso-np-14533
-name: ISO NP 14533
+id: iso-14533
+name: ISO/NP 14533
 title: Long Term Signature profiles for EDI Data and Electronic Documents
 status: current
 ---

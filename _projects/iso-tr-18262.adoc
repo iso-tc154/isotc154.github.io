@@ -12,7 +12,7 @@ data in support of administration, commerce and trade.
 
 // more
 
-== Goal
+== Purpose
 
 The purpose of the Open Data Interchange Framework is to define a consistent and timely way to address and resolve issues of gaps, overlaps, and counterproductive standardization efforts through:
 

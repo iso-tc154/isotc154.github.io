@@ -1,0 +1,29 @@
+---
+id: iso-34300
+name: ISO/NP 34300
+title: "Date and time -- Codes for calendar systems"
+status: current
+---
+
+== Purpose
+
+Calendars are an essential element in date tracking.
+
+With multiple calendar systems in common use across
+the international community, it is necessary for a number
+of applications to identify calendar systems used
+for particular dates and times, including for
+computing, archiving, communication and bibliography.
+
+This standard sets out the necessary procedures to maintain
+the registry of calendar systems.
+
+== Scope
+
+This document provides a list of codes to represent
+calendar systems and the corresponding maintenance
+procedures.
+
+The codes were devised for usage of any application requiring
+the expression of calendar systems in coded form, including
+for data interchange.
