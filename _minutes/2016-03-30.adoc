@@ -14,7 +14,7 @@ scheduled_time: 8:00-9:30pm Beijing Time (UTC+8)
 participants:
   - Klaus-Dieter Naujok (K-DN)
   - Francois Vuilleumier (FV)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Mei-Li Chen (MLC)
   - Jasmine Chang (JC)
 

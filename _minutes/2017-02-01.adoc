@@ -9,7 +9,7 @@ scheduled_time: 01 February, 15:00 UTC
 
 participants:
   - Klaus-Dieter Naujok (K-DN)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Francois Vuilleumier (FV)
   - Peter Rybar (PR)
 

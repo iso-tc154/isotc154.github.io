@@ -16,7 +16,7 @@ excused:
   - Jasmine Chang (JC)
   - Bernd Bösler (BB)
   - Peter Rybar (PR)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
 ---
 
 

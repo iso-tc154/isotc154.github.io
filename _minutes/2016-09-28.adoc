@@ -9,7 +9,7 @@ scheduled_time: 14 September 2016, 14:00 UTC
 
 participants:
   - Klaus-Dieter Naujok (K-DN)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Francois Vuilleumier (FV)
 
 excused:

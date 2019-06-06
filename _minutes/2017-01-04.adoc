@@ -13,7 +13,7 @@ participants:
   - Mei-Li Chen (MLC)
   - Peter Rybar (PR)
   - Bernd Bösler (BB)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
 
 excused:
   - Francois Vuilleumier (FV)

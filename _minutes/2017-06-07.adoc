@@ -9,7 +9,7 @@ scheduled_time:   4:00pm UTC+8, June 7th, 2017
 
 participants:
   - Hongru (Judy) Zhu
-  - JianFang Zhang
+  - Jianfang Zhang
   - Jasmine Chang
   - Francois Vuilleumier (only in the start)
   - Peter Ryber

@@ -24,7 +24,7 @@ excused:
   - Mary Kay Blantz
   - Linda Wang
   - Ronald Tse
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 chair: Hongru (Judy) Zhu
 ---
 

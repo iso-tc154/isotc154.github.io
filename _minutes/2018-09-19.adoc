@@ -27,7 +27,7 @@ excused:
   - Chris Nelson
   - khouja Ahmed
   - Peter Rybar
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 chair: Hongru (Judy) Zhu
 ---
 

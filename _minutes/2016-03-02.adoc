@@ -10,7 +10,7 @@ scheduled_time: 02 March 2016, 15:00 UTC
 participants:
   - Klaus-Dieter Naujok (K-DN)
   - Francois Vuilleumier (FV)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Mei-Li Chen (MLC)
   - Jasmine Chang (JC)
 

@@ -7,7 +7,7 @@ tags: [ISO 8601, ISO CS, Liaison, MoU/MG]
 title: ISO/TC 154 CAT Meeting Minutes 2016-06-08
 scheduled_time: 08 June 2016, 14:00 UTC
 
-participants: Klaus-Dieter Naujok (K-DN), JianFang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
+participants: Klaus-Dieter Naujok (K-DN), Jianfang Zhang (JFZ), Jasmine Chang (JC), Francois Vuilleumier (FV)
 ---
 == Approval of Agenda
 *Approved*

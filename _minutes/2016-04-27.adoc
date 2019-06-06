@@ -9,7 +9,7 @@ scheduled_time: 27 April 2016, 14:00 UTC
 
 participants:
   - Klaus-Dieter Naujok (K-DN)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Mei-Li Chen (MLC)
   - Peter Rybar (PR)
   - Jasmine Chang (JC)

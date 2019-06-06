@@ -21,7 +21,7 @@ excused:
   - Roman
   - Peter Ryber
   - Peter Plapper
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 chair: Hongru (Judy) Zhu
 ---
 

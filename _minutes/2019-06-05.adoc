@@ -29,7 +29,7 @@ excerpt: >-
     Agenda: approved.
   </p>
 
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 chair: Hongru (Judy) Zhu
 ---
 == Approval of Agenda

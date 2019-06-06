@@ -27,7 +27,7 @@ excused:
   - Ronald Tse
   - Mei-li Chen
   - Khouja Ahmed
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 chair: Hongru (Judy) Zhu
 ---
 

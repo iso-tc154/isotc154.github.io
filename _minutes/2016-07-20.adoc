@@ -9,7 +9,7 @@ scheduled_time: 20 July 2016, 14:00 UTC
 
 participants:
   - Klaus-Dieter Naujok (K-DN)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Bernd Bösler (BB)
   - Jasmine Chang (JC)
 

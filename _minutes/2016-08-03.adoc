@@ -9,7 +9,7 @@ scheduled_time: 03 August 2016, 14:00 UTC
 
 participants:
   - Klaus-Dieter Naujok (K-DN)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Bernd Bösler (BB)
   - Jasmine Chang (JC)
   - Peter Rybar (PR)

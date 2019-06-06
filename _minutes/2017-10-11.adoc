@@ -20,7 +20,7 @@ excused:
   - Peter ryber
   - Peter plapper
   - Jasmine
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 chair: Hongru (Judy) Zhu
 ---
 

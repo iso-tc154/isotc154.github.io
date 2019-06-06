@@ -22,7 +22,7 @@ participants:
 
 excused:
   - Peter Plapper
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 chair: Hongru (Judy) Zhu
 ---
 == Approval of Agenda

@@ -10,7 +10,7 @@ scheduled_time: 17 February 2016, 15:00 UTC
 participants:
   - Klaus-Dieter Naujok (K-DN)
   - Francois Vuilleumier (FV)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Mei-Li Chen (MLC)
   - Jasmine Chang (JC)
   - Sue Probert (SP)

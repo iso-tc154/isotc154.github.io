@@ -8,7 +8,7 @@ title: ISO/TC 154 CAT Meeting Minutes 2016-05-11
 scheduled_time: 11 May 2016, 14:00 UTC
 participants:
   - Klaus-Dieter Naujok (K-DN)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Mei-Li Chen (MLC)
   - Jasmine Chang (JC)
   - Francois Vuilleumier (FV)

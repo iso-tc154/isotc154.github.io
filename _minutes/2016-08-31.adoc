@@ -9,7 +9,7 @@ scheduled_time: 31 August 2016, 14:00 UTC
 
 participants:
   - Klaus-Dieter Naujok (K-DN)
-  - JianFang Zhang (JFZ)
+  - Jianfang Zhang (JFZ)
   - Francois Vuilleumier (FV)
   - Mei-Li Chen (MLC)
 

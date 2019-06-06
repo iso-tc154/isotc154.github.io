@@ -24,7 +24,7 @@ excused:
 
 scheduled_time: 8:00-9:30pm Beijing Time (UTC+8)
 
-secretariat: JianFang Zhang
+secretariat: Jianfang Zhang
 
 chair: Hongru (Judy) Zhu
 ---
