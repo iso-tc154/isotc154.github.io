@@ -77,10 +77,10 @@ Each document requires following frontmatter YAML structure:
 
 [source,yaml]
 --
-id: iso-np-6422-2
+id: iso-6422-2
 # Project ID with dashes
 
-name: ISO NP 6422-2
+name: ISO/NP 6422-2
 # Human-readable project ID
 
 title: "Layout key for trade documents -- Part 2: Electronic documents"
