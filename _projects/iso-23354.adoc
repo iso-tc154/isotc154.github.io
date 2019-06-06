@@ -4,6 +4,7 @@ name: ISO/CD 23354
 title: "Business requirements for end-to-end visibility of logistics flow"
 status: current
 ---
+:page-liquid:
 
 == Scope
 
