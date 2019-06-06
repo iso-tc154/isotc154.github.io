@@ -53,7 +53,7 @@ Jianfang confirmed the NP process that it will be the same as the current NP pro
 
 Ray reported that the 8601-1 and 8601-2 publication was in progress and may be completed in May. CAG congratulations on the publication of 8601.
 
-Chair encouraged member to think about the detail plan of widely use of 8601-2. Ray, Ronald, Sue and Jianfang provided ideas about this, such as a short summary in 154 website, ISO newsletter of 8601 publish and an ISO article, UNCEFACT discussion on 8601,etc. It is hoped to provide the detail plan.
+Chair encouraged member to think about the detail plan of widely use of 8601-2. Ray, Ronald, Sue and Jianfang provided ideas about this, such as a short summary in 154 website, ISO newsletter of 8601 publish and an ISO article, UN/CEFACT discussion on 8601,etc. It is hoped to provide the detail plan.
 
 ==== New PWIs
 
@@ -107,7 +107,7 @@ DIS ballot comments resolution.
 
 Still working on the CD draft.
 
-==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+==== PT3: ISO/CD 20415 Trusted mobile e-document framework
 
 Yongkon Lee.
 
@@ -152,7 +152,7 @@ Max reported that AWI 23354 was under the comments resolution and UNECE will wor
 
 Chair mentioned that the progress of PWI 23355 should be speeded up.
 
-Sue mentioned that the two projects were shared and discussed in the January UNECE meeting and more experts were willing to participate in the project 23355. There will be references form UNCEFACT standards for the projects.
+Sue mentioned that the two projects were shared and discussed in the January UNECE meeting and more experts were willing to participate in the project 23355. There will be references form UN/CEFACT standards for the projects.
 
 
 
@@ -211,7 +211,7 @@ Peter Plapper reminded that the visa application and hotel reservation should be
 
 === Possibility liaison from ISO/IEC/JTC1/SC41
 
-Max, Sue, Jasmine shared the basic consideration on the liaison with ISO/IEC/JTC1/SC41 and they need more time to think about the details. Sue will consider the possible joint work with UNCEFACT IoT activities.
+Max, Sue, Jasmine shared the basic consideration on the liaison with ISO/IEC/JTC1/SC41 and they need more time to think about the details. Sue will consider the possible joint work with UN/CEFACT IoT activities.
 
 Chair suggest 154 has a written form about what area can be done from SC41 if the liaison is established.
 

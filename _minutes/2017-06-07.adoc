@@ -71,7 +71,7 @@ No discussion.
 
 Jasmine will attend ETSI meeting next week as liaison officer. She will send the liaison report to TC secretariat after the meeting.
 
-==== PT1 - ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 * ISO 14533-3
 ** finished.
@@ -80,13 +80,13 @@ Jasmine will attend ETSI meeting next week as liaison officer. She will send the
 ** will be finished soon
 
 
-==== PT2 - ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 * CD ballot of ISO 19626-1 was initiated, and will be closed at 21st July.
 * Jasmine is forwarding the project of ISO 19626-2, and will submit the draft before this plenary meeting in October 2017.
 
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 ISO/WD 20415 was shared with WG6 members during 2 months (May, June), will be submitted as CD soon.
 
@@ -96,7 +96,7 @@ ISO/WD 20415 was shared with WG6 members during 2 months (May, June), will be su
 
 Professor Peter Plapper is willing to take over WG7 convener based on the jianfang's information. His convener ballot was initiated via CIB ballot for two weeks, and will be closed on16th June.
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 No discussion. Someone who can take over the project is preferred/ The issue will be discussed at next CAT meeting.
 

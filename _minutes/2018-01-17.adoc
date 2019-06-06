@@ -94,7 +94,7 @@ Jasmine reported WG reviewed the comments with ETSI and resolved most of them. D
 
 It is on the NWIP ballot process, will be ended at 02-02-2018.
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 Peter Rybar reported that there will be WebEx meeting for comment
 discussion soon.
@@ -107,17 +107,17 @@ Peter Plapper.
 Peter Plapper gave a presentation on the report of WG7, and shared the
 progress of WG7, appreciated his job.
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Anders is waiting for the feedback of the draft from MoU/MG group
 experts.
 
 
-==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 Peter Plapper reported that the project draft will be given out four months later.
 
-==== PT3 - ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 Jianfang reported that he is still working on understanding the history documents.
 

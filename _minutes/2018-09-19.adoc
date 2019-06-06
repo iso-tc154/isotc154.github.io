@@ -92,7 +92,7 @@ DIS ballot will end in 10.18.
 
 The draft was circulated within TC/154 Korean committee members, will be discussed at Hangzhou meeting.
 
-==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+==== PT3: ISO/CD 20415 Trusted mobile e-document framework
 
 The draft was circulated in WG6 and will be discussed in Hangzhou WG6 meeting before the DIS ballot.
 

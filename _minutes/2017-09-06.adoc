@@ -71,7 +71,7 @@ reviews will be available next week.
 
 * ISO/WD 19626-2 [applications] - Jasmine introduced the 19626-2 schedule for its submission until 2nd week, October. It will be discussed at WG 6 virtual meeting during the plenary week.
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 Yongkon Lee completed the revision of ISO 20415. And after
 Jasmine shares its comments on the WG6 members and
@@ -81,7 +81,7 @@ confirms its CD ballot, Jianfang will initiate the CD.
 
 Christof Oberhausen represented Peter Plapper.
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Christof introduced that the working draft study was initiated at stage 20.20, and Anders will take the project leader, jianfang will initiate the CIB ballot after the meeting and send the project draft to Anders after the meeting.
 

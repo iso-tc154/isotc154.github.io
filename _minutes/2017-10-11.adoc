@@ -59,11 +59,11 @@ No discussion, Jasmine missed this meeting.
 
 ==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 === WG 7 (digital Business)
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Anders had an offline discussion with Peter Plapper and received input
 from experts, and plan to hold the conference call for further discussion.

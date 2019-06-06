@@ -95,7 +95,7 @@ DIS version will submit until March 2018.
 On the NWIP ballot process.
 
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 CD ballot was finalized successfully at 2017-11-21.One comment from Belgium is whether it differs from ISO 12812 Mobile Financial Services or not. Webex meeting will be held soon.
 
@@ -104,17 +104,17 @@ CD ballot was finalized successfully at 2017-11-21.One comment from Belgium is w
 
 Peter Plapper.
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 This project was also discussed in the MoU/MG meeting. It is a long-term intention. Anders plans to hold the conference call for further discussion.
 
 
-==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 No discussion
 
 
-==== PT3 - ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 Jianfang is the project leader according to plenary meeting resolution. He will arrange the meeting for the project discussion.
 

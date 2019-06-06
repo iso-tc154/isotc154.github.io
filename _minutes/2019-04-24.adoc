@@ -118,7 +118,7 @@ The project is planned to be submitted for publication by end of April 2019.
 
 The project meeting (in Korea) was held and the draft is still under the discussion.
 
-==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+==== PT3: ISO/CD 20415 Trusted mobile e-document framework
 
 Yongkon Lee.
 

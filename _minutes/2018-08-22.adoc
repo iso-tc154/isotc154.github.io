@@ -103,7 +103,7 @@ AP24 was delayed. The CD draft was circulated within TC/154 Korean committee mem
 
 *AP24 (revised): Jasmine sends the 19626-2 CD draft to Jianfang and Jianfang submits the 19626-2 CD draft after the plenary meeting.*
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 AP25 was delayed. The DIS draft will be discussed in Hangzhou WG6 meeting. Chair reminded that the deadline of DIS is 2018-10-19.
 
@@ -114,17 +114,17 @@ AP25 was delayed. The DIS draft will be discussed in Hangzhou WG6 meeting. Chair
 
 Peter Plapper.
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Anders reported with ppt that comments and draft was reviewed and there will be lots of work to do. He proposed topics to be discussed in the Hangzhou meeting. As for the details, meeting did not discuss too much.
 
 
-==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 Christof Oberhausen (represent Peter Plapper) reported that CD ballot would end in Sep.14th. Comments resolution of CD ballot will be done at Hangzhou meeting.
 
 
-==== PT3 - ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 Jianfang sent the CD draft to WG7.
 Next step is draft review in WG7 and start the CD ballot.

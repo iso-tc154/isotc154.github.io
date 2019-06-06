@@ -87,7 +87,7 @@ Jasmine reported that they are still working on revising the DIS draft document,
 
 The NP voting was successfully completed, it’s on WD stage and the comments are analyzed, the comment resolution meeting is scheduled in April.
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 Jasmine reported that they finished comment resolution and are preparing DIS draft, the circulation of DIS draft will be planned afterward.
 
@@ -99,16 +99,16 @@ Peter Plapper.
 Peter Plapper shared the progress on the work of WG7, appreciated his job.
 
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 The work will be started in the beginning of 2018. Peter asked for share the volunteer list received by TC154. Anders is waiting for the feedback of the draft from MoU/MG group experts.
 
-==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 
 Peter reported that project experts have received current version of norm draft, he will organize web meeting once receive the feedback from all these experts. Peter also introduce the benefits of the project.
 
-==== PT3 - ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 Peter introduced the current status of the project, Jianfang reported that he is still working on the comments from early project discussion. Sue asked to join in the project. Agreed.
 

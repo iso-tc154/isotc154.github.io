@@ -106,7 +106,7 @@ DIS ballot apporved.
 
 CD drafting.
 
-==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+==== PT3: ISO/CD 20415 Trusted mobile e-document framework
 
 Yongkon Lee.
 

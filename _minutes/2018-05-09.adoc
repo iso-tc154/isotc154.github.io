@@ -92,7 +92,7 @@ ETSI Steering Group Liaison meeting was held. DIS draft will be completed before
 
 CD draft will be submitted on August.
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 Jasmine reported that DIS draft will be completed at the end of June. DIS ballot may start at the end of July. Project leader Youngkon Lee can ask Jianfang for the CD ballot procedure.
 
@@ -107,14 +107,14 @@ AP3: Jasmine discusses with Youngkon Lee if their project is related with 5G rel
 Christof shared the progress of WG7 on behalf of Peter Plapper, appreciated his job.
 
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Neither Anders nor Peter have received the list of members interested in joining this project, as presented in previous meetings. Also, there is no feedback on the communication sent from Jianfang to the MoU/MG. Jianfang will check the status of these.
 
 AP4: Jianfang to check the status of the list of members interested in joining BST and feedback from MoU/MG.
 
 
-==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 Norm draft was sent to Jianfang. Jianfang will upload the draft for CD ballot and send notification email to all the members.
 
@@ -123,7 +123,7 @@ Jasmine said that she is the WG7 member but didn’t receive any email from the 
 AP5: Jiangfang upload the VSM draft for CD ballot in the ISO portal and send notification email to all the members.
 
 
-==== PT3 - ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 No progress.
 

@@ -101,7 +101,7 @@ The CD draft will be submitted in August and the CD ballot will start before the
 
 AP24: Jasmine submits the 19626-2 CD draft in August.
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 Youngkon Lee.
 
@@ -121,14 +121,14 @@ Peter Plapper.
 
 Peter Plapper shared the progress of WG7, appreciated his job.
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 Peter reported that the list of members interested in participating was never found, and no responses about requesting participants from MoU MG group. The first step is reviewing existing draft and resolving received comments.
 
 Chair suggests that as for the limited time, TC may consider to postpone the project in Oct plenary meeting. It should be decided in the Oct plenary meeting.
 
 
-==== PT2 - ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 Peter reported that VSM experts have reviewed current version. Jianfang said that he didn’t start the CD ballot since the comments from Jasmine should be solved and the draft should be updated. Peter will discuss with Jasmine on 6-25 meeting.
 
@@ -137,7 +137,7 @@ AP27: Peter sends updated version in word file to Jianfang after 25th June meeti
 
 
 
-==== PT3 - ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 Jianfang plans to finish the first version before Oct and discuss with Sue.
 

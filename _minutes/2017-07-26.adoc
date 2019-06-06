@@ -80,7 +80,7 @@ The CD ballot of 19626-1 had passed.
 
 The first draft of 19626-2 will be finished in September.
 
-==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
+==== PT3: ISO/WD 20415 Trusted mobile e-document framework
 
 No update.
 
@@ -91,7 +91,7 @@ No update.
 CIB ballot (closed on 16th June) approved the new WG7 convener, Peter
 Plapper.
 
-==== PT1 - ISO/TS WD 21981 Business Semantics Thesaurus (BST)
+==== PT1: ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
 From the email offline, Jianfang has told Peter that Anders will be the project leader. Which needs to be confirmed offline. And next time, Anders will be invited for the CAT meeting.
 

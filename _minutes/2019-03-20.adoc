@@ -117,7 +117,7 @@ The comments disposition and updated text of the project will be provided at the
 
 CD draft will be circulated in April.
 
-==== PT3 - ISO/CD 20415 Trusted mobile e-document framework
+==== PT3: ISO/CD 20415 Trusted mobile e-document framework
 
 Yongkon Lee.
 
@@ -182,7 +182,7 @@ Sue reported that under ISO procedures, Maintenance Agencies cannot be “Joint.
 UN/CEFACT will launch a revision of the current UNTDED as a UN/CEFACT project after its Plenary. ISO TC154 members are welcome to join the development work. Once the development work has been completed, the UNECE will submit the final draft for Public Review to ISO TC154 in order to go through the appropriate ISO approval procedures to ensure that the deliverable ISO 7372 is aligned with the update, if TC154 so wish.
 
 
-*AP63: Sue shares the presentation about the ISO PWI 23899 project timeline, plan and member list in the next CAG meeting.*
+*AP63: Sue shares the presentation about the ISO/PWI 23899 project timeline, plan and member list in the next CAG meeting.*
 
 *AP64: Chair will organize a teleconference among Sue, Lance, Jianfang and Chair to discuss the issue on ISO 7372/UNTDED “joint” MA procedure.*
 

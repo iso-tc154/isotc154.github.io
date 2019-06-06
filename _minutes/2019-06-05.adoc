@@ -108,7 +108,7 @@ Jasmine.
 
 // TBD
 
-==== PT3 - ISO/DIS 20415 Trusted mobile e-document framework
+==== PT3: ISO/DIS 20415 Trusted mobile e-document framework
 
 Yongkon Lee.
 

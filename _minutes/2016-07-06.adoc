@@ -111,7 +111,7 @@ Nothing to report.
 * Item deferred to consult with BB for further direction.
 
 
-=== ISO/PWI 19625 -- Alignment project between ISO 7372, UN/EDIFACT EDED+UNCL and UNCEFACT/CCL
+=== ISO/PWI 19625 -- Alignment project between ISO 7372, UN/EDIFACT EDED+UNCL and UN/CEFACT/CCL
 
 * JFZ to cancel project as there has been no MA meeting since our Berlin plenary (2013) because their work is on hold (tded097). Therefore no work on a DTR Draft as per ISO/TC 154 Resolution 010/2013 (N0728), effectively canceling the project.
 
