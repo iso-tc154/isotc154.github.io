@@ -39,8 +39,7 @@ KATS
 
 * link:/projects/iso-14533[ISO 14533]
 * link:/projects/iso-19626-1[ISO 19626-1]
-* link:/projects/iso-20415[ISO 20415]
 
 == Standards
 
-
+* link:/standards/iso-20415-2019[ISO 20415:2019]

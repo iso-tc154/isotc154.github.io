@@ -1,0 +1,13 @@
+---
+layout: post
+title:  ISO 20415:2019 getting published!
+date:   2019-06-05 00:00:00 +0800
+categories: site update
+see_also:
+---
+
+link:/standards/iso-20415-2019[ISO 20415:2019] has been finalized
+as an International Standard and will be available on ISO.org soon.
+
+Congratulations to link:/groups/wg6[WG 6] on this excellent
+achievement!

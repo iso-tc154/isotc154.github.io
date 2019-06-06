@@ -1,0 +1,55 @@
+---
+name: ISO 20415:2019
+type: international
+title: "Processes, data elements and documents in commerce, industry and administration -- Trusted Mobile e-Document Framework -- Requirement, functionality and criteria for ensuring reliable and safe mobile e-business"
+publication-date: 2019-06-06
+---
+
+== Introduction
+
+Communication via mobile devices is essential in the modern world, so that most mobile devices are ever used as a passage for the connection of people, business, and network. Electronic transactions, information processing, and data transmission via the mobile device are common in business area. In addition, electronic documents utilized by mobile devices in the business world are rapidly increasing and its application area is growing also. Mobile electronic document exchange will be used in overall industrial areas including B2C and B2B, so that the effect will be enormous considering the characteristic of mobile device.
+
+////
+However, communication using the mobile device involves reliability issues. First, the wireless channel could be disconnected unexpectedly even while transmitting data. This could be a fatal flaw in the transmission and reception of sensitive corporate data. Second, it is possible that a mobile device could be lost or theft, which could cause data transmission by a fake user. Third, the mobile communication are relatively vulnerable than online communication in the respect of security and reliability. These problems have been an obstacle to the flow of electronic documents and electronic transactions diffusion through the mobile communication. Companies or individuals are increasing the demand for data transmission continues to be safe and reliable enough from the mobile communication. Thus, it is necessary for the standard way to exchange data with the electronic document in a manner that safe and reliable over a mobile device.
+
+In the process to distribute electronic documents for electronic transactions using mobile networks, principles and standards shall be suggested in order to maintain the reliability of distribution of electronic documents due to the negative characteristics of mobile network. As mobile networks have lower reliability generally and limited available computing resources, users of mobile electronic documents could have options for ensuring the reliability in the distribution of mobile electronic documents. That is, a guide shall be suggested to find out an appropriate way for distributing mobile electronic documents according to costs or network environment.
+////
+
+image:/assets/images/standards/iso-20415-2019-figure1.png[width=90%]
+
+//Figure 1 — Concept of TMEF
+
+ISO 20415 is intended to provide a framework standard (TMEF: Trusted Mobile e-Document Framework) for creating and transmitting electronic documents for B2B/B2C via a mobile device in a secure and trusted method in an unstable and unreliable mobile environment. The concept of TMEF can be seen in Figure 1. Businesses or individuals are getting more dependent on mobile devices in terms of handling business as time passes by. Also, situation is that the demand to handle important duties of businesses is getting increased. Therefore, the demand on safe and reliable processing of electronic documents under mobile environment is also rapidly getting increased.
+
+////
+However, a mobile environment is unable to apply all methods for maintaining highest security and reliability due to the limitations of computing resources and the limitations of wireless network. Therefore, trusted factors necessary for performing safe electronic transactions under mobile environment shall be derived to apply them in reality.
+
+Wireless network and MD are exposed to risks and easiest to get attacked under mobile environment. It is very difficult to identify strictly MD and the user who owns the MD due to its portable nature. Also, wireless network causes various problems with reliability and safety while performing electronic transactions since it may often be cut off suddenly and also may be tapped by a random user very easily.
+
+Accordingly, in order to process electronic documents in safe and reliable way under a mobile environment, authentication on the mobile device (MD) in use, platforms on the MD, and the users who use S/W and MD shall precede. Also, detection on the disconnection of wireless network and fast recovering the network are necessary. In addition, maintaining confidentiality is also absolutely required to be ready for tapping. In some cases, verification of integrity or confirmation of authenticity on a document prepared in an MD may be required. If a mobile device is assumed to provide partly some of these functions, it cannot be considered safe or reliable. So, it is necessary an overall mobile framework which can cover completely the vulnerability of mobile environment: safety and reliability.
+////
+
+This document presents a framework standard, called TMEF, necessary for using and transmitting electronic documents in a safe and reliable way under a mobile electronic transaction environment. TMEF presents functional requirements and criteria for practical use and management factors necessary for performing mobile transactions.
+
+
+== Scope
+
+This document provides a set of requirements, functionality, and criteria for ensuring reliability and safety of mobile e-business. Electronic transactions using wireless environment have more vulnerabilities than electronic transactions in wired environment. In order to overcome these weaknesses, it is necessary to define the requirements to deal with the vulnerability of all items constituting the mobile e-business environment which are mobile device, wireless network, mobile server, mobile software, mobile e-document, and mobile user. The functionality of these items should be specified at least for meeting the requirements. In addition, minimum utilization criteria should be presented for practical use of the functions.
+The specification of this document covers overall use cases for mobile e-business including simple inquiry of electronic documents, exchange of electronic documents for general transaction, and even exchange of contract and payment documents. This can be applied to the most wireless protocols such as 3G, 4G and Wi-Fi, etc. This could be also used in the general mobile e-business area such as logistics, electronic trades, financing, manufacturing and service, and can be referenced by system developers of electronic transaction using mobile devices, mobile network service providers and users. The scope of ISO 20415 is figured as Figure 2.
+
+image:/assets/images/standards/iso-20415-2019-figure2.png[width=90%]
+
+
+== Who needs this standard?
+
+ISO 20415 is intended for:
+
+* Mobile-based electronic document system development, operation, and certification organisations;
+* Mobile electronic document software development organizations;
+* Mobile electronic document third-party service provider organization;
+
+
+== Related news
+
+link:/posts/2019-06-05-iso-20415-published[ISO/TC 154 news: ISO 20415:2019 getting published!]
+
