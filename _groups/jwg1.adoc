@@ -49,16 +49,18 @@ Bernd Bösler (DE/DIN) (1998 - )
 
 === Current convenor
 
-{% assign convenor = site.members | where: "member-id", "sue-probert" | first %}
+{% assign convenor = site.members | where: "member-id", "yan-zhang" | first %}
 
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2018 - )
+link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2018 -)
 
 
 === Previous convenors
 
 * Don Trafford (UK) (initial - September 2007) (In memory please
 see http://www.dontrafford.com)
+
 * Klaus-Dieter Naujok (DE) (September 2007 - 2018)
+
 
 == Deliverables
 
