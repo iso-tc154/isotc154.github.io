@@ -6,9 +6,15 @@ role: convener-wg6
 affiliation: KATS, Korea, Republic of
 ---
 
-
 Jasmine is Convener of ISO/TC 154 WG6 and project leader of ISO 19626.
 
-Experienced expert with a demonstrated history of working in the government relations ICT industry. Skilled in Paperless projects in global supply chain, Digital Preservation, Document Management, Strategy, and Enterprise Content Management. Strong community and social services professional with a PhD in Management Engineering from KAIST and MA, BA focused in Library and Information Science from Yonsei University.
+Experienced expert with a demonstrated history of working in the
+government relations ICT industry. Skilled in Paperless projects in
+global supply chain, Digital Preservation, Document Management,
+Strategy, and Enterprise Content Management. Strong community and
+social services professional with a PhD in Management Engineering
+from KAIST and MA, BA focused in Library and Information Science
+from Yonsei University.
 
-Her LinkedIn profile: https://www.linkedin.com/in/jasmine-jaegyong-chang-27b94024/
+Her LinkedIn profile:
+https://www.linkedin.com/in/jasmine-jaegyong-chang-27b94024/
