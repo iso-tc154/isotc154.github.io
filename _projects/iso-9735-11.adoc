@@ -1,0 +1,38 @@
+---
+id: iso-9735-11
+name: ISO/NP 9735-11
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax -- Part 11: Version 3 compatible profile for Version 4 of ISO 9735"
+status: new
+excerpt:
+---
+:page-liquid:
+
+A new project is run to investigate possibility of providing a profile document to enable interoperability between the UN/EDIFACT syntax version 3 and the latest version 4 by describing a functionally restricted sub-set of the latter.
+
+// more
+== Purpose
+
+Version 3 of ISO/9735 has since its publication in 1992 experienced a steady increase in deployment globally and continues to expand today. Version 4 was published in 1998 with several new features. Of these, the only known implementations are for digital signatures, driven by legal requirements, and the use of non-latin character-sets. Since version 4 is not backwards compatible no widespread migration from version 3 has taken place or being planned. According to ISO policy (TMB Resolution 09/2012), different editions of the same standard cannot coexist which would mean that version 3 would no longer be available from ISO. Due to the large number of version 3 based users, and that this community is still growing, an exception was admitted for these two version to be available (TMB Resolution 8/2013). However, since the resolution was approved “on a temporary basis” a permanent solution is needed, which is what this proposal aims at.
+
+== Scope
+
+Profile of version 4 of ISO 9735 restricting the functionality to be compatible with version 3.
+
+
+== Stage
+
+* NP Ballot until 2019/08/07
+
+
+== Who needs this standard?
+
+Communities with wide EDIFACT adoption, e.g. retail, maritime, customs will ensure support of existing EDI solutions and enabling new implementations.
+
+
+== Project leader
+
+{% assign leader = site.members | where: "member-id", "anders-grangard" | first %}
+
+link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+
+

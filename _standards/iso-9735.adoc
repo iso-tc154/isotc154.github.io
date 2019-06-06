@@ -1,0 +1,88 @@
+---
+name: ISO 9735
+type: international
+title: "Electronic data interchange for administration, commerce and transport (EDIFACT)"
+---
+
+== ISO 9735 EDIFACT Application level syntax rules
+
+In 1987, following the convergence of the UN and US/ANSI syntax proposals, the UN/EDIFACT Syntax Rules were approved as the ISO standard ISO 9735 by the International Organization for Standardization. It comprise a set of internationally agreed standards, directo­ries, and guidelines for the electronic interchange of structured data, between independent computerized information systems.
+
+The EDIFACT standard provides:
+
+* set of syntax rules to structure data
+* an interactive exchange protocol (I-EDI)
+* standard messages which allow multi-country and multi-industry exchange
+
+=== Who needs this standard?
+
+Communities with wide EDIFACT adoption, e.g. retail, maritime, customs.
+
+
+=== Publication history with applicable version/release/edition numbering
+
+Users should note the following conventions for identifying each publication of ISO 9735:
+
+[cols="a,a,a,a"]
+|===
+|ISO Publication Number
+|Description
+|Version Number (DE 0002)
+|Release Number (DE 0076)
+
+|
+* ISO 9735: 1988
+|First publication.
+|1
+|Not applicable
+
+|
+* ISO 9735: 1988 (Amended and reprinted in 1990)
+|Amended to correct two ambiguities in the original text concerning S008 and S009.
+|2
+|Not applicable
+
+|
+* IS0 9735:1988 (Amended and reprinted in 1990), Amd 1:1992
+|Amendment 1 published in 1992 and specifying four additional character sets.
+|3
+|Not applicable
+
+|
+* ISO 9735-1:1998
+* ISO 9735-1:1998/Cor 1:1998
+* ISO 9735-2:1998
+* ISO 9735-3:1998
+* ISO 9735-4:1998
+* ISO 9735-5:1999
+* ISO 9735-6:1999
+* ISO 9735-7:1999
+* ISO 9735-8:1998
+* ISO 9735-9:1999
+|Version 4 First Edition, published in 1998 and 1999. Consists of 9 separate parts.
+|4
+|Not applicable
+
+|
+* ISO 9735-1:2002
+* ISO 9735-2:2002
+* ISO 9735-3:2002
+* ISO 9735-4:2002
+* ISO 9735-5:2002
+* ISO 9735-6:2002
+* ISO 9735-7:2002
+* ISO 9735-8:2002
+* ISO 9735-9:2002
+* ISO 9735-10:2002
+|Version 4 Second Edition, published in 2002. Consists of 10 separate parts (Note: For Part 10 only, this is its First Edition). (It should be noted that the identification of "First" and "Second Editions" appears only on the printed copies of the ISO published documents).
+|4
+|01
+
+|
+* ISO/CD 9735-10:2012
+|Version 4 Second Edition, CD published in 2012, ISO standard expected in 2013 (Note: For Parts 1 to 9 the former Editions have been kept). (It should be noted that the identification of "First" and "Second Editions" appears only on the printed copies of the ISO published documents).
+|4
+|02
+
+|===
+
