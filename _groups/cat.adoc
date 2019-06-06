@@ -6,11 +6,19 @@ order: 1
 ---
 :page-liquid:
 
-The Chairman's Advisory Team (CAT) is an ad-hoc group setup by the TC 154 chair to assist him on the administrative side of running the TC.
+== Introduction
+
+The Chairman's Advisory Team (ISO/TC 154/CAG) is an ad-hoc group setup by the TC 154 chair to assist him on the administrative side of running the TC.
 
 The group's membership comprises of the TC 154 chair and secretariat, and the WG/JWG/JMA conveners and secretariats.
 
 The group's mandate is to assist in identifying issues and topics that need to be discussed and may even be resolved by the team, or may need to be agenda items for the next upcoming meeting.
 
 The group's minutes and reports are available via the link:/minutes[CAT minutes] page.
+
+== Chair
+
+{% assign convenor = site.members | where: "member-id", "judy-zhu" | first %}
+
+link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }})
 

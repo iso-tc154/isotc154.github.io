@@ -22,7 +22,8 @@ The scope of JWG8 is to develop standards for proceses and data elements that ar
 
 == History
 
-JWG 8 was established in October 2018 by ISO/TC 154 in collaboration with UN/ECE through UN/CEFACT.
+JWG 8 was established in October 2018 by ISO/TC 154 in collaboration with
+http://www.unece.org[UN/ECE] through https://uncefact.unece.org[UN/CEFACT].
 
 == Convenorship
 
@@ -35,93 +36,24 @@ link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (initi
 
 == Active projects
 
-=== ISO 23354
-
-==== Title
-
-Business requirements for end-to-end visibility of logistics flow
-
-==== Project leader
-
-{% assign leader = site.members | where: "member-id", "linda-wang" | first %}
-
-link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
-
-==== Stage
-
-CD
-
-==== Scope
-
-This standard specifies three business requirements for the visibility of logistics traffic flow based on the use cases and gap analysis in Annex A.
-
-It includes:
-
-. LISS network architecture requirements
-. visibility data interchange requirements between LISSs, and
-. visibility data interface and process requirements for a LISS network.
-
-Furthermore, the standard describes the requirement for a guideline for business participants and stakeholders in LISS Network such as logistics information service providers, Single Window/SSP operators, data providers and logistics data users.
-
-==== Who needs this standard?
-
-* For logistics information service system operator: Business requirements guideline for establishing data connection with other logistics information service systems, and satisfy different data providers and users’ requirements.
-
-* For single window operator: Business requirements guideline for establishing and managing the information system and initiation of public data sharing.
-
-* For logistics authorities: Business requirements guideline for interchanges specific logistics data through logistics information service systems network to improve their own business service capability.
-
-* For users: Business requirements guideline for obtaining specific logistics data through logistics information service systems network for their own business.
+* link:/projects/iso-23354[ISO 23354]
+* link:/projects/iso-23355[ISO 23355]
 
 
-=== ISO 23355
+== Collaborative parties
 
-==== Title
+=== UN/CEFACT
 
-Visibility data interchange between logistics information service providers
-
-==== Stage
-
-WD
-
-==== Project leader(s)
-
-* Yizhou Wu
-
-{% assign leader = site.members | where: "member-id", "max-liu" | first %}
-* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
-
-==== Scope
-
-This standard specifies a common framework to clarify what kind of logistics visibility data and how they should be interchanged among different logistics information service providers in order to enable efficient and effective visibility data querying.
-
-Objects including:
-
-* Vessel and Cargo in maritime transport
-* Vehicle and Cargo in road transport
-* Flight and Cargo in air transport
-* Train and Cargo in railway transport
-* Customs, Quarantine & Inspections and OGA clearance process
-
-
-==== Who needs this standard?
-
-* This standard can be used by logistics information service providers (e.g PCS, CCS, Freight forwarder system etc.) for establishing data connection with other logistics information service systems and satisfy different data providers and users’ requirements.
-
-* Single window operators can establish and manage the information system and initiate public data sharing based on this standard. Logistics authorities and logistics data users can also use this standard to track the logistics flow and optimize their services.
-
-
-=== Collaborative parties
-
-==== UNCEFACT
-
-The JWG8 is a Joint working group between ISO TC154 and UNCEFACT. UNCEFACT Multi Modal Transport Reference Data Model (MMT RDM) and the corresponding Business Requirements Specification (MMT BRS) are normative references for ISO 23355 and ISO 23354 respectively.
+The JWG 8 is a Joint working group between ISO/TC 154 and UN/CEFACT.
+UN/CEFACT Multi Modal Transport Reference Data Model (MMT RDM) and the corresponding Business Requirements Specification (MMT BRS) are normative references for
+link:/standards/iso-23355[ISO 23355] and
+link:/standards/iso-23354[ISO 23354] respectively.
 
 The United Nations Centre for Trade Facilitation and Electronic Business (UN/CEFACT) is a subsidiary, intergovernmental body of the United Nations Economic Commission for Europe (UNECE) which serves as a focal point within the United Nations Economic and Social Council for trade facilitation recommendations and electronic business standards. It has global membership and its members are experts from intergovernmental organizations, individual countries' authorities and also from the business community.
 
-==== IPCSA
+=== IPCSA
 
-IPCSA members contribute to the project ISO 23355.
+IPCSA members contribute to the project link:/standards/iso-23355[ISO 23355].
 
 IPCSA(The International Port Community Systems Association) is the successor to the European Port Community Systems Association (ECPSA) which was launched in June 2011 by six founding members, all European-based Port Community System operators. IPCSA and its members play a vital role in global trade facilitation; the electronic communications platforms provided by Port Community Systems ensure smooth transport and logistics operations at hundreds of sea ports, airports and inland ports.
 

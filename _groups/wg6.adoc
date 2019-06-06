@@ -17,11 +17,6 @@ The scope of WG6 related to business transactions of TC154 scope such as e-comme
 
 WG6 also covers considerations about trusted e-communications, in the environment of mobile, IoT and cloud, which is aligned with the development of emerging ICT technology.
 
-== Organization
-
-* PT1 -- Business Semantics Thesaurus
-* PT2 -- XMLFACT
-
 == Convenorship
 
 === Current convenor
@@ -33,3 +28,19 @@ link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (initi
 == Secretariat
 
 KATS
+
+== Organization
+
+* PT1: ISO 14533 Long term signature profiles
+* PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+* PT3: ISO/DIS 20415 Trusted mobile e-document framework
+
+== Active projects
+
+* link:/projects/iso-14533[ISO 14533]
+* link:/projects/iso-19626-1[ISO 19626-1]
+* link:/projects/iso-20415[ISO 20415]
+
+== Standards
+
+
