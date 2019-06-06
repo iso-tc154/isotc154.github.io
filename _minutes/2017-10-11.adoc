@@ -53,11 +53,11 @@ Ray uploaded the FDIS draft on the old TC154 website for experts review. Since h
 
 No discussion, Jasmine missed this meeting.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 * ISO/WD 14533-4
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ==== PT3 - ISO/WD 20415 Trusted mobile e-document framework
 
@@ -68,7 +68,7 @@ No discussion, Jasmine missed this meeting.
 Anders had an offline discussion with Peter Plapper and received input
 from experts, and plan to hold the conference call for further discussion.
 
-==== PT2- ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 Linda Wang will not be available to join the project for the limited time. There is no template for the working group report. Every leader can prepare by themselves.
 The WG7 report will be prepared for the plenary meeting including the status update of projects and the progress of cooperation with TC184.

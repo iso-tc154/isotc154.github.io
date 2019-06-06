@@ -78,7 +78,7 @@ Jasmine.
 
 Jasmine reported the progress of WG6 projects.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/PWI 14533-2
 
@@ -96,7 +96,7 @@ Peter Rybar.
 DIS ballot comments resolution.
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/DIS 19626-1
 
@@ -142,13 +142,13 @@ Chair mentioned that although there is resolution from MoU/MG, the lack of exper
 
 
 
-==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+==== PT2: ISO/CD 22468 Value Stream Management (VSM)
 
 Peter Plapper.
 
 The project was under the CD ballot comments resolution.
 
-==== PT3- ISO/DTR 18262 ODIF @Jianfang
+==== PT3: ISO/DTR 18262 ODIF @Jianfang
 
 MoU/MG meeting made a resolution about MoU/MG members to join in ODIF project.
 

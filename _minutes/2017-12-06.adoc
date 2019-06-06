@@ -73,7 +73,7 @@ Jasmine.
 
 Based on the recent email discussion, chair kindly reminded that WG convener and project leader should make sure that the project was discussed fully by all project members, some member did not review this enough. Secretary should provide the corresponding ISO process guide and IT tools such as livelink guide.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/WD 14533-4
 
@@ -81,7 +81,7 @@ Webex comment resolution meeting held in 12-04,next meeting will be in 12-20. Af
 
 ===== ISO 14533-2
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/CD19626-1
 

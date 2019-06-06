@@ -80,7 +80,7 @@ Jasmine reported the progress of WG6 projects.
 
 Chair impacted that other countries should be involved and participated in the project earlier to make sure the qualities of the projects.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/PWI 14533-2
 
@@ -95,7 +95,7 @@ Peter Rybar.
 DIS ballot is on going.
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 Jasmine.
 
@@ -124,7 +124,7 @@ Peter Plapper and Jianfang reported the progress of WG7 projects.
 No discussion due to the absence of Anders.
 
 
-==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+==== PT2: ISO/CD 22468 Value Stream Management (VSM)
 
 Peter Plapper.
 
@@ -133,7 +133,7 @@ The DIS ballot should be started before April.20th.
 *AP56: Jianfang checks the impact to ISO 22468 project process if the DIS ballot of ISO 22468 was postponed.*
 
 
-==== PT3- ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 Jianfang.
 
@@ -200,7 +200,7 @@ No discussion.
 
 == Other Business
 
-=== Oct 2019 Pleneary meeting
+=== Oct 2019 Plenary meeting
 
 Jianfang sent the plenary meeting notice and invitation, hotel reservation letters on the 154 website.
 

@@ -59,13 +59,13 @@ Ray finished the resolution of comments of ISO/DIS 8601-2 and the FDIS draft on 
 
 === WG 6 (Trusted eCommunication)
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 * ISO/WD 14533-4 - Peter regrets for this call, but he sent
 email by saying it is with an incorporated comments for WG6
 reviews will be available next week.
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 * ISO/CD 19626-1 [fundamentals] - WG6 convener Jasmine introduced that The ETSI comment will be resolved at WG6 virtual meeting during the plenary week. She also announce its presentation plan at the block chain mini conference on 30th UN/CEFACT Forum.
 
@@ -89,7 +89,7 @@ Great work had been done for this project, but there are still lots of work to b
 
 PS: Anders is also the GS1 liaison member and UN/CEFACT vice-chair, Anders will participate in the WG7 work and WG7 meetings as the project leader of ISO 21981, and for the CAT meeting, later he can only attend the CAT meetings if necessary to save the time resource.
 
-==== PT2- ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 Christof introduced that the project is still in stage 20, active P-member countries are Luxemburg, Netherlands, Germany, China and South Korea. Need to confirm the availability of Linda Wang from China as the national expert.
 

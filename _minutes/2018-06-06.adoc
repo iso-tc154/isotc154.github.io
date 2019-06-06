@@ -74,7 +74,7 @@ AP22: Two ballots for ISO/DIS 8601-1 and ISO/DIS 8601-2 need to be ready before 
 
 Jasmine reported on the progress of WG6, appreciated her job.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/WD 14533-4
 
@@ -87,7 +87,7 @@ The new expert is the committee member from Japan. The new expert has registered
 AP23: Peter Submit the 14533-4 CD ballot before Oct. Jasmine support.
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 Jasmine.
 

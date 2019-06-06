@@ -91,7 +91,7 @@ The form4 and draft of the project were submitted for NWIP ballot.
 Jasmine reported the progress of WG6 projects.
 
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/PWI 14533-2
 
@@ -106,7 +106,7 @@ Peter Rybar.
 The DIS ballot of the project is ongoing.
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 Jasmine.
 
@@ -130,9 +130,9 @@ No discussion due to the absence of Peter Plapper and Jianfang.
 
 ==== PT1 – ISO/TS WD 21981 Business Semantics Thesaurus (BST)
 
-==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+==== PT2: ISO/CD 22468 Value Stream Management (VSM)
 
-==== PT3- ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 
 === JWG8 (Logistics data contents and process)
@@ -201,7 +201,7 @@ No discussion.
 
 == Other Business
 
-=== Oct 2019 Pleneary meeting
+=== Oct 2019 Plenary meeting
 
 No discussion in the meeting. There is offline discussion between peter and Jianfang.
 

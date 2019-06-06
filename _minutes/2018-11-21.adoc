@@ -81,7 +81,7 @@ More experts should be invited to join in the project. Jianfang, Ronald and Sue 
 
 Jasmine reported the progress of WG6 projects. Jianfang mentioned that the status of ISO 20415 was in the 8 weeks’ transition period and the DIS ballot will be open after that.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/PWI 14533-2
 
@@ -96,7 +96,7 @@ Peter Rybar.
 CD ballot comments resolution.
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/DIS 19626-1
 
@@ -126,13 +126,13 @@ Jianfang sent the two normative reference standards ISO 25964-1 and ISO 25964-2 
 As it discussed in the plenary meeting, the issue of 21981 will be discussed in the next MoU/MG meeting.
 
 
-==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+==== PT2: ISO/CD 22468 Value Stream Management (VSM)
 
 Peter Plapper.
 
 No discussion due to the absence of Peter Plapper.
 
-==== PT3- ISO/DTR 18262 ODIF @Jianfang
+==== PT3: ISO/DTR 18262 ODIF @Jianfang
 
 Planed to update the new version and have a teleconference within WG7 in March 2019.
 

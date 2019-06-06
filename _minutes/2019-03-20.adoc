@@ -90,7 +90,7 @@ The form4 and draft of the project were submitted for NWIP ballot.
 Jasmine reported the progress of WG6 projects.
 
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/PWI 14533-2
 
@@ -105,7 +105,7 @@ Peter Rybar.
 The DIS ballot of the project is ongoing.
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 Jasmine.
 
@@ -134,13 +134,13 @@ Peter Plapper and Anders reported the progress of WG7 projects.
 
 The project is on the draft updating.
 
-==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+==== PT2: ISO/CD 22468 Value Stream Management (VSM)
 
 Peter Plapper.
 
 The DIS draft will be completed and sent to Jianfang by April 18th.
 
-==== PT3- ISO/DTR 18262 ODIF
+==== PT3: ISO/DTR 18262 ODIF
 
 Jianfang.
 
@@ -222,7 +222,7 @@ No discussion.
 
 == Other Business
 
-=== Oct 2019 Pleneary meeting
+=== Oct 2019 Plenary meeting
 
 Peter plapper reported that welcome brochure will be provided and the time and location were fixed (14.10-18.10.2019, Luxembourg, Campus Kirchberg). Invitation letter will be issued by UL but Dean mandates the list of invitees.
 

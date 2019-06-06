@@ -66,7 +66,7 @@ Jasmine and Peter Rybar gave a presentation on the progress of WG6, appreciated 
 
 AP: Jasmine provides support to Peter on CD procedure.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/WD 14533-4
 
@@ -76,7 +76,7 @@ Peter Rybar reported 14533-4 is at stage WD, they had updated the document accor
 
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/CD 19626-1
 

@@ -70,11 +70,11 @@ Finished.
 
 Jasmine briefly shared the report and she shall update a new version of liaison report in the plenary meeting. She shall invite related ETSI delegate to join the plenary meeting.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 * ISO/WD 14533-4 - still waiting for ETSI documents
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 The CD ballot of 19626-1 had passed.
 
@@ -95,7 +95,7 @@ Plapper.
 
 From the email offline, Jianfang has told Peter that Anders will be the project leader. Which needs to be confirmed offline. And next time, Anders will be invited for the CAT meeting.
 
-==== PT2- ISO/WD 22468 Value Stream Management (VSM)
+==== PT2: ISO/WD 22468 Value Stream Management (VSM)
 
 Updated version will be ready in plenary meeting. Peter will organize the joint meeting with TC184 after a first version later as a discussion basis, which is not in a rush. And also it can have this kind of discussion in the next MoU meeting. Jianfang can help on the details. Peter, pls go ahead to discuss with Jianfang offline.
 

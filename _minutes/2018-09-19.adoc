@@ -66,7 +66,7 @@ Ray will attend the Hangzhou meeting remotely and Ron will chair the meeting.
 
 As for Jasmine’s absence, WG6 report slides was discussed.
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/PWI 14533-2
 
@@ -82,7 +82,7 @@ CD ballot has closed, and comment disposition will be discussed at Hangzhou meet
 
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/DIS 19626-1
 
@@ -108,13 +108,13 @@ Anders.
 
 The issues and draft will be discussed in the Hangzhou meeting.
 
-==== PT2- ISO/CD 22468 Value Stream Management (VSM)
+==== PT2: ISO/CD 22468 Value Stream Management (VSM)
 
 Peter Plapper.
 
 Peter Plapper reported that comments  disposition of CD ballot will be discussed at Hangzhou meeting.
 
-==== PT3- ISO/DTR 18262 ODIF @Jianfang
+==== PT3: ISO/DTR 18262 ODIF @Jianfang
 
 The first draft and comment disposition has finished, and will be discussed in WG7 Hangzhou meeting.
 

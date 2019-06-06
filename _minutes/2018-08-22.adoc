@@ -83,7 +83,7 @@ Chair congratulated Jasmine for the new term of WG6 convenor.
 Jasmine reported on the progress of WG6, appreciated her job.
 
 
-==== PT1 -ISO 14533 Long term signature profiles
+==== PT1: ISO 14533 Long term signature profiles
 
 ===== ISO/WD 14533-4
 
@@ -91,7 +91,7 @@ CD ballot will end in 09-17. Comments resolution of CD ballot will be done at Ha
 
 
 
-==== PT2 -ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
+==== PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 
 ===== ISO/CD 19626-1
 
