@@ -4,6 +4,7 @@ name: ISO/WD 34000
 title: "Date and time -- Concepts and vocabulary"
 status: current
 ---
+:page-liquid:
 
 == Purpose
 
@@ -31,8 +32,15 @@ The scope of the vocabulary provided in this document corresponds to
 that of ISO/TC 154/WG 5: Representation of dates and times.
 
 
-== References
+== Who needs this standard?
 
-* [[[ISO8601-1,ISO 8601-1]]], _Date and time -- Representations for information interchange -- Part 1: Basic rules_
+* This standard provides a standardized set of terminology and concepts of the field of date and time, setting a common understanding for individuals as well as experts with the need to use and communicate date and time concepts.
 
-* [[[ISO8601-2,ISO 8601-2]]], _Date and time -- Representations for information interchange -- Part 2: Extensions_
+* This standard's authoritative, common basis of the field of date and time will further define other International Standards relating to date and time, as well as facilitate the interoperation of global systems and processes through the common language for date and time concepts.
+
+
+== Project leaders
+
+{% assign leader = site.members | where: "member-id", "ronald-tse" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+

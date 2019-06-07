@@ -4,10 +4,14 @@ name: ISO/NP 34300
 title: "Date and time -- Codes for calendar systems"
 status: current
 ---
+:page-liquid:
+
 
 == Purpose
 
 Calendars are an essential element in date tracking.
+
+There are a number of different calendar systems in use today globally. While the Gregorian calendar has achieved relatively universal status, some are used in specific locations, such as the Hebrew, Chinese and Japanese calendars, some are used for specific purposes, such as the Buddhist calendars for religious and cultural reasons, and a large number of them relegated to historic archives and bibliography.
 
 With multiple calendar systems in common use across
 the international community, it is necessary for a number
@@ -27,3 +31,19 @@ procedures.
 The codes were devised for usage of any application requiring
 the expression of calendar systems in coded form, including
 for data interchange.
+
+
+== Who needs this standard?
+
+* This standard provide a list of codes to represent various calendars for all the above stated usages and be able to facilitate date conversion and comparison of different dates across calendars systems.
+
+* This standard provide a unique identifier for each calendar system allowing information systems to encode them according to an interoperable set of codes.
+
+* This standard enables implementations to perform interoperable conversions between calendar systems.
+
+
+== Project leaders
+
+{% assign leader = site.members | where: "member-id", "ronald-tse" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+
