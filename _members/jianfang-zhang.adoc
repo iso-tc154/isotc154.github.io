@@ -1,5 +1,6 @@
 ---
 member-id: jianfang-zhang
+picture: jianfang-zhang.jpg
 name: Jianfang Zhang
 role: secretariat
 affiliation: SAC, China
@@ -7,3 +8,11 @@ affiliation: SAC, China
 
 Jianfang is the secretariat of ISO/TC 154 and project leader of ISO/TR 18262 ODIF.
 He is an expert representative of SAC.
+
+////
+Zhang JianFang is an associate research fellow, and work for China National Institute of Standardization.
+
+He was the principal author or editor of many national standards, and he is also the project leader of ISO/TR 18262.
+
+He severed as secretary of ISO/TC 154 since 2014 (now named as committee manager of ISO/TC 154), and severed as Deputy Secretary-General of SAC/TC 83 (mirror committee of ISO/TC 154), and committee member of SAC/TC 267 and SAC/TC 563.
+////
