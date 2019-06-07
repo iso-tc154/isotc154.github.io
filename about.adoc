@@ -1,12 +1,9 @@
 ---
 title: About ISO/TC 154
 permalink: /about/
+layout: page
 ---
 :page-liquid:
-
-++++
-<main>
-++++
 
 = About ISO/TC 154
 
@@ -46,7 +43,3 @@ Maintenance of the EDIFACT-Syntax.
 {% for group in groups %}
 * {% if group.name %}{{ group.name }} — {% endif %} link:{{ group.url }}[{{ group.title }}]
 {% endfor %}
-
-++++
-</main>
-++++
