@@ -1,0 +1,39 @@
+---
+name: ISO 14533-4
+type: international
+title: "Processes, data elements and documents in commerce, industry and administration -- Long term signature profiles -- Part 4: Attributes pointing to (external) proof of existence objects used in long term signature formats (PoEAttributes)"
+publication-date: 2019-06-07
+---
+
+== Introduction
+
+This document provides detailed information associated with the analysis, selection and implementation of procedures associated with long term signatures. The development of this document is a result of organizational requests to receive information of already existing objects defined in technology standards, technical reports, and industry best practices for electronic signatures verifiable for a long term.
+
+The purpose of this document is to ensure the interoperability of implementations with respect to long term signatures that make electronic signatures verifiable for a long term. This document clarifies conditions used in the validation procedure to provide a complete and unalterable result.
+
+////
+IMPORTANT -- the electronic file of this document contains colours which are considered to be useful for the correct understanding of the document. Users should therefore consider printing this document using a colour printer.
+////
+
+== Scope
+
+This document specifies the elements defined in the international standards of ISO/ITU-T, ETSI and IETF RFC that enable at least a proof of existence of data objects and digital signatures and the preservation of the validity status of digital signatures over a long period of time used in validation.
+
+It provides the definitions of the proof of existence (PoE) attributes and clarification of the usage of (external) PoE objects, with digital signatures and trusted time values, which have already existed and can be used by the PoE attributes pointing to (external) PoE objects used in long term signature validation or preservation.
+
+
+////
+== Who needs this standard?
+
+ISO 20415 is intended for:
+
+* Mobile-based electronic document system development, operation, and certification organisations;
+* Mobile electronic document software development organizations;
+* Mobile electronic document third-party service provider organization;
+////
+
+
+== Related news
+
+link:/posts/2019-06-07-iso-14533-4-published[ISO/TC 154 news: ISO 14533-4:2019 getting published!]
+

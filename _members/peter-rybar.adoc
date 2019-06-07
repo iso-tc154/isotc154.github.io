@@ -1,0 +1,14 @@
+---
+member-id: peter-rybar
+name: Peter Rybar
+role: project-leader-14533
+affiliation: UNMS SR, Slovakia
+---
+
+//picture: peter-rybar.jpg
+
+Ing. Peter Rybár is the project leader of ISO 14533.
+
+He is the author of the Slovak NSA electronic signature standards,
+member of the Slovak Standards Institute (SUTN)
+and ember of the ESI ETSI.
