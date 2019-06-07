@@ -5,6 +5,8 @@ title: "ebXML - Part 5: ebCCTS Revision"
 status: new
 excerpt:
 ---
+:page-liquid:
+
 // more
 
 == Purpose

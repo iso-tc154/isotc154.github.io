@@ -4,6 +4,8 @@ name: ISO/NP 17369
 title: Statistical data and metadata exchange (SDMX) Revision
 status: new
 ---
+:page-liquid:
+
 // more
 
 == Purpose

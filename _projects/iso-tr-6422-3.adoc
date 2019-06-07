@@ -7,6 +7,8 @@ title: >-
 status: new
 excerpt:
 ---
+:page-liquid:
+
 // more
 
 == Purpose
@@ -26,4 +28,3 @@ In order to start with the work in ISO/TC 154/WG 4 this call of experts shall en
 * the UN layout key and the UNTDED / EDED (EDIFACT Directory of Data Elements);
 * the conversion of paper-documents into electronic documents; and
 * semantic web specifications like Web Ontology Language (OWL) and Resource Description Framework (RDF).
-

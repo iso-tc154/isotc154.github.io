@@ -4,6 +4,8 @@ name: ISO/NP 14533
 title: Long Term Signature profiles for EDI Data and Electronic Documents
 status: current
 ---
+:page-liquid:
+
 
 [NOTE]
 ====
