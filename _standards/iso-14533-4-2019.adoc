@@ -1,5 +1,5 @@
 ---
-name: ISO 14533-4
+name: ISO 14533-4:2019
 type: international
 title: "Processes, data elements and documents in commerce, industry and administration -- Long term signature profiles -- Part 4: Attributes pointing to (external) proof of existence objects used in long term signature formats (PoEAttributes)"
 publication-date: 2019-06-07
