@@ -1,14 +1,16 @@
 ---
 layout: post
-title:  ISO 14533-4:2019 getting published!
+title:  ISO 14533-4:2019 completed DIS ballot, will be published soon!
 date:   2019-06-07 00:00:00 +0800
 categories: site update
 see_also:
 ---
 :page-liquid:
 
-link:/standards/iso-14533-4-2019[ISO 14533-4:2019] has been finalized
-as an International Standard and will be available on ISO.org soon.
+link:/standards/iso-14533-4-2019[ISO 14533-4:2019] has been approved at its
+DIS stage ballot, and is awaiting publication as an International Standard.
+
+An announcement will be made when the standard is available on ISO.org.
 
 {% assign jasmine = site.members | where: "member-id", "jasmine-chang" | first %}
 {% assign rybar = site.members | where: "member-id", "peter-rybar" | first %}
@@ -17,4 +19,3 @@ Congratulations to link:/groups/wg6[WG 6] on this excellent
 achievement -- especially to
 project leader link:{{ rybar.url }}[Peter Rybar] and
 convenor link:{{ jasmine.url }}[Jasmine Chang]!
-
