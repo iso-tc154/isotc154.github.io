@@ -35,5 +35,5 @@ ISO 20415 is intended for:
 
 == Related news
 
-link:/posts/2019-06-07-iso-14533-4-published[ISO/TC 154 news: ISO 14533-4:2019 getting published!]
+link:/posts/2019-06-07-iso-14533-4-dis-successful[ISO/TC 154 news: ISO 14533-4:2019 completed DIS ballot, will be published soon!]
 
