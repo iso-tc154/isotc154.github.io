@@ -21,7 +21,8 @@ addons:
   snaps:
     - jq
     - yq
-    - aws-cli
+    - name: aws-cli
+      confinement: classic # or devmode
     - name: node
       confinement: classic # or devmode
       channel: 10/stable
