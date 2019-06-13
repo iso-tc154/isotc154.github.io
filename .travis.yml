@@ -1,22 +1,38 @@
 language: ruby
-sudo: required
+dist: xenial
 cache: bundler
-rvm:
-  - 2.5.1
 env:
   global:
-before_install:
-  - travis_retry sudo apt-get update
-  - travis_retry sudo apt-get install -y curl git make ruby-bundler ruby-dev libxml2-dev libxslt-dev npm
+rvm:
+  - 2.5
+cache: bundler
+addons:
+  apt:
+    update: true
+    packages:
+      - curl
+      - git
+      - make
+      - ruby-bundler
+      - ruby-dev
+      - libxml2-dev
+      - libxslt-dev
+      - npm
+  snaps:
+    - jq
+    - yq
+    - aws-cli
+    - name: node
+      confinement: classic # or devmode
+      channel: 10/stable
+install:
   - travis_retry gem install bundler
-  - travis_retry gem install nokogiri -v '1.8.5'
+  # - travis_retry gem install nokogiri -v '1.8.5'
 before_script:
   - bundle
   - make update-init update-modules
 script:
   - make _site
-install:
-  - pip install --user awscli
 deploy:
   - provider: script
     script: ./monitor.sh aws s3 sync _site s3://$S3_BUCKET_NAME --region=$AWS_REGION --delete --no-progress
