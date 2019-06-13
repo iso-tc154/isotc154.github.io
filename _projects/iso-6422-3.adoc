@@ -1,5 +1,5 @@
 ---
-id: iso-tr-6422-3
+id: iso-6422-3
 name: ISO/PWI TR 6422-3
 title: >-
   Layout key for trade documents --

@@ -8,15 +8,14 @@ order: 7
 
 == Scope
 
-A key task of WG7 is to enhance interoperability by developing technical specifications in support of semantics, digital innovations and associated concepts that enable standardized cross-enterprise solutions.
+A key task of WG7 is to enhance interoperability by developing
+technical specifications in support of semantics, digital
+innovations and associated concepts that enable standardized
+cross-enterprise solutions. Furthermore, the provision of
+accessible or open data and related frameworks in the field of
+e-commerce helps to align business processes and foster global
+collaboration and interchange.
 
-Furthermore, the provision of accessible or open data and related frameworks in the field of e-commerce helps to align business processes and foster global collaboration and interchange.
-
-== Organization
-
-* PT1 -- Long term signature profiles
-* PT2 -- Trusted Communication Platforms for Electronic Documents
-* PT3 -- Trusted mobile e-document framework
 
 == Convenorship
 
@@ -25,3 +24,43 @@ Furthermore, the provision of accessible or open data and related frameworks in 
 {% assign convenor = site.members | where: "member-id", "peter-plapper" | first %}
 
 link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (initial 2014 -)
+
+
+== Organization
+
+There are 3 projects teams in WG7:
+
+. PT1 -- ISO/TS 21981 Business Semantics Thesaurus (BST)
+. PT2 -- ISO/DIS 22468 Value Stream Management (VSM)
+. PT3 -- ISO/DTR 18262 Open Data Interchange Framework (ODIF)
+
+== Active projects
+
+* link:/projects/iso-21981[ISO/TS 21981]
+* link:/projects/iso-22468[ISO/DIS 22468]
+* link:/projects/iso-22468[ISO/DTR 18262]
+
+////
+== Standards
+
+* link:/standards/iso-8601-1[ISO 8601-1] published 2019/03/25
+* link:/standards/iso-8601-2[ISO 8601-2] published 2019/03/25
+////
+
+
+== Members
+
+* Luxembourg:    Prof. P. Plapper (project lead), J. Mangers, H. Krämer
+* Netherlands:   J. Valkenburg
+* Germany:       Prof. P. Kuhlang
+* China:         Y. Zhang, J. Zhang
+* South Korea:   Prof. Y. Lee
+
+
+== Related links
+
+* https://plapper.com/lean.php[STANDARDISIERTE UNTERNEHMENSÜBERGREIFENDE WERTSTOM MANAGEMENT METHODE (ISO NORM 22468)]
+
+== News and others
+
+* https://orbilu.uni.lu/handle/10993/36429[Standardized cross-enterprise Value Stream Management Method (StreaM)]

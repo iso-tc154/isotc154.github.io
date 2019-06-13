@@ -1,0 +1,32 @@
+---
+id: iso-21981
+name: ISO/TS/WD 21981
+title: "Business Semantics Thesaurus (BST)"
+status: current
+---
+:page-liquid:
+
+== Introduction
+
+The Business Semantics Thesaurus (BST) is for use by designers, implementers and users of information systems in a manner which will allow systems development to move from a closed to an open multilingual environment, especially for use in domestic and international electronic communication including electronic commerce and electronic data interchange (EDI).
+
+== Scope
+
+This Technical Specification covering the BST is intended to provide technical infrastructure for the setup of an internationally agreed thesaurus of multilingual semantic concepts from any business sector. This Technical Specification describes rules and guidelines for developing, updating and maintaining the BST. Those rules and guidelines place emphasis on the key success factor, which is to work in strong partnership with end-user communities.
+
+
+== Who needs this standard?
+
+Its principal function is to build cross references between different eBusiness directories/libraries which are maintained by different agencies.
+
+As a consequence of establishing the BST, it will also be of use in:
+
+* information modeling process within eBusiness,
+* defining new entries or redefining existing entries in existing directories/libraries,
+* input for standards work in the relevant standards areas.
+
+
+== Project leaders
+
+{% assign leader = site.members | where: "member-id", "anders-grangard" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})

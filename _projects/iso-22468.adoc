@@ -1,0 +1,31 @@
+---
+id: iso-22468
+name: ISO/DIS 22468
+title: "Value Stream Management (VSM)"
+status: current
+---
+:page-liquid:
+
+== Introduction
+
+The Value Stream Management (VSM) method is an effective tool for the collection, evaluation and continuous improvement of product and information flows within organizations. The VSM methodology includes the analysis, design and planning of value streams. In consideration of an ideal state, the current state of the value stream is mapped according to the gathered data and subsequently analyzed to design a future state with less waste and a reduced lead time. Based on a variety of different VSM approaches, which have been developed in the framework of Lean Production primarily since the 1990s, there are communication and collaboration issues during the application of VSM in practice due to different value stream visualizations and associated calculation procedures. In particular, these challenges occur at the interfaces of departments, corporate groups or entire supply chains. Therefore, a common and standardized method for the collection, evaluation and continuous improvement of value streams within cross-enterprise value networks is sought.
+
+
+== Scope
+
+This International Standard gives guidelines for the application of VSM with regard to the collection, evaluation and continuous improvement of value stream relevant data. With the help of this International Standard, also the assessment of value streams based on defined key performance indicators is described.  The adherence of rules and guidelines in regard to VSM is required to ensure a common use of the VSM method beyond departmental or organizational boundaries.  All information or requirements within this document can be transferred to any process type. Figure 3 shows a suitable scheme for the structuring of different process types.
+
+
+== Who needs this standard?
+
+Material-, energy- or data-related processes.
+
+The material- or energy-related processes can be further separated in manual or automated processes of either single, series or mass production. The data-related processes comprise service, trade or management processes. The VSM method described in this International Standard is generally applicable to material-, energy- or data-related process types. In practice, there are often hybrid forms of these main process types.
+
+
+== Project leaders
+
+{% assign leader = site.members | where: "member-id", "peter-plapper" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+
+* Jeff Mangers
