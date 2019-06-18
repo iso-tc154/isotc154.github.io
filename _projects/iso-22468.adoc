@@ -28,4 +28,5 @@ The material- or energy-related processes can be further separated in manual or 
 {% assign leader = site.members | where: "member-id", "peter-plapper" | first %}
 * link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
 
-* Jeff Mangers
+{% assign leader = site.members | where: "member-id", "jeff-mangers" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})

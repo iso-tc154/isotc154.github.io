@@ -1,0 +1,18 @@
+---
+member-id: jeff-mangers
+name: Jeff Mangers
+picture: jeff-mangers.jpg
+role: project-leader-22468
+affiliation: ILNAS, Luxembourg
+---
+
+Jeff Mangers studied Mechanical Engineering - Management at TU Wien and graduated with Master of Science in 2019.
+
+Since 2019, he is a doctoral researcher at the University of Luxembourg within the RU Engineering Science with the following research topics:
+
+* Value Stream Management
+* Digital Circular Economy for the Plastics Industry
+
+Since 2019, he is a member of the ISO/TC 154.
+
+* LinkedIn profile: https://www.linkedin.com/in/jeff-mangers-396b9b171
