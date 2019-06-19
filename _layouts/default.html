@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html
+  {% if site.google_analytics %}
+    data-gaid="{{ site.google_analytics.id }}"
+  {% endif %}
+  lang="{{ page.lang | default: site.lang | default: "en" }}">
 
   <head>
     <meta charset="utf-8">
@@ -51,7 +55,7 @@
     <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | relative_url }}" />
 
     {% if jekyll.environment == 'production' and site.google_analytics %}
-      {% include google_analytics.html %}
+      <script src="{{ "/assets/ga.js" | relative_url }}"></script>
     {% endif %}
 
   </head>

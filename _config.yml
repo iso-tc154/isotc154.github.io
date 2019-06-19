@@ -17,6 +17,9 @@ markdown: kramdown
 
 excerpt_separator: "// more"
 
+google_analytics:
+  id: UA-142331468-1
+
 social:
   links:
     - url: https://twitter.com/ISOTC154
