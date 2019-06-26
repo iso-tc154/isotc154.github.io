@@ -1,0 +1,14 @@
+---
+member-id: gregor-roschkowski
+picture: gregor-roschkowski.jpg
+name: Gregor Roschkowski
+role: manager-jwg1
+affiliation: DIN, Germany
+---
+
+Mr Dipl.-Dok.	Gregor Roschkowski is the work group manager for ISO/TC 154/JWG 1
+since 2018.
+
+He is currently Project Manager at DIN Deutsches Institut für Normung e.V.
+
+* LinkedIn profile: https://www.linkedin.com/in/gregor-roschkowski

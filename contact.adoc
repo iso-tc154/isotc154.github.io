@@ -8,7 +8,7 @@ title: Contact
 <main>
 ++++
 
-Use the form below to contact this site's webmaster, the TC 154 chair or secretariat.
+Use the form below to contact this site's webmaster, the TC 154 chair or committee manager.
 
 * Name (required)
 * Email (required)

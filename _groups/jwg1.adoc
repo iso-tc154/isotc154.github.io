@@ -25,13 +25,18 @@ JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group
 
 == Secretariat
 
-=== Current work group manager / secretaries
+=== Current work group manager
 
-Bernd Bösler (DE/DIN) (1998 - )
+{% assign secretary = site.members | where: "member-id", "gregor-roschkowski" | first %}
+
+link:{{ secretary.url }}[{{ secretary.name }}] ({{ secretary.affiliation }}) (2018 -)
+
 
 === Previous work group managers / secretaries
 
-* Peter Wilson (UK) (initial - 1998)
+* Peter Wilson (UK/BSI) (initial - 1998)
+* Bernd Bösler (DE/DIN) (1998 - 2018)
+
 
 == Convenorship
 
