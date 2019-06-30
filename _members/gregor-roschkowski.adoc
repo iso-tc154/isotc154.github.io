@@ -6,9 +6,38 @@ role: manager-jwg1
 affiliation: DIN, Germany
 ---
 
-Mr Dipl.-Dok.	Gregor Roschkowski is the work group manager for ISO/TC 154/JWG 1
-since 2018.
+Gregor Roschkowski was born 1979 in Berlin (East Germany). He
+worked as a plant technician at Siemens before he started to study
+Information- and Datamanagement from 2006 to 2010 at the University
+of applied sciences in Potsdam. After his studies he worked seven
+years as an information professional in the field of bibliographic
+references on standards and technical regulations at
+https://www.beuth.de/kampagne/nm-en/our-products/software-solutions/ditr-dataservice[DITR]
+(German Information Centre on Technical Rules and Regulations) which is
+associated to https://www.dinsoftware.de/en[DIN Software GmbH].
+There he also maintained the
+https://www.wto.org/english/tratop_e/tbt_e/tbt_e.htm[WTO TBT] National Enquiry Point Germany.
 
-He is currently Project Manager at DIN Deutsches Institut für Normung e.V.
+Since 2017 he is staff member of the
+https://www.din.de/en/getting-involved/standards-committees/nid[DIN]
+Technical group IT and IT Security. As a project manager he is responsible for the
+https://www.din.de/en/getting-involved/standards-committees/nid[DIN Standards Committee Information and Documentation (NID)]
+and
+partially for the
+https://www.din.de/en/getting-involved/standards-committees/nia[DIN Standards Committee Information Technology and Applications (NIA)].
 
-* LinkedIn profile: https://www.linkedin.com/in/gregor-roschkowski
+He coordinates the national mirror work for the following
+corresponding ISO and CEN/TC's:
+
+* ISO/TC 46 Information and Documentation
+* ISO/TC 154 Processes, data elements and documents in commerce, industry and administration
+* ISO/TC 171 Document management applications
+* CEN/TC 434 Electronic Invoicing
+* CEN/TC 440 Electronic Public Procurement
+* CEN/TC 461 Public Procurement
+
+Since 2018 he is secretary of ISO/TC 154/JWG 1.
+
+In this role he succeeds Bernd Bösler, who was Secretary of JWG 1 from 1998-2008.
+
+LinkedIn profile: https://www.linkedin.com/in/gregor-roschkowski
