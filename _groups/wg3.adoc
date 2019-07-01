@@ -1,10 +1,12 @@
 ---
 id: wg3
-name: WG 3
+name: WG 3 (inactive)
 title: CCTS
 order: 3
 ---
 :page-liquid:
+
+ISO/TC 154/WG 3 is currently inactive.
 
 WG 3 was established upon the former "`CCTS`" ad-hoc group of ISO/TC 154 in March 2006.
 The purpose is to maintain the ISO/TS 15000-5 "`Core Components Technical Specification, V2.01`"
@@ -17,7 +19,7 @@ across multiple business situations.
 // more
 
 
-== ISO TS 15000-5 (ebXML Core Components Technical Specification, Version 2.01(ebCCTS))
+== ISO TS 15000-5 (ebXML Core Components Technical Specification, Version 2.01 (ebCCTS))
 
 === Background
 
@@ -25,7 +27,8 @@ ISO TS 15000-5 was first published in 2005, based on the UN/CEFACT publication o
 
 During the ISO/TC 154 Plenary held in Geneva in September 2010 a small team was tasked with developing this position paper on the future of ISO 15000-5, based on a recommendation from the UK HoD that the TS be made an International Standard.
 
-The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Mary Kay Blantz (US).
+The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Mary Kay Blantz (UN/ECE).
+
 
 === Approved Recommendation
 

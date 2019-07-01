@@ -1,24 +1,24 @@
 ---
-id: cat
-name: CAT
-title: Chairman's Advisory Team
+id: cag
+name: CAG
+title: Co-ordination Advisory Group
 order: 1
 ---
 :page-liquid:
 
 == Introduction
 
-The Chairman's Advisory Team (ISO/TC 154/CAG) is an ad-hoc group setup by the TC 154 chair to assist him on the administrative side of running the TC.
+The Co-ordination Advisory Group (ISO/TC 154/CAG) advises the TC on the administrative matters.
 
-The group's membership comprises of the TC 154 chair and committee manager, and the WG/JWG/JMA conveners and managers.
+The group's membership comprises of the TC 154 chair, committee manager, WG/JWG/JMA conveners and their managers.
 
 The group's mandate is to assist in identifying issues and topics that need to be discussed and may even be resolved by the team, or may need to be agenda items for the next upcoming meeting.
 
-The group's minutes and reports are available via the link:/minutes[CAT minutes] page.
+The group's minutes and reports are available via the link:/minutes[CAG minutes] page.
+
 
 == Chair
 
 {% assign convenor = site.members | where: "member-id", "judy-zhu" | first %}
 
 link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }})
-
