@@ -1,0 +1,118 @@
+---
+title: ISO/TC 154/WG 5 meeting minutes 2019-06-21
+subtitle: ISO/TC 154/WG 5 meeting
+cat: WG 5 Minutes
+tags: [WG5]
+date: 2019-06-21T00:00:00Z
+permalink: "/minutes/wg5/2019-06-21/"
+scheduled_time: 3:00-3:30pm Hong Kong Time (UTC+8)
+
+participants:
+  - Chris Nelson
+  - Jeffrey Lau
+  - KW Kwan
+  - Ronald Tse
+
+excused:
+  - Erich Keese
+  - Jie Zhang
+
+excerpt: >-
+  <p>
+    Agenda: approved.
+  </p>
+---
+== Approval of Agenda
+
+Approved.
+
+
+== Meeting agenda
+
+. Roll call and introduction
+. Determination on call schedule
+. Feedback on ISO 8601-1 and ISO 8601-2 presentation
+. ISO 34000 project kick off
+. Considerations on PWIs: 34100 (reference time scales), 34200 (timezones)
+. Any other business
+. Adjourned
+
+
+== Roll call and introduction
+
+* Chris Nelson, BSI
+* Jeffrey Lau, CalConnect
+* KW Kwan, ITCHKSAR
+* Ronald Tse, CalConnect
+
+
+== Determination on call schedule
+
+It was determined that WG 5 will have a periodic call every month.
+
+A Doodle poll will be sent prior to the call date/time to decide
+the next call.
+
+
+== Feedback on ISO 8601-1 and ISO 8601-2 presentation
+
+No feedback at this point.
+
+Chris Nelson will review and provide his comments.
+
+
+== Work items in WG 5
+
+=== ISO/AWI 34000 "`Concepts and vocabulary`"
+
+Kick off today.
+
+=== ISO/NP 34300 "`Calendar codes`"
+
+* NWIP ballot ending 2019/06/27
+* https://isotc.iso.org/livelink/eb3/part/cib/ballotAction.do?method=doView&id=427583
+
+=== NWIP submissions being finalized (with ITU)
+
+* ISO/PWI 34100 (reference time scales)
+* ISO/PWI 34200 (timezones)
+
+Ronald will circulate drafts and approval form.
+
+
+== ISO/AWI 34000 Kick off
+
+Right now combines vocabulary of ISO 8601-1 and ISO 8601-2.
+
+Will include new vocabulary from new projects in WG 5 from now on.
+
+Comments received from KATS and BSI.
+
+KATS: "`Concepts`" more important than "`vocabulary`".
+
+BSI: Add the concepts of "`Julian date`" and "`Unix time`"
+
+No further comments.
+
+Tentative schedule:
+
+* WD: 2019/10/16
+* CD: 2020/05/01
+* DIS: 2020/11/29
+* IS: 2021/04/20
+
+
+== Any other business
+
+None.
+
+
+== Next meeting
+
+The next meeting date will be decided through a Doodle poll
+in July.
+
+
+== Adjournment
+
+The meeting was adjourned at 3:30pm HKT.
