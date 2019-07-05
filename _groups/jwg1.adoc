@@ -7,16 +7,19 @@ featured_on_home: true
 ---
 :page-liquid:
 
-The EDIFACT Application Level Syntax Rules (ISO 9735) is the main deliverable of the Joint Syntax Working Group (ISO/TC 154/JWG 1). It is was prepared by Technical Committee ISO/TC 154, Processes, data elements and documents in commerce, industry and administration in collaboration with UNECE through UN/CEFACT. It represents the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing. In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI. The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
+The EDIFACT Application Level Syntax Rules (ISO 9735) is the main deliverable of the Joint Working Group (ISO/TC 154/JWG 1), in collaboration with UNECE through UN/CEFACT.
 
 // more
+
+ISO 9735 represents the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing. In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI. The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
 
 NOTE: Please see link:/procedures/sdmr[Syntax Data Maintenance Request Submission and Processing Procedures (SDMR)] for SDMR procedures.
 
 == Scope
 
-The scope of JWG1 also includes the maintenance, update and extend
+The scope of JWG1 also includes the maintenance, update and extension
 of ISO 9735.
+
 
 == History
 
