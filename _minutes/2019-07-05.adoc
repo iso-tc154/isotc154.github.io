@@ -1,0 +1,298 @@
+---
+title: ISO/TC 154 CAT Meeting Minutes 2019-07-05
+subtitle: ISO/TC 154 CAT Conference Call
+cat: CAT Minutes
+tags:  [ISO CS, Liaison]
+date: 2019-07-05T00:00:00Z
+permalink: "/minutes/2019-07-05/"
+scheduled_time: 8:00-9:00pm Beijing Time (UTC+8)
+
+participants:
+  - Hongru (Judy) Zhu
+  - Jianfang Zhang
+  - Yan Zhang
+  - Anders Grangard
+  - Jasmine Chang
+  - Ronald Tse
+  - Peter Plapper
+  - Dapeng (Max) Liu
+  - Lin (Linda) Wang
+  - Mei-li Chen
+  - Jeff Mangers
+  - Sue Probert
+
+excused:
+  - Chris Nelson
+
+excerpt: >-
+  <p>
+    Agenda: approved.
+  </p>
+
+secretariat: Jianfang Zhang
+chair: Hongru (Judy) Zhu
+---
+== Approval of Agenda
+
+Approved.
+
+== Approval of 5th June 2019 CAG Meeting Minutes
+
+Approved.
+
+
+== Working Group and Project Team Updates
+
+=== JWG 1/MA (EDIFACT Syntax)
+
+==== ISO/PWI 9735-11
+
+Yan reported that Jianfang, Yan and DIN had a teleconference about Anders’ leave from GS1.
+
+Note: Based on Sue’s information, Anders may join the TC154 on behalf of UNECE later. He needs some time to be nominated by UNECE as UNECE experts, which needs to double check later. And also since the NP ballot will end in August, 7th, we still have time to work on the necessary experts and Project leader, Chair also mentioned that it needs more ISO experts to join the project.
+
+Chair appreciated Anders’ and GS1’s effort and contribution to ISO TC154 and sent email to have thanks in public.
+
+
+=== WG 5 (Representation of dates and times)
+
+Ronald reported the progress of WG5 projects.
+
+The 8601 short version (AP72) was finished. It can be used by Ronald, secretary, Chair for presentations in public occasions to make a public announcement of the 8601.
+
+*AP78: It just needs to have a very brief abstract in the website about 8601 standards so that people can know this info, but the detail 8601 short version slides are not necessary to upload to the website. And also contact info are necessary to be there, Chair, secretary, Ronald can all be the contacts. @Ronald*
+
+As for IPR introduction (AP75), Jianfang, Laura Mathew form ISO/CS and Ronald will provide IPR introductions in the October plenary meeting.
+
+*AP79: Jianfang will add an item in the October plenary meeting agenda about IPR introduction from ISO/CS. @Jianfang, Linda*
+
+
+==== ISO/AWI 34000 Date and time — Concepts and vocabulary
+
+The project kick off meeting was held and the project team is working on the WD draft. Chair mentioned that it was a good start to have some experts to join and provide some comments for the project.
+
+==== ISO/PWI 34200 Date and time — Timezone
+
+Draft and Form4 were completed. ITU liaison was established.
+
+
+==== ISO/NP 34300 Date and time — Codes for calendar systems
+
+(This section is pending confirmation)
+
+The result of NWIP ballot shows that 4 experts were provided from P-members.
+
+Also one important thing is secretary mentioned that this project has some political issue about China and Taiwan province related stuff, which should be solved.
+
+*AP80: Chair suggests to solve the political issue of the ISO34300 project and also suggests Ronald to discuss with Jianfang about the ISO 34300 details to remove the political issue since ISO focus on the technical standards.  @Ronald, Jianfang*
+
+
+=== WG 6 (Trusted eCommunication)
+
+Jasmine reported the progress of WG6 projects.
+
+==== PT1: ISO 14533 Long term signature profiles
+
+===== ISO/PWI 14533-2
+
+Naoto Miyachi.
+
+ISO TC154 Japanese committee was initiated in 25th June and its secretariat is JNSA.
+
+New working draft 14533-2 will be shared within WG6 until 12th July.
+
+
+===== ISO/DIS 14533-4
+
+Peter Rybar.
+
+The project team is preparing for its publication.
+
+==== PT2: ISO/PRF 19626-1 Trusted Communication Platforms for Electronic Documents
+
+Jasmine.
+
+The project team is preparing for its publication.
+
+===== ISO/DIS 19626-1
+
+The final text of the project was submitted for publication.
+
+===== ISO/WD 19626-2
+
+The working draft will be shard within WG6 until 12th July. CD ballot is planned to be started in 22th July.
+
+
+==== PT3: ISO/DIS 20415 Trusted mobile e-document framework
+
+Yongkon Lee.
+
+The project team is preparing for its publication.
+
+=== WG 7 (Digital Business)
+
+Jeff Mangers reported the progress of the WG7 projects on behalf of Peter Plapper.
+
+
+==== PT1 – ISO/WD TS 21981 Business Semantics Thesaurus (BST)
+
+Anders.
+
+Because of Anders’ leave from GS1, it needs further consideration before the plenary meeting on how to call for more experts for the item BST, If no more experts join the ISO21981, this issue will be discussed in the plenary meeting.
+
+==== PT2: ISO/DIS 22468 Value Stream Management (VSM)
+
+Peter Plapper.
+
+The DIS ballot of ISO 22468 is ongoing.
+
+==== PT3: ISO/PRF TR 18262 ODIF
+
+Jianfang.
+
+The result of call for experts ballot shows that there are only 2 experts nominated experts for the project. ISO/CS suggests to cancel the project due to the lack of active participation. Its valuable content can be used in the future when either this project is revived or it is incorporated into another project. The final decision can be made in the coming plenary meeting.
+
+Because of this kind of project, which kicked off us to think about how to move forward on the TC154 work, we need to think about new work along with the new era and new technology development, so Chair encouraged everyone to think about the new things, not only focus on the old project.
+
+*AP81: October plenary meeting will have a brainstorming session for new things. Jianfang needs to add this item in the correct place of plenary meeting agenda. @Jianfang, Linda*
+
+
+
+=== JWG8 (Logistics data contents and process)
+
+Dapeng (Max) Liu.
+
+Max reported the progress of JWG8.
+
+Jianfang will help on the ISO 23355 NWIP submission.
+
+==== ISO/CD 23354 – Business requirements for end-to-end visibility of logistics flow
+
+The updated draft was submitted for DIS ballot.
+
+==== ISO/PWI 23355- Visibility data interchange between logistics information service providers
+
+The form4 and draft were completed and were planned to be submitted before the plenary meeting.
+
+
+=== New PWIs
+
+Ronald reported that the draft of the NWIP submission of the three PWIs were being finalized and were planned to be submitted for NP ballot before the plenary meeting.
+
+==== How to go forward with these three PWIs
+
+According to the ISO rules, the project needs ISO experts’ participation.
+
+The formal plan is as following. The 3 steps are necessary.
+
+Step 1: Invite some ISO experts to go to Calconnect meeting to attend for a while. Once or twice or more. Please Ronald send out the coming calconnect meeting info.
+
+Step 2: Set up a new SG, experts from ISO 154, Calconnect and other liaisons join the study group meetings to discuss the form4 and draft.
+
+Step 3: JWG4 possibly, and then co-work between ISO and calconnect (co-conveners).
+
+All of the things we will discuss in the October plenary meeting, and Ronald co-work with Jianfang and Linda to provide the 1-2 slides summary of the 3PWI status and the suggestions on the possibility of establishing a new working group. For example, establishing a new joint working group 4, with one convener and one co-convener from Calconnect and ISO.
+
+
+*AP82: The 3 steps for 3PWIs and also the final proposal. @Ronald, Jianfang, Linda*
+
+
+==== The relationship between ISO 36001/36002 and TMB
+
+Jianfang suggests that ISO TC154 can notify TMB that ISO 36001/36002 is related to a TMB Strategic Advisory Group’s work on machine readable standards. He also suggests that ISO TC154 can lead the TMB’s work and invite TMB experts to join the project.
+
+Jianfang will offline provide more information about TMB’s work on machine readable standards. Chair mentioned that ISO TC154 can do the detail standardization work and get more resource from TMB.
+
+
+
+==== ISO/PWI 36001 "`Standardization documents — Document metamodel`"
+
+==== ISO/PWI 36002 "`Standardization documents — Representation in XML`"
+
+==== ISO/PWI 56001 "` Directory — Standardized profile — Persons and organizations`"
+
+
+== Open Ballots
+
+Jianfang reported that the liaison with ISO/IEC/JTC1/SC41 was established.
+
+He also reported that Linda Wang and Chao Huang were approved as the liaison representatives of ISO/TC 154 to ISO/TC 215.
+
+* Call for experts to participate in ISO/TR 18262 2019-06-25
+* NP ISO/NP 34300 2019-06-27
+* CIB	ballot JTC1/SC41 to establish A-liaison with ISO/TC154	 2019-07-03
+* CIB	vote for liaison representatives to ISO/TC 215	2019-07-05
+* NP ISO/NP 9735-11 2019-08-07
+* SR ISO 15000-5:2014 2019-09-02
+
+
+
+== Other Business
+
+
+=== Publish in ISO websites
+
+The initial ideas for publishing in ISO websites are shown as following:
+
+. Introduction and usage of 8601 @Ronald, Linda
+. Logistics project 23354 in DIS and case studies @ Max
+. Standards status update and publication news, case studies for standard users @ all
+
+*AP 74 still needs to be finished: Chair remaindered WG Conveners to think about what they want to be published in ISO website. This topic will be discussed in the plenary meeting.*
+
+=== How to deal with the projects which has no enough experts
+
+Several projects need more expert to participate, including WG5 projects, potential SG projects, JWG1 9735-11 project, WG7 BST project.
+
+Chair encouraged everybody think about the possible solutions, and this topic will be discussed in the plenary meeting.
+
+Chair also mentioned that project leader and WG convener take responsibility to involve more experts, TC 154 can help on this issue.
+
+
+=== Possibility new 154 website
+
+Ronald reported that most of 154 website content were completed. Please everyone to check if some of the old projects can be deleted. Yizhou Wu and Peter Rybar’s profiles needs to be uploaded. Besides, project leaders can send news item when the project has a status change.
+
+Chair emphasized that everyone takes responsibility for the website content review. In the future CAG meetings, if Ronald has status report on the website, this topic can be added in the CAG meeting agenda, Jianfang is planning to request ISO/ CS for the ISO link.
+
+=== ISO code of conduct
+
+Chair shared the code of conduct information by email. And reminded people to seriously obey with this code of conduct.
+
+The code of conduct link: https://www.iso.org/publication/PUB100397.html
+
+
+=== WGs meeting agendas to prepare and upload
+
+WG conveners send the WGs meeting agendas to Jianfang, and upload to their WGs websites after Jianfang’s review. WG conveners can ask Jianfang for the template of WG meeting agenda.
+
+*AP83: WG conveners email to Jianfang about WGs agendas for his review before next Wednesday. @WG conveners*
+
+
+
+== Action Review
+
+Chair reminded CAG members to obey the procedure and finish APs in time.
+
+[cols="a,a,a,a,a",options="header"]
+|===
+
+|No | Action points | Owner | Deadline | Status
+|31 | OAGi David provides the draft in ISO version with the guide from Jianfang. | @Jianfang,David | 2019/9/30 | ongoing
+|67 | CAG members comment on the design of Website and provide the content of website. | @ALL | 2019/9/30 | ongoing
+|68 | After the website established and provisionally run for some time, and then Jianfang contacts with ISO/CS for the ISO internal link or external link. . | @Jianfang,Judy,Ronald | 2019/8/30 | ongoing
+|72 | Ronald provides a shorter version of 8601 slides and circulate it to ISO154 CAG member and also WG5 members for review. | @Ronald | 2019/7/4 | done
+|73 | WG5 prepares 8601 standards introduction article (1-2 pages) for the possible ISO focus publication later after CAG and Chair review.  | @Ronald, Chair | 2019/7/4 | ongoing
+|74 | related WG needs to consider what materials can be published in the ISO related website. E.g, 8601, logistics introduction, or sth else.  Not rush, before Oct meeting, we can have an initial discussion. Ronald and Linda pls, coordinate on this and motivate people. | @Ronald,Linda,all | 2019/9/30 | ongoing
+|75 | Ronald will provide slides to introduce the IPR, procedure and historical experience regarding cooperation between ISO and ITU in the next CAG meeting. | @Ronald | 2019/7/4 | ongoing
+|76 | Jianfang considers how to go forward with ODIF project to make it technical report as summary or keep it as it is and talk with WG7 convener before the Oct. plenary meeting. And then Oct meeting, we need to make decision.  | @Janfang | 2019/9/30 | done
+|77 | WG conveners needs to check the draft meeting agenda and provide the requirement (date preference and length of time slot) for the meeting agenda to Chair and Jianfang before June 7th (Friday). | @all | 2019/6/7 | done
+
+|===
+
+== Next Meeting
+
+The CAG meeting time 2019-08-28 (16-17:00pm, UTC+8; 10:00-11:00am, UTC+2).
+
+Chair gave thanks to all of the attendants for the CAG meeting on 5th July and everyone’s good job!
+
