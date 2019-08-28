@@ -1,0 +1,159 @@
+---
+layout: post
+title:  Introduction to the new ISO 8601-1 and ISO 8601-2
+date:   2019-08-27 00:00:00 +0800
+categories: site update
+see_also:
+---
+:page-liquid:
+
+ISO 8601-1:2019 and ISO 8601-2:2019 have been published simultaneously in March 26 2019,
+as successors of the widely successful ISO 8601:2004.
+
+One of the most applied standards across the world,
+ISO 8601 is the International Standard for representing date and time for interchange.
+
+An accurate interchangeable date and time mechanism is crucial to the function of today's world.
+Trade, travel, transport, transactions, and legal all rely on the accuracy
+and comparability of date and time.
+
+In this post we briefly describe the history of the ISO 8601 family of standards
+and explain how organizations and businesses can take advantage of the new features
+offered in the new editions.
+
+== ISO 8601 is the International Standard for date and time representations
+
+The ISO 8601 family of standards belong under the scoped title of
+"`Date and time -- Representations for information interchange`".
+
+Do you recognize these date and time representations?
+
+* `2019-03-26`
+* `2019-03-26T01:20:33`
+* `2019-03-26T03:20:33Z`
+* `2019-03-26T11:20:33+0800`
+
+Probably. These are representations defined by ISO 8601.
+ISO 8601 and its predecessors have been the *golden standard*
+for representing date and time since the 1970s.
+
+
+== ISO 8601 is managed by ISO/TC 154 and developed under its WG 5
+
+[quote,Ms Hongru (Judy) Zhu; Chair of ISO/TC 154]
+____
+We encourage developers and related stakeholders to get familiar with the latest developments and features provided by these standards—we believe that these standards will be widely adopted.
+____
+
+ISO/TC 154 was created in 1972 to covers the scope of
+"`Processes, data elements and documents in commerce, industry and administration`".
+
+One of the most important matters in the scope is to deal with interoperable date and time encoding.
+
+The Chairperson of ISO/TC 154 is Ms Hongru (Judy) Zhu, with its
+secretariat run by SAC (Mr Jianfang Zhang, Committee Manager).
+
+Its Working Group 5 (ISO/TC 154/WG 5) named "`Date and time`" is responsible for
+ISO's date and time efforts.
+
+
+== A short history of ISO 8601
+
+Here's a short history of ISO 8601.
+
+Predecessors:
+
+* ISO 2014:1976 (all-numeric dates)
+* ISO 2015:1976 (week numbering)
+* ISO 2711:1973 (ordinal date numbering)
+* ISO 3307:1975 (representations of time of the day)
+* ISO 4031:1978 (time differentials)
+
+These standards were all superseded by the first ISO 8601, ISO 8601:1988.
+
+And subsequently ISO 8601 has been updated multiple times:
+
+* ISO 8601:1988
+* ISO 8601:1988/Cor 1:1991
+* ISO 8601:2000
+* ISO 8601:2004
+
+
+== Motivation for revising ISO 8601:2004
+
+ISO 8601:2004 was in need of revision and improvement.
+
+Representations in the standard needed more formal definitions. The document contained numerous
+instances that were defined by lax adherence, with conflated concepts of expression and representation.
+For example, in the representation format `YYYY-MM-DDTHH:MM:SS`, the usage of `T` is different from `Y`. `T` is to be directly expressed, but `Y`, `M` etc. are used as placeholders (variables).
+While this is typically understood by users, it presents a challenge for encoding these representation formats in computer use.
+
+Some rules used in ISO 8601:2004 led to unnecessary ambiguity. For example, the "`nominal duration of month`" was set to 30 days, but real-life usage differs.
+
+//The document uses date-time components with implicit definitions, bordering on definition by example.
+
+The document also did not provide provision for representing individual date-time components.
+For example, a "`time shift`" cannot be expressed on its own (e.g. `+0800`, UTC+8).
+
+Last but not least, users have been demanding that ISO 8601 "`does more`" -- there are many instances where expressing further meaning is necessary. For example, the need for expressing years beyond 4-digits, negative years, specifying moving days, recurring events are all necessary.
+
+
+== ISO/TC 154 undertook a modernization effort of ISO 8601 in 2017
+
+All earlier versions of ISO 8601 are single-part standards.
+
+ISO 8601 is now a *family of standards*:
+
+* *ISO 8601-1:2019* is the direct successor to ISO 8601:2004
+* *ISO 8601-2:2019* provides extensions on top of ISO 8601-1:2019
+
+
+
+== Key changes in 2019 ISO 8601-1 and ISO 8601-2
+
+=== ISO 8601-1
+
+* Heavily rewritten (>80%)
+* *Component-based*, *40+ newly defined terms*, *normatively referenced by BIPM (creator of UTC)*
+* Titled "`Date and time -- Representations for information interchange -- Part 1: Basic rules`"
+* FDIS finalized in 2018-12
+
+=== ISO 8601-2
+
+* Completely new!
+* *Enables new usage of date and time representations*
+* Titled "`Date and time -- Representations for information interchange -- Part 2: Extensions`"
+* FDIS finalized in 2019-01
+
+
+
+
+== ISO 8601-1: Everything is now defined from components
+
+* Every time scale component is now individually defined.
+
+* Time scale components are now given "`variables`" and re-used heavily, unlike previously where each representation had to list out full specifications.
+
+* "`*Time shift*`" is now a date and time representation that can be used individually.
+
+* No more "`*normative duration*`", just "`*exact duration*`".
+
+* No more "`time interval specified by two durations`".
+
+* Addition of *decade and century representation* (from EDTF).
+
+
+== Credits
+
+Prepared by:
+
+* Ray Denenberg (Library of Congress; Convenor ISO/TC 154/WG 5 2018-2019)
+* Ronald Tse (Ribose, CalConnect; Convenor ISO/TC 154/WG 5 2019-)
+
+
+https://www.iso.org[International Organization for Standardization] +
+ISO Central Secretariat +
+Chemin de Blandonnet 8 Case Postale 401 +
+CH – 1214 Vernier, Geneva +
+Switzerland
+
