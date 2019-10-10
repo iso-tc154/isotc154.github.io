@@ -1,14 +1,13 @@
 ---
 permalink: /members/
 html_class: members
+title: Members
 ---
 :page-liquid:
 
 ++++
 <main>
 ++++
-
-= Members of ISO/TC 154
 
 {% assign members = site.members | sort: "name" %}
 {% for member in members %}
