@@ -10,6 +10,8 @@ see_also:
 link:/standards/iso-14533-4-2019[ISO 14533-4:2019] has been approved at its
 DIS stage ballot, and is awaiting publication as an International Standard.
 
+// more
+
 An announcement will be made when the standard is available on ISO.org.
 
 {% assign jasmine = site.members | where: "member-id", "jasmine-chang" | first %}

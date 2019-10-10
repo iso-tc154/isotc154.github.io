@@ -6,7 +6,9 @@ categories: site update
 ---
 The ISO/TC 154 resources site have been re-launched from the previous provider (thank you Klaus!) to the new provider https://www.ribose.com[Ribose].
 
-This action is performed in accordance with ISO/TC 154 *Resolution XXX*,
-"`Offer from Ribose for hosting isotc154.org`".
+// more
+
+//This action is performed in accordance with ISO/TC 154 *Resolution XXX*,
+//"`Offer from Ribose for hosting isotc154.org`".
 
 A number of improvements are planned. Stay tuned!

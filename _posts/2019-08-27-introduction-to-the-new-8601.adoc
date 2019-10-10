@@ -13,13 +13,15 @@ as successors of the widely successful ISO 8601:2004.
 One of the most applied standards across the world,
 ISO 8601 is the International Standard for representing date and time for interchange.
 
-An accurate interchangeable date and time mechanism is crucial to the function of today's world.
-Trade, travel, transport, transactions, and legal all rely on the accuracy
-and comparability of date and time.
-
 In this post we briefly describe the history of the ISO 8601 family of standards
 and explain how organizations and businesses can take advantage of the new features
 offered in the new editions.
+
+// more
+
+An accurate interchangeable date and time mechanism is crucial to the function of today's world.
+Trade, travel, transport, transactions, and legal all rely on the accuracy
+and comparability of date and time.
 
 == ISO 8601 is the International Standard for date and time representations
 
@@ -109,24 +111,73 @@ ISO 8601 is now a *family of standards*:
 
 
 
+// LONG
+
+
 == Key changes in 2019 ISO 8601-1 and ISO 8601-2
 
-=== ISO 8601-1
+[cols="a,a", options="header"]
+|===
+|ISO 8601-1
+|ISO 8601-2
 
+|
 * Heavily rewritten (>80%)
 * *Component-based*, *40+ newly defined terms*, *normatively referenced by BIPM (creator of UTC)*
 * Titled "`Date and time -- Representations for information interchange -- Part 1: Basic rules`"
 * FDIS finalized in 2018-12
 
-=== ISO 8601-2
-
+|
 * Completely new!
 * *Enables new usage of date and time representations*
 * Titled "`Date and time -- Representations for information interchange -- Part 2: Extensions`"
 * FDIS finalized in 2019-01
 
+|===
+
+* *ISO 8601-1, ISO 8601-2* both published 2019-03-26
 
 
+== ISO 8601-1: Terminology and conceptual clarification
+
+[cols="a,a"]
+|===
+
+|date and time representation:: format syntax representing date and time in general, shown within brackets
+|date and time expression:: instantiation of a _representation_ that represents a date and time, shown within single quotes
+
+|time scale unit:: a measurement unit of the time scale on the time-axis
+|time scale component:: a representation of the _time scale unit_ in a _date and time representation_
+
+|duration of a time scale unit:: e.g. "`day`"
+|the "`reference`" that points to a time interval:: e.g. "`calendar day`"
+
+|digit replacements:: such as "`YYYY`", where each "`Y`" represents a digit in the year component)
+|designator symbols:: such as "`["Y"]`" which is the text character "`Y`")
+
+|===
+
+
+== ISO 8601-1: Important *new terms* standardized for the first time internationally
+
+[cols="a,a"]
+|===
+
+|
+date:: time (3.1.1.1) on the calendar (3.1.1.18) time scale (3.1.1.5)
+
+|
+time shift:: constant duration (3.1.1.8) difference between times (3.1.1.2) of two time scales (3.1.1.5)
+
+|
+calendar:: time scale (3.1.1.5) that uses the time scale unit (3.1.1.7) of calendar day (3.1.2.12) as its basic unit
+week calendar:: calendar (3.1.1.18) in general use that defines a calendar year (3.1.2.22) that approximates the tropical year using a calendar week (3.1.2.17) as its basic unit
+
+|
+clock:: time scale (3.1.1.5) suited for intra-day time measurements
+24-hour clock:: clock (3.1.1.9) that subdivides a calendar day (3.1.2.12) into 24 clock hours (3.1.2.6)
+
+|===
 
 == ISO 8601-1: Everything is now defined from components
 
@@ -136,11 +187,12 @@ ISO 8601 is now a *family of standards*:
 
 * "`*Time shift*`" is now a date and time representation that can be used individually.
 
-* No more "`*normative duration*`", just "`*exact duration*`".
+* No more "`*nominal duration*`", just "`*exact duration*`".
 
-* No more "`time interval specified by two durations`".
+* No more "`*time interval specified by a duration and context information*`".
 
-* Addition of *decade and century representation* (from EDTF).
+* Addition of "`*decade and century representation*`" (from EDTF).
+
 
 
 == Credits
