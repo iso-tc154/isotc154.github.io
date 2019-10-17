@@ -1,6 +1,6 @@
 ---
 id: jwg1
-name: JWG&nbsp;1 (with&nbsp;UN/ECE)
+name: JWG&nbsp;1 (with&nbsp;UNECE)
 title: EDIFACT Syntax
 order: 2
 featured_on_home: true

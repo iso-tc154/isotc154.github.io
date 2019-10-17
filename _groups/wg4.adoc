@@ -21,7 +21,7 @@ based on the original UNLK for Trade Documents.
 
 == History
 
-Working Group 4 (originally named JWG 2) was established during the UN/CEFACT Forum meeting in Vancouver, March 2006 and comprises experts both from UN/ECE and ISO level. The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Michael Dill (DE).
+Working Group 4 (originally named JWG 2) was established during the UN/CEFACT Forum meeting in Vancouver, March 2006 and comprises experts both from UNECE and ISO level. The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Michael Dill (DE).
 
 == Previous work
 

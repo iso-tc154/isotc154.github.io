@@ -117,7 +117,7 @@ IPCSA’s eligibility was confirmed by the CS, Jianfang initiated the IPCSA A-li
 
 === UN/CEFACT A-liaison application
 
-Since UN/ECE is A-liasion member with TC154, and UN/CEFACT belongs to the UN/ECE, there is no need for set up this A-liaison.
+Since UNECE is A-liasion member with TC154, and UN/CEFACT belongs to the UNECE, there is no need for set up this A-liaison.
 
 === CalConnect liaison request
 

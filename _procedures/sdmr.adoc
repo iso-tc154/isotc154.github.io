@@ -1,5 +1,5 @@
 ---
-wg: Joint syntax working group (with UN/ECE)
+wg: Joint syntax working group (with UNECE)
 title: Syntax Data Maintenance Request Submission and Processing Procedures
 permalink: /procedures/sdmr/
 ---
@@ -30,9 +30,9 @@ The form can be accessed through the JWG 1 web site: http://www.gefeg.com/jswg[I
 
 In addition Service code DMRs can be submitted:
 
-* via the UN/ECE CEFACT secretariat,
+* via the UNECE CEFACT secretariat,
 
-* automatically (as result of new directory [d/e 0054] and/or message type addition [d/e 0065] of which the information has to be provided by the UN/ECE secretariat to the JWG 1 secretariat one month before the scheduled release of the UN/EDIFACT directory set.
+* automatically (as result of new directory [d/e 0054] and/or message type addition [d/e 0065] of which the information has to be provided by the UNECE secretariat to the JWG 1 secretariat one month before the scheduled release of the UN/EDIFACT directory set.
 
 
 === Submission of Service directory DMRs and Syntax rule DMRs

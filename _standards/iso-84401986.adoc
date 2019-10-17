@@ -6,7 +6,7 @@ title: "Location of codes in trade documents"
 
 == Abstract
 
-Specification of the location of document and field code designation and coded data entries in documents used in international trade. Suitable for automatic data processing (ADP) systems. Based on a Recommendation adopted by the Working Party on Facilitation of International Trade Procedures of the United Nations Economic Commission for Europe (UN/ECE).
+Specification of the location of document and field code designation and coded data entries in documents used in international trade. Suitable for automatic data processing (ADP) systems. Based on a Recommendation adopted by the Working Party on Facilitation of International Trade Procedures of the United Nations Economic Commission for Europe (UNECE).
 
 == Corrigenda, Amendments and other parts
 

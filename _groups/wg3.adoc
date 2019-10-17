@@ -27,7 +27,7 @@ ISO TS 15000-5 was first published in 2005, based on the UN/CEFACT publication o
 
 During the ISO/TC 154 Plenary held in Geneva in September 2010 a small team was tasked with developing this position paper on the future of ISO 15000-5, based on a recommendation from the UK HoD that the TS be made an International Standard.
 
-The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Mary Kay Blantz (UN/ECE).
+The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Mary Kay Blantz (UNECE).
 
 
 === Approved Recommendation

@@ -3,7 +3,7 @@ permalink: "/minutes/2016-03-02/"
 date: 2016-03-02T19:50:49Z
 cat: CAT Minutes
 subtitle: ISO/TC 154 CAT Conference Call
-tags: [ISO 8601, Liaison, TC 8, UBL, UN/ECE, WCO]
+tags: [ISO 8601, Liaison, TC 8, UBL, UNECE, WCO]
 title: ISO/TC 154 CAT Meeting Minutes 2016-03-02
 scheduled_time: 02 March 2016, 15:00 UTC
 
@@ -81,12 +81,12 @@ excused:
 
 == Old Business
 
-=== CAT's comments on UN/ECE's "`Proposed Strategic Framework 2016`"
+=== CAT's comments on UNECE's "`Proposed Strategic Framework 2016`"
 
 * No response was received
 
 
-=== CAT's response to UN/CEFACT Bureau email regarding UN/ECE Recommendation 1
+=== CAT's response to UN/CEFACT Bureau email regarding UNECE Recommendation 1
 
 * No response was received
 
@@ -100,9 +100,9 @@ excused:
 
 == New Business
 
-=== UN/ECE's comments about misleading CAT minutes 2015-12-09
+=== UNECE's comments about misleading CAT minutes 2015-12-09
 
-* K-DN talked with Brain Stanton (ISO/CS) about the UN/ECE concern. It was agreed that the TC 154 minutes did reflect what was said. If UN/ECE or UN/CEFACT disagree that the position communicated during that MoU/MG call were not what should have been said, UN/ECE and/or UN/CEFACT need to inform the MoU/MG with the correct position as related to the publication of UBL 2.1 as ISO/IEC 19845. It is not up to TC 154 to change its minutes because of a disagreement within the UN/ECE and/or UN/CEFACT.
+* K-DN talked with Brain Stanton (ISO/CS) about the UNECE concern. It was agreed that the TC 154 minutes did reflect what was said. If UNECE or UN/CEFACT disagree that the position communicated during that MoU/MG call were not what should have been said, UNECE and/or UN/CEFACT need to inform the MoU/MG with the correct position as related to the publication of UBL 2.1 as ISO/IEC 19845. It is not up to TC 154 to change its minutes because of a disagreement within the UNECE and/or UN/CEFACT.
 
 
 === MoU/MG Resolution 15/06: Forming a liaison with ISO/TC 292 for its parts of 28000 series
