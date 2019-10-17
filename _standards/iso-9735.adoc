@@ -79,8 +79,8 @@ Users should note the following conventions for identifying each publication of 
 |01
 
 |
-* ISO/CD 9735-10:2012
-|Version 4 Second Edition, CD published in 2012, ISO standard expected in 2013 (Note: For Parts 1 to 9 the former Editions have been kept). (It should be noted that the identification of "First" and "Second Editions" appears only on the printed copies of the ISO published documents).
+* https://www.iso.org/standard/61434.html[ISO 9735-10:2014]
+|Version 4 Second Edition, published in 2014. (Note: For Parts 1 to 9 the former Editions have been kept). (It should be noted that the identification of "First" and "Second Editions" appears only on the printed copies of the ISO published documents).
 |4
 |02
 
