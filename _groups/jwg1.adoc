@@ -52,8 +52,7 @@ link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2017 
 
 === Previous convenors
 
-* Don Trafford (UK) (initial - September 2007) (In memory please
-see http://www.dontrafford.com)
+* Don Trafford (UK) (initial - September 2007) (In memory)
 
 * Klaus-Dieter Naujok (DE) (September 2007 - 2017)
 
