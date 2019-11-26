@@ -9,11 +9,11 @@ source "https://rubygems.org"
 # __________________ JEKYLL BELOW __________________
 
 gem "nokogiri"
-gem "jekyll", "~> 3.8.5"
+gem "jekyll", "~> 4.0"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.6"
+  gem "jekyll-feed"
   gem "jekyll-asciidoc"
   gem "jekyll-redirect-from"
 end
