@@ -43,6 +43,9 @@ primary_nav_items:
   - minutes
   - faq
 
+sass:
+  style: compressed
+
 collections:
   pages:
     output: true
