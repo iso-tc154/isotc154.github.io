@@ -3,9 +3,9 @@ SHELL := /bin/bash
 all: _site
 
 clean:
-	rm -rf _site
+	rm -rf _site .sass-cache
 
-_site: #hmmg/HTML/ConceptualModels/index.html hmmg/HTML/ImplementationModels/index.html
+_site:
 	bundle exec jekyll build
 
 serve:
