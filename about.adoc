@@ -7,6 +7,14 @@ layout: page
 
 = About ISO/TC 154
 
+== Disclaimer
+
+The content on this website is provided by the Technical Committee and
+its individual experts. If you have any questions or comments about
+this website, or would like to reproduce this content, please contact
+the Committee using the link:/contact[Contact] page.
+
+
 == General
 
 {% assign secretary = site.members | where: "member-id", "jianfang-zhang" | first %}
