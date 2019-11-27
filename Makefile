@@ -9,7 +9,7 @@ _site:
 	bundle exec jekyll build
 
 serve:
-	bundle exec jekyll serve
+	bundle exec jekyll serve --trace
 
 update-init:
 	git submodule update --init
