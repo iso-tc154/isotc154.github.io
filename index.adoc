@@ -3,22 +3,17 @@ layout: home
 
 banner_includes:
   - title: Welcome to&nbsp;ISO/TC&nbsp;154
+    subtitle: Processes, data elements and documents in commerce, industry and administration
     image_path: /assets/img/welcome_illo.jpg
     image_alt: ISO Headquarters
     body: >-
+      <p>
+        The mission of ISO/TC 154 is to enable all parties in the value chain to use standardized data exchange
+        across private and public domains and to foster trade facilitation.
 
       <p>
-        It is the vision of ISO/TC 154 that all parties in the value chain
-        use standardized data exchange to reduce cost in managing the processes
-        in the private and public domain and to foster trade facilitation.
-
-      <p>
-        The mission of ISO/TC 154 is both to undertake and to facilitate
-        the development and maintenance of international standards for data exchange
-        in the value chain.
-
-      <p>
-        These standards cover data exchange regardless of the media used.
+        ISO/TC 154 both undertakes and facilitates the development and maintenance
+        of international standards for data processes including exchange and storage.
 
 ---
 :page-liquid:
