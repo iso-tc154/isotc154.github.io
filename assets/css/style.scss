@@ -4,7 +4,7 @@
 $widescreenBreakpoint: 1200px;
 $bigscreenBreakpoint: 900px;
 
-$primaryColor: #5C47D7;
+$primaryColor: #0061AD;
 $textColor: #222;
 $linkColor: $primaryColor;
 
@@ -57,12 +57,14 @@ body.layout--home {
 
         .text {
           margin-right: 2em;
-          font-size: 120%;
+          font-size: 110%;
 
           .title {
-            font-size: 240%;
             margin-top: .1em;
             line-height: 1.3;
+          }
+          .subtitle {
+            line-height: 1.2;
           }
         }
         .illustration {
