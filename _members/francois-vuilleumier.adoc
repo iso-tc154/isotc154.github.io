@@ -1,0 +1,19 @@
+---
+member-id: francois-vuilleumier
+name: François Vuilleumier
+picture: francois-vuilleumier.jpg
+role: past-member
+affiliation: SNV, Switzerland
+---
+
+Francois Vuilleumier brings to Illumonus over four decades of experience as a senior Swiss government administrator and international standards developer. Former Head of the Swiss delegation to UN/CEFACT and chair, vice-chair, rapporteur, secretary and editor at ISO, UN/CEFACT, OECD, WCO, CEN and EFTA committees and experts meetings.
+
+As Director for Semantic Interoperability he leads our focus on providing a harmonized controlled vocabulary that works together with domain specific systems.
+
+He studied economics in Switzerland at Lausanne and Geneva and in Germany at Cologne. His PhD thesis was on “Statistics and public administration in Switzerland”. He has also taught French for a year at Lancing College, Sussex, UK.
+
+He headed the information and documentation centre of the Swiss Office for Foreign Trade Promotion. The International Trade Centre (ITC) in Geneva a joint office under UNCTAD and GATT, sent him for a number of on the skill and practice of information and documentation systems mainly to French speaking Africa. In 1985, ITC published in English and French his “Thesaurus of International Trade Terms” which is compliant to ISO 5964:1985. He then led the unit in charge of electronic processing of statistical data in a Swiss regional statistical office.
+
+He then moved from data and information processing to trade policy and trade facilitation, in charge of international industrial and technological issues at the Swiss Ministry for Foreign Economic Affairs, then senior advisor on trade efficiency (facilitation and security) at the headquarters of Swiss Customs. He launched, and later closed the Swiss Committee for trade facilitation SWISSPRO, the gospel of trade facilitation having been delivered.
+
+He was the editor of the EFTA “Trader’s ABC, a Trade Facilitation Manual”, 1999, 2nd edition. As chair of the ISO Technical Committee 154 he was instrumental in the development of the ISO Technical Specifications ISO/TS 16668:2000 – “Basic Semantics Register BSR” and ISO/TS 15000-5:2005 – “Part 5: Core Components TS, Version 2.01 (ebCCTS)”. He also chaired the joint UN Trade Data Elements Directory and ISO 7372 Maintenance Agency which issued the 2005, 3rd edition of the “Trade Data Elements Directory TDED”. He currently serves as the Secretary of the TDED Maintenance Agency.

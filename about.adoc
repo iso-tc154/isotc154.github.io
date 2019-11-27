@@ -7,6 +7,8 @@ layout: page
 
 = About ISO/TC 154
 
+== General
+
 {% assign secretary = site.members | where: "member-id", "jianfang-zhang" | first %}
 {% assign chair = site.members | where: "member-id", "judy-zhu" | first %}
 
@@ -43,3 +45,38 @@ Maintenance of the EDIFACT-Syntax.
 {% for group in groups %}
 * {% if group.name %}{{ group.name }} — {% endif %} link:{{ group.url }}[{{ group.title }}]
 {% endfor %}
+
+
+
+== Historic role information
+
+=== Secretariats
+
+* http://www.sac.gov.cn[SAC] (2014-)
+
+* https://www.nen.nl[NEN] (2008-2013)
+
+
+=== Chairs
+
+{% assign person = site.members | where: "member-id", "judy-zhu" | first %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2017-)
+
+{% assign person = site.members | where: "member-id", "klaus-dieter-naujok" | first %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2011-2016)
+
+{% assign person = site.members | where: "member-id", "robert-schubenel" | first %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2008-2010)
+
+{% assign person = site.members | where: "member-id", "francois-vuilleumier" | first %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (1998-2008)
+
+
+=== Committee Managers / Secretaries
+
+{% assign person = site.members | where: "member-id", "jianfang-zhang" | first %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2014-)
+
+{% assign person = site.members | where: "member-id", "francois-vuilleumier" | first %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (1998-2008)
+
