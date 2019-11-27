@@ -48,7 +48,7 @@ Maintenance of the EDIFACT-Syntax.
 
 
 
-== Historic role information
+== Historic information
 
 === Secretariats
 
