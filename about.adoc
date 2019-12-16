@@ -29,7 +29,18 @@ the Committee using the link:/contact[Contact] page.
 * ISO Editorial Programme Manager: mailto:chen@iso.org[Mrs Yvonne Chen]
 * Creation date: 1972
 
+== Mission
+
+It is the vision of ISO/TC 154 that all parties in the supply and value chain use standardized data exchange to reduce cost in managing the processes in the private and public domain and to foster trade facilitation.
+
+The mission of ISO/TC 154 is both to undertake and to facilitate the development and maintenance of international standards for electronic business in the supply and value chain.
+
+These standards cover data exchange regardless of the media used.
+
+Wherever possible, ISO/TC 154 fosters harmonisation between and within international standards development organizations, particularly through the Memorandum of Understanding between the International Electrotechnical Commission, the International Organization for Standardization, the International Telecommunication Union and the United Nations Economic Commission for Europe concerning standardization in the field of electronic business.
+
 == Scope
+
 
 International standardization and registration of business, and administration processes and supporting data used for information interchange between and within individual organizations and support for standardization activities in the field of industrial data.
 
