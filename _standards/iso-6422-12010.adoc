@@ -4,8 +4,18 @@ type: international
 title: "Layout key for trade documents -- Part 1: Paper-based documents"
 ---
 
+ISO 6422-1 inherits ISO 6422:1985 as the Layout key standard for paper documents.
+
+// more
+
 == Abstract
+
 ISO 6422-1:2010 specifies a key for the layout of documents relating to administrative, commercial, productive and distributive activities constituting trade, irrespective of whether these documents are completed in handwriting, by mechanical or automatic equipment or by reproduction. It is intended particularly for the designing of aligned series of forms employing a reproducible master in a one-run method of document preparation.
+
+== More information
+
+The ISO 6422 standard series are based on the relationship between the underlying core components and the presentation aspects of the layout key. Each part of the ISO 6422 standard series allows to derive aligned documents based on the relevant layout key, either paper-based or electronically.
+
 
 == Revision information
 
