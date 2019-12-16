@@ -1,0 +1,46 @@
+---
+id: iso-36001
+name: ISO/WD 36001
+title: "Standardization documents -- Document metamodel"
+status: current
+---
+:page-liquid:
+
+== Purpose
+
+Standardization documents today lack a unified representation: they have not been standardized. While most of them share common document elements, such as scope, clauses, references, terms and definitions, documents across different standardization bodies do not share the same semantic structure, which allows for technical interoperability. This is the basis of a SMART standard (as defined by ISO/TMBG/SAG_MRS).
+
+A standardization document often passes through different roles within the organization, from the document authors to the standardization committee, to the editing function of the organization and at last to the publication functions. In many standardization organizations, these functions are performed by different people and using different document formats. The described document metamodel enables an end-to-end publication flow from the authors directly to publishing, ensuring the content integrity of the standardization document itself through its publication.
+
+//In addition, the document metamodel fully supports the different developmental processes used at standardization bodies, allowing for the tracking of content changes across document stages.
+
+//The document metamodel described has been designed with full compatibility with the standardization document structures from a representative set of international standardization bodies such as ISO, IEC and ITU, national standardization bodies such as NIST and Chinese Guobiao standards, as well as technology standardization bodies such as IETF, OGC, CSA and CalConnect.
+
+== Scope
+
+The standard provides a document metamodel for standardization documents and describes its alignment to standardization processes.
+
+The following aspects of the document metamodel are out of scope:
+
+* implementation of the document metamodel into a document model;
+
+* derivation and mapping of the reference model to representation formats (such as for serialization); and
+
+* prescription of profiles of the document metamodel for particular standardization bodies.
+
+
+== Who needs this standard?
+
+* This standard provides a standardized document metamodel for standardization documents, allowing organizations that develop these documents to easily adopt complete data models for their document types.
+
+* This standard provides a set of commonly used data elements in standardization documents promoting best practice in organizations that develop such documents.
+
+The document metamodel has been designed with full compatibility with the standardization document structures from a representative set of international standardization bodies such as ISO, IEC and ITU, national standardization bodies such as NIST and Chinese Guobiao standards, as well as technology standardization bodies such as IETF, OGC, CSA and CalConnect.
+
+== Project leaders
+
+{% assign leader = site.members | where: "member-id", "ronald-tse" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+
+{% assign leader = site.members | where: "member-id", "jianfang-zhang" | first %}
+* link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})

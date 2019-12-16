@@ -1,29 +1,99 @@
 ---
 id: wg4
-name: WG 4 (inactive)
-title: Electronic Layout Key
+name: WG 4
+title: e-documents
 order: 4
 ---
 :page-liquid:
 
-ISO/TC 154/WG 4 is currently inactive.
-
-ISO/TC 154/WG 4 was established (formally as JWG 2) in 2006
-for the purpose of developing an electronic version of the UN Layout Key
-(equivalent to ISO 6422:1985).
-The standard(s) should base on the relationship between the underlying core components
-and the presentation aspects of the Layout Key.
-In addition the standard(s) should allow others to derive aligned electronic documents
-based on the electronic Layout Key in a similar way to the development of aligned paper documents
-based on the original UNLK for Trade Documents.
+WG 4 covers the standardization of e-document concepts and
+semantics to support people, systems and processes involved in
+developing, publishing and using of e-documents.
 
 // more
 
+== Scope
+
+Standardization of e-document concepts and semantics to support people, systems and processes involved in developing, publishing and using of e-documents.
+
+
+
+== Leadership
+
+=== Convenors
+
+{% assign convenor = site.members | where: "member-id", "ronald-tse" | first %}
+
+* link:{{ convenor.url }}[{{ convenor.name }}], Co-convenor, ({{ convenor.affiliation }}) (2019/12 - )
+
+{% assign convenor = site.members | where: "member-id", "james-clark" | first %}
+
+* link:{{ convenor.url }}[{{ convenor.name }}], Co-convenor, ({{ convenor.affiliation }}) (2019/12 - )
+
+
+== Active projects
+
+* link:/projects/iso-36001[ISO 36001]
+
+
+== Standards
+
+* link:/standards/iso-6422-12010[ISO 6422-1:2010]
+
+////
+== Collaborative parties
+
+=== CalConnect
+
+https://www.calconnect.org[CalConnect], the Calendaring and Scheduling Consortium, is
+a Category A liaison of ISO/TC 154.
+
+CalConnect is focused on the interoperable exchange of calendaring and scheduling information between dissimilar programs, platforms, and technologies. Our mission is to promote general understanding of and provide mechanisms to allow interoperable calendaring and scheduling methodologies, tools and applications to enter the mainstream of computing.
+
+CalConnect's TC PUBLISH is heavily engaged with WG 4 projects, including its contribution to link:/standards/iso-8601-2[ISO 8601-2].
+
+Current collaborative projects include:
+
+* link:/projects/iso-34000[ISO 34000]
+* link:/projects/iso-34300[ISO 34300]
+
+=== OASIS
+
+https://www.oasis-open.org[OASIS] is a Category A liaison with ISO/TC 154.
+
+OASIS has a broad technical agenda encompassing cybersecurity, blockchain, privacy, cryptography, cloud computing, IoT, urban mobility, emergency management, content technologies. In fact, any initiative for developing code, APIs, specifications, or reference implementations can find a home at OASIS.
+
+The OASIS community is committed to advancing work that lowers cost, improves efficiency, stimulates innovation, grows global markets, and promotes interoperability. Each project operates independently under industry-leading process and clear IPR policies.
+
+Some of the most widely adopted OASIS Standards include AMQP, CAP, CMIS, DITA, DocBook, KMIP, MQTT, OpenC2, OpenDocument, PKCS, SAML, STIX, TAXII, TOSCA, UBL, and XLIFF. Many of these have gone on to be published as ISO, IEC, or ITU standards. New work is encouraged, and all are welcome to participate.
+
+OASIS members can be found in 100+ countries on virtually every continent. Major multinational companies, SMEs, government agencies, NGOs, universities, research institutions, consulting groups, and individuals are all represented
+////
+
+
 == History
 
-Working Group 4 (originally named JWG 2) was established during the UN/CEFACT Forum meeting in Vancouver, March 2006 and comprises experts both from UNECE and ISO level. The secretariat is held by Bernd Bösler (DE/DIN), the convenorship by Michael Dill (DE).
+WG 4 was originally established (formerly as JWG 2 between UNECE and ISO)
+during the UN/CEFACT Forum meeting in Vancouver, March 2006,
+for the purpose of developing an electronic version of the UN Layout Key
+(equivalent to ISO 6422:1985).
 
-== Previous work
+=== Previous leadership
+
+// Michael Dill
+
+{% assign convenor = site.members | where: "member-id", "michael-dill" | first %}
+
+* 2006 - 2017: link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }})
+
+
+=== Previous secretariat
+
+* 2006 - 2012: DIN / DE, Secretary, Bernd Bösler
+
+
+
+=== Previous work
 
 WG 4 was developing an electronic version of the UNLK (equivalent to ISO 6422:1985). This entails the development of a meta level standard and a methodology for the description of intelligent electronic forms.
 
@@ -34,3 +104,15 @@ During the ballots it was realized that there was a lack of information regardin
 ISO 6422-1 was published in 2010 and another preparatory WI for the progress of the foreseen
 link:/projects/iso-6422-2[ISO 6422-2] was initiated. Due to necessary investigations in September 2011 it was decided to develop first a Technical Report
 (see link:/projects/iso-pwi-tr-6422-3[ISO/PWI TS 6422-3]) regarding the progress of ISO 6422 "`Layout key for trade documents.`" This project shall provide more clarification on an appropriate extension of ISO 6422 for electronic documents as already registered with ISO/NP 6422-2.
+
+=== The UN Layout Key
+
+The standard(s) should base on the relationship between the underlying core components
+and the presentation aspects of the Layout Key.
+
+In addition the standard(s) should allow others to derive aligned electronic documents
+based on the electronic Layout Key in a similar way to the development of aligned paper documents
+based on the original UNLK for Trade Documents.
+
+
+
