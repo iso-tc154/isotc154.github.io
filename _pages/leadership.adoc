@@ -1,0 +1,98 @@
+---
+permalink: /leadership/
+html_class: leadership
+title: Leadership
+layout: page
+---
+:page-liquid:
+
+== Chair
+
+{% assign person = site.members | where: "member-id", "judy-zhu" | first %}
+
+link:{{ person.url }}[{{ person.name }}] is the Chair of ISO/TC 154.
+She represents SAC and has been the Chair of ISO/TC 154 since 2017.
+
+++++
+<img class="picture" src="/assets/images/members/{{ person.picture }}">
+++++
+
+
+== Committee Manager
+
+{% assign person = site.members | where: "member-id", "jianfang-zhang" | first %}
+
+link:{{ person.url }}[{{ person.name }}] is the current Committee Manager of ISO/TC 154.
+He represents SAC and has been the Committee Manager of ISO/TC 154 since 2014.
+
+++++
+<img class="picture" src="/assets/images/members/{{ person.picture }}">
+++++
+
+
+== JWG 1 Convenor
+
+{% assign person = site.members | where: "member-id", "yan-zhang" | first %}
+link:{{ person.url }}[{{ person.name }}] represents UNECE and is the Convenor of JWG 1.
+
+++++
+<img class="picture" src="/assets/images/members/{{ person.picture }}">
+++++
+
+
+== WG 4 Convenors
+
+{% assign ronald = site.members | where: "member-id", "ronald-tse" | first %}
+{% assign jamie = site.members | where: "member-id", "james-clark" | first %}
+
+link:{{ ronald.url }}[{{ ronald.name }}] and
+link:{{ jamie.url }}[{{ jamie.name }}] are Co-Conveners of WG 4.
+
+++++
+<img class="picture" src="/assets/images/members/{{ ronald.picture }}">
+<img class="picture" src="/assets/images/members/{{ jamie.picture }}">
+++++
+
+
+
+== WG 5 Convenor
+
+{% assign person = site.members | where: "member-id", "ronald-tse" | first %}
+link:{{ person.url }}[{{ person.name }}] is the Convenor of WG 4.
+
+++++
+<img class="picture" src="/assets/images/members/{{ person.picture }}">
+++++
+
+
+
+== WG 6 Convenor
+
+{% assign person = site.members | where: "member-id", "jasmine-chang" | first %}
+link:{{ person.url }}[{{ person.name }}] is the Convenor of WG 6.
+
+++++
+<img class="picture" src="/assets/images/members/{{ person.picture }}">
+++++
+
+
+
+== WG 7 Convenor
+
+{% assign person = site.members | where: "member-id", "peter-plapper" | first %}
+link:{{ person.url }}[{{ person.name }}] is the Convenor of WG 7.
+
+++++
+<img class="picture" src="/assets/images/members/{{ person.picture }}">
+++++
+
+
+== JWG 8 Convenor
+
+{% assign person = site.members | where: "member-id", "max-liu" | first %}
+link:{{ person.url }}[{{ person.name }}] is the Convenor of JWG 8.
+
+++++
+<img class="picture" src="/assets/images/members/{{ person.picture }}">
+++++
+

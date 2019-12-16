@@ -8,7 +8,7 @@ description: >-
   Processes, data elements and documents in commerce, industry and administration
 
 tagline: >-
-  Official site
+  ISO/TC 154 Committee site
 
 baseurl: ""
 url: "https://www.isotc154.org"
@@ -40,6 +40,7 @@ primary_nav_items:
   - standards
   - groups
   - members
+  - leadership
   # - minutes
   - faq
 
@@ -126,6 +127,9 @@ nav:
   groups:
     url: /groups/
     title: Groups
+  leadership:
+    url: /leadership/
+    title: Leadership
   members:
     url: /members/
     title: Members

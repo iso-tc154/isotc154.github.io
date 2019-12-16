@@ -1,0 +1,30 @@
+body.leadership {
+  main {
+    h1 {
+      font-size: 240%;
+    }
+
+    @include asciidoc-markup();
+
+    .picture {
+      max-width: 6rem;
+      float: left;
+      margin-right: 2em;
+      margin-bottom: 2em;
+      border-radius: 0.5em;
+    }
+
+    .sect1 {
+      clear: both;
+    }
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      /*padding-left: $userPicW + $userPicGap;*/
+
+      .picture {
+        display: block;
+        width: $userPicW;
+      }
+    }
+  }
+}
