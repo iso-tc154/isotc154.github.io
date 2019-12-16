@@ -2,7 +2,10 @@
 member-id: ronald-tse
 picture: ronald-tse.jpg
 name: Ronald Tse
-role: convener-wg5
+active: true
+role:
+  - convener-wg5
+  - convener-wg4
 affiliation: CalConnect, Liaison
 ---
 

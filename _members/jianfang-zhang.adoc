@@ -3,6 +3,7 @@ member-id: jianfang-zhang
 picture: jianfang-zhang.jpg
 name: Jianfang Zhang
 role: committee-manager
+active: true
 affiliation: SAC, China
 ---
 

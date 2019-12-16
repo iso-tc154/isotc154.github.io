@@ -2,18 +2,24 @@
 permalink: /members/
 html_class: members
 title: Members
+layout: page
 ---
 :page-liquid:
 
-++++
-<main>
-++++
+== Current members
 
-{% assign members = site.members | sort: "name" %}
+{% assign members = site.members | where: "active", "true" |sort: "name" %}
 {% for member in members %}
-* link:{{ member.url }}[{{ member.name }} ({{ member.role }})]
+* link:{{ member.url }}[{{ member.name }}]
+//{% for role in member.role %}pass:[<h2 class="entity"><span class="type">{{ role | replace: '-', ' ' | upcase }}</span></h2>]{% endfor %}
+
 {% endfor %}
 
-++++
-</main>
-++++
+
+== Past members
+
+{% assign members = site.members | where: "active", "false" |sort: "name" %}
+{% for member in members %}
+* link:{{ member.url }}[{{ member.name }}]
+
+{% endfor %}

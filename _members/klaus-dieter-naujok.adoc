@@ -3,6 +3,7 @@ member-id: klaus-dieter-naujok
 name: Klaus-Dieter Naujok
 picture: klaus-dieter-naujok.jpg
 role: past-member
+active: false
 affiliation: DIN, Germany
 ---
 

@@ -3,6 +3,7 @@ member-id: max-liu
 picture: max-liu.jpg
 name: Dapeng (Max) Liu
 role: convenor-jwg8
+active: true
 affiliation: SAC, China
 ---
 

@@ -3,6 +3,7 @@ member-id: ray-denenberg
 picture: ray-denenberg.jpg
 name: Ray Denenberg
 role: member
+active: true
 affiliation: ISO/TC 46, Liaison
 ---
 

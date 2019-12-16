@@ -3,6 +3,7 @@ member-id: mei-li-chen
 name: Mei-Li Chen
 picture: mei-li-chen.jpg
 role: liaison
+active: true
 affiliation: AFACT, Liaison
 ---
 

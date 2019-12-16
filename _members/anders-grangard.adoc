@@ -2,7 +2,8 @@
 member-id: anders-grangard
 name: Anders Grangard
 picture: anders-grangard.jpg
-role: project-leader-9735
+role: project-leader-iso-9735
+active: true
 affiliation: UNECE, Liaison
 ---
 
