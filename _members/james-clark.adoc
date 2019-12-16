@@ -1,0 +1,16 @@
+---
+member-id: james-clark
+picture: james-clark.jpg
+name: James Bryce Clark
+role: convener-wg4
+affiliation: OASIS, liaison
+---
+
+James Bryce Clark (jamie.clark@oasis-open.org) is a senior executive and General Counsel of OASIS, a global consortia developing open Internet standards for e-business and the information society. Previously he was its Director of Standards, responsible for its 60+ industry expert committees.
+
+He is an information technology and corporate attorney who began his practice as a restructuring lawyer on Wall Street in New York. Jamie represented banks and high technology companies in finance and corporate transactions; while a practicing attorney, he served two terms as chair of the ABA's original subcommittee on electronic commerce, and was a co-editor of the business process standards for the ebXML project (ISO 15000) and chairman of its coordinating committee. Before OASIS, he was the general counsel of a healthcare e-commerce privacy & security company, and a corporate partner in a Los Angeles law firm. He continues to act of counsel to a Los Angeles trnsactional boutique law practice.
+
+Jamie served as a US delegate to the e-commerce working group of the United Nations Commission on International Trade Law (UNCITRAL) and is a member of advisory committees for the Kantara Initiative and the W3C. He has provided expert support to the European Commission's ICT public sector open standards rolling plan, the US ODNI standards coordinating council for cybersecurity information sharing, and as staff director for the expert team supporting NIST's NSTIC IDESG identity management project. Jamie holds JD and BSc degrees from the University of Minnesota, is based in Los Angeles, and microblogs as @JamieXML on Twitter.
+
+* LinkedIn profile: http://www.linkedin.com/in/jamesbryceclark
+* Twitter: http://www.twitter.com/JamieXML
