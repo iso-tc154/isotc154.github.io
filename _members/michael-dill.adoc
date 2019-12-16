@@ -1,0 +1,18 @@
+---
+member-id: michael-dill
+name: Michael Dill
+picture: michael-dill.jpg
+role: past-member
+active: false
+affiliation: DIN, Germany
+---
+
+Michael Dill studied Economics and had his first contact with the eBusiness world in 1987, when he read an article about the approval of the EDIFACT Syntax by ISO TC 154.
+
+In 1990, he started an independent Berlin-based EDI software and consultancy company called GEFEG mbH to develop an EDI implementation tool. Today, the latest versions of the GEFEG tool provide a rich metadata environment for UML or Core Component data modelling, guideline development, customisations, HTML publication, validation plus mapping to EDIFACT, US ANSI X.12 CICA and XML schema implementation. Michael has wide experience as an EDI consultant and has worked on implementation projects in the railway sector, the white goods, automotive, electronics, retail and dental industries, eGov and for Customs developments.
+
+As a consultant for the G7 Customs Group he developed the first global G7 Data Models which have been developed on to become the WCO Data Model. His special interest is how to open smooth migration paths from legacy paper, EDI(FACT) and XML standards to the upcoming world of interoperable eStandard and services.
+
+He has contributed for many years to the development of international standards related to cross-border trade where he currently plays an active role in the development of WCO Data Model and from 2005 to 2017 he has been the Head of the German Delegation to ISO TC 154.
+
+Michael has extensive experience in the implementation of data modelling by Customs, UNCEFACT, OASIS UBL, Automotive, eGovernment, Aerospace and Defence, Global Transport, GS1 (EAN.UCC), WCO, SAP, OAGi, SWIFT etc.
