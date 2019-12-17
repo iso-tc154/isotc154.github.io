@@ -1,6 +1,69 @@
 $userPicW: 14rem;
 $userPicGap: 2rem;
 
+$userListPicW: $userPicW / 2;
+$userListPicH: 16rem / 2;
+
+body.layout--member_index {
+  .member-list {
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+    }
+  }
+
+  .member-card {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 30%;
+    }
+
+    margin: 0 .5rem .5rem 0;
+
+    h3 {
+      margin: 0;
+      font-weight: normal;
+    }
+    .role {
+      text-transform: uppercase;
+      font-size: 80%;
+    }
+  }
+
+  .member-photo,
+  .missing-member-photo {
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    display: block;
+    width: $userListPicW;
+    height: $userListPicH;
+    overflow: hidden;
+
+    margin-right: 1rem;
+  }
+
+  .member-photo img {
+    width: $userListPicW;
+    height: $userListPicH;
+    object-fit: cover;
+  }
+
+  .missing-member-photo {
+    background: whiteSmoke;
+  }
+
+  section {
+    @include wideContainer();
+  }
+}
+
 body.layout--member {
   main {
     @include asciidoc-markup();
