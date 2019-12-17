@@ -30,9 +30,12 @@ body.layout--member_index {
       margin: 0;
       font-weight: normal;
     }
-    .role {
+    .roles {
       text-transform: uppercase;
       font-size: 80%;
+      .role {
+        white-space: nowrap;
+      }
     }
   }
 

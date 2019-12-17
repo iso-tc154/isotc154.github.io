@@ -10,7 +10,13 @@
 
   <div class="member-info">
     <h3><a href="{{ include.member.url }}">{{ include.member.name }}</a></h3>
-    <span class="role">{{ include.member.role | replace: '-', ' ' }}</span>
+    <span class="roles">
+      {% for role in include.member.role %}
+        <span class="role">
+          {{ role | replace: '-', ' ' }}{% unless forloop.last %};{% endunless %}
+        </span>
+      {% endfor %}
+    </span>
   </div>
 
 </article>
