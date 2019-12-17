@@ -8,9 +8,9 @@ layout: default
       <img class="picture" src="/assets/images/members/{{ page.picture }}">
     {% endif %}
 
-{% for role in page.role %}
-    <h2 class="entity"><span class="type">{{ role | replace: '-', ' ' | capitalize }}</span></h2>
-{% endfor %}
+    {% for role in page.role %}
+      <h2 class="entity"><span class="type">{{ role | replace: '-', ' ' | capitalize }}</span></h2>
+    {% endfor %}
 
     <h1 class="headline">{{ page.name }}</h1>
 
