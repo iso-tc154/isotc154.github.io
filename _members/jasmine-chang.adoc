@@ -2,7 +2,10 @@
 member-id: jasmine-chang
 picture: jasmine-chang.jpg
 name: Jasmine Jaegyong Chang
-role: convenor-wg6
+role:
+  - convenor_wg6
+  - project_leader_19626-1
+  - project_leader_19626-2
 active: true
 affiliation: KATS, Korea, Republic of
 ---

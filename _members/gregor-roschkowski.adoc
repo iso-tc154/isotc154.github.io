@@ -2,7 +2,7 @@
 member-id: gregor-roschkowski
 picture: gregor-roschkowski.jpg
 name: Gregor Roschkowski
-role: committee-manager-jwg1
+role: committee_manager_jwg1
 active: true
 affiliation: DIN, Germany
 ---

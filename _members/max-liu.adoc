@@ -2,7 +2,9 @@
 member-id: max-liu
 picture: max-liu.jpg
 name: Dapeng (Max) Liu
-role: convenor-jwg8
+role:
+  - convenor_jwg8
+  - project_leader_23355
 active: true
 affiliation: SAC, China
 ---

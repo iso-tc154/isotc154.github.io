@@ -2,7 +2,7 @@
 member-id: sue-probert
 picture: sue-probert.jpg
 name: Sue Probert
-role: project-leader-iso-7372
+role: project_leader_7372
 active: true
 affiliation: BSI, United Kingdom
 ---

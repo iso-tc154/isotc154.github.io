@@ -9,7 +9,7 @@ layout: default
     {% endif %}
 
     {% for role in page.role %}
-      <h2 class="entity"><span class="type">{{ role | replace: '-', ' ' | capitalize }}</span></h2>
+      <h2 class="entity"><span class="type">{{ role | replace: '_', ' ' | capitalize }}</span></h2>
     {% endfor %}
 
     <h1 class="headline">{{ page.name }}</h1>

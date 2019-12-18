@@ -17,7 +17,7 @@ This repository is jointly managed by ISO/TC 154 and Ribose.
 == Content management
 
 * **Excerpt separator**, where allowed, should be in this form: `// more`.
-  This has been specified in _config.yml to match AsciiDoc’s comment syntax.
+  This has been specified in `_config.yml` to match AsciiDoc’s comment syntax.
 * If title, name, etc. is required by YAML frontmatter,
   **avoid** specifying main title in content with AsciiDoc’s equal sign
   to avoid relying on implicit behavior and order of interpretation.
@@ -34,12 +34,12 @@ frontmatter:
 --
 member-id: name-with-dashes
 name: Full Name
-role: role-with-dashes
+role: role_with_underscores
 affiliation: Organization, country (freeform)
 
 picture: file-name-with.extension
 # Picture is optional.
-# Filename must be relative to /assets/images/memebrs/ directory.
+# Filename must be relative to /assets/images/members/ directory.
 --
 
 === Groups

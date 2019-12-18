@@ -1,0 +1,12 @@
+---
+member-id: naoto-miyachi
+picture: naoto-miyachi.jpg
+name: Naoto Miyachi
+role:
+  - project_leader_14533-2
+active: true
+affiliation: JICS, Japan
+---
+
+Naoto Miyachi is the project leader of ISO 14533-2.
+

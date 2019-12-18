@@ -1,0 +1,11 @@
+---
+member-id: yongkon-lee
+name: Jungnam Lee
+role:
+  - member
+active: true
+affiliation: KATS, Korea, Republic of
+---
+
+Yongkon Lee is the project leader of TSEM.
+

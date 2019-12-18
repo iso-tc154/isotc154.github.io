@@ -2,7 +2,7 @@
 member-id: michael-dill
 name: Michael Dill
 picture: michael-dill.jpg
-role: past-member
+role: past_member
 active: false
 affiliation: DIN, Germany
 ---

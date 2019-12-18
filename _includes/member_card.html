@@ -13,7 +13,7 @@
     <span class="roles">
       {% for role in include.member.role %}
         <span class="role">
-          {{ role | replace: '-', ' ' }}{% unless forloop.last %};{% endunless %}
+          {{ role | replace: '_', ' ' }}{% unless forloop.last %};{% endunless %}
         </span>
       {% endfor %}
     </span>

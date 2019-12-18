@@ -4,8 +4,8 @@ picture: ronald-tse.jpg
 name: Ronald Tse
 active: true
 role:
-  - convenor-wg5
-  - convenor-wg4
+  - convenor_wg5
+  - convenor_wg4
 affiliation: CalConnect, Liaison
 ---
 

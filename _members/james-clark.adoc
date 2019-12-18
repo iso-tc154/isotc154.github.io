@@ -2,7 +2,8 @@
 member-id: james-clark
 picture: james-clark.jpg
 name: James Bryce Clark
-role: convenor-wg4
+role:
+  - convenor_wg4
 active: true
 affiliation: OASIS, liaison
 ---

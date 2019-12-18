@@ -2,7 +2,7 @@
 member-id: francois-vuilleumier
 name: François Vuilleumier
 picture: francois-vuilleumier.jpg
-role: past-member
+role: past_member
 active: false
 affiliation: SNV, Switzerland
 ---
