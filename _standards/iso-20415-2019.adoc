@@ -2,7 +2,7 @@
 name: ISO 20415:2019
 type: international
 title: "Processes, data elements and documents in commerce, industry and administration -- Trusted Mobile e-Document Framework -- Requirement, functionality and criteria for ensuring reliable and safe mobile e-business"
-publication-date: 2019-06-06
+publication_date: 2019-06-06
 ---
 
 == Introduction
