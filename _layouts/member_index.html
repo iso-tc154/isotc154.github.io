@@ -9,7 +9,7 @@ layout: default
 
   <div class="member-list">
     {% assign chairs = site.members | where: "active", "true" | where_exp: "item", "item.role contains 'chair'" | sort: "name" %}
-    {% assign members = site.members | where: "active", "true" | where_exp: "item", "item.role contains 'convener' or item.role contains 'committee-manager'" | sort: "name" %}
+    {% assign members = site.members | where: "active", "true" | where_exp: "item", "item.role contains 'convenor' or item.role contains 'committee-manager'" | sort: "name" %}
     {% for member in chairs %}
       {% include member_card.html member=member %}
     {% endfor %}

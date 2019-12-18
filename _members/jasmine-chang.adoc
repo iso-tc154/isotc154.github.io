@@ -2,7 +2,7 @@
 member-id: jasmine-chang
 picture: jasmine-chang.jpg
 name: Jasmine Jaegyong Chang
-role: convener-wg6
+role: convenor-wg6
 active: true
 affiliation: KATS, Korea, Republic of
 ---
