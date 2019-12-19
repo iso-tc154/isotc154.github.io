@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<main>
+<header class="wg-summary">
   <h2 class="entity">
     {% if page.name %}<span class="id">{{ page.name }}</span>{% endif %}
     <span class="type">group</span>
@@ -11,11 +11,13 @@ layout: default
   <h1 class="headline">{{ page.title }}</h1>
 
   {% if page.intro %}
-  <div class="group-intro">
-    {{ page.intro | asciidocify }}
-  </div>
+    <section class="group-intro">
+      {{ page.intro | asciidocify }}
+    </section>
   {% endif %}
+</header>
 
+<aside>
   <div class="scope-and-leadership">
     {% if page.scope %}
       <section class="scope">
@@ -27,16 +29,23 @@ layout: default
       </section>
     {% endif %}
 
-    {% if page.leadership.convenors or page.leadership.convenors %}
+    {% assign convenors = page.organization.convenors | default: site.data.groups[page._id].convenors %}
+    {% assign managers = page.organization.managers | default: site.data.groups[page._id].managers %}
+    {% assign members = page.organization.members | default: site.data.groups[page._id].members %}
+    {% assign num_members = convenors | add: managers | add: members | size %}
+    {% if num_members > 0 %}
       <section class="leadership">
-        <h2>Leadership</h2>
+        <h2>Current organization</h2>
 
         <div class="member-list">
-          {% for member_id in page.leadership.convenors %}
-            {% include member_card.html role="convenor" id=member_id affiliation=true %}
+          {% for member_id in convenors %}
+            {% include member_card.html role="convenor" id=member_id affiliation=true in_group=page._id %}
           {% endfor %}
-          {% for member_id in page.leadership.managers %}
-            {% include member_card.html role="manager" id=member_id affiliation=true %}
+          {% for member_id in managers %}
+            {% include member_card.html role="manager" id=member_id affiliation=true in_group=page._id %}
+          {% endfor %}
+          {% for member_id in members %}
+            {% include member_card.html role="member" id=member_id affiliation=true in_group=page._id %}
           {% endfor %}
         </div>
       </section>
@@ -68,7 +77,9 @@ layout: default
       </section>
     {% endif %}
   </div>
+</aside>
 
+<main>
   <section class="group-info">
     {{ page.content }}
   </section>
@@ -116,9 +127,9 @@ layout: default
             <div class="previous-leadership">
               <h3>Previous leadership</h3>
 
-              <div class="member-list member-list--compact">
+              <div class="member-list">
                 {% for member_id in page.history.leadership %}
-                  {% include member_card.html id=member_id affiliation=true %}
+                  {% include member_card.html id=member_id affiliation=true in_group=page._id %}
                 {% endfor %}
               </div>
             </div>
@@ -130,7 +141,7 @@ layout: default
 
               <div class="member-list member-list--horizontally-scrolled">
                 {% for member_id in page.history.secretariat %}
-                  {% include member_card.html id=member_id affiliation=true %}
+                  {% include member_card.html id=member_id affiliation=true in_group=page._id %}
                 {% endfor %}
               </div>
             </div>
@@ -139,5 +150,4 @@ layout: default
       </div>
     </section>
   {% endif %}
-
 </main>

@@ -5,6 +5,10 @@ body.layout--member_index {
   section {
     @include wideContainer();
   }
+
+  .member-list {
+    @extend .item-list;
+  }
 }
 
 body.layout--member {

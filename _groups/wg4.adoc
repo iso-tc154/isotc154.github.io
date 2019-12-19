@@ -1,5 +1,5 @@
 ---
-id: wg4
+_id: wg4
 name: WG 4
 title: e-documents
 order: 4
@@ -13,7 +13,7 @@ scope: |
   Standardization of e-document concepts and semantics to support people,
   systems and processes involved in developing, publishing and using of e-documents.
 
-leadership:
+organization:
   convenors:
     - ronald-tse
     - james-clark

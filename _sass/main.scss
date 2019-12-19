@@ -55,38 +55,38 @@ body > .with-aside {
 }
 
 
+body > main, body > header {
+  > .entity {
+    margin: 0;
+    color: lighten($textColor, 40);
+    font-weight: normal;
+
+    .id {
+      margin-right: 1em;
+    }
+    .type {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      vertical-align: middle;
+      font-weight: bold;
+      white-space: nowrap;
+
+      padding: .4em .8em;
+      background: $primaryColor;
+      color: white;
+    }
+  }
+  > .headline {
+    margin-top: 0;
+    font-size: 160%;
+  }
+}
+body > header, body > main > header {
+  margin-bottom: 3em;
+}
+
 main {
-  > header {
-    margin-bottom: 3em;
-  }
-  &, & > header {
-    > .entity {
-      margin: 0;
-      color: lighten($textColor, 40);
-      font-weight: normal;
-
-      .id {
-        margin-right: 1em;
-      }
-      .type {
-        font-size: .8rem;
-        text-transform: uppercase;
-        letter-spacing: .04em;
-        vertical-align: middle;
-        font-weight: bold;
-        white-space: nowrap;
-
-        padding: .4em .8em;
-        background: $primaryColor;
-        color: white;
-      }
-    }
-    > .headline {
-      margin-top: 0;
-      font-size: 160%;
-    }
-  }
-
   > section {
     margin-bottom: 3em;
   }
@@ -464,14 +464,6 @@ $itemPicH: 16rem / 2;
   @include itemList(0);
 }
 
-.member-list {
-  @extend .item-list;
-}
-
-.member-list--compact {
-  @include itemList(1);
-}
-
 .project-list {
   @include itemList(1);
 }
@@ -503,14 +495,14 @@ $itemPicH: 16rem / 2;
   }
 }
 
-.member-list .member-card {
+.member-card {
   .item-text {
     justify-content: flex-start;
 
     .name {
       line-height: 1.2;
       font-size: 110%;
-      margin-bottom: .5rem;
+      margin-bottom: .2rem;
     }
 
     .affiliation, .roles {
@@ -523,6 +515,7 @@ $itemPicH: 16rem / 2;
       text-overflow: ellipsis;
 
       .role {
+        display: block;
         white-space: nowrap;
       }
     }

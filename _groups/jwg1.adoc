@@ -1,5 +1,5 @@
 ---
-id: jwg1
+_id: jwg1
 name: JWG&nbsp;1 (with&nbsp;UNECE)
 title: EDIFACT Syntax
 order: 2
@@ -14,7 +14,7 @@ scope: |
   The scope of JWG1 includes the maintenance, update and extension
   of ISO 9735.
 
-leadership:
+organization:
   managers:
     - gregor-roschkowski
   convenors:

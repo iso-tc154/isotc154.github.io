@@ -10,6 +10,7 @@
 
 {% if member %}
   <article class="item-card member-card
+      {% if include.role %}role-{{ include.role }}{% endif %}  
       {% if member.is_the_chair %}chair {% endif %}
       {% if member.is_in_leadership %}leadership {% endif %}">
 
@@ -36,11 +37,13 @@
       {% assign num_roles = roles | size %}
 
       <span class="roles">
-        {% if member.is_the_chair %}
-          <span class="role">Chair</span>
-        {% endif %}
+        {% unless include.in_group %}
+          {% if member.is_the_chair %}
+            <span class="role">Chair</span>
+          {% endif %}
+        {% endunless %}
 
-        {% if num_roles > 0 %}
+        {%- if num_roles > 0 -%}
           {% for role in roles %}
             <span class="role">
               {% assign role_title = role.id | default: role | replace: '_', ' ' %}
@@ -57,24 +60,24 @@
                 {% if role.from or role.to %}
                   <span class="time-period">
                     {% if role.from %}
-                      {% include date_with_precision.html date=role.from %}
+                      since {% include date_with_precision.html date=role.from %}
                     {% endif %}
-                    —
                     {% if role.to %}
-                      {% include date_with_precision.html date=role.to %}
+                      until {% include date_with_precision.html date=role.to %}
                     {% endif %}
                   {% endif %}
                 </span>
               {% endif %}
             </span>
           {% endfor %}
-        {% else %}
+
+        {%- else -%}
           {% if member.is_current %}
             <span class="role">Member</span>
           {% elsif member.id %}
             <span class="role">Past member</span>
           {% endif %}
-        {% endif %}
+        {%- endif -%}
       </span>
     </div>
 

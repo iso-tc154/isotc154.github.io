@@ -1,5 +1,5 @@
 ---
-id: wg7
+_id: wg7
 name: WG 7
 title: Digital Business
 order: 7
@@ -12,10 +12,6 @@ scope: |
   accessible or open data and related frameworks in the field of
   e-commerce helps to align business processes and foster global
   collaboration and interchange.
-
-leadership:
-  convenors:
-    - peter-plapper
 
 active_projects:
   - iso-21981

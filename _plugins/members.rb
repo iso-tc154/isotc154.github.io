@@ -1,6 +1,21 @@
 module Jekyll
 
   class Site
+
+    def read_groups
+      groups = self.collections['groups'].docs.map(&:clone)
+
+      self.data['groups'] = {}
+
+      groups.each do |group|
+        self.data['groups'][group.data['_id']] = {
+          'members' => [],
+          'convenors' => [],
+          'managers' => [],
+        }
+      end
+    end
+
     def read_members
       members = self.collections['members'].docs.map(&:clone)
       committee = self.config['committee']
@@ -63,8 +78,20 @@ module Jekyll
               by_role_id['_all']['in']['_all'] << role_record
 
               if group_id
+                if role_timespan['to'] == nil
+                  if role_id == 'manager'
+                    self.data['groups'][group_id]['managers'] << id
+                  elsif role_id == 'convenor'
+                    self.data['groups'][group_id]['convenors'] << id
+                  elsif role_id == 'member'
+                    self.data['groups'][group_id]['members'] << id
+                  else
+                    p 'WARNING: Unknown role in group', role_id
+                  end
+                end
+
                 by_role_id[role_id]['in'][group_id] ||= []
-                by_role_id[role_id]['in'][group_id] << role_timespan
+                by_role_id[role_id]['in'][group_id] << role_record
                 by_role_id['_all']['in'][group_id] ||= []
                 by_role_id['_all']['in'][group_id] << role_record
               end
@@ -127,9 +154,10 @@ module Jekyll
 
   class MemberDataReader < Generator
     safe true
-    priority :low
+    priority :high
 
     def generate(site)
+      site.read_groups
       site.read_members
       site.read_projects
     end

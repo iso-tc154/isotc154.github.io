@@ -1,5 +1,5 @@
 ---
-id: wg6
+_id: wg6
 name: WG 6
 title: Trusted eCommunications
 order: 6
@@ -20,10 +20,6 @@ scope: |
 
   WG6 also covers considerations about trusted e-communications, in the environment of mobile,
   IoT and cloud, which is aligned with the development of emerging ICT technology.
-
-leadership:
-  convenors:
-    - jasmine-chang
 
 active_projects:
   - iso-14533

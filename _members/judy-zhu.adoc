@@ -3,6 +3,11 @@ member-id: judy-zhu
 picture: judy-zhu.jpg
 name: Hongru (Judy) Zhu
 active: true
+roles:
+  - id: convenor
+    group: cag
+  - id: convenor
+    group: ma
 affiliation: SAC, China
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: cag
+_id: cag
 name: CAG
 title: Co-ordination Advisory Group
 order: 1
@@ -9,7 +9,7 @@ intro: |
 
   The group's membership comprises of the TC 154 chair, committee manager, WG/JWG/JMA conveners and their managers.
 
-leadership:
+organization:
   convenors:
     - judy-zhu
 ---

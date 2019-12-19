@@ -1,5 +1,5 @@
 ---
-id: jwg8
+_id: jwg8
 name: Joint&nbsp;Working&nbsp;Group&nbsp;8 (with&nbsp;UNECE)
 title: Logistics data contents and process
 order: 8
@@ -22,7 +22,7 @@ history:
     JWG 8 was established in October 2018 by ISO/TC 154 in collaboration with
     http://www.unece.org[UNECE] through https://uncefact.unece.org[UN/CEFACT].
 
-leadership:
+organization:
   convenors:
     - max-liu
 

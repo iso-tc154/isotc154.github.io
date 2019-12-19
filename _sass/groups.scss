@@ -1,118 +1,171 @@
 $colWidth: $widescreenBreakpoint / 2.28;
+$asideBackground: whiteSmoke;
+
+@mixin header($bgColor, $lineColor) {
+  font-size: 85%;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  color: $lineColor;
+
+  line-height: 1.1;
+
+  margin-bottom: 1rem;
+
+  position: relative;
+  z-index: 2;
+
+  &:after {
+    content: "\00a0";
+    border-bottom: .1rem dotted $lineColor;
+    display: block;
+    height: 1px;
+    position: absolute;
+    bottom: .2rem;
+    right: 0;
+    left: 0;
+    z-index: -1;
+  }
+  &::first-line {
+    background: $bgColor;
+    padding: .2rem .5rem;
+    display: inline-block;
+  }
+}
 
 body.layout--group {
-  main {
-    h1 {
-      font-size: 240%;
-    }
 
-    .leadership {
-      .member-list {
-        > * {
-          flex-basis: 100%;
-        }
-      }
-    }
+  h1 {
+    font-size: 240%;
+  }
 
-    @media screen and (min-width: $widescreenBreakpoint) {
-      section.group-info,
-      .collaborative-party-list {
-        column-width: $colWidth;
+  .leadership, .history .previous-leadership {
+    .member-list {
+      @include itemList(1);
 
-        .sect1, .sect2, .sect3 {
-          h1, h2, h3, h4 {
-            column-span: all;
-          }
-        }
-        li, .paragraph, .admonitionblock, .collaborative-projects {
-          break-inside: avoid;
-          -webkit-column-break-inside: avoid;
-          -moz-column-break-inside: avoid;
-          column-break-inside: avoid;
-          break-inside: avoid-column;
-          overflow: auto;
+      .member-card.role-convenor,
+      .member-card.role-manager {
+        .role {
+          font-weight: bold;
+          color: $primaryColor;
         }
       }
 
-      div.activities,
-      div.scope-and-leadership,
-      section.history .section-body {
-        display: flex;
-        flex-flow: row nowrap;
+      > * {
+        flex-basis: 100%;
+        margin-bottom: .5rem;
+      }
+    }
+  }
 
-        > * {
-          flex-basis: $colWidth;
-          flex-grow: 0;
-          flex-shrink: 0;
-          overflow: hidden;
+  @media screen and (min-width: $widescreenBreakpoint) {
+    section.group-info,
+    .collaborative-party-list {
+      column-width: $colWidth;
+
+      .sect1, .sect2, .sect3 {
+        h1, h2, h3, h4 {
+          column-span: all;
         }
-        > :first-child {
-          padding-right: 2rem;
-        }
+      }
+      li, .paragraph, .admonitionblock, .collaborative-projects {
+        break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+        -moz-column-break-inside: avoid;
+        column-break-inside: avoid;
+        break-inside: avoid-column;
+        overflow: auto;
       }
     }
 
-    .group-info,
-    .group-intro,
-    .scope .text,
-    .history .story,
-    .collaborative-party .collab-description {
-      @include asciidoc-markup();
-      font-size: 90%;
-    }
+    div.activities,
+    div.scope-and-leadership,
+    section.history .section-body {
+      display: flex;
+      flex-flow: row nowrap;
 
-    .scope,
-    .group-intro {
-      font-size: 100%;
-    }
-
-    .group-info {
-      > .paragraph:first-child > p:first-child::first-letter {
-        font-size: 3em;
-        float: left;
-        margin-right: .4rem;
-        line-height: 1;
-        font-weight: bold;
-        font-family: Georgia, serif;
-        color: $primaryColor;
+      > * {
+        flex-basis: $colWidth;
+        flex-grow: 0;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      > :first-child {
+        padding-right: 2rem;
       }
     }
+  }
 
-    section {
-      margin-bottom: 0;
-      padding-bottom: 1rem;
+  header.wg-summary,
+  div.activities,
+  div.scope-and-leadership {
+    @include wideContainer();
+  }
 
-      > h2 {
-        font-size: 85%;
-        text-transform: uppercase;
-        letter-spacing: .05em;
-        color: $primaryColor;
+  .group-info:not(:contains(div)) {
+    border-top: 1px solid $primaryColor;
+  }
 
-        border-width: 1px 0 0 0;
-        border-color: $primaryColor;
-        border-style: solid;
-
-        padding: .5rem 0 0 0;
-        margin-bottom: 1rem;
-
-        line-height: 1;
-      }
-
-      h3 {
-        font-size: 95%;
-      }
+  aside {
+    background: $asideBackground;
+    a, a:link {
+      color: $linkColor;
     }
+  }
 
-    section.group-info {
-      border-top: 3px solid whiteSmoke;
-      padding-top: .5rem;
+  .group-info,
+  .group-intro,
+  .scope .text,
+  .history .story,
+  .collaborative-party .collab-description {
+    @include asciidoc-markup();
+    font-size: 90%;
+  }
+
+  .scope,
+  .group-intro {
+    font-size: 100%;
+  }
+
+  .group-info {
+    > .paragraph:first-child > p:first-child::first-letter {
+      font-size: 3em;
+      float: left;
+      margin-right: .4rem;
+      line-height: 1;
+      font-weight: bold;
+      font-family: Georgia, serif;
+      color: $primaryColor;
     }
+  }
 
-    section.history,
-    section.collaborative-parties {
-      > h2 {
-        border-top: none;
-      }
+  section {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+
+    h3 {
+      font-size: 110%;
+    }
+  }
+
+  main section {
+    > h2 {
+      @include header(white, $primaryColor);
+    }
+  }
+  aside section {
+    > h2 {
+      @include header($asideBackground, $primaryColor);
+    }
+  }
+
+  section.group-info {
+    padding-top: .5rem;
+  }
+
+  section.history,
+  section.collaborative-parties {
+    > h2 {
+      border-top: none;
     }
   }
 }

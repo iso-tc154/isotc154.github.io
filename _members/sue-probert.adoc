@@ -2,7 +2,11 @@
 member-id: sue-probert
 picture: sue-probert.jpg
 name: Sue Probert
-role: project_leader_7372
+roles:
+  - id: project_leader
+    project: 7372
+  - id: convenor
+    group: ma
 active: true
 affiliation: BSI, United Kingdom
 ---

@@ -1,5 +1,5 @@
 ---
-id: wg5
+_id: wg5
 name: WG 5
 title: Date and time
 order: 5
@@ -18,7 +18,7 @@ scope: |
   related to date and time, systems and processes that use or measure date and time,
   and the interoperability of information systems that utilize date and time.
 
-leadership:
+organization:
   convenors:
     - ronald-tse
 
