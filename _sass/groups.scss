@@ -63,11 +63,12 @@ body.layout--group {
       column-width: $colWidth;
 
       .sect1, .sect2, .sect3 {
-        h1, h2, h3, h4 {
+        h1, h2 {
+          text-align: center;
           column-span: all;
         }
       }
-      li, .paragraph, .admonitionblock, .collaborative-projects {
+      .sect2, .sect3, .paragraph, .admonitionblock, .collaborative-projects {
         break-inside: avoid;
         -webkit-column-break-inside: avoid;
         -moz-column-break-inside: avoid;
