@@ -10,7 +10,14 @@ description: >-
 committee:
   chair: judy-zhu
   leadership:
+    - jianfang-zhang
+    - yan-zhang
+    - james-clark
+    - jasmine-chang
+    - peter-plapper
+    - max-liu
     - ronald-tse
+    - sue-probert
     - gregor-roschkowski
 
 baseurl: ""
