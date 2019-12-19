@@ -1,6 +1,6 @@
 ---
 member-id: yongkon-lee
-name: Jungnam Lee
+name: Yongkon Lee
 role: member
 active: true
 affiliation: KATS, Korea, Republic of
