@@ -24,8 +24,6 @@ scope: |
 leadership:
   convenors:
     - jasmine-chang
-  managers:
-    - KATS
 
 active_projects:
   - iso-14533
