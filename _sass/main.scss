@@ -420,7 +420,7 @@ $itemPicH: 16rem / 2;
 
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
 
     p, h3, h4 {
@@ -433,6 +433,10 @@ $itemPicH: 16rem / 2;
 
 @mixin itemList($compact: 0) {
   @if $compact == 1 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
   } @else {
     @media screen and (min-width: $bigscreenBreakpoint) {
       display: flex;
@@ -442,14 +446,14 @@ $itemPicH: 16rem / 2;
   }
 
   .item-card {
+    margin: 0 .5rem .5rem 0;
+    overflow: hidden;
+
     @if $compact == 1 {
       @include itemCard($itemPicW / 2, $itemPicH / 2);
-      flex: unset;
 
     } @else {
       @include itemCard($itemPicW, $itemPicH);
-
-      margin: 0 .5rem .5rem 0;
 
       @media screen and (min-width: $bigscreenBreakpoint) {
         flex-grow: 0;
