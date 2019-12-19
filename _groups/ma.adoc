@@ -2,29 +2,17 @@
 _id: ma
 title: UNTDED - ISO 7372 Joint Maintenance Agency (JMA)
 order: 9
+
+intro: |
+  The agency was established in the late 80's
+  to maintain the *Trade Data Element Directory* (TDED) issued by UNECE as UNTDED and also by ISO/TC 154 as ISO 7372.
+
+  The joint publication lists standard data elements intended to facilitate
+  open interchange of data in international trade.
+  The standard data elements listed can be used with any method for data interchange
+  on paper documents as well as with other paperless means of data processing and communication.
 ---
 :page-liquid:
-
-The agency was established in the late 80's
-to maintain the *Trade Data Element Directory* (TDED) issued by UNECE as UNTDED and also by ISO/TC 154 as ISO 7372.
-
-The joint publication lists standard data elements intended to facilitate
-open interchange of data in international trade.
-The standard data elements listed can be used with any method for data interchange
-on paper documents as well as with other paperless means of data processing and communication.
-
-// more
-
-== Convenors
-
-{% assign convenor = site.members | where: "member-id", "judy-zhu" | first %}
-
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }})
-
-{% assign convenor = site.members | where: "member-id", "sue-probert" | first %}
-
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }})
-
 
 
 == The Trade Data Elements Directory (TDED)

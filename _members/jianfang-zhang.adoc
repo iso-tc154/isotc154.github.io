@@ -2,7 +2,10 @@
 member-id: jianfang-zhang
 picture: jianfang-zhang.jpg
 name: Jianfang Zhang
-role: committee_manager
+roles:
+  - id: member
+    group: wg7
+  - id: committee_manager
 active: true
 affiliation: SAC, China
 ---

@@ -1,7 +1,9 @@
 ---
 member-id: yongkon-lee
 name: Yongkon Lee
-role: member
+role:
+  - id: member
+    group: wg7
 active: true
 affiliation: KATS, Korea, Republic of
 ---

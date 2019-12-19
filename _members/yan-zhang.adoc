@@ -6,6 +6,8 @@ roles:
   - id: convenor
     group: jwg1
     from: { date: 2017-01-01, precision: year }
+  - id: member
+    group: wg7
 active: true
 affiliation: UNECE, Liaison
 ---

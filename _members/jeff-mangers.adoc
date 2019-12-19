@@ -2,7 +2,11 @@
 member-id: jeff-mangers
 name: Jeff Mangers
 picture: jeff-mangers.jpg
-role: project_leader_22468
+roles:
+  - id: project_leader
+    project: 22468
+  - id: member
+    group: wg7
 active: true
 affiliation: ILNAS, Luxembourg
 ---
