@@ -54,6 +54,7 @@ body > .with-aside {
   flex: 1;
 }
 
+
 main {
   > header {
     margin-bottom: 3em;
@@ -379,6 +380,168 @@ body > footer {
       > * {
         margin-left: .5em;
       }
+    }
+  }
+}
+
+
+$itemPicW: 14em / 2;
+$itemPicH: 16rem / 2;
+
+@mixin itemCard($picW, $picH) {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+
+  &.item-card--no-pic {
+    .item-text {
+      padding-bottom: .5rem;
+    }
+  }
+
+  .item-pic {
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    width: $picW;
+    height: $picH;
+    overflow: hidden;
+
+    margin-right: 1rem;
+  }
+
+  .item-text {
+    padding-top: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    overflow: hidden;
+
+    p, h3, h4 {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@mixin itemList($compact: 0) {
+  @if $compact == 1 {
+  } @else {
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+    }
+  }
+
+  .item-card {
+    @if $compact == 1 {
+      @include itemCard($itemPicW / 2, $itemPicH / 2);
+      flex: unset;
+
+    } @else {
+      @include itemCard($itemPicW, $itemPicH);
+
+      margin: 0 .5rem .5rem 0;
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 30%;
+      }
+    }
+  }
+}
+
+.item-list {
+  @include itemList(0);
+}
+
+.member-list {
+  @extend .item-list;
+}
+
+.member-list--compact {
+  @include itemList(1);
+}
+
+.project-list {
+  @include itemList(1);
+}
+
+.standard-list {
+  @include itemList(1);
+}
+
+.standard-card {
+  .name-and-publication, .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .title, .publication-date {
+    font-size: 90%;
+  }
+  .publication-date {
+    margin-left: .5rem;
+  }
+}
+
+.project-list .project-card {
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 90%;
+  }
+}
+
+.member-list .member-card {
+  .item-text {
+    justify-content: flex-start;
+
+    .name {
+      line-height: 1.2;
+      font-size: 110%;
+      margin-bottom: .5rem;
+    }
+
+    .affiliation, .roles {
+      font-size: 80%;
+    }
+
+    .roles {
+      text-transform: uppercase;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .role {
+        white-space: nowrap;
+      }
+    }
+    .affiliation {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .item-pic {
+    img, .missing-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .missing-placeholder {
+      background: whiteSmoke;
     }
   }
 }

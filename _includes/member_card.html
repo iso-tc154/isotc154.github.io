@@ -1,22 +1,82 @@
-<article class="member-card">
+{% if include.member %}
+  {% assign member = include.member %}
+{% elsif include.id %}
+  {% assign member = site.data.members.all[include.id] %}
+{% endif %}
 
-  {% if include.member.picture %}
-    <div class="member-photo">
-      <img src="/assets/images/members/{{ include.member.picture }}">
+{% unless member %}
+  {% assign member = include.id %}
+{% endunless %}
+
+{% if member %}
+  <article class="item-card member-card
+      {% if member.is_the_chair %}chair {% endif %}
+      {% if member.is_in_leadership %}leadership {% endif %}">
+
+    <div class="item-pic">
+      {% if member.picture %}
+        <img src="/assets/images/members/{{ member.picture }}">
+      {% else %}
+        <div class="missing-placeholder"></div>
+      {% endif %}
     </div>
-  {% else %}
-    <div class="missing-member-photo"></div>
-  {% endif %}
 
-  <div class="member-info">
-    <h3><a href="{{ include.member.url }}">{{ include.member.name }}</a></h3>
-    <span class="roles">
-      {% for role in include.member.role %}
-        <span class="role">
-          {{ role | replace: '_', ' ' }}{% unless forloop.last %};{% endunless %}
+    <div class="item-text">
+      <h3 class="name"><a href="{{ member.url | default: "javascript: void 0;" }}">{{ member.name | default: member }}</a></h3>
+
+      {% if include.affiliation %}
+        <span class="affiliation" title="Affiliation: {{ member.affiliation }}">
+          {{ member.affiliation }}
         </span>
-      {% endfor %}
-    </span>
-  </div>
+      {% endif %}
 
-</article>
+      {% assign group_id = include.in_group | default: "_all" %}
+      {% assign role_id = include.role | default: "_all" %}
+      {% assign roles = member.roles[role_id].in[group_id] %}
+      {% assign num_roles = roles | size %}
+
+      <span class="roles">
+        {% if member.is_the_chair %}
+          <span class="role">Chair</span>
+        {% endif %}
+
+        {% if num_roles > 0 %}
+          {% for role in roles %}
+            <span class="role">
+              {% assign role_title = role.id | default: role | replace: '_', ' ' %}
+              {{ role_title }}
+
+              {% unless include.in_group or role.group == nil %}
+                <span class="group">({{ role.group }})</span>
+              {% endunless %}
+              {% unless include.in_project or role.project == nil %}
+                <span class="project">({{ role.project }})</span>
+              {% endunless %}
+
+              {% if include.in_group %}
+                {% if role.from or role.to %}
+                  <span class="time-period">
+                    {% if role.from %}
+                      {% include date_with_precision.html date=role.from %}
+                    {% endif %}
+                    —
+                    {% if role.to %}
+                      {% include date_with_precision.html date=role.to %}
+                    {% endif %}
+                  {% endif %}
+                </span>
+              {% endif %}
+            </span>
+          {% endfor %}
+        {% else %}
+          {% if member.is_current %}
+            <span class="role">Member</span>
+          {% elsif member.id %}
+            <span class="role">Past member</span>
+          {% endif %}
+        {% endif %}
+      </span>
+    </div>
+
+  </article>
+{% endif %}

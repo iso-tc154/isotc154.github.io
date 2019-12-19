@@ -1,7 +1,9 @@
 ---
 member-id: peter-rybar
 name: Peter Rybar
-role: project_leader_14533
+roles:
+  - id: project_leader
+    project: 14533
 active: true
 affiliation: UNMS SR, Slovakia
 ---

@@ -2,7 +2,10 @@
 member-id: yan-zhang
 name: Yan Zhang
 picture: yan-zhang.jpg
-role: convenor_jwg1
+roles:
+  - id: convenor
+    group: jwg1
+    from: { date: 2017-01-01, precision: year }
 active: true
 affiliation: UNECE, Liaison
 ---

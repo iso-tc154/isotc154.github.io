@@ -2,8 +2,9 @@
 member-id: naoto-miyachi
 picture: naoto-miyachi.jpg
 name: Naoto Miyachi
-role:
-  - project_leader_14533-2
+roles:
+  - id: project_leader
+    project: 14533-2
 active: true
 affiliation: JICS, Japan
 ---

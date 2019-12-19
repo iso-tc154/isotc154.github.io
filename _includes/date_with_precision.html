@@ -1,0 +1,1 @@
+{% assign precision = include.date.precision | default: "month" %}{% if precision == "month" %}{{ include.date.date | date: "%Y/%m" }}{% elsif precision == "year" %}{{ include.date.date | date: "%Y" }}{% endif %}

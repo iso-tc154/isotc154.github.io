@@ -38,7 +38,7 @@ scripts:
         </h3>
 
         <div class="description">
-          {{ group.excerpt }}
+          {{ group.intro | asciidocify }}
         </div>
       </article>
     {% endfor %}

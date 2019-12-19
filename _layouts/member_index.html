@@ -8,13 +8,10 @@ layout: default
   </header>
 
   <div class="member-list">
-    {% assign chairs = site.members | where: "active", "true" | where_exp: "item", "item.role contains 'chair'" | sort: "name" %}
-    {% assign members = site.members | where: "active", "true" | where_exp: "item", "item.role contains 'convenor' or item.role contains 'committee_manager'" | sort: "name" %}
-    {% for member in chairs %}
-      {% include member_card.html member=member %}
-    {% endfor %}
-    {% for member in members %}
-      {% include member_card.html member=member %}
+    {% include member_card.html id=site.data.members.chair %}
+
+    {% for member_id in site.data.members.leadership %}
+      {% include member_card.html id=member_id %}
     {% endfor %}
   </div>
 </section>
@@ -25,9 +22,8 @@ layout: default
   </header>
 
   <div class="member-list">
-    {% assign members = site.members | where: "active", "true" | sort: "name" %}
-    {% for member in members %}
-      {% include member_card.html member=member %}
+    {% for member_id in site.data.members.current %}
+      {% include member_card.html id=member_id %}
     {% endfor %}
   </div>
 </section>
@@ -36,9 +32,8 @@ layout: default
   <h2>Past members</h2>
 
   <div class="member-list">
-    {% assign members = site.members | where: "active", "false" | sort: "name" %}
-    {% for member in members %}
-      {% include member_card.html member=member %}
+    {% for member_id in site.data.members.past %}
+      {% include member_card.html id=member_id %}
     {% endfor %}
   </div>
 </section>

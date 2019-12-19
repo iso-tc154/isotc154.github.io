@@ -4,69 +4,59 @@ name: WG 5
 title: Date and time
 order: 5
 featured_on_home: true
+
+intro: |
+  WG 5 provides a common platform for all date and time stakeholders,
+  to enable a unified, interoperable of date and time across populations and systems.
+  It publishes the ISO 8601 family of standards in ubiquitous use today.
+
+scope: |
+  The scope of WG5 is to provide a common platform for all date and time stakeholders,
+  to enable a unified, interoperable of date and time across populations and systems.
+
+  Specifically, the work involves the standardization of concepts and semantics
+  related to date and time, systems and processes that use or measure date and time,
+  and the interoperability of information systems that utilize date and time.
+
+leadership:
+  convenors:
+    - ronald-tse
+
+history:
+  leadership:
+    - ray-denenberg
+  story: |
+    WG 5 was established to manage ISO 8601, the international date time standard.
+
+active_projects:
+  - iso-34000
+  - iso-34300
+
+standards:
+  - ISO 8601-1:2019
+  - ISO 8601-2:2019
+
+collaborative_parties:
+  - entity_name: CalConnect
+    projects:
+      - iso-34000
+      - iso-34300
+    description: |
+      https://www.calconnect.org[CalConnect], the Calendaring and Scheduling Consortium, is
+      a Category A liaison of ISO/TC 154.
+
+      CalConnect is focused on the interoperable exchange of calendaring and scheduling information between dissimilar programs, platforms, and technologies. Our mission is to promote general understanding of and provide mechanisms to allow interoperable calendaring and scheduling methodologies, tools and applications to enter the mainstream of computing.
+
+      CalConnect's TC DATETIME is heavily engaged with all WG 5 projects, including its contribution to link:/standards/iso-8601-2[ISO 8601-2].
+
+  - entity_name: ITU-T
+    description: |
+      https://www.itu.int[ITU] is a Category A liaison with ISO/TC 154, with specific
+      interest in the activities of WG 5.
+
+      From its inception in 1865, ITU-T has driven a contribution-led, consensus-based approach to standards development in which all countries and companies, no matter how large or small, are afforded equal rights to influence the development of ITU-T Recommendations. From its beginnings as a body standardizing international telegraph exchange, through its formative role in telecommunications, and in today’s converged ICT ecosystem, ITU-T has provided the world’s best facilities to the global standardization community and remains the world’s only truly global ICT standards body.
+
+      ITU-T is the standardization arm of ITU, the United Nations specialized agency for information and communication technologies – ICTs.
+
 ---
 :page-liquid:
-
-WG 5 provides a common platform for all date and time stakeholders, to enable a unified, interoperable of date and time across populations and systems. It publishes the ISO 8601 family of standards in ubiquitous use today.
-
-// more
-
-== Scope
-
-The scope of WG5 is to provide a common platform for all date and time stakeholders, to enable a unified, interoperable of date and time across populations and systems. Specifically, the work involves the standardization of concepts and semantics related to date and time, systems and processes that use or measure date and time, and the interoperability of information systems that utilize date and time.
-
-
-== History
-
-WG 5 was established to manage ISO 8601, the international date time standard.
-
-
-== Convenorship
-
-=== Current convenor
-
-{% assign convenor = site.members | where: "member-id", "ronald-tse" | first %}
-
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2019/04 - )
-
-=== Previous convenors
-
-{% assign convenor = site.members | where: "member-id", "ray-denenberg" | first %}
-
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2018 - 2019/04)
-
-== Active projects
-
-* link:/projects/iso-34000[ISO 34000]
-* link:/projects/iso-34300[ISO 34300]
-
-== Standards
-
-* link:/standards/iso-8601-1[ISO 8601-1] published 2019/03/25
-* link:/standards/iso-8601-2[ISO 8601-2] published 2019/03/25
-
-== Collaborative parties
-
-=== CalConnect
-
-https://www.calconnect.org[CalConnect], the Calendaring and Scheduling Consortium, is
-a Category A liaison of ISO/TC 154.
-
-CalConnect is focused on the interoperable exchange of calendaring and scheduling information between dissimilar programs, platforms, and technologies. Our mission is to promote general understanding of and provide mechanisms to allow interoperable calendaring and scheduling methodologies, tools and applications to enter the mainstream of computing.
-
-CalConnect's TC DATETIME is heavily engaged with all WG 5 projects, including its contribution to link:/standards/iso-8601-2[ISO 8601-2].
-
-Current collaborative projects include:
-
-* link:/projects/iso-34000[ISO 34000]
-* link:/projects/iso-34300[ISO 34300]
-
-=== ITU-T
-
-https://www.itu.int[ITU] is a Category A liaison with ISO/TC 154, with specific
-interest in the activities of WG 5.
-
-From its inception in 1865, ITU-T has driven a contribution-led, consensus-based approach to standards development in which all countries and companies, no matter how large or small, are afforded equal rights to influence the development of ITU-T Recommendations. From its beginnings as a body standardizing international telegraph exchange, through its formative role in telecommunications, and in today’s converged ICT ecosystem, ITU-T has provided the world’s best facilities to the global standardization community and remains the world’s only truly global ICT standards body.
-
-ITU-T is the standardization arm of ITU, the United Nations specialized agency for information and communication technologies – ICTs.
-

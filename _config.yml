@@ -7,6 +7,11 @@ description: >-
   ISO/TC 154 Committee site
   Processes, data elements and documents in commerce, industry and administration
 
+committee:
+  chair: judy-zhu
+  leadership:
+    - ronald-tse
+    - gregor-roschkowski
 
 baseurl: ""
 url: "https://www.isotc154.org"

@@ -1,0 +1,23 @@
+{% if include.standard %}
+  {% assign standard = include.standard %}
+{% elsif include.name %}
+  {% assign standard = site.standards | where: "name", include.name | first %}
+{% endif %}
+
+<article class="item-card item-card--no-pic standard-card">
+  {% unless standard %}
+    Standard {{ include.id }} not found
+  {% endunless %}
+
+  <div class="item-text">
+    <span class="name-and-publication">
+      <a href="{{ standard.url }}" class="name">{{ standard.name }}</a>
+      {% if standard.publication_date %}
+        <span class="publication-date">
+          published {{ standard.publication_date | date_to_long_string }}
+        </span>
+      {% endif %}
+    </span>
+    <em class="title" title="{{ standard.title }}">{{ standard.title }}</em>
+  </div>
+</article>

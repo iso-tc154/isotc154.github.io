@@ -3,42 +3,62 @@ id: wg4
 name: WG 4
 title: e-documents
 order: 4
+
+intro: |
+  WG 4 covers the standardization of e-document concepts and
+  semantics to support people, systems and processes involved in
+  developing, publishing and using of e-documents.
+
+scope: |
+  Standardization of e-document concepts and semantics to support people,
+  systems and processes involved in developing, publishing and using of e-documents.
+
+leadership:
+  convenors:
+    - ronald-tse
+    - james-clark
+
+active_projects:
+  - iso-36001
+
+standards:
+  - ISO 6422-1:2010
+
+history:
+  leadership:
+    - michael-dill
+    - bern-bosler
+
+  story: |
+    WG 4 was originally established (formerly as JWG 2 between UNECE and ISO)
+    during the UN/CEFACT Forum meeting in Vancouver, March 2006,
+    for the purpose of developing an electronic version of the UN Layout Key
+    (equivalent to ISO 6422:1985).
+
+    === Previous work
+
+    WG 4 was developing an electronic version of the UNLK (equivalent to ISO 6422:1985). This entails the development of a meta level standard and a methodology for the description of intelligent electronic forms.
+
+    A first New Work Item Proposal (NWIP) was set up as ISO/NP 25557 "`electronic Layout Key`" to be balloted within ISO/TC 154. The appropriate ballot in spring 2006 failed due to that only 3 members agreed to participate. With an amended NWIP a second ballot was started in September 2006 (deadline 2006-12-15), with the result again being negative.
+
+    During the ballots it was realized that there was a lack of information regarding the envisaged standard especially in combination with the existing ISO 6422:1985. Therefore the working group decided, in agreement with its parent body ISO/TC 154, to launch an appropriate ISO process in order to publish the existing ISO 6422:1985 within a framework of a suite where the original ISO 6422 became unchanged Part 1 and the "`electronic Layout Key`" would become Part 2.
+
+    ISO 6422-1 was published in 2010 and another preparatory WI for the progress of the foreseen
+    link:/projects/iso-6422-2[ISO 6422-2] was initiated. Due to necessary investigations in September 2011 it was decided to develop first a Technical Report
+    (see link:/projects/iso-pwi-tr-6422-3[ISO/PWI TS 6422-3]) regarding the progress of ISO 6422 "`Layout key for trade documents.`" This project shall provide more clarification on an appropriate extension of ISO 6422 for electronic documents as already registered with ISO/NP 6422-2.
+
+    === The UN Layout Key
+
+    The standard(s) should base on the relationship between the underlying core components
+    and the presentation aspects of the Layout Key.
+
+    In addition the standard(s) should allow others to derive aligned electronic documents
+    based on the electronic Layout Key in a similar way to the development of aligned paper documents
+    based on the original UNLK for Trade Documents.
+
 ---
 :page-liquid:
 
-WG 4 covers the standardization of e-document concepts and
-semantics to support people, systems and processes involved in
-developing, publishing and using of e-documents.
-
-// more
-
-== Scope
-
-Standardization of e-document concepts and semantics to support people, systems and processes involved in developing, publishing and using of e-documents.
-
-
-
-== Leadership
-
-=== Convenors
-
-{% assign convenor = site.members | where: "member-id", "ronald-tse" | first %}
-
-* link:{{ convenor.url }}[{{ convenor.name }}], Co-convenor, ({{ convenor.affiliation }}) (2019/12 - )
-
-{% assign convenor = site.members | where: "member-id", "james-clark" | first %}
-
-* link:{{ convenor.url }}[{{ convenor.name }}], Co-convenor, ({{ convenor.affiliation }}) (2019/12 - )
-
-
-== Active projects
-
-* link:/projects/iso-36001[ISO 36001]
-
-
-== Standards
-
-* link:/standards/iso-6422-12010[ISO 6422-1:2010]
 
 ////
 == Collaborative parties
@@ -69,50 +89,3 @@ Some of the most widely adopted OASIS Standards include AMQP, CAP, CMIS, DITA, D
 
 OASIS members can be found in 100+ countries on virtually every continent. Major multinational companies, SMEs, government agencies, NGOs, universities, research institutions, consulting groups, and individuals are all represented
 ////
-
-
-== History
-
-WG 4 was originally established (formerly as JWG 2 between UNECE and ISO)
-during the UN/CEFACT Forum meeting in Vancouver, March 2006,
-for the purpose of developing an electronic version of the UN Layout Key
-(equivalent to ISO 6422:1985).
-
-=== Previous leadership
-
-// Michael Dill
-
-{% assign convenor = site.members | where: "member-id", "michael-dill" | first %}
-
-* 2006 - 2017: link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }})
-
-
-=== Previous secretariat
-
-* 2006 - 2012: DIN / DE, Secretary, Bernd Bösler
-
-
-
-=== Previous work
-
-WG 4 was developing an electronic version of the UNLK (equivalent to ISO 6422:1985). This entails the development of a meta level standard and a methodology for the description of intelligent electronic forms.
-
-A first New Work Item Proposal (NWIP) was set up as ISO/NP 25557 "`electronic Layout Key`" to be balloted within ISO/TC 154. The appropriate ballot in spring 2006 failed due to that only 3 members agreed to participate. With an amended NWIP a second ballot was started in September 2006 (deadline 2006-12-15), with the result again being negative.
-
-During the ballots it was realized that there was a lack of information regarding the envisaged standard especially in combination with the existing ISO 6422:1985. Therefore the working group decided, in agreement with its parent body ISO/TC 154, to launch an appropriate ISO process in order to publish the existing ISO 6422:1985 within a framework of a suite where the original ISO 6422 became unchanged Part 1 and the "`electronic Layout Key`" would become Part 2.
-
-ISO 6422-1 was published in 2010 and another preparatory WI for the progress of the foreseen
-link:/projects/iso-6422-2[ISO 6422-2] was initiated. Due to necessary investigations in September 2011 it was decided to develop first a Technical Report
-(see link:/projects/iso-pwi-tr-6422-3[ISO/PWI TS 6422-3]) regarding the progress of ISO 6422 "`Layout key for trade documents.`" This project shall provide more clarification on an appropriate extension of ISO 6422 for electronic documents as already registered with ISO/NP 6422-2.
-
-=== The UN Layout Key
-
-The standard(s) should base on the relationship between the underlying core components
-and the presentation aspects of the Layout Key.
-
-In addition the standard(s) should allow others to derive aligned electronic documents
-based on the electronic Layout Key in a similar way to the development of aligned paper documents
-based on the original UNLK for Trade Documents.
-
-
-

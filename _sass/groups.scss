@@ -1,9 +1,118 @@
+$colWidth: $widescreenBreakpoint / 2.28;
+
 body.layout--group {
   main {
     h1 {
       font-size: 240%;
     }
 
-    @include asciidoc-markup();
+    .leadership {
+      .member-list {
+        > * {
+          flex-basis: 100%;
+        }
+      }
+    }
+
+    @media screen and (min-width: $widescreenBreakpoint) {
+      section.group-info,
+      .collaborative-party-list {
+        column-width: $colWidth;
+
+        .sect1, .sect2, .sect3 {
+          h1, h2, h3, h4 {
+            column-span: all;
+          }
+        }
+        li, .paragraph, .admonitionblock, .collaborative-projects {
+          break-inside: avoid;
+          -webkit-column-break-inside: avoid;
+          -moz-column-break-inside: avoid;
+          column-break-inside: avoid;
+          break-inside: avoid-column;
+          overflow: auto;
+        }
+      }
+
+      div.activities,
+      div.scope-and-leadership,
+      section.history .section-body {
+        display: flex;
+        flex-flow: row nowrap;
+
+        > * {
+          flex-basis: $colWidth;
+          flex-grow: 0;
+          flex-shrink: 0;
+          overflow: hidden;
+        }
+        > :first-child {
+          padding-right: 2rem;
+        }
+      }
+    }
+
+    .group-info,
+    .group-intro,
+    .scope .text,
+    .history .story,
+    .collaborative-party .collab-description {
+      @include asciidoc-markup();
+      font-size: 90%;
+    }
+
+    .scope,
+    .group-intro {
+      font-size: 100%;
+    }
+
+    .group-info {
+      > .paragraph:first-child > p:first-child::first-letter {
+        font-size: 3em;
+        float: left;
+        margin-right: .4rem;
+        line-height: 1;
+        font-weight: bold;
+        font-family: Georgia, serif;
+        color: $primaryColor;
+      }
+    }
+
+    section {
+      margin-bottom: 0;
+      padding-bottom: 1rem;
+
+      > h2 {
+        font-size: 85%;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        color: $primaryColor;
+
+        border-width: 1px 0 0 0;
+        border-color: $primaryColor;
+        border-style: solid;
+
+        padding: .5rem 0 0 0;
+        margin-bottom: 1rem;
+
+        line-height: 1;
+      }
+
+      h3 {
+        font-size: 95%;
+      }
+    }
+
+    section.group-info {
+      border-top: 3px solid whiteSmoke;
+      padding-top: .5rem;
+    }
+
+    section.history,
+    section.collaborative-parties {
+      > h2 {
+        border-top: none;
+      }
+    }
   }
 }

@@ -7,7 +7,137 @@ layout: default
     {% if page.name %}<span class="id">{{ page.name }}</span>{% endif %}
     <span class="type">group</span>
   </h2>
+
   <h1 class="headline">{{ page.title }}</h1>
 
-  {{ page.content }}
+  {% if page.intro %}
+  <div class="group-intro">
+    {{ page.intro | asciidocify }}
+  </div>
+  {% endif %}
+
+  <div class="scope-and-leadership">
+    {% if page.scope %}
+      <section class="scope">
+        <h2>Scope</h2>
+
+        <div class="text">
+          {{ page.scope | asciidocify }}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if page.leadership.convenors or page.leadership.convenors %}
+      <section class="leadership">
+        <h2>Leadership</h2>
+
+        <div class="member-list">
+          {% for member_id in page.leadership.managers %}
+            {% include member_card.html role="manager" id=member_id affiliation=true %}
+          {% endfor %}
+          {% for member_id in page.leadership.convenors %}
+            {% include member_card.html role="convenor" id=member_id affiliation=true %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </div>
+
+  <div class="activities">
+    {% if page.standards %}
+      <section class="standards">
+        <h2>Standards</h2>
+
+        <div class="standard-list">
+          {% for standard_name in page.standards %}
+            {% include standard_card.html name=standard_name %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if page.active_projects %}
+      <section class="active-projects">
+        <h2>Active projects</h2>
+
+        <div class="project-list">
+          {% for project_id in page.active_projects %}
+            {% include project_card.html id=project_id %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </div>
+
+  <section class="group-info">
+    {{ page.content }}
+  </section>
+
+  {% if page.collaborative_parties %}
+    <section class="collaborative-parties">
+      <h2>Collaborative parties</h2>
+
+      <div class="collaborative-party-list">
+        {% for party in page.collaborative_parties %}
+          <article class="collaborative-party">
+            <h3>{{ party.entity_name }}</h3>
+
+            <div class="collab-description">
+              {{ party.description | asciidocify }}
+            </div>
+
+            {% if party.projects %}
+              <div class="collaborative-projects">
+                <p>Current collaborative projects include:</p>
+                <div class="project-list">
+                  {% for project_id in party.projects %}
+                    {% include project_card.html id=project_id %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.history %}
+    <section class="history">
+      <h2>History</h2>
+
+      <div class="section-body">
+        <div class="story">
+          {{ page.history.story | asciidocify }}
+        </div>
+
+        <div class="previous-members-of-note">
+          {% if page.history.leadership %}
+            <div class="previous-leadership">
+              <h3>Previous leadership</h3>
+
+              <div class="member-list member-list--compact">
+                {% for member_id in page.history.leadership %}
+                  {% include member_card.html id=member_id affiliation=true %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if page.history.secretariat %}
+            <div class="previous-secretariat">
+              <h3>Previous secretariat</h3>
+
+              <div class="member-list member-list--horizontally-scrolled">
+                {% for member_id in page.history.secretariat %}
+                  {% include member_card.html id=member_id affiliation=true %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
 </main>

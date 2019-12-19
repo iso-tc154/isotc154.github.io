@@ -2,7 +2,10 @@
 member-id: peter-plapper
 picture: peter-plapper.jpg
 name: Peter Plapper
-role: convenor_wg7
+roles:
+  - id: convenor
+    group: wg7
+    from: { date: 2014-01-01, precision: year }
 active: true
 affiliation: ILNAS, Luxembourg
 ---

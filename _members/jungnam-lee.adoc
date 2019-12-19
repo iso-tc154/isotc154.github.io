@@ -1,8 +1,9 @@
 ---
 member-id: jungnam-lee
 name: Jungnam Lee
-role:
-  - project_leader_19626-3
+roles:
+  - id: project_leader
+    project: 19626-3
 active: true
 affiliation: KATS, Korea, Republic of
 ---

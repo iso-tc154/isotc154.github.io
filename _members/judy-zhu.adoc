@@ -2,7 +2,6 @@
 member-id: judy-zhu
 picture: judy-zhu.jpg
 name: Hongru (Judy) Zhu
-role: chair
 active: true
 affiliation: SAC, China
 ---

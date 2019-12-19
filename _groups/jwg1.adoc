@@ -4,63 +4,51 @@ name: JWG&nbsp;1 (with&nbsp;UNECE)
 title: EDIFACT Syntax
 order: 2
 featured_on_home: true
+
+intro: |
+  The EDIFACT Application Level Syntax Rules (ISO 9735) is the main deliverable
+  of the Joint Working Group (ISO/TC 154/JWG 1),
+  in collaboration with UNECE through UN/CEFACT.
+
+scope: |
+  The scope of JWG1 includes the maintenance, update and extension
+  of ISO 9735.
+
+leadership:
+  managers:
+    - gregor-roschkowski
+  convenors:
+    - yan-zhang
+
+active_projects:
+  - iso-9735-11
+
+standards:
+  - ISO 9735
+
+history:
+  leadership:
+    #- peter-wilson
+    #- bernd-bosler
+    #- don-trafford
+    - klaus-dieter-naujok
+
+  story: |
+    JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group (JSWG)`"
+    with the UNECE in order to develop and maintain the EDIFACT syntax.
+    Since the publication of the syntax version 1 in 1988,
+    the standard has been revised and amended several times until the current version 4,
+    release 2.
+
+    With its publication in 2002, the work in JWG 1 is mainly concentrated
+    on the twice-per-year update of the syntax codes directory
+    (in alignment with the EDIFACT user directories)
+    on the corresponding https://www.gefeg.com/jswg/[JSWG website].
 ---
 :page-liquid:
-
-The EDIFACT Application Level Syntax Rules (ISO 9735) is the main deliverable of the Joint Working Group (ISO/TC 154/JWG 1), in collaboration with UNECE through UN/CEFACT.
 
 // more
 
 ISO 9735 represents the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing. In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI. The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
 
 NOTE: Please see link:/procedures/sdmr[Syntax Data Maintenance Request Submission and Processing Procedures (SDMR)] for SDMR procedures.
-
-== Scope
-
-The scope of JWG1 includes the maintenance, update and extension
-of ISO 9735.
-
-
-== History
-
-JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group (JSWG)`" with the UNECE in order to develop and maintain the EDIFACT syntax. Since the publication of the syntax version 1 in 1988, the standard has been revised and amended several times until the current version 4, release 2. With its publication in 2002, the work in JWG 1 is mainly concentrated on the twice-per-year update of the syntax codes directory (in alignment with the EDIFACT user directories) on the corresponding https://www.gefeg.com/jswg/[JSWG website].
-
-
-== Secretariat
-
-=== Current work group manager
-
-{% assign secretary = site.members | where: "member-id", "gregor-roschkowski" | first %}
-
-link:{{ secretary.url }}[{{ secretary.name }}] ({{ secretary.affiliation }}) (2018 -)
-
-
-=== Previous work group managers / secretaries
-
-* Peter Wilson (UK/BSI) (initial - 1998)
-* Bernd Bösler (DE/DIN) (1998 - 2018)
-
-
-== Convenorship
-
-=== Current convenor
-
-{% assign convenor = site.members | where: "member-id", "yan-zhang" | first %}
-
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (2017 -)
-
-
-=== Previous convenors
-
-* Don Trafford (UK) (initial - September 2007) (In memory)
-
-* Klaus-Dieter Naujok (DE) (September 2007 - 2017)
-
-== Active projects
-
-* link:/projects/iso-9735-11[ISO/NP 9735-11]
-
-
-== Standards
-
-* link:/standards/iso-9735[ISO 9735 series]

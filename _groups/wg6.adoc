@@ -4,42 +4,40 @@ name: WG 6
 title: Trusted eCommunications
 order: 6
 featured_on_home: true
+
+intro: |
+  WG6 was established in 2014 to develop and standardize methods
+  used to facilitate trusted electronic and business transactions,
+  including those in e-commerce, e-industry and e-administration.
+  It also covers considerations of trusted and legally binding electronic communications
+  in the mobile, IoT and cloud environments.
+
+scope: |
+  The scope of WG6 related to business transactions of TC154 scope such as e-commerce,
+  e-industry and e-administration. It focuses on reliable and identifiable methods,
+  requirements and technology which can be retained such as legally binding e-transactions
+  between communication entities for long periods.
+
+  WG6 also covers considerations about trusted e-communications, in the environment of mobile,
+  IoT and cloud, which is aligned with the development of emerging ICT technology.
+
+leadership:
+  convenors:
+    - jasmine-chang
+  managers:
+    - KATS
+
+active_projects:
+  - iso-14533
+  - iso-19626-1
+
+standards:
+  - ISO 20415:2019
 ---
 :page-liquid:
-
-WG6 was established in 2014 to develop and standardize methods used to facilitate trusted electronic and business transactions, including those in e-commerce, e-industry and e-administration. It also covers considerations of trusted and legally binding electronic communications in the mobile, IoT and cloud environments.
-
-// more
-
-== Scope
-
-The scope of WG6 related to business transactions of TC154 scope such as e-commerce, e-industry and e-administration. It focuses on reliable and identifiable methods, requirements and technology which can be retained such as legally binding e-transactions between communication entities for long periods.
-
-WG6 also covers considerations about trusted e-communications, in the environment of mobile, IoT and cloud, which is aligned with the development of emerging ICT technology.
-
-== Convenorship
-
-=== Current convenor
-
-{% assign convenor = site.members | where: "member-id", "jasmine-chang" | first %}
-
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (initial 2014 -)
-
-== Secretariat
-
-KATS
 
 == Organization
 
 * PT1: ISO 14533 Long term signature profiles
 * PT2: ISO/CD 19626-1 Trusted Communication Platforms for Electronic Documents
 * PT3: ISO/DIS 20415 Trusted mobile e-document framework
-
-== Active projects
-
-* link:/projects/iso-14533[ISO 14533]
-* link:/projects/iso-19626-1[ISO 19626-1]
-
-== Standards
-
-* link:/standards/iso-20415-2019[ISO 20415:2019]

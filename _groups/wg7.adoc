@@ -3,28 +3,26 @@ id: wg7
 name: WG 7
 title: Digital Business
 order: 7
+
+scope: |
+  A key task of WG7 is to enhance interoperability by developing
+  technical specifications in support of semantics, digital
+  innovations and associated concepts that enable standardized
+  cross-enterprise solutions. Furthermore, the provision of
+  accessible or open data and related frameworks in the field of
+  e-commerce helps to align business processes and foster global
+  collaboration and interchange.
+
+leadership:
+  convenors:
+    - peter-plapper
+
+active_projects:
+  - iso-21981
+  - iso-22468
+  - iso-18262
 ---
 :page-liquid:
-
-== Scope
-
-A key task of WG7 is to enhance interoperability by developing
-technical specifications in support of semantics, digital
-innovations and associated concepts that enable standardized
-cross-enterprise solutions. Furthermore, the provision of
-accessible or open data and related frameworks in the field of
-e-commerce helps to align business processes and foster global
-collaboration and interchange.
-
-
-== Convenorship
-
-=== Current convenor
-
-{% assign convenor = site.members | where: "member-id", "peter-plapper" | first %}
-
-link:{{ convenor.url }}[{{ convenor.name }}] ({{ convenor.affiliation }}) (initial 2014 -)
-
 
 == Organization
 
@@ -33,12 +31,6 @@ There are 3 projects teams in WG7:
 . PT1 -- ISO/TS 21981 Business Semantics Thesaurus (BST)
 . PT2 -- ISO/DIS 22468 Value Stream Management (VSM)
 . PT3 -- ISO/DTR 18262 Open Data Interchange Framework (ODIF)
-
-== Active projects
-
-* link:/projects/iso-21981[ISO/TS 21981]
-* link:/projects/iso-22468[ISO/DIS 22468]
-* link:/projects/iso-22468[ISO/DTR 18262]
 
 ////
 == Standards
