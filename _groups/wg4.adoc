@@ -27,7 +27,7 @@ standards:
 history:
   leadership:
     - michael-dill
-    - bern-bosler
+    #- bern-bosler
 
   story: |
     WG 4 was originally established (formerly as JWG 2 between UNECE and ISO)
