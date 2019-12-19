@@ -32,11 +32,11 @@ layout: default
         <h2>Leadership</h2>
 
         <div class="member-list">
-          {% for member_id in page.leadership.managers %}
-            {% include member_card.html role="manager" id=member_id affiliation=true %}
-          {% endfor %}
           {% for member_id in page.leadership.convenors %}
             {% include member_card.html role="convenor" id=member_id affiliation=true %}
+          {% endfor %}
+          {% for member_id in page.leadership.managers %}
+            {% include member_card.html role="manager" id=member_id affiliation=true %}
           {% endfor %}
         </div>
       </section>
