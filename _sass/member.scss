@@ -15,6 +15,10 @@ body.layout--member {
   main {
     @include asciidoc-markup();
 
+    header + .paragraph {
+      @include with-dropcap();
+    }
+
     h1 {
       font-size: 240%;
     }
