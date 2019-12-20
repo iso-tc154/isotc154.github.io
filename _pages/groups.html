@@ -9,13 +9,27 @@ layout: default
     <section>
       <h2>Working Groups and Project Teams</h2>
 
-      {% assign groups = site.groups | sort: "order" %}
+      {% assign groups = site.groups | sort: "order" | where: "inactive", nil %}
       {% for group in groups %}
-      <li><a href="{{ group.url }}">{% if group.name %}{{ group.name }} — {% endif %} {{ group.title }}</a></li>
+        <a href="{{ group.url }}" role="article" class="group-card">
+          {% if group.name %}
+            <div class="group-name">{{ group.name }}</div>
+          {% endif %}
+
+          <div class="group-title">{{ group.title }}</div>
+        </a>
       {% endfor %}
 
+      {% assign groups = site.groups | sort: "order" | where: "inactive", true %}
+      {% for group in groups %}
+        <a href="{{ group.url }}" role="article" class="group-card inactive-group">
+          {% if group.name %}
+            <div class="group-name">{{ group.name }}</div>
+          {% endif %}
+
+          <div class="group-title">{{ group.title }}</div>
+        </a>
+      {% endfor %}
     </section>
-
   </main>
-
 </div>

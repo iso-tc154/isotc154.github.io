@@ -32,10 +32,61 @@ $asideBackground: whiteSmoke;
   }
 }
 
+body.groups {
+  .group-card {
+    display: flex;
+    flex-flow: row nowrap;
+
+    margin: 0 .5rem .5rem 0;
+
+    .group-name,
+    .group-title {
+      padding: .4rem .6rem .3rem .6rem;
+    }
+    .group-name {
+      background: linear-gradient(163deg, #dfdfdf 20%, #f0f0f0 70%);
+      transition: background .2s linear, color .2s linear;
+      font-weight: bold;
+    }
+    .group-title {
+      color: $textColor;
+      background: whiteSmoke;
+    }
+
+    &:hover {
+      .group-name {
+        background: $primaryColor;
+        color: white;
+      }
+    }
+
+    &.inactive-group {
+      opacity: 0.8;
+      transition: opacity .2s linear;
+
+      .group-name, .group-title {
+        color: grey;
+      }
+
+      &:hover {
+        opacity: 1;
+        .group-name {
+          background: grey;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
 body.layout--group {
 
   .wg-summary h1 {
     font-size: 240%;
+  }
+
+  .entity.inactive-group .type {
+    background: grey;
   }
 
   .project-list, .standard-list {
