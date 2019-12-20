@@ -43,7 +43,7 @@
           {% endif %}
         {% endunless %}
 
-        {%- if num_roles > 0 -%}
+        {% if num_roles > 0 %}
           {% for role in roles %}
             <span class="role" title="{{ role_title }}">
 
@@ -74,13 +74,13 @@
             </span>
           {% endfor %}
 
-        {%- else -%}
+        {% else %}
           {% if member.is_current %}
             <span class="role">Member</span>
           {% elsif member.id %}
             <span class="role">Past member</span>
           {% endif %}
-        {%- endif -%}
+        {% endif %}
       </span>
     </div>
 
