@@ -45,9 +45,12 @@
 
         {%- if num_roles > 0 -%}
           {% for role in roles %}
-            <span class="role">
+            <span class="role" title="{{ role_title }}">
+
               {% assign role_title = role.id | default: role | replace: '_', ' ' %}
-              {{ role_title }}
+              <span class="role-title">
+                {{ role_title }}
+              </span>
 
               {% unless include.in_group or role.group == nil %}
                 <span class="group">({{ role.group }})</span>

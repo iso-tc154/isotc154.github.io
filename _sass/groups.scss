@@ -44,7 +44,7 @@ body.layout--group {
 
       .member-card.role-convenor,
       .member-card.role-manager {
-        .role {
+        .role .role-title {
           font-weight: bold;
           color: $primaryColor;
         }
