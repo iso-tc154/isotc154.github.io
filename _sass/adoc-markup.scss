@@ -70,6 +70,18 @@
     text-indent: 0;
   }
 
+  ol, ul {
+    margin: 0;
+
+    li {
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      -moz-column-break-inside: avoid;
+      column-break-inside: avoid;
+      break-inside: avoid-column;
+    }
+  }
+
   // Code listing
 
   .paragraph code {
