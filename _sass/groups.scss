@@ -54,6 +54,8 @@ body.groups {
     }
 
     &:hover {
+      text-decoration: none;
+
       .group-name {
         background: $primaryColor;
         color: white;

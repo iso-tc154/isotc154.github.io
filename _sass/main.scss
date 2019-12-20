@@ -9,8 +9,12 @@ a {
     color: inherit;
     text-decoration: none;
 
-    main & {
+    main &, aside & {
       color: $linkColor;
+
+      &:hover {
+        text-decoration: underline;
+      }
 
       &.anchor-link {
         opacity: 0.2;
