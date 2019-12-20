@@ -15,7 +15,7 @@ layout: default
     <h1 class="headline">{{ page.name }}</h1>
 
     <p class="roles">
-      {% include member_roles.html roles=member.roles %}
+      {% include member_roles.html roles=member.roles show_history=true %}
     </p>
 
     <p>Representing {{ page.affiliation }}</p>

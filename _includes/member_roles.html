@@ -26,7 +26,7 @@
           <span class="project">({{ role.project }})</span>
         {% endunless %}
 
-        {% if include.in_group %}
+        {% if include.in_group or include.show_history %}
           {% if role.from or role.to %}
             <span class="time-period">
               {% if role.from %}
