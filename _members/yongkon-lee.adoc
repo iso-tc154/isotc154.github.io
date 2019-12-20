@@ -1,7 +1,7 @@
 ---
 member-id: yongkon-lee
 name: Yongkon Lee
-role:
+roles:
   - id: member
     group: wg7
 active: true
