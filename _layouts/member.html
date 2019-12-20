@@ -2,17 +2,17 @@
 layout: default
 ---
 
+{% assign member = site.data.members.all[page["member-id"]] %}
+
 <main>
   <header class="{% if page.picture %}with-pic{% endif %}">
     {% if page.picture %}
       <img class="picture" src="/assets/images/members/{{ page.picture }}">
     {% endif %}
 
-    <h2 class="entity"><span class="type">Member</span></h2>
+    <h2 class="entity"><span class="type">{% unless member.is_current %}Past {% endunless %}Member</span></h2>
 
     <h1 class="headline">{{ page.name }}</h1>
-
-    {% assign member = site.data.members.all[page["member-id"]] %}
 
     <p class="roles">
       {% include member_roles.html roles=member.roles %}
