@@ -55,7 +55,7 @@ body > .with-aside {
 }
 
 
-body > main, body > header {
+body > main, body > header, body > main > header {
   > .entity {
     margin: 0;
     color: lighten($textColor, 40);
