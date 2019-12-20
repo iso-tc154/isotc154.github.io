@@ -23,6 +23,19 @@ body.layout--member {
       font-size: 240%;
     }
 
+    p.roles {
+      text-transform: uppercase;
+
+      .role {
+        &:after {
+          content: " • ";
+        }
+        &:last-child:after {
+          content: "";
+        }
+      }
+    }
+
     header {
       &.with-pic {
         overflow: hidden;

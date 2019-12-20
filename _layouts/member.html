@@ -12,6 +12,12 @@ layout: default
 
     <h1 class="headline">{{ page.name }}</h1>
 
+    {% assign member = site.data.members.all[page["member-id"]] %}
+
+    <p class="roles">
+      {% include member_roles.html roles=member.roles %}
+    </p>
+
     <p>Representing {{ page.affiliation }}</p>
   </header>
 
