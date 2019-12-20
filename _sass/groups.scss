@@ -1,6 +1,19 @@
 $colWidth: $widescreenBreakpoint / 2.28;
 $asideBackground: whiteSmoke;
 
+@mixin with-dropcap() {
+  > p:first-child::first-letter {
+    font-size: 3.2em;
+    float: left;
+    margin-top: -.1rem;
+    margin-right: .4rem;
+    line-height: 1;
+    font-weight: bold;
+    font-family: Georgia, serif;
+    color: $primaryColor;
+  }
+}
+
 @mixin header($bgColor, $lineColor) {
   font-size: 85%;
   text-transform: uppercase;
@@ -34,8 +47,15 @@ $asideBackground: whiteSmoke;
 
 body.layout--group {
 
-  h1 {
+  .wg-summary h1 {
     font-size: 240%;
+  }
+
+  .project-list, .standard-list {
+    > * {
+      flex: 1;
+      min-width: 14em;
+    }
   }
 
   .leadership, .history .previous-leadership {
@@ -51,8 +71,12 @@ body.layout--group {
       }
 
       > * {
-        flex-basis: 45%;
+        flex-basis: 100%;
         margin-bottom: .5rem;
+
+        @media screen and (min-width: $widescreenBreakpoint) {
+          flex-basis: 45%;
+        }
       }
     }
   }
@@ -102,12 +126,13 @@ body.layout--group {
     @include wideContainer();
   }
 
-  .group-info:not(:contains(div)) {
+  .group-info::contains(div) {
     border-top: 1px solid $primaryColor;
   }
 
   aside {
     background: $asideBackground;
+    padding-bottom: 1rem;
     a, a:link {
       color: $linkColor;
     }
@@ -119,29 +144,38 @@ body.layout--group {
   .history .story,
   .collaborative-party .collab-description {
     @include asciidoc-markup();
-    font-size: 90%;
+    font-size: 92%;
   }
 
-  .scope,
   .group-intro {
-    font-size: 100%;
+    font-size: 110%;
   }
 
-  .group-info {
-    > .paragraph:first-child > p:first-child::first-letter {
-      font-size: 3em;
-      float: left;
-      margin-right: .4rem;
-      line-height: 1;
+  .scope .text,
+  .collab-description {
+    > .paragraph:first-child > p:first-line,
+    > p:first-line {
       font-weight: bold;
-      font-family: Georgia, serif;
-      color: $primaryColor;
     }
+  }
+
+  .history .story,
+  .group-info {
+    > .paragraph:first-child {
+      @include with-dropcap();
+    }
+  }
+
+  aside,
+  .group-intro,
+  .group-info {
+    margin-bottom: 1.5rem;
   }
 
   section {
     margin-bottom: 0;
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
 
     h3 {
       font-size: 110%;
