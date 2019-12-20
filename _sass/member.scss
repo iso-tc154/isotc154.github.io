@@ -33,6 +33,9 @@ body.layout--member {
         &:last-child:after {
           content: "";
         }
+        .time-period {
+          text-transform: none;
+        }
       }
     }
 
