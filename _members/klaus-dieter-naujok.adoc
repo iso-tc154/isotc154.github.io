@@ -7,7 +7,6 @@ roles:
     from: { date: 2007-09-01, precision: "month" }
     to: { date: 2017-01-01, precision: "year" }
     group: jwg1
-role: past_member
 active: false
 affiliation: DIN, Germany
 ---
