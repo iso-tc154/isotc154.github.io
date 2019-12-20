@@ -515,12 +515,12 @@ $itemPicH: 16rem / 2;
 
     .roles {
       text-transform: uppercase;
-      overflow: hidden;
-      text-overflow: ellipsis;
 
       .role {
         display: block;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     .affiliation {
