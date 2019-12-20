@@ -103,6 +103,10 @@ body.layout--group {
     .member-list {
       @include itemList(1);
 
+      .member-card {
+        font-size: 90%;
+      }
+
       .member-card.role-convenor,
       .member-card.role-manager {
         .role .role-title {
