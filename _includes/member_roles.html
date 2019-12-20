@@ -16,7 +16,7 @@
 
         {% assign role_title = role.id | default: role | replace: '_', ' ' %}
         <span class="role-title">
-          {{ role_title }}
+          {% if role.to %}{% unless include.show_history %}past {% endunless %}{% endif %}{{ role_title }}
         </span>
 
         {% unless include.in_group or role.group == nil %}
