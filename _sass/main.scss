@@ -385,6 +385,20 @@ body > footer {
 }
 
 
+@mixin with-dropcap() {
+  > p:first-child::first-letter {
+    font-size: 3.2em;
+    float: left;
+    margin-top: -.1rem;
+    margin-right: .4rem;
+    line-height: 1;
+    font-weight: bold;
+    font-family: Georgia, serif;
+    color: $primaryColor;
+  }
+}
+
+
 $itemPicW: 14em / 2;
 $itemPicH: 16rem / 2;
 

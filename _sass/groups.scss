@@ -1,19 +1,6 @@
 $colWidth: $widescreenBreakpoint / 2.28;
 $asideBackground: whiteSmoke;
 
-@mixin with-dropcap() {
-  > p:first-child::first-letter {
-    font-size: 3.2em;
-    float: left;
-    margin-top: -.1rem;
-    margin-right: .4rem;
-    line-height: 1;
-    font-weight: bold;
-    font-family: Georgia, serif;
-    color: $primaryColor;
-  }
-}
-
 @mixin header($bgColor, $lineColor) {
   font-size: 85%;
   text-transform: uppercase;
