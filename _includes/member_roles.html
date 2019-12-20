@@ -1,0 +1,51 @@
+{% assign group_id = include.in_group | default: "_all" %}
+{% assign role_id = include.with_id | default: "_all" %}
+{% assign roles = include.roles[role_id].in[group_id] %}
+{% assign num_roles = roles | size %}
+
+<span class="roles">
+  {% unless include.in_group %}
+    {% if member.is_the_chair %}
+      <span class="role">Chair</span>
+    {% endif %}
+  {% endunless %}
+
+  {% if num_roles > 0 %}
+    {% for role in roles %}
+      <span class="role" title="{{ role_title }}">
+
+        {% assign role_title = role.id | default: role | replace: '_', ' ' %}
+        <span class="role-title">
+          {{ role_title }}
+        </span>
+
+        {% unless include.in_group or role.group == nil %}
+          <a class="group" href="{{ "/groups/" | append: role.group | relative_url }}">({{ role.group }})</a>
+        {% endunless %}
+        {% unless include.in_project or role.project == nil %}
+          <span class="project">({{ role.project }})</span>
+        {% endunless %}
+
+        {% if include.in_group %}
+          {% if role.from or role.to %}
+            <span class="time-period">
+              {% if role.from %}
+                since {% include date_with_precision.html date=role.from %}
+              {% endif %}
+              {% if role.to %}
+                until {% include date_with_precision.html date=role.to %}
+              {% endif %}
+            {% endif %}
+          </span>
+        {% endif %}
+      </span>
+    {% endfor %}
+
+  {% else %}
+    {% if member.is_current %}
+      <span class="role">Member</span>
+    {% elsif member.id %}
+      <span class="role">Past member</span>
+    {% endif %}
+  {% endif %}
+</span>
