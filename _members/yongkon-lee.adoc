@@ -9,4 +9,3 @@ affiliation: KATS, Korea, Republic of
 ---
 
 Yongkon Lee is the project leader of TSEM.
-
