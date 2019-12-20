@@ -60,6 +60,16 @@
 
 @mixin asciidoc-markup() {
 
+  .paragraph + .paragraph {
+    p {
+      text-indent: 1rem;
+    }
+  }
+  p, .paragraph p {
+    margin: 0;
+    text-indent: 0;
+  }
+
   // Code listing
 
   .paragraph code {
