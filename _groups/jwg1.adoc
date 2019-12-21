@@ -1,6 +1,7 @@
 ---
 _id: jwg1
-name: JWG&nbsp;1 (with&nbsp;UNECE)
+name: JWG&nbsp;1
+joint_with: [UNECE]
 title: EDIFACT Syntax
 order: 2
 featured_on_home: true
