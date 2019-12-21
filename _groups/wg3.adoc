@@ -1,5 +1,5 @@
 ---
-id: wg3
+_id: wg3
 name: WG 3
 title: CCTS
 order: 3
