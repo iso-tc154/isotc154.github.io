@@ -12,22 +12,14 @@ layout: default
       {% assign groups = site.groups | sort: "order" | where: "inactive", nil %}
       {% for group in groups %}
         <a href="{{ group.url }}" role="article" class="group-card">
-          {% if group.name %}
-            <div class="group-name">{{ group.name }}</div>
-          {% endif %}
-
-          <div class="group-title">{{ group.title }}</div>
+          {% include group_card.html group=group %}
         </a>
       {% endfor %}
 
       {% assign groups = site.groups | sort: "order" | where: "inactive", true %}
       {% for group in groups %}
         <a href="{{ group.url }}" role="article" class="group-card inactive-group">
-          {% if group.name %}
-            <div class="group-name">{{ group.name }}</div>
-          {% endif %}
-
-          <div class="group-title">{{ group.title }}</div>
+          {% include group_card.html group=group %}
         </a>
       {% endfor %}
     </section>

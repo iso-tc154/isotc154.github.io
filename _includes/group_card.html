@@ -1,0 +1,19 @@
+{% assign group = include.group %}
+
+{% if group.name %}
+  <div class="group-name">{{ group.name }}</div>
+{% endif %}
+
+<div class="group-title">{{ group.title }}</div>
+
+<span class="group-type">
+  {% if group.inactive == true %}
+    Inactive
+  {% endif %}
+  {% if group._id contains 'wg' %}
+    Working Group
+    {% if group.joint_with %}
+      — joint with {{ group.joint_with }}
+    {% endif %}
+  {% endif %}
+</span>
