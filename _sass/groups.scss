@@ -32,6 +32,16 @@ $asideBackground: whiteSmoke;
   }
 }
 
+.group-label {
+  color: lighten($textColor, 50);
+  text-transform: uppercase;
+  font-size: 80%;
+
+  &.group-joint-with {
+    color: $primaryColor;
+  }
+}
+
 body.groups {
   .group-card {
     display: flex;
@@ -41,21 +51,12 @@ body.groups {
     margin: 0 .5rem .5rem 0;
 
     > * {
-      &:not(:empty) {
-        padding: .4rem .6rem .3rem .6rem;
-        margin-right: .25rem;
-      }
+      padding: .4rem .6rem .3rem .6rem;
+      margin-right: .25rem;
     }
 
     .group-label {
-      color: lighten($textColor, 50);
-      text-transform: uppercase;
       padding-right: 0;
-      font-size: 80%;
-    }
-
-    .group-joint-with {
-      color: $primaryColor;
     }
 
     .group-name {
@@ -63,6 +64,7 @@ body.groups {
       transition: background .2s linear, color .2s linear;
       font-weight: bold;
     }
+
     .group-title {
       color: $textColor;
       background: whiteSmoke;
@@ -103,6 +105,17 @@ body.layout--group {
     font-size: 240%;
   }
 
+  .entity .type:empty {
+    display: none;
+  }
+  .entity .type .group-label {
+    color: white;
+
+    &:not(:last-child):after {
+      content: " • ";
+      margin: 0 .2rem;
+    }
+  }
   .entity.inactive-group .type {
     background: grey;
   }

@@ -1,0 +1,16 @@
+{%- if include.group._id contains 'wg' -%}
+  <span class="group-label group-type">
+    working group
+  </span>
+{%- endif -%}
+{%- if include.group.joint_with -%}
+  <span class="group-label group-joint-with">
+    joint with: {{ include.group.joint_with }}
+  </span>
+{%- endif -%}
+{%- if include.group.inactive == true -%}
+  <span class="group-label group-inactive">
+    inactive
+  </span>
+{%- endif -%}
+

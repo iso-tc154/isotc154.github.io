@@ -5,7 +5,8 @@ layout: default
 <header class="wg-summary">
   <h2 class="entity {% if page.inactive %}inactive-group{% endif %}">
     {% if page.name %}<span class="id">{{ page.name }}</span>{% endif %}
-    <span class="type">{% if page.inactive %}inactive {% endif %}group</span>
+
+    <span class="type {% if page.inactive %}inactive-group{% endif %}">{%- include group_labels.html group=page -%}</span>
   </h2>
 
   <h1 class="headline">{{ page.title }}</h1>
