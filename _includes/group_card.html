@@ -6,14 +6,20 @@
 
 <div class="group-title">{{ group.title }}</div>
 
-<span class="group-type">
-  {% if group.inactive == true %}
-    Inactive
-  {% endif %}
-  {% if group._id contains 'wg' %}
-    Working Group
-    {% if group.joint_with %}
-      — joint with {{ group.joint_with }}
-    {% endif %}
-  {% endif %}
-</span>
+{% if group._id contains 'wg' %}
+  <span class="group-label group-type">
+    working group
+  </span>
+{% endif %}
+
+{% if group.joint_with %}
+  <span class="group-label group-joint-with">
+    joint with: {{ group.joint_with }}
+  </span>
+{% endif %}
+
+{% if group.inactive == true %}
+  <span class="group-label group-inactive">
+    inactive
+  </span>
+{% endif %}

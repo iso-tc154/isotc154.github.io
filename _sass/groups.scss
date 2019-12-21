@@ -36,13 +36,28 @@ body.groups {
   .group-card {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
 
     margin: 0 .5rem .5rem 0;
 
-    .group-name,
-    .group-title {
-      padding: .4rem .6rem .3rem .6rem;
+    > * {
+      &:not(:empty) {
+        padding: .4rem .6rem .3rem .6rem;
+        margin-right: .25rem;
+      }
     }
+
+    .group-label {
+      color: lighten($textColor, 50);
+      text-transform: uppercase;
+      padding-right: 0;
+      font-size: 80%;
+    }
+
+    .group-joint-with {
+      color: $primaryColor;
+    }
+
     .group-name {
       background: linear-gradient(163deg, #dfdfdf 20%, #f0f0f0 70%);
       transition: background .2s linear, color .2s linear;
@@ -129,7 +144,7 @@ body.layout--group {
   @media screen and (min-width: $widescreenBreakpoint) {
     section.group-info,
     .collaborative-party-list {
-      column-width: $colWidth;
+      column-count: 2;
 
       .sect1, .sect2, .sect3 {
         h1, h2 {
