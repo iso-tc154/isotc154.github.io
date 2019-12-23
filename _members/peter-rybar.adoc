@@ -8,8 +8,6 @@ active: true
 affiliation: UNMS SR, Slovakia
 ---
 
-//picture: peter-rybar.jpg
-
 Ing. Peter Rybár is the project leader of ISO 14533.
 
 He is the author of the Slovak NSA electronic signature standards,
