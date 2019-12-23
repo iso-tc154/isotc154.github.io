@@ -9,6 +9,10 @@ roles:
   - id: convenor
     group: ma
 affiliation: SAC, China
+
+links:
+  - url: https://judy2017blog.wordpress.com/
+    title: Personal site
 ---
 
 Hongru (Judy) Zhu is the General Manager of Standardization
@@ -34,4 +38,3 @@ innovation. She is the author of the book “3rd Generation Mobile
 Telecommunication Security”(in Chinese).
 
 Her personal site is at https://judy2017blog.wordpress.com/
-

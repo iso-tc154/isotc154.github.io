@@ -12,6 +12,9 @@ roles:
     project: 19626-2
 active: true
 affiliation: KATS, Korea, Republic of
+
+links:
+  - url: https://www.linkedin.com/in/jasmine-jaegyong-chang-27b94024/
 ---
 
 Jasmine is Convener of ISO/TC 154 WG6 and project leader of ISO 19626.
@@ -23,6 +26,3 @@ Strategy, and Enterprise Content Management. Strong community and
 social services professional with a PhD in Management Engineering
 from KAIST and MA, BA focused in Library and Information Science
 from Yonsei University.
-
-Her LinkedIn profile:
-https://www.linkedin.com/in/jasmine-jaegyong-chang-27b94024/

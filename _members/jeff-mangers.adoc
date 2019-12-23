@@ -9,6 +9,9 @@ roles:
     group: wg7
 active: true
 affiliation: ILNAS, Luxembourg
+
+links:
+  - url: https://www.linkedin.com/in/mangersjeff
 ---
 
 Jeff Mangers graduated from the TU Wien with a bachelor's degree and a master's degree in Mechanical Engineering & Management.

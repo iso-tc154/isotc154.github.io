@@ -10,6 +10,9 @@ roles:
     project: 23355
 active: true
 affiliation: SAC, China
+
+links:
+  - url: https://www.linkedin.com/in/dapeng-max-liu/
 ---
 
 
@@ -22,5 +25,3 @@ Alliance, co- chair of IETF DMM Working Group , vice-chair of the
 IEEE 802.21c WG, Secretary of the IE802.11aq WG, etc. He published
 four IETF RFC standards and one IEEE standard, and more than 20
 patents have been applied in China and abroad.
-
-https://www.linkedin.com/in/dapeng-max-liu/
