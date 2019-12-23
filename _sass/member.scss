@@ -19,6 +19,22 @@ body.layout--member {
       @include with-dropcap();
     }
 
+    p.links {
+      > * {
+        margin-right: .5rem;
+        font-size: 120%;
+
+        .fas, .fab {
+          vertical-align: text-bottom;
+        }
+
+        .link-title {
+          font-size: 60%;
+          text-transform: uppercase;
+        }
+      }
+    }
+
     h1 {
       font-size: 240%;
     }

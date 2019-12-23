@@ -1,0 +1,26 @@
+{% if include.links %}
+  {% for link in include.links %}
+    {% if link.url contains "twitter.com" %}
+      <a href="{{ link.url }}" aria-label="{{ link.title | default: "Twitter link" }}">
+        <i class="fab fa-twitter"></i>
+      </a>
+    {% elsif link.url contains "github.com" %}
+      <a href="{{ link.url }}" aria-label="{{ link.title | default: "Github link" }}">
+        <i class="fab fa-github"></i>
+      </a>
+    {% elsif link.url contains "facebook.com" %}
+      <a href="{{ link.url }}" aria-label="{{ link.title | default: "Facebook" }}">
+        <i class="fab fa-facebook"></i>
+      </a>
+    {% elsif link.url contains "linkedin.com" %}
+      <a href="{{ link.url }}" aria-label="{{ link.title | default: "LinkedIn" }}">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    {% else %}
+      <a href="{{ link.url }}" aria-label="{{ link.title }}" title="{{ link.title }}">
+        <span class="link-title">{{ link.title }}</span>
+        <i class="fas fa-external-link-square-alt"></i>
+      </a>
+    {% endif %}
+  {% endfor %}
+{% endif %}

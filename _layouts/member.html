@@ -19,6 +19,12 @@ layout: default
     </p>
 
     <p>Representing {{ page.affiliation }}</p>
+
+    {% if member.links %}
+      <p class="links">
+        {% include links.html links=member.links %}
+      </p>
+    {% endif %}
   </header>
 
   {{ content }}
