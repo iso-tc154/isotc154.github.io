@@ -1,7 +1,7 @@
 ---
 _id: ma
 name: MA
-title: UNTDED — ISO 7372 Maintenance Agency (JMA)
+title: UNTDED — ISO 7372 Maintenance Agency
 joint_with: UNECE
 order: 9
 

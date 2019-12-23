@@ -1,8 +1,12 @@
-{%- if include.group._id contains 'wg' -%}
-  <span class="group-label group-type">
+<span class="group-label group-type">
+  {%- if include.group._id contains 'wg' -%}
     working group
-  </span>
-{%- endif -%}
+  {%- elsif include.group._id contains 'ma' -%}
+    maintenance agency
+  {%- elsif include.group._id contains 'ag' -%}
+    advisory group
+  {%- endif -%}
+</span>
 {%- if include.group.joint_with -%}
   <span class="group-label group-joint-with">
     joint with: {{ include.group.joint_with }}
@@ -13,4 +17,3 @@
     inactive
   </span>
 {%- endif -%}
-
