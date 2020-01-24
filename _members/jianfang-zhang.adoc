@@ -13,9 +13,14 @@ affiliation: SAC, China
 Jianfang Zhang is the committee manager (previously called the committee secretary) of ISO/TC 154.
 
 ////
-Zhang JianFang is an associate research fellow, and work for China National Institute of Standardization.
+Zhang JianFang is an associate research fellow, and work for China National
+Institute of Standardization.
 
-He was the principal author or editor of many national standards, and he is also the project leader of ISO/TR 18262.
+He was the principal author or editor of many national standards, and he is
+also the project leader of ISO/TR 18262.
 
-He severed as secretary of ISO/TC 154 since 2014 (now named as committee manager of ISO/TC 154), and severed as Deputy Secretary-General of SAC/TC 83 (mirror committee of ISO/TC 154), and committee member of SAC/TC 267 and SAC/TC 563.
+He severed as secretary of ISO/TC 154 since 2014 (now named as committee
+manager of ISO/TC 154), and severed as Deputy Secretary-General of SAC/TC 83
+(mirror committee of ISO/TC 154), and committee member of SAC/TC 267 and
+SAC/TC 563.
 ////

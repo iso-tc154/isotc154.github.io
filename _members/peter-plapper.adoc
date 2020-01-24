@@ -10,11 +10,18 @@ active: true
 affiliation: ILNAS, Luxembourg
 ---
 
-Prof. Dr.-Ing. Peter Plapper studied Mechanical Engineering at TU Kaiserslautern and made his doctoral thesis at the laboratory of tool machines (WZL) of RWTH Aachen.
+Prof. Dr.-Ing. Peter Plapper studied Mechanical Engineering at TU
+Kaiserslautern and made his doctoral thesis at the laboratory of tool
+machines (WZL) of RWTH Aachen.
 
-Since 1994, he worked for Adam Opel and General Motors in different management positions in Manufacturing Engineering (ME) with increasing responsibility. He developed innovative production technologies, implemented tool machines and coordinated the refurbishment of assembly lines in various plants.
+Since 1994, he worked for Adam Opel and General Motors in different
+management positions in Manufacturing Engineering (ME) with increasing
+responsibility. He developed innovative production technologies, implemented
+tool machines and coordinated the refurbishment of assembly lines in various
+plants.
 
-Since 2010 he is Full-Professor for Engineering Science at the University of Luxembourg.
+Since 2010 he is Full-Professor for Engineering Science at the University of
+Luxembourg.
 
 The research topics of his team are:
 
@@ -22,11 +29,19 @@ The research topics of his team are:
 * Robotic manufacturing,
 * Operational Excellence in Supply chain networks.
 
-Prof. Plapper is author of 75+ scientific publications and conference proceedings, editor of 3 books, and serves as reviewer of different research programs.
+Prof. Plapper is author of 75+ scientific publications and conference
+proceedings, editor of 3 books, and serves as reviewer of different research
+programs.
 
-He is fellow of AIM (European Academy of Industrial Management; http://www.europe-aim.eu), member of International Association of Learning Factories (IALF; https://www.ialf-online.net), board affiliate of Verein Deutscher Ingenieure (VDI), and member of the Steering Committee of the Luxembourg Automobility Cluster.
+He is fellow of AIM (European Academy of Industrial Management;
+http://www.europe-aim.eu), member of International Association of Learning
+Factories (IALF; https://www.ialf-online.net), board affiliate of Verein
+Deutscher Ingenieure (VDI), and member of the Steering Committee of the
+Luxembourg Automobility Cluster.
 
-Prof. Plapper is the program director of the “Bachelor of Science and Engineering” and of the Master program “Master of Science in Engineering – Sustainable Product Creation”.
+Prof. Plapper is the program director of the “Bachelor of Science and
+Engineering” and of the Master program “Master of Science in Engineering –
+Sustainable Product Creation”.
 
 For further information and list of publications please visit www.plapper.com
 

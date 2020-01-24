@@ -11,15 +11,40 @@ active: false
 affiliation: DIN, Germany
 ---
 
-Klaus-Dieter Naujok has been a successful CEO, CSO, CTO, EVP and Director/Standards and Technology in the computer software industries. He was the Chairman of ebXML, a joint international initiative between UN/CEFACT (Center for Electronic Business and Trade) and OASIS, created to develop standard methodologies and frameworks for the development of fully interoperable XML technology.
+Klaus-Dieter Naujok has been a successful CEO, CSO, CTO, EVP and
+Director/Standards and Technology in the computer software industries. He was
+the Chairman of ebXML, a joint international initiative between UN/CEFACT
+(Center for Electronic Business and Trade) and OASIS, created to develop
+standard methodologies and frameworks for the development of fully
+interoperable XML technology.
 
-Currently he serves as the chair of ISO/TC 154 (International Organization for Standardization – Technical Committee for Processes, data elements and documents in commerce, industry and administration). He also is the Convenor for ISO/TC 154/JWG 1 (Joint Working Group for EDIFACT Syntax) and ISO/TC 154/WG 5 (Representation of Dates and Times).
+Currently he serves as the chair of ISO/TC 154 (International Organization
+for Standardization – Technical Committee for Processes, data elements and
+documents in commerce, industry and administration). He also is the Convenor
+for ISO/TC 154/JWG 1 (Joint Working Group for EDIFACT Syntax) and ISO/TC
+154/WG 5 (Representation of Dates and Times).
 
-He also led the ISO/IEC/ITU/UNECE MoU/MG “Proof of Concept” project to address the Semantic Interoperability problem amongst eBusiness Directories and Libraries. This very successful project explored the potential to augment existing domain-specific e-Business standards with a common layer of shared semantics, and to provide links between that shared semantic view and more specialized, domain-specific views of the data.
+He also led the ISO/IEC/ITU/UNECE MoU/MG “Proof of Concept” project to
+address the Semantic Interoperability problem amongst eBusiness Directories
+and Libraries. This very successful project explored the potential to augment
+existing domain-specific e-Business standards with a common layer of shared
+semantics, and to provide links between that shared semantic view and more
+specialized, domain-specific views of the data.
 
-Recently he served as President for Global e-Business Advisory Council (Ge-BAC). As the founder he was responsible for the company’s vision and strategy, and the technology aspects of the business plan.
+Recently he served as President for Global e-Business Advisory Council
+(Ge-BAC). As the founder he was responsible for the company’s vision and
+strategy, and the technology aspects of the business plan.
 
-Other recent positions were: Chief Technology Officer of AXATA (2002-2003); Chief Scientific Officer of IONA Technologies (2001-2002); CTO of NetFish (2000-2001); EVP/Emerging Standards and Technologies of NextERA Interactive (2000); Director, Standards and Technologies of Harbinger (1990-2000).
+Other recent positions were: Chief Technology Officer of AXATA (2002-2003);
+Chief Scientific Officer of IONA Technologies (2001-2002); CTO of NetFish
+(2000-2001); EVP/Emerging Standards and Technologies of NextERA Interactive
+(2000); Director, Standards and Technologies of Harbinger (1990-2000).
 
-He also held until recently the position of Chairman of UN/CEFACT’s Techniques & Methodologies Group (TMG). He has held numerous leadership roles in the International Standards arena for the past thirty years. These include being the Chairman of ebXML, co-chair of the EDIFACT Technical Assessment Group, vice-chair of X12’s Technical Assessment Committee, and chair of X12’s Liaison Task Group. A number of awards include DISA’s Ed Gilbert Professional Award. In 2005 he was also named Member Emeritus by the X12 Steering Committee in appreciation of his contributions.
-
+He also held until recently the position of Chairman of UN/CEFACT’s
+Techniques & Methodologies Group (TMG). He has held numerous leadership roles
+in the International Standards arena for the past thirty years. These include
+being the Chairman of ebXML, co-chair of the EDIFACT Technical Assessment
+Group, vice-chair of X12’s Technical Assessment Committee, and chair of X12’s
+Liaison Task Group. A number of awards include DISA’s Ed Gilbert Professional
+Award. In 2005 he was also named Member Emeritus by the X12 Steering
+Committee in appreciation of his contributions.

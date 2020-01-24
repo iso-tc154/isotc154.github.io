@@ -16,13 +16,29 @@ Sue is Co-Chair 7372/UNTDED Joint Maintenance Agency and the Chair of UN/CEFACT.
 
 In March 2003 Sue formed the independent consultancy SEPIAeb Ltd.
 
-Sue has many years experience working in the computer industry as programmer, systems analyst, software designer, trainer, training course designer, presenter, consultant and technical author.
+Sue has many years experience working in the computer industry as programmer,
+systems analyst, software designer, trainer, training course designer,
+presenter, consultant and technical author.
 
-She is a data modeller focussing on the area of paper and electronic documentation exchange requirements particularly in the international trade and transport arena. She is a keen advocate of Trade Facilitation and believe fervently that modern communications methods will play an increasingly significant role in the simplification of cross-border trade and governmental procedures.
+She is a data modeller focussing on the area of paper and electronic
+documentation exchange requirements particularly in the international trade
+and transport arena. She is a keen advocate of Trade Facilitation and believe
+fervently that modern communications methods will play an increasingly
+significant role in the simplification of cross-border trade and governmental
+procedures.
 
-She has in-depth knowledge of the formats and uses of standard international trade, transport, financial and customs UN Aligned paper documents and a profound knowledge of the UN/EDIFACT, ANSI.X12 and XML message exchange standards.
+She has in-depth knowledge of the formats and uses of standard international
+trade, transport, financial and customs UN Aligned paper documents and a
+profound knowledge of the UN/EDIFACT, ANSI.X12 and XML message exchange
+standards.
 
-She contributes actively to eBusiness standardisation work at UK, European and International level. She is the Lead Editor responsible for leading the development of the UN/CEFACT Core Component Library and the UK HoD to the ISO/TC 154 responsible for data element naming and defining for cross-border trade. She is a regular contributor to the work of the World Customs Organisation data modelling team (DMPT) and an endorsed trainer of the WCO Data Model to the private sector.
+She contributes actively to eBusiness standardisation work at UK, European
+and International level. She is the Lead Editor responsible for leading the
+development of the UN/CEFACT Core Component Library and the UK HoD to the
+ISO/TC 154 responsible for data element naming and defining for cross-border
+trade. She is a regular contributor to the work of the World Customs
+Organisation data modelling team (DMPT) and an endorsed trainer of the WCO
+Data Model to the private sector.
 
 * LinkedIn profile: https://www.linkedin.com/in/sueprobert/
 

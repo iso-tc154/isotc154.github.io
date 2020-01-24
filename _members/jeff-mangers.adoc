@@ -16,7 +16,9 @@ links:
 
 Jeff Mangers graduated from the TU Wien with a bachelor's degree and a master's degree in Mechanical Engineering & Management.
 
-In 2019, he started as a doctoral researcher within the Research Unit in Engineering (RUES)  at the University of Luxembourg. His research topics are the following:
+In 2019, he started as a doctoral researcher within the Research Unit in
+Engineering (RUES) at the University of Luxembourg. His research topics are
+the following:
 
 * Value Stream Management & Operational Excellence
 

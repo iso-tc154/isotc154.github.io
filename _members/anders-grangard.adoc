@@ -7,10 +7,23 @@ active: true
 affiliation: UNECE, Liaison
 ---
 
-Anders Grangard was born 1962 in Gothenburg (Sweden). He is the Vice Chair and a member of the Bureau at UN/CEFACT (United Nations' Centre for Electronic Business and Trade Facilitation).
+Anders Grangard was born 1962 in Gothenburg (Sweden). He is the Vice Chair
+and a member of the Bureau at UN/CEFACT (United Nations' Centre for
+Electronic Business and Trade Facilitation).
 
-With extensive experience in international standards development, he chaired multiple development groups, including the UN/EWG/T9 working group, in charge of developing the next generation EDI “Object Oriented EDI”, and the Technical Architecture group within the ebXML project. He has been involved in a number of joint development projects in the Data Model Project Team (DMPT) under the MoU between GS1 and World Customs Organisation (WSO), and was the GS1 liaison to it.
+With extensive experience in international standards development, he chaired
+multiple development groups, including the UN/EWG/T9 working group, in charge
+of developing the next generation EDI “Object Oriented EDI”, and the
+Technical Architecture group within the ebXML project. He has been involved
+in a number of joint development projects in the Data Model Project Team
+(DMPT) under the MoU between GS1 and World Customs Organisation (WSO), and
+was the GS1 liaison to it.
 
-Previously, he was the Director of the GS1 EDI at the GS1 Global Office in Brussels, Belgium, covering GS1’s EDI standards GS1 EANCOM and GS1 XML as well as supporting technologies, such as Internet based technologies. He served as Director International Relations within GS1 France prior to joining GS1 Global Office.
+Previously, he was the Director of the GS1 EDI at the GS1 Global Office in
+Brussels, Belgium, covering GS1’s EDI standards GS1 EANCOM and GS1 XML as
+well as supporting technologies, such as Internet based technologies. He
+served as Director International Relations within GS1 France prior to joining
+GS1 Global Office.
 
-Mr. Grangard also has extensive experience in the development and implementation of EDI solutions within the automotive industry.
+Mr. Grangard also has extensive experience in the development and
+implementation of EDI solutions within the automotive industry.
