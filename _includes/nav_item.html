@@ -1,0 +1,18 @@
+{% assign equality_check_depth = include.select_by_path_depth | default: 1 | plus: 1 %}
+{% assign first_component_of_current_url = page.url | split: '/' | slice: 0, equality_check_depth | join: '/' | append: '/' %}
+{% assign first_component_of_link_url = item_data.url | split: '/' | slice: 0, equality_check_depth | join: '/' | append: '/' %}
+{% if first_component_of_current_url == first_component_of_link_url %}
+  {% assign active = true %}
+{% else %}
+  {% assign active = false %}
+{% endif %}
+
+{% if include.item %}
+  <li class="{% if active %}selected{% endif %} {% if include.item.url %}with-url{% endif %}">
+    {% if include.item.url %}
+      <a href="{{ include.item.url }}">{{ include.item.title }}</a>
+    {% else %}
+      <span>{{ include.item.title }}</span>
+    {% endif %}
+  </li>
+{% endif %}

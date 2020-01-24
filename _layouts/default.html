@@ -79,20 +79,7 @@
         <ul role="nav" class="priority-nav" aria-label="main site menu">
           {% for item in nav_items %}
             {% assign item_data = site.nav[item] %}
-
-            {% assign first_component_of_current_url = page.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
-            {% assign first_component_of_link_url = item_data.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
-            {% if first_component_of_current_url == first_component_of_link_url %}
-              {% assign active = true %}
-            {% else %}
-              {% assign active = false %}
-            {% endif %}
-
-            {% if item_data %}
-              <li class="{% if active %}selected{% endif %}">
-                <a href="{{ item_data.url }}">{{ item_data.title }}</a>
-              </li>
-            {% endif %}
+            {% include nav_item.html item=item_data select_by_path_depth=1 %}
           {% endfor %}
         </ul>
       </div>
