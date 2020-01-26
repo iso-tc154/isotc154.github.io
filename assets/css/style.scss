@@ -21,6 +21,17 @@ $borderColor2: #EEEEEF;
 $headerH: 100px;
 $logoSide: 80px;
 
+@mixin nmCard(
+  $bg: #efeeee,
+  $shadowLight: rgba(white, 0.5),
+  $shadowDark: rgba(#d1cdc7, 0.5)
+) {
+  background: $bg;
+  box-shadow:
+    -6px -6px 16px $shadowLight,
+    6px 6px 16px $shadowDark;
+}
+
 @mixin wideContainer() {
   margin: 0 2em;
 
