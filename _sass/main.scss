@@ -63,25 +63,44 @@ body main,
 body > header,
 body main > header {
   > .entity {
-    margin: 0;
-    color: lighten($textColor, 40);
-    font-weight: normal;
+    $entityGrey: lighten($textColor, 40);
 
-    .id {
+    margin: 0;
+    color: $entityGrey;
+    font-weight: normal;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    .id, .name {
       margin-right: 1em;
+      margin-bottom: .25em;
+
+      // Entity name could be a link, if it’s an entity subpage.
+      &, &:link, &:visited {
+        color: inherit;
+      }
+    }
+    .type, .meta {
+      font-size: .8rem;
+      padding: .4em .8em;
+      margin-top: .05rem;
+      margin-right: .25rem;
+      margin-bottom: .25rem;
     }
     .type {
-      font-size: .8rem;
       text-transform: uppercase;
       letter-spacing: .04em;
-      vertical-align: middle;
       font-weight: bold;
       white-space: nowrap;
 
-      padding: .4em .8em;
       background: $primaryColor;
       color: white;
     }
+    .meta {
+      background: $entityGrey;
+      color: white;
+  }
   }
   > .headline {
     margin-top: 0;
