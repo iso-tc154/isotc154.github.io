@@ -111,6 +111,8 @@ title: "Electronic business eXtensible Markup Language (ebXML) -- Part 4: Regist
 
 === Minutes
 
+DEPRECATED (https://github.com/iso-tc154/www.isotc154.org/issues/12)
+
 ==== YAML frontmatter
 
 Requires YAML in following format:
