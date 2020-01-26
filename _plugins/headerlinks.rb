@@ -11,16 +11,23 @@ def process_content(site_hostname, content)
   return content.to_s
 end
 
-Jekyll::Hooks.register :documents, :post_render do |doc|
+# Keeps track of already processed items to avoid duplicate anchors.
+$processed_urls = []
+
+# Jekyll hook handler function.
+def process_doc_or_page(doc)
   site_hostname = URI(doc.site.config['url']).host
   unless doc.respond_to?(:asset_file?) and doc.asset_file?
+    if doc.respond_to?(:id)
+      if $processed_urls.include? doc.id
+        return
+      end
+      $processed_urls << doc.id
+    end
     doc.output = process_content(site_hostname, doc.output)
   end
 end
 
-Jekyll::Hooks.register :pages, :post_render do |page|
-  site_hostname = URI(page.site.config['url']).host
-  unless page.respond_to?(:asset_file?) and page.asset_file?
-    page.output = process_content(site_hostname, page.output)
-  end
-end
+Jekyll::Hooks.register :documents, :post_render do |doc| process_doc_or_page(doc) end
+
+Jekyll::Hooks.register :pages, :post_render do |page| process_doc_or_page(page) end
