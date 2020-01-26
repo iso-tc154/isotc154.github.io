@@ -191,6 +191,20 @@ Enter event data under _data/events.yaml, under a key that is used as global eve
 
 Use existing 39th plenary week as a general format spec.
 
+==== Navigation
+
+Each navigation item’s details are contained under `<event ID>.nav.<nav item ID>`.
+
+Each item can define sub-items by listing their IDs `<event ID>.nav.<nav item ID>.items`.
+
+Top-level event navigation item order is defined under `<event ID>.primary_nav.items`,
+again as a list of nav item IDs.
+
+IMPORTANT: `<event ID>.primary_nav.items` MUST come in the order of
+(1) arrival-related orientation info;
+(2) event programme,
+(3) sponsors,
+(4) any other sections (usually none).
 
 ==== Notices for event attendees
 
