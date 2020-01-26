@@ -77,9 +77,8 @@
 
         {% assign nav_items = page.nav_items | default: layout.nav_items | default: site.primary_nav_items %}
         <ul role="nav" class="priority-nav" aria-label="main site menu">
-          {% for item in nav_items %}
-            {% assign item_data = site.nav[item] %}
-            {% include nav_item.html item=item_data select_by_path_depth=1 %}
+          {% for item_id in nav_items %}
+            {% include nav_item.html can_select_active=true item_id=item_id item_data=site.nav select_by_path_depth=1 %}
           {% endfor %}
         </ul>
       </div>

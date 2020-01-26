@@ -1,18 +1,54 @@
+{% assign item = include.item_data[include.item_id] %}
+
 {% assign equality_check_depth = include.select_by_path_depth | default: 1 | plus: 1 %}
 {% assign first_component_of_current_url = page.url | split: '/' | slice: 0, equality_check_depth | join: '/' | append: '/' %}
-{% assign first_component_of_link_url = item_data.url | split: '/' | slice: 0, equality_check_depth | join: '/' | append: '/' %}
+{% assign first_component_of_link_url = item.url | split: '/' | slice: 0, equality_check_depth | join: '/' | append: '/' %}
 {% if first_component_of_current_url == first_component_of_link_url %}
   {% assign active = true %}
 {% else %}
   {% assign active = false %}
 {% endif %}
 
-{% if include.item %}
-  <li class="{% if active %}selected{% endif %} {% if include.item.url %}with-url{% endif %}">
-    {% if include.item.url %}
-      <a href="{{ include.item.url }}">{{ include.item.title }}</a>
+{% if item %}
+  <li class="
+      nav-item-{{ include.item_id }}
+      {% if active %}selected{% endif %}
+      {% if item.url %}with-url{% endif %}
+      {% if item.icon %}with-icon{% endif %}">
+
+    {% if item.url and (include.can_select_active == true or active == false) %}
+      <a class="title" href="{{ item.url }}">
     {% else %}
-      <span>{{ include.item.title }}</span>
+      <span class="title">
     {% endif %}
+
+    {% if item.icon %}
+      <i class="fas fa-{{ item.icon }} icon"></i>
+    {% endif %}
+
+    {{ item.title }}
+
+    {% if active == false and item.url %}
+      </a><!-- .title -->
+    {% else %}
+      </span><!-- .title -->
+    {% endif %}
+
+    {% if include.show_detail %}
+      {% if item.detail.include %}
+        <div class="detail detail-include">
+          {% include {{ item.detail.include }} %}
+        </div>
+      {% elsif item.detail.text %}
+        <div class="detail detail-text">
+          {{ item-data.detail.text | asciidocify }}
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% if item.items and include.nested_nav_include %}
+      {% include {{ include.nested_nav_include }} show_detail=include.show_detail item=include.item_data items=item.items %}
+    {% endif %}
+
   </li>
 {% endif %}
