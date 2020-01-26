@@ -187,7 +187,7 @@ Example markup:
 
 NOTE: Implementation in progress.
 
-Enter event data under _data/events.yaml, under a key that is used as global event ID.
+Enter event data under `_data/events.yaml`, under a key that is used as global event ID.
 
 Use existing 39th plenary week as a general format spec.
 
@@ -215,7 +215,7 @@ Instead, add an array item in `events.yaml` data structure
 under ``<event ID>.notices``. Each item under notices array should look like following:
 
 [source,yaml]
-====
+--
 title: Booking deadline is approaching
 # A 3-6 word string.
 
@@ -238,7 +238,7 @@ content: >-
 read_more_action:
   title: Read more about accommodation
   link: /39th-plenary/arrival/accommodation/
-====
+--
 
 It may be worth to notify attendees through other means as well.
 
@@ -250,11 +250,11 @@ A document in posts collection is expected to contain regular Jekyll post frontm
 Posts may also specify “see also” items in frontmatter:
 
 [source,yaml]
-====
+--
 see_also:
 - link: https://www.iso.org/news/ref2379.html
   title: ISO press release
-====
+--
 
 Posts should specify sensible excerpts. Separate excerpt with excerpt separator;
 ensure content before the separator does not contain special formatting.
