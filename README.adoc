@@ -183,6 +183,51 @@ Example markup:
 // other table rows…
 --
 
+=== Events
+
+NOTE: Implementation in progress.
+
+Enter event data under _data/events.yaml, under a key that is used as global event ID.
+
+Use existing 39th plenary week as a general format spec.
+
+
+==== Notices for event attendees
+
+If you need to post a notice, alert or news entry only relevant to event attendees,
+do **not** create a general news article.
+
+Instead, add an array item in `events.yaml` data structure
+under ``<event ID>.notices``. Each item under notices array should look like following:
+
+[source,yaml]
+====
+title: Booking deadline is approaching
+# A 3-6 word string.
+
+html_class: warning
+# HTML class can attach styling to the notice
+# thorugh events.scss.
+
+icon: alert
+# Icon from FontAwesome 5 free solid style selection.
+# Could be used to represent the type of notice.
+
+content: >-
+  If you plan to stay at the official conference hotel,
+  make sure to make your reservation by **July 8th**.
+# AsciiDoc-formatted string, keep up to 10-20 words.
+# For further content, link to a separate page
+# using read_more_action.
+# You may want to include that page under event nav.
+
+read_more_action:
+  title: Read more about accommodation
+  link: /39th-plenary/arrival/accommodation/
+====
+
+It may be worth to notify attendees through other means as well.
+
 === News and articles (aka posts)
 
 A document in posts collection is expected to contain regular Jekyll post frontmatter
