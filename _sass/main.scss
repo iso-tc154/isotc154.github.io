@@ -308,7 +308,7 @@ body > footer {
   flex-flow: column nowrap;
   font-size: 90%;
 
-  background: #F6F6F6;
+  background: $lightBackgroundColor;
 
   > .container {
     @include wideContainer();
