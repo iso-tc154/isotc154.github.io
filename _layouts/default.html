@@ -44,9 +44,9 @@
     <link rel="stylesheet" type="text/css" href="{{ "/assets/css/style.css" | relative_url }}" />
 
     {% if page.stylesheets and layout.stylesheets %}
-      {% assign extra_stylesheets = page.stylesheets | concat: layout.stylesheets %}
+      {% assign extra_stylesheets = page.extra_stylesheets | concat: layout.extra_stylesheets %}
     {% else %}
-      {% assign extra_stylesheets = page.stylesheets | default: layout.stylesheets %}
+      {% assign extra_stylesheets = page.extra_stylesheets | default: layout.extra_stylesheets %}
     {% endif %}
     {% for link in extra_stylesheets %}
       <link href="{{ link.href }}" rel="stylesheet">
@@ -151,9 +151,9 @@
     </footer>
 
     {% if page.scripts and layout.scripts %}
-      {% assign extra_scripts = page.scripts | concat: layout.scripts %}
+      {% assign extra_scripts = page.extra_scripts | concat: layout.extra_scripts %}
     {% else %}
-      {% assign extra_scripts = page.scripts | default: layout.scripts %}
+      {% assign extra_scripts = page.extra_scripts | default: layout.extra_scripts %}
     {% endif %}
     {% for script in extra_scripts %}
       <script src="{{ script.src }}"></script>
