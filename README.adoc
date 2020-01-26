@@ -223,7 +223,7 @@ html_class: warning
 # HTML class can attach styling to the notice
 # thorugh events.scss.
 
-icon: alert
+icon: exclamation-triangle
 # Icon from FontAwesome 5 free solid style selection.
 # Could be used to represent the type of notice.
 
