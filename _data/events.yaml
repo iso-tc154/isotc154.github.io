@@ -21,7 +21,7 @@
       lat: 33.690317
 
   accommodation_options:
-    - feature_label: Official conference hotel
+    - feature_label: Conference hotel
       name: Westin South Coast Plaza
       address: 686 Anton Blvd, Costa Mesa, CA 92626, United States
       lon: -117.884253
