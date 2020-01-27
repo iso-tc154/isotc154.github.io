@@ -59,7 +59,7 @@ map:
           {% for room in opt.rooms %}
             <article class="room">
               <p class="price">
-                US${{ room.rates.nightly.amount }} per night
+                {{ room.rates.nightly.amount }} per night
                 ({{ room.desc }}).
             </article>
           {% endfor %}
