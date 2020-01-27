@@ -105,13 +105,6 @@ body.layout--event_accommodation {
           background: $primaryColor;
           color: white;
         }
-
-        @media screen and (min-width: $bigscreenBreakpoint) {
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: flex-start;
-          align-items: center;
-        }
       }
       > footer.actions {
         margin-left: 0;
