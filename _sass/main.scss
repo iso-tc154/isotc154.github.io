@@ -100,7 +100,7 @@ body main > header {
     .meta {
       background: $entityGrey;
       color: white;
-  }
+    }
   }
   > .headline {
     margin-top: 0;
@@ -280,10 +280,11 @@ header.top-bar {
 
     li {
       display: flex;
+      white-space: nowrap;
       flex-flow: column nowrap;
       justify-content: center;
 
-      a {
+      a, span {
         text-transform: uppercase;
         padding: 0 .4em;
 
