@@ -12,16 +12,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>
+      {% assign page_title = page.title | default: layout.title %}
+
       {% if page.layout == 'group' %}
-        {{ page.name | strip_html }}: {{ page.title | strip_html }}
+        {{ page.name | strip_html }}: {{ page_title | strip_html }} —
+      {% elsif page.layout == 'standard' %}
+        Standard {{ page.name | strip_html }} —
       {% elsif page.layout contains 'event' %}
-        {{ site.data.events[page.event_id].title | strip_html }}{% if page.title and page.title != "Landing" %}: {{ page.title | strip_html }}{% endif %}
-      {% else %}
-        {% assign page_title = page.title | default: site.title %}
-        {{ page_title | strip_html | escape }}
+        {% if page_title and page_title != "Landing" %}{{ page_title | strip_html }} —{% endif %}
+        {{ site.data.events[page.event_id].title | strip_html }} —
+      {% elsif page_title %}
+        {{ page_title | strip_html | escape }} —
       {% endif %}
 
-      — {{ site.description }}
+      {{ site.description }}
     </title>
 
     <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
