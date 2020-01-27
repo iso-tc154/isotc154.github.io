@@ -146,7 +146,9 @@ nav:
 
   39th_plenary:
     url: /39th-plenary/
-    title: 39th Plenary
+    title: Plenary
+    description: 39th Plenary week
+    html_class: featured-event
 
   home:
     url: /
