@@ -60,6 +60,28 @@ body.event-subpage, body.layout--event_landing {
   }
 }
 
+body.layout--event_accommodation {
+  .accommodation-option-list {
+    .accommodation-option {
+      > header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        .feature {
+          margin-left: 1rem;
+          font-size: 80%;
+          border-radius: .5em;
+          padding: .25em .75em .2em .75em;
+          background: $primaryColor;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
 body.event-subpage {
   ul[role=nav] {
     li.item-missing-page {

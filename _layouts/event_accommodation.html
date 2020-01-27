@@ -1,0 +1,71 @@
+---
+layout: event_subpage
+title: Accommodation
+map:
+  id: accommodation-map
+---
+
+{% assign event = site.data.events[page.event_id] %}
+
+<div class="accommodation-option-list">
+  {% for opt in event.accommodation_options %}
+    <article class="accommodation-option">
+
+      <header>
+        <h2>
+          {% if opt.lon and opt.lat %}
+            <span
+                data-map-marker
+                data-map-id="{{ layout.map.id }}"
+                data-map-marker-id="{{ opt.name }}"
+                data-map-marker-coords='{"lon": {{ opt.lon }}, "lat": {{ opt.lat }}}'
+                data-map-marker-place-details='{"title": "{{ opt.name }}"}'>
+              {{ opt.name }}
+            </span>
+          {% else %}
+            {{ opt.name }}
+          {% endif %}
+        </h2>
+
+        {% if opt.feature_label %}
+          <div class="feature">
+            {{ opt.feature_label }}
+          </div>
+        {% endif %}
+      </header>
+
+      {% if opt.details %}
+        <section class="details">
+          {{ opt.details | asciidocify }}
+        </section>
+      {% endif %}
+
+      {% if opt.room_rate_range %}
+        <section class="room-rate-range">
+          Typical room rates: {{ opt.room_rate_range }}
+        </section>
+      {% endif %}
+
+      {% if opt.rooms %}
+        <section class="rooms">
+          <p>
+            Room rates:
+          </p>
+          {% for room in opt.rooms %}
+            <article class="room">
+              US${{ room.rates.nightly.amount }} per night
+              ({{ room.desc }}).
+            </article>
+          {% endfor %}
+        </section>
+      {% endif %}
+
+      {% if opt.link %}
+        <footer class="actions">
+          <a href="{{ opt.link }}">Visit site</a>
+        </footer>
+      {% endif %}
+
+    </article>
+  {% endfor %}
+</div>
