@@ -43,7 +43,7 @@
         - desc: King or double bed room
           rates:
             nightly:
-              amount: 189.00
+              amount: "$189.00"
 
       disclaimers:
         - Valid for 2020-08-01 to 2020-08-10, based on hotel availability for non-conference days.
