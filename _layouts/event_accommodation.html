@@ -32,6 +32,10 @@ map:
             {{ opt.feature_label }}
           </div>
         {% endif %}
+
+        {% if opt.address %}
+          <p class="address"><a href="https://maps.google.com/?q={{ opt.name }} {{ opt.address | escape }}" target="_blank">{{ opt.address }}</a>
+        {% endif %}
       </header>
 
       {% if opt.details %}
