@@ -46,9 +46,9 @@
               amount: 189.00
 
       disclaimers:
-              - Valid for 2020-08-01 to 2020-08-10, based on hotel availability for non-conference days.
-              - Hotel’s room rates are subject to applicable state and local taxes (currently 11%)
-                and CA Tourism $0.60 in effect at the time of check-out.
+        - Valid for 2020-08-01 to 2020-08-10, based on hotel availability for non-conference days.
+        - Hotel’s room rates are subject to applicable state and local taxes (currently 11%)
+          and CA Tourism $0.60 in effect at the time of check-out.
 
     - name: Renaissance Newport Beach Hotel
       link: https://www.marriott.com/npbbr
