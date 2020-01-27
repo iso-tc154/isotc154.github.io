@@ -49,6 +49,10 @@
       link: https://www.marriott.com/npbbr
       room_rate_range: $200~300.00 per night
 
+    - name: Newport Beach Marriott Bayview
+      link: https://www.marriott.com/npbst
+      room_rate_range: $200~300.00 per night
+
   map_defaults:
     center:
       lon: -117.884066
