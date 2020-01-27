@@ -4,9 +4,16 @@ layout: default
 extra_stylesheets:
   - href: "https://unpkg.com/flickity@2/dist/flickity.min.css"
 
+  - href: /assets/vendor/openlayers/ol.css
+
 extra_scripts:
   - src: "https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
   - src: "/assets/js/slider.js"
+
+  - src: /assets/vendor/openlayers/ol.js
+  - src: "https://unpkg.com/popper.js@1"
+  - src: "https://unpkg.com/tippy.js@5"
+  - src: /assets/js/event_map.js
 ---
 
 <main>
@@ -20,6 +27,48 @@ extra_scripts:
       </section>
     {% endfor %}
   </section>
+
+  {% assign num_unfinished_events = site.data.unfinished_events | size %}
+  {% if num_unfinished_events > 0 %}
+    <section class="events">
+      {% for event in site.data.unfinished_events %}
+        <article class="event">
+          <div class="summary">
+            <header>
+              <h3 class="title">
+                <a href="{{ event.landing_url }}">{{ event.title }}</a>
+              </h3>
+              <div class="meta">
+                <span class="time">
+                  <i class="fas fa-calendar icon"></i>
+                  {% if event.current %}
+                    Now!
+                  {% else %}
+                    {%- include date_with_precision.html date=event.time.from default_precision="day" -%}
+                    —
+                    {%- include date_with_precision.html date=event.time.to default_precision="day" -%}
+                  {% endif %}
+                </span>
+                <span class="place">
+                  <i class="fas fa-map-marker icon"></i>
+                  {{ event.general_area }}
+                </span>
+              </div>
+            </header>
+            <section class="intro">
+              {{ event.intro | asciidocify }}
+            </section>
+          </div>
+          <div class="mini-map"
+            data-map-container
+            data-map-disable-interactions
+            data-map-id="mini-map-{{ event.id }}"
+            data-map-center='{"lon": {{ event.map_defaults.center.lon }}, "lat": {{ event.map_defaults.center.lat }}, "zoom": {{ event.map_defaults.zoom }}}'>
+          </div>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
 
   {{ content }}
 
