@@ -78,6 +78,9 @@ body.event-subpage {
   }
 
   .page-body {
+    .page-content {
+      @include asciidoc-markup();
+    }
     .page-toc {
       ul, li {
         list-style: none;
