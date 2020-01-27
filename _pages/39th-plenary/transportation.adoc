@@ -1,0 +1,33 @@
+---
+layout: event_subpage
+permalink: "/39th-plenary/arrival/transportation/"
+event_id: 39th_plenary
+title: Transportation
+map:
+  id: main-map
+  center:
+    lon: -118.100949
+    lat: 33.851068
+  zoom: 9.5
+---
+
+== From +++<span data-map-marker data-map-id="main-map" data-map-marker-id="airport-sna" data-map-marker-place-details='{"title": "John Wayne Airport"}' data-map-marker-coords='{"lon": -117.867576, "lat": 33.674967}'>John Wayne Airport (IATA: SNA)</span>+++
+
+The official conference hotel, Westin South Coast Plaza,
+has a complimentary shuttle to and from John Wayne Airport.
+Please contact the hotel for more information.
+
+== From +++<span data-map-marker data-map-id="main-map" data-map-marker-id="airport-lax" data-map-marker-place-details='{"title": "Los Angeles International Airport"}' data-map-marker-coords='{"lon": -118.406987, "lat": 33.943751}'>Los Angeles International Airport (IATA: LAX)</span>+++
+
+LAX is approximately 40-50 minutes by car.  
+
+Uber, Lyft, taxis are abundant around the airport.
+Major car rental companies are directly accessible at LAX.
+Westin South Coast Plaza recommends booking airport transfers
+through https://www.supershuttle.com[SuperShuttle]
+or https://www.primetimeshuttle.com[Prime Time Shuttle].
+
+== See also
+
+- link:/39th-plenary/arrival/accommodation/[Accommodation] for official conference hotel details
+  and other accommodation options.

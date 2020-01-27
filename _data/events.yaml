@@ -1,0 +1,140 @@
+39th_plenary:
+
+  title: "39<sup>th</sup>&nbsp;plenary&nbsp;meeting&nbsp;week of&nbsp;ISO/TC&nbsp;154"
+  landing_url: /39th-plenary/
+
+  time:
+    from:
+      date: 2020-08-04
+    to:
+      date: 2020-08-07
+
+  general_area: Orange County, Southern California
+
+  venues:
+    - address: 686 Anton Boulevard
+        Costa Mesa
+        California 92626
+        USA
+      link: https://www.marriott.com/snawi
+      lon: -117.884066
+      lat: 33.690317
+
+  accommodation:
+    - featured: Official conference hotel
+      name: Westin South Coast Plaza
+      details: >-
+        Host has a negotiated room block rate with the conference hotel.
+
+        Concessions:
+
+        .	Discounted self-parking of $15.00 per vehicle per day.
+        .	No resort fee. 
+        .	Complimentary shuttle to John Wayne Airport.
+
+        IMPORTANT: Booking deadline for hotel block rate is July 14, 2020.
+
+        IMPORTANT: Hotel direct booking link will be made available to TC 154 members.
+
+      rooms:
+        - desc: King or double bed room
+          rate:
+            nightly: 189.00
+            notes:
+              - Valid for 2020-08-01 to 2020-08-10, based on hotel availability for non-conference days.
+              - Hotel’s room rates are subject to applicable state and local taxes (currently 11%)
+                and CA Tourism $0.60 in effect at the time of check-out.
+
+    - name: Renaissance Newport Beach Hotel
+      link: https://www.marriott.com/npbbr
+      room_rate_range: $200~300.00 per night
+
+  map_defaults:
+    center:
+      lon: -117.884066
+      lat: 33.690317
+    zoom: 10
+
+  landing_nav:
+    items:
+      - orientation
+      - programme
+
+  primary_nav:
+    items:
+      - orientation
+      - programme
+      - sponsors
+      - hosts
+
+  nav:
+    orientation:
+      title: Orientation
+      items:
+        - arrival
+        - surroundings
+    programme:
+      title: Programme
+      items:
+        - event_schedule
+        - social_activities
+    arrival:
+      title: Arrival
+      icon: directions
+      items:
+        - transportation
+        - accommodation
+        - location_101
+        - visas
+    transportation:
+      url: "/39th-plenary/arrival/transportation/"
+      title: Transportation
+    accommodation:
+      #url: "/39th-plenary/arrival/accommodation/"
+      title: Accommodation
+    location_101:
+      #url: "/39th-plenary/arrival/location-101/"
+      title: Location 101
+    visas:
+      #url: "/39th-plenary/arrival/visas/"
+      title: Visas
+    surroundings:
+      title: Surroundings
+      icon: map-marked-alt
+      items:
+        - surrounding_places
+        - location_further_reading
+    surrounding_places:
+      #url: "/39th-plenary/surroundings/places/"
+      title: Where to go
+      description: "Key locations for eating, shopping, recreation and cultural activities"
+    location_further_reading:
+      #url: "/39th-plenary/surroundings/further-reading/"
+      title: Further reading
+      description: Links with more details about the area
+    event_schedule:
+      title: Event schedule
+      icon: clipboard-list
+      detail:
+        text: To be announced
+    social_activities:
+      title: Social activities
+      icon: handshake
+      detail:
+        text: Coming soon
+
+  sponsors:
+    - entity_name: Ribose
+      link: https://ribose.com/
+      logo: /assets/img/logo-ribose.svg
+
+  hosts:
+    - entity_name: CalConnect
+      link: https://calconnect.org/
+    - entity_name: Ribose
+      logo: /assets/img/logo-ribose.svg
+      link: https://ribose.com/
+
+  intro: >-
+    A warm welcome to the 39th Plenary week of ISO/TC 154 held in sunny Southern California
+    during 2020-08-04 to 2020-08-07, hosted by CalConnect and Ribose.

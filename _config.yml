@@ -52,6 +52,7 @@ primary_nav_items:
   - members
   # - minutes
   - faq
+  - 39th_plenary
 
 sass:
   style: compressed
@@ -142,6 +143,10 @@ nav:
   minutes:
     url: /minutes/
     title: Minutes
+
+  39th_plenary:
+    url: /39th-plenary/
+    title: 39th Plenary
 
   home:
     url: /

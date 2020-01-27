@@ -1,0 +1,5 @@
+---
+layout: event_landing
+permalink: "/39th-plenary/"
+event_id: 39th_plenary
+---
