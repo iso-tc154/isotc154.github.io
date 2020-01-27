@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-body.layout--event_subpage, body.layout--event_landing {
+body.event-subpage, body.layout--event_landing {
 
   > footer {
     margin-top: 0;
@@ -54,7 +54,7 @@ body.layout--event_subpage, body.layout--event_landing {
   }
 }
 
-body.layout--event_subpage {
+body.event-subpage {
   ul[role=nav] {
     li.item-missing-page {
       .title:after {
