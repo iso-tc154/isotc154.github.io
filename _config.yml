@@ -39,12 +39,12 @@ social:
 
 footer_nav_items:
   - home
+  - about
   - news
   - contact
   - jwg1site
 
 primary_nav_items:
-  - about
   - news
   - projects
   - standards
