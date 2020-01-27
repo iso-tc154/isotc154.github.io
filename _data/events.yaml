@@ -37,7 +37,10 @@
 
         IMPORTANT: Booking deadline for hotel block rate is July 14, 2020.
 
-        IMPORTANT: Hotel direct booking link will be made available to TC 154 members.
+      actions:
+        - disabled: true
+          label: Booking link to come
+          description: Hotel direct booking link will be made available to TC 154 members.
 
       rooms:
         - desc: King or double bed room
@@ -51,11 +54,27 @@
           and CA Tourism $0.60 in effect at the time of check-out.
 
     - name: Renaissance Newport Beach Hotel
-      link: https://www.marriott.com/npbbr
+      lon: -117.862706
+      lat: 33.667156
+      actions:
+        - link: https://www.marriott.com/npbbr
+          label: Visit site
       room_rate_range: $200~300.00 per night
 
     - name: Newport Beach Marriott Bayview
-      link: https://www.marriott.com/npbst
+      lon: -117.868127
+      lat: 33.653517
+      actions:
+        - link: https://www.marriott.com/npbst
+          label: Visit site
+      room_rate_range: $200~300.00 per night
+
+    - name: Lido House, Autograph Collection
+      lon: -117.929890
+      lat: 33.616779
+      actions:
+        - link: https://www.marriott.com/npbst
+          label: Visit site
       room_rate_range: $200~300.00 per night
 
   map_defaults:
