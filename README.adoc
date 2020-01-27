@@ -197,11 +197,16 @@ An event is expected to contain multiple subpages with information
 about various aspects related to logistics, programme and so on.
 
 To add an event subpage, create a directory `_pages/<event ID>`,
-and place the .adoc file there. In page frontmatter, specify the following:
+and place the .adoc file there.
+
+In page frontmatter, specify the following:
 
 [source,yaml]
 --
 ---
+layout: event_subpage
+# Available layouts: event_subpage, event_accommodation
+
 # These two are required:
 event_id: <the ID of the event, as specified by event dataset in _data/events.yaml>
 permalink: "/<base event URL, as specified by event dataset>/[if not landing page, nested page path components/]"
@@ -230,6 +235,10 @@ map:
 # Marker references in body text are clickable, causing map to pan and show selected place details.
 ---
 --
+
+For pages using `event_subpage` layout, make sure
+to structure AsciiDoc sections with appropriate header levels
+(which would be level 2, since level 1 is used by page header as a whole).
 
 ==== Navigation
 
