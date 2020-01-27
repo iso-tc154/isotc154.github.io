@@ -121,7 +121,7 @@ body.layout--event_accommodation {
       }
 
       > header {
-        padding-top: .5rem;
+        padding-top: .75rem;
         margin-bottom: .5rem;
 
         .title {
@@ -208,7 +208,7 @@ body.event-subpage {
       @include asciidoc-markup();
 
       > div.sect1 {
-        padding: .5rem 1rem;
+        padding: .75rem 1rem;
         background: white;
         margin-bottom: 1rem;
 
