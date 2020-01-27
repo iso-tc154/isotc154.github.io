@@ -66,14 +66,15 @@ html_class: event-subpage
   </div>
 </main>
 
-{% if page.map %}
+{% assign map = page.map | default: layout.map %}
+{% if map %}
   <div class="map"
     data-map-container
-    data-map-id="{{ page.map.id }}"
+    data-map-id="{{ map.id }}"
     data-map-center='{
-      "lon": {{ page.map.center.lon | default: event.map_defaults.center.lon }},
-      "lat": {{ page.map.center.lat | default: event.map_defaults.center.lat }},
-      "zoom": {{ page.map.zoom | default: event.map_defaults.zoom }}
+      "lon": {{ map.center.lon | default: event.map_defaults.center.lon }},
+      "lat": {{ map.center.lat | default: event.map_defaults.center.lat }},
+      "zoom": {{ map.zoom | default: event.map_defaults.zoom }}
     }'>
   </div>
 {% endif %}
