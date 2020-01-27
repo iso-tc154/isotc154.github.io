@@ -1,0 +1,86 @@
+---
+layout: event_subpage
+permalink: "/39th-plenary/arrival/visas/"
+event_id: 39th_plenary
+title: Visas
+---
+
+== Applying for a visa
+
+Requirements for travel to the United States constantly change. Please
+understand that the US visa application process is significantly more
+difficult than those of many other countries. While the US State Department
+website provides an estimated wait time (in days) for a visa interview for
+every consulate, but in many cases, an extra 30 days will be required for
+additional clearance.
+
+We urge everyone that requires a visa to travel to the US to apply for the
+visa as early as possible (at least 6 months ahead).
+
+=== Invitation
+
+If you require a letter of invitation for your visa application, please
+submit a request for a letter of invitation to the ISO/TC 154 Committee
+Manager for processing. The hosts will follow up the request with you
+separately.
+
+For the invitation letter, you will be required to provide the following
+information: name, sex, passport country, passport number, date of birth,
+title, organization, and full contact information (including address, phone
+and email).
+
+=== See also
+
+US State Department’s
+https://travel.state.gov/content/dam/visas/PDF-other/VisaFlyer_B1B2_March_2015.pdf[“Visitor Visas” document]
+provides further information.
+
+== Visa notes
+
+This information is provided purely for informational purposes. Please see
+the US State Department’s website for authoritative information.
+
+=== Visa Waiver Program (VWP)
+
+The Visa Waiver Program permits citizens of certain
+countries to travel to the US without a visa if the stays are 90 days or
+less. Anyone traveling under VWP must apply for authorization through the
+Electronic System for Travel Authorization (ESTA).
+
+=== Application process
+
+If you do not qualify for the VWP, you may be required to attend an in-person
+interview at a US embassy or consulate as part of the visa application.
+
+Please use the State Department’s website to start the application for a US visa:
+https://ceac.state.gov/genniv
+
+A nonimmigrant B-1/B-2 visa is typically required to enter the US for the meeting.
+
+At the interview you may need to bring
+(in addition to document requirements listed
+on https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/forms/ds-160-online-nonimmigrant-visa-application/ds-160-faqs.html[travel.state.gov]):
+
+. Specific and detailed explanations related to your purpose for travel. Example: Letter of invitation.
+. Proof of an existing relationship with your inviter or other US entities. Example: Copy of your meeting registration.
+. Explanation of how your visit will be funded.
+
+=== Administrative processing
+
+Some applications require additional "administrative processing" which adds
+weeks to the application process. Applicants involved in scientific fields
+are often subjected to administrative processing and should apply for visas
+as early as possible.
+
+For the invitation letter, you will be required to provide the following information:
+
+. Name
+. Gender
+. Date of Birth
+. Nationality
+. Passport No.
+. Title 
+. Organization
+. Email
+. Phone
+. Address

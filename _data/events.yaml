@@ -124,7 +124,7 @@
       #url: "/39th-plenary/arrival/location-101/"
       title: Location 101
     visas:
-      #url: "/39th-plenary/arrival/visas/"
+      url: "/39th-plenary/arrival/visas/"
       title: Visas
     surroundings:
       title: Surroundings
