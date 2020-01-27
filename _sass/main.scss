@@ -284,6 +284,15 @@ header.top-bar {
       flex-flow: column nowrap;
       justify-content: center;
 
+      &.featured-event {
+        .title {
+          border: .1rem white solid;
+          border-radius: .5rem;
+          margin: 0 .5em;
+          padding: .5em;
+        }
+      }
+
       a, span {
         text-transform: uppercase;
         padding: 0 .4em;
