@@ -12,7 +12,7 @@ map:
     <article class="accommodation-option">
 
       <header>
-        <h2>
+        <h2 class="title">
           {% if opt.lon and opt.lat %}
             <span
                 data-map-marker
@@ -42,7 +42,8 @@ map:
 
       {% if opt.room_rate_range %}
         <section class="room-rate-range">
-          Typical room rates: {{ opt.room_rate_range }}
+          <p>Typical room rates:
+          <p class="price">{{ opt.room_rate_range }}
         </section>
       {% endif %}
 
@@ -53,16 +54,25 @@ map:
           </p>
           {% for room in opt.rooms %}
             <article class="room">
-              US${{ room.rates.nightly.amount }} per night
-              ({{ room.desc }}).
+              <p class="price">
+                US${{ room.rates.nightly.amount }} per night
+                ({{ room.desc }}).
             </article>
           {% endfor %}
         </section>
       {% endif %}
 
-      {% if opt.link %}
+      {% if opt.actions %}
         <footer class="actions">
-          <a href="{{ opt.link }}">Visit site</a>
+          {% for action in opt.actions %}
+            <div class="action {% if action.disabled %}disabled{% endif %} {% if action.description %}with-description{% endif %}" title="{{ action.description }}">
+              {% if action.link %}
+                <a href="{{ action.link }}">{{ action.label }}</a>
+              {% else %}
+                <span>{{ action.label }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
         </footer>
       {% endif %}
 
