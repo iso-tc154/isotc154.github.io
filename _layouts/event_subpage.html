@@ -1,0 +1,78 @@
+---
+layout: event_base
+---
+
+{% assign event = site.data.events[page.event_id] %}
+
+
+{% comment %}
+  Sort out whether the event is past or future relative to now.
+  Assumes that site is rebuilt with CDN cache reset,
+  and that rebuilds will be triggered around event start and end dates.
+{% endcomment %}
+
+{% assign now_unix = 'now' | date: '%s' %}
+{% assign event_start_unix = event.time.from.date | date: '%s' %}
+{% assign event_finish_unix = event.time.to.date | date: '%s' %}
+
+{% if now_unix > event_start_unix %}
+  {% assign started = true %}
+{% else %}
+  {% assign started = false %}
+{% endif %}
+
+{% if now_unix > event_finish_unix %}
+  {% assign finished = true %}
+{% else %}
+  {% assign finished = false %}
+{% endif %}
+
+
+{% comment %}Main event layout.{% endcomment %}
+
+<main class="{% if started %}event-started{% endif %} {% if finished %}event-finished{% endif %}">
+  <header>
+    <h2 class="entity">
+      <a class="name" href="{{ event.landing_url }}">{{ event.title }}</a>
+      <span class="type">Event</span>
+      <span class="meta time">
+        <i class="fas fa-calendar icon"></i>
+        {% unless finished %}
+          {%- include date_with_precision.html date=event.time.from default_precision="day" -%}
+          —
+          {%- include date_with_precision.html date=event.time.to default_precision="day" -%}
+        {% else %}
+          Ended on {% include date_with_precision.html date=event.time.to default_precision="day" %}
+        {% endunless %}
+      </span>
+      <span class="meta place">
+        <i class="fas fa-map-marker icon"></i>
+        {{ event.general_area }}
+      </span>
+    </h2>
+    <h1 class="headline">{{ page.title }}</h1>
+  </header>
+
+  <div class="page-body">
+    <div class="page-content">
+      {{ content }}
+    </div>
+
+    <div class="page-toc">
+      <h2 class="page-toc-title">Event navigation</h2>
+      {% include event_nav.html show_detail=false item_data=event.nav items=event.primary_nav.items %}
+    </div>
+  </div>
+</main>
+
+{% if page.map %}
+  <div class="map"
+    data-map-container
+    data-map-id="{{ page.map.id }}"
+    data-map-center='{
+      "lon": {{ page.map.center.lon | default: event.map_defaults.center.lon }},
+      "lat": {{ page.map.center.lat | default: event.map_defaults.center.lat }},
+      "zoom": {{ page.map.zoom | default: event.map_defaults.zoom }}
+    }'>
+  </div>
+{% endif %}

@@ -1,0 +1,306 @@
+@mixin major-section-title {
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: lighten($textColor, 50);
+}
+
+/* Maps and markers. Potentially not events-specific. */
+
+.map-marker-reference {
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  background: $primaryColor;
+  color: white;
+  padding: 0 .25em;
+  font-size: 80%;
+  margin: 0 .25rem;
+  vertical-align: middle;
+
+  // It’s interactive.
+  cursor: pointer;
+}
+
+body.layout--event_subpage, body.layout--event_landing {
+
+  > footer {
+    margin-top: 0;
+  }
+
+  > main > header {
+    h1.headline {
+      font-weight: normal;
+      font-size: 280%;
+      margin-top: .5rem;
+      line-height: 1.2;
+    }
+  }
+
+  main > .meta, main > header .entity .meta {
+    .time .separator {
+      opacity: .5;
+      margin: 0 .05rem;
+    }
+    .icon:first-child {
+      width: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  ul[role=nav] {
+    li.item-missing-page {
+      opacity: .5;
+    }
+  }
+}
+
+body.layout--event_subpage {
+  ul[role=nav] {
+    li.item-missing-page {
+      .title:after {
+        content: "(TBA)";
+        margin-left: .25rem;
+        font-size: 80%;
+      }
+    }
+  }
+
+  > .map {
+    margin-top: 2rem;
+    height: 22rem;
+    width: 100%;
+  }
+
+  .page-body {
+    .page-toc {
+      ul, li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      li.selected span {
+        font-weight: bold;
+
+        &:after {
+          content: "←";
+          vertical-align: text-bottom;
+          color: lighten($textColor, 40);
+          font-size: 80%;
+        }
+      }
+      > ul {
+        > li {
+          margin-bottom: .5rem;
+
+          > .title {
+            @include major-section-title;
+          }
+          > ul {
+              padding: .5rem .75rem .5rem .5rem;
+              border: 1px solid silver;
+              border-radius: .25rem;
+              margin-bottom: 1rem;
+              margin-left: -.2rem;
+            > li {
+
+              > .title {
+                font-size: 120%;
+
+                .icon {
+                  width: 2rem;
+                  text-align: center;
+                  overflow: hidden;
+                }
+              }
+              > ul {
+                margin-left: 2rem;
+                > li {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      display: flex;
+      flex-flow: row-reverse nowrap;
+
+      .page-toc {
+        > .page-toc-title {
+          display: none;
+        }
+        margin-right: 2rem;
+      }
+      .page-content {
+        flex: 1;
+      }
+    }
+  }
+}
+
+body.layout--event_landing {
+  background: $lightBackgroundColor;
+
+  > main {
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+
+    > header {
+      margin-bottom: 0;
+    }
+
+    > .meta {
+      margin-bottom: 2rem;
+      font-size: 120%;
+
+      display: flex;
+      flex-flow: row wrap;
+
+      > * {
+        margin-right: 1rem;
+      }
+    }
+
+    > .intro {
+      font-size: 120%;
+      margin-top: -2rem; // Compensates for meta’s bottom margin.
+      margin-bottom: 2rem;
+    }
+  }
+
+  > main.event-started {
+    .main-nav > ul {
+      // For started events, reverse sections
+      flex-flow: column-reverse nowrap;
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        // Negate the above to avoid clash below.
+        flex-flow: row nowrap;
+      }
+    }
+  }
+
+  .main-nav {
+    ul, li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    > ul {
+      display: flex;
+      flex-flow: column nowrap;
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        flex-flow: row nowrap;
+        align-items: stretch;
+      }
+    }
+
+    > ul > li {
+      $borderRadius: 1rem;
+      $itemGapBase: $borderRadius;
+
+      flex: 1;
+      margin-top: 1rem;
+
+      display: flex;
+      flex-flow: column nowrap;
+
+      > .title {
+        @include major-section-title;
+      }
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        width: $bigscreenBreakpoint - 100px;
+        margin: 0 auto;
+      }
+
+      a, li.with-url .icon {
+        color: $linkColor;
+      }
+
+      span {
+        color: lighten($textColor, 0.5);
+      }
+
+      > ul {
+        flex: 1;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        > li {
+          @include nmCard($bg: white);
+
+          flex: 1;
+          flex-basis: 50%;
+          box-sizing: border-box;
+          padding: .75rem 1rem;
+          margin: #{$itemGapBase * 0.5} #{$itemGapBase * 1.5} #{$itemGapBase * 0.5} -#{$itemGapBase * 0.5};
+
+          position: relative;
+          text-shadow: 0 0 5px white;
+          border-radius: $borderRadius;
+
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: stretch;
+
+          > .title {
+            flex: 1;
+            margin-bottom: .5rem;
+
+            .icon {
+              width: 1.75em;
+              text-align: right;
+              margin-right: .5rem;
+            }
+          }
+
+          > .detail-text {
+            p:first-child {
+              margin: 0;
+            }
+            p:not(:first-child) {
+              display: none;
+            }
+          }
+
+          &.nav-item-arrival {
+            > .detail-include {
+              .mini-map {
+                filter: grayscale(1) contrast(0.3) brightness(1.5);
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: -1;
+                overflow: hidden;
+                border-radius: $borderRadius;
+              }
+            }
+          }
+
+          > a, > span, > .icon {
+            font-size: 140%;
+            font-weight: bold;
+          }
+
+          > ul {
+            display: flex;
+            flex-flow: row wrap;
+
+            > li {
+              margin-right: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

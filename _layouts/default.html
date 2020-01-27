@@ -14,6 +14,8 @@
     <title>
       {% if page.layout == 'group' %}
         {{ page.name | strip_html }}: {{ page.title | strip_html }}
+      {% elsif page.layout contains 'event' %}
+        {{ site.data.events[page.event_id].title | strip_html }}{% if page.title and page.title != "Landing" %}: {{ page.title | strip_html }}{% endif %}
       {% else %}
         {% assign page_title = page.title | default: site.title %}
         {{ page_title | strip_html | escape }}
