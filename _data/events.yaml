@@ -99,7 +99,7 @@
       url: "/39th-plenary/arrival/transportation/"
       title: Transportation
     accommodation:
-      #url: "/39th-plenary/arrival/accommodation/"
+      url: "/39th-plenary/arrival/accommodation/"
       title: Accommodation
     location_101:
       #url: "/39th-plenary/arrival/location-101/"
