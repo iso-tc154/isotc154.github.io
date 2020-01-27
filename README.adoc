@@ -191,6 +191,46 @@ Enter event data under `_data/events.yaml`, under a key that is used as global e
 
 Use existing 39th plenary week as a general format spec.
 
+==== Adding event subpages
+
+An event is expected to contain multiple subpages with information
+about various aspects related to logistics, programme and so on.
+
+To add an event subpage, create a directory `_pages/<event ID>`,
+and place the .adoc file there. In page frontmatter, specify the following:
+
+[source,yaml]
+--
+---
+# These two are required:
+event_id: <the ID of the event, as specified by event dataset in _data/events.yaml>
+permalink: "/<base event URL, as specified by event dataset>/[if not landing page, nested page path components/]"
+
+# Specify this if page contains a map:
+map:
+  id: <pick a string to serve as map ID. Map markers, if any, will refer to it>
+
+  # These will override `map_defaults` specified in event dataset:
+  center:
+    lon: <number>
+    lat: <number>
+  zoom: <number>
+
+# To place markers on a map, wrap references to places in page body text
+# into <span> elements as follows:
+# <span
+#   data-map-marker
+#   data-map-id="<map ID>"
+#   data-map-marker-id="<unique marker ID>"
+#   data-map-marker-place-details='{"title": "Place Name"}'
+#   data-map-marker-coords='{"lon": <number>, "lat": <number>}'>Reference text</span>
+# Places will appear as numbered markers on the map,
+# and corresponding numbers will be appended to wrapped place mentions in body text
+# as map marker references.
+# Marker references in body text are clickable, causing map to pan and show selected place details.
+---
+--
+
 ==== Navigation
 
 Each navigation item’s details are contained under `<event ID>.nav.<nav item ID>`.
