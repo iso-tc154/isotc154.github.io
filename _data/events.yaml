@@ -20,17 +20,20 @@
       lon: -117.884066
       lat: 33.690317
 
-  accommodation:
-    - featured: Official conference hotel
+  accommodation_options:
+    - feature_label: Official conference hotel
       name: Westin South Coast Plaza
-      details: >-
+      address: 686 Anton Blvd, Costa Mesa, CA 92626, United States
+      lon: -117.884253
+      lat: 33.690846
+      details: |
         Host has a negotiated room block rate with the conference hotel.
 
         Concessions:
 
-        . Discounted self-parking of $15.00 per vehicle per day.
-        . No resort fee. 
-        . Complimentary shuttle to John Wayne Airport.
+        - Discounted self-parking of $15.00 per vehicle per day.
+        - No resort fee. 
+        - Complimentary shuttle to John Wayne Airport.
 
         IMPORTANT: Booking deadline for hotel block rate is July 14, 2020.
 
@@ -38,9 +41,11 @@
 
       rooms:
         - desc: King or double bed room
-          rate:
-            nightly: 189.00
-            notes:
+          rates:
+            nightly:
+              amount: 189.00
+
+      disclaimers:
               - Valid for 2020-08-01 to 2020-08-10, based on hotel availability for non-conference days.
               - Hotel’s room rates are subject to applicable state and local taxes (currently 11%)
                 and CA Tourism $0.60 in effect at the time of check-out.

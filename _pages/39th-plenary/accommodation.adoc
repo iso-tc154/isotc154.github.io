@@ -1,0 +1,6 @@
+---
+layout: event_accommodation
+permalink: "/39th-plenary/arrival/accommodation/"
+event_id: 39th_plenary
+title: Accommodation
+---
