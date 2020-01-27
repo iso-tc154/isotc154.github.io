@@ -29,6 +29,7 @@
   <li
     class="
       nav-item-{{ include.item_id }}
+      {% if item.html_class %}{{ item.html_class }}{% endif %}
       {% unless item.url or shows_subitems %}item-missing-page{% endunless %}
       {% if active %}selected{% endif %}
       {% if item.url %}with-url{% endif %}
