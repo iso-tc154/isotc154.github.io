@@ -36,6 +36,12 @@ body.event-subpage, body.layout--event_landing {
     }
   }
 
+  > main {
+    h2, h3 {
+      font-weight: normal;
+    }
+  }
+
   main > .meta, main > header .entity .meta {
     .time .separator {
       opacity: .5;
