@@ -81,7 +81,7 @@
     center:
       lon: -117.884066
       lat: 33.690317
-    zoom: 10
+    zoom: 11
 
   landing_nav:
     items:
