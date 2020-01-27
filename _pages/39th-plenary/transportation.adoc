@@ -10,10 +10,12 @@ map:
     lat: 33.851068
   zoom: 9.5
 ---
+:page-liquid:
 
 == From +++<span data-map-marker data-map-id="transport-map" data-map-marker-id="airport-sna" data-map-marker-place-details='{"title": "John Wayne Airport"}' data-map-marker-coords='{"lon": -117.867576, "lat": 33.674967}'>John Wayne Airport (IATA:&nbsp;SNA)</span>+++
 
-The official conference hotel, Westin South Coast Plaza,
+The official conference hotel,
++++<span data-map-marker data-map-id="transport-map" data-map-marker-id="conference-hotel" data-map-marker-place-details='{"title": "Westin South Coast Plaza"}' data-map-marker-coords='{"lon": {{ site.data.events[page.event_id].venues[0].lon }}, "lat": {{ site.data.events[page.event_id].venues[0].lat }}}'>Westin South Coast Plaza</span>+++,
 has a complimentary shuttle to and from John Wayne Airport.
 Please contact the hotel for more information.
 
