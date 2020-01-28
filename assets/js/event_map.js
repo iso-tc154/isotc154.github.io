@@ -252,18 +252,22 @@
 
     map.on('movestart', hideAllTippys);
 
+    function deselectMarkers() {
+      Object.values(markers).map(function (marker) {
+        marker.el.classList.remove('map-marker-selected');
+      });
+    }
+
     function selectMarker(markerID, eventSource) {
       /* eventSource: How the marker got selected; 'map' or 'page' */
 
       const marker = markers[markerID];
 
-      Object.values(markers).map(function (marker) {
-        marker.el.classList.remove('map-marker-selected');
-      });
-
       if (!marker) {
         throw new Error(`Attempt to select unknown marker ${markerID}`);
       }
+
+      deselectMarkers();
 
       if (!mapIsFocused()) {
         focusMap();
@@ -297,6 +301,7 @@
         const clickedInsideMapMarkerReference = event.target.closest('[data-map-marker]');
         if (!target.contains(event.target) && !clickedInsideMapMarkerReference && mapIsFocused()) {
           defocusMap();
+          deselectMarkers();
           document.removeEventListener('click', handlePotentiallyMapDefocusingDocumentClick);
         }
       }
