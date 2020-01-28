@@ -78,6 +78,10 @@ body main > header {
     > .meta {
       overflow: hidden;
       text-overflow: ellipsis;
+
+      &:hover {
+        flex-shrink: 0;
+    }
     }
 
     @media screen and (min-width: $bigscreenBreakpoint) {
