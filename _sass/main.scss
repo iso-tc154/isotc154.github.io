@@ -119,6 +119,13 @@ body main > header {
       color: white;
       flex: 100%;
 
+      .icon:first-child {
+        width: 1.25em;
+        margin-right: .25em;
+        text-align: center;
+        overflow: hidden;
+      }
+
       @media screen and (min-width: $bigscreenBreakpoint) {
         flex: unset;
       }
