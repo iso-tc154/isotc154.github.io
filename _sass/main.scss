@@ -80,10 +80,10 @@ body main > header {
       text-overflow: ellipsis;
 
       @media screen and (min-width: $bigscreenBreakpoint) {
-      &:hover {
-        flex-shrink: 0;
-    }
-    }
+        &:hover {
+          flex-shrink: 0;
+        }
+      }
     }
 
     @media screen and (min-width: $bigscreenBreakpoint) {
