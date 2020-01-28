@@ -198,6 +198,7 @@ body.event-subpage {
     width: 100%;
 
     &.map-focused {
+      box-shadow: rgba(black, 0.2) 0 0 2rem;
       position: fixed;
       height: 42vh;
       bottom: 0;
