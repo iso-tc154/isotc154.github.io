@@ -94,7 +94,8 @@
       throw e;
     }
 
-    const disableInteractions = target.dataset.mapDisableInteractions !== undefined;
+    const disableInteractions =
+      target.dataset.mapDisableInteractions !== undefined;
 
 
     // Read and initialize markers
