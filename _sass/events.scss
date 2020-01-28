@@ -6,19 +6,27 @@
 
 /* Maps and markers. Potentially not events-specific. */
 
-.map-marker-reference {
-  display: inline-block;
-  text-align: center;
-  overflow: hidden;
-  background: $primaryColor;
-  color: white;
-  padding: 0 .25em;
-  font-size: 80%;
-  margin: 0 .25rem;
-  vertical-align: middle;
+[data-map-marker] {
+  .map-marker-reference {
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    background: $primaryColor;
+    color: white;
+    padding: 0 .25em;
+    font-size: 80%;
+    margin: 0 .25rem;
+    vertical-align: middle;
+    opacity: .5;
 
-  // It’s interactive.
-  cursor: pointer;
+    // It’s interactive.
+    cursor: pointer;
+  }
+  &.map-marker-selected {
+    .map-marker-reference {
+      opacity: 1;
+    }
+  }
 }
 
 body.layout--home {
@@ -84,6 +92,10 @@ body.event-subpage, body.layout--event_landing {
     .time .separator {
       opacity: .5;
       margin: 0 .05rem;
+    }
+    .icon:first-child {
+      width: 1.5rem;
+      text-align: center;
     }
   }
 
@@ -188,6 +200,13 @@ body.event-subpage {
     margin-top: 2rem;
     height: 22rem;
     width: 100%;
+
+    &.map-focused {
+      position: fixed;
+      height: 42vh;
+      bottom: 0;
+      z-index: 4;
+    }
   }
 
   .page-body {

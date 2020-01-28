@@ -229,21 +229,13 @@
       map.addOverlay(marker.overlay);
     }
 
-    const tippys = tippy('[data-map-marker-bubble]');
+    const tippys = tippy('[data-map-marker-bubble]', {
+         trigger: 'manual',
+         hideOnClick: false,
+      });
 
-    function selectMarker(markerID) {
-      const marker = markers[markerID];
-
-      if (!marker) {
-        throw new Error(`Attempt to select unknown marker ${markerID}`);
-      }
-
-      map.once('moveend', function () {
-        // NOTE: Supposedly this hides all other tippy instances
-        // in the singleton group?
-        marker.overlay.getElement()._tippy.show();
-      })
-      map.getView().setCenter(marker.coords);
+    function hideAllTippys() {
+      tippys.map(function (instance) { instance.hide(); });
     }
 
     map.on('singleclick', function (event) {
@@ -257,9 +249,60 @@
           }
         })
     });
-    map.on('movestart', function () {
-      tippys.map(function (instance) { instance.hide(); })
-    })
+
+    map.on('movestart', hideAllTippys);
+
+    function selectMarker(markerID) {
+      const marker = markers[markerID];
+
+      Object.values(markers).map(function (marker) {
+        marker.el.classList.remove('map-marker-selected');
+      });
+
+      if (!marker) {
+        throw new Error(`Attempt to select unknown marker ${markerID}`);
+      }
+
+      focusMap();
+
+      let selectedMarkerTippy;
+      try {
+        selectedMarkerTippy = marker.overlay.getElement()._tippy;
+      } catch (e) {
+        throw new Error(`Unable to obtain tippy instance for ${markerID}`);
+      }
+
+      map.once('moveend', function () {
+        hideAllTippys();
+        selectedMarkerTippy.show();
+      })
+
+      map.getView().setCenter(marker.coords);
+      marker.el.scrollIntoView();
+      marker.el.classList.add('map-marker-selected');
+    }
+
+    function focusMap() {
+      target.classList.add('map-focused');
+
+      function handlePotentiallyMapDefocusingDocumentClick(event) {
+        const clickedInsideMapMarkerReference = event.target.closest('[data-map-marker]');
+        if (!target.contains(event.target) && !clickedInsideMapMarkerReference && mapIsFocused()) {
+          defocusMap();
+          document.removeEventListener('click', handlePotentiallyMapDefocusingDocumentClick);
+        }
+      }
+      document.addEventListener('click', handlePotentiallyMapDefocusingDocumentClick);
+    }
+
+    function defocusMap() {
+      hideAllTippys();
+      target.classList.remove('map-focused');
+    }
+
+    function mapIsFocused() {
+      return target.classList.contains('map-focused');
+    }
 
     return {
       map: map,
