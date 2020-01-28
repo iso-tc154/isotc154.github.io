@@ -17,7 +17,6 @@
 
      Exposes OL map objects under window.maps[<map ID>], with each value as {
        map: <OL map instance>
-       markers: [{ coords: { lon, lat }, el: <DOM element>, idx: <0-based index> }
      }.
 
      Adds map markers based on DOM elements with data-map-marker attribute present.
@@ -30,7 +29,6 @@
 
      - data-map-marker-place-details JSON in following format: {
          title: <place name as string>
-         description: <HTML string describing the place>
        }
     
      - data-map-marker-coords, with JSON in following format: {
