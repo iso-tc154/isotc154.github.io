@@ -223,7 +223,7 @@
     });
 
 
-    // Initialize marker highlighting
+    // Initialize marker highlighting & map (de)focusing
 
     for (const marker of Object.values(markers)) {
       map.addOverlay(marker.overlay);
