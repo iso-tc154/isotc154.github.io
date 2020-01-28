@@ -71,27 +71,16 @@ body.event-subpage, body.layout--event_landing {
   > main > header {
     h1.headline {
       font-weight: normal;
-      @media screen and (min-width: $bigscreenBreakpoint) {
-      font-size: 280%;
-      }
       margin-top: .5rem;
       line-height: 1.2;
-    }
-  }
-
-  > main {
-    h2 {
-      font-size: 120%;
-      font-weight: bold;
-    }
-    h3 {
-      font-size: 110%;
-      text-transform: uppercase;
-      font-weight: normal;
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        font-size: 280%;
+      }
     }
   }
 
   main > .meta, main > header .entity .meta {
+
     .time .separator {
       opacity: .5;
       margin: 0 .05rem;
@@ -209,6 +198,16 @@ body.event-subpage {
     .page-content {
       @include asciidoc-markup();
 
+      h2 {
+        font-size: 120%;
+        font-weight: bold;
+      }
+      h3 {
+        font-size: 110%;
+        text-transform: uppercase;
+        font-weight: normal;
+      }
+
       > div.sect1 {
         padding: .75rem 1rem;
         background: white;
@@ -220,6 +219,9 @@ body.event-subpage {
       }
     }
     .page-toc {
+      h2 {
+        font-size: 100%;
+      }
       ul, li {
         list-style: none;
         margin: 0;
