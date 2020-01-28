@@ -132,7 +132,7 @@
       createMarkerReference(
         markerEl,
         idx,
-        function () { selectMarker(markerID) });
+        function () { selectMarker(markerID, 'page') });
 
       // (see below for overlay usage)
       const overlayEl = document.createElement('div');
@@ -244,7 +244,7 @@
         function (feature) {
           const markerID = feature.getProperties()['markerID'];
           if (markerID) {
-            selectMarker(markerID);
+            selectMarker(markerID, 'map');
             return true;
           }
         })
@@ -252,7 +252,9 @@
 
     map.on('movestart', hideAllTippys);
 
-    function selectMarker(markerID) {
+    function selectMarker(markerID, eventSource) {
+      /* eventSource: How the marker got selected; 'map' or 'page' */
+
       const marker = markers[markerID];
 
       Object.values(markers).map(function (marker) {
@@ -263,7 +265,9 @@
         throw new Error(`Attempt to select unknown marker ${markerID}`);
       }
 
-      focusMap();
+      if (!mapIsFocused()) {
+        focusMap();
+      }
 
       let selectedMarkerTippy;
       try {
@@ -278,7 +282,11 @@
       })
 
       map.getView().setCenter(marker.coords);
-      marker.el.scrollIntoView();
+
+      if (eventSource === 'map') {
+        marker.el.scrollIntoView();
+      }
+
       marker.el.classList.add('map-marker-selected');
     }
 
