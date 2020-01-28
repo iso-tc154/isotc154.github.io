@@ -72,6 +72,18 @@ body main > header {
     flex-flow: row wrap;
     align-items: center;
 
+    > * {
+      white-space: nowrap;
+    }
+    > .meta {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      flex-flow: row nowrap;
+    }
+
     .id, .name {
       margin-right: 1em;
       margin-bottom: .25em;
@@ -92,7 +104,6 @@ body main > header {
       text-transform: uppercase;
       letter-spacing: .04em;
       font-weight: bold;
-      white-space: nowrap;
 
       background: $primaryColor;
       color: white;
@@ -100,6 +111,11 @@ body main > header {
     .meta {
       background: $entityGrey;
       color: white;
+      flex: 100%;
+
+      @media screen and (min-width: $bigscreenBreakpoint) {
+        flex: unset;
+      }
     }
   }
   > .headline {
