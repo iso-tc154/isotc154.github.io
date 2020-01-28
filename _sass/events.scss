@@ -71,7 +71,9 @@ body.event-subpage, body.layout--event_landing {
   > main > header {
     h1.headline {
       font-weight: normal;
+      @media screen and (min-width: $bigscreenBreakpoint) {
       font-size: 280%;
+      }
       margin-top: .5rem;
       line-height: 1.2;
     }
