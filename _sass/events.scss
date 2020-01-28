@@ -433,10 +433,16 @@ body.layout--event_landing {
 
           > ul {
             display: flex;
-            flex-flow: row wrap;
+            flex-flow: row nowrap;
+            overflow-x: auto;
 
             > li {
               margin-right: 1rem;
+              white-space: nowrap;
+
+              &:last-child {
+                margin-right: 0;
+              }
             }
           }
         }
