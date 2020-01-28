@@ -41,6 +41,7 @@
   */
 
   const primaryColor = '#0061AD';
+  // NOTE: Keep up-to-date with the corresponding SCSS variable.
 
   window.maps = {};
 
