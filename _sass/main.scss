@@ -79,8 +79,10 @@ body main > header {
       overflow: hidden;
       text-overflow: ellipsis;
 
+      @media screen and (min-width: $bigscreenBreakpoint) {
       &:hover {
         flex-shrink: 0;
+    }
     }
     }
 
