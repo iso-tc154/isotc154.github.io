@@ -18,16 +18,6 @@ extra_scripts:
 
 <main>
 
-  <section class="hero">
-    {% for banner in page.banner_includes %}
-      {% assign layout_name = banner.layout | default: "default" %}
-      <section class="banner banner--{{ layout_name }}">
-        {% assign layout_path = "hero_banners/" | append: layout_name | append: ".html" %}
-        {% include {{ layout_path }} banner=banner %} 
-      </section>
-    {% endfor %}
-  </section>
-
   {% assign num_unfinished_events = site.data.unfinished_events | size %}
   {% if num_unfinished_events > 0 %}
     <section class="events">
@@ -69,6 +59,16 @@ extra_scripts:
       {% endfor %}
     </section>
   {% endif %}
+
+  <section class="hero">
+    {% for banner in page.banner_includes %}
+      {% assign layout_name = banner.layout | default: "default" %}
+      <section class="banner banner--{{ layout_name }}">
+        {% assign layout_path = "hero_banners/" | append: layout_name | append: ".html" %}
+        {% include {{ layout_path }} banner=banner %} 
+      </section>
+    {% endfor %}
+  </section>
 
   {{ content }}
 
