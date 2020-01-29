@@ -85,11 +85,20 @@ body.event-subpage, body.layout--event_landing {
   }
 
   > main > header {
+    margin-bottom: 1rem;
+
     h1.headline {
       font-weight: normal;
-      margin-top: .5rem;
+      margin-top: .6em;
+      margin-bottom: 0;
       line-height: 1.2;
-      @media screen and (min-width: $bigscreenBreakpoint) {
+    }
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      margin-bottom: 2rem;
+
+      h1.headline {
+        margin-top: .5rem;
         font-size: 280%;
       }
     }
