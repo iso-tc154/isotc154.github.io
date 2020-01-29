@@ -251,9 +251,13 @@ header.top-bar {
     @include wideContainer();
 
     height: $headerH / 1.7;
+    margin-right: 0;
+
     @media screen and (min-width: $bigscreenBreakpoint) {
+      @include wideContainer();
       height: $headerH;
     }
+
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
