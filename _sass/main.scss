@@ -261,6 +261,14 @@ header.top-bar {
     color: inherit;
   }
 
+  .org-name {
+    display: none;
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      display: inline;
+    }
+  }
+
   .iso-logo {
     display: flex;
     flex-flow: row nowrap;
