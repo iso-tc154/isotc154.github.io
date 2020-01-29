@@ -302,6 +302,7 @@
 
     function summonMap() {
       target.classList.add(SUMMONED_MAP_HTML_CLASS);
+      document.body.classList.add(SUMMONED_MAP_HTML_CLASS);
 
       function handlePotentiallyMapDismissingDocumentClick(event) {
         const clickedInsideMapMarkerReference = event.target.closest('[data-map-marker]');
@@ -317,6 +318,7 @@
     function dismissMap() {
       hideAllTippys();
       target.classList.remove(SUMMONED_MAP_HTML_CLASS);
+      document.body.classList.remove(SUMMONED_MAP_HTML_CLASS);
     }
 
     function mapIsSummoned() {
