@@ -241,6 +241,9 @@ body.event-subpage {
       z-index: 4;
     }
   }
+  &.map-focused {
+    padding-bottom: 38vh;
+  }
 
   .page-body {
     .page-content {
