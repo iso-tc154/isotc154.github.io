@@ -40,8 +40,15 @@
 
   */
 
-  const primaryColor = '#0061AD';
+  const PRIMARY_COLOR = '#0061AD';
   // NOTE: Keep up-to-date with the corresponding SCSS variable.
+
+  const BODY_FONT = '16px Helvetica, Arial, sans-serif';
+  // NOTE: Keep up-to-date with prevailing page style.
+
+  const SUMMONED_MAP_HTML_CLASS = 'map-focused';
+
+  const SELECTED_MAP_MARKER_REFERENCE_HTML_CLASS = 'map-marker-selected';
 
   window.maps = {};
 
@@ -147,7 +154,7 @@
         color: 'rgba(255, 255, 255, 0.4)',
       });
       const stroke = new ol.style.Stroke({
-        color: primaryColor,
+        color: PRIMARY_COLOR,
         width: 1.25,
       });
       markerFeature.setStyle([new ol.style.Style({
@@ -158,18 +165,19 @@
         }),
       }), new ol.style.Style({
         text: new ol.style.Text({
-          font: '20px Helvetica, Arial, sans-serif',
+          font: BODY_FONT,
           placement: 'point',
           textAlign: 'left',
           offsetX: 10,
           text: `${idx}`,
-          backgroundFill: new ol.style.Fill({ color: primaryColor }),
+          padding: [2, 3, 2, 3],
+          backgroundFill: new ol.style.Fill({ color: PRIMARY_COLOR }),
           fill: new ol.style.Fill({
             color: '#fff',
           }),
           stroke: new ol.style.Stroke({
             color: '#000',
-            width: 3,
+            width: 2,
           }),
         }),
       })]);
@@ -189,8 +197,6 @@
           id: `marker-${markerID}`,
           element: overlayEl,
           position: olCoords,
-          autoPan: true,
-          autoPanAnimation: { duration: 250 },
         }),
       };
     }
@@ -230,9 +236,9 @@
     }
 
     const tippys = tippy('[data-map-marker-bubble]', {
-         trigger: 'manual',
-         hideOnClick: false,
-      });
+      trigger: 'manual',
+      hideOnClick: false,
+    });
 
     function hideAllTippys() {
       tippys.map(function (instance) { instance.hide(); });
@@ -254,7 +260,7 @@
 
     function deselectMarkers() {
       Object.values(markers).map(function (marker) {
-        marker.el.classList.remove('map-marker-selected');
+        marker.el.classList.remove(SELECTED_MAP_MARKER_REFERENCE_HTML_CLASS);
       });
     }
 
@@ -269,8 +275,8 @@
 
       deselectMarkers();
 
-      if (!mapIsFocused()) {
-        focusMap();
+      if (!mapIsSummoned()) {
+        summonMap();
       }
 
       let selectedMarkerTippy;
@@ -291,30 +297,30 @@
         marker.el.scrollIntoView();
       }
 
-      marker.el.classList.add('map-marker-selected');
+      marker.el.classList.add(SELECTED_MAP_MARKER_REFERENCE_HTML_CLASS);
     }
 
-    function focusMap() {
-      target.classList.add('map-focused');
+    function summonMap() {
+      target.classList.add(SUMMONED_MAP_HTML_CLASS);
 
-      function handlePotentiallyMapDefocusingDocumentClick(event) {
+      function handlePotentiallyMapDismissingDocumentClick(event) {
         const clickedInsideMapMarkerReference = event.target.closest('[data-map-marker]');
-        if (!target.contains(event.target) && !clickedInsideMapMarkerReference && mapIsFocused()) {
-          defocusMap();
+        if (!target.contains(event.target) && !clickedInsideMapMarkerReference && mapIsSummoned()) {
+          dismissMap();
           deselectMarkers();
-          document.removeEventListener('click', handlePotentiallyMapDefocusingDocumentClick);
+          document.removeEventListener('click', handlePotentiallyMapDismissingDocumentClick);
         }
       }
-      document.addEventListener('click', handlePotentiallyMapDefocusingDocumentClick);
+      document.addEventListener('click', handlePotentiallyMapDismissingDocumentClick);
     }
 
-    function defocusMap() {
+    function dismissMap() {
       hideAllTippys();
-      target.classList.remove('map-focused');
+      target.classList.remove(SUMMONED_MAP_HTML_CLASS);
     }
 
-    function mapIsFocused() {
-      return target.classList.contains('map-focused');
+    function mapIsSummoned() {
+      return target.classList.contains(SUMMONED_MAP_HTML_CLASS);
     }
 
     return {
