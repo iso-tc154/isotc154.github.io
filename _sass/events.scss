@@ -119,6 +119,18 @@ body.event-subpage, body.layout--event_landing {
   }
 }
 
+.page-content {
+  .accommodation-option, .sect1 {
+    margin-right: -2rem;
+    margin-left: -2rem;
+
+    @media screen and (min-width: $bigscreenBreakpoint) {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}
+
 body.layout--event_accommodation {
   .accommodation-option-list {
     .accommodation-option {
@@ -146,15 +158,21 @@ body.layout--event_accommodation {
         .feature {
           position: absolute;
           top: 0;
-          left: 0;
+          right: 2rem;
           transform-origin: center center;
-          transform: translateX(-50%) translateY(-50%) rotate(-90deg) translateY(-50%) translateX(-50%);
+          transform: translateY(-100%);
+
+          @media screen and (min-width: $bigscreenBreakpoint) {
+            right: auto;
+            left: 0;
+            transform: translateX(-50%) translateY(-50%) rotate(-90deg) translateY(-50%) translateX(-50%);
+            border-radius: .5em .5em 0 0;
+          }
 
           white-space: nowrap;
           font-size: 70%;
           text-transform: uppercase;
           letter-spacing: .07em;
-          border-radius: .5em .5em 0 0;
           padding: .2em .5em .1em .5em;
           background: $primaryColor;
           color: white;
