@@ -88,6 +88,9 @@ body main > header {
 
     @media screen and (min-width: $bigscreenBreakpoint) {
       flex-flow: row nowrap;
+      .type, .meta {
+        margin-right: .25rem;
+      }
     }
 
     .id, .name {
@@ -103,7 +106,6 @@ body main > header {
       font-size: .8rem;
       padding: .4em .8em;
       margin-top: .05rem;
-      margin-right: .25rem;
       margin-bottom: .25rem;
     }
     .type {
