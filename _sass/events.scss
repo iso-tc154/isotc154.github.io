@@ -430,6 +430,25 @@ body.event-subpage {
       }
     }
   }
+
+  div.place-list {
+    > ul {
+      > li {
+        margin-bottom: 1rem;
+
+        .title {
+          font-size: 120%;
+          font-weight: normal;
+        }
+        .quoteblock {
+          font-size: 80%;
+          background: $lightBackgroundColor;
+          padding: .5rem;
+          margin: 0 .5rem .5rem 0;
+        }
+      }
+    }
+  }
 }
 
 body.layout--event_accommodation, body.layout--event_places {
