@@ -1,0 +1,64 @@
+---
+layout: event_subpage
+map:
+  id: accommodation-map
+---
+
+{% assign event = site.data.events[page.event_id] %}
+
+<div class="accommodation-option-list">
+  {% for opt in event.places %}
+    <article class="accommodation-option">
+
+      <header>
+        <h2 class="title">
+          {% if opt.lon and opt.lat %}
+            <span
+                data-map-marker
+                data-map-id="{{ layout.map.id }}"
+                data-map-marker-id="{{ opt.name }}"
+                data-map-marker-coords='{"lon": {{ opt.lon }}, "lat": {{ opt.lat }}}'
+                data-map-marker-place-details='{"title": "{{ opt.name }}"}'>
+              {{ opt.name }}
+            </span>
+          {% else %}
+            {{ opt.name }}
+          {% endif %}
+        </h2>
+
+        {% if opt.feature_label %}
+          <div class="feature">
+            {{ opt.feature_label }}
+          </div>
+        {% endif %}
+
+        {% if opt.address %}
+          <p class="address"><a href="https://maps.google.com/?q={{ opt.name }} {{ opt.address | escape }}" target="_blank">{{ opt.address }}</a>
+        {% endif %}
+      </header>
+
+      {% if opt.details %}
+        <section class="details">
+          {{ opt.details | asciidocify }}
+        </section>
+      {% endif %}
+
+      {% if opt.actions %}
+        <footer class="actions">
+          {% for action in opt.actions %}
+            <div class="action {% if action.disabled %}disabled{% endif %} {% if action.description %}with-description{% endif %}" title="{{ action.description }}">
+              {% if action.link %}
+                <a href="{{ action.link }}">{{ action.label }}</a>
+              {% else %}
+                <span>{{ action.label }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </footer>
+      {% endif %}
+
+    </article>
+  {% endfor %}
+</div>
+
+{{ page.content }}

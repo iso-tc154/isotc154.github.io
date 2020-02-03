@@ -1,0 +1,45 @@
+---
+layout: event_places
+permalink: "/39th-plenary/surroundings/places/"
+event_id: 39th_plenary
+title: Places
+collection: places
+---
+
+== Parks and museums
+
+O.C. is surrounded by nature and there are plenty of cultural activities around.
+
+* Sunnylands Center & Gardens: https://sunnylands.org
+* Palm Springs Aerial Tramway: https://pstramway.com
+* The Gamble House: https://gamblehouse.org
+* Dana Point Ocean Institute: https://www.ocean-institute.org
+* Environmental Nature Center: https://www.encenter.org
+* San Diego Zoo: https://zoo.sandiegozoo.org
+* California Science Center: https://californiasciencecenter.org
+* USS Midway Carrier: https://www.midway.org
+* Los Angeles County Museum of Art: https://www.lacma.org
+* Griffith Observatory: http://www.griffithobservatory.org
+* Pacific Marine Mammal Center: https://www.pacificmmc.org
+* Balboa Park: https://www.balboapark.org
+* La Brea Tar Pits: https://tarpits.org
+
+== Beaches
+
+Native Californians just love spending time at the beaches.
+
+* Laguna Beach
+* Newport Beach
+* Huntington Beach
+* Balboa Pier Beach
+
+== Further information
+
+For more details about the area, see the following links.
+
+* Visit Orange County: https://www.visittheoc.com
+* Visit Newport Beach: https://www.visitnewportbeach.com
+* Travel Costa Mesa: https://travelcostamesa.com
+* Visit Irvine: https://www.destinationirvine.com
+
+If you are staying at the conference hotel, the hotel concierge will be more than happy to help you make arrangements.
