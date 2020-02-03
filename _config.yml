@@ -89,11 +89,11 @@ defaults:
       path: "faq"
     values:
       layout: faq
-  - scope:
-      path: ""
-      type: minutes
-    values:
-      layout: minutes
+  # - scope:
+  #     path: ""
+  #     type: minutes
+  #   values:
+  #     layout: minutes
   - scope:
       path: ""
       type: standards
@@ -139,9 +139,9 @@ nav:
   members:
     url: /members/
     title: Members
-  minutes:
-    url: /minutes/
-    title: Minutes
+  # minutes:
+  #   url: /minutes/
+  #   title: Minutes
 
   39th_plenary:
     url: /39th-plenary/
