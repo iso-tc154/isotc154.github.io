@@ -433,18 +433,42 @@ body.event-subpage {
 
   div.place-list {
     > ul {
+      padding: 0 0 0 1rem;
+
       > li {
         margin-bottom: 1rem;
 
+        > p:first-child {
+          margin-bottom: .5rem;
+        }
+
+        font-size: 80%;
+
         .title {
-          font-size: 120%;
+          font-size: 130%;
           font-weight: normal;
         }
+
         .quoteblock {
-          font-size: 80%;
-          background: $lightBackgroundColor;
-          padding: .5rem;
+          padding: 0 .5rem .5rem 1rem;
           margin: 0 .5rem .5rem 0;
+          position: relative;
+
+          blockquote {
+            margin-left: 1rem; 
+
+            &:before {
+              content: "“";
+              z-index: -1;
+              position: absolute;
+              top: 0;
+              left: 0;
+              transform: translateX(-10%) translateY(-10%);
+              color: $lightBackgroundColor;
+              font-size: 10em;
+              line-height: 1;
+            }
+          }
         }
       }
     }
