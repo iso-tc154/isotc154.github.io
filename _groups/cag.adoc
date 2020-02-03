@@ -17,4 +17,6 @@ organization:
 
 The group's mandate is to assist in identifying issues and topics that need to be discussed and may even be resolved by the team, or may need to be agenda items for the next upcoming meeting.
 
-The group's minutes and reports are available via the link:/minutes[CAG minutes] page.
+The group's minutes and reports are available internally.
+
+// via the link:/minutes[CAG minutes] page.
