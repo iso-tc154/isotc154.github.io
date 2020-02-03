@@ -31,7 +31,7 @@ place_categories:
       +
       [quote,The Orange County Register]
       ____
-      “there’s an emphasis on steak now — including a truly massive five-pound ribeye carved tableside — but regulars will recognize the same whole duck-fat-fried chicken and lobster pot pie that were Stonehill staples from the beginning. This is probably the only place in the region with a roving martini cart. Service is superb. So, too, the sunset views.”
+      There’s an emphasis on steak now — including a truly massive five-pound ribeye carved tableside — but regulars will recognize the same whole duck-fat-fried chicken and lobster pot pie that were Stonehill staples from the beginning. This is probably the only place in the region with a roving martini cart. Service is superb. So, too, the sunset views.
       ____
   
   - label: Steakhouse
@@ -43,7 +43,7 @@ place_categories:
       + 
       [quote,The Orange County Register]
       ____
-      “There’s nothing meek about Mastro’s. This old-school steakhouse revels in gluttony and excess. Dining here isn’t just a meal, it’s an occasion. It’s a statement. The steaks are massive, even the small ones. The martinis seem bigger than life. Wine prices are through the roof but you won’t lack for choices from the best cult cabernets or legendary Bordeaux. You might have to skip a mortgage payment or two to dine here, but there’s no denying the quality of beef that’s being served. Must order: The chef’s cut ribeye is one of the best, thickest and juiciest steaks you will ever eat.”
+      There’s nothing meek about Mastro’s. This old-school steakhouse revels in gluttony and excess. Dining here isn’t just a meal, it’s an occasion. It’s a statement. The steaks are massive, even the small ones. The martinis seem bigger than life. Wine prices are through the roof but you won’t lack for choices from the best cult cabernets or legendary Bordeaux. You might have to skip a mortgage payment or two to dine here, but there’s no denying the quality of beef that’s being served. Must order: The chef’s cut ribeye is one of the best, thickest and juiciest steaks you will ever eat.
       ____
 
   
@@ -56,7 +56,7 @@ place_categories:
       + 
       [quote,Los Angeles Times]
       ____
-      “Brodard Chateau in Garden Grove is owned by the Dang family, Orange County food royalty who oversee a small empire of distinguished Vietnamese restaurants. The dish that built the family’s reputation is the nem nuong cuon, grilled pork spring rolls, each bite vivid with crunchy bits of meat, chives and bracing hints of mint. The rolls are served with a sweet dipping sauce that has developed a cult following all its own. Beyond the requisite nem nuong, order the bun cha ha noi, beautifully smoky pork patties served with a slightly sweet fish sauce. The crisp rice flour saucers called banh khot are exquisite, each one cradling a springy, well-cooked shrimp.”
+      Brodard Chateau in Garden Grove is owned by the Dang family, Orange County food royalty who oversee a small empire of distinguished Vietnamese restaurants. The dish that built the family’s reputation is the nem nuong cuon, grilled pork spring rolls, each bite vivid with crunchy bits of meat, chives and bracing hints of mint. The rolls are served with a sweet dipping sauce that has developed a cult following all its own. Beyond the requisite nem nuong, order the bun cha ha noi, beautifully smoky pork patties served with a slightly sweet fish sauce. The crisp rice flour saucers called banh khot are exquisite, each one cradling a springy, well-cooked shrimp.
       ____
 
 #  - feature_label: Eating
