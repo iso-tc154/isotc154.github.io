@@ -47,7 +47,7 @@ There are 3 projects teams in WG7:
 
 == Related links
 
-* https://plapper.com/lean.php[STANDARDISIERTE UNTERNEHMENSÜBERGREIFENDE WERTSTOM MANAGEMENT METHODE (ISO NORM 22468)]
+* https://plapper.com/lean.php[Standardisierte Unternehmensübergreifende Wertstom Management Methode (ISO 22468)]
 
 == News and others
 
