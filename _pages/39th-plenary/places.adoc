@@ -59,126 +59,104 @@ place_categories:
       Brodard Chateau in Garden Grove is owned by the Dang family, Orange County food royalty who oversee a small empire of distinguished Vietnamese restaurants. The dish that built the family’s reputation is the nem nuong cuon, grilled pork spring rolls, each bite vivid with crunchy bits of meat, chives and bracing hints of mint. The rolls are served with a sweet dipping sauce that has developed a cult following all its own. Beyond the requisite nem nuong, order the bun cha ha noi, beautifully smoky pork patties served with a slightly sweet fish sauce. The crisp rice flour saucers called banh khot are exquisite, each one cradling a springy, well-cooked shrimp.
       ____
 
-#  - feature_label: Eating
-#      name: Taco Maria
-#      address: 3313 Hyland Ave, Costa Mesa, CA, 92626
-#      category: Mexican
-#      actions:
-#      - link: http://tacomaria.com/
-#          label: Visit site
-#      details: |
-#      #3 restaurant in the 2019 Best Restaurants of Los Angeles:
-#  
-#      [quote,Los Angeles Times]
-#      ____
-#      “At his Costa Mesa restaurant, Carlos Salgado’s cooking is intellectual, syncretic and modernist, bound up in personal history, heritage and years of fine-dining training. You can see these disparate forces at work on the Taco Maria lunch menu, when you can try Salgado’s cooking a la carte; recently there was aguachile made with Hokkaido scallops; wood-fired pork cheek glazed in dark sugar; and ancho-almond mole draped over Jidori chicken. Salgado’s culinary vision is most fully expressed at dinner, when the restaurant switches to a taco-centric, four-course tasting-menu format.”
-#      ____
-#  
-#  - feature_label: Eating
-#      name: Chaak Kitchen
-#      address: 215 El Camino Real, Tustin, CA
-#      category: Steakhouse
-#      actions:
-#      - link: http://chaakkitchen.com
-#          label: Visit site
-#      details: |
-#      #64 restaurant in the 2019 Best Restaurants of Los Angeles:
-#  
-#      [quote,Los Angeles Times]
-#      ____
-#      “At her sleek Old Town Tustin restaurant, chef Gabbi Patrick pays homage to her family’s Yucatecan heritage with time-intensive interpretations of the region’s revered dishes. Banana-leaf-wrapped cochinita pibil, smoked over red oak for 11 hours, is intensely succulent. Her pavo en recado negro — braised turkey rubbed in a blackened chile paste — celebrates the dish’s natural earthiness and pungency. A take on tamal colado, masa strained into a pudding-like cake, is dessert-like in its decadence.”
-#      ____
-#  
-#  
-#  - feature_label: Eating
-#      name: Terrace by Mix Mix
-#      address: "3333 Bear St #316, Costa Mesa, CA 92626"
-#      category: Fusion
-#      actions:
-#      - link: http://terracebymixmix.com/
-#          label: Visit site
-#      details: |
-#      #9 in O.C.’s 19 Hottest Restaurants:
-#  
-#      [quote,EATER Los Angeles]
-#      ____
-#      “Located inside South Coast Plaza, Terrace by MixMix showcases the cooking of former Patina Restaurant Group chef Ross Pangilinan. The menu, inspired by French, Italian, and modern Filipino flavors, features things like pork adobo fried rice and albacore tostada. The $20 prix fixe lunch is particularly notable.”
-#      ____
-#  
-#  - feature_label: Eating
-#      name: Vaca
-#      address: 695 Town Center Dr Suite 160, Costa Mesa, CA 92626
-#      category: Spanish
-#      actions:
-#      - link: http://www.vacarestaurant.com/
-#          label: Visit site
-#      details: |
-#      #10 in O.C.’s 19 Hottest Restaurants:
-#  
-#      [quote,EATER Los Angeles]
-#      ____
-#      “Vaca remains a dining destination for Orange County, thanks to chef Amar Santana’s stint on Top Chef. The Spanish-inflected Costa Mesa restaurant hits on all cylinders, from meat to seafood to fresh produce to one of the best wine lists in the county.”
-#      ____
-#  
-#  - feature_label: Eating
-#      name: "Marché Moderne"
-#      address: 7862 E. Pacific Coast Highway, Newport Beach
-#      category: French
-#      actions:
-#      - link: https://marchemoderne.net
-#          label: Visit site
-#      details: |
-#      #3 in The 75 best restaurants in O.C. in 2019:
-#  
-#      [quote,The Orange County Register]
-#      ____
-#      “The best French restaurant in California? This is it. Two years after moving their glamorous French bistro from South Coast Plaza to the Shops at Crystal Cove, Florent and Amelia Marneau’s Marché Moderne is still one of the toughest reservations in the county. The steak au poivre, the moules frites, the stewed rabbit, the escargot… this is quintessential French cuisine. And the desserts are always a special treat here. Must order: Amelia’s Napoleon dessert, served on Fridays and Saturdays only. Also, the ever-changing house wines served by the carafe are always an incredible bargain.”
-#      ____
-#  
-#  - feature_label: Eating
-#      name: Water Grill
-#      address: 3300 Bristol St., Costa Mesa, 949-208-7060
-#      category: Seafood
-#      actions:
-#      - link: https://watergrill.com
-#          label: Visit site
-#      details: |
-#      #10 in The 75 best restaurants in O.C. in 2019:
-#  
-#      [quote,The Orange County Register]
-#      ____
-#      “If you want lobster or crab, check out the massive fish tanks behind the raw bar at Water Grill. These are the best lobsters and crabs money can buy. If you like oysters, Water Grill offers a better selection than anywhere else. This Los Angeles-based seafood palace across the street from South Coast Plaza is the best place in O.C. for seafood, period. The whole, wild-caught Dover sole is simply perfection, bathed in butter and filleted table-side. Must order: Giant appetite? Order a tower of seafood. Need just a nibble? Start with the uni toast.”
-#      ____
-#  
-#  - feature_label: Eating
-#      name: Mastro’s Steakhouse
-#      address: 216 N. El Camino Real, San Clemente
-#      category: Brick
-#      actions:
-#      - link: https://brickpizzeria.com
-#          label: Visit site
-#      details: |
-#      #7 in The 75 best restaurants in O.C. in 2019:
-#  
-#      [quote,The Orange County Register]
-#      ____
-#      “More than any other Italian restaurant in the region, chef David Pratt strictly adheres to the Italian concept of slow food, of sourcing everything as locally as possible and making literally everything from scratch. He breaks down whole hogs to make sausages and meatballs. He cures bacon in a smoker beneath the wood-fired grill. Pizzas are cooked in a wood-fired hearth, just as they would be in Naples. The menu is kept fairly short and laser-focused. If you see wood-grilled lamb chops on the menu, grab them — they might not be there tomorrow. The Italian wine list is so affordably priced, you would be stupid to not nab a full bottle. Must order: Once you try the pasta carbonara with house-cured bacon, you’ll never eat it anywhere else again.”
-#      ____
-#  
-#  - feature_label: Eating
-#      name: Din Tai Fung
-#      address: South Coast Plaza, 3333 Bristol St., Costa Mesa
-#      category: Chinese
-#      actions:
-#      - link: https://dintaifungusa.com
-#          label: Visit site
-#      details: |
-#      #29 in The 75 best restaurants in O.C. in 2019:
-#  
-#      [quote,The Orange County Register]
-#      ____
-#      “Although many have tried, no other Chinese restaurant has come close to replicating Din Tai Fung’s famous xiao long bao, also known as Shanghai-style soup dumplings. The wait for tables can stretch upwards of two hours, so put your name down and go shopping. They’ll text you when your table is almost ready. Must order: Shrimp and Kurobuta pork potstickers.”
-#      ____
+  - label: Mexican
+    name: Taco Maria
+    addr: 3313 Hyland Ave, Costa Mesa, CA, 92626
+    category: Mexican
+    link: http://tacomaria.com/
+    desc: |
+      #3 restaurant in the 2019 Best Restaurants of Los Angeles:
+      +
+      [quote,Los Angeles Times]
+      ____
+      At his Costa Mesa restaurant, Carlos Salgado’s cooking is intellectual, syncretic and modernist, bound up in personal history, heritage and years of fine-dining training. You can see these disparate forces at work on the Taco Maria lunch menu, when you can try Salgado’s cooking a la carte; recently there was aguachile made with Hokkaido scallops; wood-fired pork cheek glazed in dark sugar; and ancho-almond mole draped over Jidori chicken. Salgado’s culinary vision is most fully expressed at dinner, when the restaurant switches to a taco-centric, four-course tasting-menu format.
+      ____
+   
+  - label: Steakhouse
+    name: Chaak Kitchen
+    addr: 215 El Camino Real, Tustin, CA
+    link: http://chaakkitchen.com
+    desc: |
+      #64 restaurant in the 2019 Best Restaurants of Los Angeles:
+      +
+      [quote,Los Angeles Times]
+      ____
+      At her sleek Old Town Tustin restaurant, chef Gabbi Patrick pays homage to her family’s Yucatecan heritage with time-intensive interpretations of the region’s revered dishes. Banana-leaf-wrapped cochinita pibil, smoked over red oak for 11 hours, is intensely succulent. Her pavo en recado negro — braised turkey rubbed in a blackened chile paste — celebrates the dish’s natural earthiness and pungency. A take on tamal colado, masa strained into a pudding-like cake, is dessert-like in its decadence.
+      ____
+   
+   
+  - label: Fusion
+    name: Terrace by Mix Mix
+    addr: "3333 Bear St #316, Costa Mesa, CA 92626"
+    link: http://terracebymixmix.com/
+    desc: |
+      #9 in O.C.’s 19 Hottest Restaurants:
+      +
+      [quote,EATER Los Angeles]
+      ____
+      Located inside South Coast Plaza, Terrace by MixMix showcases the cooking of former Patina Restaurant Group chef Ross Pangilinan. The menu, inspired by French, Italian, and modern Filipino flavors, features things like pork adobo fried rice and albacore tostada. The $20 prix fixe lunch is particularly notable.
+      ____
+   
+  - label: Spanish
+    name: Vaca
+    addr: 695 Town Center Dr Suite 160, Costa Mesa, CA 92626
+    link: http://www.vacarestaurant.com/
+    desc: |
+      #10 in O.C.’s 19 Hottest Restaurants:
+      +
+      [quote,EATER Los Angeles]
+      ____
+      “Vaca remains a dining destination for Orange County, thanks to chef Amar Santana’s stint on Top Chef. The Spanish-inflected Costa Mesa restaurant hits on all cylinders, from meat to seafood to fresh produce to one of the best wine lists in the county.”
+      ____
+   
+  - label: French
+    name: "Marché Moderne"
+    addr: 7862 E. Pacific Coast Highway, Newport Beach
+    link: https://marchemoderne.net
+    desc: |
+      #3 in The 75 best restaurants in O.C. in 2019:
+      + 
+      [quote,The Orange County Register]
+      ____
+      “The best French restaurant in California? This is it. Two years after moving their glamorous French bistro from South Coast Plaza to the Shops at Crystal Cove, Florent and Amelia Marneau’s Marché Moderne is still one of the toughest reservations in the county. The steak au poivre, the moules frites, the stewed rabbit, the escargot… this is quintessential French cuisine. And the desserts are always a special treat here. Must order: Amelia’s Napoleon dessert, served on Fridays and Saturdays only. Also, the ever-changing house wines served by the carafe are always an incredible bargain.”
+      ____
+  
+  - label: Seafood
+    name: Water Grill
+    addr: 3300 Bristol St., Costa Mesa, 949-208-7060
+    link: https://watergrill.com
+    desc: |
+      #10 in The 75 best restaurants in O.C. in 2019:
+      +
+      [quote,The Orange County Register]
+      ____
+      If you want lobster or crab, check out the massive fish tanks behind the raw bar at Water Grill. These are the best lobsters and crabs money can buy. If you like oysters, Water Grill offers a better selection than anywhere else. This Los Angeles-based seafood palace across the street from South Coast Plaza is the best place in O.C. for seafood, period. The whole, wild-caught Dover sole is simply perfection, bathed in butter and filleted table-side. Must order: Giant appetite? Order a tower of seafood. Need just a nibble? Start with the uni toast.
+      ____
+   
+  - label: Brick
+    name: Mastro’s Steakhouse
+    addr: 216 N. El Camino Real, San Clemente
+    link: https://brickpizzeria.com
+    desc: |
+      #7 in The 75 best restaurants in O.C. in 2019:
+      +
+      [quote,The Orange County Register]
+      ____
+      More than any other Italian restaurant in the region, chef David Pratt strictly adheres to the Italian concept of slow food, of sourcing everything as locally as possible and making literally everything from scratch. He breaks down whole hogs to make sausages and meatballs. He cures bacon in a smoker beneath the wood-fired grill. Pizzas are cooked in a wood-fired hearth, just as they would be in Naples. The menu is kept fairly short and laser-focused. If you see wood-grilled lamb chops on the menu, grab them — they might not be there tomorrow. The Italian wine list is so affordably priced, you would be stupid to not nab a full bottle. Must order: Once you try the pasta carbonara with house-cured bacon, you’ll never eat it anywhere else again.
+      ____
+   
+  - label: Chinese
+    name: Din Tai Fung
+    addr: South Coast Plaza, 3333 Bristol St., Costa Mesa
+    link: https://dintaifungusa.com
+    desc: |
+      #29 in The 75 best restaurants in O.C. in 2019:
+      +
+      [quote,The Orange County Register]
+      ____
+      Although many have tried, no other Chinese restaurant has come close to replicating Din Tai Fung’s famous xiao long bao, also known as Shanghai-style soup dumplings. The wait for tables can stretch upwards of two hours, so put your name down and go shopping. They’ll text you when your table is almost ready. Must order: Shrimp and Kurobuta pork potstickers.
+      ____
+
 
 - title: Shopping
   places:
