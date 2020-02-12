@@ -33,27 +33,27 @@ place_categories:
       ____
       There’s an emphasis on steak now — including a truly massive five-pound ribeye carved tableside — but regulars will recognize the same whole duck-fat-fried chicken and lobster pot pie that were Stonehill staples from the beginning. This is probably the only place in the region with a roving martini cart. Service is superb. So, too, the sunset views.
       ____
-  
+
   - label: Steakhouse
     name: Mastro’s Steakhouse
     addr: 633 Anton Blvd., Costa Mesa
     link: https://mastrosrestaurants.com
     desc: |
       #8 in The 75 best restaurants in O.C. in 2019:
-      + 
+      +
       [quote,The Orange County Register]
       ____
       There’s nothing meek about Mastro’s. This old-school steakhouse revels in gluttony and excess. Dining here isn’t just a meal, it’s an occasion. It’s a statement. The steaks are massive, even the small ones. The martinis seem bigger than life. Wine prices are through the roof but you won’t lack for choices from the best cult cabernets or legendary Bordeaux. You might have to skip a mortgage payment or two to dine here, but there’s no denying the quality of beef that’s being served. Must order: The chef’s cut ribeye is one of the best, thickest and juiciest steaks you will ever eat.
       ____
 
-  
+
   - label: Vietnamese
     name: Brodard Chateau
     addr: 9100 Trask Ave, Garden Grove, CA 92844, United States
     link: https://mastrosrestaurants.com
     desc: |
       #89 restaurant in the 2019 Best Restaurants of Los Angeles:
-      + 
+      +
       [quote,Los Angeles Times]
       ____
       Brodard Chateau in Garden Grove is owned by the Dang family, Orange County food royalty who oversee a small empire of distinguished Vietnamese restaurants. The dish that built the family’s reputation is the nem nuong cuon, grilled pork spring rolls, each bite vivid with crunchy bits of meat, chives and bracing hints of mint. The rolls are served with a sweet dipping sauce that has developed a cult following all its own. Beyond the requisite nem nuong, order the bun cha ha noi, beautifully smoky pork patties served with a slightly sweet fish sauce. The crisp rice flour saucers called banh khot are exquisite, each one cradling a springy, well-cooked shrimp.
@@ -71,7 +71,7 @@ place_categories:
       ____
       At his Costa Mesa restaurant, Carlos Salgado’s cooking is intellectual, syncretic and modernist, bound up in personal history, heritage and years of fine-dining training. You can see these disparate forces at work on the Taco Maria lunch menu, when you can try Salgado’s cooking a la carte; recently there was aguachile made with Hokkaido scallops; wood-fired pork cheek glazed in dark sugar; and ancho-almond mole draped over Jidori chicken. Salgado’s culinary vision is most fully expressed at dinner, when the restaurant switches to a taco-centric, four-course tasting-menu format.
       ____
-   
+
   - label: Steakhouse
     name: Chaak Kitchen
     addr: 215 El Camino Real, Tustin, CA
@@ -83,8 +83,8 @@ place_categories:
       ____
       At her sleek Old Town Tustin restaurant, chef Gabbi Patrick pays homage to her family’s Yucatecan heritage with time-intensive interpretations of the region’s revered dishes. Banana-leaf-wrapped cochinita pibil, smoked over red oak for 11 hours, is intensely succulent. Her pavo en recado negro — braised turkey rubbed in a blackened chile paste — celebrates the dish’s natural earthiness and pungency. A take on tamal colado, masa strained into a pudding-like cake, is dessert-like in its decadence.
       ____
-   
-   
+
+
   - label: Fusion
     name: Terrace by Mix Mix
     addr: "3333 Bear St #316, Costa Mesa, CA 92626"
@@ -96,7 +96,7 @@ place_categories:
       ____
       Located inside South Coast Plaza, Terrace by MixMix showcases the cooking of former Patina Restaurant Group chef Ross Pangilinan. The menu, inspired by French, Italian, and modern Filipino flavors, features things like pork adobo fried rice and albacore tostada. The $20 prix fixe lunch is particularly notable.
       ____
-   
+
   - label: Spanish
     name: Vaca
     addr: 695 Town Center Dr Suite 160, Costa Mesa, CA 92626
@@ -108,19 +108,19 @@ place_categories:
       ____
       “Vaca remains a dining destination for Orange County, thanks to chef Amar Santana’s stint on Top Chef. The Spanish-inflected Costa Mesa restaurant hits on all cylinders, from meat to seafood to fresh produce to one of the best wine lists in the county.”
       ____
-   
+
   - label: French
     name: "Marché Moderne"
     addr: 7862 E. Pacific Coast Highway, Newport Beach
     link: https://marchemoderne.net
     desc: |
       #3 in The 75 best restaurants in O.C. in 2019:
-      + 
+      +
       [quote,The Orange County Register]
       ____
       “The best French restaurant in California? This is it. Two years after moving their glamorous French bistro from South Coast Plaza to the Shops at Crystal Cove, Florent and Amelia Marneau’s Marché Moderne is still one of the toughest reservations in the county. The steak au poivre, the moules frites, the stewed rabbit, the escargot… this is quintessential French cuisine. And the desserts are always a special treat here. Must order: Amelia’s Napoleon dessert, served on Fridays and Saturdays only. Also, the ever-changing house wines served by the carafe are always an incredible bargain.”
       ____
-  
+
   - label: Seafood
     name: Water Grill
     addr: 3300 Bristol St., Costa Mesa, 949-208-7060
@@ -132,7 +132,7 @@ place_categories:
       ____
       If you want lobster or crab, check out the massive fish tanks behind the raw bar at Water Grill. These are the best lobsters and crabs money can buy. If you like oysters, Water Grill offers a better selection than anywhere else. This Los Angeles-based seafood palace across the street from South Coast Plaza is the best place in O.C. for seafood, period. The whole, wild-caught Dover sole is simply perfection, bathed in butter and filleted table-side. Must order: Giant appetite? Order a tower of seafood. Need just a nibble? Start with the uni toast.
       ____
-   
+
   - label: Brick
     name: Mastro’s Steakhouse
     addr: 216 N. El Camino Real, San Clemente
@@ -144,7 +144,7 @@ place_categories:
       ____
       More than any other Italian restaurant in the region, chef David Pratt strictly adheres to the Italian concept of slow food, of sourcing everything as locally as possible and making literally everything from scratch. He breaks down whole hogs to make sausages and meatballs. He cures bacon in a smoker beneath the wood-fired grill. Pizzas are cooked in a wood-fired hearth, just as they would be in Naples. The menu is kept fairly short and laser-focused. If you see wood-grilled lamb chops on the menu, grab them — they might not be there tomorrow. The Italian wine list is so affordably priced, you would be stupid to not nab a full bottle. Must order: Once you try the pasta carbonara with house-cured bacon, you’ll never eat it anywhere else again.
       ____
-   
+
   - label: Chinese
     name: Din Tai Fung
     addr: South Coast Plaza, 3333 Bristol St., Costa Mesa
@@ -177,7 +177,7 @@ place_categories:
     link: https://www.fashionisland.com
     desc: |
       Outdoor mall with an excellent selection of shops and restaurants.
- 
+
   - name: The Lab Anti-Mall
     lon: -117.886075
     lat: 33.677726
@@ -185,7 +185,7 @@ place_categories:
     link: http://www.thelab.com
     desc: |
       The LAB Anti-Mall in Costa Mesa is O.C.'s renowned urban youth 'anti-mall,' serving the lifestyle demands of trend-setting shoppers.
- 
+
   - name: The Grove
     lon: -118.358022
     lat: 34.072334
@@ -193,9 +193,8 @@ place_categories:
     link: https://thegrovela.com
     desc: |
       The Grove is a popular fashion, shopping, dining and lifestyle destination with the best mix of retail, restaurants and entertainment in Los Angeles.
- 
-  - feature_label: Shopping
-    name: Outlets at Orange
+
+  - name: Outlets at Orange
     lon: -117.893067
     lat: 33.782987
     addr: 20 City Blvd W, Orange, CA 92868, United States
@@ -203,59 +202,48 @@ place_categories:
     desc: |
       Orange County's premiere outlet shopping, dining, and entertainment destination with 120+ stores.
 
-# - feature_label: Attraction
-#     name: Disneyland Resort
-#     lon: -117.918943
-#     lat: 33.810874
-#     address: Disneyland Dr, Anaheim, CA 92802, United States
-#     actions:
-#     - link: https://disneyland.disney.go.com
-#         label: Visit site
-#     details: |
-#     The original Disneyland built by Walt Disney in 1955. With two theme parks in one location, Disneyland Park and Disney California Adventure Park, you will not regret spending time here. Don't forget to try its world-famous Churros and corn dogs!
-# 
-# 
-# - feature_label: Attraction
-#     name: LEGOLAND California Theme Park
-#     lon: -117.310295
-#     lat: 33.126532
-#     address: 1 Legoland Dr, Carlsbad, CA 92008, United States
-#     actions:
-#     - link: https://www.legoland.com/california/
-#         label: Visit site
-#     details: |
-#     Tons of LEGO fun for the whole family at the San Diego LEGOLAND California. Enjoy more than 60 rides, shows and attractions for children!
-# 
-# 
-# - feature_label: Attraction
-#     name: SeaWorld San Diego
-#     lon: -117.226640
-#     lat: 32.765106
-#     address: 500 Sea World Dr, San Diego, CA 92109, United States
-#     actions:
-#     - link: https://seaworld.com/san-diego/
-#         label: Visit site
-#     details: |
-#     SeaWorld San Diego offers exciting rides, up-close animal encounters and more. Spread across 190 acres on beautiful Mission Bay Park, SeaWorld is known for amazing animals, interactive attractions, aquariums, beautiful landscaping and rides.
-# 
-#     Opportunities include touching sharks and feel tiny cleaner fish gently nibble at your hands.
-# 
-#     From there, guests dive into a world of dolphins, penguins, sharks, orcas and hundreds of other marine animals.
-# 
-# 
-# - feature_label: Attraction
-#     name: Universal Studios Hollywood
-#     lon: -118.353292
-#     lat: 34.138401
-#     address: 100 Universal City Plaza, Universal City, CA 91608, United States
-#     actions:
-#     - link: https://www.universalstudioshollywood.com
-#         label: Visit site
-#     details: |
-#     Find a full day of action-packed entertainment all in one place: thrilling Theme Park rides and shows, a real working movie studio, and Los Angeles' best shops, restaurants and cinemas at CityWalk. Universal Studios Hollywood is a unique experience that's fun for the whole family.
-# 
-# 
-# 
+- title: Attractions
+  places:
+
+  - name: Disneyland Resort
+    lon: -117.918943
+    lat: 33.810874
+    addr: Disneyland Dr, Anaheim, CA 92802, United States
+    link: https://disneyland.disney.go.com
+    desc: |
+      The original Disneyland built by Walt Disney in 1955. With two theme parks in one location, Disneyland Park and Disney California Adventure Park, you will not regret spending time here. Don't forget to try its world-famous Churros and corn dogs!
+
+
+  - name: LEGOLAND California Theme Park
+    lon: -117.310295
+    lat: 33.126532
+    addr: 1 Legoland Dr, Carlsbad, CA 92008, United States
+    link: https://www.legoland.com/california/
+    desc: |
+      Tons of LEGO fun for the whole family at the San Diego LEGOLAND California. Enjoy more than 60 rides, shows and attractions for children!
+
+
+  - name: SeaWorld San Diego
+    lon: -117.226640
+    lat: 32.765106
+    addr: 500 Sea World Dr, San Diego, CA 92109, United States
+    link: https://seaworld.com/san-diego/
+    desc: |
+      SeaWorld San Diego offers exciting rides, up-close animal encounters and more. Spread across 190 acres on beautiful Mission Bay Park, SeaWorld is known for amazing animals, interactive attractions, aquariums, beautiful landscaping and rides.
+      Opportunities include touching sharks and feel tiny cleaner fish gently nibble at your hands.
+      From there, guests dive into a world of dolphins, penguins, sharks, orcas and hundreds of other marine animals.
+
+
+  - name: Universal Studios Hollywood
+    lon: -118.353292
+    lat: 34.138401
+    addr: 100 Universal City Plaza, Universal City, CA 91608, United States
+    link: https://www.universalstudioshollywood.com
+    desc: |
+      Find a full day of action-packed entertainment all in one place: thrilling Theme Park rides and shows, a real working movie studio, and Los Angeles' best shops, restaurants and cinemas at CityWalk. Universal Studios Hollywood is a unique experience that's fun for the whole family.
+
+
+
 ---
 :page-liquid:
 
