@@ -4,12 +4,6 @@
 {% assign num_roles = roles | size %}
 
 <span class="roles">
-  {% unless include.in_group %}
-    {% if member.is_the_chair %}
-      <span class="role">Chair</span>
-    {% endif %}
-  {% endunless %}
-
   {% if num_roles > 0 %}
     {% for role in roles %}
       <span class="role" title="{{ role_title }}">
