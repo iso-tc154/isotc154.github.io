@@ -5,7 +5,7 @@ name: Dapeng (Max) Liu
 roles:
   - id: convenor
     group: jwg8
-    from: { date: 2018-01-01, precision: year }
+    from: { date: 2017-10-27, precision: day }
   - id: project_leader
     project: 23355
 active: true

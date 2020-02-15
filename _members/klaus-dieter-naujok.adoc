@@ -3,10 +3,23 @@ member-id: klaus-dieter-naujok
 name: Klaus-Dieter Naujok
 picture: klaus-dieter-naujok.jpg
 roles:
+  - id: chair
+    from: { date: 2011-06-01, precision: "month" }
+    to: { date: 2017-02-01, precision: "month" }
   - id: convenor
     from: { date: 2007-09-01, precision: "month" }
     to: { date: 2017-01-01, precision: "year" }
     group: jwg1
+    from: { date: 2011-06-01, precision: "month" }
+    to: { date: 2017-02-01, precision: "month" }
+    group: wg5
+  - id: convenor
+    from: { date: 2016-10-21, precision: "day" }
+    to: { date: 2017-02-01, precision: "month" }
+    group: wg7
+  - id: convenor
+    group: cag
+    to: { date: 2017-02-01, precision: "month" }
 active: false
 affiliation: DIN, Germany
 ---

@@ -5,7 +5,7 @@ picture: yan-zhang.jpg
 roles:
   - id: convenor
     group: jwg1
-    from: { date: 2017-01-01, precision: year }
+    from: { date: 2017-10-27, precision: day }
   - id: member
     group: wg7
 active: true

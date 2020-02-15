@@ -2,8 +2,12 @@
 member-id: michael-dill
 name: Michael Dill
 picture: michael-dill.jpg
-role: past_member
 active: false
+roles:
+  - id: convenor
+    from: { date: 2011-06-01, precision: "month" }
+    to: { date: 2012-10-12, precision: "day" }
+    group: wg4
 affiliation: DIN, Germany
 ---
 

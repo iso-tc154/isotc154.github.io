@@ -2,18 +2,24 @@
 member-id: francois-vuilleumier
 name: François Vuilleumier
 picture: francois-vuilleumier.jpg
-role: past_member
+roles:
+  - id: chair
+    from: { date: 1998-01-01, precision: "year" }
+    to: { date: 2008-11-25, precision: "month" }
+  - id: committee_manager
+    from: { date: 1998-01-01, precision: "month" }
+    to: { date: 2008-11-25, precision: "month" }
 active: false
 affiliation: SNV, Switzerland
 ---
 
-Francois Vuilleumier brings to Illumonus over four decades of experience as a
+Francois Vuilleumier has four decades of experience as a
 senior Swiss government administrator and international standards developer.
 Former Head of the Swiss delegation to UN/CEFACT and chair, vice-chair,
 rapporteur, secretary and editor at ISO, UN/CEFACT, OECD, WCO, CEN and EFTA
 committees and experts meetings.
 
-As Director for Semantic Interoperability he leads our focus on providing a
+As Director for Semantic Interoperability he leads Illumonus' focus on providing a
 harmonized controlled vocabulary that works together with domain specific
 systems.
 
@@ -46,4 +52,4 @@ instrumental in the development of the ISO Technical Specifications ISO/TS
 5: Core Components TS, Version 2.01 (ebCCTS)”. He also chaired the joint UN
 Trade Data Elements Directory and ISO 7372 Maintenance Agency which issued
 the 2005, 3rd edition of the “Trade Data Elements Directory TDED”. He
-currently serves as the Secretary of the TDED Maintenance Agency.
+has previously served as the Secretary of the TDED Maintenance Agency.

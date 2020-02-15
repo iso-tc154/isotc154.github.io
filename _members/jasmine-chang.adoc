@@ -4,7 +4,7 @@ picture: jasmine-chang.jpg
 name: Jasmine Jaegyong Chang
 roles:
   - id: convenor
-    from: { date: 2014-01-01, precision: "year" }
+    from: { date: 2014-10-24, precision: day }
     group: wg6
   - id: project_leader
     project: 19626-1
