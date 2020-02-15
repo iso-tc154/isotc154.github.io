@@ -10,20 +10,20 @@
 
 {% if member %}
   <article class="item-card member-card
-      {% if include.role %}role-{{ include.role }}{% endif %}  
+      {% if include.role %}role-{{ include.role }}{% endif %}
       {% if member.is_the_chair %}chair {% endif %}
       {% if member.is_in_leadership %}leadership {% endif %}">
 
     <div class="item-pic">
       {% if member.picture %}
-        <img src="/assets/images/members/{{ member.picture }}">
+        <a href="{{ member.url | "javascript: void 0;" }}"><img src="/assets/images/members/{{ member.picture }}"></a>
       {% else %}
         <div class="missing-placeholder"></div>
       {% endif %}
     </div>
 
     <div class="item-text">
-      <h3 class="name"><a href="{{ member.url | default: "javascript: void 0;" }}">{{ member.name | default: member }}</a></h3>
+      <h3 class="name"><a href="{{ member.url | "javascript: void 0;" }}">{{ member.name | default: member }}</a></h3>
 
       {% if include.affiliation %}
         <span class="affiliation" title="Affiliation: {{ member.affiliation }}">
