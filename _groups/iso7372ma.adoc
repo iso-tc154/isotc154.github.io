@@ -1,6 +1,6 @@
 ---
-_id: ma
-name: MA
+_id: iso7372ma
+name: ISO 7372/MA
 title: UNTDED — ISO 7372 Maintenance Agency
 joint_with: UNECE
 order: 9

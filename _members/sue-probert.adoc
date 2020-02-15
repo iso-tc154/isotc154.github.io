@@ -5,8 +5,13 @@ name: Sue Probert
 roles:
   - id: project_leader
     project: 7372
+  - id: co-chair
+    group: iso7372ma
+    from: { date: 2008-11-25, precision: "day" }
   - id: convenor
-    group: ma
+    from: { date: 2012-10-12, precision: "day" }
+    to: { date: 2014-10-24, precision: "day" }
+    group: wg4
 active: true
 affiliation: BSI, United Kingdom
 ---
