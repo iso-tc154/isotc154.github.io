@@ -5,7 +5,7 @@ name: James Bryce Clark
 roles:
   - id: convenor
     group: wg4
-    from: { date: 2019-12-01, precision: month }
+    from: { date: 2019-12-12, precision: day }
 active: true
 affiliation: OASIS, liaison
 
