@@ -5,6 +5,11 @@ title: UNTDED — ISO 7372 Maintenance Agency
 joint_with: UNECE
 order: 9
 
+organization:
+  convenors:
+    - sue-probert
+    - mary-kay-blantz
+
 intro: |
   The agency was established in the late 80's
   to maintain the *Trade Data Element Directory* (TDED) issued by UNECE as UNTDED and also by ISO/TC 154 as ISO 7372.
