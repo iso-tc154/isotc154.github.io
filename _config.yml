@@ -17,7 +17,7 @@ committee:
     - max-liu
     - ronald-tse
     - sue-probert
-    - mary-kay-blantz
+    # - mary-kay-blantz
     - gregor-roschkowski
 
 baseurl: ""
