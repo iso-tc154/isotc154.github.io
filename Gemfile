@@ -12,7 +12,6 @@ gem "nokogiri"
 gem "jekyll", "~> 4.0"
 gem "jekyll-theme-isotc154", "~> 0.0.4"
 
-# If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed"
   gem "jekyll-asciidoc"
