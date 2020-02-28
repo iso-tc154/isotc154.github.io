@@ -52,7 +52,6 @@ primary_nav_items:
   - standards
   - groups
   - members
-  # - minutes
   - faq
   - 39th_plenary
 
@@ -63,9 +62,6 @@ collections:
   pages:
     output: true
     permalink: /:name/
-  minutes:
-    output: true
-    permalink: /:collection/:date/
   standards:
     output: true
     permalink: /:collection/:name/
@@ -92,11 +88,6 @@ defaults:
       path: "faq"
     values:
       layout: faq
-  # - scope:
-  #     path: ""
-  #     type: minutes
-  #   values:
-  #     layout: minutes
   - scope:
       path: ""
       type: standards
@@ -142,9 +133,6 @@ nav:
   members:
     url: /members/
     title: Members
-  # minutes:
-  #   url: /minutes/
-  #   title: Minutes
 
   39th_plenary:
     url: /39th-plenary/
