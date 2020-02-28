@@ -33,14 +33,25 @@ GEM
     jekyll-asciidoc (3.0.0)
       asciidoctor (>= 1.5.0)
       jekyll (>= 3.0.0)
+    jekyll-data (1.1.0)
+      jekyll (>= 3.3, < 5.0.0)
     jekyll-feed (0.13.0)
       jekyll (>= 3.7, < 5.0)
-    jekyll-redirect-from (0.15.0)
+    jekyll-redirect-from (0.16.0)
       jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (2.0.1)
       sassc (> 2.0.1, < 3.0)
+    jekyll-seo-tag (2.6.1)
+      jekyll (>= 3.3, < 5.0)
     jekyll-sitemap (1.4.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-theme-isotc154 (0.0.4)
+      jekyll (~> 4.0)
+      jekyll-data (~> 1.0)
+      jekyll-seo-tag (~> 2.0)
+      jekyll-theme-isotc154-helpers (~> 0.0.1)
+    jekyll-theme-isotc154-helpers (0.0.1)
+      jekyll (~> 4.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (2.1.0)
@@ -77,6 +88,8 @@ DEPENDENCIES
   jekyll-feed
   jekyll-redirect-from
   jekyll-sitemap
+  jekyll-theme-isotc154 (~> 0.0.4)
+  jekyll-theme-isotc154-helpers (~> 0.0.1)
   nokogiri
   tzinfo-data
 

@@ -10,6 +10,7 @@ source "https://rubygems.org"
 
 gem "nokogiri"
 gem "jekyll", "~> 4.0"
+gem "jekyll-theme-isotc154", "~> 0.0.4"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
@@ -17,6 +18,7 @@ group :jekyll_plugins do
   gem "jekyll-asciidoc"
   gem "jekyll-sitemap"
   gem "jekyll-redirect-from"
+  gem "jekyll-theme-isotc154-helpers", "~> 0.0.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

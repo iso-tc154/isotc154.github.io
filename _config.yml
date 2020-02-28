@@ -25,6 +25,8 @@ url: "https://www.isotc154.org"
 
 markdown: kramdown
 
+theme: jekyll-theme-isotc154
+
 excerpt_separator: "// more"
 
 google_analytics:

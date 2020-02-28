@@ -1,63 +1,15 @@
 ---
 ---
 
-$widescreenBreakpoint: 1200px;
-$bigscreenBreakpoint: 900px;
+@import 'jekyll-theme-isotc154';
 
-$primaryColor: #0061AD;
-$textColor: #222;
-$linkColor: $primaryColor;
-
-$warningColor: red;
-$importantColor: orange;
-$accentColor: $primaryColor;
-
-$codeListingBorderColor: lighten($textColor, 70);
-$codeListingBackgroundColor: rgba($textColor, 0.03);
-
-$borderColor1: #F3F3F3;
-$borderColor2: #EEEEEF;
-
-$lightBackgroundColor: #efeeee;
-
-$headerH: 100px;
-$logoSide: 80px;
-
-@mixin nmCard(
-  $bg: #efeeee,
-  $shadowLight: rgba(white, 0.5),
-  $shadowDark: rgba(#d1cdc7, 0.5)
-) {
-  background: $bg;
-  box-shadow:
-    -6px -6px 16px $shadowLight,
-    6px 6px 16px $shadowDark;
-}
-
-@mixin wideContainer() {
-  margin: 0 2em;
-
-  @media screen and (min-width: $bigscreenBreakpoint) {
-    width: $bigscreenBreakpoint - 100px;
-    margin: 0 auto;
-  }
-  @media screen and (min-width: $widescreenBreakpoint) {
-    width: $widescreenBreakpoint - 100px;
-    margin: 0 auto;
-  }
-}
-
-@import 'normalize';
-@import 'adoc-markup';
-@import 'main';
-@import 'minutes';
 @import 'standards';
 @import 'projects';
 @import 'groups';
 @import 'procedures';
 @import 'member';
 @import 'news';
-@import 'events';
+
 
 body.layout--home {
   .hero {
@@ -164,6 +116,86 @@ body.layout--home {
       &:last-child {
         padding-right: 0;
       }
+    }
+  }
+}
+
+
+.item-list {
+  @include itemList(0);
+}
+
+.project-list {
+  @include itemList(1);
+}
+
+.standard-list {
+  @include itemList(1);
+}
+
+.standard-card {
+  .name-and-publication, .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .title, .publication-date {
+    font-size: 90%;
+  }
+  .publication-date {
+    margin-left: .5rem;
+  }
+}
+
+.project-list .project-card {
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 90%;
+  }
+}
+
+.member-card {
+  .item-text {
+    justify-content: flex-start;
+
+    .name {
+      line-height: 1.2;
+      font-size: 110%;
+      margin-bottom: .2rem;
+    }
+
+    .affiliation, .roles {
+      font-size: 90%;
+    }
+
+    .roles {
+      text-transform: uppercase;
+
+      .role {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .affiliation {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .item-pic {
+    img, .missing-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .missing-placeholder {
+      background: whiteSmoke;
     }
   }
 }
