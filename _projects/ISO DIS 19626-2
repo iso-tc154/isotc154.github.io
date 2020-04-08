@@ -1,0 +1,23 @@
+---
+name: ISO/DIS 19626-2
+type: Current
+title: "Processes, data elements and documents in commerce, industry and administration -- Trusted communication platform for electronic documents -- Part 2: Applications"
+
+---
+
+== Introduction
+
+This document prescribes the details necessary for the development of a trusted communication platform (hereinafter TCP) system related to the performance of various types of businesses, in the open and distributed ICT environment, as a connected standard of ISO 19626-1 Processes, data elements and documents in commerce, industry and administration — Trusted communication platform for electronic documents — Part 1: Fundamentals. 
+Technical scope of TCP in this part 2 covers details related to the transmission of business transactions and communication sessions functions are included under distributed and open ICT environment. Therefore, part 2 prescribes the details of each implemented function, linked interfaces and etc. of TCP system components composed of communication client systems, communication servers, a TTP identity directory and a TCE repository.
+
+
+////
+IMPORTANT -- the electronic file of this document contains colours which are considered to be useful for the correct understanding of the document. Users should therefore consider printing this document using a colour printer.
+////
+
+== Scope
+
+As this document is intended to be used in conjunction with ISO 19626-1 Processes, data elements and documents in commerce, industry and administration — Trusted communication platform for electronic documents — Part 1: Fundamentals, this standard describes the below contents.
+At first, this document defines the relationship between the basic components and features that comprise the TCP service system for users that would like to use the trusted communication with electronic documents.
+Also, it defines each process conducted to communicate electronic documents in trusted manner within the TCP and the detailed steps of the process. Each step of the process is comprised of the connection among components. This standard specifies the interfaces that each component should provide for this connection, in other words, it specifies the APIs of the components.
+Ultimately, this standard seeks to suggest guidelines for a direction of a deployment and implementation of a TCP service system for trusted communication with electronics documents by providing the overall architecture, components, functions, etc of TCP to users considering applying and establishing TCP service system. 
