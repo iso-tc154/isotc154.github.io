@@ -1,7 +1,8 @@
 = ISO/TC 154 Resources site: www.isotc154.org
 
-image:https://travis-ci.com/iso-tc154/www.isotc154.org.svg?branch=master[
-	Build Status, link="https://travis-ci.com/iso-tc154/www.isotc154.org"]
+image:https://github.com/isotc154/www.isotc154.org/workflows/build/badge.svg["Build Status", link="https://github.com/isotc154/www.isotc154.org/actions?workflow=build"]
+image:https://github.com/isotc154/www.isotc154.org/workflows/deploy/badge.svg["Build Status", link="https://github.com/isotc154/www.isotc154.org/actions?workflow=deploy"]
+
 
 == Introduction
 
