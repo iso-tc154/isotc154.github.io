@@ -13,4 +13,5 @@ IMPORTANT -- the electronic file of this document contains colours which are con
 == Scope
 
 This document specifies the elements, among those defined in PDF Advanced Electronic Signatures (PAdES), that enable verification of a digital signature over a long period of time.
+
 It does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which already exist.
