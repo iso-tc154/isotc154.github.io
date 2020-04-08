@@ -1,7 +1,7 @@
 ---
 id: iso-14533-2
 name: ISO/AWI 14533-2
-title: Long Term Signature profiles - Part2: Long term signature profiles for XML Advanced Electronic Signatures (XAdES)
+title: "Long Term Signature profiles - Part 2: Long term signature profiles for XML Advanced Electronic Signatures (XAdES)"
 status: current
 ---
 :page-liquid:
@@ -17,4 +17,5 @@ This AWI has been revised.
 == Scope
 
 This standard specifies the elements, among those defined in XML Advanced Electronic Signatures (XAdES), that enable verification of a digital signature over a long period of time.
+
 ISO 14533-2:2012 does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which has already existed.
