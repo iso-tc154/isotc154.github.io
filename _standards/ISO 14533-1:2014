@@ -1,0 +1,16 @@
+---
+name: ISO 14533-1:2014
+type: international
+title: "Processes, data elements and documents in commerce, industry and administration -- Long term signature profiles -- Part 1: Long term signature profiles for CMS Advanced Electronic Signature (CAdES)"
+publication_date: 2014-06-07
+---
+
+
+////
+IMPORTANT -- the electronic file of this document contains colours which are considered to be useful for the correct understanding of the document. Users should therefore consider printing this document using a colour printer.
+////
+
+== Scope
+
+This document specifies the elements, among those defined in CMS Advanced Electronic Signatures (CAdES), that enable verification of a digital signature over a long period of time.
+It does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which have already existed.
