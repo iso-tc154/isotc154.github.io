@@ -28,7 +28,6 @@ organization:
     - max-liu
 
 active_projects:
-  - iso-23354
   - iso-23355
 
 collaborative_parties:
@@ -36,14 +35,14 @@ collaborative_parties:
     description: |
       The JWG 8 is a Joint working group between ISO/TC 154 and UN/CEFACT.
       UN/CEFACT Multi Modal Transport Reference Data Model (MMT RDM) and the corresponding Business Requirements Specification (MMT BRS) are normative references for
-      link:/standards/iso-23355[ISO 23355] and
-      link:/standards/iso-23354[ISO 23354] respectively.
+      link:/projects/iso-23355[ISO 23355] and
+      link:/standards/iso-23354-2020[ISO 23354] respectively.
 
       The United Nations Centre for Trade Facilitation and Electronic Business (UN/CEFACT) is a subsidiary, intergovernmental body of the United Nations Economic Commission for Europe (UNECE) which serves as a focal point within the United Nations Economic and Social Council for trade facilitation recommendations and electronic business standards. It has global membership and its members are experts from intergovernmental organizations, individual countries' authorities and also from the business community.
 
   - entity_name: IPCSA
     description: |
-      IPCSA members contribute to the project link:/standards/iso-23355[ISO 23355].
+      IPCSA members contribute to the project link:/projects/iso-23355[ISO 23355].
 
       IPCSA(The International Port Community Systems Association) is the successor to the European Port Community Systems Association (ECPSA) which was launched in June 2011 by six founding members, all European-based Port Community System operators. IPCSA and its members play a vital role in global trade facilitation; the electronic communications platforms provided by Port Community Systems ensure smooth transport and logistics operations at hundreds of sea ports, airports and inland ports.
 ---
