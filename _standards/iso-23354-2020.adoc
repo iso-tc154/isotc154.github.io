@@ -1,8 +1,8 @@
 ---
-id: iso-23354
-name: ISO/CD 23354
+name: ISO 23354:2020
+type: international
 title: "Business requirements for end-to-end visibility of logistics flow"
-status: current
+publication_date: 2020-05-04
 ---
 :page-liquid:
 
@@ -34,3 +34,11 @@ Furthermore, the standard describes the requirement for a guideline for business
 {% assign leader = site.members | where: "member-id", "linda-wang" | first %}
 
 link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+
+
+== Related news
+
+* link:/posts/2020-05-04-iso-23354-published[ISO/TC 154 news: ISO 23354:2020 getting published!]
+
+* link:/posts/2020-05-06-enabling-logistics-visibility-lis[ISO/TC 154: Enabling Logistics Visibility by Interconnecting Logistics Information Service Systems in a Standard Way]
+

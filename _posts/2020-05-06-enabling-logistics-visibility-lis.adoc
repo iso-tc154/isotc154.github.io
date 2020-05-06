@@ -1,0 +1,43 @@
+---
+layout: post
+title:  Enabling Logistics Visibility by Interconnecting Logistics Information Service Systems in a Standard Way
+date:   2020-05-06 00:00:00 +0800
+categories: site update
+see_also:
+---
+:page-liquid:
+
+{% assign linda = site.members | where: "member-id", "linda-wang" | first %}
+{% assign judy = site.members | where: "member-id", "judy-zhu" | first %}
+{% assign max = site.members | where: "member-id", "max-liu" | first %}
+
+To improve the data interchange efficiency and reduce the cost of interconnection between logistics information service systems and users who need such logistics information, the link:/standards/iso-23354-2020[ISO 23354:2020] International Standard was published in April 2020 to provide these connection requirements of the possibilities with regards to interface and data exchange between logistics information service systems and users.
+
+Logistics information service systems, such as Port Community System (PCS) and Cargo Community System (CCS), are local or regional third parties that provide services to inform logistics events that happen within its environment, whether sea port, airport or hinterland.
+
+However, the logistics operators and their customers need to be aware of the logistics events (such as vessel status data, container status data, etc.) in different countries, regions in order to obtain visibility of traffic flows "`end-to-end`".
+
+link:{{ judy.url }}[{{ judy.name }}] ({{ judy.affiliation }}), Chair of ISO/TC 154 said, "`users should be able to discover the related PCS and their services easily. Besides, users should require and be able to obtain both real-time data and historic data provided by different PCSs via same standardized interface, subject to their access level for that data. ISO/TC 154 encourages all related ISO experts and liaisons to join the work to discuss and develop the international access interface and data interchange standards between logistics information service systems and data users.`"
+
+The whole maritime logistics process from the port of origin to the port of destination, PCS operators collect data from all parties in the supply chain, including carriers, port authorities, Customs and other government agencies, and then exchange the related data with users, including importer, exporter, logistics service platform providers, carriers, freight forwarders, Customs and other government agencies, and other related enterprises and individuals. This exchange should simplify the movement of goods through sea and air ports, but should also allow confidential information to remain confidential and to be shared only with those with permission to view it.
+
+In practice, it is difficult to form "`end-to-end`" data flows because of diverse non-interoperable technical solutions and data formats provided by different regional logistics information service systems. For example, data users request container data, but the responses from two logistics information systems are not aligned in a uniform way.
+
+In order to realize the logistics visibility in an efficient and low-cost way, logistics information service systems should provide more valuable and standardized event status data to different data users. Data users should be able to access different PCSs via unified interfaces.
+
+"`ISO 23355 and ISO 23356 projects were initiated in ISO/TC 154/JWG 8 to discuss the data interchange and API specifications, which are joint effort between ISO/TC 154 and UN/CEFACT`", link:{{ max.url }}[{{ max.name }}] ({{ max.affiliation }}), the ISO/TC 154/JWG 8 convener indicated that, "`Standardization for data users and logistics information service systems will benefit related stakeholders. The access development cost should be reduced via standardized interfaces, and logistics information service systems should provide valuable data at lower cost to improve the user experience. Besides, the misunderstanding of data information can be reduced.`"
+
+
+== For more information
+
+Contacts:
+
+* link:{{ linda.url }}[{{ linda.name }}] ({{ linda.affiliation }}, Project leader ISO 23354)
+* link:{{ max.url }}[{{ max.name }}] ({{ max.affiliation }})
+
+https://www.iso.org[International Organization for Standardization] +
+ISO Central Secretariat +
+Chemin de Blandonnet 8 Case Postale 401 +
+CH – 1214 Vernier, Geneva +
+Switzerland
+
