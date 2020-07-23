@@ -7,7 +7,7 @@ order: 8
 featured_on_home: true
 
 intro: |
-  Joint Working Group 8 (JWG 8) was established in 2018 with the UNECE in order to
+  Joint Working Group 8 (JWG 8) was established in 2018 with UNECE in order to
   develop process, data elements related standards that are used for
   data exchanging between e-commerce platform and the related
   logistics information service providers etc to facilitate on-line
@@ -21,7 +21,7 @@ scope: |
 history:
   story: |
     JWG 8 was established in October 2018 by ISO/TC 154 in collaboration with
-    http://www.unece.org[UNECE] through https://uncefact.unece.org[UN/CEFACT].
+    http://www.unece.org[UNECE].
 
 organization:
   convenors:
@@ -31,19 +31,19 @@ active_projects:
   - iso-23355
 
 collaborative_parties:
-  - entity_name: UN/CEFACT
+  - entity_name: UNECE
     description: |
-      The JWG 8 is a Joint working group between ISO/TC 154 and UN/CEFACT.
-      UN/CEFACT Multi Modal Transport Reference Data Model (MMT RDM) and the corresponding Business Requirements Specification (MMT BRS) are normative references for
+      The JWG 8 is a joint working group between ISO/TC 154 and UNECE.
+      The https://uncefact.unece.org[UN/CEFACT] Multi Modal Transport Reference Data Model (MMT RDM) and the corresponding Business Requirements Specification (MMT BRS) are normative references for
       link:/projects/iso-23355[ISO 23355] and
       link:/standards/iso-23354-2020[ISO 23354] respectively.
 
-      The United Nations Centre for Trade Facilitation and Electronic Business (UN/CEFACT) is a subsidiary, intergovernmental body of the United Nations Economic Commission for Europe (UNECE) which serves as a focal point within the United Nations Economic and Social Council for trade facilitation recommendations and electronic business standards. It has global membership and its members are experts from intergovernmental organizations, individual countries' authorities and also from the business community.
+      The http://www.unece.org[United Nations Economic Commission for Europe (UNECE)] serves as a focal point within the United Nations Economic and Social Council (ECOSOC) for trade facilitation recommendations and electronic business standards. Its subsidiary, the United Nations Centre for Trade Facilitation and Electronic Business (UN/CEFACT) is an intergovernmental body with a global membership whose members are experts from intergovernmental organizations, individual countries' authorities and also from the business community.
 
   - entity_name: IPCSA
     description: |
       IPCSA members contribute to the project link:/projects/iso-23355[ISO 23355].
 
-      IPCSA(The International Port Community Systems Association) is the successor to the European Port Community Systems Association (ECPSA) which was launched in June 2011 by six founding members, all European-based Port Community System operators. IPCSA and its members play a vital role in global trade facilitation; the electronic communications platforms provided by Port Community Systems ensure smooth transport and logistics operations at hundreds of sea ports, airports and inland ports.
+      The https://ipcsa.international[IPCSA (International Port Community Systems Association)] is the successor to the European Port Community Systems Association (ECPSA) which was launched in June 2011 by six founding members, all European-based Port Community System operators. IPCSA and its members play a vital role in global trade facilitation; the electronic communications platforms provided by Port Community Systems ensure smooth transport and logistics operations at hundreds of sea ports, airports and inland ports.
 ---
 :page-liquid:

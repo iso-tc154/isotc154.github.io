@@ -9,7 +9,7 @@ featured_on_home: true
 intro: |
   The EDIFACT Application Level Syntax Rules (ISO 9735) is the main deliverable
   of the Joint Working Group (ISO/TC 154/JWG 1),
-  in collaboration with UNECE through UN/CEFACT.
+  in collaboration with UNECE.
 
 scope: |
   The scope of JWG1 includes the maintenance, update and extension
