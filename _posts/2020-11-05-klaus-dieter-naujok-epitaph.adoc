@@ -1,0 +1,37 @@
+---
+layout: post
+title:  Klaus Dieter Naujok epitaph
+date:   2020-11-05 00:00:00 +0800
+categories: site update
+see_also:
+---
+:page-liquid:
+
+{% assign klaus = site.members | where: "member-id", "klaus-dieter-naujok" | first %}
+
+It is with heavy hearts we receive the news that our former chairman link:{{ klaus.url }}[{{ klaus.name }}] has passed away.
+It is clear that, although he had to step down as chairman in 2017 for health reasons,
+his legacy is still very present and will live on within ISO/TC 154.
+
+Mr Naujok was part of a select group of people that designed and promoted the information exchange standards
+within the United Nations and ISO, that we now commonly refer to as Electronic Data Interchange, EDI.
+The impact has been tremendous in trade facilitation and global commerce.
+But for Mr Naujok this was not enough. His ultimate goal was the implementation of open-EDI.
+This ISO standard (ISO/IEC 14662:2010) that describes how an open, as opposed to bilaterally agreed,
+information exchange be achieved has been discussed for a long time
+but arguably no one has taken more tangible steps towards achieving this.
+He initiated, then chaired, the ebXML initiative as a joint project between the UN and OASIS,
+he furthered work in semantic interoperability and invited De Jure and De Facto standards organisations
+to the table to collaborate.
+
+He sometimes became controversial as an outspoken advocate of these values.
+These are the true colours of a pioneer and believer.
+Mr Naujok worked a period for a Californian company called Harbinger.
+This company no longer exists but we sense that Mr Naujok embraced the name
+and made it a motto for our technical committee.
+
+Rest in Peace.
+
+Ms. Hongru Zhu, Chair of ISO/TC 154
+
+Mr. Jianfang Zhang, ISO/TC 154 committee manager
