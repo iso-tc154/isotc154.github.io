@@ -46,11 +46,14 @@ These are the true colours of a pioneer and believer.
 Mr Naujok worked a period for a Californian company called Harbinger.
 This company no longer exists but we sense that Mr Naujok embraced the name
 and made it a motto for our technical committee.
-
+++++
+<br />
+++++
 Rest in Peace.
 
-Ms. Hongru Zhu Mr. Jianfang Zhang
-Chair of ISO/TC154 ISO/TC 154 committee manager
+Ms. Hongru Zhu, Chair of ISO/TC 154
+
+Mr. Jianfang Zhang, ISO/TC 154 committee manager
 --
 
 Klaus-Dieter Naujok has been a successful CEO, CSO, CTO, EVP and
