@@ -15,7 +15,13 @@ body.layout--member {
   main {
     @include asciidoc-markup();
 
-    header + .paragraph {
+    .epitaph {
+      background: whiteSmoke;
+      padding: 1em;
+      margin-bottom: 2em;
+    }
+
+    header + .paragraph, header + .epitaph .paragraph:first-child {
       @include with-dropcap();
     }
 
