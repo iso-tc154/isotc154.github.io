@@ -4,7 +4,7 @@ name: JWG&nbsp;8
 joint_with: [UNECE]
 title: Logistics data contents and process
 order: 8
-featured_on_home: true
+inactive: true
 
 intro: |
   Joint Working Group 8 (JWG 8) was established in 2018 with UNECE in order to
@@ -13,19 +13,24 @@ intro: |
   logistics information service providers etc to facilitate on-line
   trade.
 
+  JWG 8 was closed on 2022-12-01.
+
 scope: |
   The scope of JWG8 is to develop standards for proceses and data elements
   that are used for data exchange between e-commerce platforms and logistics information service providers
   (and other relevant stakeholders) to facilitate online trade.
 
+# organization:
+#   convenors:
+#     - max-liu
+
 history:
+  leadership:
+    - max-liu
+
   story: |
     JWG 8 was established in October 2018 by ISO/TC 154 in collaboration with
     http://www.unece.org[UNECE].
-
-organization:
-  convenors:
-    - max-liu
 
 active_projects:
   - iso-23355
