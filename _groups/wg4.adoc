@@ -10,6 +10,8 @@ intro: |
   semantics to support people, systems and processes involved in
   developing, publishing and using of e-documents.
 
+  WG 4 was closed on 2022-11-26.
+
 scope: |
   Standardization of e-document concepts and semantics to support people,
   systems and processes involved in developing, publishing and using of e-documents.
