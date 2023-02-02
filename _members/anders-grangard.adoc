@@ -2,7 +2,13 @@
 member-id: anders-grangard
 name: Anders Grangard
 picture: anders-grangard.jpg
-role: project_leader_9735
+roles:
+  - id: convenor
+    group: jwg1
+    from: { date: 2017-10-27, precision: day }
+    to: { date: 2021-06-16, precision: day }
+  - id: project_leader
+    project: 9735
 active: true
 affiliation: UNECE, Liaison
 ---

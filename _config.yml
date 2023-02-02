@@ -7,18 +7,16 @@ description: >-
   ISO/TC 154: Processes, data elements and documents in commerce, industry and administration
 
 committee:
-  chair: judy-zhu
+  chair: shi-yu
   leadership:
     - jianfang-zhang
     - yan-zhang
-    - james-clark
+    - anders-grangard
     - jasmine-chang
-    - peter-plapper
-    - max-liu
+    - jim-wilson
     - ronald-tse
     - sue-probert
-    # - mary-kay-blantz
-    - gregor-roschkowski
+    # - gregor-roschkowski
 
 baseurl: ""
 url: "https://www.isotc154.org"

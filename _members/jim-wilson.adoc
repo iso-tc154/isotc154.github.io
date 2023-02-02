@@ -1,0 +1,31 @@
+---
+member-id: jim-wilson
+picture: jim-wilson.jpg
+name: Jim Wilson
+roles:
+  - id: convenor
+    group: wg7
+    from: { date: 2019-11-01, precision: day }
+active: true
+affiliation: OAGI, liaison
+
+links:
+  - url: https://www.linkedin.com/in/jim-wilson-kt/
+  - url: http://www.twitter.com/JamieXML
+---
+
+Jim Wilson is the president and CEO of OAGi. Wilson earned his Bachelor of
+Science from the United States Naval Academy in Annapolis, Maryland, and his
+Master of Business Administration from Indiana University’s Kelly School of
+Business.
+
+Throughout his distinguished career, Wilson has served as an officer in the US
+Navy, a United States delegate to the United Nations Centre for Trade
+Facilitation and Electronic Business, and President & CEO of AgGateway Global
+Network. Additionally, he led the project to set global chemical industry
+process and data standards with CIDX, as well as grain-handling process and data
+standards with AgXML.
+
+Wilson resides in Raleigh, North Carolina, with his wife and three sons. In
+addition to his work in standards definition, Wilson enjoys traveling, keeping
+up on emerging technologies and writing an occasional line of code.

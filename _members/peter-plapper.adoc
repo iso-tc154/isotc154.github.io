@@ -6,6 +6,7 @@ roles:
   - id: convenor
     group: wg7
     from: { date: 2014-01-01, precision: year }
+    to: { date: 2019-11-01, precision: day }
 active: true
 affiliation: ILNAS, Luxembourg
 ---

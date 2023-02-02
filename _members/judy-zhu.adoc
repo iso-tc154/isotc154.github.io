@@ -6,9 +6,11 @@ active: true
 roles:
   - id: chair
     from: { date: 2017-02-01, precision: "month" }
+    to: { date: 2021-11-05, precision: "day" }
   - id: convenor
     group: cag
     from: { date: 2017-02-01, precision: "month" }
+    to: { date: 2021-11-05, precision: "day" }
 affiliation: SAC, China
 
 links:
