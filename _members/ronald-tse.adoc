@@ -13,7 +13,7 @@ roles:
     from: { date: 2019-12-12, precision: day }
     to: { date: 2022-11-26, precision: day }
 
-affiliation: CalConnect, Liaison
+affiliation: SCC, Canada; CalConnect, Liaison
 
 links:
   - url: https://www.linkedin.com/in/rhtse/
