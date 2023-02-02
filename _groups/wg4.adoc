@@ -3,6 +3,7 @@ _id: wg4
 name: WG 4
 title: e-documents
 order: 4
+inactive: true
 
 intro: |
   WG 4 covers the standardization of e-document concepts and
@@ -13,10 +14,10 @@ scope: |
   Standardization of e-document concepts and semantics to support people,
   systems and processes involved in developing, publishing and using of e-documents.
 
-organization:
-  convenors:
-    - ronald-tse
-    - james-clark
+# organization:
+#   convenors:
+#     - ronald-tse
+#     - james-clark
 
 active_projects:
   - iso-36001
@@ -26,10 +27,19 @@ standards:
 
 history:
   leadership:
+    - ronald-tse
+    - james-clark
     - michael-dill
     #- bern-bosler
 
   story: |
+    == 2019 to 2022
+
+    WG 4 was established to handle the standardization of electronic documents.
+    It has been temporarily closed due to the restart of existing projects.
+
+    == 2006 to 2010
+
     WG 4 was originally established (formerly as JWG 2 between UNECE and ISO)
     during the UN/CEFACT Forum meeting in Vancouver, March 2006,
     for the purpose of developing an electronic version of the UN Layout Key

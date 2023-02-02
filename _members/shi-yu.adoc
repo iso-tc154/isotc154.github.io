@@ -1,0 +1,27 @@
+---
+member-id: shi-yu
+picture: shi-yu.jpg
+name: Shi Yu
+active: true
+roles:
+  - id: chair
+    from: { date: 2021-11-06, precision: "day" }
+  - id: convenor
+    group: cag
+    from: { date: 2021-11-06, precision: "day" }
+affiliation: SAC, China
+
+links:
+  - url: https://www.linkedin.com/in/yu-shi-14624933/
+    title: LinkedIn
+  - url: https://github.com/benjamin-shi
+    title: GitHub
+---
+
+Shi Yu is the Technical Director of the Super-computing Center at
+Beijing Normal University. Prior to his current role, he was
+CEO/CTO of Beijing REN JU ZHI HUI Technology Co. Ltd in Beijing, China.
+
+He received his Bachelors degree from Beijing Normal University in Mathematics
+and Applied Mathematics.
+
