@@ -7,7 +7,7 @@ active: true
 roles:
   - id: convenor
     from: { date: 2018-01-01, precision: "day" }
-    to: { date: 2018-10-11, precision: "day" }
+    to: { date: 2019-04-01, precision: "day" }
     group: wg5
 affiliation: ISO/TC 46, Liaison
 ---
