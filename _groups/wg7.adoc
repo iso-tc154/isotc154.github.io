@@ -13,6 +13,15 @@ scope: |
   e-commerce helps to align business processes and foster global
   collaboration and interchange.
 
+organization:
+  convenors:
+    - jim-wilson
+
+history:
+  leadership:
+    - peter-plapper
+    - klaus-dieter-naujok
+
 active_projects:
   - iso-21981
   - iso-22468

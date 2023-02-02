@@ -10,6 +10,7 @@ roles:
     from: { date: 2007-09-01, precision: "month" }
     to: { date: 2017-01-01, precision: "year" }
     group: jwg1
+  - id: convenor
     from: { date: 2011-06-01, precision: "month" }
     to: { date: 2017-02-01, precision: "month" }
     group: wg5

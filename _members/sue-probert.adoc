@@ -16,7 +16,6 @@ active: true
 affiliation: BSI, United Kingdom
 ---
 
-
 Sue is Co-Chair 7372/UNTDED Joint Maintenance Agency and the Chair of UN/CEFACT.
 
 In March 2003 Sue formed the independent consultancy SEPIAeb Ltd.

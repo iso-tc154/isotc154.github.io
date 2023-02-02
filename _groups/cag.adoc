@@ -11,7 +11,12 @@ intro: |
 
 organization:
   convenors:
+    - shi-yu
+
+history:
+  leadership:
     - judy-zhu
+    - klaus-dieter-naujok
 ---
 :page-liquid:
 

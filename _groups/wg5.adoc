@@ -25,6 +25,8 @@ organization:
 history:
   leadership:
     - ray-denenberg
+    - klaus-dieter-naujok
+
   story: |
     WG 5 was established to manage ISO 8601, the international date time standard.
 

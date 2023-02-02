@@ -19,7 +19,7 @@ organization:
   managers:
     - gregor-roschkowski
   convenors:
-    - yan-zhang
+    - anders-grangard
 
 active_projects:
   - iso-9735-11
@@ -29,6 +29,7 @@ standards:
 
 history:
   leadership:
+    - yan-zhang
     #- peter-wilson
     #- bernd-bosler
     #- don-trafford
