@@ -18,7 +18,7 @@ the Committee using the link:/contact[Contact] page.
 == General
 
 {% assign secretary = site.members | where: "member-id", "jianfang-zhang" | first %}
-{% assign chair = site.members | where: "member-id", "judy-zhu" | first %}
+{% assign chair = site.members | where: "member-id", "shi-yu" | first %}
 
 * Name: Processes, data elements and documents in commerce, industry and administration
 
@@ -78,8 +78,11 @@ Maintenance of the EDIFACT-Syntax.
 
 === Chairs
 
+{% assign person = site.members | where: "member-id", "shi-yu" | first %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2021-)
+
 {% assign person = site.members | where: "member-id", "judy-zhu" | first %}
-* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2017-)
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2017-2021)
 
 {% assign person = site.members | where: "member-id", "klaus-dieter-naujok" | first %}
 * link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2011-2016)
