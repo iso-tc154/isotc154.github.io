@@ -1,0 +1,11 @@
+---
+member-id: kenta-nishikubo
+name: Kenta Nishikubo
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+affiliation: JISC, Japan

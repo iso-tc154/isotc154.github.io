@@ -1,0 +1,84 @@
+/* ── Role Badges ─────────────────────────────────── */
+
+@layer components {
+  .role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    background: #f1f5f9;
+    color: #64748b;
+  }
+  .dark .role-badge {
+    background: #1e293b;
+    color: #94a3b8;
+  }
+  .role-badge--active {
+    background: #e6f0fa;
+    color: #003f73;
+  }
+  .dark .role-badge--active {
+    background: rgb(0 97 173 / 0.15);
+    color: #66a3e0;
+  }
+  .role-badge__date {
+    font-size: 0.625rem;
+    opacity: 0.7;
+    margin-left: 0.25rem;
+  }
+  .role-badge__group {
+    font-weight: 400;
+    opacity: 0.75;
+  }
+
+  .identifier-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: 'Noto Sans Mono', monospace;
+    background: #e6f0fa;
+    color: #003f73;
+  }
+  .dark .identifier-badge {
+    background: rgb(0 97 173 / 0.15);
+    color: #66a3e0;
+  }
+  .identifier-badge--lg {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.875rem;
+  }
+
+  .mini-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.625rem;
+    color: #94a3b8;
+    background: #f8fafc;
+  }
+  .dark .mini-tag {
+    color: #64748b;
+    background: rgb(30 41 59 / 0.5);
+  }
+
+  .category-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: #f1f5f9;
+    color: #475569;
+  }
+  .dark .category-tag {
+    background: #1e293b;
+    color: #94a3b8;
+  }
+}

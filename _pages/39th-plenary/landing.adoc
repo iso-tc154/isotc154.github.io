@@ -1,5 +1,5 @@
 ---
-layout: event_landing
+layout: default
 permalink: "/39th-plenary/"
 event_id: 39th_plenary
 ---

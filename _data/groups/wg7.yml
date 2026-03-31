@@ -1,0 +1,67 @@
+---
+id: wg7
+_id: wg7
+name: WG 7
+title: Digital Business
+order: 7
+scope: |
+  A key task of WG7 is to enhance interoperability by developing
+  technical specifications in support of semantics, digital
+  innovations and associated concepts that enable standardized
+  cross-enterprise solutions. Furthermore, the provision of
+  accessible or open data and related frameworks in the field of
+  e-commerce helps to align business processes and foster global
+  collaboration and interchange.
+organization:
+  convenors:
+  - jim-wilson
+history:
+  leadership:
+  - peter-plapper
+  - klaus-dieter-naujok
+active_projects:
+- iso-21981
+- iso-22468
+- iso-18262
+standards:
+- ISO 22468:2020
+- ISO 23354:2020
+- ISO 5054-1:2023
+- ISO 5909:2026
+- ISO/AWI 25534-1
+- ISO/DIS 22132
+- ISO/DTR 20180
+- ISO/TR 16320-1
+- ISO/TR 16340:2023
+- ISO/TS 20625:2002
+_description: |-
+  :page-liquid:
+
+  == Organization
+
+  There are 3 projects teams in WG7:
+
+  . PT1 -- ISO/TS 21981 Business Semantics Thesaurus (BST)
+  . PT2 -- ISO/DIS 22468 Value Stream Management (VSM)
+  . PT3 -- ISO/DTR 18262 Open Data Interchange Framework (ODIF)
+
+  == Standards
+
+  * ISO 8601-1 published 2019/03/25
+  * ISO 8601-2 published 2019/03/25
+
+  == Members
+
+  * Luxembourg:    Prof. P. Plapper (project lead), J. Mangers, H. Krämer
+  * Netherlands:   J. Valkenburg
+  * Germany:       Prof. P. Kuhlang
+  * China:         Y. Zhang, J. Zhang
+  * South Korea:   Prof. Y. Lee
+
+  == Related links
+
+  *  Unternehmensübergreifende Wertstom Management Methode (ISO 22468)]
+
+  == News and others
+
+  *  cross-enterprise Value Stream Management Method (StreaM)]

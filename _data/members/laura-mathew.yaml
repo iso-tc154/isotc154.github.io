@@ -1,0 +1,15 @@
+---
+member-id: laura-mathew
+name: Laura Mathew
+picture: laura-mathew.jpg
+roles:
+- id: technical-programme-manager
+active: true
+affiliation: ISO
+links:
+- url: https://www.linkedin.com/in/lauramathew/
+  title: LinkedIn
+bio: |-
+  Laura Mathew is the Technical Group Manager at ISO and serves as Technical
+  Programme Manager for ISO/TC 154, responsible for the management of the
+  technical work programme.

@@ -1,0 +1,9 @@
+---
+member-id: jia-du
+name: Jia Du
+active: true
+roles:
+- id: member
+- id: member
+  group: wg6
+affiliation: SAC, China

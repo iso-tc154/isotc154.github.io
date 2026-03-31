@@ -17,16 +17,18 @@ the Committee using the link:/contact[Contact] page.
 
 == General
 
-{% assign secretary = site.members | where: "member-id", "jianfang-zhang" | first %}
-{% assign chair = site.members | where: "member-id", "shi-yu" | first %}
+{% assign chair = site.data.members.all['pan-wei'] %}
+{% assign secretary = site.data.members.all['jianfang-zhang'] %}
+{% assign tpm = site.data.members.all['laura-mathew'] %}
+{% assign epm = site.data.members.all['marcela-bonells'] %}
 
 * Name: Processes, data elements and documents in commerce, industry and administration
 
 * Secretariat: http://www.sac.gov.cn[SAC]
 * Chairperson: link:{{ chair.url }}[{{ chair.name }}] ({{ chair.affiliation }})
 * Committee manager: link:{{ secretary.url }}[{{ secretary.name }}] ({{ secretary.affiliation }})
-* ISO Technical Programme Manager: mailto:mathew@iso.org[Ms Laura Mathew]
-* ISO Editorial Programme Manager: mailto:chen@iso.org[Mrs Yvonne Chen]
+* ISO Technical Programme Manager: link:{{ tpm.url }}[{{ tpm.name }}] ({{ tpm.affiliation }})
+* ISO Editorial Programme Manager: link:{{ epm.url }}[{{ epm.name }}] ({{ epm.affiliation }})
 * Creation date: 1972
 
 == Mission
@@ -69,36 +71,42 @@ Maintenance of the EDIFACT-Syntax.
 
 == Historic information
 
-=== Secretariats
+== Secretariats
 
 * http://www.sac.gov.cn[SAC] (2014-)
 
 * https://www.nen.nl[NEN] (2008-2013)
 
 
-=== Chairs
+== Past Chairs
 
-{% assign person = site.members | where: "member-id", "shi-yu" | first %}
-* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2021-)
+{% assign person = site.data.members.all['pan-wei'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2026-)
 
-{% assign person = site.members | where: "member-id", "judy-zhu" | first %}
+{% assign person = site.data.members.all['shi-yu'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2021-2025)
+
+{% assign person = site.data.members.all['shi-yu'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2021-2025)
+
+{% assign person = site.data.members.all['judy-zhu'] %}
 * link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2017-2021)
 
-{% assign person = site.members | where: "member-id", "klaus-dieter-naujok" | first %}
+{% assign person = site.data.members.all['klaus-dieter-naujok'] %}
 * link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2011-2016)
 
-{% assign person = site.members | where: "member-id", "robert-schubenel" | first %}
+{% assign person = site.data.members.all['robert-schubenel'] %}
 * link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2008-2010)
 
-{% assign person = site.members | where: "member-id", "francois-vuilleumier" | first %}
+{% assign person = site.data.members.all['francois-vuilleumier'] %}
 * link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (1998-2008)
 
 
-=== Committee Managers / Secretaries
+== Committee Managers / Secretaries
 
-{% assign person = site.members | where: "member-id", "jianfang-zhang" | first %}
+{% assign person = site.data.members.all['jianfang-zhang'] %}
 * link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2014-)
 
-{% assign person = site.members | where: "member-id", "francois-vuilleumier" | first %}
+{% assign person = site.data.members.all['francois-vuilleumier'] %}
 * link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (1998-2008)
 

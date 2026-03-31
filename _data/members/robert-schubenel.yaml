@@ -1,0 +1,22 @@
+---
+member-id: robert-schubenel
+name: Robert Schubenel
+picture: robert-schubenel.jpg
+active: false
+roles:
+- id: chair
+  from:
+    date: 2008-11-25
+    precision: day
+  to:
+    date: 2010-01-01
+    precision: year
+affiliation: GS1
+bio: |-
+  Mr. Robert Schubenel
+
+  * Previously Senior Technical Director and Director IT, GS1 Global Office
+  * Member or the Swiss delegation to UN/ECE WP4
+  * Developing the first EDIFACT messages in 1988
+  * Winner of the 2007 value chain award of the University of St. Gallen and Leipzig for a Federative Network concept
+  * Facilitator and chair of several GS1 project groups in transport and logistics

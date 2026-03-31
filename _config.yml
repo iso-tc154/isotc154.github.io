@@ -7,7 +7,7 @@ description: >-
   ISO/TC 154: Processes, data elements and documents in commerce, industry and administration
 
 committee:
-  chair: shi-yu
+  chair: pan-wei
   leadership:
     - jianfang-zhang
     - yan-zhang
@@ -23,12 +23,16 @@ url: "https://www.isotc154.org"
 
 markdown: kramdown
 
-theme: jekyll-theme-isotc154
-
 excerpt_separator: "// more"
 
 google_analytics:
   id: UA-142331468-1
+
+plugins:
+  - jekyll/vite
+  - jekyll-feed
+  - jekyll-data
+  - jekyll-asciidoc
 
 social:
   links:
@@ -53,18 +57,12 @@ primary_nav_items:
   - faq
   - 39th_plenary
 
-sass:
-  style: compressed
-
 collections:
   pages:
     output: true
     permalink: /:name/
   standards:
-    output: true
-    permalink: /:collection/:name/
-  projects:
-    output: true
+    output: false
     permalink: /:collection/:name/
   procedures:
     output: true
@@ -73,7 +71,7 @@ collections:
     output: true
     permalink: /:collection/:name/
   groups:
-    output: true
+    output: false
     group-id: :name
     permalink: /:collection/:name/
   members:
@@ -85,12 +83,7 @@ defaults:
   - scope:
       path: "faq"
     values:
-      layout: faq
-  - scope:
-      path: ""
-      type: standards
-    values:
-      layout: standard
+      layout: default
   - scope:
       path: ""
       type: projects
@@ -156,6 +149,16 @@ exclude:
   - Gemfile.lock
   - Makefile
   - deploy.sh
+  - Procfile.dev
+  - package.json
+  - package-lock.json
   - node_modules
   - vendor
-  - .sass-cache/
+  - .sass-cache
+  - vite.config.ts
+  - postcss.config.js
+  - tailwind.config.js
+  - bin
+  - _frontend
+  - config/vite.json
+  - TODO.redesign.md

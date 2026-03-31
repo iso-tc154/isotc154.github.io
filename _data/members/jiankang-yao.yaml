@@ -1,0 +1,11 @@
+---
+member-id: jiankang-yao
+name: Jiankang Yao
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+affiliation: SAC, China

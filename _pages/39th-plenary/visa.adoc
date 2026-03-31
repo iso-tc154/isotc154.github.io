@@ -1,5 +1,5 @@
 ---
-layout: event_subpage
+layout: default
 permalink: "/39th-plenary/arrival/visas/"
 event_id: 39th_plenary
 title: Visas

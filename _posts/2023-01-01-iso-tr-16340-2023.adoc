@@ -1,0 +1,15 @@
+---
+layout: post
+title:  ISO/TR 16340:2023 published!
+date:   2023-01-01 00:00:00 +0800
+categories: site update
+see_also:
+---
+
+link:/standards/iso-tr-16340-2023[ISO/TR 16340:2023] has been published
+as an International Standard, and will be available on ISO.org soon.
+
+// more
+
+Congratulations to link:/groups/wg7[Digital Business] on this excellent
+achievement!

@@ -1,0 +1,11 @@
+---
+member-id: xiaoyu-you
+name: Xiaoyu YOU
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg7
+affiliation: SAC, China

@@ -1,0 +1,11 @@
+---
+member-id: ulrike-korte
+name: Ulrike Korte
+active: true
+roles:
+- id: member
+- id: member
+  group: wg6
+- id: member
+  group: jwg1
+affiliation: DIN, Germany

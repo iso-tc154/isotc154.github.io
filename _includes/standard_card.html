@@ -1,23 +1,38 @@
 {% if include.standard %}
   {% assign standard = include.standard %}
+  {% assign std_id = include.id %}
 {% elsif include.name %}
-  {% assign standard = site.standards | where: "name", include.name | first %}
+  {% comment %}Look up by name in site.data.standards (hash keyed by id){% endcomment %}
+  {% assign found_std = nil %}
+  {% assign found_id = nil %}
+  {% for item in site.data.standards %}
+    {% assign sid = item[0] %}
+    {% assign std_data = item[1] %}
+    {% if std_data.iso.name == include.name %}
+      {% assign found_std = std_data %}
+      {% assign found_id = sid %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% assign standard = found_std %}
+  {% assign std_id = found_id %}
+{% elsif include.id %}
+  {% assign standard = site.data.standards[include.id] %}
+  {% assign std_id = include.id %}
 {% endif %}
 
-<article class="item-card item-card--no-pic standard-card">
+<article class="item-card">
   {% unless standard %}
-    Standard {{ include.id }} not found
+    Standard {{ include.name | default: include.id }} not found
   {% endunless %}
 
   <div class="item-text">
-    <span class="name-and-publication">
-      <a href="{{ standard.url }}" class="name">{{ standard.name }}</a>
-      {% if standard.publication_date %}
-        <span class="publication-date">
-          published {{ standard.publication_date | date_to_long_string }}
-        </span>
-      {% endif %}
-    </span>
-    <em class="title" title="{{ standard.title }}">{{ standard.title }}</em>
+    <a href="/standards/{{ std_id }}/" class="name">{{ standard.iso.name }}</a>
+    {% if standard.iso.publication_date %}
+      <span class="meta-text--small">
+        published {{ standard.iso.publication_date | date_to_long_string }}
+      </span>
+    {% endif %}
+    <em class="title" title="{{ standard.iso.title }}">{{ standard.iso.title }}</em>
   </div>
 </article>

@@ -1,0 +1,9 @@
+---
+member-id: mark-hedley
+name: Mark Hedley
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+affiliation: BSI, United Kingdom

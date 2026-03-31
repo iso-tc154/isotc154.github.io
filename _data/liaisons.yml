@@ -1,0 +1,191 @@
+---
+- id: unece
+  name: United Nations Economic Commission for Europe
+  short_name: UNECE
+  category: A
+  url: https://unece.org/
+  logo: "/assets/images/liaisons/logo-unece.svg"
+  description: 'UN/CEFACT is the United Nations Centre for Trade Facilitation and Electronic Business. It develops policy, standards, and recommendations for trade facilitation and electronic business.'
+- id: gs1
+  name: GS1
+  short_name: GS1
+  category: A
+  url: https://www.gs1.org/
+  logo: "/assets/images/liaisons/logo-gs1.svg"
+  description: 'GS1 is an international not-for-profit organisation developing and maintaining standards for supply and demand chains across multiple sectors.'
+- id: oasis
+  name: OASIS
+  short_name: OASIS
+  category: A
+  url: https://www.oasis-open.org/
+  logo: "/assets/images/liaisons/logo-oasis.svg"
+  description: 'OASIS (Organization for the Advancement of Structured Information Standards) is a nonprofit consortium that drives the development, convergence, and adoption of open standards.'
+- id: calconnect
+  name: CalConnect
+  short_name: CalConnect
+  category: A
+  url: https://www.calconnect.org/
+  logo_light: "/assets/images/liaisons/logo-calconnect-light.svg"
+  logo_dark: "/assets/images/liaisons/logo-calconnect-dark.svg"
+  description: 'The Calendaring and Scheduling Consortium (CalConnect) promotes standards for calendaring and scheduling, particularly in collaboration with ISO/TC 154 WG 5 on date and time standards.'
+- id: oagi
+  name: OAGi
+  short_name: OAGi
+  category: A
+  url: https://www.oagi.org/
+  logo: "/assets/images/liaisons/logo-oagi.svg"
+  description: 'OAGi (Open Applications Group) is a non-profit consortium focused on developing business process standards and promoting interoperability.'
+- id: afact
+  name: Asia-Pacific Council for Trade Facilitation and Electronic Business
+  short_name: AFACT
+  category: A
+  url: https://www.afact.org/
+  logo: "/assets/images/liaisons/logo-afact.svg"
+  description: 'AFACT promotes trade facilitation and electronic business policies and activities in the Asia-Pacific region, in cooperation with UN/CEFACT.'
+- id: itu-t
+  name: International Telecommunication Union
+  short_name: ITU
+  category: A
+  url: https://www.itu.int/
+  logo: "/assets/images/liaisons/logo-itu.svg"
+  description: 'ITU is the United Nations specialized agency for information and communication technologies. ITU-T coordinates standards for telecommunications, playing a key role in areas intersecting with ISO/TC 154''s work on electronic business messages.'
+- id: bimco
+  name: Baltic and International Maritime Council
+  short_name: BIMCO
+  category: A
+  url: https://www.bimco.org/
+  logo_light: "/assets/images/liaisons/logo-bimco-light.svg"
+  logo_dark: "/assets/images/liaisons/logo-bimco-dark.svg"
+  description: 'BIMCO is the world''s largest international shipping association, representing shipowners and operators in matters of maritime policy and standardisation.'
+- id: odccn
+  name: Organization for Trade Development and Standards Cooperation
+  short_name: ODCCN
+  category: A
+  url:
+  logo: "/assets/images/liaisons/logo-odccn.png"
+  description: 'ODCCN is a liaison organization working with ISO/TC 154 on matters related to open data chain commerce and trade development.'
+- id: iec
+  name: International Electrotechnical Commission
+  short_name: IEC
+  category: A
+  url: https://www.iec.ch/
+  logo: "/assets/images/liaisons/logo-iec.svg"
+  description: 'The IEC is the international standards body for electrical, electronic, and related technologies. It collaborates with ISO on matters of mutual interest in electronic business and data exchange.'
+- id: ietf
+  name: Internet Engineering Task Force
+  short_name: IETF
+  category: A
+  url: https://www.ietf.org/
+  logo: "/assets/images/liaisons/logo-ietf.svg"
+  description: 'The IETF develops and promotes voluntary internet standards. It works with ISO/TC 154 on data formats and protocols used in internet-based electronic commerce.'
+- id: ipcsa
+  name: International Port Community Systems Association
+  short_name: IPCSA
+  category: A
+  url: https://ipcsa.international
+  logo: "/assets/images/liaisons/logo-ipcsa.svg"
+  description: |
+    IPCSA and its members play a vital role in global trade facilitation.  Our members are Sea and Air Port Authorities, Port Community System Operators for both sea and air, and Single Window Operators.
+
+    The electronic exchange platforms provided by IPCSA’s members enable the electronic flow of Business to Business, Business to Government and Government to Government information.  These platforms underpin smooth, efficient transport and logistics operations at hundreds of sea ports, airports and inland ports, linking the flow of operational and administrative/regulatory processes and removing paper from the supply chain.
+
+    IPCSA’s emphasis is always on its members. We have a small executive team and rely confidently on the extensive knowledge and experience of our members to represent the association and the interests of its members around the world.
+
+    As we have members from both private and public sectors, including governmental organisations, IPCSA focuses its activities on practical advice and guidance, rather than policy.  As a result, IPCSA is respected as a trusted third party, in line with its community system members, and it is recognised as such by international bodies and intergovernmental organisations.
+
+    IPCSA focuses on supporting and facilitating systems and innovations for its members and their users, and promoting the use of international data standards in sea and air ports, at border crossings and via Single Window systems around the world. This is also reflected in our Mission & Objective
+
+    IPCSA is a recognised NGO with consultative status at UNECOSOC and IMO.
+- id: bisbri
+  name: Bank for International Settlements
+  short_name: BIS/BRI
+  category: A
+  url: https://www.bis.org/
+  logo: "/assets/images/liaisons/logo-bisbri.svg"
+  description: 'The Bank for International Settlements (BIS) is an international financial institution which fosters international monetary and financial cooperation and serves as a bank for central banks.'
+- id: dcsa
+  name: Digital Container Shipping Association
+  short_name: DCSA
+  category: A
+  url: https://dcsa.org/
+  logo_light: "/assets/images/liaisons/logo-dcsa-light.svg"
+  logo_dark: "/assets/images/liaisons/logo-dcsa-dark.svg"
+  description: 'DCSA is a neutral, non-profit consortium founded by major ocean carriers to digitise container shipping. It develops standards for the industry to enable interoperability and efficiency.'
+- id: ec
+  name: European Commission
+  short_name: EC
+  category: A
+  url: https://ec.europa.eu/
+  logo: "/assets/images/liaisons/logo-ec.svg"
+  description: 'The European Commission is the executive branch of the European Union, responsible for proposing legislation, implementing decisions, and managing EU policies including those related to trade facilitation and digital standards.'
+- id: etsi
+  name: European Telecommunications Standards Institute
+  short_name: ETSI
+  category: A
+  url: https://www.etsi.org/
+  logo: "/assets/images/liaisons/logo-etsi.svg"
+  description: 'ETSI produces globally-applicable standards for Information and Communications Technologies (ICT), including fixed, mobile, radio, converged, broadcast, and internet technologies.'
+- id: fiata
+  name: International Federation of Freight Forwarders Associations
+  short_name: FIATA
+  category: A
+  url: https://fiata.com/
+  logo: "/assets/images/liaisons/logo-fiata.svg"
+  description: 'FIATA is the largest non-governmental organisation in the field of transportation, representing the freight forwarding and logistics industry worldwide.'
+- id: gsbn
+  name: Global Shipping Business Network Limited
+  short_name: GSBN
+  category: A
+  url: https://gsbn.trade
+  logo: "/assets/images/liaisons/logo-gsbn.png"
+  description: 'GSBN is a blockchain-based platform that connects stakeholders in the global trade supply chain to enable secure, efficient data exchange and digitalization of shipping processes.'
+- id: imo
+  name: International Maritime Organization
+  short_name: IMO
+  category: A
+  url: https://www.imo.org/
+  logo_light: "/assets/images/liaisons/logo-imo-light.png"
+  logo_dark: "/assets/images/liaisons/logo-imo-dark.png"
+  description: 'IMO is the United Nations specialized agency responsible for the safety and security of shipping and the prevention of marine and atmospheric pollution by ships. It sets standards for maritime transport.'
+- id: uic
+  name: International Union of Railways
+  short_name: UIC
+  category: A
+  url: https://uic.org/
+  logo: "/assets/images/liaisons/logo-uic.svg"
+  description: 'UIC is the worldwide professional association representing the railway sector and promoting rail transport. It develops standards and technical specifications for the international railway community.'
+- id: un
+  name: United Nations
+  short_name: UN
+  category: B
+  url: https://www.un.org/
+  logo: "/assets/images/liaisons/logo-un.svg"
+  description: 'The United Nations is an international organization founded in 1945, committed to maintaining international peace and security, developing friendly relations among nations, and promoting social progress and human rights.'
+- id: unctad
+  name: United Nations Conference on Trade and Development
+  short_name: UNCTAD
+  category: A
+  url: https://unctad.org/
+  logo: "/assets/images/liaisons/logo-unctad.webp"
+  description: 'UNCTAD is the UN trade and development body supporting developing countries to access the benefits of a globalized economy more fairly and effectively.'
+- id: upu
+  name: Universal Postal Union
+  short_name: UPU
+  category: A
+  url: https://www.upu.int/
+  logo: "/assets/images/liaisons/logo-upu.svg"
+  description: 'UPU is a United Nations specialized agency and the primary forum for cooperation between postal sector players, setting standards for international mail and postal services.'
+- id: wco
+  name: World Customs Organization
+  short_name: WCO
+  category: B
+  url: https://www.wcoomd.org/
+  logo: "/assets/images/liaisons/logo-wco.svg"
+  description: 'WCO is the intergovernmental body for customs administrations, developing international standards and instruments to facilitate and secure legitimate trade.'
+- id: wipo
+  name: World Intellectual Property Organization
+  short_name: WIPO
+  category: B
+  url: https://www.wipo.int/
+  logo: "/assets/images/liaisons/logo-wipo.svg"
+  description: 'WIPO is the United Nations agency responsible for intellectual property, providing a global forum for IP services, policy, information, and cooperation.'

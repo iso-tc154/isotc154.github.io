@@ -1,0 +1,13 @@
+---
+member-id: sucai-li
+name: Sucai LI
+active: true
+roles:
+- id: member
+- id: member
+  group: wg7
+- id: member
+  group: jwg9
+- id: member
+  group: jwg1
+affiliation: SAC, China

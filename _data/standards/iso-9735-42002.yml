@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 9735-4:2002
+  type: international
+  title: 'Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules (Syntax version number: 4, Syntax release number: 1) — Part 4: Syntax and service report message for batch EDI (message type — CONTRL)'
+  stage: '90.93'
+  ics: 35.240.63
+  scope: This part of ISO 9735 defines the syntax and service report message for batch EDI, CONTRL.
+  publication_date: '2002-01-01'
+tc154:
+  group: jwg1
+  related_news: "* link:/posts/2002-01-01-iso-9735-4-2002[ISO/TC 154 news: ISO 9735-4:2002 published!]"

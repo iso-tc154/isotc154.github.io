@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO/TR 16320-1
+  type: TR
+  title: 'Processes and data in e-commerce — Smart contract-based B2B electronic transaction execution and verification — Part 1: Reference model'
+  stage: '60.0'
+  ics: 35.240.63
+  scope: 'Processes and data in e-commerce -- Smart contract-based B2B electronic transaction execution and verification -- Part 1: Reference model.'
+tc154:
+  group: wg7
+  status: under_development
+  related_news: "* link:/posts/2000-01-01-iso-tr-16320-1[ISO/TC 154 news: ISO/TR 16320-1 published!]"

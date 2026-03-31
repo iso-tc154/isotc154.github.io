@@ -1,0 +1,24 @@
+---
+iso:
+  name: ISO 9735-11:2022
+  type: international
+  title: 'Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules (Syntax version number: 4, Syntax release number: 1) — Part 11: Version 3 compatible profile for Version 4 of ISO 9735'
+  stage: '60.60'
+  ics: 35.240.63
+  scope: 'This document specifies the profiling rules of ISO 9735-1 to ISO 9735-9 that allow users of version 3 (ISO 9735:1988 and ISO 9735:1988/Amd.1:1992: Syntax version number: 3) to migrate to version 4 (ISO 9735:1998: Syntax version number: 4) with a minimum effort and cost.'
+  publication_date: '2022-01-01'
+tc154:
+  group: jwg1
+  content: |-
+    A new project is run to investigate possibility of providing a profile document to enable interoperability between the UN/EDIFACT syntax version 3 and the latest version 4 by describing a functionally restricted sub-set of the latter.
+
+    // more
+
+    == Stage
+
+    * NP Ballot until 2019/08/07
+  purpose: Version 3 of ISO/9735 has since its publication in 1992 experienced a steady increase in deployment globally and continues to expand today. Version 4 was published in 1998 with several new features. Of these, the only known implementations are for digital signatures, driven by legal requirements, and the use of non-latin character-sets. Since version 4 is not backwards compatible no widespread migration from version 3 has taken place or being planned. According to ISO policy (TMB Resolution 09/2012), different editions of the same standard cannot coexist which would mean that version 3 would no longer be available from ISO. Due to the large number of version 3 based users, and that this community is still growing, an exception was admitted for these two version to be available (TMB Resolution 8/2013). However, since the resolution was approved "on a temporary basis" a permanent solution is needed, which is what this proposal aims at.
+  scope: Profile of version 4 of ISO 9735 restricting the functionality to be compatible with version 3.
+  who_needs: Communities with wide EDIFACT adoption, e.g. retail, maritime, customs will ensure support of existing EDI solutions and enabling new implementations.
+  project_leaders: "* link:/members/anders-grangard/[Anders Grangard] (UNECE)"
+  related_news: "* link:/posts/2022-01-01-iso-9735-11-2022[ISO/TC 154 news: ISO 9735-11:2022 published!]"

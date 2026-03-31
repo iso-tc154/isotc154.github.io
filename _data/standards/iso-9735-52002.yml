@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 9735-5:2002
+  type: international
+  title: 'Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules (Syntax version number: 4, Syntax release number: 1) — Part 5: Security rules for batch EDI (authenticity, integrity and non-repudiation of origin)'
+  stage: '90.93'
+  ics: 35.240.63
+  scope: This part of ISO 9735 specifies syntax rules for EDIFACT security. It provides a method to address message/package level, group level and interchange level security for authenticity, integrity and non-repudiation of origin, in accordance with established security mechanisms.
+  publication_date: '2002-01-01'
+tc154:
+  group: jwg1
+  related_news: "* link:/posts/2002-01-01-iso-9735-5-2002[ISO/TC 154 news: ISO 9735-5:2002 published!]"

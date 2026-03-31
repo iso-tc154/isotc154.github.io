@@ -1,0 +1,11 @@
+---
+member-id: xianyu-bao
+name: Xianyu Bao
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg7
+affiliation: SAC, China

@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 8601-2:2019/Amd 1:2025
+  type: international
+  title: 'Date and time — Representations for information interchange — Part 2: Extensions — Amendment 1: Canonical expressions, extensions to time scale components and date time arithmetic'
+  stage: '60.60'
+  ics: 01.140.30
+  scope: 'Date and time -- Representations for information interchange -- Part 2: Extensions -- Amendment 1: Canonical expressions, extensions to time scale components and date time arithmetic.'
+  publication_date: '2025-01-01'
+tc154:
+  group: wg5
+  related_news: "* link:/posts/2025-01-01-iso-8601-2-2019-Amd-1-2025[ISO/TC 154 news: ISO 8601-2:2019/Amd 1:2025 published!]"

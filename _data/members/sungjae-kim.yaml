@@ -1,0 +1,13 @@
+---
+member-id: sungjae-kim
+name: Sung Jae Kim
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+- id: member
+  group: wg7
+affiliation: KATS, Korea, Republic of

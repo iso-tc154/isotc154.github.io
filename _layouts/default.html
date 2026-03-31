@@ -1,0 +1,621 @@
+---
+layout: base
+---
+
+<section class="layout-sidebar">
+  <nav class="layout-sidebar__nav" aria-label="Section navigation">
+    <div class="layout-sidebar__nav-content">
+
+      {% assign current_section = nil %}
+      {% for section in site.data.navigation_sidebar.sections %}
+        {% assign matched = false %}
+        {% if section.match and page.url contains section.match %}
+          {% assign matched = true %}
+        {% endif %}
+        {% if section.url_prefixes %}
+          {% for prefix in section.url_prefixes %}
+            {% if page.url contains prefix %}
+              {% assign matched = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if matched %}
+          {% assign current_section = section %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% if current_section %}
+      <div class="layout-sidebar__nav-section">
+        <div class="layout-sidebar__section-title">{{ current_section.title }}</div>
+        <ul class="layout-sidebar__nav-items">
+          {% for item in current_section.items %}
+            {% case item.type %}
+
+            {% when 'link', nil %}
+              {% if item.filter_group %}
+              <li>
+                <span class="nav-filter-group{% if item.inactive %} nav-filter-group--inactive{% endif %}" data-filter-group="{{ item.filter_group }}">{{ item.label }}{% if item.inactive %} <span class="text-[0.625rem] opacity-60 ml-1">(inactive)</span>{% endif %}</span>
+              </li>
+              {% else %}
+              {% assign is_active = false %}
+              {% if page.url == item.url %}
+                {% assign is_active = true %}
+              {% endif %}
+              <li>
+                <a href="{{ item.url | relative_url }}" {% if is_active %}class="active"{% endif %}>
+                  {{ item.label }}
+                </a>
+              </li>
+              {% endif %}
+
+            {% when 'collection' %}
+              {% case item.collection %}
+                {% when 'standards' %}
+                  {% assign docs = site.standards %}
+                {% when 'projects' %}
+                  {% assign docs = site.projects %}
+                {% when 'groups' %}
+                  {% assign docs = site.groups %}
+                {% when 'members' %}
+                  {% assign docs = site.members %}
+                {% when 'procedures' %}
+                  {% assign docs = site.procedures %}
+                {% when 'posts' %}
+                  {% assign docs = site.posts %}
+                {% when 'pages' %}
+                  {% assign docs = site.pages %}
+                {% else %}
+                  {% assign docs = site.posts %}
+              {% endcase %}
+              {% if item.sort_field %}
+                {% if item.sort_field == 'date' and item.sort_order == 'desc' %}
+                  {% assign sorted_docs = docs | sort: 'date' | reverse %}
+                {% else %}
+                  {% assign sorted_docs = docs | sort: item.sort_field %}
+                {% endif %}
+              {% else %}
+                {% assign sorted_docs = docs %}
+              {% endif %}
+              {% assign display_fields = item.display_fields %}
+              {% for doc in sorted_docs %}
+              {% assign is_doc_active = false %}
+              {% if page.url == doc.url %}
+                {% assign is_doc_active = true %}
+              {% endif %}
+              {% assign doc_inactive = doc.data['inactive'] %}
+              <li>
+                <a href="{{ doc.url | relative_url }}" {% if is_doc_active %}class="active"{% endif %}>
+                  {% if display_fields %}
+                    {% for field in display_fields %}
+                      {% case field %}
+                        {% when 'name' %}{{ doc.name }}
+                        {% when 'title' %}{{ doc.title }}
+                        {% else %}{{ doc.data[field] }}
+                      {% endcase %}
+                      {% unless forloop.last %}<br>{% endunless %}
+                    {% endfor %}
+                  {% else %}
+                    {% assign display_field = item.display_field | default: 'title' %}
+                    {% if display_field == 'name' %}{{ doc.name | default: doc.title }}{% else %}{{ doc.title | default: doc.name }}{% endif %}
+                  {% endif %}
+                </a>
+              </li>
+              {% endfor %}
+
+            {% when 'data_standards' %}
+              {% comment %}
+                Standards navigation with two modes:
+                - grouped: true  → collapsible tree by base standard number
+                - grouped: false → flat list
+              {% endcomment %}
+              {% assign grouped = item.grouped %}
+              {% if grouped and site.data.standards_grouped %}
+                {% comment %}First pass: groups that have at least one non-withdrawn publication{% endcomment %}
+                {% for g in site.data.standards_grouped %}
+                  {% if g.has_published == false %}{% continue %}{% endif %}
+                  {% assign is_open = true %}
+                  <li class="std-group{% if is_open == false %} is-collapsed{% endif %}">
+                    {% comment %}Find parent (first non-amendment child){% endcomment %}
+                    {% assign parent = nil %}
+                    {% for child in g.children %}
+                      {% if child.is_withdrawn == false and child.is_amendment == false %}
+                        {% assign parent = child %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if parent %}
+                      {% assign parent_url = '/standards/' | append: parent.sid | append: '/' %}
+                      {% assign is_parent_active = false %}
+                      {% if page.url == parent_url %}{% assign is_parent_active = true %}{% endif %}
+                      <a href="{{ parent_url }}" class="std-group__toggle{% if is_parent_active %} active{% endif %}">
+                        <span class="std-group__caret{% if is_open %} std-group__caret--open{% endif %}">&#9658;</span>
+                        <span class="std-group__name">{{ g.base_key }}</span>
+                      </a>
+                    {% endif %}
+                    <ul class="std-group__children">
+                      {% comment %}Non-withdrawn children{% endcomment %}
+                      {% for child in g.children %}
+                        {% if parent and child.sid == parent.sid %}{% continue %}{% endif %}
+                        {% if child.is_withdrawn %}{% continue %}{% endif %}
+                        {% assign child_url = '/standards/' | append: child.sid | append: '/' %}
+                        {% assign is_child_active = false %}
+                        {% if page.url == child_url %}{% assign is_child_active = true %}{% endif %}
+                        <li class="std-group__child{% if child.is_amendment %} is-amendment{% endif %}">
+                          <a href="{{ child_url }}" class="{% if is_child_active %}active{% endif %}{% if child.is_amendment %} is-amendment{% endif %}">
+                            {{ child.name }}
+                            {% if child.is_amendment %}<span class="std-badge std-badge--amendment">Amd</span>{% endif %}
+                          </a>
+                        </li>
+                      {% endfor %}
+                      {% comment %}Withdrawn children (if any, within a published group){% endcomment %}
+                      {% for child in g.children %}
+                        {% if parent and child.sid == parent.sid %}{% continue %}{% endif %}
+                        {% if child.is_withdrawn == false %}{% continue %}{% endif %}
+                        {% assign child_url = '/standards/' | append: child.sid | append: '/' %}
+                        {% assign is_child_active = false %}
+                        {% if page.url == child_url %}{% assign is_child_active = true %}{% endif %}
+                        <li class="std-group__child is-withdrawn">
+                          <a href="{{ child_url }}" class="{% if is_child_active %}active{% endif %} is-withdrawn">
+                            {{ child.name }}
+                            <span class="std-badge std-badge--withdrawn">Withdrawn</span>
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endfor %}
+                {% comment %}Second pass: withdrawn-only groups{% endcomment %}
+                {% for g in site.data.standards_grouped %}
+                  {% if g.has_published %}{% continue %}{% endif %}
+                  {% if g.has_withdrawn == false %}{% continue %}{% endif %}
+                  {% assign is_open = false %}
+                  <li class="std-group std-group--withdrawn{% if is_open == false %} is-collapsed{% endif %}">
+                    {% assign parent = nil %}
+                    {% for child in g.children %}
+                      {% if child.is_amendment == false %}
+                        {% assign parent = child %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if parent %}
+                      {% assign parent_url = '/standards/' | append: parent.sid | append: '/' %}
+                      {% assign is_parent_active = false %}
+                      {% if page.url == parent_url %}{% assign is_parent_active = true %}{% endif %}
+                      <a href="{{ parent_url }}" class="std-group__toggle is-withdrawn{% if is_parent_active %} active{% endif %}">
+                        <span class="std-group__caret{% if is_open %} std-group__caret--open{% endif %}">&#9658;</span>
+                        <span class="std-group__name">{{ g.base_key }}</span>
+                      </a>
+                    {% endif %}
+                    <ul class="std-group__children">
+                      {% for child in g.children %}
+                        {% if parent and child.sid == parent.sid %}{% continue %}{% endif %}
+                        {% assign child_url = '/standards/' | append: child.sid | append: '/' %}
+                        {% assign is_child_active = false %}
+                        {% if page.url == child_url %}{% assign is_child_active = true %}{% endif %}
+                        <li class="std-group__child is-withdrawn">
+                          <a href="{{ child_url }}" class="{% if is_child_active %}active{% endif %} is-withdrawn">
+                            {{ child.name }}
+                            <span class="std-badge std-badge--withdrawn">Withdrawn</span>
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endfor %}
+              {% else %}
+                {% comment %}Flat list fallback{% endcomment %}
+                {% for item in site.data.standards %}
+                  {% assign sid = item[0] %}
+                  {% assign std = item[1] %}
+                  {% assign std_url = '/standards/' | append: sid | append: '/' %}
+                  {% assign is_doc_active = false %}
+                  {% if page.url == std_url %}{% assign is_doc_active = true %}{% endif %}
+                  <li>
+                    <a href="{{ std_url }}" {% if is_doc_active %}class="active"{% endif %}>
+                      {{ std.iso.name }}
+                    </a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+
+            {% when 'standards_nav' %}
+              {% comment %}Standards filter + grouped tree — wrapped in <li>{% endcomment %}
+              <li class="layout-sidebar__standards-nav">
+                <div class="std-sidebar-filter">
+                  <div class="std-sidebar-filter__search-wrap">
+                    <svg class="std-sidebar-filter__search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="8"/>
+                      <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="search" id="std-sidebar-search" class="std-sidebar-filter__search" placeholder="Filter…" autocomplete="off" spellcheck="false" aria-label="Filter standards" />
+                  </div>
+                  <div class="std-sidebar-filter__controls">
+                    <div class="std-sidebar-filter__chip-group">
+                      <span class="std-sidebar-filter__chip-label">Working group</span>
+                      <div class="std-sidebar-filter__chips" id="std-sidebar-wg-chips">
+                        <button class="std-chip" data-wg="">All WGs</button>
+                        <button class="std-chip" data-wg="jwg1">JWG 1</button>
+                        <button class="std-chip" data-wg="wg2">WG 2</button>
+                        <button class="std-chip" data-wg="wg5">WG 5</button>
+                        <button class="std-chip" data-wg="wg6">WG 6</button>
+                        <button class="std-chip" data-wg="wg7">WG 7</button>
+                        <button class="std-chip" data-wg="jwg9">JWG 9</button>
+                        <button class="std-chip" data-wg="iso7372ma">ISO 7372/MA</button>
+                      </div>
+                    </div>
+                    <div class="std-sidebar-filter__chip-group">
+                      <span class="std-sidebar-filter__chip-label">Status</span>
+                      <div class="std-sidebar-filter__chips" id="std-sidebar-status-chips">
+                        <button class="std-chip" data-status="">All</button>
+                        <button class="std-chip" data-status="published">Published</button>
+                        <button class="std-chip" data-status="withdrawn">Withdrawn</button>
+                        <button class="std-chip" data-status="draft">In dev</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="std-sidebar-filter__meta">
+                  <span id="std-sidebar-count"></span>
+                </div>
+
+                {% comment %}Grouped standards tree{% endcomment %}
+                <ul class="layout-sidebar__nav-items std-sidebar-tree">
+                  {% comment %}First: published groups{% endcomment %}
+                  {% for g in site.data.standards_grouped %}
+                    {% if g.has_published == false %}{% continue %}{% endif %}
+                    {% assign is_open = true %}
+                    <li class="std-group" data-sid-group="{{ g.base_key }}">
+                      {% assign parent = nil %}
+                      {% for child in g.children %}
+                        {% if child.is_withdrawn == false and child.is_amendment == false %}
+                          {% assign parent = child %}
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if parent %}
+                        {% assign parent_url = '/standards/' | append: parent.sid | append: '/' %}
+                        {% assign is_parent_active = false %}
+                        {% if page.url == parent_url %}{% assign is_parent_active = true %}{% endif %}
+                        <a href="{{ parent_url }}" class="std-group__toggle" data-sid="{{ parent.sid }}">
+                          <span class="std-group__caret{% if is_open %} std-group__caret--open{% endif %}">&#9658;</span>
+                          <span class="std-group__name">{{ g.base_key }}</span>
+                        </a>
+                      {% endif %}
+                      <ul class="std-group__children">
+                        {% for child in g.children %}
+                          {% if parent and child.sid == parent.sid %}{% continue %}{% endif %}
+                          {% assign child_url = '/standards/' | append: child.sid | append: '/' %}
+                          {% assign is_child_active = false %}
+                          {% if page.url == child_url %}{% assign is_child_active = true %}{% endif %}
+                          <li class="std-group__child{% if child.is_amendment %} is-amendment{% endif %}{% if child.is_withdrawn %} is-withdrawn{% endif %}" data-sid="{{ child.sid }}">
+                            <a href="{{ child_url }}" class="{% if is_child_active %}active{% endif %}{% if child.is_withdrawn %} is-withdrawn{% endif %}{% if child.is_amendment %} is-amendment{% endif %}" data-sid="{{ child.sid }}">
+                              {{ child.name }}
+                              {% if child.is_amendment %}<span class="std-badge std-badge--amendment">Amd</span>{% endif %}
+                              {% if child.is_withdrawn %}<span class="std-badge std-badge--withdrawn">Withdrawn</span>{% endif %}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% endfor %}
+                  {% comment %}Second: withdrawn-only groups (collapsed){% endcomment %}
+                  {% for g in site.data.standards_grouped %}
+                    {% if g.has_published %}{% continue %}{% endif %}
+                    {% if g.has_withdrawn == false %}{% continue %}{% endif %}
+                    {% assign is_open = false %}
+                    <li class="std-group std-group--withdrawn is-collapsed" data-sid-group="{{ g.base_key }}">
+                      {% assign parent = nil %}
+                      {% for child in g.children %}
+                        {% if child.is_amendment == false %}
+                          {% assign parent = child %}
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if parent %}
+                        {% assign parent_url = '/standards/' | append: parent.sid | append: '/' %}
+                        {% assign is_parent_active = false %}
+                        {% if page.url == parent_url %}{% assign is_parent_active = true %}{% endif %}
+                        <a href="{{ parent_url }}" class="std-group__toggle is-withdrawn" data-sid="{{ parent.sid }}">
+                          <span class="std-group__caret">&#9658;</span>
+                          <span class="std-group__name">{{ g.base_key }}</span>
+                        </a>
+                      {% endif %}
+                      <ul class="std-group__children">
+                        {% for child in g.children %}
+                          {% if parent and child.sid == parent.sid %}{% continue %}{% endif %}
+                          {% assign child_url = '/standards/' | append: child.sid | append: '/' %}
+                          {% assign is_child_active = false %}
+                          {% if page.url == child_url %}{% assign is_child_active = true %}{% endif %}
+                          <li class="std-group__child is-withdrawn" data-sid="{{ child.sid }}">
+                            <a href="{{ child_url }}" class="{% if is_child_active %}active{% endif %} is-withdrawn" data-sid="{{ child.sid }}">
+                              {{ child.name }}
+                              <span class="std-badge std-badge--withdrawn">Withdrawn</span>
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+
+            {% when 'collapsible' %}
+              {% assign is_open = false %}
+              {% if page.url contains item.url_filter %}
+                {% assign is_open = true %}
+              {% endif %}
+              {% case item.collection %}
+                {% when 'standards' %}
+                  {% assign child_docs = site.standards %}
+                {% when 'projects' %}
+                  {% assign child_docs = site.projects %}
+                {% when 'groups' %}
+                  {% assign child_docs = site.groups %}
+                {% when 'members' %}
+                  {% assign child_docs = site.members %}
+                {% when 'procedures' %}
+                  {% assign child_docs = site.procedures %}
+                {% when 'posts' %}
+                  {% assign child_docs = site.posts %}
+                {% when 'pages' %}
+                  {% assign child_docs = site.pages %}
+                {% else %}
+                  {% assign child_docs = site.posts %}
+              {% endcase %}
+            <li>
+              <span class="layout-sidebar__toggle {% if is_open %}open{% endif %}">{{ item.label }}</span>
+              <ul class="layout-sidebar__nav-items layout-sidebar__subsection {% unless is_open %}collapsed{% endunless %}">
+                {% if item.first_child_label %}
+                {% assign first_is_active = false %}
+                {% if page.url contains item.url_filter %}
+                  {% assign first_is_active = true %}
+                {% endif %}
+                <li><a href="{{ item.url | relative_url }}" {% if first_is_active %}class="active"{% endif %}>{{ item.first_child_label }}</a></li>
+                {% endif %}
+                {% for doc in child_docs %}
+                  {% assign url_matches = false %}
+                  {% if doc.url contains item.url_filter %}
+                    {% assign url_matches = true %}
+                  {% endif %}
+                  {% assign is_excluded = false %}
+                  {% if doc.url == item.url %}
+                    {% assign is_excluded = true %}
+                  {% endif %}
+                  {% if item.exclude_urls %}
+                    {% for excl in item.exclude_urls %}
+                      {% if doc.url == excl %}
+                        {% assign is_excluded = true %}
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    {% if item.exclude_url %}
+                      {% if doc.url == item.exclude_url %}
+                        {% assign is_excluded = true %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                  {% assign pass_layout = true %}
+                  {% if item.layout_filter %}
+                    {% assign doc_layout = doc.layout %}
+                    {% if doc_layout != item.layout_filter %}
+                      {% assign pass_layout = false %}
+                    {% endif %}
+                  {% endif %}
+                  {% if url_matches and is_excluded == false and pass_layout %}
+                {% assign child_is_active = false %}
+                {% if page.url == doc.url %}
+                  {% assign child_is_active = true %}
+                {% endif %}
+                <li>
+                  <a href="{{ doc.url | relative_url }}" {% if child_is_active %}class="active"{% endif %}>
+                    {{ doc.title }}
+                  </a>
+                </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+
+            {% when 'group' %}
+              </ul>
+              <div class="layout-sidebar__group-title">{{ item.label }}</div>
+              <ul class="layout-sidebar__nav-items">
+                {% for child in item.children %}
+                  {% case child.type %}
+                  {% when 'link', nil %}
+                    {% if child.filter_group %}
+                    <li>
+                      <span class="nav-filter-group{% if child.inactive %} nav-filter-group--inactive{% endif %}" data-filter-group="{{ child.filter_group }}">{{ child.label }}{% if child.inactive %} <span class="text-[0.625rem] opacity-60 ml-1">(inactive)</span>{% endif %}</span>
+                    </li>
+                    {% else %}
+                      {% if child.filter_role %}
+                      <li>
+                        <span class="nav-filter-role" data-filter-role="{{ child.filter_role }}">{{ child.label }}</span>
+                      </li>
+                      {% else %}
+                      {% assign group_link_active = false %}
+                      {% if page.url == child.url %}
+                        {% assign group_link_active = true %}
+                      {% endif %}
+                      <li>
+                        <a href="{{ child.url | relative_url }}" {% if group_link_active %}class="active"{% endif %}>
+                          {{ child.label }}
+                        </a>
+                      </li>
+                      {% endif %}
+                    {% endif %}
+                  {% when 'collapsible' %}
+                    {% assign is_open = false %}
+                    {% if page.url contains child.url_filter %}
+                      {% assign is_open = true %}
+                    {% endif %}
+                    {% case child.collection %}
+                      {% when 'standards' %}
+                        {% assign child_docs = site.standards %}
+                      {% when 'projects' %}
+                        {% assign child_docs = site.projects %}
+                      {% when 'groups' %}
+                        {% assign child_docs = site.groups %}
+                      {% when 'members' %}
+                        {% assign child_docs = site.members %}
+                      {% when 'procedures' %}
+                        {% assign child_docs = site.procedures %}
+                      {% when 'posts' %}
+                        {% assign child_docs = site.posts %}
+                      {% when 'pages' %}
+                        {% assign child_docs = site.pages %}
+                      {% else %}
+                        {% assign child_docs = site.posts %}
+                    {% endcase %}
+                  <li>
+                    <span class="layout-sidebar__toggle {% if is_open %}open{% endif %}">{{ child.label }}</span>
+                    <ul class="layout-sidebar__nav-items layout-sidebar__subsection {% unless is_open %}collapsed{% endunless %}">
+                      {% if child.first_child_label %}
+                      {% assign group_first_active = false %}
+                      {% if page.url contains child.url_filter %}
+                        {% assign group_first_active = true %}
+                      {% endif %}
+                      <li><a href="{{ child.url | relative_url }}" {% if group_first_active %}class="active"{% endif %}>{{ child.first_child_label }}</a></li>
+                      {% endif %}
+                      {% for doc in child_docs %}
+                        {% assign url_matches = false %}
+                        {% if doc.url contains child.url_filter %}
+                          {% assign url_matches = true %}
+                        {% endif %}
+                        {% assign is_excluded = false %}
+                        {% if doc.url == child.url %}
+                          {% assign is_excluded = true %}
+                        {% endif %}
+                        {% if child.exclude_urls %}
+                          {% for excl in child.exclude_urls %}
+                            {% if doc.url == excl %}
+                              {% assign is_excluded = true %}
+                            {% endif %}
+                          {% endfor %}
+                        {% else %}
+                          {% if child.exclude_url %}
+                            {% if doc.url == child.exclude_url %}
+                              {% assign is_excluded = true %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                        {% assign pass_layout = true %}
+                        {% if child.layout_filter %}
+                          {% if doc.data.layout != child.layout_filter %}
+                            {% assign pass_layout = false %}
+                          {% endif %}
+                        {% endif %}
+                        {% if url_matches and is_excluded == false and pass_layout %}
+                      {% assign group_doc_active = false %}
+                      {% if page.url == doc.url %}
+                        {% assign group_doc_active = true %}
+                      {% endif %}
+                      <li>
+                        <a href="{{ doc.url | relative_url }}" {% if group_doc_active %}class="active"{% endif %}>
+                          {{ doc.title }}
+                        </a>
+                      </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  {% endcase %}
+                {% endfor %}
+
+            {% when 'years' %}
+              {% if item.data_years %}
+                {% comment %}Resolution year links from site.data{% endcomment %}
+                {% assign year_list = site.data[item.data_years] %}
+                {% for year in year_list %}
+                  {% assign is_year_active = false %}
+                  {% if page.url contains year %}
+                    {% assign is_year_active = true %}
+                  {% endif %}
+                  <li>
+                    <a href="/resolutions/{{ year }}/" {% if is_year_active %}class="active"{% endif %}>
+                      {{ year }}
+                    </a>
+                  </li>
+                {% endfor %}
+              {% else %}
+                {% comment %}Posts grouped by year{% endcomment %}
+                {% assign years_docs = site.posts | sort: 'date' | reverse %}
+                {% assign current_year = '' %}
+                {% for doc in years_docs %}
+                  {% assign post_year = doc.date | date: '%Y' %}
+                  {% if post_year != current_year %}
+                    {% unless current_year == '' %}
+                      </ul>
+                    </li>
+                    {% endunless %}
+                    {% assign current_year = post_year %}
+                    {% assign is_year_open = false %}
+                    {% if page.url contains post_year %}
+                      {% assign is_year_open = true %}
+                    {% endif %}
+                    <li>
+                      <span class="layout-sidebar__toggle {% if is_year_open %}open{% endif %}">{{ post_year }}</span>
+                      <ul class="layout-sidebar__nav-items layout-sidebar__subsection {% unless is_year_open %}collapsed{% endunless %}">
+                  {% endif %}
+                  {% assign is_doc_active = false %}
+                  {% if page.url == doc.url %}
+                    {% assign is_doc_active = true %}
+                  {% endif %}
+                  <li>
+                    <a href="{{ doc.url | relative_url }}" {% if is_doc_active %}class="active"{% endif %}>
+                      {{ doc.title }}
+                      <span class="text-[0.6875rem] text-slate-400 dark:text-slate-500 ml-1">{{ doc.date | date: '%d %b' }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+                {% unless current_year == '' %}
+                  </ul>
+                </li>
+                {% endunless %}
+              {% endif %}
+
+            {% endcase %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+  </nav>
+
+  <div class="layout-sidebar__main">
+    {% assign page_title = page.title | default: page.name %}
+    {% if page_title and page.layout != 'member' and page.layout != 'group' %}
+    <header class="layout-sidebar__header">
+      <h1>{{ page_title }}</h1>
+    </header>
+    {% endif %}
+
+    <div class="layout-sidebar__content documentation">
+      {{ content }}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Existing collapsible toggles
+  document.querySelectorAll('.layout-sidebar__toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      this.classList.toggle('open');
+      var subsection = this.nextElementSibling;
+      if (subsection) subsection.classList.toggle('collapsed');
+    });
+  });
+
+  // Standards group toggles (grouped sidebar)
+  document.querySelectorAll('.std-group__toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      var group = this.closest('.std-group');
+      if (group) group.classList.toggle('is-collapsed');
+      this.querySelector('.std-group__caret').classList.toggle('std-group__caret--open');
+    });
+  });
+});
+</script>

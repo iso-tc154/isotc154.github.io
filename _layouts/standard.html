@@ -1,21 +1,126 @@
 ---
-layout: default
+layout: base
 ---
 
-<div class="with-aside">
-  <main>
-    <header>
-      <h1 class="entity">
-        <span class="id">{{ page.name }}</span>
-        <span class="type">standard</span>
-      </h1>
-      <h2 class="headline">{{ page.title }}</h2>
-    </header>
+{% assign iso = page.iso %}
+{% assign tc154 = page.tc154 %}
+{% assign groups = site.data.groups %}
 
-    {{ page.content }}
-  </main>
+<div class="std-page">
 
-  <aside class="standard-list">
-    {% include standards_nav.html active_standard_name=page.name %}
-  </aside>
+  <!-- Back link -->
+  <a href="/standards/" class="std-page__back">
+    {% include icons/chevron-left.html %}
+    All Standards
+  </a>
+
+  <!-- Header / Hero -->
+  <header class="std-page__header">
+    <p class="std-page__label">
+      {% if iso.name %}{{ iso.name }}{% else %}Standard{% endif %}
+      {% if tc154.status == "withdrawn" %} &middot; Withdrawn{% endif %}
+      {% if tc154.status == "under_development" %} &middot; Under development{% endif %}
+      {% if tc154.status == "deleted" %} &middot; Deleted{% endif %}
+    </p>
+
+    <h1 class="std-page__title">{{ iso.title }}</h1>
+
+    <!-- Actions row -->
+    <div class="std-page__actions">
+      {% if iso.name %}
+      {% assign iso_q = iso.name | remove: "ISO" | strip | replace: " ", "+" | replace: ":", "" %}
+      <a href="https://www.iso.org/search/standard/?q={{ iso_q }}"
+         class="std-page__buy"
+         target="_blank"
+         rel="noopener">
+        <img src="/assets/iso-red.svg" alt="ISO" />
+        PREVIEW or BUY
+      </a>
+      {% endif %}
+
+      {% if tc154.group %}
+        {% assign grp = groups[tc154.group] %}
+        {% if grp %}
+        <a href="/groups/{{ tc154.group }}/" class="std-page__badge std-page__badge--link">
+          {{ grp.title }}
+        </a>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <!-- Meta badges -->
+    {% if iso.stage or iso.ics %}
+    <div class="std-page__meta">
+      {% if iso.stage %}
+      <span class="std-page__badge">Stage {{ iso.stage }}</span>
+      {% endif %}
+      {% if iso.ics %}
+      <span class="std-page__badge">ICS {{ iso.ics }}</span>
+      {% endif %}
+      {% if tc154.group %}
+        {% assign grp = groups[tc154.group] %}
+        {% if grp == nil %}
+        <span class="std-page__badge">{{ tc154.group }}</span>
+        {% endif %}
+      {% endif %}
+    </div>
+    {% endif %}
+  </header>
+
+  <!-- Content -->
+  <div class="std-page__content">
+
+    {% if iso.scope %}
+    <section class="std-page__section">
+      <h2 class="std-page__section-heading">Scope</h2>
+      <div class="std-page__body">
+        {{ iso.scope | asciidocify }}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if tc154.introduction or tc154.scope or tc154.purpose or tc154.who_needs or tc154.project_leaders or tc154.corrections or tc154.relevant_changes or tc154.publication_history or tc154.background or tc154.explanation or tc154.related_news or tc154.content %}
+    <section class="std-page__section">
+      <div class="std-page__body">
+        {% if tc154.introduction %}
+        {{ tc154.introduction | asciidocify }}
+        {% endif %}
+        {% if tc154.scope %}
+        {{ tc154.scope | asciidocify }}
+        {% endif %}
+        {% if tc154.purpose %}
+        {{ tc154.purpose | asciidocify }}
+        {% endif %}
+        {% if tc154.who_needs %}
+        {{ tc154.who_needs | asciidocify }}
+        {% endif %}
+        {% if tc154.project_leaders %}
+        {{ tc154.project_leaders | asciidocify }}
+        {% endif %}
+        {% if tc154.corrections %}
+        {{ tc154.corrections | asciidocify }}
+        {% endif %}
+        {% if tc154.relevant_changes %}
+        {{ tc154.relevant_changes | asciidocify }}
+        {% endif %}
+        {% if tc154.publication_history %}
+        {{ tc154.publication_history | asciidocify }}
+        {% endif %}
+        {% if tc154.background %}
+        {{ tc154.background | asciidocify }}
+        {% endif %}
+        {% if tc154.explanation %}
+        {{ tc154.explanation | asciidocify }}
+        {% endif %}
+        {% if tc154.related_news %}
+        {{ tc154.related_news | asciidocify }}
+        {% endif %}
+        {% if tc154.content %}
+        {{ tc154.content | asciidocify }}
+        {% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+  </div>
 </div>

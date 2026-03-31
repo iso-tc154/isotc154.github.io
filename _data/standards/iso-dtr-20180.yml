@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO/DTR 20180
+  type: TR
+  title: Risk-based product quality data interchange in e-commerce
+  stage: '50.92'
+  ics: 35.240.63
+  scope: Risk-based product quality data interchange in e-commerce.
+  publication_date: '0180-01-01'
+tc154:
+  group: wg7
+  status: under_development

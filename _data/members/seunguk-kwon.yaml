@@ -1,0 +1,13 @@
+---
+member-id: seunguk-kwon
+name: Seung Uk Kwon
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+- id: member
+  group: jwg1
+affiliation: KATS, Korea, Republic of

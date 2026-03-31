@@ -1,0 +1,11 @@
+---
+member-id: yang-wu
+name: Yang Wu
+active: true
+roles:
+- id: member
+- id: member
+  group: wg7
+- id: member
+  group: jwg9
+affiliation: SAC, China

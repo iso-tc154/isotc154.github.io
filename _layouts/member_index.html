@@ -1,39 +1,160 @@
 ---
-layout: default
+layout: base
 ---
 
-<section class="leadership">
-  <header>
-    <h2>Leadership</h2>
+<div class="std-layout">
+  <header class="std-layout__header">
+    <h1>{{ page.title }}</h1>
   </header>
 
-  <div class="member-list">
-    {% include member_card.html id=site.data.members.chair %}
+  <div class="std-filter" id="std-filter">
+    <div class="std-filter__search-wrap">
+      <svg class="std-filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="member-search" class="std-filter__search" placeholder="Search members…" autocomplete="off" spellcheck="false" aria-label="Search members" />
+    </div>
+    <div class="std-filter__controls">
+      <div class="std-filter__field" id="member-group-field">
+        <span class="std-filter__label">Group</span>
+        <div class="std-filter__chips" id="member-group-chips">
+          <button class="std-chip is-active" data-group="">All</button>
+          {% assign sorted_groups = site.data.groups_sorted %}
+          {% for group in sorted_groups %}
+            {% unless group.inactive %}
+            <button class="std-chip" data-group="{{ group.id }}">{{ group.name | replace: '&nbsp;', ' ' }}</button>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="std-filter__field">
+        <span class="std-filter__label">Role</span>
+        <div class="std-filter__chips" id="member-role-chips">
+          <button class="std-chip is-active" data-role="">All</button>
+          <button class="std-chip" data-role="chair">Chair</button>
+          <button class="std-chip" data-role="convenor">Convenor</button>
+          <button class="std-chip" data-role="committee_manager">Committee Mgr</button>
+          <button class="std-chip" data-role="technical_programme_manager">TPM</button>
+          <button class="std-chip" data-role="member">Member</button>
+          <button class="std-chip" data-role="observer">Observer</button>
+        </div>
+      </div>
+      <div class="std-filter__field">
+        <div class="std-filter__toggle">
+          <input type="checkbox" id="member-past-toggle" class="std-filter__checkbox">
+          <label for="member-past-toggle" class="std-filter__toggle-label">Include past members</label>
+        </div>
+      </div>
+    </div>
+    <div class="std-filter__meta">
+      <span id="member-count"></span>
+    </div>
+  </div>
 
+  <div class="member-grid" id="member-results">
+    {% comment %} Collect secretariat member IDs to avoid duplicates {% endcomment %}
+    {% assign secretariat_ids = "" %}
+    {% for contact in site.data.secretariat %}
+      {% if contact.member %}
+        {% assign secretariat_ids = secretariat_ids | append: contact.member | append: "," %}
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} Chair {% endcomment %}
+    {% assign chair_member = site.data.members.all[site.data.members.chair] %}
+    {% if chair_member %}
+      {% assign chair_groups = "" %}
+      {% assign chair_roles = "" %}
+      {% for role in chair_member.roles['_all']['in']['_all'] %}
+        {% if role.group and role.to == nil %}
+          {% assign chair_groups = chair_groups | append: role.group | append: "," %}
+        {% endif %}
+        {% if role.to == nil %}
+          {% assign chair_roles = chair_roles | append: role.id | append: "," %}
+        {% endif %}
+      {% endfor %}
+      <div class="member-card" data-name="{{ chair_member.name | downcase }}" data-affiliation="{{ chair_member.affiliation | default: '' }}" data-groups="{{ chair_groups }}" data-roles="{{ chair_roles }}" data-section="leadership" data-status="current" data-org-id="{{ chair_member.affiliation | default: '' | split: ', ' | first | strip | downcase | replace: ' ', '-' }}">
+        {% include member_card.html id=site.data.members.chair affiliation=true %}
+      </div>
+    {% endif %}
+
+    {% comment %} ISO Secretariat {% endcomment %}
+    {% for contact in site.data.secretariat %}
+      {% assign sec_roles = "" %}
+      {% if contact.role contains "Committee Manager" %}{% assign sec_roles = "committee_manager," %}{% endif %}
+      {% if contact.role contains "Technical Programme Manager" %}{% assign sec_roles = "technical_programme_manager," %}{% endif %}
+      {% if contact.member %}
+      <div class="member-card" data-name="{{ site.data.members.all[contact.member].name | downcase }}" data-affiliation="{{ site.data.members.all[contact.member].affiliation | default: '' }}" data-groups="" data-roles="{{ sec_roles }}" data-section="secretariat" data-status="current" data-org-id="{{ site.data.members.all[contact.member].affiliation | default: '' | split: ', ' | first | strip | downcase | replace: ' ', '-' }}">
+        {% include member_card.html id=contact.member affiliation=true %}
+      </div>
+      {% else %}
+      <div class="member-card" data-name="{{ contact.name | downcase }}" data-affiliation="{{ contact.organization | default: '' }}" data-groups="" data-roles="{{ sec_roles }}" data-section="secretariat" data-status="current" data-org-id="">
+        {% include member_card.html member=contact affiliation=true %}
+      </div>
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} Leadership (skip members already shown as chair or secretariat) {% endcomment %}
     {% for member_id in site.data.members.leadership %}
-      {% include member_card.html id=member_id %}
+      {% unless secretariat_ids contains member_id %}
+      {% unless site.data.members.chair == member_id %}
+      {% assign lmember = site.data.members.all[member_id] %}
+      {% if lmember %}
+        {% assign l_groups = "" %}
+        {% assign l_roles = "" %}
+        {% for role in lmember.roles['_all']['in']['_all'] %}
+          {% if role.group and role.to == nil %}
+            {% assign l_groups = l_groups | append: role.group | append: "," %}
+          {% endif %}
+          {% if role.to == nil %}
+            {% assign l_roles = l_roles | append: role.id | append: "," %}
+          {% endif %}
+        {% endfor %}
+        <div class="member-card" data-name="{{ lmember.name | downcase }}" data-affiliation="{{ lmember.affiliation | default: '' }}" data-groups="{{ l_groups }}" data-roles="{{ l_roles }}" data-section="leadership" data-status="current" data-org-id="{{ lmember.affiliation | default: '' | split: ', ' | first | strip | downcase | replace: ' ', '-' }}">
+          {% include member_card.html id=member_id affiliation=true %}
+        </div>
+      {% endif %}
+      {% endunless %}
+      {% endunless %}
     {% endfor %}
-  </div>
-</section>
 
-<section class="current-members">
-  <header>
-    <h2>All current members</h2>
-  </header>
-
-  <div class="member-list">
+    {% comment %} Current Members {% endcomment %}
     {% for member_id in site.data.members.current %}
-      {% include member_card.html id=member_id %}
+      {% assign cmember = site.data.members.all[member_id] %}
+      {% if cmember %}
+        {% assign c_groups = "" %}
+        {% assign c_roles = "" %}
+        {% for role in cmember.roles['_all']['in']['_all'] %}
+          {% if role.group and role.to == nil %}
+            {% assign c_groups = c_groups | append: role.group | append: "," %}
+          {% endif %}
+          {% if role.to == nil %}
+            {% assign c_roles = c_roles | append: role.id | append: "," %}
+          {% endif %}
+        {% endfor %}
+        <div class="member-card" data-name="{{ cmember.name | downcase }}" data-affiliation="{{ cmember.affiliation | default: '' }}" data-groups="{{ c_groups }}" data-roles="{{ c_roles }}" data-section="member" data-status="current" data-org-id="{{ cmember.affiliation | default: '' | split: ', ' | first | strip | downcase | replace: ' ', '-' }}">
+          {% include member_card.html id=member_id affiliation=true %}
+        </div>
+      {% endif %}
     {% endfor %}
-  </div>
-</section>
 
-<section class="past-members">
-  <h2>Past members</h2>
-
-  <div class="member-list">
+    {% comment %} Past Members {% endcomment %}
     {% for member_id in site.data.members.past %}
-      {% include member_card.html id=member_id %}
+      {% assign pmember = site.data.members.all[member_id] %}
+      {% if pmember %}
+        {% assign p_groups = "" %}
+        {% assign p_roles = "" %}
+        {% for role in pmember.roles['_all']['in']['_all'] %}
+          {% if role.group %}
+            {% assign p_groups = p_groups | append: role.group | append: "," %}
+          {% endif %}
+          {% assign p_roles = p_roles | append: role.id | append: "," %}
+        {% endfor %}
+        <div class="member-card member-card--past" data-name="{{ pmember.name | downcase }}" data-affiliation="{{ pmember.affiliation | default: '' }}" data-groups="{{ p_groups }}" data-roles="{{ p_roles }}" data-section="member" data-status="past" style="display:none" data-org-id="{{ pmember.affiliation | default: '' | split: ', ' | first | strip | downcase | replace: ' ', '-' }}">
+          {% include member_card.html id=member_id %}
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
-</section>
+</div>

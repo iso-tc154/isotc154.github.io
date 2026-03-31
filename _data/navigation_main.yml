@@ -1,0 +1,41 @@
+# Main Navigation (Header)
+# Used in _includes/header.html
+
+items:
+  - label: About
+    url: /about/
+    children:
+      - label: About TC 154
+        url: /about/
+      - label: Liaisons
+        url: /liaisons/
+      - label: National Bodies
+        url: /national-bodies/
+      - label: FAQ
+        url: /faq/
+
+  - label: Our Work
+    url: /standards/
+    children:
+      - label: Standards
+        url: /standards/
+      - label: Projects
+        url: /projects/
+      - label: Groups
+        url: /groups/
+
+  - label: Members
+    url: /members/
+
+  - label: News
+    url: /posts/
+
+  - label: Resources
+    url: /procedures/
+    children:
+      - label: Procedures
+        url: /procedures/
+      - label: Resolutions
+        url: /resolutions/
+      - label: Contact
+        url: /contact/
