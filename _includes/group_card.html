@@ -1,9 +1,11 @@
 {% assign group = include.group %}
 
 {% if group.name %}
-  <div class="group-name">{{ group.name }}</div>
+  <div class="page-label" style="font-size: 0.75rem">{{ group.name }}</div>
 {% endif %}
 
-<div class="group-title">{{ group.title }}</div>
+<div class="section-heading">{{ group.title }}</div>
 
-{% include group_labels.html group=group %}
+<div class="meta-text--small">
+  {% include group_labels.html group=group %}
+</div>

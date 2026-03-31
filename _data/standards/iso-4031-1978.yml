@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 4031:1978
+  type: international
+  title: Information interchange — Representation of local time differentials
+  stage: '95.99'
+  ics: 07.100.30
+  scope: Information interchange -- Representation of local time differentials.
+  publication_date: '1978-01-01'
+tc154:
+  group: wg5
+  status: withdrawn

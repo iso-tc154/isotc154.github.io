@@ -1,0 +1,48 @@
+---
+permalink: /national-bodies/
+title: National Bodies
+layout: default
+---
+
+<div style="margin-bottom: 2rem">
+  <p class="meta-text" style="max-width: 48rem">
+    ISO/TC 154 participating members (P-members) are national standards bodies
+    responsible for representing their country's interests in the work of the committee.
+  </p>
+</div>
+
+<div style="margin-bottom: 1.5rem">
+  <span class="detail-badge detail-badge--primary">P-Member — Full voting participation</span>
+</div>
+
+<div class="card-overflow" style="margin-bottom: 1rem">
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; min-width: 0; width: 100%">
+  {% for body in site.data.national_bodies %}
+  <a href="/national-bodies/{{ body.id }}/" class="org-card">
+    <div class="org-card__body">
+      <div class="org-card__logo{% if body.logo %} org-card__logo--img{% endif %}">
+        {% if body.logo and body.logo != "" %}
+          <img src="{{ body.logo }}" alt="{{ body.short_name | default: body.name }}">
+        {% elsif body.iso_country_code %}
+          <span class="org-card__country-code">{{ body.iso_country_code | slice: 0, 2 }}</span>
+        {% else %}
+          <span class="meta-text" style="font-weight: 600; font-size: 0.75rem; text-align: center; line-height: 1.25">{{ body.short_name | default: body.name | slice: 0, 4 }}</span>
+        {% endif %}
+      </div>
+      <div class="org-card__info">
+        <p class="org-card__name">{{ body.name }}</p>
+        <div class="org-card__meta">
+          {% if body.short_name %}
+            <span class="org-card__short-name">{{ body.short_name }}</span>
+          {% endif %}
+          {% if body.iso_country_code %}
+            <span class="org-card__badge org-card__badge--muted">{{ body.iso_country_code }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+
+  </div>
+</div>

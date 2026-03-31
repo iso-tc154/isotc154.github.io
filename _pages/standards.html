@@ -1,31 +1,58 @@
 ---
 permalink: /standards/
 title: Standards
-html_class: standards
-layout: default
+layout: standards_index
 ---
-<div class="with-aside">
-  <main>
-    <h2>International Standards</h2>
 
-    <section>
-      {% assign standards = site.standards | where: "type", "international" %}
-      {% for standard in standards %}
-        {% include standard_item.html standard=standard %}
-      {% endfor %}
-    </section>
-
-    <section>
-      <h2>Technical Specifications</h2>
-
-      {% assign standards = site.standards | where: "type", "TS" %}
-      {% for standard in standards %}
-        {% include standard_item.html standard=standard %}
-      {% endfor %}
-    </section>
-  </main>
-
-  <aside class="standard-list">
-    {% include standards_nav.html %}
-  </aside>
+<div class="std-filter" id="std-filter" data-filter-page="standards">
+  <div class="std-filter__search-wrap">
+    <svg class="std-filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="search" id="std-search" class="std-filter__search" placeholder="Search standards…" autocomplete="off" spellcheck="false" aria-label="Search standards" />
+  </div>
+  <div class="std-filter__controls">
+    <div class="std-filter__field" id="std-wg-field">
+      <span class="std-filter__label">Working group</span>
+      <div class="std-filter__chips" id="std-wg-chips"></div>
+    </div>
+    <div class="std-filter__field">
+      <span class="std-filter__label">Status</span>
+      <div class="std-filter__chips" id="std-status-chips">
+        <button class="std-chip is-active" data-status="">All</button>
+        <button class="std-chip" data-status="published">Published</button>
+        <button class="std-chip" data-status="withdrawn">Withdrawn</button>
+      </div>
+    </div>
+  </div>
+  <div class="std-filter__meta">
+    <span id="std-count"></span>
+  </div>
 </div>
+
+<!-- Static HTML for search engines (replaced by JS on load) -->
+<div id="std-results" class="std-results">
+  {%- for item in site.data.standards_flat -%}
+  <article class="std-results__card">
+    <div class="std-results__name">
+      <a href="/standards/{{ item.sid }}/">{{ item.name }}</a>
+      {% if item.type %}<span class="std-results__type">{{ item.type }}</span>{% endif %}
+    </div>
+    {% if item.title %}<p class="std-results__title">{{ item.title }}</p>{% endif %}
+    <div style="display:flex;gap:0.375rem;align-items:center;margin-top:auto">
+      {% if item.wg %}<span class="std-results__badge">{{ item.wg }}</span>{% endif %}
+      {% if item.is_withdrawn %}<span class="std-badge--withdrawn">Withdrawn</span>{% endif %}
+    </div>
+  </article>
+  {%- endfor -%}
+</div>
+
+<script type="application/json" id="std-data-json">
+[
+{%- for item in site.data.standards_flat -%}
+  {%- unless forloop.first %},{% endunless -%}
+  {"sid":"{{ item.sid }}","name":"{{ item.name | xml_escape }}","title":"{{ item.title | xml_escape }}","wg":"{{ item.wg }}","status":"{% if item.is_withdrawn %}withdrawn{% else %}published{% endif %}","type":"{{ item.type }}"}
+{%- endfor -%}
+]
+</script>

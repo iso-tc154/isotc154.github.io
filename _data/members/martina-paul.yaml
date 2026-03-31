@@ -1,0 +1,17 @@
+---
+member-id: martina-paul
+name: Martina Paul
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+- id: member
+  group: wg7
+- id: member
+  group: wg2
+- id: member
+  group: jwg9
+affiliation: SNV, Switzerland

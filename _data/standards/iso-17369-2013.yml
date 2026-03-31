@@ -1,0 +1,28 @@
+---
+iso:
+  name: ISO 17369:2013
+  type: international
+  title: Statistical data and metadata exchange (SDMX)
+  stage: '90.92'
+  ics: 35.240.01
+  scope: |-
+    ISO 17369:2013 provides an integrated approach to facilitating Statistical Data and Metadata Exchange (SDMX), enabling interoperable implementations within and between systems concerned with the exchange, reporting and dissemination of statistical data and related metadata.
+    ISO 17369:2013 is applicable to any organization that has a need to manage the reporting, exchange and dissemination of its statistical data and related metadata. The information model at the core of ISO 17369:2013 has been developed to support statistics as collected and used by governmental and supra-national statistical organizations, and this model is also applicable to other organizational contexts involving statistical data and related metadata.
+  publication_date: '2013-01-01'
+tc154:
+  group: wg2
+  content: "// more"
+  purpose: Revision of link:/standards/isots-173692005[ISO/TS 17369 - Statistical data and metadata exchange (SDMX)], as an International Standard (IS).
+  scope: |-
+    ISO/TS 17369 was originally published in 2005 as Technical Specification. It specifies a way for Statistical Data and Metadata Exchange (SDMX) in six sections covering the following topics:
+
+    * Framework for SDMX standards;
+    * SDMX information model;
+    * SDMX-ML schema and documentation;
+    * SDMX-EDI syntax and documentation;
+    * an implementer's guide for SDMX; and
+    * SDMX guidelines for the use of web services.
+
+
+    The revision is to extend to include services-oriented exchange architecture and more complete metadata functionality and to convert the document into an International Standard. The revision builds on the existing ISO/TS 17369 and implementations associated with changes proposed for Version 2 in November 2005 via www.sdmx.org. A disposition log of public comments has been maintained.
+  related_news: "* link:/posts/2013-01-01-iso-17369-2013[ISO/TC 154 news: ISO 17369:2013 published!]"

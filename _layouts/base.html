@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+{% include head.html %}
+
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white antialiased">
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation Header -->
+  {% include header.html %}
+
+  <!-- Main Content -->
+  <main id="main-content">
+    {{ content }}
+  </main>
+
+  <!-- Footer -->
+  {% include footer.html %}
+
+  <!-- Vite JavaScript (theme, navigation, animations) -->
+  {% vite_javascript_tag application %}
+</body>
+</html>

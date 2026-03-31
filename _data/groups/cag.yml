@@ -1,0 +1,26 @@
+---
+id: cag
+_id: cag
+name: CAG
+title: Co-ordination Advisory Group
+order: 1
+intro: |
+  The Co-ordination Advisory Group (ISO/TC 154/CAG) advises the TC on the administrative matters.
+
+  The group's membership comprises of the TC 154 chair, committee manager, WG/JWG/JMA conveners and their managers.
+organization:
+  convenors:
+  - pan-wei
+history:
+  leadership:
+  - judy-zhu
+  - klaus-dieter-naujok
+  - shi-yu
+active_projects: []
+standards: []
+_description: |-
+  :page-liquid:
+
+  The group's mandate is to assist in identifying issues and topics that need to be discussed and may even be resolved by the team, or may need to be agenda items for the next upcoming meeting.
+
+  The group's minutes and reports are available internally.

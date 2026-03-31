@@ -1,0 +1,11 @@
+---
+member-id: keongju-choi
+name: Keong Ju Choi
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+affiliation: KATS, Korea, Republic of

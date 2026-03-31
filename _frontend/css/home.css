@@ -1,0 +1,435 @@
+/* ── Homepage Styles ── */
+
+@layer components {
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/img/welcome_illo.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 97, 173, 0.9), rgba(0, 31, 57, 0.85), rgba(0, 46, 86, 0.9));
+  }
+
+  .hero-bg .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(64px);
+    mix-blend-mode: multiply;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .hero-bg .orb-1 {
+    top: 0;
+    left: -1rem;
+    width: 18rem;
+    height: 18rem;
+    background: #3385d6;
+  }
+
+  .hero-bg .orb-2 {
+    top: 0;
+    right: -1rem;
+    width: 18rem;
+    height: 18rem;
+    background: #0061ad;
+    animation-delay: 2s;
+  }
+
+  .hero-bg .orb-3 {
+    bottom: -2rem;
+    left: 5rem;
+    width: 18rem;
+    height: 18rem;
+    background: #66a3e0;
+    animation-delay: 4s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 48rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: #99c2eb;
+    margin-bottom: 2rem;
+  }
+
+  .hero-badge .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero h1 { font-size: 3.75rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .hero h1 { font-size: 4.5rem; }
+  }
+
+  .hero h1 .gradient-text {
+    background: linear-gradient(90deg, #99c2eb, #3385d6, #cce0f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #cce0f5;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 42rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-subtitle { font-size: 1.5rem; }
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: #0061ad;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+    box-shadow: 0 10px 15px -3px rgba(0, 97, 173, 0.25);
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: #005090;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px -3px rgba(0, 97, 173, 0.4);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-indicator svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+
+  /* Section Styles */
+  .section {
+    padding: 5rem 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .section { padding: 5rem 2rem; }
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+
+  @media (min-width: 768px) {
+    .section-title { font-size: 2.5rem; }
+  }
+
+  .dark .section-title { color: #f8fafc; }
+
+  .section-subtitle {
+    text-align: center;
+    color: #64748b;
+    max-width: 42rem;
+    margin: 0 auto 3rem;
+  }
+
+  .dark .section-subtitle { color: #94a3b8; }
+
+  /* Card Grid */
+  .card-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .card-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .card {
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .card:hover .card-icon { transform: scale(1.1); }
+
+  .card-icon svg {
+    width: 2rem;
+    height: 2rem;
+    color: white;
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s;
+  }
+
+  .card p {
+    color: #64748b;
+    margin-bottom: 1rem;
+  }
+
+  .dark .card p { color: #94a3b8; }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #0061ad;
+    transition: gap 0.3s;
+  }
+
+  .dark .card-link { color: #66a3e0; }
+  .card:hover .card-link { gap: 0.75rem; }
+
+  /* News Section */
+  .news-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .news-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .news-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .dark .news-card {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .news-card:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .news-card-content { padding: 1.5rem; }
+
+  .news-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 0.75rem;
+  }
+
+  .dark .news-date { color: #94a3b8; }
+
+  .news-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .news-card h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .news-card h3 a:hover { color: #0061ad; }
+
+  .news-excerpt {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .dark .news-excerpt { color: #94a3b8; }
+
+  /* Connect Section */
+  .connect-grid {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .connect-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .connect-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .dark .connect-card {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .connect-card:hover { border-color: #0061ad; }
+
+  .connect-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    transition: transform 0.3s;
+  }
+
+  .connect-card:hover .connect-icon { transform: scale(1.1); }
+
+  /* Groups Section */
+  .group-card {
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .dark .group-card { border-color: #334155; }
+
+  .group-card:hover {
+    border-color: #0061ad;
+    transform: translateY(-0.25rem);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .group-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0061ad;
+    margin-bottom: 0.5rem;
+  }
+
+  .dark .group-card h3 { color: #66a3e0; }
+}

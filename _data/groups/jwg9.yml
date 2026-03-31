@@ -1,0 +1,24 @@
+---
+id: jwg9
+_id: jwg9
+name: JWG 9
+title: Smart Trade
+order: 9
+scope: |
+  JWG 9 develops international standards for digital trade,
+  smart trade facilitation and cross-border supply chain visibility.
+organization:
+  convenors:
+  - jim-wilson
+  - yan-zhang
+active_projects: []
+standards:
+- ISO 20197-1:2024
+- ISO/AWI 20197-2
+_description: |-
+  :page-liquid:
+
+  == Scope
+
+  Joint Working Group 9 between ISO/TC 154 and UN/CEFACT focuses on
+  developing standards for smart trade and digital trade facilitation.

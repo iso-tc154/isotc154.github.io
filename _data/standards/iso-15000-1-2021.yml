@@ -1,0 +1,22 @@
+---
+iso:
+  name: ISO 15000-1:2021
+  type: international
+  title: 'Electronic business eXtensible Markup Language (ebXML) — Part 1: Messaging service core specification'
+  stage: '90.20'
+  ics: 35.040.50
+  scope: |-
+    This document provides a communication-protocol neutral method for exchanging electronic business messages. It defines specific enveloping constructs supporting reliable, secure delivery of business information. Furthermore, this document defines a flexible enveloping technique, permitting messages to contain payloads of any format type.
+    It specifies each of the following:
+    ?         Messaging model
+    ?         Message pulling and partitioning
+    ?         Processing modes
+    ?         Message packaging
+    ?         Error handling
+    ?         Security module
+    ?         Reliable messaging module
+    This document is applicable to all types of organizations (e.g., commercial enterprises, government agencies, not-for-profit organizations) that exchange documents or data electronically using messaging.
+  publication_date: '2021-01-01'
+tc154:
+  group: wg4
+  related_news: "* link:/posts/2021-01-01-iso-15000-1-2021[ISO/TC 154 news: ISO 15000-1:2021 published!]"

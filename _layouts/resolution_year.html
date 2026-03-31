@@ -1,0 +1,88 @@
+---
+layout: default
+---
+
+<div class="filter-bar">
+  <div class="filter-bar__controls">
+    <div class="filter-bar__field">
+      <label for="resolution-search" class="filter-label">Search</label>
+      <input type="text" id="resolution-search" placeholder="Title, subject, or identifier..." class="filter-input">
+    </div>
+    <div class="filter-bar__field--sm">
+      <label for="resolution-group-filter" class="filter-label">Group</label>
+      <select id="resolution-group-filter" class="filter-select">
+        <option value="">All groups</option>
+        <option value="wg3">WG 3</option>
+        <option value="wg4">WG 4</option>
+        <option value="wg5">WG 5</option>
+        <option value="wg6">WG 6</option>
+        <option value="wg7">WG 7</option>
+        <option value="jwg1">JWG 1</option>
+        <option value="jwg8">JWG 8</option>
+        <option value="jwg9">JWG 9</option>
+        <option value="cag">CAG</option>
+        <option value="7372ma">7372 MA</option>
+      </select>
+    </div>
+    <div class="filter-bar__field--sm">
+      <label for="resolution-type-filter" class="filter-label">Source</label>
+      <select id="resolution-type-filter" class="filter-select">
+        <option value="">All sources</option>
+        <option value="plenary">Plenary</option>
+        <option value="ballot">Ballot</option>
+        <option value="7372ma">7372 MA</option>
+      </select>
+    </div>
+    <div style="padding-bottom: 0.25rem">
+      <span id="resolution-count" class="filter-count"></span>
+    </div>
+  </div>
+</div>
+
+<div class="card-stack card-stack--sm">
+  {% for res in page.resolutions %}
+  {% assign detail_url = "/resolutions/" | append: res.source_type | append: "/" | append: res.source_file | append: "/" | append: res.identifier | append: "/" %}
+  <a href="{{ detail_url }}" class="resolution-card"
+     data-group="{{ res.group_id }}"
+     data-source-type="{{ res.source_type }}"
+     data-searchable="{{ res.identifier | append: ' ' | append: res.title | append: ' ' | append: res.subject | downcase }}">
+
+    <div class="resolution-card__meta">
+      {% if res.identifier %}
+      <span class="identifier-badge">{{ res.identifier }}</span>
+      {% endif %}
+      {% if res.meeting_date %}
+      <span class="meta-text--small">{{ res.meeting_date }}</span>
+      {% endif %}
+      <span class="meta-text--small">
+        {% case res.source_type %}
+          {% when 'plenary' %}Plenary
+          {% when 'ballot' %}Ballot
+          {% when '7372ma' %}7372 MA
+        {% endcase %}
+      </span>
+      {% if res.group_id %}
+      <span class="detail-badge" style="text-transform: uppercase">{{ res.group_id }}</span>
+      {% endif %}
+    </div>
+
+    {% if res.title %}
+    <h3 class="resolution-card__title">{{ res.title }}</h3>
+    {% endif %}
+
+    {% if res.actions.size > 0 %}
+    <p class="resolution-card__summary">
+      {{ res.actions.first.message | strip_newlines | truncate: 200 }}
+    </p>
+    {% endif %}
+
+    {% if res.categories.size > 0 %}
+    <div class="resolution-card__tags">
+      {% for cat in res.categories %}
+      <span class="mini-tag">{{ cat }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </a>
+  {% endfor %}
+</div>

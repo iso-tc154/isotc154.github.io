@@ -1,0 +1,9 @@
+---
+member-id: neda-alipasandi
+name: neda alipasandi
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+affiliation: INSO, Iran

@@ -1,45 +1,32 @@
 ---
 permalink: /posts/
 title: News & Articles
-html_class: news
 layout: default
 excerpt: ""
 ---
-<div class="with-aside">
-  <main>
-    {% assign posts = site.posts | sort: "date" | reverse %}
-    {% for post in posts %}
-      <article class="post {% if forloop.first %}latest{% endif %}">
-        <h3 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
 
-        {% if forloop.first %}
-          {% assign excerpt_length = post.excerpt | size %}
-          {% assign content_length = post.content | size %}
+{% assign posts = site.posts | sort: "date" | reverse %}
+{% for post in posts %}
+<article class="news-card" style="margin-bottom: 1.5rem">
+  <div class="news-card-content">
+    <div class="news-date">
+      {% include icons/calendar.html %}
+      {{ post.date | date_to_long_string }}
+    </div>
+    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4">
+      <a href="{{ post.url }}" class="primary-link" style="font-size: inherit; font-weight: inherit">{{ post.title }}</a>
+    </h3>
 
-          <div class="excerpt">
-            {{ post.excerpt }}
-          </div>
+    {% if forloop.first %}
+      <div class="prose prose-slate dark:prose-invert max-w-none" style="font-size: 0.875rem; margin-bottom: 1rem">
+        {{ post.excerpt }}
+      </div>
+    {% endif %}
 
-          <footer>
-            <span class="date">{{ post.date | date_to_long_string }}</span>
-            &emsp;
-            {% if post.excerpt and excerpt_length < content_length %}
-              <a class="permalink more" href="{{ post.url }}">Continue reading &rarr;</a>
-            {% else %}
-              <a class="permalink" href="{{ post.url }}">Permalink</a>
-            {% endif %}
-          </footer>
-
-        {% else %}
-          <footer>
-            <span class="date">
-              {{ post.date | date_to_long_string }}
-            </span>
-            &emsp;
-            <a class="permalink more" href="{{ post.url }}">Continue reading &rarr;</a>
-          </footer>
-        {% endif %}
-      </article>
-    {% endfor %}
-  </main>
-</div>
+    <a href="{{ post.url }}" class="card-link" style="font-size: 0.875rem">
+      Read More
+      {% include icons/arrow-right.html %}
+    </a>
+  </div>
+</article>
+{% endfor %}

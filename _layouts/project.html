@@ -1,21 +1,49 @@
 ---
-layout: default
+layout: base
 ---
 
-<div class="with-aside">
-  <main>
-    <header>
-      <h1 class="entity">
-        <span class="id">{{ page.name }}</span>
-        <span class="type">project</span>
-      </h1>
-      <h2 class="headline">{{ page.title }}</h2>
-    </header>
+{% assign project = page.project %}
 
-    {{ page.content }}
-  </main>
+<div class="std-page">
 
-  <aside class="project-list">
-    {% include projects_nav.html active_project_id=page.id %}
-  </aside>
+  <!-- Back link -->
+  <a href="/projects/" class="std-page__back">
+    {% include icons/chevron-left.html %}
+    All Projects
+  </a>
+
+  <!-- Header / Hero -->
+  <header class="std-page__header">
+    <p class="std-page__label">
+      {% if project.name %}{{ project.name }}{% else %}Project{% endif %}
+      {% if project.status == "current" %} &middot; Current{% endif %}
+      {% if project.status == "new" %} &middot; New{% endif %}
+    </p>
+
+    <h1 class="std-page__title">{{ page.title }}</h1>
+
+    <!-- Meta badges -->
+    <div class="std-page__meta">
+      {% if project.stage %}
+      <span class="std-page__badge">Stage {{ project.stage }}</span>
+      {% endif %}
+      {% if project.status %}
+      <span class="std-page__badge{% if project.status == 'new' %} std-page__badge--draft{% endif %}">{{ project.status | capitalize }}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="std-page__content">
+
+    {% if project.scope %}
+    <section class="std-page__section">
+      <h2 class="std-page__section-heading">Scope</h2>
+      <div class="std-page__body">
+        {{ project.scope | asciidocify }}
+      </div>
+    </section>
+    {% endif %}
+
+  </div>
 </div>

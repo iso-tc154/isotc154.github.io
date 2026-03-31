@@ -1,0 +1,80 @@
+---
+iso:
+  name: ISO 8601-1:2019/Amd 1:2022
+  type: international
+  title: 'Date and time — Representations for information interchange — Part 1: Basic rules — Amendment 1: Technical corrections'
+  publication_date: 2022-10-25
+  stage: '60.60'
+  ics: 01.140.30
+tc154:
+  group: wg5
+  introduction: |-
+    The published version of ISO 8601-1:2019 contained a number of technical errors
+    introduced by the ISO publication process. ISO/TC 154/WG 5 has alerted ISO/CS about those problems during the publication process, but due to how the process
+    proceeds, WG 5 was not allowed to fix them.
+
+    CalConnect therefore proposed Amd 1 to fix these issues.
+
+    This amendment achieves the following goals with regards to ISO 8601-1:2019:
+
+    . Corrects technical errors introduced by the ISO publication process in
+    ISO 8601-1:2019.
+
+    . Correction in newly discovered errors in NOTEs and EXAMPLEs.
+
+    . Clarification of representation between time scale unit and instant
+
+    . Definition and usage of "Ending of day" (re-introduction)
+
+    Clarifies that the ISO 8601-1 representations are used for representing a
+    time scale unit (with a duration) as well as an instant (with no duration).
+  corrections: |-
+    Corrections in this document apply to the follow clauses in ISO 8601-1:2019:
+
+    * 3.1.1.24, Note 2 to entry
+    * 3.1.2.15, Note 1 to entry
+    * 4.2.2, NOTE
+    * 4.2.3, first paragraph
+    * 4.3.2, add second paragraph
+    * 4.3.2, third paragraph
+    * 4.3.11, add first paragraph
+    * 4.3.12, add first paragraph
+    * 5.3.1.4, second paragraph
+    * 5.5.1, fourth paragraph
+  background: |-
+    ISO 8601:2000 and ISO 8601:2004 provides representations of the following concepts
+    "beginning of day", which is a "representation" of the event of "start of day"
+    Using "00:00:00"
+    "end of day", which is a "representation" of the event of "end of day"
+    Using "24:00:00"
+
+    ISO 8601-1:2019 removed the representation of "end of day", Amd 1 reinstates it
+    (in a different way).
+
+    ISO 8601:2000 and 2004 provides representations of the following concepts
+
+    * "beginning of day", a "representation" of the "start of day" instant using "00:00:00"
+    * "end of day", a "representation" of the "end of day" instant using "24:00:00"
+
+    ISO 8601-1:2019 kept "beginning of day" but removed "end of day" (will be explained in a later slide)
+
+    German legal system determines that the end of the day != the beginning of the next day
+    e.g., expiry date of 2022-04-05 means until 2022-04-05 24:00:00, not 2022-04-06 00:00:00
+    Removal of "24:00:00" caused some impact in usage circles (W3C XML, ISO 20022…)
+    Decided to reinstate this concept
+  representation: |-
+    ISO 8601-1 syntax refers to time scale units, but also two special instants that
+    are not units.
+
+    ISO 8601-1 provides:
+    "representations" = references to a particular year, month, day, hour, minute, second, etc.
+    a special representation for "beginning of a day" and "end of a day".
+
+
+    These are technically two different things:
+    (1) is a representation of a time scale unit (refers to a durational unit at a point in time)
+    (2) is a representation of a concept ("beginning/end of day"), or an instant
+  relevant_changes: |-
+    * 5.3.2, title
+    * 5.3.2, replace clause
+  related_news: "* link:/posts/2022-10-25-iso-8601-1-2019[ISO/TC 154 news: ISO 8601-1:2019/Amd 1:2022 published!]"

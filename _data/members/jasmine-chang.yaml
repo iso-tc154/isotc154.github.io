@@ -1,0 +1,37 @@
+---
+member-id: jasmine-chang
+picture: jasmine-chang.jpg
+name: Jasmine Jaegyong Chang
+roles:
+- id: convenor
+  from:
+    date: 2014-10-24
+    precision: day
+  group: wg6
+- id: project_leader
+  project: 19626-1
+- id: project_leader
+  project: 19626-2
+- id: member
+  group: wg5
+- id: member
+  group: wg7
+- id: member
+  group: jwg1
+- id: member
+  group: cag
+active: true
+affiliation: KATS, Korea, Republic of
+links:
+- url: https://www.linkedin.com/in/jasmine-jaegyong-chang-27b94024/
+  title: LinkedIn
+bio: |-
+  Jasmine is Convener of ISO/TC 154 WG6 and project leader of ISO 19626.
+
+  Experienced expert with a demonstrated history of working in the
+  government relations ICT industry. Skilled in Paperless projects in
+  global supply chain, Digital Preservation, Document Management,
+  Strategy, and Enterprise Content Management. Strong community and
+  social services professional with a PhD in Management Engineering
+  from KAIST and MA, BA focused in Library and Information Science
+  from Yonsei University.

@@ -1,0 +1,13 @@
+---
+member-id: jenny-hertzfeldt
+name: Jenny Hertzfeldt
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg7
+- id: member
+  group: jwg1
+affiliation: DIN, Germany

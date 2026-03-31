@@ -1,45 +1,105 @@
 {% assign group_id = include.in_group | default: "_all" %}
 {% assign role_id = include.with_id | default: "_all" %}
-{% assign roles = include.roles[role_id].in[group_id] %}
+{% assign role_id_data = include.roles[role_id] %}
+{% assign roles_in = role_id_data['in'] %}
+{% assign roles = roles_in[group_id] %}
 {% assign num_roles = roles | size %}
 
-<span class="roles">
+{% comment %}Map role IDs to proper display titles{% endcomment %}
+{% assign role_chair = "Chair" %}
+{% assign role_convenor = "Convenor" %}
+{% assign role_member = "Member" %}
+{% assign role_manager = "Manager" %}
+{% assign role_project_leader = "Project Leader" %}
+{% assign role_committee_manager = "Committee Manager" %}
+{% assign role_observer = "Observer" %}
+{% assign role_document_monitor = "Document Monitor" %}
+{% assign role_liaison = "Liaison" %}
+
+<span class="roles" style="display: inline-flex; flex-wrap: wrap; gap: 0.25rem">
   {% if num_roles > 0 %}
-    {% for role in roles %}
-      <span class="role" title="{{ role_title }}">
-
-        {% assign role_title = role.id | default: role | replace: '_', ' ' %}
-        <span class="role-title">
+    {% if include.in_group %}
+      {% comment %}Inside a specific group — show each role individually{% endcomment %}
+      {% for role in roles %}
+        {% unless role.id == 'project_leader' %}
+        {% assign raw_id = role.id | default: role | replace: '_', ' ' %}
+        {% case role.id %}
+          {% when 'chair' %}{% assign role_title = role_chair %}
+          {% when 'convenor' %}{% assign role_title = role_convenor %}
+          {% when 'member' %}{% assign role_title = role_member %}
+          {% when 'manager' %}{% assign role_title = role_manager %}
+          {% when 'project_leader' %}{% assign role_title = role_project_leader %}
+          {% when 'committee_manager' %}{% assign role_title = role_committee_manager %}
+          {% when 'observer' %}{% assign role_title = role_observer %}
+          {% when 'document_monitor' %}{% assign role_title = role_document_monitor %}
+          {% when 'liaison' %}{% assign role_title = role_liaison %}
+          {% when 'partner' %}{% assign role_title = 'Partner' %}
+          {% else %}{% assign role_title = raw_id | capitalize %}
+        {% endcase %}
+        <span class="role-badge {% if role.to == nil %}role-badge--active{% endif %}"
+          title="{{ role_title }}">
           {% if role.to %}{% unless include.show_history %}past {% endunless %}{% endif %}{{ role_title }}
-        </span>
-
-        {% unless include.in_group or role.group == nil %}
-          <a class="group" href="{{ "/groups/" | append: role.group | relative_url }}">({{ role.group }})</a>
-        {% endunless %}
-        {% unless include.in_project or role.project == nil %}
-          <span class="project">({{ role.project }})</span>
-        {% endunless %}
-
-        {% if include.in_group or include.show_history %}
-          {% if role.from or role.to %}
-            <span class="time-period">
-              {% if role.from %}
-                since {% include date_with_precision.html date=role.from %}
-              {% endif %}
-              {% if role.to %}
-                until {% include date_with_precision.html date=role.to %}
-              {% endif %}
-            </span>
+          {% if include.show_history %}
+            {% if role.from or role.to %}
+              <span class="role-badge__date">
+                {% if role.from %}{% include date_with_precision.html date=role.from %}{% endif %}
+                {% if role.to %}&ndash; {% include date_with_precision.html date=role.to %}{% endif %}
+              </span>
+            {% endif %}
           {% endif %}
+        </span>
+        {% endunless %}
+      {% endfor %}
+    {% else %}
+      {% comment %}Not in a specific group — consolidate by role type{% endcomment %}
+      {% assign seen_ids = "" %}
+      {% for role in roles %}
+        {% if role.id != 'project_leader' and seen_ids contains role.id == false %}
+          {% assign seen_ids = seen_ids | append: role.id | append: "," %}
+          {% case role.id %}
+            {% when 'chair' %}{% assign role_title = role_chair %}
+            {% when 'convenor' %}{% assign role_title = role_convenor %}
+            {% when 'member' %}{% assign role_title = role_member %}
+            {% when 'manager' %}{% assign role_title = role_manager %}
+            {% when 'project_leader' %}{% assign role_title = role_project_leader %}
+            {% when 'committee_manager' %}{% assign role_title = role_committee_manager %}
+            {% when 'observer' %}{% assign role_title = role_observer %}
+            {% when 'document_monitor' %}{% assign role_title = role_document_monitor %}
+            {% when 'liaison' %}{% assign role_title = role_liaison %}
+            {% when 'partner' %}{% assign role_title = 'Partner' %}
+            {% else %}{% assign role_title = role.id | replace: '_', ' ' | capitalize %}
+          {% endcase %}
+          {% assign role_groups_str = "" %}
+          {% for r2 in roles %}
+            {% if r2.id == role.id and r2.group %}
+              {% assign g_name = "" %}
+              {% for g in site.groups %}
+                {% if g._id == r2.group %}
+                  {% assign g_name = g.name %}
+                {% endif %}
+              {% endfor %}
+              {% if g_name == "" %}
+                {% assign g_name = r2.group | upcase %}
+              {% endif %}
+              {% if role_groups_str == "" %}
+                {% assign role_groups_str = g_name %}
+              {% else %}
+                {% assign role_groups_str = role_groups_str | append: ", " | append: g_name %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          <span class="role-badge {% if role.to == nil %}role-badge--active{% endif %}"
+            title="{{ role_title }}{% if role_groups_str != "" %}: {{ role_groups_str }}{% endif %}">
+            {% if role.to %}{% unless include.show_history %}past {% endunless %}{% endif %}{{ role_title }}{% if role_groups_str != "" %}<span style="margin-left: 0.25rem; opacity: 0.75">{{ role_groups_str }}</span>{% endif %}
+          </span>
         {% endif %}
-      </span>
-    {% endfor %}
-
+      {% endfor %}
+    {% endif %}
   {% else %}
     {% if member.is_current %}
-      <span class="role">Member</span>
+      <span class="role-badge">Member</span>
     {% elsif member.id %}
-      <span class="role">Past member</span>
+      <span class="role-badge">Past member</span>
     {% endif %}
   {% endif %}
 </span>

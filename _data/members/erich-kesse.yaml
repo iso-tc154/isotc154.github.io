@@ -1,0 +1,9 @@
+---
+member-id: erich-kesse
+name: Erich Kesse
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+affiliation: BSI, United Kingdom

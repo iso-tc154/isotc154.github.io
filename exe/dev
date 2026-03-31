@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+if which overmind >/dev/null; then
+  overmind start -f Procfile.dev
+elif which foreman >/dev/null; then
+  foreman start -f Procfile.dev
+else
+  echo "Install overmind or foreman to start the dev server:"
+  echo "  brew install overmind"
+  echo "  gem install foreman"
+  echo ""
+  echo "Or run manually in two terminals:"
+  echo "  Terminal 1: bin/vite dev"
+  echo "  Terminal 2: bin/jekyll-vite wait && bundle exec jekyll serve --livereload"
+fi

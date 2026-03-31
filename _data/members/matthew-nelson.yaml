@@ -1,0 +1,9 @@
+---
+member-id: matthew-nelson
+name: Matthew Nelson
+active: true
+roles:
+- id: member
+- id: member
+  group: wg2
+affiliation: BSI, United Kingdom

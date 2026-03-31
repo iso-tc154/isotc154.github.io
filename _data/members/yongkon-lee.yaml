@@ -1,0 +1,17 @@
+---
+member-id: yongkon-lee
+name: Yongkon Lee
+roles:
+- id: member
+  group: wg7
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+- id: member
+  group: jwg1
+- id: member
+  group: cag
+active: true
+affiliation: KATS, Korea, Republic of
+bio: Yongkon Lee is the project leader of TSEM.

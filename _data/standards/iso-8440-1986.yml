@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 8440:1986
+  type: international
+  title: Location of codes in trade documents
+  stage: '90.93'
+  ics: 01.140.30
+  scope: Specification of the location of document and field code designation and coded data entries in documents used in international trade. Suitable for automatic data processing (ADP) systems. Based on a Recommendation adopted by the Working Party on Facilitation of International Trade Procedures of the United Nations Economic Commission for Europe (UNECE).
+  publication_date: '1986-01-01'
+tc154:
+  group: wg4
+  related_news: "* link:/posts/1986-01-01-iso-8440-1986[ISO/TC 154 news: ISO 8440:1986 published!]"

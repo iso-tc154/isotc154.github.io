@@ -1,0 +1,9 @@
+---
+member-id: xiantang-sun
+name: Xiantang SUN
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+affiliation: SAC, China

@@ -1,5 +1,5 @@
 ---
-layout: event_subpage
+layout: default
 permalink: "/39th-plenary/surroundings/places/"
 event_id: 39th_plenary
 title: Places to visit

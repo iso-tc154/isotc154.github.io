@@ -1,16 +1,7 @@
-<article class="project">
-
+<article class="item-card">
   <h2 class="name">
-    {% if include.project.revision %}
-      Revision of
-    {% endif %}
+    {% if include.project.revision %}Revision of {% endif %}
     <a href="{{ include.project.url }}">{{ include.project.name }}</a>
   </h2>
-
   <p class="title">{{ include.project.title }}</p>
-
-  <!-- <div class="excerpt">
-    {{ include.project.excerpt }}
-  </div> -->
-
 </article>

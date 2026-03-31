@@ -1,0 +1,20 @@
+{%- comment -%}
+  Format a date according to its precision level.
+  Usage: {% include date_with_precision.html date=date_obj default_precision="day" %}
+  date_obj: { date: "2019-03-25", precision: "day" } or a Jekyll Date object
+{%- endcomment -%}
+
+{%- assign d = include.date -%}
+{%- assign precision = d.precision | default: include.default_precision | default: "day" -%}
+
+{%- if d.date -%}
+  {%- assign d = d.date -%}
+{%- endif -%}
+
+{%- if precision == "year" -%}
+  {{ d | date: "%Y" }}
+{%- elsif precision == "month" -%}
+  {{ d | date: "%B %Y" }}
+{%- else -%}
+  {{ d | date: "%B %d, %Y" }}
+{%- endif -%}

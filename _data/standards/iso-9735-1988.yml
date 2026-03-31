@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 9735:1988
+  type: international
+  title: Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules
+  stage: '95.99'
+  ics: 35.240.63
+  scope: This International Standard gives syntax rules for the preparation of messages to be interchanged between partners in the fields of administration, commerce and transport.
+  publication_date: '1988-01-01'
+tc154:
+  group: jwg1
+  status: withdrawn

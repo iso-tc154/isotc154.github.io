@@ -1,0 +1,58 @@
+name: sync_iso_data
+
+on:
+  schedule:
+    # Run every Monday at 02:00 UTC
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force re-sync even if no changes detected'
+        required: false
+        default: 'false'
+
+# Set permissions for PR creation
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          cache-version: sync-v1
+
+      - name: Run ISO data sync
+        id: sync
+        run: |
+          ruby scripts/sync_iso_open_data.rb
+          echo "changed=$?" >> $GITHUB_OUTPUT
+
+      - name: Create PR if changes
+        if: ${{ steps.sync.outputs.changed == '1' || github.event.inputs.force == 'true' }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: sync ISO Open Data'
+          title: 'chore: update ISO Open Data'
+          body: |
+            ## Summary
+
+            Auto-generated PR from ISO Open Data sync (weekly cron).
+
+            Updated `iso.stage`, `iso.publication_date`, and/or `iso.ics` fields
+            where newer data was found on iso.org.
+
+            Review the changes before merging.
+          branch: chore/sync-iso-data
+          delete-branch: true
+          add-paths: '_data/standards/*.yml'

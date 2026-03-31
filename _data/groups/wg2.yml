@@ -1,0 +1,24 @@
+---
+id: wg2
+_id: wg2
+name: WG 2
+title: Supply chain
+order: 2
+scope: |
+  WG 2 develops and maintains standards related to supply chain
+  data and processes, including cross-industry supply chain
+  interoperability.
+organization:
+  convenors:
+  - glenn-tice
+active_projects: []
+standards:
+- ISO 17369:2013
+- ISO/DIS 17369
+- ISO/TS 17369:2005
+_description: |-
+  :page-liquid:
+
+  == Members
+
+  The group members are managed through the TC 154 membership system.

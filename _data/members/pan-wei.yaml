@@ -1,0 +1,24 @@
+---
+member-id: pan-wei
+name: Pan Wei
+picture: pan-wei.jpg
+active: true
+roles:
+- id: chair
+  from:
+    date: 2026-01-20
+    precision: month
+- id: convenor
+  group: cag
+  from:
+    date: 2026-01-20
+    precision: month
+affiliation: SAC, China
+links:
+- url: https://www.linkedin.com/in/pan-wei-4aa117aa/
+  title: LinkedIn
+bio: |-
+  Pan (Megan) Wei is the Chair of ISO/TC 154 and the Convenor of the Co-ordination
+  Advisory Group (CAG).
+
+  She is Associate Professor at the Standards Evaluation Department of CNIS.

@@ -1,0 +1,9 @@
+---
+member-id: tomas-lundstrom
+name: Tomas Lundstrøm
+active: true
+roles:
+- id: member
+- id: member
+  group: jwg9
+affiliation: DS, Denmark

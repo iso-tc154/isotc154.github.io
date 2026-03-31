@@ -1,0 +1,162 @@
+/* ── Layout Helpers ───────────────────────────────── */
+
+@layer components {
+  .layout-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .layout-sidebar { flex-direction: row; }
+  }
+  .layout-sidebar__main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .layout-grid-2-1 {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 1024px) {
+    .layout-grid-2-1 { grid-template-columns: 2fr 1fr; }
+  }
+
+  .layout-grid-collab {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .layout-grid-collab { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .card-stack--sm { gap: 0.75rem; }
+
+  .card-overflow {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .member-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    grid-auto-rows: 92px;
+  }
+  @media (min-width: 1024px) {
+    .member-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Grouped Standards Navigation ── */
+  .std-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .std-group__toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.1875rem 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #0061ad;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: color 0.1s;
+  }
+  .dark .std-group__toggle { color: #66a3e0; }
+  .std-group__toggle:hover { color: #004a82; }
+  .dark .std-group__toggle:hover { color: #99c2eb; }
+  .std-group__toggle.active { color: #004a82; font-weight: 700; }
+  .dark .std-group__toggle.active { color: #99c2eb; }
+
+  .std-group__caret {
+    font-size: 0.625rem;
+    color: #94a3b8;
+    transition: transform 0.15s;
+    flex-shrink: 0;
+    line-height: 1;
+    display: inline-block;
+    width: 0.75rem;
+    text-align: center;
+  }
+  .std-group__caret--open { transform: rotate(90deg); }
+
+  .std-group__name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .std-group__children {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 0.875rem;
+  }
+  .std-group:not(.is-collapsed) .std-group__children { display: block; }
+
+  .std-group__child { margin: 0; }
+  .std-group__child > a {
+    display: block;
+    padding: 0.1875rem 0.25rem;
+    font-size: 0.75rem;
+    color: #475569;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: color 0.1s, background 0.1s;
+  }
+  .dark .std-group__child > a { color: #94a3b8; }
+  .std-group__child > a:hover { color: #0061ad; background: #f1f5f9; }
+  .dark .std-group__child > a:hover { color: #99c2eb; background: rgb(255 255 255 / 0.05); }
+  .std-group__child > a.active { color: #0061ad; font-weight: 500; }
+  .dark .std-group__child > a.active { color: #99c2eb; }
+
+  /* Withdrawn */
+  .std-group__child.is-withdrawn > a,
+  .std-group__toggle.is-withdrawn {
+    color: #9ca3af;
+    font-style: italic;
+    text-decoration: line-through;
+    text-decoration-color: #d1d5db;
+    pointer-events: none;
+  }
+  .dark .std-group__child.is-withdrawn > a,
+  .dark .std-group__toggle.is-withdrawn {
+    color: #64748b;
+    text-decoration-color: #334155;
+  }
+
+  /* Badges */
+  .std-badge {
+    display: inline-block;
+    font-size: 0.5625rem;
+    font-weight: 600;
+    padding: 0.0625rem 0.25rem;
+    border-radius: 0.1875rem;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .std-badge--amendment { background: #fef3c7; color: #92400e; }
+  .dark .std-badge--amendment { background: rgb(120 53 15 / 0.3); color: #fde68a; }
+  .std-badge--withdrawn { background: #f3f4f6; color: #6b7280; }
+  .dark .std-badge--withdrawn { background: rgb(75 85 99 / 0.2); color: #9ca3af; }
+
+  /* Withdrawn-only groups separator */
+  .std-group--withdrawn {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f1f5f9;
+  }
+  .dark .std-group--withdrawn { border-top-color: rgb(255 255 255 / 0.06); }
+}

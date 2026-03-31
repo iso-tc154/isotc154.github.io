@@ -2,153 +2,191 @@
 layout: default
 ---
 
-<header class="wg-summary">
-  <h2 class="entity {% if page.inactive %}inactive-group{% endif %}">
-    {% if page.name %}<span class="id">{{ page.name }}</span>{% endif %}
+{% assign group = page.group | default: page %}
+{% assign group_id = page.group_id | default: page._id %}
+{% assign group_data = site.data.groups[group_id] %}
+{% assign gs = site.data.group_standards[group_id] %}
 
-    <span class="type {% if page.inactive %}inactive-group{% endif %}">{%- include group_labels.html group=page -%}</span>
-  </h2>
-
-  <h1 class="headline">{{ page.title }}</h1>
-
-  {% if page.intro %}
-    <section class="group-intro">
-      {{ page.intro | asciidocify }}
-    </section>
+<!-- Group Header -->
+<div style="margin-bottom: 2rem">
+  {% if group.name %}
+  <span class="page-label">{{ group.name }}</span>
   {% endif %}
-</header>
+  {% if group.inactive %}
+  <span class="detail-badge" style="margin-left: 0.5rem">Inactive</span>
+  {% endif %}
+  <h1 class="page-title" style="margin-top: 0.5rem; margin-bottom: 1rem">{{ group.title }}</h1>
 
-<aside>
-  <div class="scope-and-leadership">
-    {% if page.scope %}
-      <section class="scope">
-        <h2>Scope</h2>
-
-        <div class="text">
-          {{ page.scope | asciidocify }}
-        </div>
-      </section>
-    {% endif %}
-
-    {% assign convenors = page.organization.convenors | default: site.data.groups[page._id].convenors %}
-    {% assign managers = page.organization.managers | default: site.data.groups[page._id].managers %}
-    {% assign members = page.organization.members | default: site.data.groups[page._id].members %}
-    {% assign num_members = convenors | add: managers | add: members | size %}
-    {% if num_members > 0 %}
-      <section class="leadership">
-        <h2>Current organization</h2>
-
-        <div class="member-list">
-          {% for member_id in convenors %}
-            {% include member_card.html role="convenor" id=member_id affiliation=true in_group=page._id %}
-          {% endfor %}
-          {% for member_id in managers %}
-            {% include member_card.html role="manager" id=member_id affiliation=true in_group=page._id %}
-          {% endfor %}
-          {% for member_id in members %}
-            {% include member_card.html role="member" id=member_id affiliation=true in_group=page._id %}
-          {% endfor %}
-        </div>
-      </section>
-    {% endif %}
+  {% if group.intro %}
+  <div style="max-width: 65rem; margin-bottom: 1rem">
+    {{ group.intro | asciidocify }}
   </div>
+  {% endif %}
+</div>
 
-  <div class="activities">
-    {% if page.standards %}
-      <section class="standards">
-        <h2>Standards</h2>
+<!-- Scope -->
+{% if group.scope %}
+<div style="max-width: 65rem; margin-bottom: 2.5rem">
+  <h2 class="section-heading" style="margin-bottom: 1rem">Scope</h2>
+  <div class="prose prose-slate dark:prose-invert max-w-none">
+    {{ group.scope | asciidocify }}
+  </div>
+</div>
+{% endif %}
 
-        <div class="standard-list">
-          {% for standard_name in page.standards %}
-            {% include standard_card.html name=standard_name %}
-          {% endfor %}
-        </div>
-      </section>
-    {% endif %}
+<!-- Standards -->
+{% if gs %}
+<section style="margin-bottom: 3rem">
+  <h2 class="section-heading" style="margin-bottom: 1.5rem">Standards</h2>
 
-    {% if page.active_projects %}
-      <section class="active-projects">
-        <h2>Active projects</h2>
+  {% if gs.series.size > 0 %}
+  <div style="margin-bottom: 2rem">
+    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem">Series</h3>
+    {% for series in gs.series %}
+    <div style="margin-bottom: 1.25rem">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem">
+        <span style="font-size: 0.9375rem; font-weight: 600; color: #0061ad">{{ series.base_key }}</span>
+        {% if series.has_withdrawn and series.has_published == false %}
+        <span class="detail-badge">Withdrawn</span>
+        {% endif %}
+      </div>
+      <div class="card-stack card-stack--sm">
+        {% for item in series.items %}
+        {% include standard_card.html name=item.name id=item.sid %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
 
-        <div class="project-list">
-          {% for project_id in page.active_projects %}
+  {% if gs.individual.size > 0 %}
+  <div>
+    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem">Individual Standards</h3>
+    <div class="card-stack card-stack--sm">
+      {% for item in gs.individual %}
+      {% include standard_card.html name=item.name id=item.sid %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+
+<!-- Collaborative Parties -->
+{% if group.collaborative_parties %}
+<section style="margin-bottom: 3rem">
+  <h2 class="section-heading" style="margin-bottom: 1.5rem">Collaborative Parties</h2>
+  <div class="layout-grid-collab">
+    {% for party in group.collaborative_parties %}
+    <div class="content-panel">
+      <h3 class="content-panel__heading">{{ party.entity_name }}</h3>
+      <div class="prose prose-slate dark:prose-invert max-w-none" style="font-size: 0.875rem; margin-bottom: 1rem">
+        {{ party.description | asciidocify }}
+      </div>
+      {% if party.projects %}
+      <div>
+        <p class="meta-text" style="margin-bottom: 0.5rem">Current collaborative projects:</p>
+        <div class="card-stack card-stack--sm">
+          {% for project_id in party.projects %}
             {% include project_card.html id=project_id %}
           {% endfor %}
         </div>
-      </section>
-    {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
   </div>
-</aside>
+</section>
+{% endif %}
 
-<main>
-  <section class="group-info">
+<!-- Members -->
+{% assign convenors = group_data.convenors %}
+{% assign managers = group_data.managers %}
+{% assign members = group_data.members %}
+{% assign total_members = convenors.size | plus: managers.size | plus: members.size %}
+
+{% if total_members > 0 %}
+<section style="margin-bottom: 3rem">
+  <h2 class="section-heading" style="margin-bottom: 1.5rem">Members</h2>
+
+  {% if convenors.size > 0 %}
+  <div style="margin-bottom: 1.5rem">
+    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem">Convenors</h3>
+    <div class="member-grid">
+      {% for member_id in convenors %}
+        <div class="member-card">{% include member_card.html id=member_id role="convenor" affiliation=true in_group=group_id %}</div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if managers.size > 0 %}
+  <div style="margin-bottom: 1.5rem">
+    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem">Managers</h3>
+    <div class="member-grid">
+      {% for member_id in managers %}
+        <div class="member-card">{% include member_card.html id=member_id role="manager" affiliation=true in_group=group_id %}</div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if members.size > 0 %}
+  <div>
+    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem">Members</h3>
+    <div class="member-grid">
+      {% for member_id in members %}
+        <div class="member-card">{% include member_card.html id=member_id affiliation=true in_group=group_id %}</div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+
+<!-- History -->
+{% if group.history %}
+<section style="margin-bottom: 3rem">
+  <h2 class="section-heading" style="margin-bottom: 1.5rem">History</h2>
+
+  {% if group.history.story %}
+  <div style="max-width: 65rem; margin-bottom: 1.5rem">
+    <div class="prose prose-slate dark:prose-invert max-w-none">
+      {{ group.history.story | asciidocify }}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if group.history.leadership %}
+  <div style="margin-bottom: 1.5rem">
+    <h3 class="section-heading" style="margin-bottom: 1rem">Previous Leadership</h3>
+    <div class="member-grid">
+      {% for member_id in group.history.leadership %}
+        <div class="member-card">{% include member_card.html id=member_id affiliation=true %}</div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if group.history.secretariat %}
+  <div>
+    <h3 class="section-heading" style="margin-bottom: 1rem">Previous Secretariat</h3>
+    <div class="member-grid">
+      {% for member_id in group.history.secretariat %}
+        <div class="member-card">{% include member_card.html id=member_id affiliation=true %}</div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+
+<!-- Page Content (if any) -->
+{% if page.content and page.content != '' %}
+<section style="margin-bottom: 3rem">
+  <div class="prose prose-slate dark:prose-invert max-w-none">
     {{ page.content }}
-  </section>
-
-  {% if page.collaborative_parties %}
-    <section class="collaborative-parties">
-      <h2>Collaborative parties</h2>
-
-      <div class="collaborative-party-list">
-        {% for party in page.collaborative_parties %}
-          <article class="collaborative-party">
-            <h3>{{ party.entity_name }}</h3>
-
-            <div class="collab-description">
-              {{ party.description | asciidocify }}
-            </div>
-
-            {% if party.projects %}
-              <div class="collaborative-projects">
-                <p>Current collaborative projects include:</p>
-                <div class="project-list">
-                  {% for project_id in party.projects %}
-                    {% include project_card.html id=project_id %}
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
-          </article>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-
-  {% if page.history %}
-    <section class="history">
-      <h2>History</h2>
-
-      <div class="section-body">
-        <div class="story">
-          {{ page.history.story | asciidocify }}
-        </div>
-
-        <div class="previous-members-of-note">
-          {% if page.history.leadership %}
-            <div class="previous-leadership">
-              <h3>Previous leadership</h3>
-
-              <div class="member-list">
-                {% for member_id in page.history.leadership %}
-                  {% include member_card.html id=member_id affiliation=true in_group=page._id %}
-                {% endfor %}
-              </div>
-            </div>
-          {% endif %}
-
-          {% if page.history.secretariat %}
-            <div class="previous-secretariat">
-              <h3>Previous secretariat</h3>
-
-              <div class="member-list member-list--horizontally-scrolled">
-                {% for member_id in page.history.secretariat %}
-                  {% include member_card.html id=member_id affiliation=true in_group=page._id %}
-                {% endfor %}
-              </div>
-            </div>
-          {% endif %}
-        </div>
-      </div>
-    </section>
-  {% endif %}
-</main>
+  </div>
+</section>
+{% endif %}

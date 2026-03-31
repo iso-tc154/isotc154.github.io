@@ -9,30 +9,73 @@
 {% endunless %}
 
 {% if member %}
-  <article class="item-card member-card
-      {% if include.role %}role-{{ include.role }}{% endif %}
-      {% if member.is_the_chair %}chair {% endif %}
-      {% if member.is_in_leadership %}leadership {% endif %}">
-
-    <div class="item-pic">
-      {% if member.picture %}
-        <a href="{{ member.url | "javascript: void 0;" }}"><img src="/assets/images/members/{{ member.picture }}"></a>
-      {% else %}
-        <div class="missing-placeholder"></div>
+  {% comment %} Determine display role label {% endcomment %}
+  {% if include.role %}
+    {% assign display_role = include.role | replace: '_', ' ' | capitalize %}
+  {% elsif include.in_group %}
+    {% assign display_role = "" %}
+    {% assign group_roles = member.roles['_all']['in'][include.in_group] %}
+    {% if group_roles.size > 0 %}
+      {% for gr in group_roles %}
+        {% if gr.to == nil %}
+          {% case gr.id %}
+            {% when 'convenor' %}{% assign display_role = "Convenor" %}
+            {% when 'manager' %}{% assign display_role = "Manager" %}
+            {% when 'member' %}{% assign display_role = "Member" %}
+            {% else %}{% assign display_role = gr.id | replace: '_', ' ' | capitalize %}
+          {% endcase %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    {% assign display_role = "Member" %}
+    {% if member.roles %}
+      {% assign current_role_ids = "" %}
+      {% for role in member.roles['_all']['in']['_all'] %}
+        {% if role.to == nil and role.id %}
+          {% unless current_role_ids contains role.id %}
+            {% assign current_role_ids = current_role_ids | append: role.id | append: "," %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+      {% if current_role_ids contains 'chair' %}
+        {% assign display_role = "Chair" %}
+      {% elsif current_role_ids contains 'technical_programme_manager' %}
+        {% assign display_role = "Technical Programme Manager" %}
+      {% elsif current_role_ids contains 'committee_manager' %}
+        {% assign display_role = "Committee Manager" %}
+      {% elsif current_role_ids contains 'convenor' %}
+        {% assign display_role = "Convenor" %}
+      {% elsif current_role_ids contains 'partner' %}
+        {% assign display_role = "Partner" %}
+      {% elsif current_role_ids contains 'observer' %}
+        {% assign display_role = "Observer" %}
       {% endif %}
+    {% endif %}
+  {% endif %}
+
+  <a href="{{ member.url | default: 'javascript: void 0;' }}" class="member-card__link">
+    <div class="member-card__body">
+      <div class="member-card__photo">
+        {% if member.picture %}
+          <div class="avatar">
+            <img src="/assets/images/members/{{ member.picture }}" alt="{{ member.name | default: member }}" loading="lazy">
+          </div>
+        {% else %}
+          <div class="avatar avatar--initials">
+            <span>{{ member.name | default: member | slice: 0, 2 | upcase }}</span>
+          </div>
+        {% endif %}
+      </div>
+      <div class="member-card__info">
+        <p class="member-card__name">{{ member.name | default: member }}</p>
+        {% if display_role != "" %}
+          <p class="member-card__role">{{ display_role }}</p>
+        {% endif %}
+        {% if include.affiliation and member.affiliation %}
+          <p class="member-card__affiliation" title="Affiliation: {{ member.affiliation }}">{{ member.affiliation }}</p>
+        {% endif %}
+      </div>
     </div>
-
-    <div class="item-text">
-      <h3 class="name"><a href="{{ member.url | "javascript: void 0;" }}">{{ member.name | default: member }}</a></h3>
-
-      {% if include.affiliation %}
-        <span class="affiliation" title="Affiliation: {{ member.affiliation }}">
-          {{ member.affiliation }}
-        </span>
-      {% endif %}
-
-      {% include member_roles.html in_project=include.in_project in_group=include.in_group with_id=include.role roles=member.roles %}
-    </div>
-
-  </article>
+  </a>
 {% endif %}

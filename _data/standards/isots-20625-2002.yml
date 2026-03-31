@@ -1,0 +1,17 @@
+---
+iso:
+  name: ISO/TS 20625:2002
+  type: TS
+  title: Electronic data interchange for administration, commerce and transport (EDIFACT) — Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines
+  stage: '90.93'
+  ics: 35.240.63
+  scope: |-
+    ISO/TS 20625:2002 describes the rules for the derivation of XML schemas from EDI MIGs providing a sound method of representing semantic facts.
+
+    ISO/TS 20625:2002 describes how to derive XML from UN/EDIFACT MIGs. In principle, the rules are equally applicable to other EDI standards.
+
+    It does not apply to DTDs.
+  publication_date: '2002-01-01'
+tc154:
+  group: wg7
+  related_news: "* link:/posts/2002-01-01-iso-ts-20625-2002[ISO/TC 154 news: ISO/TS 20625:2002 published!]"

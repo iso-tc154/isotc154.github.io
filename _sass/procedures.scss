@@ -1,9 +1,0 @@
-body.layout--procedures {
-  main {
-    h1 {
-      font-size: 200%;
-    }
-
-    @include asciidoc-markup();
-  }
-}

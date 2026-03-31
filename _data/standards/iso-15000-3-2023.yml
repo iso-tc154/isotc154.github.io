@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 15000-3:2023
+  type: international
+  title: 'Electronic business eXtensible Markup Language (ebXML) — Part 3: Registry and repository'
+  stage: '60.60'
+  ics: 35.040.50
+  scope: This document specifies the ebXML Registry and Repository standard. It defines the services, interfaces, and protocols for managing and sharing electronic business information through a registry/repository architecture. The registry provides a mechanism for discovering and reusing business process artifacts, schema components, and other ebXML-related resources.
+  publication_date: '2023-01-01'
+tc154:
+  group: wg4
+  related_news: "* link:/posts/2023-01-01-iso-15000-3-2023[ISO/TC 154 news: ISO 15000-3:2023 published!]"

@@ -1,0 +1,17 @@
+---
+member-id: jungnam-lee
+name: Jungnam Lee
+roles:
+- id: project_leader
+  project: 19626-3
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+- id: member
+  group: wg7
+- id: member
+  group: jwg1
+active: true
+affiliation: KATS, Korea, Republic of
+bio: Jungnam Lee is the project leader of ISO 19626-3.

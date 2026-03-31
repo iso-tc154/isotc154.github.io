@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 9735-1:2002
+  type: international
+  title: 'Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules (Syntax version number: 4, Syntax release number: 1) — Part 1: Syntax rules common to all parts'
+  stage: '90.93'
+  ics: 35.240.63
+  scope: This part of ISO 9735 specifies common syntax rules for the formatting of batch and interactive messages to be interchanged between computer application systems. It includes the terms and definitions for all parts of ISO 9735.
+  publication_date: '2002-01-01'
+tc154:
+  group: jwg1
+  related_news: "* link:/posts/2002-01-01-iso-9735-1-2002[ISO/TC 154 news: ISO 9735-1:2002 published!]"

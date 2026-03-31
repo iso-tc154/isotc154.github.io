@@ -1,32 +1,66 @@
 ---
 permalink: /projects/
 title: Projects
-html_class: projects
-layout: default
+layout: standards_index
 ---
-<div class="with-aside">
-  <main>
-    <section>
-      <h2>Current projects</h2>
 
-      {% assign projects = site.projects | where: "status", "current" %}
-      {% for project in projects %}
-        {% include project_item.html project=project %}
-      {% endfor %}
-    </section>
-
-
-    <section>
-      <h2>New Work Items in progress to be started (Call for Experts)</h2>
-
-      {% assign projects = site.projects | where: "status", "new" %}
-      {% for project in projects %}
-        {% include project_item.html project=project %}
-      {% endfor %}
-    </section>
-  </main>
-
-  <aside class="project-list">
-    {% include projects_nav.html active_project_id=page.id %}
-  </aside>
+<div class="std-filter" id="std-filter" data-filter-page="projects">
+  <div class="std-filter__search-wrap">
+    <svg class="std-filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="search" id="std-search" class="std-filter__search" placeholder="Search projects…" autocomplete="off" spellcheck="false" aria-label="Search projects" />
+  </div>
+  <div class="std-filter__controls">
+    <div class="std-filter__field" id="std-stage-field">
+      <span class="std-filter__label">Stage</span>
+      <div class="std-filter__chips" id="std-stage-chips">
+        <button class="std-chip is-active" data-stage="">All</button>
+        <button class="std-chip" data-stage="PWI">PWI</button>
+        <button class="std-chip" data-stage="NP">NP</button>
+        <button class="std-chip" data-stage="WD">WD</button>
+        <button class="std-chip" data-stage="DIS">DIS</button>
+        <button class="std-chip" data-stage="DTR">DTR</button>
+        <button class="std-chip" data-stage="IS">IS</button>
+      </div>
+    </div>
+    <div class="std-filter__field">
+      <span class="std-filter__label">Status</span>
+      <div class="std-filter__chips" id="std-status-chips">
+        <button class="std-chip is-active" data-status="">All</button>
+        <button class="std-chip" data-status="current">Current</button>
+        <button class="std-chip" data-status="new">New</button>
+      </div>
+    </div>
+  </div>
+  <div class="std-filter__meta">
+    <span id="std-count"></span>
+  </div>
 </div>
+
+<!-- Static HTML for search engines (replaced by JS on load) -->
+<div id="std-results" class="std-results">
+  {%- assign projects_list = site.data.projects -%}
+  {%- for p in projects_list -%}
+  <article class="std-results__card">
+    <div class="std-results__name">
+      <a href="/projects/{{ p[1].id }}/">{{ p[1].name }}</a>
+    </div>
+    {% if p[1].title %}<p class="std-results__title">{{ p[1].title }}</p>{% endif %}
+    <div style="display:flex;gap:0.375rem;align-items:center;margin-top:auto">
+      {% if p[1].stage %}<span class="std-results__badge">{{ p[1].stage }}</span>{% endif %}
+    </div>
+  </article>
+  {%- endfor -%}
+</div>
+
+<script type="application/json" id="std-data-json">
+[
+{%- assign projects_list = site.data.projects -%}
+{%- for project in projects_list -%}
+  {%- unless forloop.first %},{% endunless -%}
+  {"sid":"{{ project[1].id }}","name":"{{ project[1].name | xml_escape }}","title":"{{ project[1].title | xml_escape }}","status":"{{ project[1].status }}","stage":"{{ project[1].stage }}"}
+{%- endfor -%}
+]
+</script>
