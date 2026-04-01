@@ -96,6 +96,32 @@ sections:
     items:
       - type: years
 
+  - id: meetings
+    match: "/meetings"
+    url_prefixes:
+      - /meetings
+      - /39th-plenary
+    title: Meetings
+    items:
+      - type: link
+        label: All Meetings
+        url: /meetings/
+      - type: link
+        label: 39th Plenary (2020)
+        url: /39th-plenary/
+      - type: link
+        label: Transportation
+        url: /39th-plenary/arrival/transportation/
+      - type: link
+        label: Lodging
+        url: /39th-plenary/arrival/lodging/
+      - type: link
+        label: Visa
+        url: /39th-plenary/arrival/visas/
+      - type: link
+        label: Places to visit
+        url: /39th-plenary/surroundings/places/
+
   - id: about
     match: "/about"
     url_prefixes:
