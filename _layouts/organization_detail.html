@@ -48,7 +48,11 @@ layout: base
         </span>
       {% endif %}
       {% if org_type == 'national_body' %}
-        <span class="detail-badge">P-Member</span>
+        {% if org.membership == "P" %}
+          <span class="detail-badge detail-badge--primary">P-Member</span>
+        {% else %}
+          <span class="detail-badge">O-Member</span>
+        {% endif %}
       {% endif %}
     </div>
     {% if org.url and org.url != "" %}

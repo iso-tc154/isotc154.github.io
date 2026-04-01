@@ -1,218 +1,452 @@
 ---
-- id: sac
-  name: Standardization Administration of China
-  short_name: SAC
-  iso_country_code: CN
-  url: https://www.sac.gov.cn/
-  logo: "/assets/images/national-bodies/logo-sac.svg"
-  description: The Standardization Administration of China (SAC) is the national standards body of China, representing Chinese interests in ISO and IEC.
-- id: din
-  name: Deutsches Institut für Normung
-  short_name: DIN
-  iso_country_code: DE
-  url: https://www.din.de/
-  logo: "/assets/images/national-bodies/logo-din.svg"
-  description: DIN (German Institute for Standardisation) is the national standards body of Germany, representing German interests in international standardisation.
-- id: bsi
-  name: British Standards Institution
-  short_name: BSI
-  iso_country_code: GB
-  url: https://www.bsigroup.com/
-  logo: "/assets/images/national-bodies/logo-bsi.svg"
-  description: BSI is the national standards body of the United Kingdom, providing standards and conformity assessment services.
-- id: jisc
-  name: Japanese Industrial Standards Committee
-  short_name: JISC
-  iso_country_code: JP
-  url: https://www.jisc.go.jp/
-  logo: "/assets/images/national-bodies/logo-jisc.svg"
-  description: The Japanese Industrial Standards Committee (JISC), Japan's national standardization body, plays a central role in developing standards in Japan covering a wide range of products and technologies from robots to pictograms. JISC is also responsible for Japan's growing contribution to setting international standards through its work with the International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC).
-- id: kats
-  name: Korea Agency for Technology and Standards
-  short_name: KATS
-  iso_country_code: KR
-  url: https://www.kats.go.kr/
-  logo: "/assets/images/national-bodies/logo-kats.jpg"
-  description: KATS (Korea Agency for Technology and Standards) is the national standards body of the Republic of Korea.
-- id: snv
-  name: Schweizerische Normen-Vereinigung
-  short_name: SNV
-  iso_country_code: CH
-  url: https://www.snv.ch/
-  logo: "/assets/images/national-bodies/logo-snv.svg"
-  description: SNV (Swiss Association for Standardisation) is the national standards body of Switzerland.
-- id: ilnas
-  name: Institut Luxembourgeois de la Normalisation
-  short_name: ILNAS
-  iso_country_code: LU
-  url: https://ilnas.public.lu/
-  logo: "/assets/images/national-bodies/logo-ilnas.svg"
-  description: ILNAS (Luxembourg Institute for Standardisation, Accreditation, Safety and Quality of Products and Services) is the national standards body of Luxembourg.
-- id: iss
-  name: Institut za Standardizaciju Srbije
-  short_name: ISS
-  iso_country_code: RS
-  url: https://www.iss.rs/
-  logo: "/assets/images/national-bodies/logo-iss.svg"
-  description: ISS (Institute for Standardisation of Serbia) is the national standards body of Serbia.
-- id: gost
-  name: Federal Agency for Technical Regulation and Metrology
-  short_name: GOST R
-  iso_country_code: RU
-  url: https://www.gost.ru/
-  logo: "/assets/images/national-bodies/logo-gost-r.png"
-  description: GOST R is the national standards system of the Russian Federation, administered by Rosstandart.
-- id: uni
-  name: Ente Nazionale Italiano di Unificazione
-  short_name: UNI
-  iso_country_code: IT
-  url: https://www.uni.com/
-  logo: "/assets/images/national-bodies/logo-uni.svg"
-  description: UNI (Italian National Unification) is the national standards body of Italy.
-- id: sas
-  name: Saudi Standards, Metrology and Quality Organization
-  short_name: SASO
-  iso_country_code: SA
-  url: https://www.saso.gov.sa/
-  logo: "/assets/images/national-bodies/logo-sas.svg"
-  description: SASO (Saudi Standards, Metrology and Quality Organization) is the national standards body of the Kingdom of Saudi Arabia.
-- id: bds
-  name: Bulgarian Institute for Standardisation
-  short_name: BDS
-  iso_country_code: BG
-  url: https://www.bds-bg.org/
-  logo: "/assets/images/national-bodies/logo-bds.png"
-  description: BDS (Bulgarian Institute for Standardisation) is the national standards body of Bulgaria.
-- id: bis
-  name: Bureau of Indian Standards
-  short_name: BIS
-  iso_country_code: IN
-  url: https://standards.bis.gov.in/website
-  logo: "/assets/images/national-bodies/logo-bis.svg"
-  description: BIS (Bureau of Indian Standards) is the national standards body of India.
-- id: ds
-  name: Dansk Standard
-  short_name: DS
-  iso_country_code: DK
-  url: https://www.ds.dk/
-  logo: "/assets/images/national-bodies/logo-ds.svg"
-  description: DS (Danish Standards) is the national standards body of Denmark.
-- id: inso
-  name: Institute of Standards and Industrial Research of Iran
-  short_name: INSO
-  iso_country_code: IR
-  url: https://www.inso.gov.ir/
-  logo: "/assets/images/national-bodies/logo-inso.jpg"
-  description: INSO (Institute of Standards and Industrial Research of Iran) is the national standards body of Iran.
-- id: itchksar
-  name: Information Technology Industry Development Agency (Hong Kong)
-  short_name: ITCHKSAR
-  iso_country_code: HK
-  url: https://www.itis.gov.hk/
-  logo: "/assets/images/national-bodies/logo-itchksar.svg"
-  description: ITCHKSAR represents Hong Kong, China as a special administrative region in ISO/TC 154 activities.
-- id: kebs
-  name: Kenya Bureau of Standards
-  short_name: KEBS
-  iso_country_code: KE
-  url: https://www.kebs.org/
-  logo: "/assets/images/national-bodies/logo-kebs.png"
-  description: KEBS (Kenya Bureau of Standards) is the national standards body of Kenya.
-- id: mszt
-  name: Hungarian Standards Institution
-  short_name: MSZT
-  iso_country_code: HU
-  url: https://www.mszt.hu/
-  logo: "/assets/images/national-bodies/logo-mszt.png"
-  description: MSZT (Magyar Szabványügyi Testület) is the national standards body of Hungary.
-- id: nen
-  name: Nederlands Normalisatie-instituut
-  short_name: NEN
-  iso_country_code: NL
-  url: https://www.nen.nl/
-  logo: "/assets/images/national-bodies/logo-nen.svg"
-  description: NEN (Netherlands Standardisation Institute) is the national standards body of the Netherlands.
-- id: nzso
-  name: Standards New Zealand
-  short_name: NZSO
-  iso_country_code: NZ
-  url: https://www.standards.govt.nz/
-  logo: "/assets/images/national-bodies/logo-nzso.svg"
-  description: NZSO (Standards New Zealand) is the national standards body of New Zealand.
-- id: sist
-  name: Slovenski Inštitut za Standardizacijo
-  short_name: SIST
-  iso_country_code: SI
-  url: https://www.sist.si/
-  logo: "/assets/images/national-bodies/logo-sist.png"
-  description: SIST (Slovenian Institute for Standardisation) is the national standards body of Slovenia.
-- id: sn
-  name: Norges Standardiseringsforbund
-  short_name: SN
-  iso_country_code: false
-  url: https://www.standard.no/
-  logo: "/assets/images/national-bodies/logo-sn.svg"
-  description: SN (Norwegian Standards Organisation) is the national standards body of Norway.
-- id: ssc
-  name: Swedish Standards Institute
-  short_name: SSC
-  iso_country_code: SE
-  url: https://www.sis.se/
-  logo: "/assets/images/national-bodies/logo-ssc.svg"
-  description: SSC (Swedish Standards Institute) is the national standards body of Sweden.
-- id: stameq
-  name: General Directorate of Standardisation
-  short_name: STAMEQ
-  iso_country_code: AL
-  url:
-  logo: "/assets/images/national-bodies/logo-stameq.png"
-  description: STAMEQ (General Directorate of Standardisation) is the national standards body of Albania.
-- id: asro
-  name: Romanian Standards Body
-  short_name: ASRO
-  iso_country_code: RO
-  url: https://www.asro.ro/
-  logo: "/assets/images/national-bodies/logo-asro.png"
-  description: ASRO (Asociatia de Standardizare din România) is the national standards body of Romania.
+# Participating (P) members — 19
 - id: asi
   name: Austrian Standards International
   short_name: ASI
   iso_country_code: AT
+  country: Austria
+  membership: P
   url: https://www.austrian-standards.at/
   logo: "/assets/images/national-bodies/logo-asi.svg"
   description: ASI (Austrian Standards International) is the national standards body of Austria.
-- id: une
-  name: Asociación Española de Normalización
-  short_name: UNE
-  iso_country_code: ES
-  url: https://www.une.org/
-  logo: "/assets/images/national-bodies/logo-une.png"
-  description: UNE (Spanish Association for Standardisation) is the national standards body of Spain.
+
+- id: bds
+  name: Bulgarian Institute for Standardisation
+  short_name: BDS
+  iso_country_code: BG
+  country: Bulgaria
+  membership: P
+  url: https://www.bds-bg.org/
+  logo: "/assets/images/national-bodies/logo-bds.png"
+  description: BDS (Bulgarian Institute for Standardisation) is the national standards body of Bulgaria.
+
+- id: sac
+  name: Standardization Administration of China
+  short_name: SAC
+  iso_country_code: CN
+  country: China
+  membership: P
+  url: https://www.sac.gov.cn/
+  logo: "/assets/images/national-bodies/logo-sac.svg"
+  description: SAC is the national standards body of China, representing Chinese interests in ISO and IEC.
+
+- id: ds
+  name: Dansk Standard
+  short_name: DS
+  iso_country_code: DK
+  country: Denmark
+  membership: P
+  url: https://www.ds.dk/
+  logo: "/assets/images/national-bodies/logo-ds.svg"
+  description: DS (Danish Standards) is the national standards body of Denmark.
+
+- id: din
+  name: Deutsches Institut für Normung
+  short_name: DIN
+  iso_country_code: DE
+  country: Germany
+  membership: P
+  url: https://www.din.de/
+  logo: "/assets/images/national-bodies/logo-din.svg"
+  description: DIN is the national standards body of Germany.
+
+- id: bis
+  name: Bureau of Indian Standards
+  short_name: BIS
+  iso_country_code: IN
+  country: India
+  membership: P
+  url: https://standards.bis.gov.in/website
+  logo: "/assets/images/national-bodies/logo-bis.svg"
+  description: BIS is the national standards body of India.
+
+- id: inso
+  name: Institute of Standards and Industrial Research of Iran
+  short_name: INSO
+  iso_country_code: IR
+  country: "Iran, Islamic Republic of"
+  membership: P
+  url: https://www.inso.gov.ir/
+  logo: "/assets/images/national-bodies/logo-inso.jpg"
+  description: INSO is the national standards body of Iran.
+
+- id: uni
+  name: Ente Nazionale Italiano di Unificazione
+  short_name: UNI
+  iso_country_code: IT
+  country: Italy
+  membership: P
+  url: https://www.uni.com/
+  logo: "/assets/images/national-bodies/logo-uni.svg"
+  description: UNI is the national standards body of Italy.
+
+- id: jisc
+  name: Japanese Industrial Standards Committee
+  short_name: JISC
+  iso_country_code: JP
+  country: Japan
+  membership: P
+  url: https://www.jisc.go.jp/
+  logo: "/assets/images/national-bodies/logo-jisc.svg"
+  description: JISC is Japan's national standardization body.
+
+- id: kats
+  name: Korea Agency for Technology and Standards
+  short_name: KATS
+  iso_country_code: KR
+  country: "Korea, Republic of"
+  membership: P
+  url: https://www.kats.go.kr/
+  logo: "/assets/images/national-bodies/logo-kats.jpg"
+  description: KATS is the national standards body of the Republic of Korea.
+
+- id: ilnas
+  name: Institut Luxembourgeois de la Normalisation
+  short_name: ILNAS
+  iso_country_code: LU
+  country: Luxembourg
+  membership: P
+  url: https://ilnas.public.lu/
+  logo: "/assets/images/national-bodies/logo-ilnas.svg"
+  description: ILNAS is the national standards body of Luxembourg.
+
+- id: nen
+  name: Nederlands Normalisatie-instituut
+  short_name: NEN
+  iso_country_code: NL
+  country: Netherlands
+  membership: P
+  url: https://www.nen.nl/
+  logo: "/assets/images/national-bodies/logo-nen.svg"
+  description: NEN is the national standards body of the Netherlands.
+
+- id: sn
+  name: Norges Standardiseringsforbund
+  short_name: SN
+  iso_country_code: "NO"
+  country: "Norway"
+  membership: P
+  url: https://www.standard.no/
+  logo: "/assets/images/national-bodies/logo-sn.svg"
+  description: SN is the national standards body of Norway.
+
+- id: gost
+  name: Federal Agency for Technical Regulation and Metrology
+  short_name: GOST R
+  iso_country_code: RU
+  country: Russian Federation
+  membership: P
+  url: https://www.gost.ru/
+  logo: "/assets/images/national-bodies/logo-gost-r.png"
+  description: GOST R is the national standards system of the Russian Federation.
+
+- id: iss
+  name: Institute for Standardisation of Serbia
+  short_name: ISS
+  iso_country_code: RS
+  country: Serbia
+  membership: P
+  url: https://www.iss.rs/
+  logo: "/assets/images/national-bodies/logo-iss.svg"
+  description: ISS is the national standards body of Serbia.
+
 - id: unms
-  name: Úrad pre Normalizáciu, Metrológiu a Skúšobníctvo
-  short_name: UNMS
+  name: "Úrad pre Normalizáciu, Metrológiu a Skúšobníctvo"
+  short_name: UNMS SR
   iso_country_code: SK
+  country: Slovakia
+  membership: P
   url: https://www.unms.sk/
   logo: "/assets/images/national-bodies/logo-unms.png"
-  description: UNMS SR (Office for Standardisation, Metrology and Testing of the Slovak Republic) is the national standards body of Slovakia.
+  description: UNMS SR is the national standards body of Slovakia.
+
+- id: sist
+  name: Slovenski Inštitut za Standardizacijo
+  short_name: SIST
+  iso_country_code: SI
+  country: Slovenia
+  membership: P
+  url: https://www.sist.si/
+  logo: "/assets/images/national-bodies/logo-sist.png"
+  description: SIST is the national standards body of Slovenia.
+
+- id: snv
+  name: Schweizerische Normen-Vereinigung
+  short_name: SNV
+  iso_country_code: CH
+  country: Switzerland
+  membership: P
+  url: https://www.snv.ch/
+  logo: "/assets/images/national-bodies/logo-snv.svg"
+  description: SNV is the national standards body of Switzerland.
+
+- id: bsi
+  name: British Standards Institution
+  short_name: BSI
+  iso_country_code: GB
+  country: United Kingdom
+  membership: P
+  url: https://www.bsigroup.com/
+  logo: "/assets/images/national-bodies/logo-bsi.svg"
+  description: BSI is the national standards body of the United Kingdom.
+
+# Observing (O) members — 26
+- id: ianor
+  name: Institut Algérien de Normalisation
+  short_name: IANOR
+  iso_country_code: DZ
+  country: Algeria
+  membership: O
+  url: https://www.ianor.org/
+  logo:
+  description: IANOR is the national standards body of Algeria.
+
+- id: sa
+  name: Standards Australia
+  short_name: SA
+  iso_country_code: AU
+  country: Australia
+  membership: O
+  url: https://www.standards.org.au/
+  logo:
+  description: Standards Australia is the national standards body of Australia.
+
 - id: belst
   name: Belarussian State Institute for Standardisation and Certification
   short_name: BELST
   iso_country_code: BY
+  country: Belarus
+  membership: O
   url: http://www.gosstandart.gov.by/
   logo: "/assets/images/national-bodies/logo-belst.svg"
   description: BELST is the national standards body of Belarus.
+
+- id: inn
+  name: Instituto Nacional de Normalización
+  short_name: INN
+  iso_country_code: CL
+  country: Chile
+  membership: O
+  url: https://www.inn.cl/
+  logo:
+  description: INN is the national standards body of Chile.
+
+- id: nc
+  name: Oficina Nacional de Normalización
+  short_name: NC
+  iso_country_code: CU
+  country: Cuba
+  membership: O
+  url: https://www.nc.csm.cu/
+  logo:
+  description: NC is the national standards body of Cuba.
+
+- id: unmz
+  name: Czech Office for Standards, Metrology and Testing
+  short_name: UNMZ
+  iso_country_code: CZ
+  country: Czech Republic
+  membership: O
+  url: https://www.unmz.cz/
+  logo:
+  description: UNMZ is the national standards body of the Czech Republic.
+
+- id: sfs
+  name: Finnish Standards Association
+  short_name: SFS
+  iso_country_code: FI
+  country: Finland
+  membership: O
+  url: https://www.sfs.fi/
+  logo:
+  description: SFS is the national standards body of Finland.
+
+- id: afnor
+  name: Association Française de Normalisation
+  short_name: AFNOR
+  iso_country_code: FR
+  country: France
+  membership: O
+  url: https://www.boutique.afnor.org/
+  logo:
+  description: AFNOR is the national standards body of France.
+
+- id: itchksar
+  name: Information Technology Industry Development Agency (Hong Kong)
+  short_name: ITCHKSAR
+  iso_country_code: HK
+  country: "Hong Kong Special Administrative Region of China"
+  membership: O
+  url: https://www.itis.gov.hk/
+  logo: "/assets/images/national-bodies/logo-itchksar.svg"
+  description: ITCHKSAR represents Hong Kong, China in ISO/TC 154.
+
+- id: mszt
+  name: Hungarian Standards Institution
+  short_name: MSZT
+  iso_country_code: HU
+  country: Hungary
+  membership: O
+  url: https://www.mszt.hu/
+  logo: "/assets/images/national-bodies/logo-mszt.png"
+  description: MSZT is the national standards body of Hungary.
+
+- id: ist
+  name: Icelandic Standards
+  short_name: IST
+  iso_country_code: IS
+  country: Iceland
+  membership: O
+  url: https://www.stadlar.is/
+  logo:
+  description: IST is the national standards body of Iceland.
+
+- id: bsn
+  name: Badan Standardisasi Nasional
+  short_name: BSN
+  iso_country_code: ID
+  country: Indonesia
+  membership: O
+  url: https://www.bsn.go.id/
+  logo:
+  description: BSN is the national standards body of Indonesia.
+
+- id: nsai
+  name: National Standards Authority of Ireland
+  short_name: NSAI
+  iso_country_code: IE
+  country: Ireland
+  membership: O
+  url: https://www.nsai.ie/
+  logo:
+  description: NSAI is the national standards body of Ireland.
+
+- id: kebs
+  name: Kenya Bureau of Standards
+  short_name: KEBS
+  iso_country_code: KE
+  country: Kenya
+  membership: O
+  url: https://www.kebs.org/
+  logo: "/assets/images/national-bodies/logo-kebs.png"
+  description: KEBS is the national standards body of Kenya.
+
+- id: dsm
+  name: Department of Standards Malaysia
+  short_name: DSM
+  iso_country_code: MY
+  country: Malaysia
+  membership: O
+  url: https://www.standardsmalaysia.gov.my/
+  logo:
+  description: DSM is the national standards body of Malaysia.
+
+- id: nzso
+  name: Standards New Zealand
+  short_name: NZSO
+  iso_country_code: NZ
+  country: New Zealand
+  membership: O
+  url: https://www.standards.govt.nz/
+  logo: "/assets/images/national-bodies/logo-nzso.svg"
+  description: NZSO is the national standards body of New Zealand.
+
+- id: psi
+  name: Palestine Standards Institution
+  short_name: PSI
+  iso_country_code: PS
+  country: "Palestine, State of"
+  membership: O
+  url:
+  logo:
+  description: PSI is the national standards body of the State of Palestine.
+
+- id: pkn
+  name: Polish Committee for Standardization
+  short_name: PKN
+  iso_country_code: PL
+  country: Poland
+  membership: O
+  url: https://www.pkn.pl/
+  logo:
+  description: PKN is the national standards body of Poland.
+
+- id: asro
+  name: Romanian Standards Body
+  short_name: ASRO
+  iso_country_code: RO
+  country: Romania
+  membership: O
+  url: https://www.asro.ro/
+  logo: "/assets/images/national-bodies/logo-asro.png"
+  description: ASRO is the national standards body of Romania.
+
+- id: sas
+  name: Saudi Standards, Metrology and Quality Organization
+  short_name: SASO
+  iso_country_code: SA
+  country: Saudi Arabia
+  membership: O
+  url: https://www.saso.gov.sa/
+  logo: "/assets/images/national-bodies/logo-sas.svg"
+  description: SASO is the national standards body of Saudi Arabia.
+
+- id: ssc
+  name: Singapore Standards Council
+  short_name: SSC
+  iso_country_code: SG
+  country: Singapore
+  membership: O
+  url: https://www.enterprisesg.gov.sg/
+  logo: "/assets/images/national-bodies/logo-ssc.svg"
+  description: SSC is the national standards body of Singapore.
+
+- id: une
+  name: Asociación Española de Normalización
+  short_name: UNE
+  iso_country_code: ES
+  country: Spain
+  membership: O
+  url: https://www.une.org/
+  logo: "/assets/images/national-bodies/logo-une.png"
+  description: UNE is the national standards body of Spain.
+
+- id: tisi
+  name: Thai Industrial Standards Institute
+  short_name: TISI
+  iso_country_code: TH
+  country: Thailand
+  membership: O
+  url: https://www.tisi.go.th/
+  logo:
+  description: TISI is the national standards body of Thailand.
+
+- id: innorpi
+  name: Institut National de la Normalisation et de la Propriété Industrielle
+  short_name: INNORPI
+  iso_country_code: TN
+  country: Tunisia
+  membership: O
+  url: https://www.innorpi.tn/
+  logo:
+  description: INNORPI is the national standards body of Tunisia.
+
 - id: se-ukrndnc
   name: SE UkrNDNC
   short_name: SE UkrNDNC
   iso_country_code: UA
+  country: Ukraine
+  membership: O
   url: https://uas.gov.ua
   logo: "/assets/images/national-bodies/logo-uas.svg"
-  description: SE UkrNDNC (Ukrainian Scientific-Research and Training Centre for Standardisation, Certification and Quality) is the national standards body of Ukraine.
-- id: iso
-  name: ISO Central Secretariat
-  short_name: ISO
-  iso_country_code: false
-  url: https://www.iso.org/
-  logo: "/assets/images/national-bodies/logo-iso.svg"
-  description: ISO Central Secretariat.
+  description: SE UkrNDNC is the national standards body of Ukraine.
+
+- id: stameq
+  name: Directorate for Standards, Metrology and Quality
+  short_name: STAMEQ
+  iso_country_code: VN
+  country: "Viet Nam"
+  membership: O
+  url: https://www.stameq.gov.vn/
+  logo: "/assets/images/national-bodies/logo-stameq.png"
+  description: STAMEQ is the national standards body of Viet Nam.
