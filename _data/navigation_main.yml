@@ -27,8 +27,14 @@ items:
   - label: Meetings
     url: /meetings/
     children:
-      - label: 45th Plenary (2026, Berlin)
+      - label: "45th Plenary — Berlin 2026"
         url: /45th-plenary/
+      - label: "44th Plenary — Raleigh 2025"
+        url: /44th-plenary/
+      - label: "43rd Plenary — Seoul 2024"
+        url: /43rd-plenary/
+      - label: "42nd Plenary — Hong Kong 2023"
+        url: /42nd-plenary/
 
   - label: Members
     url: /members/

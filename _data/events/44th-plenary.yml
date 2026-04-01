@@ -1,0 +1,134 @@
+title: "44<sup>th</sup> plenary meeting week"
+ordinal: 44
+status: completed
+year: 2025
+landing_url: /44th-plenary/
+
+time:
+  from:
+    date: 2025-09-22
+  to:
+    date: 2025-09-26
+
+general_area: "Raleigh, North Carolina, USA"
+
+venues:
+  - name: "Sitti (Meeting room: The Upstairs)"
+    address: |
+      137 South Wilmington Street
+      Raleigh, NC 27601, USA
+    link: https://www.sitti-raleigh.com/
+    note: "The meeting room is on the second floor above Sitti (Lebanese) and Gravy (Italian) restaurants, in downtown Raleigh."
+
+host: OAGI / ANSI
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+schedule:
+  - date: 2025-09-22
+    time: "9:00–10:30"
+    event: Plenary opening
+    description: Review of ISO/TC 154 work since last plenary meeting
+  - date: 2025-09-23
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2025-09-24
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2025-09-25
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2025-09-26
+    time: "9:00–12:00"
+    event: (J)WGs report to Plenary
+    description: (J)WG report and (J)WG recommendation to plenary
+  - date: 2025-09-26
+    time: "14:30–17:00"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business
+
+deadlines:
+  - date: 2025-08-21
+    description: Invitation letter request submissions
+  - date: 2025-09-05
+    description: Liaison and national body report submissions
+  - date: 2025-09-08
+    description: Registration via ISO meeting platform
+
+transport:
+  - label: From Raleigh-Durham International Airport (RDU)
+    options:
+      - mode: Taxi
+        duration: "21–35 min"
+        detail: "Taxis are readily available just outside baggage claim."
+    url: https://www.rdu.com/
+
+accommodation_options:
+  - name: Sheraton Raleigh Hotel
+    address: 421 South Salisbury Street, Raleigh, NC 27601
+    distance: "8 min walk"
+
+  - name: Homewood Suites by Hilton Raleigh Downtown
+    address: 200 West Davie Street, Raleigh, NC 27601
+    distance: "9 min walk"
+
+  - name: Tempo by Hilton Raleigh Downtown
+    address: 200 West Davie Street, Raleigh, NC 27601
+    distance: "9 min walk"
+
+  - name: Raleigh Marriott City Center
+    address: 500 Fayetteville Street, Raleigh, NC 27601
+    distance: "12 min walk"
+
+  - name: Residence Inn Raleigh Downtown
+    address: 616 South Salisbury Street, Raleigh, NC 27601
+    distance: "14 min walk"
+
+  - name: The Longleaf Hotel
+    address: 300 N Dawson Street, Raleigh, NC 27603
+    distance: "9 min walk"
+
+  - name: The Casso, Raleigh, A Tribute Portfolio Hotel
+    address: 603 West Morgan Street, Raleigh, NC 27603
+    distance: "16 min walk"
+
+  - name: AC Hotel Raleigh Downtown
+    address: 9 Glenwood Avenue, Raleigh, NC 27603
+    distance: "17 min walk"
+
+  - name: Hyatt House Raleigh Downtown / Seaboard Station
+    address: 11 Seaboard Avenue, Raleigh, NC 27604
+    distance: "18 min walk"
+
+  - name: Hampton Inn & Suites Raleigh Downtown
+    address: 600 Glenwood Avenue, Raleigh, NC 27603
+    distance: "25 min walk"
+
+practical_info:
+  visa:
+    invitation_contact: Jim Wilson / Jianfang Zhang
+    invitation_email: zhangjf@cnis.gov.cn
+    invitation_deadline: 2025-08-21
+    required_info:
+      - First name
+      - Last name
+      - Gender
+      - Birth Date
+      - Passport Number
+      - Country of Passport
+      - Date of Issue
+      - Date of Expiry
+      - Company/Organization
+      - Email address
+      - Phone number
+      - Arrival Date
+      - Departure Date
+    note: "Check with your nearest US Embassy for current requirements."
+
+external_links:
+  - name: OAGi Meeting Overview
+    url: https://oagi.atlassian.net/wiki/x/RYERXwE
