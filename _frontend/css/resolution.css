@@ -33,6 +33,14 @@
   /* Search + filter bar (reuses std-filter) */
   .res-page .std-filter {
     margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+  }
+  .dark .res-page .std-filter {
+    background: #0f172a;
+    border-color: #334155;
   }
 
   .res-page .std-filter__search-wrap {
