@@ -27,8 +27,8 @@ items:
   - label: Meetings
     url: /meetings/
     children:
-      - label: 39th Plenary (2020)
-        url: /39th-plenary/
+      - label: 45th Plenary (2026, Berlin)
+        url: /45th-plenary/
 
   - label: Members
     url: /members/

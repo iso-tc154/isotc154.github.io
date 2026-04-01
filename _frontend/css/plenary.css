@@ -1,0 +1,425 @@
+/* ── 45th Plenary Page ──────────────────────────────── */
+
+@layer components {
+  .plenary-hero {
+    padding: 2rem 0 2.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+  }
+  .dark .plenary-hero { border-bottom-color: #334155; }
+
+  .plenary-hero__badge {
+    display: inline-block;
+    padding: 0.1875rem 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 9999px;
+    background: #dcfce7;
+    color: #166534;
+    margin-bottom: 1rem;
+  }
+  .dark .plenary-hero__badge {
+    background: rgb(34 197 94 / 0.15);
+    color: #86efac;
+  }
+
+  .plenary-hero__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.75rem;
+    line-height: 1.3;
+  }
+  .dark .plenary-hero__title { color: #f8fafc; }
+
+  .plenary-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: #475569;
+  }
+  .dark .plenary-hero__meta { color: #94a3b8; }
+
+  .plenary-hero__sep { color: #cbd5e1; }
+
+  .plenary-hero__location { font-weight: 500; }
+
+  .plenary-hero__host {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0.5rem 0 0;
+  }
+  .dark .plenary-hero__host { color: #94a3b8; }
+
+  /* Sections */
+  .plenary-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .plenary-section__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0061ad;
+    display: inline-block;
+  }
+  .dark .plenary-section__title {
+    color: #f8fafc;
+    border-bottom-color: #3385d6;
+  }
+
+  /* Venue */
+  .plenary-venue {
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+  }
+  .dark .plenary-venue {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+  }
+
+  .plenary-venue__name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #0f172a;
+    margin: 0 0 0.25rem;
+  }
+  .dark .plenary-venue__name { color: #f1f5f9; }
+
+  .plenary-venue__address {
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.6;
+  }
+  .dark .plenary-venue__address { color: #94a3b8; }
+
+  .plenary-venue__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #0061ad;
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+  .dark .plenary-venue__link { color: #3385d6; }
+
+  /* Schedule */
+  .plenary-schedule {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .dark .plenary-schedule { border-color: #334155; }
+
+  .plenary-schedule__row {
+    display: grid;
+    grid-template-columns: 7rem 8rem 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    border-bottom: 1px solid #f1f5f9;
+    align-items: baseline;
+  }
+  .dark .plenary-schedule__row { border-bottom-color: #1e293b; }
+  .plenary-schedule__row:last-child { border-bottom: none; }
+
+  .plenary-schedule__date {
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+  }
+  .dark .plenary-schedule__date { color: #f1f5f9; }
+
+  .plenary-schedule__time {
+    color: #64748b;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .dark .plenary-schedule__time { color: #94a3b8; }
+
+  .plenary-schedule__label {
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .dark .plenary-schedule__label { color: #f1f5f9; }
+
+  .plenary-schedule__desc {
+    display: block;
+    color: #64748b;
+    font-size: 0.75rem;
+    margin-top: 0.125rem;
+  }
+  .dark .plenary-schedule__desc { color: #94a3b8; }
+
+  /* Info block */
+  .plenary-info-block {
+    font-size: 0.875rem;
+    color: #334155;
+    line-height: 1.7;
+  }
+  .dark .plenary-info-block { color: #cbd5e1; }
+
+  .plenary-info-block a {
+    color: #0061ad;
+    font-weight: 500;
+  }
+  .dark .plenary-info-block a { color: #3385d6; }
+
+  .plenary-info-block__list {
+    margin: 0.75rem 0;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  .plenary-info-block__list li {
+    margin-bottom: 0.25rem;
+  }
+
+  .plenary-info-block__note {
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: #64748b;
+  }
+  .dark .plenary-info-block__note { color: #94a3b8; }
+
+  /* Notice */
+  .plenary-notice {
+    padding: 0.75rem 1rem;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    color: #92400e;
+    margin-bottom: 1rem;
+  }
+  .dark .plenary-notice {
+    background: rgb(251 191 36 / 0.1);
+    border-color: rgb(251 191 36 / 0.3);
+    color: #fde68a;
+  }
+
+  /* Hotels */
+  .plenary-hotels {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .plenary-hotel {
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  .dark .plenary-hotel {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+  }
+
+  .plenary-hotel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .plenary-hotel__name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+  .dark .plenary-hotel__name { color: #f1f5f9; }
+
+  .plenary-hotel__distance {
+    font-size: 0.6875rem;
+    color: #64748b;
+    white-space: nowrap;
+  }
+  .dark .plenary-hotel__distance { color: #94a3b8; }
+
+  .plenary-hotel__address {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+  }
+  .dark .plenary-hotel__address { color: #94a3b8; }
+
+  .plenary-hotel__rates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #475569;
+  }
+  .dark .plenary-hotel__rates { color: #94a3b8; }
+
+  .plenary-hotel__booking {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .plenary-hotel__code {
+    font-size: 0.6875rem;
+    color: #64748b;
+  }
+  .dark .plenary-hotel__code { color: #94a3b8; }
+
+  .plenary-hotel__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0061ad;
+    text-decoration: none;
+  }
+  .dark .plenary-hotel__link { color: #3385d6; }
+
+  /* Practical info grid */
+  .plenary-practical {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .plenary-practical__item {
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+  }
+  .dark .plenary-practical__item {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+  }
+
+  .plenary-practical__item h3 {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.375rem;
+  }
+  .dark .plenary-practical__item h3 { color: #f1f5f9; }
+
+  .plenary-practical__item p {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .dark .plenary-practical__item p { color: #94a3b8; }
+
+  /* Links grid */
+  .plenary-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .plenary-links-grid__item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem 0.875rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #0061ad;
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+  .dark .plenary-links-grid__item {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+    color: #3385d6;
+  }
+  .plenary-links-grid__item:hover {
+    border-color: #0061ad;
+  }
+  .dark .plenary-links-grid__item:hover {
+    border-color: #3385d6;
+  }
+  .plenary-links-grid__item svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  /* Contacts */
+  .plenary-contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .plenary-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.875rem 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+  }
+  .dark .plenary-contact {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+  }
+
+  .plenary-contact__role {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #94a3b8;
+  }
+
+  .plenary-contact__name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .dark .plenary-contact__name { color: #f1f5f9; }
+
+  .plenary-contact__org {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+  .dark .plenary-contact__org { color: #94a3b8; }
+
+  .plenary-contact__email {
+    font-size: 0.75rem;
+    color: #0061ad;
+    text-decoration: none;
+  }
+  .dark .plenary-contact__email { color: #3385d6; }
+
+  /* Responsive schedule */
+  @media (max-width: 640px) {
+    .plenary-schedule__row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .plenary-schedule__time {
+      color: #64748b;
+    }
+  }
+}

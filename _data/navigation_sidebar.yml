@@ -100,27 +100,15 @@ sections:
     match: "/meetings"
     url_prefixes:
       - /meetings
-      - /39th-plenary
+      - /45th-plenary
     title: Meetings
     items:
       - type: link
         label: All Meetings
         url: /meetings/
       - type: link
-        label: 39th Plenary (2020)
-        url: /39th-plenary/
-      - type: link
-        label: Transportation
-        url: /39th-plenary/arrival/transportation/
-      - type: link
-        label: Lodging
-        url: /39th-plenary/arrival/lodging/
-      - type: link
-        label: Visa
-        url: /39th-plenary/arrival/visas/
-      - type: link
-        label: Places to visit
-        url: /39th-plenary/surroundings/places/
+        label: 45th Plenary (2026)
+        url: /45th-plenary/
 
   - id: about
     match: "/about"
