@@ -1,5 +1,69 @@
 ---
 permalink: /resolutions/
 title: Resolutions
-layout: resolution_index
+layout: base
 ---
+
+<div class="res-page">
+
+  <header class="res-page__header">
+    <h1>Resolutions</h1>
+    <p class="res-page__subtitle">All plenary and ballot resolutions of ISO/TC&nbsp;154, searchable by identifier, title, or keyword.</p>
+  </header>
+
+  <div class="std-filter" id="std-filter" data-filter-page="resolutions">
+    <div class="std-filter__search-wrap">
+      <svg class="std-filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="std-search" class="std-filter__search" placeholder="Search resolutions…" autocomplete="off" spellcheck="false" aria-label="Search resolutions" />
+    </div>
+    <div class="std-filter__controls">
+      <div class="std-filter__field" id="std-source-field">
+        <span class="std-filter__label">Source</span>
+        <div class="std-filter__chips" id="std-source-chips">
+          <button class="std-chip is-active" data-source="">All</button>
+          <button class="std-chip" data-source="plenary">Plenary</button>
+          <button class="std-chip" data-source="ballot">Ballot</button>
+          <button class="std-chip" data-source="7372ma">7372 MA</button>
+        </div>
+      </div>
+      <div class="std-filter__field" id="std-year-field">
+        <span class="std-filter__label">Year</span>
+        <div class="std-filter__chips" id="std-year-chips"></div>
+      </div>
+    </div>
+    <div class="std-filter__meta">
+      <span id="std-count"></span>
+    </div>
+  </div>
+
+  <!-- Static HTML for search engines -->
+  <div id="std-results" class="std-results">
+    {%- assign all = site.data.resolutions_all -%}
+    {%- for r in all -%}
+    <a href="/resolutions/{{ r.source_type }}/{{ r.source_file }}/{{ r.identifier | replace: '/', '-' }}/" class="std-results__card">
+      <div class="std-results__name">
+        <span>{{ r.identifier }}</span>
+        {% if r.source_type %}<span class="std-results__type">{% case r.source_type %}{% when 'plenary' %}Plenary{% when 'ballot' %}Ballot{% when '7372ma' %}7372 MA{% endcase %}</span>{% endif %}
+      </div>
+      {% if r.title %}<p class="std-results__title">{{ r.title }}</p>{% endif %}
+      <div style="display:flex;gap:0.375rem;align-items:center;margin-top:auto">
+        {% if r.year %}<span class="std-results__badge">{{ r.year }}</span>{% endif %}
+      </div>
+    </a>
+    {%- endfor -%}
+  </div>
+
+</div>
+
+<script type="application/json" id="std-data-json">
+[
+{%- assign all = site.data.resolutions_all -%}
+{%- for r in all -%}
+  {%- unless forloop.first %},{% endunless -%}
+  {"id":"{{ r.identifier }}","title":{{ r.title | jsonify }},"year":"{{ r.year }}","source":"{{ r.source_type }}","group":"{{ r.group_id }}","snippet":{{ r.actions.first.message | default: "" | strip_newlines | truncate: 120 | jsonify }},"url":"/resolutions/{{ r.source_type }}/{{ r.source_file }}/{{ r.identifier | replace: '/', '-' }}/"}
+{%- endfor -%}
+]
+</script>
