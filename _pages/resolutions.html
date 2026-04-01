@@ -49,6 +49,8 @@ layout: base
         {% if r.source_type %}<span class="std-results__type">{% case r.source_type %}{% when 'plenary' %}Plenary{% when 'ballot' %}Ballot{% when '7372ma' %}7372 MA{% endcase %}</span>{% endif %}
       </div>
       {% if r.title %}<p class="std-results__title">{{ r.title }}</p>{% endif %}
+      {% assign snippet = r.actions.first.message | default: "" | asciidocify | strip_html | strip_newlines | truncate: 120 %}
+      {% if snippet != "" %}<p class="std-results__title">{{ snippet }}</p>{% endif %}
       <div style="display:flex;gap:0.375rem;align-items:center;margin-top:auto">
         {% if r.year %}<span class="std-results__badge">{{ r.year }}</span>{% endif %}
       </div>
@@ -63,7 +65,7 @@ layout: base
 {%- assign all = site.data.resolutions_all -%}
 {%- for r in all -%}
   {%- unless forloop.first %},{% endunless -%}
-  {"id":"{{ r.identifier }}","title":{{ r.title | jsonify }},"year":"{{ r.year }}","source":"{{ r.source_type }}","group":"{{ r.group_id }}","snippet":{{ r.actions.first.message | default: "" | strip_newlines | truncate: 120 | jsonify }},"url":"/resolutions/{{ r.source_type }}/{{ r.source_file }}/{{ r.identifier | replace: '/', '-' }}/"}
+  {"id":"{{ r.identifier }}","title":{{ r.title | jsonify }},"year":"{{ r.year }}","source":"{{ r.source_type }}","group":"{{ r.group_id }}","snippet":{{ r.actions.first.message | default: "" | asciidocify | strip_html | strip_newlines | truncate: 120 | jsonify }},"url":"/resolutions/{{ r.source_type }}/{{ r.source_file }}/{{ r.identifier | replace: '/', '-' }}/"}
 {%- endfor -%}
 ]
 </script>
