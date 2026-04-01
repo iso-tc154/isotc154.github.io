@@ -101,14 +101,26 @@ sections:
     url_prefixes:
       - /meetings
       - /45th-plenary
+      - /44th-plenary
+      - /43rd-plenary
+      - /42nd-plenary
     title: Meetings
     items:
       - type: link
         label: All Meetings
         url: /meetings/
       - type: link
-        label: 45th Plenary (2026)
+        label: "45th Plenary (2026)"
         url: /45th-plenary/
+      - type: link
+        label: "44th Plenary (2025)"
+        url: /44th-plenary/
+      - type: link
+        label: "43rd Plenary (2024)"
+        url: /43rd-plenary/
+      - type: link
+        label: "42nd Plenary (2023)"
+        url: /42nd-plenary/
 
   - id: about
     match: "/about"

@@ -1,0 +1,136 @@
+title: "43<sup>rd</sup> plenary meeting week"
+ordinal: 43
+status: completed
+year: 2024
+landing_url: /43rd-plenary/
+
+time:
+  from:
+    date: 2024-10-21
+  to:
+    date: 2024-10-25
+
+general_area: "Bundang (Seoul), Korea"
+
+venues:
+  - name: Hotel Skypark Central Seoul Pangyo
+    address: |
+      36 Hwangsaeul-ro 311beon-gil, Bundang-gu
+      Seongnam, Gyeonggi-do, 13590, South Korea
+    link: https://www.skyparkhotel.com/html/accommdation/accom9_tab1_01.asp
+    phone: "+82-31-5170-7750"
+
+host: KATS / RRA / TTA
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+local_contact:
+  name: Sejung Yoon
+  email: sjyoon@tta.or.kr
+
+schedule:
+  - date: 2024-10-21
+    time: "9:00–10:30"
+    event: Plenary opening
+    description: Review of ISO/TC 154 work since last plenary meeting
+  - date: 2024-10-22
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2024-10-23
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2024-10-24
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2024-10-25
+    time: "9:00–12:00"
+    event: WGs report to Plenary
+    description: WG report and WG recommendation to plenary
+  - date: 2024-10-25
+    time: "14:30–17:00"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business
+
+deadlines:
+  - date: 2024-08-31
+    description: Invitation letter request submissions
+  - date: 2024-09-30
+    description: Liaison and national body report submissions
+  - date: 2024-10-07
+    description: Registration via ISO meeting platform
+
+transport:
+  - label: From Incheon International Airport (ICN)
+    options:
+      - mode: Taxi
+        cost: "~70,000 KRW (~60 USD)"
+        duration: "70 min"
+      - mode: Airport Bus
+        cost: "9,500 KRW"
+        duration: "Every 10–15 min"
+        detail: "Take bus #5300 or #5400 to Seohyeon Station. First bus 05:00, last 22:00."
+    url: https://www.airport.kr/ap/en/index.do
+
+  - label: From Gimpo International Airport (GMP)
+    options:
+      - mode: Taxi
+        cost: "~50,000 KRW (~40 USD)"
+        duration: "80 min"
+      - mode: Airport Bus
+        cost: "9,700 KRW"
+        duration: "Every hour"
+        detail: "Take bus #5100 or #5200-1 to Seohyeon Station. First bus 06:00, last 22:50."
+    url: http://www.airport.co.kr/gimpoeng/main.do
+
+accommodation_options:
+  - name: KYND Hotel
+    distance: "1 min walk"
+    address: Bundang, Seongnam
+    link: http://www.kyndhotel.co.kr/en/index.php
+    phone: "+82-31-781-0006"
+
+  - name: SR Suites Bundang
+    distance: "2 min walk"
+    address: Bundang, Seongnam
+    link: http://en.srsuites.com/
+    phone: "+82-31-702-6565"
+
+  - name: Hotel Skypark Central Seoul Pangyo
+    distance: "1 min walk"
+    address: 36 Hwangsaeul-ro 311beon-gil, Bundang-gu, Seongnam
+    link: https://www.skyparkhotel.com/html/accommdation/accom9_tab1_01.asp
+    phone: "+82-31-5170-7750"
+
+  - name: Gravity Seoul Pangyo, Autograph Collection
+    distance: "10 min by taxi"
+    address: Pangyo, Seongnam
+    link: https://www.marriott.com/en-us/hotels/selay-gravityseoul-pangyo-autograph-collection/overview/
+    phone: "+82-31-539-4800"
+
+  - name: Courtyard Marriott Pangyo
+    distance: "15 min by taxi"
+    address: Pangyo, Seongnam
+    link: https://www.marriott.com/en-us/hotels/selpncourtyard-seoul-pangyo/overview/
+    phone: "+82-31-8060-2000"
+
+  - name: Shilla Stay Seocho
+    distance: "Gangnam, Seoul"
+    address: Seocho, Seoul
+    link: https://www.shillastay.com/seocho/index.do
+    phone: "+82-2-2219-9000"
+
+practical_info:
+  visa:
+    invitation_contact: Sejung Yoon
+    invitation_email: sjyoon@tta.or.kr
+    invitation_deadline: 2024-08-31
+    note: "Check with your nearest Korean Embassy before departure. Advance submission recommended."
+  electrical: "220V / 60Hz — round two-pin plug (same as Germany or France)"
+  climate: "Average temperature in Bundang in October: 13.8–14.8°C"
+  currency: "Korean Won (KRW). Major currencies accepted at airport, hotels, and banks. Credit cards (VISA, MasterCard, AmEx) widely accepted."
+  tipping: "No tipping in most cases."
+  wifi: "Free high-speed WiFi provided at the meeting venue."

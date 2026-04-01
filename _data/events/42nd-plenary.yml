@@ -1,0 +1,88 @@
+title: "42<sup>nd</sup> plenary meeting week"
+ordinal: 42
+status: completed
+year: 2023
+landing_url: /42nd-plenary/
+
+time:
+  from:
+    date: 2023-10-24
+  to:
+    date: 2023-10-27
+
+general_area: "Hong Kong, China"
+
+venues:
+  - name: Fairmont House (HKMA)
+    address: |
+      14/F, Fairmont House, 8 Cotton Tree Drive
+      Central, Hong Kong, China
+    link: https://www.hkma.org.hk/room_rental/central-admiralty.asp
+
+host: CALCONNECT / ITCHKSAR
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+schedule:
+  - date: 2023-10-24
+    time: "9:00–10:30"
+    event: Plenary opening
+    description: Review of ISO/TC 154 work since last plenary meeting
+  - date: 2023-10-25
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2023-10-26
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2023-10-27
+    time: "9:00–12:00"
+    event: WGs report to Plenary
+    description: WG report and WG recommendation to plenary
+  - date: 2023-10-27
+    time: "14:30–16:30"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business
+
+deadlines:
+  - date: 2023-09-30
+    description: Registration via ISO meeting platform
+  - date: 2023-09-30
+    description: Liaison and national body report submissions
+
+accommodation_options:
+  - name: JW Marriott Hotel Hong Kong
+    address: Pacific Place, 88 Queensway, Hong Kong
+    link: https://www.marriott.com/en-us/hotels/hkgjw-jw-marriott-hong-kong/
+
+  - name: The Harbourview
+    address: 4 Harbour Road, Wanchai, Hong Kong
+    link: https://www.harbourview.com.hk/
+
+  - name: Island Shangri-La Hong Kong
+    address: Pacific Place, Supreme Court Road, Central, Hong Kong
+    link: https://www.shangri-la.com/hongkong/islandshangrila/
+
+  - name: Grand Hyatt Hong Kong
+    address: 1 Harbour Road, Hong Kong
+    link: https://www.hyatt.com/grand-hyatt-hong-kong
+
+  - name: Burlington Hotel
+    address: 55 Hennessy Road, Wan Chai, Hong Kong
+
+  - name: The Murray, Hong Kong
+    address: 22 Cotton Tree Drive, Central, Hong Kong
+    link: https://www.niccolohotels.com/en/the-murray-hong-kong/
+
+  - name: Renaissance Hong Kong Harbour View Hotel
+    address: 1 Harbour Road, Wanchai, Hong Kong
+    link: https://www.marriott.com/en-us/hotels/hkgbr-renaissance-hong-kong-harbour-view-hotel/
+
+  - name: Lan Kwai Fong Hotel @ Kau U Fong
+    address: 3 Kau U Fong, Central, Hong Kong
+
+  - name: Wharney Hotel
+    address: 57-73 Lockhart Road, Wanchai, Hong Kong

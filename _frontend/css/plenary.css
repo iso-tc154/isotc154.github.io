@@ -1,4 +1,4 @@
-/* ── 45th Plenary Page ──────────────────────────────── */
+/* ── Plenary Page ─────────────────────────────────── */
 
 @layer components {
   .plenary-hero {
@@ -422,4 +422,144 @@
       color: #64748b;
     }
   }
+
+  /* Completed badge variant */
+  .plenary-hero__badge--completed {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+  .dark .plenary-hero__badge--completed {
+    background: rgb(100 116 139 / 0.15);
+    color: #94a3b8;
+  }
+
+  /* Transport section */
+  .plenary-transport {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .plenary-transport__route {
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+  }
+  .dark .plenary-transport__route {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+  }
+
+  .plenary-transport__label {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.5rem;
+  }
+  .dark .plenary-transport__label { color: #f1f5f9; }
+
+  .plenary-transport__option {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .plenary-transport__mode {
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .dark .plenary-transport__mode { color: #f1f5f9; }
+
+  .plenary-transport__cost,
+  .plenary-transport__duration {
+    color: #64748b;
+  }
+  .dark .plenary-transport__cost,
+  .dark .plenary-transport__duration { color: #94a3b8; }
+
+  .plenary-transport__detail {
+    width: 100%;
+    color: #64748b;
+    font-size: 0.6875rem;
+    margin-top: -0.125rem;
+    margin-bottom: 0.25rem;
+  }
+  .dark .plenary-transport__detail { color: #94a3b8; }
+
+  /* Venue note */
+  .plenary-venue__note {
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+  .dark .plenary-venue__note { color: #94a3b8; }
+
+  /* Transport section */
+  .plenary-transport {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .plenary-transport__route {
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+  }
+  .dark .plenary-transport__route {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+  }
+
+  .plenary-transport__label {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.5rem;
+  }
+  .dark .plenary-transport__label { color: #f1f5f9; }
+
+  .plenary-transport__option {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    align-items: baseline;
+    font-size: 0.8125rem;
+    color: #475569;
+    margin-bottom: 0.25rem;
+  }
+  .dark .plenary-transport__option { color: #94a3b8; }
+
+  .plenary-transport__mode {
+    font-weight: 600;
+    color: #0f172a;
+    min-width: 4rem;
+  }
+  .dark .plenary-transport__mode { color: #f1f5f9; }
+
+  .plenary-transport__cost {
+    color: #64748b;
+  }
+  .dark .plenary-transport__cost { color: #94a3b8; }
+
+  .plenary-transport__duration {
+    color: #64748b;
+  }
+  .dark .plenary-transport__duration { color: #94a3b8; }
+
+  .plenary-transport__detail {
+    display: block;
+    width: 100%;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 0.125rem;
+    line-height: 1.5;
+  }
+  .dark .plenary-transport__detail { color: #64748b; }
 }

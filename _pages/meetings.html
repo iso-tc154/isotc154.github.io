@@ -12,29 +12,46 @@ layout: base
 
   <div class="std-page__content">
 
-    {%- assign events = site.data.events -%}
+    {%- assign all_events = site.data.events -%}
+    {%- assign upcoming = "" | split: "" -%}
+    {%- assign past = "" | split: "" -%}
 
-    {% for event_hash in events %}
-    {%- assign event = event_hash[1] -%}
-    {%- assign from_date = event.time.from.date -%}
-    {%- assign to_date = event.time.to.date -%}
+    {%- for event_hash in all_events -%}
+      {%- assign ev = event_hash[1] -%}
+      {%- if ev.status == "upcoming" -%}
+        {%- assign upcoming = upcoming | push: ev -%}
+      {%- else -%}
+        {%- assign past = past | push: ev -%}
+      {%- endif -%}
+    {%- endfor -%}
 
-    <section class="std-page__section">
-      <div class="meeting-card">
+    {%- comment %}Sort upcoming by date ascending{% endcomment -%}
+    {%- assign upcoming_sorted = upcoming | sort: "ordinal" -%}
+
+    {%- comment %}Sort past by ordinal descending{% endcomment -%}
+    {%- assign past_sorted = past | sort: "ordinal" | reverse -%}
+
+    <!-- Upcoming Meetings -->
+    {% if upcoming_sorted.size > 0 %}
+    <section class="std-page__section" style="margin-bottom: 3rem">
+      <h2 class="section-heading" style="margin-bottom: 1.25rem">Upcoming</h2>
+      {% for event in upcoming_sorted %}
+      <div class="meeting-card meeting-card--featured" style="margin-bottom: 1.25rem">
         <div class="meeting-card__body">
           <div class="meeting-card__meta">
-            {% if from_date %}
-            <span class="std-page__badge">{{ from_date | date: "%-d %B %Y" }}{% if to_date %} &ndash; {{ to_date | date: "%-d %B %Y" }}{% endif %}</span>
-            {% endif %}
+            <span class="meeting-card__upcoming-badge">Upcoming</span>
           </div>
-
           <h2 class="meeting-card__title">{{ event.title }}</h2>
-
-          {% if event.general_area %}
-          <p class="meeting-card__location">{{ event.general_area }}</p>
+          {% if event.host %}<p class="meeting-card__host">Hosted by {{ event.host }}</p>{% endif %}
+          <p class="meeting-card__location">
+            {{ event.time.from.date | date: "%-d %B" }} &ndash; {{ event.time.to.date | date: "%-d %B %Y" }}
+            &middot; {{ event.general_area }}
+          </p>
+          {% assign venue = event.venues.first %}
+          {% if venue %}
+          <p class="meeting-card__venue">{{ venue.name }}</p>
           {% endif %}
         </div>
-
         <div class="meeting-card__actions">
           <a href="{{ event.landing_url }}" class="meeting-card__link">
             Event details
@@ -42,9 +59,53 @@ layout: base
           </a>
         </div>
       </div>
+      {% endfor %}
     </section>
+    {% endif %}
 
-    {% endfor %}
+    <!-- Past Meetings -->
+    {% if past_sorted.size > 0 %}
+    <section class="std-page__section">
+      <h2 class="section-heading" style="margin-bottom: 1.25rem">Past Meetings</h2>
+      {% for event in past_sorted %}
+      <section class="std-page__section" style="margin-bottom: 0.5rem">
+        <div class="meeting-card">
+          <div class="meeting-card__body">
+            <div class="meeting-card__meta">
+              {% assign from_date = event.time.from.date %}
+              {% assign to_date = event.time.to.date %}
+              <span class="std-page__badge">{{ from_date | date: "%-d %B %Y" }}{% if to_date %} &ndash; {{ to_date | date: "%-d %B %Y" }}{% endif %}</span>
+            </div>
+
+            <h2 class="meeting-card__title">{{ event.title }}</h2>
+
+            {% if event.general_area %}
+            <p class="meeting-card__location">{{ event.general_area }}</p>
+            {% endif %}
+
+            {% assign venue = event.venues.first %}
+            {% if venue %}
+            <p class="meeting-card__venue">{{ venue.name }}</p>
+            {% endif %}
+          </div>
+
+          <div class="meeting-card__actions">
+            <a href="{{ event.landing_url }}" class="meeting-card__link">
+              Event details
+              {% include icons/arrow-right.html %}
+            </a>
+          </div>
+        </div>
+      </section>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if upcoming_sorted.size == 0 and past_sorted.size == 0 %}
+    <div class="info-panel">
+      <p class="info-panel__text info-panel__text--muted">No meetings listed yet.</p>
+    </div>
+    {% endif %}
 
   </div>
 </div>
