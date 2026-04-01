@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 2015:1976
+  type: international
+  title: Numbering of weeks
+  stage: '95.99'
+  ics: 01.140.30
+  scope: Numbering of weeks.
+  publication_date: '1976-01-01'
+tc154:
+  group: wg5
+  status: withdrawn

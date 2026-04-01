@@ -1,0 +1,9 @@
+---
+member-id: andreas-pelekies
+name: Andreas Pelekies
+active: true
+roles:
+- id: member
+- id: member
+  group: jwg1
+affiliation: DIN, Germany

@@ -1,0 +1,36 @@
+{%- comment -%}
+  Render a list of links with icons.
+  Usage: {% include links.html links=member.links %}
+  links: [ { url: "...", label: "..." }, ... ]
+{%- endcomment -%}
+
+{%- if include.links -%}
+<div class="member-links">
+  {%- for link in include.links -%}
+    {%- assign url = link.url | default: link -%}
+    {%- assign is_linkedin = false -%}
+    {%- assign is_github = false -%}
+    {%- assign is_x = false -%}
+    {%- if url contains "linkedin.com" or url contains "LinkedIn" -%}
+      {%- assign is_linkedin = true -%}
+    {%- endif -%}
+    {%- if url contains "github.com" or url contains "GitHub" -%}
+      {%- assign is_github = true -%}
+    {%- endif -%}
+    {%- if url contains "twitter.com" or url contains "x.com" or url contains "X" -%}
+      {%- assign is_x = true -%}
+    {%- endif -%}
+    <a href="{{ url }}" class="member-link"{% if is_linkedin %} aria-label="LinkedIn profile"{% endif %}{% if is_github %} aria-label="GitHub profile"{% endif %}{% if is_x %} aria-label="X profile"{% endif %}>
+      {%- if is_linkedin -%}
+        {% include icons/linkedin.html %}
+      {%- elsif is_github -%}
+        {% include icons/github.html %}
+      {%- elsif is_x -%}
+        {% include icons/x.html %}
+      {%- else -%}
+        <svg class="icon icon--external-link" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      {%- endif -%}
+    </a>
+  {%- endfor -%}
+</div>
+{%- endif -%}

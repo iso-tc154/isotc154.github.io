@@ -1,0 +1,15 @@
+---
+layout: post
+title:  ISO 8601-2:2019/Amd 1:2025 published as an amendment!
+date:   2025-01-01 00:00:00 +0800
+categories: site update
+see_also:
+---
+
+link:/standards/iso-8601-2-2019-amd-1-2025[ISO 8601-2:2019/Amd 1:2025] has been published as an amendment
+as an International Standard, and will be available on ISO.org soon.
+
+// more
+
+Congratulations to link:/groups/wg5[Date and time] on this excellent
+achievement!

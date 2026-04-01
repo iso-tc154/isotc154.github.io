@@ -1,0 +1,9 @@
+---
+member-id: svante-schubert
+name: Svante Schubert
+active: true
+roles:
+- id: member
+- id: member
+  group: jwg9
+affiliation: DIN, Germany

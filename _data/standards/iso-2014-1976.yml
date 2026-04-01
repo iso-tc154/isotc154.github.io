@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 2014:1976
+  type: international
+  title: Writing of calendar dates in all-numeric form
+  stage: '95.99'
+  ics: 01.140.30
+  scope: Writing of calendar dates in all-numeric form.
+  publication_date: '1976-01-01'
+tc154:
+  group: wg5
+  status: withdrawn

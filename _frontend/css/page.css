@@ -1,0 +1,148 @@
+/* ── Page Typography ─────────────────────────────── */
+
+@layer components {
+  .page-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0061ad;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .dark .page-label { color: #3385d6; }
+
+  .page-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #0f172a;
+    margin: 0;
+  }
+  .dark .page-title { color: #fff; }
+
+  .section-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+  }
+  .dark .section-heading { color: #fff; }
+
+  .section-heading--lg {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+  .dark .section-heading--lg { color: #fff; }
+
+  .meta-text {
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+  .dark .meta-text { color: #94a3b8; }
+
+  .meta-text--small {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+  .dark .meta-text--small { color: #64748b; }
+
+  .meta-text--tiny {
+    font-size: 0.6875rem;
+    color: #94a3b8;
+  }
+  .dark .meta-text--tiny { color: #64748b; }
+
+  .primary-link {
+    color: #0061ad;
+    font-size: 0.875rem;
+    transition: color 0.15s;
+  }
+  .dark .primary-link { color: #3385d6; }
+  .primary-link:hover { color: #005090; }
+  .dark .primary-link:hover { color: #66a3e0; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    color: #64748b;
+    transition: color 0.15s;
+    margin-bottom: 1.5rem;
+  }
+  .dark .back-link { color: #94a3b8; }
+  .back-link:hover { color: #0061ad; }
+  .dark .back-link:hover { color: #3385d6; }
+  .back-link svg { width: 1rem; height: 1rem; }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+  }
+  .dark .breadcrumb { color: #94a3b8; }
+  .breadcrumb-link {
+    color: #64748b;
+    transition: color 0.15s;
+  }
+  .dark .breadcrumb-link { color: #94a3b8; }
+  .breadcrumb-link:hover { color: #0061ad; }
+  .dark .breadcrumb-link:hover { color: #3385d6; }
+  .breadcrumb__current {
+    color: #1e293b;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dark .breadcrumb__current { color: #fff; }
+
+  /* See Also Section */
+  .see-also {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+  .dark .see-also { border-top-color: #334155; }
+  .see-also__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .see-also__link {
+    font-size: 0.875rem;
+    color: #0061ad;
+    transition: color 0.15s;
+    text-decoration: none;
+  }
+  .dark .see-also__link { color: #3385d6; }
+  .see-also__link:hover { color: #005090; }
+  .dark .see-also__link:hover { color: #66a3e0; }
+
+  /* Group Labels */
+  .group-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0.025em;
+  }
+  .group-type { color: #0061ad; }
+  .dark .group-type { color: #3385d6; }
+  .group-joint-with { color: #64748b; }
+  .dark .group-joint-with { color: #94a3b8; }
+  .group-inactive { color: #94a3b8; font-style: italic; }
+  .dark .group-inactive { color: #64748b; }
+
+  /* Member Links */
+  .member-links {
+    display: inline-flex;
+    gap: 0.75rem;
+  }
+}

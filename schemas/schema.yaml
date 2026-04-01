@@ -1,0 +1,282 @@
+$schema: "https://json-schema.org/draft-07/schema#"
+title: ISO TC 154 Data Schemas
+description: JSON Schema definitions for all Jekyll data types used by isotc154.org
+$defs:
+
+  # ── Project (frontmatter in _projects/*.adoc) ─────────────────────────────
+
+  project:
+    type: object
+    required: [id, name, title, status, stage]
+    additionalProperties: true
+    properties:
+      id:
+        type: string
+        pattern: "^[a-z0-9]+(-[0-9]+)*$"
+        description: "Slug identifier, e.g. iso-15000-5"
+      name:
+        type: string
+        description: "ISO document identifier, e.g. ISO/NP 15000-5"
+      title:
+        type: string
+      status:
+        type: string
+        enum: [new, current]
+      stage:
+        type: string
+        enum:
+          - PWI
+          - NP
+          - WD
+          - WDS
+          - CD
+          - CDTS
+          - DIS
+          - IS
+          - DTS
+          - DTR
+          - DAM
+          - FDIS
+          - AWI
+        description: "ISO 216 development stage code"
+      excerpt:
+        type: string
+
+  # ── Group (_data/groups/*.yml) ───────────────────────────────────────────
+
+  organization:
+    type: object
+    additionalProperties: false
+    properties:
+      convenors:
+        type: array
+        items: { type: string }
+      managers:
+        type: array
+        items: { type: string }
+
+  history:
+    type: object
+    additionalProperties: false
+    properties:
+      leadership:
+        type: array
+        items: { type: string }
+      story:
+        type: string
+
+  collaborative_party:
+    type: object
+    required: [entity_name]
+    additionalProperties: false
+    properties:
+      entity_name: { type: string }
+      projects:
+        type: array
+        items: { type: string }
+      description: { type: string }
+
+  group:
+    type: object
+    required: [id, _id, name, title, order, active_projects, standards, _description]
+    additionalProperties: true
+    properties:
+      id:
+        type: string
+        description: "Group slug, e.g. wg5"
+      _id:
+        type: string
+        description: "Mirrors id"
+      name:
+        type: string
+        description: "Display name, may contain HTML entities"
+      title:
+        type: string
+      order:
+        type: integer
+      inactive:
+        type: boolean
+      featured_on_home:
+        type: boolean
+      active_projects:
+        type: array
+        items: { type: string }
+      standards:
+        type: array
+        items: { type: string }
+      intro:
+        type: string
+      scope:
+        type: string
+      organization:
+        $ref: "#/$defs/organization"
+      history:
+        $ref: "#/$defs/history"
+      collaborative_parties:
+        type: array
+        items: { $ref: "#/$defs/collaborative_party" }
+      _description:
+        type: string
+
+  # ── Member (_data/members/*.yaml) ────────────────────────────────────────
+
+  role_period:
+    type: object
+    required: [date, precision]
+    additionalProperties: false
+    properties:
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      precision:
+        type: string
+        enum: [year, month, day]
+
+  link:
+    type: object
+    required: [url, title]
+    additionalProperties: false
+    properties:
+      url: { type: string }
+      title: { type: string }
+
+  member_role:
+    type: object
+    required: [id]
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        enum:
+          - chair
+          - convenor
+          - manager
+          - member
+          - committee_manager
+          - technical_programme_manager
+          - observer
+          - partner
+      group:
+        type: string
+      from:
+        $ref: "#/$defs/role_period"
+      to:
+        $ref: "#/$defs/role_period"
+
+  member:
+    type: object
+    required: [member-id, name, roles]
+    additionalProperties: true
+    properties:
+      member-id:
+        type: string
+      name:
+        type: string
+      active:
+        type: boolean
+      affiliation:
+        type: string
+      picture:
+        type: string
+      bio:
+        type: string
+      links:
+        type: array
+        items: { $ref: "#/$defs/link" }
+      roles:
+        type: array
+        minItems: 1
+        items: { $ref: "#/$defs/member_role" }
+
+  # ── Standard (_data/standards/*.yml) ─────────────────────────────────────
+
+  standard:
+    type: object
+    required: [iso, tc154]
+    additionalProperties: true
+    properties:
+      iso:
+        type: object
+        required: [name, type, title, stage]
+        additionalProperties: true
+        properties:
+          name: { type: string }
+          type:
+            type: string
+            enum: [international, TS, TR]
+          title: { type: string }
+          stage: { type: string }
+          ics: { type: [string, number] }
+          scope: { type: string }
+          publication_date: { type: [string] }
+      tc154:
+        type: object
+        required: [group]
+        additionalProperties: true
+        properties:
+          group: { type: string }
+          status:
+            type: string
+            enum: [withdrawn, under_development, deleted]
+          introduction: { type: string }
+          scope: { type: string }
+          content: { type: string }
+          who_needs: { type: string }
+          related_news: { type: string }
+          publication_history: { type: string }
+          intro: { type: string }
+          corrections: { type: string }
+          background: { type: string }
+          representation: { type: string }
+          relevant_changes: { type: string }
+
+  # ── Liaison (_data/liaisons.yml) ─────────────────────────────────────────
+
+  liaison:
+    type: object
+    required: [id, name, short_name, category, description]
+    additionalProperties: true
+    properties:
+      id: { type: string }
+      name: { type: string }
+      short_name: { type: string }
+      category:
+        type: string
+        enum: [A, B]
+      url: { type: [string, "null"] }
+      description: { type: string }
+      logo: { type: string }
+      logo_light: { type: string }
+      logo_dark: { type: string }
+
+  # ── National Body (_data/national_bodies.yml) ─────────────────────────────
+
+  national_body:
+    type: object
+    required: [id, name, short_name, iso_country_code, logo, description]
+    additionalProperties: true
+    properties:
+      id: { type: string }
+      name: { type: string }
+      short_name: { type: string }
+      iso_country_code:
+        oneOf:
+          - { type: string, pattern: "^[A-Z]{2}$" }
+          - { type: boolean, enum: [false] }
+      url: { type: [string, "null"] }
+      logo: { type: string }
+      description: { type: string }
+
+  # ── Secretariat (_data/secretariat.yml) ───────────────────────────────────
+
+  secretariat_entry:
+    type: object
+    required: [role]
+    additionalProperties: true
+    properties:
+      role:
+        type: string
+        enum: [Committee Manager, Technical Programme Manager]
+      member: { type: string }
+      name: { type: string }
+      organization: { type: string }

@@ -1,0 +1,73 @@
+---
+id: jwg1
+_id: jwg1
+name: JWG&nbsp;1
+title: EDIFACT Syntax
+order: 2
+featured_on_home: true
+intro: |
+  The EDIFACT Application Level Syntax Rules (ISO 9735) is the main deliverable
+  of the Joint Working Group (ISO/TC 154/JWG 1),
+  in collaboration with UNECE.
+scope: |
+  The scope of JWG1 includes the maintenance, update and extension
+  of ISO 9735.
+organization:
+  managers:
+  - gregor-roschkowski
+  convenors:
+  - anders-grangard
+history:
+  leadership:
+  - yan-zhang
+  - klaus-dieter-naujok
+  story: |-
+    JWG 1 was established in the late 80's as so called "`Joint Syntax Working Group (JSWG)`"
+    with the UNECE in order to develop and maintain the EDIFACT syntax.
+    Since the publication of the syntax version 1 in 1988,
+    the standard has been revised and amended several times until the current version 4,
+    release 2.
+
+    With its publication in 2002, the work in JWG 1 is mainly concentrated
+    on the twice-per-year update of the syntax codes directory
+    (in alignment with the EDIFACT user directories)
+    on the corresponding https://www.gefeg.com/jswg/[JSWG website].
+active_projects:
+- iso-9735-11
+standards:
+- ISO 9735-1:1998/Cor 1:1998
+- ISO 9735-1:1998
+- ISO 9735-10:2014
+- ISO 9735-10:2022
+- ISO 9735-10:2002
+- ISO 9735-11:2022
+- ISO 9735-1:2002
+- ISO 9735-2:1998
+- ISO 9735-2:2002
+- ISO 9735-3:1998
+- ISO 9735-3:2002
+- ISO 9735-4:1998
+- ISO 9735-4:2002
+- ISO 9735-5:1999
+- ISO 9735-5:2002
+- ISO 9735-6:1999
+- ISO 9735-6:2002
+- ISO 9735-7:1999
+- ISO 9735-7:2002
+- ISO 9735-8:1998
+- ISO 9735-8:2002
+- ISO 9735-9:1999
+- ISO 9735-9:2002
+- ISO 9735
+- ISO 9735:1988
+- ISO 9735:1988/Amd-1:1992
+- ISO/AWI 7372
+- ISO/AWI TR 25579
+- ISO/CD TR 20194
+- ISO/WD 7372
+_description: |-
+  :page-liquid:
+
+  ISO 9735 represents the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing. In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI. The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
+
+  NOTE: Please see Syntax Data Maintenance Request Submission and Processing Procedures (SDMR) for SDMR procedures.

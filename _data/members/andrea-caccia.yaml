@@ -1,0 +1,13 @@
+---
+member-id: andrea-caccia
+name: Andrea Caccia
+active: true
+roles:
+- id: member
+- id: member
+  group: wg6
+- id: member
+  group: wg7
+- id: member
+  group: jwg9
+affiliation: UNI, Italy

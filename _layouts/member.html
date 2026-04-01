@@ -4,28 +4,167 @@ layout: default
 
 {% assign member = site.data.members.all[page["member-id"]] %}
 
-<main>
-  <header class="{% if page.picture %}with-pic{% endif %}">
+{% comment %} Resolve organization data for affiliation card {% endcomment %}
+{% assign aff_parts = page.affiliation | split: ", " %}
+{% assign aff_short = aff_parts[0] | strip %}
+{% assign org_data = nil %}
+{% assign org_url = "" %}
+{% for nb in site.data.national_bodies %}
+  {% if nb.short_name == aff_short %}
+    {% assign org_data = nb %}
+    {% assign org_url = "/national-bodies/" | append: nb.id | append: "/" %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% if org_data == nil %}
+  {% for l in site.data.liaisons %}
+    {% if l.short_name == aff_short %}
+      {% assign org_data = l %}
+      {% assign org_url = "/liaisons/" | append: l.id | append: "/" %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% comment %} Determine primary role label {% endcomment %}
+{% assign primary_role = "Member" %}
+{% if member.roles %}
+  {% assign current_role_ids = "" %}
+  {% for role in member.roles['_all']['in']['_all'] %}
+    {% if role.to == nil and role.id %}
+      {% unless current_role_ids contains role.id %}
+        {% assign current_role_ids = current_role_ids | append: role.id | append: "," %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+  {% if current_role_ids contains 'chair' %}
+    {% assign primary_role = "Chair" %}
+  {% elsif current_role_ids contains 'technical_programme_manager' %}
+    {% assign primary_role = "Technical Programme Manager" %}
+  {% elsif current_role_ids contains 'committee_manager' %}
+    {% assign primary_role = "Committee Manager" %}
+  {% elsif current_role_ids contains 'convenor' %}
+    {% assign primary_role = "Convenor" %}
+  {% elsif current_role_ids contains 'partner' %}
+    {% assign primary_role = "Partner" %}
+  {% elsif current_role_ids contains 'observer' %}
+    {% assign primary_role = "Observer" %}
+  {% endif %}
+{% endif %}
+
+{% comment %} Collect unique role+group combos for display {% endcomment %}
+{% assign shown_role_keys = "" %}
+
+{% comment %}Header with photo, name, and primary role{% endcomment %}
+<div class="member-detail-header">
+  <div class="member-detail-header__photo">
     {% if page.picture %}
-      <img class="picture" src="/assets/images/members/{{ page.picture }}">
+      <img src="/assets/images/members/{{ page.picture }}" alt="{{ member.name }}" class="detail-logo detail-logo--member">
+    {% else %}
+      <div class="detail-logo detail-logo--initials detail-logo--member">
+        <span>{{ member.name | slice: 0, 2 | upcase }}</span>
+      </div>
     {% endif %}
+  </div>
+  <div class="member-detail-header__info">
+    {% unless member.is_current %}
+    <span class="page-label">Past Member</span>
+    {% endunless %}
+    <h1 class="member-detail-header__name">{{ page.title }}</h1>
+    <p class="member-detail-header__role">{{ primary_role }}</p>
+  </div>
+</div>
 
-    <h2 class="entity"><span class="type">{% unless member.is_current %}Past {% endunless %}Member</span></h2>
-
-    <h1 class="headline">{{ page.name }}</h1>
-
-    <p class="roles">
-      {% include member_roles.html roles=member.roles show_history=true %}
-    </p>
-
-    <p>Representing {{ page.affiliation }}</p>
-
-    {% if member.links %}
-      <p class="links">
-        {% include links.html links=member.links %}
-      </p>
+{% comment %}Role badges with group context (deduplicated by role+group){% endcomment %}
+{% if member.roles %}
+<div class="member-roles">
+  {% for role in member.roles['_all']['in']['_all'] %}
+    {% if role.id and role.id != 'project_leader' %}
+      {% assign role_key = role.id | append: ":" | append: role.group %}
+      {% unless shown_role_keys contains role_key %}
+        {% assign shown_role_keys = shown_role_keys | append: role_key | append: "," %}
+        {% case role.id %}
+          {% when 'chair' %}
+            {% assign badge_label = "Chair" %}
+          {% when 'technical_programme_manager' %}
+            {% assign badge_label = "Technical Programme Manager" %}
+          {% when 'committee_manager' %}
+            {% assign badge_label = "Committee Manager" %}
+          {% when 'convenor' %}
+            {% assign badge_label = "Convenor" %}
+          {% when 'member' %}
+            {% assign badge_label = "Member" %}
+          {% when 'manager' %}
+            {% assign badge_label = "Manager" %}
+          {% when 'observer' %}
+            {% assign badge_label = "Observer" %}
+          {% when 'document_monitor' %}
+            {% assign badge_label = "Document Monitor" %}
+          {% when 'liaison' %}
+            {% assign badge_label = "Liaison" %}
+          {% when 'partner' %}
+            {% assign badge_label = "Partner" %}
+          {% else %}
+            {% assign badge_label = role.id | replace: '_', ' ' | capitalize %}
+        {% endcase %}
+        <span class="role-badge{% if role.to == nil %} role-badge--active{% endif %}">
+          {{ badge_label }}{% if role.group %} <span class="role-badge__group">of {{ role.group | upcase }}</span>{% endif %}
+        </span>
+      {% endunless %}
     {% endif %}
-  </header>
+  {% endfor %}
+</div>
+{% endif %}
 
-  {{ content }}
-</main>
+{% comment %}Affiliation card{% endcomment %}
+{% if page.affiliation %}
+{% if org_url != "" %}
+<a href="{{ org_url }}" class="affiliation-card affiliation-card--link">
+{% else %}
+<div class="affiliation-card">
+{% endif %}
+  {% if org_data.logo_light and org_data.logo_dark %}
+    <div class="affiliation-card__logo">
+      <img src="{{ org_data.logo_light }}" alt="{{ org_data.short_name | default: org_data.name }}" class="dark:hidden">
+      <img src="{{ org_data.logo_dark }}" alt="{{ org_data.short_name | default: org_data.name }}" class="hidden dark:block">
+    </div>
+  {% elsif org_data.logo %}
+    <div class="affiliation-card__logo">
+      <img src="{{ org_data.logo }}" alt="{{ org_data.short_name | default: org_data.name }}">
+    </div>
+  {% else %}
+    <div class="affiliation-card__logo">
+      <span>{{ aff_short | truncate: 5, "" }}</span>
+    </div>
+  {% endif %}
+  <div class="affiliation-card__body">
+    <p class="affiliation-card__label">Organization</p>
+    <p class="affiliation-card__name">{{ page.affiliation }}</p>
+  </div>
+{% if org_url != "" %}
+</a>
+{% else %}
+</div>
+{% endif %}
+{% endif %}
+
+{% comment %}Social links{% endcomment %}
+{% if member.links %}
+  {% include links.html links=member.links %}
+{% endif %}
+
+{% comment %}Bio — split on double-newlines for paragraphs, collapse hard wraps{% endcomment %}
+{% if page.bio %}
+  {% capture nl %}
+  {% endcapture %}
+  {% assign dnl = nl | append: nl %}
+  {% assign bio_paragraphs = page.bio | split: dnl %}
+  {% for para in bio_paragraphs %}
+    {% assign para_text = para | replace: nl, " " | strip %}
+    {% if para_text != "" %}
+    <p class="member-bio">{{ para_text }}</p>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{{ content }}

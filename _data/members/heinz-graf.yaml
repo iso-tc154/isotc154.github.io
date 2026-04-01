@@ -1,0 +1,10 @@
+---
+member-id: heinz-graf
+name: Heinz Graf
+active: true
+roles:
+- id: member
+  group: jwg9
+- id: member
+  group: jwg1
+affiliation: SNV, Switzerland

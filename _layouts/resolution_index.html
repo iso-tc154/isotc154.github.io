@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem">
+  {% for year in site.data.resolutions_years %}
+  {% assign year_resolutions = site.data.resolutions_by_year[year] %}
+  {% if year_resolutions %}
+  <a href="/resolutions/{{ year }}/" class="year-card">
+    <div class="year-card__year">{{ year }}</div>
+    <div class="year-card__count">
+      {{ year_resolutions.size }} resolution{% if year_resolutions.size != 1 %}s{% endif %}
+    </div>
+  </a>
+  {% endif %}
+  {% endfor %}
+</div>

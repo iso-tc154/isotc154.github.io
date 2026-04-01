@@ -1,0 +1,105 @@
+/* ── Member Card ──────────────────────────────────── */
+
+@layer components {
+  .member-card {
+    position: relative;
+    display: block;
+    height: 100%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(229 231 235 / 0.8);
+    background: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .member-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .dark .member-card {
+    border-color: rgb(255 255 255 / 0.06);
+    background: rgb(15 23 42 / 0.5);
+  }
+  .member-card:hover {
+    border-color: #66a3e0;
+    box-shadow: 0 10px 15px -3px rgb(0 97 173 / 0.06);
+  }
+  .dark .member-card:hover {
+    border-color: rgb(51 133 214 / 0.3);
+  }
+
+  .member-card__body {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .member-card__photo {
+    flex-shrink: 0;
+    padding-top: 0.125rem;
+    padding-left: 0.125rem;
+  }
+  .member-card__info { min-width: 0; }
+
+  .member-card__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #0f172a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    transition: color 0.15s;
+  }
+  .dark .member-card__name { color: #f8fafc; }
+  .member-card:hover .member-card__name { color: #0061ad; }
+  .dark .member-card:hover .member-card__name { color: #3385d6; }
+
+  .member-card__role {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #0061ad;
+    margin-top: 0.125rem;
+  }
+  .dark .member-card__role { color: #3385d6; }
+
+  .member-card__affiliation {
+    font-size: 0.6875rem;
+    line-height: 1.25;
+    color: #64748b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 0.125rem;
+  }
+  .dark .member-card__affiliation { color: #94a3b8; }
+
+  /* Avatar */
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px rgb(243 244 246 / 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s;
+  }
+  .dark .avatar { box-shadow: 0 0 0 2px rgb(255 255 255 / 0.1); }
+  .member-card:hover .avatar { box-shadow: 0 0 0 2px #cce0f5; }
+  .dark .member-card:hover .avatar { box-shadow: 0 0 0 2px rgb(51 133 214 / 0.3); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar--initials {
+    background: linear-gradient(to bottom right, #e6f0fa, #cce0f5);
+  }
+  .dark .avatar--initials {
+    background: linear-gradient(to bottom right, rgb(0 29 57 / 0.4), rgb(0 46 86 / 0.3));
+  }
+  .avatar--initials span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0061ad;
+  }
+  .dark .avatar--initials span { color: #3385d6; }
+}

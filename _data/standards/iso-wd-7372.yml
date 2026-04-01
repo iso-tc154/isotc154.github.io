@@ -1,0 +1,13 @@
+---
+iso:
+  name: ISO/WD 7372
+  type: international
+  title: Trade data interchange — Trade data elements directory
+  stage: '20.98'
+  scope: |-
+    ISO 7372:2005 lists standard data elements intended to facilitate open interchange of data in international trade.
+    The standard data elements listed can be used with any method for data interchange on paper documents as well as with other means of data processing and communication.
+  publication_date: '7372-01-01'
+tc154:
+  group: jwg1
+  status: deleted

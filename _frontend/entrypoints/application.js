@@ -1,0 +1,27 @@
+import { createApp } from 'vue'
+import '../css/typography.css'
+import '../css/layout.css'
+import '../css/page.css'
+import '../css/member-card.css'
+import '../css/org-card.css'
+import '../css/filter.css'
+import '../css/content-panel.css'
+import '../css/badges.css'
+import '../css/detail.css'
+import '../css/resolution.css'
+import '../css/header.css'
+import '../css/footer.css'
+import '../css/docs-layout.css'
+import '../css/home.css'
+import '../css/standards.css'
+import '../css/standard-detail.css'
+import '../js/theme.js'
+import '../js/navigation.js'
+import '../js/member-filter.js'
+import '../js/resolutions-filter.js'
+import '../js/standards-filter.js'
+import '../js/projects-filter.js'
+
+const app = createApp({})
+
+const vm = app.mount('#vue-app')

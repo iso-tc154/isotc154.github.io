@@ -1,0 +1,11 @@
+---
+member-id: sunho-park
+name: Sun Ho Park
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+affiliation: KATS, Korea, Republic of

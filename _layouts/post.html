@@ -2,37 +2,23 @@
 layout: default
 ---
 
-<div class="with-aside">
-  <main>
-    <header>
-      <h1 class="entity">
-        <span class="type">news article</span>
-      </h1>
-
-      <h2 class="headline">{{ page.title }}</h2>
-    </header>
-
-    {{ page.content }}
-
-    <footer>
-      <section class="meta">
-        <div class="date">{{ page.date | date_to_long_string }}</div>
-      </section>
-
-      {% if page.see_also %}
-        <section class="see-also">
-          <h3>See also</h3>
-          <ul>
-          {% for i in page.see_also %}
-            <li><a href="{{ i.link }}">{{ i.title }}</a>
-          {% endfor %}
-          </ul>
-        </section>
-      {% endif %}
-    </footer>
-  </main>
-
-  <aside class="post-list">
-    {% include posts_nav.html active_post_id=page.id %}
-  </aside>
+<div style="margin-bottom: 1.5rem">
+  <span class="page-label">News Article</span>
 </div>
+
+<div class="meta-text" style="margin-bottom: 2rem">
+  {{ page.date | date_to_long_string }}
+</div>
+
+{{ content }}
+
+{% if page.see_also %}
+<div class="see-also">
+  <h3 class="section-heading" style="margin-bottom: 1rem">See also</h3>
+  <ul class="see-also__list">
+  {% for i in page.see_also %}
+    <li><a href="{{ i.link }}" class="see-also__link">{{ i.title }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}

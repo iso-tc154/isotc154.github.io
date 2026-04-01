@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 2711:1973
+  type: international
+  title: Information processing interchange — Representation of ordinal dates
+  stage: '95.99'
+  ics: 35.240.63, 01.140.30
+  scope: Information processing interchange -- Representation of ordinal dates.
+  publication_date: '1973-01-01'
+tc154:
+  group: wg5
+  status: withdrawn

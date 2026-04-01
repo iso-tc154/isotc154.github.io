@@ -1,0 +1,11 @@
+---
+member-id: hidekazu-enjo
+name: Hidekazu Enjo
+active: true
+roles:
+- id: member
+- id: member
+  group: wg7
+- id: member
+  group: jwg1
+affiliation: JISC, Japan

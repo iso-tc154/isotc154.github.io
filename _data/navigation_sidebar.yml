@@ -1,0 +1,126 @@
+# Sidebar Navigation Configuration
+# Fully declarative - the layout has no knowledge of specific pages.
+#
+# Item types:
+#   - link: Simple link with label and url
+#   - collection: Dynamic items from a Jekyll collection
+#   - collapsible: Link with children (static or from collection)
+#   - group: Section header with children items
+#   - years: Dynamic year listing from posts
+
+sections:
+  - id: projects
+    match: "/projects"
+    title: Projects
+    items:
+      - type: collection
+        collection: projects
+        label: All Projects
+        display_fields:
+          - name
+          - title
+
+  - id: groups
+    match: "/groups"
+    title: Working Groups
+    items:
+      - type: collection
+        collection: groups
+        sort_field: order
+        display_fields:
+          - name
+          - title
+
+  - id: members
+    match: "/members"
+    title: Members
+    items:
+      - type: link
+        label: All Members
+        url: /members/
+      - type: link
+        label: CAG
+        filter_group: cag
+      - type: link
+        label: WG 2
+        filter_group: wg2
+      - type: link
+        label: JWG 1
+        filter_group: jwg1
+      - type: link
+        label: WG 3
+        filter_group: wg3
+        inactive: true
+      - type: link
+        label: WG 4
+        filter_group: wg4
+        inactive: true
+      - type: link
+        label: WG 5
+        filter_group: wg5
+      - type: link
+        label: WG 6
+        filter_group: wg6
+      - type: link
+        label: WG 7
+        filter_group: wg7
+      - type: link
+        label: JWG 8
+        filter_group: jwg8
+        inactive: true
+      - type: link
+        label: JWG 9
+        filter_group: jwg9
+      - type: link
+        label: ISO 7372 MA
+        filter_group: iso7372ma
+
+  - id: procedures
+    match: "/procedures"
+    title: Procedures
+    items:
+      - type: collection
+        collection: procedures
+
+  - id: resolutions
+    match: "/resolutions"
+    title: Resolutions
+    items:
+      - type: link
+        label: All Resolutions
+        url: /resolutions/
+      - type: years
+        data_years: resolutions_years
+        data_by_year: resolutions_by_year
+
+  - id: posts
+    match: "/posts"
+    title: News
+    items:
+      - type: years
+
+  - id: about
+    match: "/about"
+    url_prefixes:
+      - /about
+      - /faq
+      - /contact
+      - /liaisons
+      - /national-bodies
+    title: About
+    items:
+      - type: link
+        label: About TC 154
+        url: /about/
+      - type: link
+        label: Liaisons
+        url: /liaisons/
+      - type: link
+        label: National Bodies
+        url: /national-bodies/
+      - type: link
+        label: FAQ
+        url: /faq/
+      - type: link
+        label: Contact
+        url: /contact/

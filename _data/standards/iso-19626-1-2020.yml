@@ -1,0 +1,15 @@
+---
+iso:
+  name: ISO 19626-1:2020
+  type: international
+  title: 'Processes, data elements and documents in commerce, industry and administration — Trusted communication platforms for electronic documents — Part 1: Fundamentals'
+  stage: '90.93'
+  ics: 35.240.63
+  scope: |-
+    This document defines the requirements about trusted communication in legal, administrative and technical considerations. This document shows a TCP system architecture to guarantee trusted communication and promote trusted services by providing trusted communication evidence as the proof.
+    This document focuses on TCP at the view of 7<sup>th</sup> application layer of OSI (Open Systems Interconnection) Reference Model.
+    The audiences are the policy makers for IT innovation such as dematerialization, legal experts regarding electronic activities, IT planners for single windows and secure transactions, IT service providers related to distributed networking and ledger, trusted system auditors, trusted communication concerned parties and so on.
+  publication_date: '2020-01-01'
+tc154:
+  group: wg6
+  related_news: "* link:/posts/2020-01-01-iso-19626-1-2020[ISO/TC 154 news: ISO 19626-1:2020 published!]"

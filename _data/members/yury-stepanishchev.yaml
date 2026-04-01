@@ -1,0 +1,9 @@
+---
+member-id: yury-stepanishchev
+name: Yury Stepanishchev
+active: true
+roles:
+- id: member
+- id: member
+  group: jwg1
+affiliation: GOST R, Russian Federation

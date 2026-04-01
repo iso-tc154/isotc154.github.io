@@ -1,0 +1,49 @@
+---
+permalink: /liaisons/
+title: Liaisons
+layout: default
+---
+
+<div style="margin-bottom: 2rem">
+  <p class="meta-text" style="max-width: 48rem">
+    ISO/TC 154 maintains formal liaison relationships with external organizations
+    to ensure coordination, avoid duplication of work, and exchange information
+    on matters of mutual interest.
+  </p>
+</div>
+
+<div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem">
+  <span class="detail-badge detail-badge--primary">Category A — Active participation</span>
+</div>
+
+<div class="card-overflow" style="margin-bottom: 1rem">
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; min-width: 0; width: 100%">
+  {% for liaison in site.data.liaisons %}
+  <a href="/liaisons/{{ liaison.id }}/" class="org-card">
+    <div class="org-card__body">
+      <div class="org-card__logo{% if liaison.logo or liaison.logo_light %} org-card__logo--img{% endif %}">
+        {% if liaison.logo_light and liaison.logo_dark %}
+          <img src="{{ liaison.logo_light }}" alt="{{ liaison.short_name | default: liaison.name }}" class="dark:hidden">
+          <img src="{{ liaison.logo_dark }}" alt="{{ liaison.short_name | default: liaison.name }}" class="hidden dark:block">
+        {% elsif liaison.logo and liaison.logo != "" %}
+          <img src="{{ liaison.logo }}" alt="{{ liaison.short_name | default: liaison.name }}">
+        {% else %}
+          <span class="meta-text" style="font-weight: 600; font-size: 0.875rem; text-align: center; line-height: 1.25; padding: 0 0.25rem">{{ liaison.short_name | default: liaison.name | truncate: 6, "" }}</span>
+        {% endif %}
+      </div>
+      <div class="org-card__info">
+        <p class="org-card__name">{{ liaison.name }}</p>
+        <div class="org-card__meta">
+          {% if liaison.short_name %}
+          <span class="org-card__short-name">{{ liaison.short_name }}</span>
+          {% endif %}
+          {% if liaison.category %}
+          <span class="org-card__badge">Cat. {{ liaison.category }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+  </div>
+</div>

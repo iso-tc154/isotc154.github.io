@@ -1,0 +1,94 @@
+---
+layout: base
+---
+
+{% assign org = page.organization %}
+{% assign org_type = page.organization_type %}
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb">
+  {% if org_type == 'liaison' %}
+    <a href="/liaisons/" class="breadcrumb-link">Liaisons</a>
+    <span>/</span>
+  {% else %}
+    <a href="/national-bodies/" class="breadcrumb-link">National Bodies</a>
+    <span>/</span>
+  {% endif %}
+  <span class="breadcrumb__current">{{ org.name }}</span>
+</nav>
+
+<!-- Header -->
+<div class="detail-header">
+  {% comment %} Logo or initials {% endcomment %}
+  <div class="detail-logo">
+    {% if org.logo_light and org.logo_dark %}
+      <img src="{{ org.logo_light }}" alt="{{ org.short_name | default: org.name }}" class="dark:hidden">
+      <img src="{{ org.logo_dark }}" alt="{{ org.short_name | default: org.name }}" class="hidden dark:block">
+    {% elsif org.logo and org.logo != "" %}
+      <img src="{{ org.logo }}" alt="{{ org.short_name | default: org.name }}">
+    {% else %}
+      <div class="detail-logo--initials">
+        <span>{{ org.short_name | default: org.name | truncate: 8, "" }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div style="min-width: 0; flex: 1">
+    <h1 class="page-title" style="margin-bottom: 0.25rem">{{ org.name }}</h1>
+    <div class="detail-meta">
+      {% if org.short_name and org.short_name != org.name %}
+        <span class="detail-short-name">{{ org.short_name }}</span>
+      {% endif %}
+      {% if org.iso_country_code %}
+        <span class="detail-badge">{{ org.iso_country_code }}</span>
+      {% endif %}
+      {% if org_type == 'liaison' and org.category %}
+        <span class="detail-badge {% if org.category == 'A' %}detail-badge--primary{% endif %}">
+          Category {{ org.category }}
+        </span>
+      {% endif %}
+      {% if org_type == 'national_body' %}
+        <span class="detail-badge">P-Member</span>
+      {% endif %}
+    </div>
+    {% if org.url and org.url != "" %}
+      <a href="{{ org.url }}" target="_blank" rel="noopener" class="detail-url">
+        {% include icons/external-link.html %}
+        {{ org.url | replace: "https://", "" | replace: "http://", "" | truncate: 40, "" }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Description -->
+{% if org.description %}
+<div class="info-panel">
+  <p class="info-panel__text">{{ org.description }}</p>
+</div>
+{% endif %}
+
+<!-- Members -->
+{% assign member_ids = site.data.organization_members[org.id] %}
+{% if member_ids and member_ids.size > 0 %}
+<div>
+  <p class="section-heading" style="margin-bottom: 1rem">
+    Representatives
+    <span class="meta-text--small" style="margin-left: 0.25rem">({{ member_ids.size }})</span>
+  </p>
+  <div class="member-grid">
+    {% for member_id in member_ids %}
+      {% assign rep = site.data.members.all[member_id] %}
+      {% if rep %}
+        <div class="member-card" data-name="{{ rep.name | downcase }}" data-status="{% if rep.is_current %}current{% else %}past{% endif %}">
+          {% include member_card.html member=rep affiliation=true %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+<div class="info-panel">
+  <p class="info-panel__text info-panel__text--muted">No representatives currently assigned.</p>
+</div>
+{% endif %}
+

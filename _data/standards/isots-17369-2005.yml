@@ -1,0 +1,20 @@
+---
+iso:
+  name: ISO/TS 17369:2005
+  type: TS
+  title: Statistical data and metadata exchange (SDMX)
+  stage: '95.99'
+  ics: 35.240.01
+  scope: |-
+    ISO/TS 17369:2005 deals with statistical data and metadata exchange in six sections covering the following topics:
+
+    * framework for SDMX standards;
+    * SDMX information model;
+    * SDMX-ML schema and documentation;
+    * SDMX-EDI syntax and documentation;
+    * an implementer's guide for SDMX;
+    * SDMX guidelines for the use of web services.
+  publication_date: '2005-01-01'
+tc154:
+  group: wg2
+  status: withdrawn

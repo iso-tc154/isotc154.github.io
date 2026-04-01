@@ -1,0 +1,112 @@
+---
+layout: default
+---
+
+{% assign res = page.resolution %}
+{% assign back_url = "/resolutions/" | append: res.year | append: "/" %}
+
+<a href="{{ back_url }}" class="back-link">
+  {% include icons/chevron-left.html %}
+  Resolutions {{ res.year }}
+</a>
+
+<!-- Header -->
+<div style="margin-bottom: 2rem">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem">
+    {% if res.identifier %}
+    <span class="identifier-badge identifier-badge--lg">{{ res.identifier }}</span>
+    {% endif %}
+    {% if res.meeting_date %}
+    <span class="meta-text">{{ res.meeting_date }}</span>
+    {% endif %}
+    <span class="meta-text">
+      {% case res.source_type %}
+        {% when 'plenary' %}Plenary
+        {% when 'ballot' %}Ballot
+        {% when '7372ma' %}7372 MA
+      {% endcase %}
+    </span>
+    {% if res.group_id %}
+    <span class="detail-badge" style="text-transform: uppercase">{{ res.group_id }}</span>
+    {% endif %}
+  </div>
+
+  {% if res.title %}
+  <h1 class="page-title" style="margin-bottom: 0.5rem">{{ res.title }}</h1>
+  {% endif %}
+
+  {% if res.source_title %}
+  <p class="meta-text" style="font-style: italic">{{ res.source_title }}</p>
+  {% endif %}
+</div>
+
+<!-- Considerations -->
+{% if res.considerations.size > 0 %}
+<section style="margin-bottom: 2rem">
+  <h2 class="section-heading" style="margin-bottom: 1rem">Considerations</h2>
+  <div class="card-stack">
+    {% for consideration in res.considerations %}
+    <div class="consideration-item">
+      <span class="page-label" style="font-size: 0.75rem">{{ consideration.type }}</span>
+      <p class="meta-text" style="margin-top: 0.25rem; white-space: pre-line">{{ consideration.message }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Actions -->
+{% if res.actions.size > 0 %}
+<section style="margin-bottom: 2rem">
+  <h2 class="section-heading" style="margin-bottom: 1rem">Actions</h2>
+  <div class="card-stack">
+    {% for action in res.actions %}
+    <div class="action-item">
+      <span class="page-label" style="font-size: 0.75rem">{{ action.type }}</span>
+      {% if action.subject %}
+      <span class="meta-text--small" style="margin-left: 0.5rem">{{ action.subject }}</span>
+      {% endif %}
+      <p class="action-item__message">{{ action.message }}</p>
+      {% if action.dates.size > 0 %}
+      {% for d in action.dates %}
+      {% if d.start %}
+      <span class="action-item__date">Effective: {{ d.start }}{% if d.end %} &ndash; {{ d.end }}{% endif %}</span>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Approvals -->
+{% if res.approvals.size > 0 %}
+<section style="margin-bottom: 2rem">
+  <h2 class="section-heading" style="margin-bottom: 1rem">Approval</h2>
+  <div class="approval-panel">
+    {% for approval in res.approvals %}
+    <p>
+      {% if approval.degree %}
+      <strong>{{ approval.degree | capitalize }}</strong>
+      {% endif %}
+      {% if approval.message %}
+      &mdash; {{ approval.message }}
+      {% endif %}
+    </p>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Categories -->
+{% if res.categories.size > 0 %}
+<section style="margin-bottom: 2rem">
+  <h2 class="section-heading" style="margin-bottom: 0.75rem">Categories</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
+    {% for cat in res.categories %}
+    <span class="category-tag">{{ cat }}</span>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

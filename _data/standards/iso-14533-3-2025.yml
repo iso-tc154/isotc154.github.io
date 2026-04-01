@@ -1,0 +1,25 @@
+---
+iso:
+  name: ISO 14533-3:2025
+  type: international
+  title: 'Processes, data elements and documents in commerce, industry and administration — Long-term signature — Part 3: Profiles for PDF Advanced Electronic Signatures (PAdES)'
+  stage: '60.60'
+  ics: 35.240.63
+  scope: |-
+    This document specifies the elements, among those defined in PDF digital signatures (PAdES), that enable verification of a digital signature over a long period of time.
+    It does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which already exist.
+  publication_date: '2025-01-01'
+tc154:
+  group: wg6
+  content: |-
+    [NOTE]
+    ====
+    This AWI has been revised.
+    ====
+
+    // more
+  scope: |-
+    This standard specifies the elements, among those defined in XML Advanced Electronic Signatures (XAdES), that enable verification of a digital signature over a long period of time.
+
+    ISO 14533-2:2012 does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which has already existed.
+  related_news: "* link:/posts/2025-01-01-iso-14533-3-2025[ISO/TC 154 news: ISO 14533-3:2025 published!]"

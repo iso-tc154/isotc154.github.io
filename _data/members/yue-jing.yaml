@@ -1,0 +1,9 @@
+---
+member-id: yue-jing
+name: Yue JING
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+affiliation: SAC, China

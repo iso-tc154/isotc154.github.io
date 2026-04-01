@@ -1,0 +1,12 @@
+---
+iso:
+  name: ISO 7372:1986
+  type: international
+  title: Trade data interchange — Trade data elements directory
+  stage: '95.99'
+  ics: 01.140.30
+  scope: Trade data interchange -- Trade data elements directory.
+  publication_date: '1986-01-01'
+tc154:
+  group: jwg1
+  status: withdrawn

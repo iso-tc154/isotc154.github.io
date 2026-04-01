@@ -1,0 +1,11 @@
+---
+member-id: glenn-tice
+name: Glenn Tice
+active: true
+roles:
+- id: member
+- id: convenor
+  group: wg2
+- id: member
+  group: cag
+affiliation: BSI, United Kingdom

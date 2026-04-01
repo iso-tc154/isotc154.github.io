@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/AWI 20197-2
+  type: international
+  title: 'Buy-Ship-Pay Reference Data Model — Part 2: Core Components Business Document Assembly (CCBDA)'
+  stage: '10.99'
+  scope: 'Buy-Ship-Pay Reference Data Model -- Part 2: Core Components Business Document Assembly (CCBDA).'
+tc154:
+  group: jwg9
+  status: under_development

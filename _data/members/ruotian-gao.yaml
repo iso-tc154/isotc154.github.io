@@ -1,0 +1,9 @@
+---
+member-id: ruotian-gao
+name: Ruotian GAO
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+affiliation: SAC, China

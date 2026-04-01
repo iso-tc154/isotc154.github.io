@@ -1,0 +1,9 @@
+---
+member-id: babak-badali
+name: Babak Badali
+active: true
+roles:
+- id: member
+- id: member
+  group: wg7
+affiliation: INSO, Iran

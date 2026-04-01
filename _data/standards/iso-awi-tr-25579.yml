@@ -1,0 +1,11 @@
+---
+iso:
+  name: ISO/AWI TR 25579
+  type: TR
+  title: Syntax implementation guidance of ISO 9735-11
+  stage: '10.99'
+  scope: Syntax implementation guidance of ISO 9735-11.
+  publication_date: '5579-01-01'
+tc154:
+  group: jwg1
+  status: under_development

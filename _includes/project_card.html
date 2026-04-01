@@ -4,13 +4,13 @@
   {% assign project = site.data.projects[include.id] %}
 {% endif %}
 
-<article class="item-card project-card item-card--no-pic">
+<article class="item-card">
   <div class="item-text">
     {% if project %}
       <a href="{{ project.url }}" class="name">{{ project.name }}</a>
       <em class="title" title="{{ project.title }}">{{ project.title }}</em>
     {% else %}
-      <a class="name" href="javascript: void 0;">{{ include.id | replace: '-', ' ' }}</a>
+      <span class="name">{{ include.id | replace: '-', ' ' }}</span>
     {% endif %}
   </div>
 </article>

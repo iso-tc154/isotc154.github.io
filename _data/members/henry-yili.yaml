@@ -1,0 +1,11 @@
+---
+member-id: henry-yili
+name: Henry Yi LI
+active: true
+roles:
+- id: member
+- id: member
+  group: wg6
+- id: member
+  group: jwg9
+affiliation: BSI, United Kingdom

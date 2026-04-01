@@ -1,0 +1,14 @@
+---
+iso:
+  name: ISO 20197-1:2024
+  type: international
+  title: 'Buy-Ship-Pay reference data model — Part 1: Business requirements specification (BRS)'
+  stage: '60.60'
+  ics: 35.240.63
+  scope: |-
+    The scope and limitations of the business processes described in this document have been developed to enable the application of the Buy-Ship-Pay business standard for implementations of national, regional, trade sector or modal specific cross-border scenarios.
+    NOTE           Only the high-level process descriptions are referenced in this document in order that the detailed process analysis of the subset scenarios can provide the detailed process requirements in further individual Business Requirements Specifications (BRSs).
+  publication_date: '2024-01-01'
+tc154:
+  group: jwg9
+  related_news: "* link:/posts/2024-01-01-iso-20197-1-2024[ISO/TC 154 news: ISO 20197-1:2024 published!]"

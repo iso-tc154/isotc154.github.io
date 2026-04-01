@@ -1,27 +1,25 @@
 ---
 permalink: /groups/
 title: Working Groups and Project Teams
-html_class: groups
 layout: default
 ---
-<div class="with-aside">
-  <main>
-    <section>
-      <h2>Working Groups and Project Teams</h2>
 
-      {% assign groups = site.groups | sort: "order" | where: "inactive", nil %}
-      {% for group in groups %}
-        <a href="{{ group.url }}" role="article" class="group-card">
-          {% include group_card.html group=group %}
-        </a>
-      {% endfor %}
+<h2 class="section-heading--lg" style="margin-bottom: 1.5rem">Working Groups and Project Teams</h2>
 
-      {% assign groups = site.groups | sort: "order" | where: "inactive", true %}
-      {% for group in groups %}
-        <a href="{{ group.url }}" role="article" class="group-card inactive-group">
-          {% include group_card.html group=group %}
-        </a>
-      {% endfor %}
-    </section>
-  </main>
-</div>
+<section style="margin-bottom: 2rem">
+  {% for group in site.data.groups_sorted %}
+    {% if group.inactive == nil %}
+    <a href="/groups/{{ group.id }}/" class="group-card" style="display: block; margin-bottom: 1rem">
+      {% include group_card.html group=group %}
+    </a>
+    {% endif %}
+  {% endfor %}
+
+  {% for group in site.data.groups_sorted %}
+    {% if group.inactive == true %}
+    <a href="/groups/{{ group.id }}/" class="group-card" style="display: block; margin-bottom: 1rem; opacity: 0.6">
+      {% include group_card.html group=group %}
+    </a>
+    {% endif %}
+  {% endfor %}
+</section>

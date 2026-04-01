@@ -1,0 +1,9 @@
+---
+member-id: irina-shilkina
+name: Irina Shilkina
+active: true
+roles:
+- id: member
+- id: member
+  group: wg2
+affiliation: GOST R, Russian Federation

@@ -1,0 +1,39 @@
+---
+iso:
+  name: ISO 34000:2023
+  type: international
+  title: Date and time — Vocabulary
+  stage: '90.92'
+  ics: 01.140.30, 01.040.01
+  scope: This document defines terms related to date and time, from fundamental concepts to those of their usage and representation.
+  publication_date: '2023-01-01'
+tc154:
+  group: wg5
+  content:
+  purpose: |-
+    ISO Recommendations and Standards relating to date and time concepts
+    have been available since 1971.
+
+    This document presents terms and definitions for selected concepts
+    relevant to date and time concepts and of their representation.
+
+    Specifically, the terminology presented in this document:
+
+    * serve as a sound basis in the understanding of date and time;
+    * guide new developments in the field by underpinning mutual understanding; and
+    * serve as a quick and handy reference for those newly inaugurated to this field.
+
+    Most terms in this document were sourced from <<ISO8601-1>> and <<ISO8601-2>>.
+  scope: |-
+    This document provides a concept system and a standard set of
+    terminology related to date and time, from basic concepts to those of
+    their representation.
+
+    The scope of the vocabulary provided in this document corresponds to
+    that of ISO/TC 154/WG 5: Representation of dates and times.
+  who_needs: |-
+    * This standard provides a standardized set of terminology and concepts of the field of date and time, setting a common understanding for individuals as well as experts with the need to use and communicate date and time concepts.
+
+    * This standard's authoritative, common basis of the field of date and time will further define other International Standards relating to date and time, as well as facilitate the interoperation of global systems and processes through the common language for date and time concepts.
+  project_leaders: "* link:/members/ronald-tse/[Ronald Tse] (CalConnect)"
+  related_news: "* link:/posts/2023-01-01-iso-34000-2023[ISO/TC 154 news: ISO 34000:2023 published!]"

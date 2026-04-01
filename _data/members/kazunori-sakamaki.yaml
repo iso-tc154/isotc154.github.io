@@ -1,0 +1,9 @@
+---
+member-id: kazunori-sakamaki
+name: Kazunori Sakamaki
+active: true
+roles:
+- id: member
+- id: member
+  group: wg6
+affiliation: JISC, Japan

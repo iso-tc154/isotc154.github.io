@@ -1,0 +1,8 @@
+---
+member-id: walter-trezek
+name: Walter Trezek
+active: true
+roles:
+- id: member
+  group: jwg1
+affiliation: ASI, Austria

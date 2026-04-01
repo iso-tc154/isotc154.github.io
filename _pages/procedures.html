@@ -1,0 +1,20 @@
+---
+permalink: /procedures/
+title: Procedures
+layout: default
+---
+
+<h2 class="section-heading--lg" style="margin-bottom: 1.5rem">Committee Procedures</h2>
+
+<section class="card-stack card-stack--sm">
+  {% for procedure in site.procedures %}
+  <article class="item-card">
+    <h2 class="name">
+      <a href="{{ procedure.url }}">{{ procedure.title }}</a>
+    </h2>
+    {% if procedure.wg %}
+    <p class="meta-text" style="margin-top: 0.25rem">{{ procedure.wg }}</p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</section>

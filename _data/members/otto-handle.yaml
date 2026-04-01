@@ -1,0 +1,8 @@
+---
+member-id: otto-handle
+name: Otto Handle
+active: true
+roles:
+- id: member
+  group: jwg9
+affiliation: ASI, Austria

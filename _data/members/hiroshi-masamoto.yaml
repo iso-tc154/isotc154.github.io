@@ -1,0 +1,11 @@
+---
+member-id: hiroshi-masamoto
+name: Hiroshi Masamoto
+active: true
+roles:
+- id: member
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+affiliation: JISC, Japan
