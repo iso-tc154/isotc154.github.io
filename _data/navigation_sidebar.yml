@@ -89,9 +89,6 @@ sections:
       - type: link
         label: All Resolutions
         url: /resolutions/
-      - type: years
-        data_years: resolutions_years
-        data_by_year: resolutions_by_year
 
   - id: posts
     match: "/posts"
