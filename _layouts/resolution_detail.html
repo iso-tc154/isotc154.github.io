@@ -63,7 +63,7 @@ layout: base
           {% if consideration.type %}
           <span class="std-page__badge" style="margin-bottom:0.5rem">{{ consideration.type | capitalize }}</span>
           {% endif %}
-          <p style="white-space:pre-line">{{ consideration.message }}</p>
+          <div>{{ consideration.message | asciidocify }}</div>
         </div>
         {% unless forloop.last %}<hr style="border:none;border-top:1px solid #e2e8f0;margin:1rem 0">{% endunless %}
         {% endfor %}
@@ -83,7 +83,7 @@ layout: base
           {% if action.subject %}
           <p style="font-weight:600;margin-bottom:0.25rem">{{ action.subject }}</p>
           {% endif %}
-          <p style="white-space:pre-line">{{ action.message }}</p>
+          <div>{{ action.message | asciidocify }}</div>
           {% for d in action.dates %}
             {% if d.start %}
             <p class="std-page__badge" style="margin-top:0.5rem">Effective: {{ d.start }}{% if d.end %} &ndash; {{ d.end }}{% endif %}</p>
