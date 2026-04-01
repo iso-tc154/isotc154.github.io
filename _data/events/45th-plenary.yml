@@ -1,0 +1,196 @@
+title: "45<sup>th</sup> plenary&nbsp;meeting&nbsp;week"
+landing_url: /45th-plenary/
+
+time:
+  from:
+    date: 2026-08-31
+  to:
+    date: 2026-09-04
+
+general_area: Berlin, Germany
+
+venues:
+  - name: Deutsches Institut für Normung (DIN)
+    address: |
+      Am DIN-Platz Burggrafenstraße 6
+      10787 Berlin
+      Germany
+    link: https://www.din.de/en/din-and-our-partners/directions
+    lon: 13.3389
+    lat: 52.5032
+
+host: DIN (Germany)
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+schedule:
+  - date: 2026-08-31
+    time: "9:00–10:30"
+    event: Plenary opening
+    description: Review of ISO/TC 154 work since last plenary meeting
+  - date: 2026-09-01
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2026-09-02
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2026-09-03
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2026-09-04
+    time: "9:00–12:00"
+    event: (J)WGs report to Plenary
+    description: (J)WG report and (J)WG recommendation to plenary
+  - date: 2026-09-04
+    time: "14:30–17:00"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business
+
+deadlines:
+  - date: 2026-08-17
+    description: Registration via ISO meeting platform
+  - date: 2026-08-31
+    description: Liaison report submissions
+  - date: 2026-09-03
+    description: National body report submissions
+
+accommodation_options:
+  - name: Air in Berlin
+    address: Ansbacher Str. 6, 10787 Berlin
+    link: https://www.hotelairinberlin.de
+    email: info@hotelairinberlin.de
+    code: DIN
+    distance: 350m
+    rates:
+      single: "€93"
+      double: "€124"
+    breakfast: Coffee and Croissant included
+
+  - name: Crowne Plaza Berlin City Centre
+    address: Nürnberger Str. 65, 10787 Berlin
+    link: https://www.cp-berlin.com
+    email: info@cp-berlin.com
+    code: DIN
+    distance: 400m
+    rates:
+      single: "€129"
+      double: "€139"
+    breakfast: included
+
+  - name: Hotel Berlin, Berlin
+    address: Lützowplatz 17, 10785 Berlin
+    link: https://www.hotel-berlin.de
+    email: reservations@hotel-berlin.de
+    code: "742953"
+    distance: 1200m
+    rates:
+      single_standard: "€115"
+      single_superior: "€125"
+      double_standard: "€128"
+      double_superior: "€138"
+    breakfast: included
+
+  - name: InterContinental Berlin
+    address: Budapester Str. 2, 10787 Berlin
+    link: https://www.ihg.com
+    email: berha.reservations@ihg.com
+    code: "958389333"
+    distance: 210m
+    rates:
+      single: "€174"
+      double: "€199"
+    breakfast: included
+
+  - name: Pullman Berlin Schweizerhof
+    address: Budapester Str. 25, 10787 Berlin
+    link: https://www.pullman-berlin-schweizerhof.com/
+    email: h5347@accor.com
+    code: AS 51333
+    distance: 120m
+    rates:
+      single: "€145"
+      double: "€170"
+    breakfast: included
+
+  - name: Sorat Hotel Berlin
+    address: Bayreuther Str. 44, 10787 Berlin
+    link: https://www.sorat-hotels.com/de/hotel/berlin
+    email: berlin@sorat-hotels.com
+    code: DIN
+    distance: 350m
+    rates:
+      single: "€76"
+      double: "€91"
+    breakfast: Coffee and Croissant included
+
+  - name: Sylter Hof Berlin
+    address: Kurfürstenstraße 116, 10787 Berlin
+    link: https://www.hotelsylterhofberlin.de
+    email: reservations@hotelsylterhofberlin.de
+    code: din2026
+    distance: 1000m
+    rates:
+      single: "€85"
+    breakfast: included
+
+practical_info:
+  visa:
+    eu_schengen: true
+    info_url: https://www.auswaertiges-amt.de/en
+    invitation_contact: Ms Kristina Schönebeck
+    invitation_email: kristina.schoenebeck@din.de
+    required_info:
+      - First name
+      - Family name
+      - Gender
+      - Date of Birth
+      - Place of Birth
+      - Passport No.
+      - Company/Organization/National standardisation body
+      - Complete address (including ZIP Code)
+      - Period of stay (date of arrival/date of departure)
+      - E-mail and mobile number (needed for UPS delivery)
+  access:
+    badge_required: true
+    badge_info: "Collect your personal badge at reception on first entry. Keep it during the meeting week — you may only enter the building using the QR code printed on the badge."
+    wifi: Provided onsite in meeting rooms
+    smoking: Allowed in the DIN courtyard
+  electrical: "230V / 50Hz — you may need an adaptor"
+
+lunch_recommendations:
+  - name: Kantini (Bikini Berlin)
+    url: https://www.bikiniberlin.de/en/kantini_and_restaurants/
+  - name: L'Osteria Bikini Berlin
+    url: https://losteria.net/en/restaurants/restaurant/bikini-berlin/
+  - name: Frittenwerk
+    url: https://frittenwerk.com/berlin-tauentzienstrasse.php
+  - name: Dolores
+    url: https://dolores-burritos.de/
+  - name: Peter Pane
+    url: https://peterpane.de/en/
+
+biergartens:
+  - name: Schleusenkrug
+    address: Müller-Breslau Str. 14b, 10623 Berlin
+    url: https://maps.app.goo.gl/c5X5AgeaaSRAETpb6
+    walk_minutes: 20
+    style: Self-service, typical German food
+  - name: Café am Neuen See
+    address: Lichtensteinalle 2, 10787 Berlin
+    url: https://maps.app.goo.gl/rA2B8xGAZ4LE9cYz6
+    walk_minutes: 15
+    style: Self-service, German food and pizza
+
+tourist_info:
+  url: https://www.visitberlin.de/en
+  museums_url: https://www.museumsportal-berlin.de/en/planen-organisieren/berlins-museums/
+  ifa_note: "The Internationale Funkausstellung (IFA), a large consumer and tech fair established in 1924, runs 4–8 September 2026. Early hotel booking is recommended."
+  ifa_url: https://www.ifa-berlin.com/
+
+local_contact:
+  name: Gregor Roschkowski
+  email: gregor.roschkowski@din.de

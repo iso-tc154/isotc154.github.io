@@ -1,0 +1,210 @@
+---
+permalink: /45th-plenary/
+title: 45th Plenary Meeting
+layout: default
+event_id: 45th_plenary
+---
+
+{%- assign event = site.data.events[page.event_id] -%}
+
+<div class="plenary-hero">
+  <div class="plenary-hero__badge">Upcoming</div>
+  <h1 class="plenary-hero__title">{{ event.title }}</h1>
+  <div class="plenary-hero__meta">
+    <span class="plenary-hero__date">{{ event.time.from.date | date: "%-d %B" }} &ndash; {{ event.time.to.date | date: "%-d %B %Y" }}</span>
+    <span class="plenary-hero__sep">&middot;</span>
+    <span class="plenary-hero__location">{{ event.general_area }}</span>
+  </div>
+  {% if event.host %}
+  <p class="plenary-hero__host">Hosted by {{ event.host }}</p>
+  {% endif %}
+</div>
+
+<div class="plenary-content">
+
+  <!-- Venue -->
+  {% assign venue = event.venues.first %}
+  {% if venue %}
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Venue</h2>
+    <div class="plenary-venue">
+      {% if venue.name %}<p class="plenary-venue__name">{{ venue.name }}</p>{% endif %}
+      <p class="plenary-venue__address">{{ venue.address | newline_to_br }}</p>
+      {% if venue.link %}
+      <a href="{{ venue.link }}" class="plenary-venue__link" target="_blank" rel="noopener">
+        Directions {% include icons/external-link.html %}
+      </a>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Schedule -->
+  {% if event.schedule.size > 0 %}
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Schedule</h2>
+    <div class="plenary-schedule">
+      {% for slot in event.schedule %}
+      <div class="plenary-schedule__row">
+        <div class="plenary-schedule__date">{{ slot.date | date: "%a %-d %b" }}</div>
+        <div class="plenary-schedule__time">{{ slot.time }}</div>
+        <div class="plenary-schedule__event">
+          <span class="plenary-schedule__label">{{ slot.event }}</span>
+          {% if slot.description %}<span class="plenary-schedule__desc">{{ slot.description }}</span>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Registration -->
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Registration</h2>
+    <div class="plenary-info-block">
+      <p>All delegates for the WG meetings and plenary meeting shall be registered via the <strong>ISO meeting platform</strong> by yourself or by your National Standard Bodies or liaison organizations <strong>before 17 August 2026</strong>.</p>
+    </div>
+  </section>
+
+  <!-- Deadlines -->
+  {% if event.deadlines.size > 0 %}
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Deadlines</h2>
+    <div class="plenary-deadlines">
+      {% for dl in event.deadlines %}
+      <div class="plenary-deadlines__item">
+        <span class="plenary-deadlines__date">{{ dl.date | date: "%-d %B %Y" }}</span>
+        <span class="plenary-deadlines__desc">{{ dl.description }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Visa -->
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Visa Information</h2>
+    <div class="plenary-info-block">
+      <p>Germany is a member of the European Union and part of the Schengen Agreement. More information: <a href="https://www.auswaertiges-amt.de/en" target="_blank" rel="noopener">Federal Foreign Office</a></p>
+      {% assign visa = event.practical_info.visa %}
+      <p>If you need an invitation letter, provide the following to <a href="mailto:{{ visa.invitation_email }}">{{ visa.invitation_contact }}</a>:</p>
+      <ul class="plenary-info-block__list">
+        <li>First name, Family name, Gender</li>
+        <li>Date and Place of Birth</li>
+        <li>Passport number</li>
+        <li>Organization name and complete address (including ZIP)</li>
+        <li>Period of stay (arrival/departure dates)</li>
+        <li>Email and mobile number (for UPS delivery)</li>
+      </ul>
+      <p class="plenary-info-block__note">Please submit your enquiry as soon as possible.</p>
+    </div>
+  </section>
+
+  <!-- Accommodation -->
+  {% if event.accommodation_options.size > 0 %}
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Accommodation</h2>
+    {% if event.practical_info.tourist_info.ifa_note %}
+    <div class="plenary-notice">
+      <strong>Note:</strong> {{ event.practical_info.tourist_info.ifa_note }}
+    </div>
+    {% endif %}
+    <div class="plenary-hotels">
+      {% for hotel in event.accommodation_options %}
+      <div class="plenary-hotel">
+        <div class="plenary-hotel__header">
+          <h3 class="plenary-hotel__name">{{ hotel.name }}</h3>
+          {% if hotel.distance %}<span class="plenary-hotel__distance">{{ hotel.distance }}</span>{% endif %}
+        </div>
+        <p class="plenary-hotel__address">{{ hotel.address }}</p>
+        {% if hotel.rates %}
+        <div class="plenary-hotel__rates">
+          {% for rate in hotel.rates %}
+          <span class="plenary-hotel__rate"><strong>{{ rate[0] | replace: "_", " " }}:</strong> {{ rate[1] }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="plenary-hotel__booking">
+          {% if hotel.code %}<span class="plenary-hotel__code">Booking code: <strong>{{ hotel.code }}</strong></span>{% endif %}
+          {% if hotel.link %}<a href="{{ hotel.link }}" class="plenary-hotel__link" target="_blank" rel="noopener">Visit site {% include icons/external-link.html %}</a>{% endif %}
+          {% if hotel.email %}<a href="mailto:{{ hotel.email }}" class="plenary-hotel__link">{{ hotel.email }}</a>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Practical Info -->
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Practical Information</h2>
+    <div class="plenary-practical">
+      <div class="plenary-practical__item">
+        <h3>Access to DIN</h3>
+        <p>Collect your personal badge at reception on first entry. Keep it during the meeting week — you may only enter the building using the QR code printed on the badge.</p>
+      </div>
+      <div class="plenary-practical__item">
+        <h3>Electricity</h3>
+        <p>230V / 50Hz — you may need an adaptor.</p>
+      </div>
+      <div class="plenary-practical__item">
+        <h3>WiFi</h3>
+        <p>Provided onsite in meeting rooms.</p>
+      </div>
+      <div class="plenary-practical__item">
+        <h3>Refreshments</h3>
+        <p>Water, coffee, tea, soft drinks and juice available in meeting rooms during breaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lunch -->
+  {% if event.lunch_recommendations.size > 0 %}
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Lunch Options Nearby</h2>
+    <div class="plenary-links-grid">
+      {% for lunch in event.lunch_recommendations %}
+      <a href="{{ lunch.url }}" class="plenary-links-grid__item" target="_blank" rel="noopener">
+        {{ lunch.name }}
+        {% include icons/external-link.html %}
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Tourist Info -->
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Discover Berlin</h2>
+    <div class="plenary-links-grid">
+      <a href="{{ event.practical_info.tourist_info.url }}" class="plenary-links-grid__item" target="_blank" rel="noopener">Visit Berlin {% include icons/external-link.html %}</a>
+      <a href="{{ event.practical_info.tourist_info.museums_url }}" class="plenary-links-grid__item" target="_blank" rel="noopener">Berlin Museums {% include icons/external-link.html %}</a>
+      {% for bg in event.biergartens %}
+      <a href="{{ bg.url }}" class="plenary-links-grid__item" target="_blank" rel="noopener">{{ bg.name }} ({{ bg.walk_minutes }} min walk) {% include icons/external-link.html %}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="plenary-section">
+    <h2 class="plenary-section__title">Contact</h2>
+    <div class="plenary-contacts">
+      {% assign sec = event.secretariat %}
+      <div class="plenary-contact">
+        <span class="plenary-contact__role">Committee Manager</span>
+        <span class="plenary-contact__name">{{ sec.name }}</span>
+        <span class="plenary-contact__org">{{ sec.organization }}</span>
+        <a href="mailto:{{ sec.email }}" class="plenary-contact__email">{{ sec.email }}</a>
+      </div>
+      {% assign local = event.local_contact %}
+      {% if local %}
+      <div class="plenary-contact">
+        <span class="plenary-contact__role">Local Organization</span>
+        <span class="plenary-contact__name">{{ local.name }}</span>
+        <a href="mailto:{{ local.email }}" class="plenary-contact__email">{{ local.email }}</a>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+</div>
