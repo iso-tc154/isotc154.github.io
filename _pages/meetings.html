@@ -1,0 +1,50 @@
+---
+permalink: /meetings/
+title: Meetings
+layout: base
+---
+
+<div class="std-page">
+  <header class="std-page__header">
+    <h1 class="std-page__title">Meetings</h1>
+    <p class="std-page__subtitle">Plenary meetings and working group sessions of ISO/TC&nbsp;154.</p>
+  </header>
+
+  <div class="std-page__content">
+
+    {%- assign events = site.data.events -%}
+
+    {% for event_hash in events %}
+    {%- assign event = event_hash[1] -%}
+    {%- assign from_date = event.time.from.date -%}
+    {%- assign to_date = event.time.to.date -%}
+
+    <section class="std-page__section">
+      <div class="meeting-card">
+        <div class="meeting-card__body">
+          <div class="meeting-card__meta">
+            {% if from_date %}
+            <span class="std-page__badge">{{ from_date | date: "%-d %B %Y" }}{% if to_date %} &ndash; {{ to_date | date: "%-d %B %Y" }}{% endif %}</span>
+            {% endif %}
+          </div>
+
+          <h2 class="meeting-card__title">{{ event.title }}</h2>
+
+          {% if event.general_area %}
+          <p class="meeting-card__location">{{ event.general_area }}</p>
+          {% endif %}
+        </div>
+
+        <div class="meeting-card__actions">
+          <a href="{{ event.landing_url }}" class="meeting-card__link">
+            Event details
+            {% include icons/arrow-right.html %}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {% endfor %}
+
+  </div>
+</div>

@@ -145,4 +145,61 @@
     display: inline-flex;
     gap: 0.75rem;
   }
+
+  /* Meeting Card */
+  .meeting-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+  }
+  .dark .meeting-card {
+    background: rgb(15 23 42 / 0.4);
+    border-color: #334155;
+  }
+  .meeting-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .meeting-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.5rem 0 0;
+  }
+  .dark .meeting-card__title { color: #f8fafc; }
+  .meeting-card__location {
+    font-size: 0.9375rem;
+    color: #475569;
+    margin: 0.25rem 0 0;
+  }
+  .dark .meeting-card__location { color: #94a3b8; }
+  .meeting-card__venue {
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin: 0.25rem 0 0;
+    line-height: 1.6;
+  }
+  .dark .meeting-card__venue { color: #94a3b8; }
+  .meeting-card__actions {
+    margin-top: auto;
+  }
+  .meeting-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0061ad;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .dark .meeting-card__link { color: #3385d6; }
+  .meeting-card__link:hover { color: #005090; }
+  .dark .meeting-card__link:hover { color: #66a3e0; }
+  .meeting-card__link svg { width: 1rem; height: 1rem; }
 }
