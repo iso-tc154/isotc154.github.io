@@ -28,13 +28,15 @@ items:
     url: /meetings/
     children:
       - label: "45th Plenary — Berlin 2026"
-        url: /45th-plenary/
+        url: /events/plenary-meeting-45/
       - label: "44th Plenary — Raleigh 2025"
-        url: /44th-plenary/
+        url: /events/plenary-meeting-44/
       - label: "43rd Plenary — Seoul 2024"
-        url: /43rd-plenary/
+        url: /events/plenary-meeting-43/
       - label: "42nd Plenary — Hong Kong 2023"
-        url: /42nd-plenary/
+        url: /events/plenary-meeting-42/
+      - label: "39th Plenary — Costa Mesa 2020"
+        url: /events/plenary-meeting-39/
 
   - label: Members
     url: /members/

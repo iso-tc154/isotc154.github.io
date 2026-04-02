@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: "/39th-plenary/surroundings/places/"
-event_id: 39th_plenary
+event_id: "plenary-meeting-39"
 title: Places to visit
 map:
   id: place-map

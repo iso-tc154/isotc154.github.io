@@ -1,0 +1,31 @@
+title: "39<sup>th</sup> plenary meeting week"
+ordinal: 39
+status: completed
+year: 2020
+landing_url: /events/plenary-meeting-39/
+
+time:
+  from:
+    date: 2020-08-04
+  to:
+    date: 2020-08-07
+
+general_area: "Costa Mesa, California, USA"
+
+venues:
+  - name: Westin South Coast Plaza
+    address: |
+      686 Anton Boulevard
+      Costa Mesa, CA 92626
+      USA
+    link: https://www.marriott.com/en-us/hotels/snawc-the-westin-south-coast-plaza/
+    lon: -118.100949
+    lat: 33.851068
+
+host: OAGI / ANSI
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"

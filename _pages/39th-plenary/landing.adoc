@@ -1,5 +1,23 @@
 ---
 layout: default
-permalink: "/39th-plenary/"
-event_id: 39th_plenary
+permalink: "/events/plenary-meeting-39/"
+event_id: "plenary-meeting-39"
+title: "39th Plenary Meeting"
 ---
+:page-liquid:
+
+[.text-center]
+****
+**39th Plenary Meeting** +
+Costa Mesa, California, USA · 4–7 August 2020
+
+Hosted by OAGI / ANSI
+****
+
+This page covers the 39th plenary meeting of ISO/TC 154.
+For detailed information, see the sub-pages below.
+
+* <<{site.baseurl}/39th-plenary/arrival/transportation/,Transportation>>
+* <<{site.baseurl}/39th-plenary/arrival/lodging/,Lodging>>
+* <<{site.baseurl}/39th-plenary/arrival/visas/,Visa Information>>
+* <<{site.baseurl}/39th-plenary/surroundings/places/,Places to Visit>>
