@@ -96,14 +96,37 @@ sections:
     items:
       - type: years
 
+  - id: 39th-plenary
+    match: "/events/plenary-meeting-39"
+    url_prefixes:
+      - /events/plenary-meeting-39
+      - /39th-plenary
+    title: 39th Plenary
+    items:
+      - type: link
+        label: Overview
+        url: /events/plenary-meeting-39/
+      - type: link
+        label: Transportation
+        url: /39th-plenary/arrival/transportation/
+      - type: link
+        label: Lodging
+        url: /39th-plenary/arrival/lodging/
+      - type: link
+        label: Visa
+        url: /39th-plenary/arrival/visas/
+      - type: link
+        label: Places to Visit
+        url: /39th-plenary/surroundings/places/
+
   - id: meetings
     match: "/meetings"
     url_prefixes:
       - /meetings
-      - /45th-plenary
-      - /44th-plenary
-      - /43rd-plenary
-      - /42nd-plenary
+      - /events/plenary-meeting-45
+      - /events/plenary-meeting-44
+      - /events/plenary-meeting-43
+      - /events/plenary-meeting-42
     title: Meetings
     items:
       - type: link
@@ -111,16 +134,16 @@ sections:
         url: /meetings/
       - type: link
         label: "45th Plenary (2026)"
-        url: /45th-plenary/
+        url: /events/plenary-meeting-45/
       - type: link
         label: "44th Plenary (2025)"
-        url: /44th-plenary/
+        url: /events/plenary-meeting-44/
       - type: link
         label: "43rd Plenary (2024)"
-        url: /43rd-plenary/
+        url: /events/plenary-meeting-43/
       - type: link
         label: "42nd Plenary (2023)"
-        url: /42nd-plenary/
+        url: /events/plenary-meeting-42/
 
   - id: about
     match: "/about"

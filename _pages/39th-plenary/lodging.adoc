@@ -1,5 +1,5 @@
 ---
 layout: default
 permalink: "/39th-plenary/arrival/lodging/"
-event_id: 39th_plenary
+event_id: "plenary-meeting-39"
 ---
