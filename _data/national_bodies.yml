@@ -198,7 +198,7 @@
   country: Algeria
   membership: O
   url: https://www.ianor.org/
-  logo:
+  logo: "/assets/images/national-bodies/logo-ianor.png"
   description: IANOR is the national standards body of Algeria.
 
 - id: sa
@@ -208,7 +208,7 @@
   country: Australia
   membership: O
   url: https://www.standards.org.au/
-  logo:
+  logo: "/assets/images/national-bodies/logo-sa.png"
   description: Standards Australia is the national standards body of Australia.
 
 - id: belst
@@ -228,7 +228,7 @@
   country: Chile
   membership: O
   url: https://www.inn.cl/
-  logo:
+  logo: "/assets/images/national-bodies/logo-inn.png"
   description: INN is the national standards body of Chile.
 
 - id: nc
@@ -238,7 +238,7 @@
   country: Cuba
   membership: O
   url: https://www.nc.csm.cu/
-  logo:
+  logo: "/assets/images/national-bodies/logo-nc.png"
   description: NC is the national standards body of Cuba.
 
 - id: unmz
@@ -248,7 +248,7 @@
   country: Czech Republic
   membership: O
   url: https://www.unmz.cz/
-  logo:
+  logo: "/assets/images/national-bodies/logo-unmz.png"
   description: UNMZ is the national standards body of the Czech Republic.
 
 - id: sfs
@@ -258,7 +258,7 @@
   country: Finland
   membership: O
   url: https://www.sfs.fi/
-  logo:
+  logo: "/assets/images/national-bodies/logo-sfs.svg"
   description: SFS is the national standards body of Finland.
 
 - id: afnor
@@ -268,7 +268,8 @@
   country: France
   membership: O
   url: https://www.boutique.afnor.org/
-  logo:
+  logo_light: "/assets/images/national-bodies/logo-afnor-light.svg"
+  logo_dark: "/assets/images/national-bodies/logo-afnor-dark.svg"
   description: AFNOR is the national standards body of France.
 
 - id: itchksar
@@ -298,7 +299,7 @@
   country: Iceland
   membership: O
   url: https://www.stadlar.is/
-  logo:
+  logo: "/assets/images/national-bodies/logo-is.svg"
   description: IST is the national standards body of Iceland.
 
 - id: bsn
@@ -308,7 +309,7 @@
   country: Indonesia
   membership: O
   url: https://www.bsn.go.id/
-  logo:
+  logo: "/assets/images/national-bodies/logo-bsn.jpg"
   description: BSN is the national standards body of Indonesia.
 
 - id: nsai
@@ -318,7 +319,7 @@
   country: Ireland
   membership: O
   url: https://www.nsai.ie/
-  logo:
+  logo: "/assets/images/national-bodies/logo-nsai.svg"
   description: NSAI is the national standards body of Ireland.
 
 - id: kebs
@@ -333,13 +334,13 @@
 
 - id: dsm
   name: Department of Standards Malaysia
-  short_name: DSM
+  short_name: JSM
   iso_country_code: MY
   country: Malaysia
   membership: O
-  url: https://www.standardsmalaysia.gov.my/
-  logo:
-  description: DSM is the national standards body of Malaysia.
+  url: https://www.jsm.gov.my
+  logo: "/assets/images/national-bodies/logo-jsm.png"
+  description: JSM is the national standards body of Malaysia.
 
 - id: nzso
   name: Standards New Zealand
@@ -357,8 +358,8 @@
   iso_country_code: PS
   country: "Palestine, State of"
   membership: O
-  url:
-  logo:
+  url: https://www.psi.pna.ps/en
+  logo: "/assets/images/national-bodies/logo-psi.png"
   description: PSI is the national standards body of the State of Palestine.
 
 - id: pkn
@@ -368,7 +369,8 @@
   country: Poland
   membership: O
   url: https://www.pkn.pl/
-  logo:
+  logo_dark: "/assets/images/national-bodies/logo-pkn-dark.png"
+  logo_light: "/assets/images/national-bodies/logo-pkn-light.png"
   description: PKN is the national standards body of Poland.
 
 - id: asro
@@ -418,7 +420,7 @@
   country: Thailand
   membership: O
   url: https://www.tisi.go.th/
-  logo:
+  logo: "/assets/images/national-bodies/logo-tisi.png"
   description: TISI is the national standards body of Thailand.
 
 - id: innorpi
@@ -428,7 +430,7 @@
   country: Tunisia
   membership: O
   url: https://www.innorpi.tn/
-  logo:
+  logo: "/assets/images/national-bodies/logo-innorpi.png"
   description: INNORPI is the national standards body of Tunisia.
 
 - id: se-ukrndnc
