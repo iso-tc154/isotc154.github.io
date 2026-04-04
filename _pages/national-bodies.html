@@ -19,8 +19,11 @@ layout: default
 {% for body in p_members %}
   <a href="/national-bodies/{{ body.id }}/" class="org-card">
     <div class="org-card__body">
-      <div class="org-card__logo{% if body.logo %} org-card__logo--img{% endif %}">
-        {% if body.logo and body.logo != "" %}
+      <div class="org-card__logo{% if body.logo or body.logo_light %} org-card__logo--img{% endif %}">
+        {% if body.logo_light and body.logo_dark %}
+          <img src="{{ body.logo_light }}" alt="{{ body.short_name | default: body.name }}" class="dark:hidden">
+          <img src="{{ body.logo_dark }}" alt="{{ body.short_name | default: body.name }}" class="hidden dark:block">
+        {% elsif body.logo and body.logo != "" %}
           <img src="{{ body.logo }}" alt="{{ body.short_name | default: body.name }}">
         {% elsif body.iso_country_code %}
           <span class="org-card__country-code">{{ body.iso_country_code | slice: 0, 2 }}</span>
@@ -50,8 +53,11 @@ layout: default
 {% for body in o_members %}
   <a href="/national-bodies/{{ body.id }}/" class="org-card">
     <div class="org-card__body">
-      <div class="org-card__logo{% if body.logo %} org-card__logo--img{% endif %}">
-        {% if body.logo and body.logo != "" %}
+      <div class="org-card__logo{% if body.logo or body.logo_light %} org-card__logo--img{% endif %}">
+        {% if body.logo_light and body.logo_dark %}
+          <img src="{{ body.logo_light }}" alt="{{ body.short_name | default: body.name }}" class="dark:hidden">
+          <img src="{{ body.logo_dark }}" alt="{{ body.short_name | default: body.name }}" class="hidden dark:block">
+        {% elsif body.logo and body.logo != "" %}
           <img src="{{ body.logo }}" alt="{{ body.short_name | default: body.name }}">
         {% elsif body.iso_country_code %}
           <span class="org-card__country-code">{{ body.iso_country_code | slice: 0, 2 }}</span>
