@@ -159,4 +159,14 @@
     border-top: 1px solid #f1f5f9;
   }
   .dark .std-group--withdrawn { border-top-color: rgb(255 255 255 / 0.06); }
+
+  /* Organization detail page container (used by organization_detail layout) */
+  .org-detail-container {
+    padding: 1.5rem 1rem 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+  @media (min-width: 1024px) {
+    .org-detail-container { padding: 2rem 2rem 3rem; }
+  }
 }
