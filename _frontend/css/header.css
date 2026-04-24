@@ -1,6 +1,16 @@
 /* ── Site Header ─────────────────────────────────── */
 
 @layer components {
+  .site-brand-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #e3000f;
+    z-index: 51;
+  }
+
   .site-header {
     position: fixed;
     top: 0;
