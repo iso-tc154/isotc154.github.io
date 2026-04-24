@@ -1,0 +1,13 @@
+---
+member-id: stefano-sabatini
+name: Stefano Sabatini
+picture: stefano-sabatini.jpg
+active: true
+roles:
+- id: member
+  group: jwg9
+affiliation: UNECE
+bio: |-
+  Stefano Sabatini works at COSCO Shipping Lines (Italy) srl and represents
+  UNECE as co-leader of ISO 5909. He is a contributor to the UN/LOCODE project
+  and OpenStreetMap.
