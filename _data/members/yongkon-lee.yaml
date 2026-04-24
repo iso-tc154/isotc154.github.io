@@ -12,6 +12,8 @@ roles:
   group: jwg1
 - id: member
   group: cag
+- id: member
+  group: jwg9
 active: true
 affiliation: KATS, Korea, Republic of
 bio: Yongkon Lee is the project leader of TSEM.

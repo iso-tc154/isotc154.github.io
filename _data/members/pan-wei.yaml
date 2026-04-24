@@ -13,6 +13,18 @@ roles:
   from:
     date: 2026-01-20
     precision: month
+- id: member
+  group: jwg1
+- id: member
+  group: jwg9
+- id: member
+  group: wg2
+- id: member
+  group: wg5
+- id: member
+  group: wg6
+- id: member
+  group: wg7
 affiliation: SAC, China
 links:
 - url: https://www.linkedin.com/in/pan-wei-4aa117aa/
