@@ -86,7 +86,7 @@
   .hero-badge .dot {
     width: 0.5rem;
     height: 0.5rem;
-    background: #4ade80;
+    background: #e3000f;
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
   }
