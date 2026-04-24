@@ -1,0 +1,78 @@
+@layer components {
+  .contact-info {
+    max-width: 40rem;
+    margin-top: 1rem;
+  }
+
+  .contact-info__card {
+    margin: 1.5rem 0;
+  }
+
+  .contact-info__person {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border, #e5e7eb);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .contact-info__person:hover {
+    border-color: var(--color-accent, #3b82f6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .contact-info__photo img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+  }
+
+  .contact-info__photo .avatar {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1rem;
+  }
+
+  .contact-info__name {
+    font-weight: 600;
+    font-size: 1.0625rem;
+    margin: 0;
+  }
+
+  .contact-info__role {
+    color: var(--color-text-muted, #6b7280);
+    font-size: 0.875rem;
+    margin: 0.125rem 0 0;
+  }
+
+  .contact-info__affiliation {
+    color: var(--color-text-muted, #6b7280);
+    font-size: 0.8125rem;
+    margin: 0.125rem 0 0;
+  }
+
+  .contact-info__email {
+    display: inline-block;
+    font-size: 1rem;
+    color: var(--color-accent, #2563eb);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .contact-info__email:hover {
+    text-decoration: underline;
+  }
+
+  .dark .contact-info__person {
+    border-color: var(--color-border-dark, #374151);
+  }
+
+  .dark .contact-info__person:hover {
+    border-color: var(--color-accent, #60a5fa);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
