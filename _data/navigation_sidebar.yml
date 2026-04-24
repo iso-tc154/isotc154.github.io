@@ -24,12 +24,7 @@ sections:
     match: "/groups"
     title: Working Groups
     items:
-      - type: collection
-        collection: groups
-        sort_field: order
-        display_fields:
-          - name
-          - title
+      - type: data_groups
 
   - id: members
     match: "/members"

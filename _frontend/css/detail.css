@@ -15,6 +15,10 @@
     border-radius: 9999px;
   }
   .detail-logo--member img { border-radius: 9999px; }
+  .detail-logo--deceased {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
   .member-detail-header__info { min-width: 0; }
   .member-detail-header__name {
     font-size: 1.75rem;
@@ -182,6 +186,30 @@
   white-space: pre-line;
 }
 .dark .member-bio { color: #cbd5e1; }
+
+/* Member epitaph */
+.member-epitaph {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #475569;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.dark .member-epitaph {
+  color: #cbd5e1;
+  border-left-color: #334155;
+  background: rgb(15 23 42 / 0.4);
+}
+.member-epitaph p {
+  margin: 0 0 0.75rem;
+}
+.member-epitaph p:last-child {
+  margin-bottom: 0;
+  font-style: italic;
+}
 
 /* Member links */
 .member-links {

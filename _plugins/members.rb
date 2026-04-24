@@ -11,6 +11,7 @@ module Jekyll
       raw_groups.each do |id, group_data|
         self.data['groups'][id] = group_data.merge({
           'members' => [],
+          'past_members' => [],
           'convenors' => [],
           'managers' => [],
         })
@@ -92,6 +93,8 @@ module Jekyll
                   elsif role_id == 'member'
                     self.data['groups'][group_id]['members'] << id
                   end
+                elsif role_id == 'member'
+                  self.data['groups'][group_id]['past_members'] << id
                 end
 
                 by_role_id[role_id]['in'][group_id] ||= []

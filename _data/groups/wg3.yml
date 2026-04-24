@@ -3,6 +3,7 @@ id: wg3
 _id: wg3
 name: WG 3
 title: CCTS
+category: working
 order: 3
 intro: |
   ISO/TC 154/WG 3 is currently inactive.

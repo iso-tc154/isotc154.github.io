@@ -4,6 +4,11 @@ name: Wenqu Chen
 active: true
 roles:
 - id: member
+- id: secretary
+  group: wg7
+  from:
+    date: 2024-01-01
+    precision: year
 - id: member
   group: wg7
 - id: member

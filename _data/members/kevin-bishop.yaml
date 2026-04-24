@@ -4,6 +4,11 @@ name: Kevin Bishop
 picture: kevin-bishop.jpg
 active: true
 roles:
+- id: secretary
+  group: jwg9
+  from:
+    date: 2024-01-01
+    precision: year
 - id: member
   group: cag
 affiliation: UNECE

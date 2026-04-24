@@ -4,6 +4,11 @@ name: Yan Zhang
 picture: yan-zhang.jpg
 roles:
 - id: convenor
+  group: jwg9
+  from:
+    date: 2024-01-01
+    precision: year
+- id: convenor
   group: jwg1
   from:
     date: 2017-10-27

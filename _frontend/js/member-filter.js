@@ -78,7 +78,12 @@
 
         let show = true
 
-        if (isPast && !showPast) show = false
+        if (isPast && !showPast && !activeGroup) show = false
+
+        // When a group is selected, show past members of that group too
+        if (isPast && !showPast && activeGroup) {
+          if (!groups.split(',').includes(activeGroup)) show = false
+        }
 
         if (show && q) {
           if (!(name + ' ' + affiliation).includes(q)) show = false

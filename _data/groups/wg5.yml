@@ -3,6 +3,7 @@ id: wg5
 _id: wg5
 name: WG 5
 title: Date and time
+category: working
 order: 5
 featured_on_home: true
 intro: |

@@ -3,6 +3,7 @@ id: wg7
 _id: wg7
 name: WG 7
 title: Digital Business
+category: working
 order: 7
 scope: |
   A key task of WG7 is to enhance interoperability by developing

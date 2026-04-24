@@ -3,6 +3,7 @@ id: jwg1
 _id: jwg1
 name: JWG&nbsp;1
 title: EDIFACT Syntax
+category: working
 order: 2
 featured_on_home: true
 intro: |

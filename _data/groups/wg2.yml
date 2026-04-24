@@ -3,6 +3,7 @@ id: wg2
 _id: wg2
 name: WG 2
 title: Supply chain
+category: working
 order: 2
 scope: |
   WG 2 develops and maintains standards related to supply chain

@@ -14,6 +14,19 @@
     min-width: 0;
   }
 
+  .layout-sidebar__section-sublabel {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    padding: 0.5rem 0.25rem 0.125rem;
+  }
+  .dark .layout-sidebar__section-sublabel {
+    color: #64748b;
+  }
+
   .layout-grid-2-1 {
     display: grid;
     gap: 2rem;
@@ -169,4 +182,38 @@
   @media (min-width: 1024px) {
     .org-detail-container { padding: 2rem 2rem 3rem; }
   }
+
+  /* Group page tabs */
+  .gtabs__bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 1.5rem;
+  }
+  .dark .gtabs__bar { border-bottom-color: #334155; }
+  .gtabs__btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #64748b;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px;
+  }
+  .dark .gtabs__btn { color: #94a3b8; }
+  .gtabs__btn:hover { color: #0f172a; }
+  .dark .gtabs__btn:hover { color: #f8fafc; }
+  .gtabs__btn.is-active {
+    color: #0061ad;
+    border-bottom-color: #0061ad;
+  }
+  .dark .gtabs__btn.is-active {
+    color: #3385d6;
+    border-bottom-color: #3385d6;
+  }
+  .gtabs__panel { display: none; }
+  .gtabs__panel.is-active { display: block; }
 }

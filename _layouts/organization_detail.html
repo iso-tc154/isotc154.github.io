@@ -84,7 +84,7 @@ layout: base
     {% for member_id in member_ids %}
       {% assign rep = site.data.members.all[member_id] %}
       {% if rep %}
-        <div class="member-card" data-name="{{ rep.name | downcase }}" data-status="{% if rep.is_current %}current{% else %}past{% endif %}">
+        <div class="member-card{% unless rep.is_current %} member-card--past{% if rep.deceased %} member-card--deceased{% endif %}{% endunless %}" data-name="{{ rep.name | downcase }}" data-status="{% if rep.is_current %}current{% else %}past{% endif %}"{% if rep.deceased %} data-deceased="true"{% endif %}>
           {% include member_card.html member=rep affiliation=true %}
         </div>
       {% endif %}

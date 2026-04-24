@@ -1,8 +1,13 @@
 ---
 member-id: jim-wilson
 picture: jim-wilson.jpg
-name: Jim Wilson
+name: James Wilson
 roles:
+- id: convenor
+  group: jwg9
+  from:
+    date: 2024-01-01
+    precision: year
 - id: convenor
   group: wg7
   from:

@@ -54,9 +54,28 @@
     {% endif %}
   {% endif %}
 
+  {% comment %} Resolve year range for show_dates {% endcomment %}
+  {% assign date_range = "" %}
+  {% if include.show_dates and include.in_group and member.roles %}
+    {% assign group_roles = member.roles['_all']['in'][include.in_group] %}
+    {% if group_roles.size > 0 %}
+      {% for gr in group_roles %}
+        {% if date_range == "" %}
+          {% assign from_year = gr.from.date | slice: 0, 4 %}
+          {% if gr.to %}
+            {% assign to_year = gr.to.date | slice: 0, 4 %}
+            {% assign date_range = from_year | append: "–" | append: to_year %}
+          {% else %}
+            {% assign date_range = from_year | append: "–present" %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+
   <a href="{{ member.url | default: 'javascript: void 0;' }}" class="member-card__link">
     <div class="member-card__body">
-      <div class="member-card__photo">
+      <div class="member-card__photo{% if member.deceased %} member-card__photo--deceased{% endif %}">
         {% if member.picture %}
           <div class="avatar">
             <img src="/assets/images/members/{{ member.picture }}" alt="{{ member.name | default: member }}" loading="lazy">
@@ -70,7 +89,9 @@
       <div class="member-card__info">
         <p class="member-card__name">{{ member.name | default: member }}</p>
         {% if display_role != "" %}
-          <p class="member-card__role">{{ display_role }}</p>
+          <p class="member-card__role">{{ display_role }}{% if date_range != "" %} <span class="member-card__dates">{{ date_range }}</span>{% endif %}</p>
+        {% elsif date_range != "" %}
+          <p class="member-card__dates">{{ date_range }}</p>
         {% endif %}
         {% if include.affiliation and member.affiliation %}
           <p class="member-card__affiliation" title="Affiliation: {{ member.affiliation }}">{{ member.affiliation }}</p>

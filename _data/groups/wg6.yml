@@ -3,6 +3,7 @@ id: wg6
 _id: wg6
 name: WG 6
 title: Trusted eCommunications
+category: working
 order: 6
 featured_on_home: true
 intro: |

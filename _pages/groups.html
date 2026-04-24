@@ -6,9 +6,10 @@ layout: default
 
 <h2 class="section-heading--lg" style="margin-bottom: 1.5rem">Working Groups and Project Teams</h2>
 
-<section style="margin-bottom: 2rem">
+<section style="margin-bottom: 2.5rem">
+  <h2 class="section-heading" style="margin-bottom: 1rem">Working Groups</h2>
   {% for group in site.data.groups_sorted %}
-    {% if group.inactive == nil %}
+    {% if group.category == 'working' and group.inactive != true %}
     <a href="/groups/{{ group.id }}/" class="group-card" style="display: block; margin-bottom: 1rem">
       {% include group_card.html group=group %}
     </a>
@@ -16,8 +17,19 @@ layout: default
   {% endfor %}
 
   {% for group in site.data.groups_sorted %}
-    {% if group.inactive == true %}
+    {% if group.category == 'working' and group.inactive == true %}
     <a href="/groups/{{ group.id }}/" class="group-card" style="display: block; margin-bottom: 1rem; opacity: 0.6">
+      {% include group_card.html group=group %}
+    </a>
+    {% endif %}
+  {% endfor %}
+</section>
+
+<section style="margin-bottom: 2rem">
+  <h2 class="section-heading" style="margin-bottom: 1rem">Advisory Groups</h2>
+  {% for group in site.data.groups_sorted %}
+    {% if group.category == 'advisory' %}
+    <a href="/groups/{{ group.id }}/" class="group-card" style="display: block; margin-bottom: 1rem">
       {% include group_card.html group=group %}
     </a>
     {% endif %}
