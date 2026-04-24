@@ -1,0 +1,68 @@
+@layer components {
+  .acknowledgments__intro {
+    max-width: 65rem;
+    margin-bottom: 2rem;
+  }
+
+  .acknowledgments__section {
+    margin-bottom: 2.5rem;
+  }
+
+  .acknowledgments__standard {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+  }
+
+  .acknowledgments__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .acknowledgments__item {
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .acknowledgments__item + .acknowledgments__item {
+    border-top: 1px solid var(--color-border-light, #f3f4f6);
+  }
+
+  .acknowledgments__name {
+    color: var(--color-accent, #2563eb);
+  }
+
+  a.acknowledgments__name:hover {
+    text-decoration: underline;
+  }
+
+  .acknowledgments__affiliation {
+    color: var(--color-text-muted, #6b7280);
+    font-size: 0.875rem;
+  }
+
+  .acknowledgments__date {
+    color: var(--color-text-muted, #6b7280);
+    font-size: 0.8125rem;
+    margin-left: 0.25rem;
+  }
+
+  .acknowledgments__empty {
+    color: var(--color-text-muted, #6b7280);
+    font-style: italic;
+  }
+
+  .dark .acknowledgments__standard {
+    border-bottom-color: var(--color-border-dark, #374151);
+  }
+
+  .dark .acknowledgments__item + .acknowledgments__item {
+    border-top-color: var(--color-border-dark, #1e293b);
+  }
+}
