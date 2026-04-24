@@ -6,6 +6,7 @@ iso:
   publication_date: 2022-10-25
   stage: '60.60'
   ics: 01.140.30
+  store_id: 81801
 tc154:
   group: wg5
   introduction: |-

@@ -6,6 +6,7 @@ iso:
   stage: '30.20'
   scope: Digital trade - General principles and key initiatives.
   publication_date: '0194-01-01'
+  store_id: 86127
 tc154:
   group: jwg1
   status: under_development

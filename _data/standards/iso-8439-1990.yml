@@ -7,6 +7,7 @@ iso:
   ics: 01.140.30
   scope: This International Standard is about Forms (paper), Stationery, Information handling, Data handling, Data layout, Layout, Design, Area, Dimensions, Commercial documents, Administrative documents, Industrial, Size Forms design. This Standard specifies overall sizes, image areas, their division and data fields within the various forms.
   publication_date: '1990-01-01'
+  store_id: 15624
 tc154:
   group: wg4
   related_news: "* link:/posts/1990-01-01-iso-8439-1990[ISO/TC 154 news: ISO 8439:1990 published!]"

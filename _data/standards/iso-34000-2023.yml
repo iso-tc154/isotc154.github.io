@@ -7,6 +7,7 @@ iso:
   ics: 01.140.30, 01.040.01
   scope: This document defines terms related to date and time, from fundamental concepts to those of their usage and representation.
   publication_date: '2023-01-01'
+  store_id: 77019
 tc154:
   group: wg5
   content:

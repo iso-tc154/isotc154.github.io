@@ -6,6 +6,7 @@ iso:
   stage: '60.0'
   ics: 35.240.63
   scope: 'Processes and data in e-commerce -- Smart contract-based B2B electronic transaction execution and verification -- Part 1: Reference model.'
+  store_id: 90785
 tc154:
   group: wg7
   status: under_development

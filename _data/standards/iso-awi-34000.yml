@@ -6,6 +6,7 @@ iso:
   stage: '10.99'
   scope: This document defines terms related to date and time, from fundamental concepts to those of their usage and representation.
   publication_date: '4000-01-01'
+  store_id: 93048
 tc154:
   group: wg5
   status: under_development

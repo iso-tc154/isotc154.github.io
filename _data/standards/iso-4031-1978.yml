@@ -7,6 +7,7 @@ iso:
   ics: 07.100.30
   scope: Information interchange -- Representation of local time differentials.
   publication_date: '1978-01-01'
+  store_id: 9722
 tc154:
   group: wg5
   status: withdrawn

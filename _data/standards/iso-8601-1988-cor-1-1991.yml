@@ -7,6 +7,7 @@ iso:
   ics: 01.140.30
   scope: Data elements and interchange formats -- Information interchange -- Representation of dates and times -- Technical Corrigendum 1.
   publication_date: '1991-01-01'
+  store_id: 15905
 tc154:
   group: wg5
   status: withdrawn

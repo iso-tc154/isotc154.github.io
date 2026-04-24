@@ -9,6 +9,7 @@ iso:
     ISO 14533-1:2012 specifies the elements, among those defined in CMS Advanced Electronic Signatures (CAdES), that enable verification of a digital signature over a long period of time.
     ISO 14533-1:2012 does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which have already existed.
   publication_date: '2012-01-01'
+  store_id: 56024
 tc154:
   group: wg6
   status: withdrawn

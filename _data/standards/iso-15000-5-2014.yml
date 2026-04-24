@@ -10,6 +10,7 @@ iso:
     ISO 15000-5:2014 can be employed wherever business information is being shared or exchanged amongst and between enterprises, governmental agencies, and/or other organizations in an open and worldwide environment. The Core Components user community consists of business and governmental users, business document modellers and business data modellers, Business Process modellers, and application developers of different organizations that require interoperability of business information. This interoperability covers both interactive and batch exchanges of business data between applications through the use of internet and web-based information exchanges, as well as traditional Electronic Data Interchange (EDI) systems.
     ISO 15000-5:2014 forms the basis for standards development work of business analysts, business users and information technology specialists supplying the content for applications that will use a Core Component Library.
   publication_date: '2014-01-01'
+  store_id: 61433
 tc154:
   group: wg4
   related_news: "* link:/posts/2014-01-01-iso-15000-5-2014[ISO/TC 154 news: ISO 15000-5:2014 published!]"

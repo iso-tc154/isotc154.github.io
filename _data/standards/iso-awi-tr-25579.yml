@@ -6,6 +6,7 @@ iso:
   stage: '10.99'
   scope: Syntax implementation guidance of ISO 9735-11.
   publication_date: '5579-01-01'
+  store_id: 90783
 tc154:
   group: jwg1
   status: under_development

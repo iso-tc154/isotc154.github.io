@@ -9,6 +9,7 @@ iso:
   scope: |-
     This document provides a set of requirements, functionality and criteria for ensuring reliability and safety of mobile e-business.
     The specification of this document covers overall use cases for mobile e-business including simple inquiry of electronic documents, exchange of electronic documents for general transaction and even exchange of contract and payment documents. This can be applied to the most wireless protocols such as 3G, 4G and Wi-Fi, etc. This could be also used in the general mobile e-business area such as logistics, electronic trades, financing, manufacturing and service, and can be referenced by system developers of electronic transaction using mobile devices, mobile network service providers and users.
+  store_id: 67938
 tc154:
   group: wg6
   introduction: |-

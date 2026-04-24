@@ -18,6 +18,7 @@ iso:
     * date and time arithmetic.
 
     This document excludes the representation of date elements from non-Gregorian calendars, or times not from the 24-hour clock. This document does not address character encoding of representations specified in this document.
+  store_id: 91030
 tc154:
   group: wg5
   status: under_development

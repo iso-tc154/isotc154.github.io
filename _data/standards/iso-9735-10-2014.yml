@@ -7,6 +7,7 @@ iso:
   ics: 35.240.63
   scope: ISO 9735-10:2014 specifies the syntax service directories of all parts of ISO 9735.
   publication_date: '2014-01-01'
+  store_id: 61434
 tc154:
   group: jwg1
   status: withdrawn

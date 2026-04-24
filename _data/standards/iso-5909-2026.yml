@@ -7,6 +7,7 @@ iso:
   ics: 35.240.63
   scope: This document outlines the business processes and data requirements for the implementation of electronic bill of lading (eBL). Its primary focus is the secure digital transfer of title documents via a trusted platform. Additionally, it specifies optional data elements that are essential for leveraging distributed ledger technology (DLT) to support the eBL workflow.
   publication_date: '2026-01-01'
+  store_id: 84288
 tc154:
   group: wg7
   related_news: "* link:/posts/2026-01-01-iso-5909-2026[ISO/TC 154 news: ISO 5909:2026 published!]"

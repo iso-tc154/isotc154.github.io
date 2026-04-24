@@ -28,6 +28,15 @@ layout: base
     <!-- Actions row -->
     <div class="std-page__actions">
       {% if iso.name %}
+      {% if iso.store_id %}
+      <a href="https://www.iso.org/standard/{{ iso.store_id }}.html"
+         class="std-page__buy"
+         target="_blank"
+         rel="noopener">
+        <img src="/assets/iso-red.svg" alt="ISO" />
+        PREVIEW or BUY
+      </a>
+      {% else %}
       {% assign iso_q = iso.name | remove: "ISO" | strip | replace: " ", "+" | replace: ":", "" %}
       <a href="https://www.iso.org/search/standard/?q={{ iso_q }}"
          class="std-page__buy"
@@ -36,6 +45,7 @@ layout: base
         <img src="/assets/iso-red.svg" alt="ISO" />
         PREVIEW or BUY
       </a>
+      {% endif %}
       {% endif %}
 
       {% if tc154.group %}

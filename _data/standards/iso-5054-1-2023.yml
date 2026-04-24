@@ -9,6 +9,7 @@ iso:
     This document specifies the architecture of an enterprise canonical model. It defines the abstract model, conceptual model and physical model.
     This document is applicable to organizations implementing an enterprise-wide interoperability capability. Some implementers can find it useful in more targeted applications (e.g. departmental interoperability, projects).
   publication_date: '2023-01-01'
+  store_id: 80621
 tc154:
   group: wg7
   related_news: "* link:/posts/2023-01-01-iso-5054-1-2023[ISO/TC 154 news: ISO 5054-1:2023 published!]"

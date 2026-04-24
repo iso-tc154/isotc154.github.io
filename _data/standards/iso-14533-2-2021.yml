@@ -10,6 +10,7 @@ iso:
     It does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which already exist.
     NOTE      XAdES digital signatures is the widely-used extended specification of “XML-Signature Syntax and Processing”.
   publication_date: '2021-01-01'
+  store_id: 79129
 tc154:
   group: wg6
   content: |-

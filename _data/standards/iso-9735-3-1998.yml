@@ -7,6 +7,7 @@ iso:
   ics: 35.240.63
   scope: 'Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4) -- Part 3: Syntax rules specific to interactive EDI.'
   publication_date: '1998-01-01'
+  store_id: 28133
 tc154:
   group: jwg1
   status: withdrawn

@@ -7,6 +7,7 @@ iso:
   ics: 01.140.30
   scope: Location of codes in trade documents -- Technical Corrigendum 1.
   publication_date: '2000-01-01'
+  store_id: 34802
 tc154:
   group: wg4
   related_news: "* link:/posts/2000-01-01-iso-8440-1986-Cor-1-2000[ISO/TC 154 news: ISO 8440:1986/Cor 1:2000 published!]"

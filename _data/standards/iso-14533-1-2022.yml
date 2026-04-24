@@ -10,6 +10,7 @@ iso:
     It does not give new technical specifications about the digital signature itself, nor new restrictions of usage of the technical specifications about the digital signatures which have already existed.
     NOTE       CAdES digital signature is the extended specification of Cryptographic message syntax (CMS), used widely.
   publication_date: '2022-01-01'
+  store_id: 81814
 tc154:
   group: wg6
   content: |-
