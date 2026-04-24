@@ -7,6 +7,7 @@ iso:
   ics: 03.100.10, 35.240.99
   scope: This document specifies logistics visibility data, data elements, interchange message, and framework of logistics information service providers (LISP) interconnection. This document is applicable to regional and inter-regional logistics data interchange services of transport means and goods management in maritime, road, air, and railway import/export transportation.
   publication_date: '2024-01-01'
+  store_id: 75308
 tc154:
   group: jwg8
   content:

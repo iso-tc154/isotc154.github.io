@@ -7,6 +7,7 @@ iso:
   ics: 01.140.30
   scope: Trade data interchange -- Trade data elements directory.
   publication_date: '1986-01-01'
+  store_id: 14063
 tc154:
   group: jwg1
   status: withdrawn

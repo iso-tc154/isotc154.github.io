@@ -7,6 +7,7 @@ iso:
   ics: 35.040.50
   scope: "This standard provides guidelines for stakeholders on how to merge multiple related trade documents barcodes into one single barcode acting as envelope utilizing a barcode repository storing these barcodes, and it also provides guidelines on how to arrange the barcode repository storing these barcodes, which is technology-neutral to handle various barcodes.\nThese guidelines can be used in carrying, presenting, merging or detaching, encoding or decoding multiple related trade documents barcodes. \nThis standard is applicable to logistical, commercial, and regulatory documents in international trade and travel, as well as the scenarios where the trade documents use or could potentially use barcodes. \nThis standard does not address the printing format or quality of barcodes, and the business operations of trade documents."
   publication_date: '2132-01-01'
+  store_id: 86965
 tc154:
   group: wg7
   status: under_development

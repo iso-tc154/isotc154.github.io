@@ -5,6 +5,7 @@ iso:
   title: 'Date and time — Representations for information interchange — Part 2: Extensions — Amendment 1: Canonical expressions, extensions to time scale components and date time arithmetic'
   stage: '60.60'
   ics: 01.140.30
+  store_id: 86124
   scope: 'Date and time -- Representations for information interchange -- Part 2: Extensions -- Amendment 1: Canonical expressions, extensions to time scale components and date time arithmetic.'
   publication_date: '2025-01-01'
 tc154:

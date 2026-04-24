@@ -7,6 +7,7 @@ iso:
   ics: 35.240.63
   scope: This part of ISO 9735 specifies syntax rules for associated data in EDI to be interchanged between computer application systems. This provides a method to transfer data which cannot be carried by means of either a batch or interactive EDIFACT message. The data may be created by other applications (such as STEP, CAD, etc.), and is referred to in this part as associated data.
   publication_date: '2002-01-01'
+  store_id: 35039
 tc154:
   group: jwg1
   related_news: "* link:/posts/2002-01-01-iso-9735-8-2002[ISO/TC 154 news: ISO 9735-8:2002 published!]"

@@ -7,6 +7,7 @@ iso:
   ics: 35.240.63
   scope: 'Electronic data interchange for administration, commerce and transport (EDIFACT) -- Application level syntax rules (Syntax version number: 4) -- Part 6: Secure authentication and acknowledgement message (message type - AUTACK).'
   publication_date: '1999-01-01'
+  store_id: 28916
 tc154:
   group: jwg1
   status: withdrawn

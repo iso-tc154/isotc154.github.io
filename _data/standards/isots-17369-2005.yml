@@ -15,6 +15,7 @@ iso:
     * an implementer's guide for SDMX;
     * SDMX guidelines for the use of web services.
   publication_date: '2005-01-01'
+  store_id: 40555
 tc154:
   group: wg2
   status: withdrawn

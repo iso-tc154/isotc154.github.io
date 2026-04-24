@@ -12,6 +12,7 @@ iso:
 
     Due to the evolving nature of the UN/CEFACT Core Component Library, ISO/TS 15000-5:2005 includes material that focuses on the business community doing further discovery and analysis work. Some of the contents of ISO/TS 15000-5:2005 are not typical of this type of technical document. However, they are critical for successful adoption and standardization in this area to move forward.
   publication_date: '2005-01-01'
+  store_id: 41022
 tc154:
   group: wg4
   status: withdrawn

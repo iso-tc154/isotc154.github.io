@@ -7,6 +7,7 @@ iso:
   ics: 01.140.30, 03.240
   scope: Specifies the maximum dimensions of the postal address and its locations on forms complying with ISO 8439 and is designed to standardize its presentation and structure. Annexes A and B give elements of the addressee's address and examples of addresses.
   publication_date: '1993-01-01'
+  store_id: 19185
 tc154:
   group: wg4
   status: withdrawn

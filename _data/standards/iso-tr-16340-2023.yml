@@ -13,6 +13,7 @@ iso:
     *   it presents the platform capabilities such as data tamper resistance, sustainability;
     *   it gives relevant use cases based on the platform.
   publication_date: '2023-01-01'
+  store_id: 84547
 tc154:
   group: wg7
   related_news: "* link:/posts/2023-01-01-iso-tr-16340-2023[ISO/TC 154 news: ISO/TR 16340:2023 published!]"

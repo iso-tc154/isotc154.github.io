@@ -9,6 +9,7 @@ iso:
     ISO 17369:2013 provides an integrated approach to facilitating Statistical Data and Metadata Exchange (SDMX), enabling interoperable implementations within and between systems concerned with the exchange, reporting and dissemination of statistical data and related metadata.
     ISO 17369:2013 is applicable to any organization that has a need to manage the reporting, exchange and dissemination of its statistical data and related metadata. The information model at the core of ISO 17369:2013 has been developed to support statistics as collected and used by governmental and supra-national statistical organizations, and this model is also applicable to other organizational contexts involving statistical data and related metadata.
   publication_date: '7369-01-01'
+  store_id: 89097
 tc154:
   group: wg2
   status: under_development

@@ -5,6 +5,7 @@ iso:
   title: 'Buy-Ship-Pay Reference Data Model — Part 2: Core Components Business Document Assembly (CCBDA)'
   stage: '10.99'
   scope: 'Buy-Ship-Pay Reference Data Model -- Part 2: Core Components Business Document Assembly (CCBDA).'
+  store_id: 86777
 tc154:
   group: jwg9
   status: under_development

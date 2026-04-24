@@ -7,6 +7,7 @@ iso:
   stage: '90.93'
   ics: 35.240.63
   scope: This document specifies business requirements for end-to-end visibility of logistics flow. It provides a framework for tracking and tracing goods throughout the supply chain, enabling stakeholders to monitor the status and location of shipments in real time. The standard addresses data elements, message structures, and interoperability requirements for logistics visibility systems.
+  store_id: 75307
 tc154:
   group: wg7
   scope: |-

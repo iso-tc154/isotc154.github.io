@@ -22,6 +22,7 @@ iso:
 
     ISO 8601:2004 does not assign any particular meaning or interpretation to any data element that uses representations in accordance with ISO 8601:2004. Such meaning will be determined by the context of the application.
   publication_date: '2004-01-01'
+  store_id: 40874
 tc154:
   group: wg5
   status: withdrawn

@@ -17,6 +17,7 @@ iso:
     ?         Reliable messaging module
     This document is applicable to all types of organizations (e.g., commercial enterprises, government agencies, not-for-profit organizations) that exchange documents or data electronically using messaging.
   publication_date: '2021-01-01'
+  store_id: 79108
 tc154:
   group: wg4
   related_news: "* link:/posts/2021-01-01-iso-15000-1-2021[ISO/TC 154 news: ISO 15000-1:2021 published!]"

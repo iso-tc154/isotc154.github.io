@@ -9,6 +9,7 @@ iso:
   scope: |-
     This document specifies the elements defined in the international standards of ISO/ITU-T, ETSI and IETF RFC that enable at least a proof of existence of data objects and digital signatures and the preservation of the validity status of digital signatures over a long period of time used in validation.
     It provides the definitions of the proof of existence (PoE) attributes and clarification of the usage of (external) PoE objects, with digital signatures and trusted time values, which have already existed and can be used by the PoE attributes pointing to (external) PoE objects used in long term signature validation or preservation.
+  store_id: 72835
 tc154:
   group: wg6
   introduction: |-
@@ -29,4 +30,4 @@ tc154:
     * Mobile-based electronic document system development, operation, and certification organisations;
     * Mobile electronic document software development organizations;
     * Mobile electronic document third-party service provider organization;
-  related_news: '* link:/posts/2019-06-07-iso-14533-4-dis-successful[ISO/TC 154 news: ISO 14533-4:2019 completed DIS ballot, will be published soon!]'
+  related_news: "* link:/posts/2019-06-07-iso-14533-4-dis-successful[ISO/TC 154 news: ISO 14533-4:2019 completed DIS ballot, will be published soon!]"

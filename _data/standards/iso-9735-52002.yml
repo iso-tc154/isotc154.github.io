@@ -7,6 +7,7 @@ iso:
   ics: 35.240.63
   scope: This part of ISO 9735 specifies syntax rules for EDIFACT security. It provides a method to address message/package level, group level and interchange level security for authenticity, integrity and non-repudiation of origin, in accordance with established security mechanisms.
   publication_date: '2002-01-01'
+  store_id: 35036
 tc154:
   group: jwg1
   related_news: "* link:/posts/2002-01-01-iso-9735-5-2002[ISO/TC 154 news: ISO 9735-5:2002 published!]"

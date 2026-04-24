@@ -7,6 +7,7 @@ iso:
   ics: 35.240.63
   scope: This document specifies the syntax service directories of all parts in the ISO 9735 series. It defines the syntax version 4, syntax release number 3, for the electronic data interchange for administration, commerce and transport (EDIFACT) application level syntax rules.
   publication_date: '2022-01-01'
+  store_id: 82813
 tc154:
   group: jwg1
   related_news: "* link:/posts/2022-01-01-iso-9735-10-2022[ISO/TC 154 news: ISO 9735-10:2022 published!]"

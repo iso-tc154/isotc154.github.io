@@ -6,6 +6,7 @@ iso:
   publication_date: 2019-03-25
   stage: '90.92'
   ics: 01.140.30
+  store_id: 70908
   scope: |-
     This document specifies additional representations of dates of the Gregorian calendar and times based on the 24-hour clock that extend the basic rules and composite elements of those defined in ISO 8601-1. These representations are specified as character strings for use in information interchange. It is also applicable for representing times and time shifts based on Coordinated Universal Time (UTC).
 

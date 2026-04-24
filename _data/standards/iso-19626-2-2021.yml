@@ -9,6 +9,7 @@ iso:
     As a connected standard of ISO 19626-1, this document defines the communication interactions between TCP system components and specifies their detailed interfaces — the processes and the APIs of the TCP system components.
     It provides the common communication interface for deployment and implementation of the system components, and their functions in a specific technology-neutral way to those who consider applying and establishing a TCP system.
   publication_date: '2021-01-01'
+  store_id: 67936
 tc154:
   group: wg6
   content:
