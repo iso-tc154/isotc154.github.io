@@ -1,0 +1,52 @@
+---
+layout: default
+permalink: /acknowledgments/
+title: Acknowledgments
+---
+
+<div class="acknowledgments">
+  <p class="acknowledgments__intro">
+    ISO/TC 154 gratefully acknowledges the following individuals and organizations
+    who have contributed errata reports, feedback, and improvements to our standards.
+  </p>
+
+  {% assign acks = site.data.acknowledgments %}
+  {% if acks and acks.size > 0 %}
+    {% comment %} Group by standard {% endcomment %}
+    {% assign standards = "" | split: "" %}
+    {% for ack in acks %}
+      {% unless standards contains ack.standard %}
+        {% assign standards = standards | push: ack.standard %}
+      {% endunless %}
+    {% endfor %}
+
+    {% for std in standards %}
+    <section class="acknowledgments__section">
+      <h2 class="acknowledgments__standard">{{ std }}</h2>
+      <ul class="acknowledgments__list">
+        {% for ack in acks %}
+          {% if ack.standard == std %}
+          <li class="acknowledgments__item">
+            {% if ack.url %}
+              <a href="{{ ack.url }}" class="acknowledgments__name">{{ ack.name }}</a>
+            {% else %}
+              <strong class="acknowledgments__name">{{ ack.name }}</strong>
+            {% endif %}
+            {% if ack.affiliation %}
+              <span class="acknowledgments__affiliation">({{ ack.affiliation }})</span>
+            {% endif %}
+            — {{ ack.contribution }}
+            <span class="acknowledgments__date">{{ ack.date | date: "%B %Y" }}</span>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+  {% else %}
+    <p class="acknowledgments__empty">
+      No acknowledgments have been recorded yet. If you have identified an error
+      in one of our standards, please <a href="/contact/">contact us</a>.
+    </p>
+  {% endif %}
+</div>

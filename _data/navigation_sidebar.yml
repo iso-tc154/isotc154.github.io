@@ -146,6 +146,7 @@ sections:
       - /about
       - /faq
       - /contact
+      - /acknowledgments
       - /liaisons
       - /national-bodies
     title: About
@@ -159,6 +160,9 @@ sections:
       - type: link
         label: National Bodies
         url: /national-bodies/
+      - type: link
+        label: Acknowledgments
+        url: /acknowledgments/
       - type: link
         label: FAQ
         url: /faq/

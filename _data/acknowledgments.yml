@@ -1,0 +1,25 @@
+# Errata & Feedback Acknowledgments
+#
+# Recognize people who have contributed errata reports, feedback, or
+# other improvements to TC 154 standards.
+#
+# Each entry:
+#   name: (required) Person's name
+#   affiliation: (optional) Organization
+#   date: (required) Date of acknowledgment (YYYY-MM-DD)
+#   standard: (required) ISO standard reference
+#   contribution: (required) Brief description of the contribution
+#   url: (optional) Link to member page or external profile
+
+# Example entries (remove when adding real data):
+# - name: Jane Smith
+#   affiliation: Acme Corp
+#   date: 2024-06-15
+#   standard: ISO 8601-1:2019
+#   contribution: Reported typographical errors in Section 5.3.2
+#
+# - name: John Doe
+#   affiliation: University of Example
+#   date: 2024-08-22
+#   standard: ISO 8601-2:2019
+#   contribution: Identified ambiguity in time interval representation rules
