@@ -13,6 +13,7 @@ module Jekyll
           'members' => [],
           'past_members' => [],
           'convenors' => [],
+          'co_chairs' => [],
           'managers' => [],
         })
       end
@@ -31,7 +32,7 @@ module Jekyll
         'leadership' => [],
       }
 
-      leadership_role_ids = ['chair', 'technical_programme_manager', 'committee_manager', 'convenor']
+      leadership_role_ids = ['chair', 'technical_programme_manager', 'committee_manager', 'convenor', 'co_chair']
 
       raw_members.each do |id, member_data|
         role_records = member_data['roles']
@@ -90,6 +91,8 @@ module Jekyll
                     self.data['groups'][group_id]['managers'] << id
                   elsif role_id == 'convenor'
                     self.data['groups'][group_id]['convenors'] << id
+                  elsif role_id == 'co_chair'
+                    self.data['groups'][group_id]['co_chairs'] << id
                   elsif role_id == 'member'
                     self.data['groups'][group_id]['members'] << id
                   end

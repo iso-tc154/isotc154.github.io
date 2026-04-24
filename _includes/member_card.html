@@ -20,6 +20,7 @@
         {% if gr.to == nil %}
           {% case gr.id %}
             {% when 'convenor' %}{% assign display_role = "Convenor" %}
+            {% when 'co_chair' %}{% assign display_role = "Co-Chair" %}
             {% when 'manager' %}{% assign display_role = "Manager" %}
             {% when 'member' %}{% assign display_role = "Member" %}
             {% else %}{% assign display_role = gr.id | replace: '_', ' ' | capitalize %}
@@ -38,7 +39,9 @@
           {% endunless %}
         {% endif %}
       {% endfor %}
-      {% if current_role_ids contains 'chair' %}
+      {% if current_role_ids contains 'co_chair' %}
+        {% assign display_role = "Co-Chair" %}
+      {% elsif current_role_ids contains 'chair' %}
         {% assign display_role = "Chair" %}
       {% elsif current_role_ids contains 'technical_programme_manager' %}
         {% assign display_role = "Technical Programme Manager" %}

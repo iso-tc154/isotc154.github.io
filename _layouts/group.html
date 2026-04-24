@@ -7,10 +7,11 @@ layout: default
 {% assign group_data = site.data.groups[group_id] %}
 {% assign gs = site.data.group_standards[group_id] %}
 {% assign convenors = group_data.convenors %}
+{% assign co_chairs = group_data.co_chairs %}
 {% assign managers = group_data.managers %}
 {% assign members = group_data.members %}
 {% assign past_members = group_data.past_members %}
-{% assign total_members = convenors.size | plus: managers.size | plus: members.size %}
+{% assign total_members = convenors.size | plus: co_chairs.size | plus: managers.size | plus: members.size %}
 {% if total_members > 0 %}{% assign has_members = true %}{% endif %}
 {% assign has_standards = gs %}
 
@@ -57,7 +58,7 @@ layout: default
   </div>
 
   <div class="gtabs__panel is-active" id="gtab-members">
-    {% include group_members.html convenors=convenors managers=managers members=members past_members=past_members group_id=group_id group=group %}
+    {% include group_members.html convenors=convenors co_chairs=co_chairs managers=managers members=members past_members=past_members group_id=group_id group=group %}
   </div>
 
   <div class="gtabs__panel" id="gtab-standards">
@@ -67,7 +68,7 @@ layout: default
 {% elsif show_members %}
 <section style="margin-bottom: 3rem">
   <h2 class="section-heading" style="margin-bottom: 1.5rem">Members</h2>
-  {% include group_members.html convenors=convenors managers=managers members=members past_members=past_members group_id=group_id group=group %}
+  {% include group_members.html convenors=convenors co_chairs=co_chairs managers=managers members=members past_members=past_members group_id=group_id group=group %}
 </section>
 {% elsif has_standards %}
 <section style="margin-bottom: 3rem">

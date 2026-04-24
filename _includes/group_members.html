@@ -1,9 +1,21 @@
 {% assign convenors = include.convenors %}
+{% assign co_chairs = include.co_chairs %}
 {% assign managers = include.managers %}
 {% assign members = include.members %}
 {% assign past_members = include.past_members %}
 {% assign group_id = include.group_id %}
 {% assign group = include.group %}
+
+{% if co_chairs.size > 0 %}
+<div style="margin-bottom: 1.5rem">
+  <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem">Co-Chairs</h3>
+  <div class="member-grid">
+    {% for member_id in co_chairs %}
+      <div class="member-card">{% include member_card.html id=member_id role="co_chair" affiliation=true in_group=group_id %}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
 
 {% if convenors.size > 0 %}
 <div style="margin-bottom: 1.5rem">

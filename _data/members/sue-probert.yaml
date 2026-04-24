@@ -5,7 +5,7 @@ name: Sue Probert
 roles:
 - id: project_leader
   project: 7372
-- id: convenor
+- id: co_chair
   group: iso7372ma
   from:
     date: 2020-01-01
