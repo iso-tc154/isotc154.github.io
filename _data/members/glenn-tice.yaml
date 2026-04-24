@@ -1,11 +1,21 @@
 ---
 member-id: glenn-tice
-name: Glenn Tice
+name: Glenn Philip Tice
 active: true
 roles:
-- id: member
 - id: convenor
   group: wg2
+  from:
+    date: 2024-05-16
+    precision: day
 - id: member
   group: cag
-affiliation: BSI, United Kingdom
+  from:
+    date: 2024-05-16
+    precision: day
+affiliation: BIS, United Kingdom
+bio: |-
+  Glenn Tice is a computer scientist specialising in the modelling,
+  processing and exchange of analytical data. He is the convenor for
+  ISO technical committee 154 working group 2 responsible for statistics
+  data exchange international standards.

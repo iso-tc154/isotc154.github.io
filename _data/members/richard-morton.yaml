@@ -1,8 +1,55 @@
----
 member-id: richard-morton
 name: Richard Morton
-active: true
+picture: richard-morton.jpg
+active: false
+deceased: true
 roles:
 - id: member
   group: cag
+  to:
+    date: 2022-09-21
+    precision: day
 affiliation: IPCSA
+epitaph: |-
+  It is with deep sadness that we learnt of the passing of Richard Morton,
+  Secretary General of the International Port Community Systems Association (IPCSA),
+  at the age of 50.
+
+  Born on 7 October 1971 in Suffolk, United Kingdom,
+  Richard began his career in European road, sea and air freight operations
+  before joining the Haven Gateway Partnership as project director,
+  leading European Interreg projects.
+
+  In 2011, Richard founded the European Port Community Systems Association (EPCSA)
+  with just six members.
+  Under his leadership the organisation was renamed IPCSA in 2014
+  and grew to over 50 members worldwide.
+  He worked tirelessly with international bodies including
+  the United Nations (UN), World Customs Organization (WCO),
+  World Trade Organization (WTO), European Commission,
+  International Maritime Organization (IMO),
+  International Civil Aviation Organization (ICAO),
+  IATA and TIACA.
+
+  Richard was an expert for UN/CEFACT and served on the
+  APEC eCommerce Business Alliance Expert Council.
+  Among his key achievements were the development of the
+  Network of Trusted Networks (NoTN),
+  the Blockchain Bill of Lading initiative,
+  and the integration of PROTECT into IPCSA's portfolio.
+
+  Richard served as a member of the ISO/TC 154 Chair's Advisory Group.
+  His expertise in electronic business, trade facilitation
+  and port community systems made him an invaluable contributor
+  to the committee's work.
+
+  He is survived by his wife Inga and daughter Aleksandra,
+  with whom he lived in Saulkrasti, Latvia.
+
+  Our thoughts are with his family, colleagues and friends.
+
+  Members of ISO/TC 154
+bio: |-
+  Richard Morton was the Secretary General of the
+  International Port Community Systems Association (IPCSA).
+

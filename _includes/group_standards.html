@@ -1,0 +1,33 @@
+{% assign gs = include.gs %}
+
+{% if gs.series.size > 0 %}
+<div style="margin-bottom: 2rem">
+  <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem">Series</h3>
+  {% for series in gs.series %}
+  <div style="margin-bottom: 1.25rem">
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem">
+      <span style="font-size: 0.9375rem; font-weight: 600; color: #0061ad">{{ series.base_key }}</span>
+      {% if series.has_withdrawn and series.has_published == false %}
+      <span class="detail-badge">Withdrawn</span>
+      {% endif %}
+    </div>
+    <div class="card-stack card-stack--sm">
+      {% for item in series.items %}
+      {% include standard_card.html name=item.name id=item.sid %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if gs.individual.size > 0 %}
+<div>
+  <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem">Individual Standards</h3>
+  <div class="card-stack card-stack--sm">
+    {% for item in gs.individual %}
+    {% include standard_card.html name=item.name id=item.sid %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

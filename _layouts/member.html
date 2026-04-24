@@ -59,16 +59,20 @@ layout: default
 <div class="member-detail-header">
   <div class="member-detail-header__photo">
     {% if page.picture %}
-      <img src="/assets/images/members/{{ page.picture }}" alt="{{ member.name }}" class="detail-logo detail-logo--member">
+      <img src="/assets/images/members/{{ page.picture }}" alt="{{ member.name }}" class="detail-logo detail-logo--member{% if member.deceased %} detail-logo--deceased{% endif %}">
     {% else %}
-      <div class="detail-logo detail-logo--initials detail-logo--member">
+      <div class="detail-logo detail-logo--initials detail-logo--member{% if member.deceased %} detail-logo--deceased{% endif %}">
         <span>{{ member.name | slice: 0, 2 | upcase }}</span>
       </div>
     {% endif %}
   </div>
   <div class="member-detail-header__info">
     {% unless member.is_current %}
-    <span class="page-label">Past Member</span>
+      {% if member.deceased %}
+      <span class="page-label page-label--memoriam">In Memoriam</span>
+      {% else %}
+      <span class="page-label">Past Member</span>
+      {% endif %}
     {% endunless %}
     <h1 class="member-detail-header__name">{{ page.title }}</h1>
     <p class="member-detail-header__role">{{ primary_role }}</p>
@@ -151,6 +155,22 @@ layout: default
 {% comment %}Social links{% endcomment %}
 {% if member.links %}
   {% include links.html links=member.links %}
+{% endif %}
+
+{% comment %}Epitaph — shown for deceased members{% endcomment %}
+{% if page.epitaph %}
+  {% capture nl %}
+  {% endcapture %}
+  {% assign dnl = nl | append: nl %}
+  <div class="member-epitaph">
+  {% assign epitaph_paragraphs = page.epitaph | split: dnl %}
+  {% for para in epitaph_paragraphs %}
+    {% assign para_text = para | replace: nl, " " | strip %}
+    {% if para_text != "" %}
+    <p>{{ para_text }}</p>
+    {% endif %}
+  {% endfor %}
+  </div>
 {% endif %}
 
 {% comment %}Bio — split on double-newlines for paragraphs, collapse hard wraps{% endcomment %}

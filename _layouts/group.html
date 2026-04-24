@@ -6,6 +6,13 @@ layout: default
 {% assign group_id = page.group_id | default: page._id %}
 {% assign group_data = site.data.groups[group_id] %}
 {% assign gs = site.data.group_standards[group_id] %}
+{% assign convenors = group_data.convenors %}
+{% assign managers = group_data.managers %}
+{% assign members = group_data.members %}
+{% assign past_members = group_data.past_members %}
+{% assign total_members = convenors.size | plus: managers.size | plus: members.size %}
+{% if total_members > 0 %}{% assign has_members = true %}{% endif %}
+{% assign has_standards = gs %}
 
 <!-- Group Header -->
 <div style="margin-bottom: 2rem">
@@ -34,42 +41,38 @@ layout: default
 </div>
 {% endif %}
 
-<!-- Standards -->
-{% if gs %}
+<!-- Tabs: Members / Standards -->
+{% assign show_members = has_members %}
+{% unless show_members %}
+  {% if group.history.leadership or past_members.size > 0 %}
+    {% assign show_members = true %}
+  {% endif %}
+{% endunless %}
+
+{% if show_members and has_standards %}
+<div class="gtabs" style="margin-bottom: 2rem">
+  <div class="gtabs__bar">
+    <button class="gtabs__btn is-active" data-gtab="members">Members{% if total_members > 0 %} <span class="meta-text--small">({{ total_members }})</span>{% endif %}</button>
+    <button class="gtabs__btn" data-gtab="standards">Standards</button>
+  </div>
+
+  <div class="gtabs__panel is-active" id="gtab-members">
+    {% include group_members.html convenors=convenors managers=managers members=members past_members=past_members group_id=group_id group=group %}
+  </div>
+
+  <div class="gtabs__panel" id="gtab-standards">
+    {% include group_standards.html gs=gs %}
+  </div>
+</div>
+{% elsif show_members %}
+<section style="margin-bottom: 3rem">
+  <h2 class="section-heading" style="margin-bottom: 1.5rem">Members</h2>
+  {% include group_members.html convenors=convenors managers=managers members=members past_members=past_members group_id=group_id group=group %}
+</section>
+{% elsif has_standards %}
 <section style="margin-bottom: 3rem">
   <h2 class="section-heading" style="margin-bottom: 1.5rem">Standards</h2>
-
-  {% if gs.series.size > 0 %}
-  <div style="margin-bottom: 2rem">
-    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem">Series</h3>
-    {% for series in gs.series %}
-    <div style="margin-bottom: 1.25rem">
-      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem">
-        <span style="font-size: 0.9375rem; font-weight: 600; color: #0061ad">{{ series.base_key }}</span>
-        {% if series.has_withdrawn and series.has_published == false %}
-        <span class="detail-badge">Withdrawn</span>
-        {% endif %}
-      </div>
-      <div class="card-stack card-stack--sm">
-        {% for item in series.items %}
-        {% include standard_card.html name=item.name id=item.sid %}
-        {% endfor %}
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  {% if gs.individual.size > 0 %}
-  <div>
-    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem">Individual Standards</h3>
-    <div class="card-stack card-stack--sm">
-      {% for item in gs.individual %}
-      {% include standard_card.html name=item.name id=item.sid %}
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
+  {% include group_standards.html gs=gs %}
 </section>
 {% endif %}
 
@@ -100,53 +103,9 @@ layout: default
 </section>
 {% endif %}
 
-<!-- Members -->
-{% assign convenors = group_data.convenors %}
-{% assign managers = group_data.managers %}
-{% assign members = group_data.members %}
-{% assign total_members = convenors.size | plus: managers.size | plus: members.size %}
-
-{% if total_members > 0 %}
-<section style="margin-bottom: 3rem">
-  <h2 class="section-heading" style="margin-bottom: 1.5rem">Members</h2>
-
-  {% if convenors.size > 0 %}
-  <div style="margin-bottom: 1.5rem">
-    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem">Convenors</h3>
-    <div class="member-grid">
-      {% for member_id in convenors %}
-        <div class="member-card">{% include member_card.html id=member_id role="convenor" affiliation=true in_group=group_id %}</div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-
-  {% if managers.size > 0 %}
-  <div style="margin-bottom: 1.5rem">
-    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem">Managers</h3>
-    <div class="member-grid">
-      {% for member_id in managers %}
-        <div class="member-card">{% include member_card.html id=member_id role="manager" affiliation=true in_group=group_id %}</div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-
-  {% if members.size > 0 %}
-  <div>
-    <h3 class="section-heading" style="font-size: 0.8125rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem">Members</h3>
-    <div class="member-grid">
-      {% for member_id in members %}
-        <div class="member-card">{% include member_card.html id=member_id affiliation=true in_group=group_id %}</div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-</section>
-{% endif %}
-
 <!-- History -->
 {% if group.history %}
+{% if group.history.story or group.history.secretariat %}
 <section style="margin-bottom: 3rem">
   <h2 class="section-heading" style="margin-bottom: 1.5rem">History</h2>
 
@@ -154,17 +113,6 @@ layout: default
   <div style="max-width: 65rem; margin-bottom: 1.5rem">
     <div class="prose prose-slate dark:prose-invert max-w-none">
       {{ group.history.story | asciidocify }}
-    </div>
-  </div>
-  {% endif %}
-
-  {% if group.history.leadership %}
-  <div style="margin-bottom: 1.5rem">
-    <h3 class="section-heading" style="margin-bottom: 1rem">Previous Leadership</h3>
-    <div class="member-grid">
-      {% for member_id in group.history.leadership %}
-        <div class="member-card">{% include member_card.html id=member_id affiliation=true %}</div>
-      {% endfor %}
     </div>
   </div>
   {% endif %}
@@ -181,6 +129,7 @@ layout: default
   {% endif %}
 </section>
 {% endif %}
+{% endif %}
 
 <!-- Page Content (if any) -->
 {% if page.content and page.content != '' %}
@@ -190,3 +139,18 @@ layout: default
   </div>
 </section>
 {% endif %}
+
+<script>
+document.querySelectorAll('.gtabs__bar').forEach(function(bar) {
+  bar.addEventListener('click', function(e) {
+    var btn = e.target.closest('.gtabs__btn');
+    if (!btn) return;
+    var tab = btn.dataset.gtab;
+    var container = bar.closest('.gtabs');
+    container.querySelectorAll('.gtabs__btn').forEach(function(b) { b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    container.querySelectorAll('.gtabs__panel').forEach(function(p) { p.classList.remove('is-active'); });
+    document.getElementById('gtab-' + tab).classList.add('is-active');
+  });
+});
+</script>

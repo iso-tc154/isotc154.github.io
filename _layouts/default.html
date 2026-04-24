@@ -68,6 +68,36 @@ layout: base
                 {% else %}
                   {% assign docs = site.posts %}
               {% endcase %}
+
+            {% when 'data_groups' %}
+              <li><span class="layout-sidebar__section-sublabel">Working Groups</span></li>
+              {% for g in site.data.groups_sorted %}
+                {% if g.category != 'working' %}{% continue %}{% endif %}
+                {% assign g_url = '/groups/' | append: g.id | append: '/' %}
+                {% assign is_g_active = false %}
+                {% if page.url == g_url %}
+                  {% assign is_g_active = true %}
+                {% endif %}
+              <li>
+                <a href="{{ g_url | relative_url }}" {% if is_g_active %}class="active"{% endif %}{% if g.inactive %} style="opacity: 0.5"{% endif %}>
+                  {{ g.name }}<br>{{ g.title }}
+                </a>
+              </li>
+              {% endfor %}
+              <li><span class="layout-sidebar__section-sublabel">Advisory Groups</span></li>
+              {% for g in site.data.groups_sorted %}
+                {% if g.category != 'advisory' %}{% continue %}{% endif %}
+                {% assign g_url = '/groups/' | append: g.id | append: '/' %}
+                {% assign is_g_active = false %}
+                {% if page.url == g_url %}
+                  {% assign is_g_active = true %}
+                {% endif %}
+              <li>
+                <a href="{{ g_url | relative_url }}" {% if is_g_active %}class="active"{% endif %}>
+                  {{ g.name }}<br>{{ g.title }}
+                </a>
+              </li>
+              {% endfor %}
               {% if item.sort_field %}
                 {% if item.sort_field == 'date' and item.sort_order == 'desc' %}
                   {% assign sorted_docs = docs | sort: 'date' | reverse %}

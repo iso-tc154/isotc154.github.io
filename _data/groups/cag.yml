@@ -3,6 +3,7 @@ id: cag
 _id: cag
 name: CAG
 title: Co-ordination Advisory Group
+category: advisory
 order: 1
 intro: |
   The Co-ordination Advisory Group (ISO/TC 154/CAG) advises the TC on the administrative matters.

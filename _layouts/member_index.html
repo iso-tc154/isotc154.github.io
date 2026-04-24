@@ -151,7 +151,7 @@ layout: base
           {% endif %}
           {% assign p_roles = p_roles | append: role.id | append: "," %}
         {% endfor %}
-        <div class="member-card member-card--past" data-name="{{ pmember.name | downcase }}" data-affiliation="{{ pmember.affiliation | default: '' }}" data-groups="{{ p_groups }}" data-roles="{{ p_roles }}" data-section="member" data-status="past" style="display:none" data-org-id="{{ pmember.affiliation | default: '' | split: ', ' | first | strip | downcase | replace: ' ', '-' }}">
+        <div class="member-card member-card--past{% if pmember.deceased %} member-card--deceased{% endif %}" data-name="{{ pmember.name | downcase }}" data-affiliation="{{ pmember.affiliation | default: '' }}" data-groups="{{ p_groups }}" data-roles="{{ p_roles }}" data-section="member" data-status="past" style="display:none" data-org-id="{{ pmember.affiliation | default: '' | split: ', ' | first | strip | downcase | replace: ' ', '-' }}"{% if pmember.deceased %} data-deceased="true"{% endif %}>
           {% include member_card.html id=member_id %}
         </div>
       {% endif %}

@@ -9,6 +9,12 @@
     letter-spacing: 0.05em;
   }
   .dark .page-label { color: #3385d6; }
+  .page-label--memoriam {
+    color: #64748b;
+  }
+  .dark .page-label--memoriam {
+    color: #94a3b8;
+  }
 
   .page-title {
     font-size: 1.875rem;

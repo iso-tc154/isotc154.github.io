@@ -6,8 +6,8 @@ roles:
 - id: convenor
   group: jwg1
   from:
-    date: 2021-06-16
-    precision: day
+    date: 2023-01-01
+    precision: year
 - id: project_leader
   project: 9735
 - id: member

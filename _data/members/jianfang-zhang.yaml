@@ -3,6 +3,11 @@ member-id: jianfang-zhang
 picture: jianfang-zhang.jpg
 name: Jianfang Zhang
 roles:
+- id: convenor
+  group: ag1
+  from:
+    date: 2024-01-01
+    precision: year
 - id: member
   group: wg7
 - id: committee_manager
