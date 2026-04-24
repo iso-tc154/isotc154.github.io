@@ -37,7 +37,9 @@ layout: default
       {% endunless %}
     {% endif %}
   {% endfor %}
-  {% if current_role_ids contains 'chair' %}
+  {% if current_role_ids contains 'co_chair' %}
+    {% assign primary_role = "Co-Chair" %}
+  {% elsif current_role_ids contains 'chair' %}
     {% assign primary_role = "Chair" %}
   {% elsif current_role_ids contains 'technical_programme_manager' %}
     {% assign primary_role = "Technical Programme Manager" %}
@@ -96,6 +98,8 @@ layout: default
             {% assign badge_label = "Committee Manager" %}
           {% when 'convenor' %}
             {% assign badge_label = "Convenor" %}
+          {% when 'co_chair' %}
+            {% assign badge_label = "Co-Chair" %}
           {% when 'member' %}
             {% assign badge_label = "Member" %}
           {% when 'manager' %}

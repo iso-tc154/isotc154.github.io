@@ -8,6 +8,7 @@
 {% comment %}Map role IDs to proper display titles{% endcomment %}
 {% assign role_chair = "Chair" %}
 {% assign role_convenor = "Convenor" %}
+{% assign role_co_chair = "Co-Chair" %}
 {% assign role_member = "Member" %}
 {% assign role_manager = "Manager" %}
 {% assign role_project_leader = "Project Leader" %}
@@ -26,6 +27,7 @@
         {% case role.id %}
           {% when 'chair' %}{% assign role_title = role_chair %}
           {% when 'convenor' %}{% assign role_title = role_convenor %}
+          {% when 'co_chair' %}{% assign role_title = role_co_chair %}
           {% when 'member' %}{% assign role_title = role_member %}
           {% when 'manager' %}{% assign role_title = role_manager %}
           {% when 'project_leader' %}{% assign role_title = role_project_leader %}
@@ -59,6 +61,7 @@
           {% case role.id %}
             {% when 'chair' %}{% assign role_title = role_chair %}
             {% when 'convenor' %}{% assign role_title = role_convenor %}
+            {% when 'co_chair' %}{% assign role_title = role_co_chair %}
             {% when 'member' %}{% assign role_title = role_member %}
             {% when 'manager' %}{% assign role_title = role_manager %}
             {% when 'project_leader' %}{% assign role_title = role_project_leader %}
