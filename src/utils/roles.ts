@@ -1,3 +1,5 @@
+import { labelTable } from './labelTable'
+
 const ROLE_LABELS: Record<string, string> = {
   chair: 'Chair',
   co_chair: 'Co-chair',
@@ -16,9 +18,4 @@ const ROLE_LABELS: Record<string, string> = {
   'technical-programme-manager': 'Technical Programme Manager',
 }
 
-export function roleLabel(roleId: string): string {
-  if (ROLE_LABELS[roleId]) return ROLE_LABELS[roleId]
-  return roleId
-    .replace(/[_-]+/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-}
+export const roleLabel = labelTable(ROLE_LABELS)

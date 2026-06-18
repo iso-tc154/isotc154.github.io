@@ -6,9 +6,28 @@ import { useResolutions } from '../composables/useResolutions'
 import { useClipboard } from '../composables/useClipboard'
 import { committee } from '../data/committee'
 import { venueToFlag } from '../data/countryFlags'
-import type { Meeting, MeetingSession, ResolvedHost, RichMeetingData } from '../types/meeting'
+import { ordinalText } from '../utils/ordinal'
+import { groupScheduleByDate } from '../utils/schedule'
+import {
+  resolutionTypeLabel,
+  sessionLabel,
+  sessionLocation,
+  sessionVirtual,
+  formatDate,
+  associateRoleLabel,
+} from '../utils/meetingFormat'
+import {
+  practicalLabel,
+  isSection,
+  isStringList,
+  isUrl,
+  isEmail,
+  practicalEntries,
+  sectionEntries,
+  touristInfoAsSection,
+} from '../composables/usePracticalInfo'
+import type { Meeting, ResolvedHost, RichMeetingData } from '../types/meeting'
 import type { Resolution } from '../types/resolution'
-import type { PracticalSection, PracticalValue } from '../types/event'
 import ScheduleCalendar from '../components/ScheduleCalendar.vue'
 
 const route = useRoute()
@@ -42,128 +61,8 @@ const ordinalYear = computed(() => {
   return m.year ? String(m.year) : '—'
 })
 
-function ordinalText(n: number): string {
-  return `${n}${ordinalSuffix(n)}`
-}
-
-function ordinalSuffix(n: number): string {
-  if (n >= 11 && n <= 13) return 'th'
-  switch (n % 10) {
-    case 1: return 'st'
-    case 2: return 'nd'
-    case 3: return 'rd'
-    default: return 'th'
-  }
-}
-
 function isUpcoming(m: Meeting): boolean {
   return m.status_label !== 'Concluded' && m.status_label !== 'Cancelled'
-}
-
-function sessionLabel(s: MeetingSession): string {
-  const parts: string[] = []
-  if (s.start_date) parts.push(formatSessionDate(s.start_date))
-  if (s.end_date && s.end_date !== s.start_date) parts.push(formatSessionDate(s.end_date))
-  return parts.join(' – ')
-}
-
-function formatSessionDate(raw: string): string {
-  const m = raw.match(/^(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})(?:\s+(\d{1,2}:\d{2})(?:\s+([A-Z]+))?)?$/)
-  if (!m) return raw
-  const [, d, mon, y, time, tz] = m
-  const tzSuffix = tz && tz !== 'UTC' ? ` ${tz}` : ''
-  if (time && !(time === '00:00')) return `${d} ${mon} ${y}, ${time}${tzSuffix}`
-  return `${d} ${mon} ${y}`
-}
-
-function sessionLocation(s: MeetingSession): string {
-  const parts: string[] = []
-  if (s.city) parts.push(s.city.replace(/[,;]\s*$/, ''))
-  if (s.country && s.country !== s.city) parts.push(s.country)
-  return parts.join(' · ')
-}
-
-function sessionVirtual(s: MeetingSession): string | null {
-  if (!s.virtual_address) return null
-  const v = s.virtual_address.toLowerCase()
-  if (v === 'zoom' || v === 'teams' || v === 'online') return null
-  return s.virtual_address
-}
-
-function resolutionTypeLabel(sourceType: string): string {
-  if (sourceType === 'plenary') return 'Plenary'
-  if (sourceType === 'ballots') return 'Ballot'
-  return sourceType ? sourceType.charAt(0).toUpperCase() + sourceType.slice(1) : ''
-}
-
-const LABEL_OVERRIDES: Record<string, string> = {
-  eu_schengen: 'EU Schengen',
-  info_url: 'Information URL',
-  invitation_contact: 'Invitation Contact',
-  invitation_email: 'Invitation email',
-  required_info: 'Required information',
-  badge_required: 'Badge required',
-  badge_info: 'Badge',
-  wifi: 'Wi-Fi',
-  smoking: 'Smoking',
-  electrical: 'Electrical',
-  url: 'URL',
-  museums_url: 'Museums URL',
-  ifa_note: 'IFA note',
-  ifa_url: 'IFA URL',
-}
-
-function practicalLabel(key: string): string {
-  if (LABEL_OVERRIDES[key]) return LABEL_OVERRIDES[key]
-  return key.replace(/[_-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-}
-
-function isSection(v: PracticalValue): v is PracticalSection {
-  return typeof v === 'object' && v !== null && !Array.isArray(v)
-}
-
-function isStringList(v: PracticalValue): v is string[] {
-  return Array.isArray(v)
-}
-
-function practicalEntries(info: PracticalSection | undefined) {
-  if (!info) return []
-  return Object.entries(info).filter(([, v]) => {
-    if (v == null || v === '') return false
-    if (Array.isArray(v) && v.length === 0) return false
-    return true
-  }) as [string, PracticalValue][]
-}
-
-function sectionEntries(section: PracticalSection) {
-  return Object.entries(section).filter(([, v]) => {
-    if (v == null || v === '') return false
-    if (Array.isArray(v) && v.length === 0) return false
-    if (typeof v === 'boolean' && v === false) return false
-    return true
-  }) as [string, PracticalValue][]
-}
-
-function isUrl(v: unknown): v is string {
-  return typeof v === 'string' && /^https?:\/\//.test(v)
-}
-
-function isEmail(v: unknown): v is string {
-  return typeof v === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
-}
-
-function touristInfoAsSection(value: PracticalSection | unknown[]): PracticalSection {
-  if (Array.isArray(value)) {
-    const section: PracticalSection = {}
-    value.forEach((item: any, i: number) => {
-      section[item.name ?? `Item ${i + 1}`] = {
-        link: item.link,
-        notes: item.notes,
-      } as PracticalSection
-    })
-    return section
-  }
-  return value as PracticalSection
 }
 
 const venueFlag = computed(() => {
@@ -192,12 +91,11 @@ function venueEmbedSrc(v: GeoPoint): string | null {
   return `https://www.openstreetmap.org/export/embed.html?bbox=${lon1}%2C${lat1}%2C${lon2}%2C${lat2}&layer=mapnik&marker=${v.lat}%2C${v.lon}`
 }
 
-interface OrgCard extends ResolvedHost {}
+type OrgCard = ResolvedHost
 
 const resolvedHosts = computed<OrgCard[]>(() => {
   const r = rich.value?.hosts
   if (Array.isArray(r) && r.length) return r
-  // Fallback: emit a single card from the legacy host string
   const legacy = rich.value?.host
   if (!legacy) return []
   return [{ name: legacy, kind: 'unknown' }]
@@ -205,52 +103,11 @@ const resolvedHosts = computed<OrgCard[]>(() => {
 
 const resolvedAssociates = computed(() => rich.value?.associates ?? [])
 
-const ASSOC_ROLE_LABELS: Record<string, string> = {
-  'co-organizer': 'Co-organizer',
-  'cohost': 'Co-host',
-  'co-host': 'Co-host',
-  'host': 'Host',
-  'sponsor': 'Sponsor',
-  'secretariat': 'Secretariat',
-  'technical-advisor': 'Technical advisor',
-  'partner': 'Partner',
-}
-
-function associateRoleLabel(role?: string): string {
-  if (!role) return ''
-  return ASSOC_ROLE_LABELS[role.toLowerCase()] || role.replace(/[_-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-}
-
-function formatDate(raw?: string): string {
-  if (!raw) return ''
-  const s = String(raw)
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  if (m) {
-    const [, y, mo, d] = m
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    const monthIdx = parseInt(mo, 10) - 1
-    if (monthIdx >= 0 && monthIdx < 12) return `${parseInt(d, 10)} ${months[monthIdx]} ${y}`
-  }
-  return s
-}
-
 function rateLabel(key: string): string {
-  return key
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, c => c.toUpperCase())
+  return key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
 }
 
-const scheduleByDate = computed(() => {
-  const sched = rich.value?.schedule
-  if (!sched) return []
-  const map = new Map<string, typeof sched>()
-  for (const item of sched) {
-    if (!item.date) continue
-    if (!map.has(item.date)) map.set(item.date, [])
-    map.get(item.date)!.push(item)
-  }
-  return Array.from(map.entries()).map(([date, items]) => ({ date, items }))
-})
+const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 </script>
 
 <template>
