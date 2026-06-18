@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap');
+
+@import "tailwindcss";
+
+@import "./css/filter.css";
+@import "./css/resolution.css";
+@import "./css/header.css";
+@import "./css/footer.css";
+@import "./css/standard-detail.css";
+@import "./css/content-panel.css";
+@import "./css/typography.css";
+@import "./css/_patterns.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-blue-accent: #1e3a8a;
+  --color-iso-red: #b91c1c;
+  --color-amber-warm: #b45309;
+  --color-slate-50: #fafaf9;
+  --color-slate-100: #f4f4f3;
+  --color-slate-200: #e7e5e4;
+  --color-slate-300: #d6d3d1;
+  --color-slate-400: #a8a29e;
+  --color-slate-500: #78716c;
+  --color-slate-600: #57534e;
+  --color-slate-700: #44403c;
+  --color-slate-800: #292524;
+  --color-slate-900: #1c1917;
+  --color-slate-950: #0f0e0d;
+}
+
+:root {
+  --site-header-height: calc(4rem + 3px);
+  --font-serif: 'Fraunces', serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --surface-bg: #fafaf9;
+  --surface-bg-dark: #1a1a1a;
+  --surface-card-dark: #232320;
+  --text-strong-dark: #e8e6e1;
+  --text-soft-dark: #b8b3a9;
+  --border-soft-dark: #2e2e2a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--surface-bg);
+  background-image: radial-gradient(rgba(120, 113, 108, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--color-slate-900);
+  font-family: var(--font-sans);
+  margin: 0;
+}
+
+.dark body {
+  background-color: var(--surface-bg-dark);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  color: var(--text-strong-dark);
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif { font-family: var(--font-serif); }
+
+.site-main {
+  padding-top: var(--site-header-height);
+  min-height: calc(100vh - var(--site-header-height));
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}

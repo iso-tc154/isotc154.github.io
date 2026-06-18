@@ -1,0 +1,28 @@
+---
+layout: post
+title: ISO/TC 154 Website Redesigned
+date: 2026-03-26 00:00:00 +0800
+categories: site update
+---
+:page-liquid:
+
+The ISO/TC 154 official website has been completely redesigned with a modern,
+responsive interface built on Jekyll and Tailwind CSS.
+
+The new website features improved navigation, a comprehensive member directory
+with search and filtering capabilities, and detailed information about all
+working groups, standards, and projects.
+
+Key improvements include:
+
+* A fully responsive design that works across all devices
+* Filterable member and group directories
+* Comprehensive standards and projects listings
+* A resolutions and meetings archive with year-based navigation
+* Dark mode support
+
+We invite all members and stakeholders to explore the new site.
+
+Feedback and suggestions are welcome through the link:/contact/[contact page].
+
+// more

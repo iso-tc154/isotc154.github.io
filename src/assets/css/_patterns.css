@@ -1,0 +1,29 @@
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .5; }
+}
+
+.skeleton-badge,
+.skeleton-title,
+.skeleton-text,
+.skeleton-link,
+.skeleton-title-large,
+.skeleton-subtitle {
+  background-color: var(--color-slate-200);
+  border-radius: 0.25rem;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.dark .skeleton-badge,
+.dark .skeleton-title,
+.dark .skeleton-text,
+.dark .skeleton-link,
+.dark .skeleton-title-large,
+.dark .skeleton-subtitle {
+  background-color: var(--color-slate-800);
+}
