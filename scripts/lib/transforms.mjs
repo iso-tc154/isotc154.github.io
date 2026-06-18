@@ -82,6 +82,12 @@ export function sortResolutions(a, b) {
   return (b.id || '').localeCompare(a.id)
 }
 
+// Build-time adapter: derives a meeting record per source from parsed YAML
+// metadata + records. The runtime counterpart is the pure
+// `groupResolutionsByMeeting` in `src/utils/groupByMeeting.ts`, which derives
+// the same shape from already-stamped resolution records. Both adapters
+// produce MeetingSummary records; the stamped fields on each resolution
+// (source_title, venue, meeting_date, year) are the contract between them.
 export function buildMeetingRecord(sourceType, sourceFile, metadata, resolutionsForMeeting) {
   const datesInfo = metadata.dates || []
   const meetingDate = datesInfo.length > 0 ? datesInfo[0].start : ''

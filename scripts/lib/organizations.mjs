@@ -2,6 +2,11 @@ import fs from 'node:fs'
 import path from 'node:path'
 import yaml from 'js-yaml'
 
+export function loadYamlList(ymlPath) {
+  if (!fs.existsSync(ymlPath)) return []
+  return yaml.load(fs.readFileSync(ymlPath, 'utf8')) || []
+}
+
 export function loadEvents(eventsDir) {
   if (!fs.existsSync(eventsDir)) return []
   const out = []
@@ -18,24 +23,4 @@ export function loadEvents(eventsDir) {
     })
   }
   return out.sort((a, b) => (b.ordinal || 0) - (a.ordinal || 0))
-}
-
-export function loadLiaisons(ymlPath) {
-  if (!fs.existsSync(ymlPath)) return []
-  return yaml.load(fs.readFileSync(ymlPath, 'utf8')) || []
-}
-
-export function loadNationalBodies(ymlPath) {
-  if (!fs.existsSync(ymlPath)) return []
-  return yaml.load(fs.readFileSync(ymlPath, 'utf8')) || []
-}
-
-export function loadAssociates(ymlPath) {
-  if (!fs.existsSync(ymlPath)) return []
-  return yaml.load(fs.readFileSync(ymlPath, 'utf8')) || []
-}
-
-export function loadSecretariat(ymlPath) {
-  if (!fs.existsSync(ymlPath)) return []
-  return yaml.load(fs.readFileSync(ymlPath, 'utf8')) || []
 }

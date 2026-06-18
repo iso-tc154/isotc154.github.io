@@ -6,10 +6,7 @@ import { loadGroups, loadMembers, attachMembersToGroups, buildOrganizationMember
 import { loadStandards, loadProjects } from './lib/standards.mjs'
 import {
   loadEvents,
-  loadLiaisons,
-  loadNationalBodies,
-  loadAssociates,
-  loadSecretariat,
+  loadYamlList,
 } from './lib/organizations.mjs'
 import { loadPosts, loadPages, buildSiteContext } from './lib/content.mjs'
 import { loadResolutions } from './lib/resolutions.mjs'
@@ -125,10 +122,10 @@ function main() {
   attachMembersToGroups(groups, members.all)
 
   // Organizations
-  const liaisons = loadLiaisons(path.join(DATA_DIR, 'liaisons.yml'))
-  const nationalBodies = loadNationalBodies(path.join(DATA_DIR, 'national_bodies.yml'))
-  const associates = loadAssociates(path.join(DATA_DIR, 'associates.yml'))
-  const secretariat = loadSecretariat(path.join(DATA_DIR, 'secretariat.yml'))
+  const liaisons = loadYamlList(path.join(DATA_DIR, 'liaisons.yml'))
+  const nationalBodies = loadYamlList(path.join(DATA_DIR, 'national_bodies.yml'))
+  const associates = loadYamlList(path.join(DATA_DIR, 'associates.yml'))
+  const secretariat = loadYamlList(path.join(DATA_DIR, 'secretariat.yml'))
   const organizationMembers = buildOrganizationMembers(nationalBodies, liaisons, members.all)
 
   // Standards + Projects
