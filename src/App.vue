@@ -26,10 +26,6 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-function onPageBeforeEnter() {
-  window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior })
-}
-
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
@@ -113,9 +109,7 @@ onUnmounted(() => {
 
   <main class="site-main">
     <RouterView v-slot="{ Component }">
-      <transition name="page" mode="out-in" @before-enter="onPageBeforeEnter">
-        <component :is="Component" :key="route.fullPath" />
-      </transition>
+      <component :is="Component" :key="route.fullPath" />
     </RouterView>
   </main>
 

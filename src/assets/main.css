@@ -66,12 +66,3 @@ h1, h2, h3, h4, h5, h6, .font-serif { font-family: var(--font-serif); }
   min-height: calc(100vh - var(--site-header-height));
 }
 
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
