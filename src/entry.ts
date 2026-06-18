@@ -15,7 +15,15 @@ import './assets/main.css'
 
 export const createApp = ViteSSG(
   App,
-  { routes, base: import.meta.env.BASE_URL },
+  {
+    routes,
+    base: import.meta.env.BASE_URL,
+    scrollBehavior(to, _from, savedPosition) {
+      if (savedPosition) return savedPosition
+      if (to.hash) return { el: to.hash, behavior: 'smooth' }
+      return { top: 0, left: 0 }
+    },
+  },
   async () => {
     if (import.meta.env.SSR) {
       const { readFileSync } = await import('node:fs')
