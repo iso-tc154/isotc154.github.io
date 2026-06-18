@@ -28,13 +28,6 @@ jobs:
         with:
           submodules: true
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-          bundler-cache: true
-          cache-version: 0
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -48,13 +41,16 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+      - name: Build with vite-ssg
+        run: npm run build
         env:
           JEKYLL_ENV: production
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     environment:
