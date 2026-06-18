@@ -8,3 +8,18 @@ node_modules
 package-lock.json
 .vite
 public/vite
+
+# Build output
+dist/
+
+# Reference materials (never commit; per project policy)
+reference-docs/
+
+# Raw source artwork and member data exports
+ISO/
+ISO Co Branded/
+member-list-raw/
+*.zip
+
+# Root-level logo sources (copied into /assets on demand)
+/*.svg
