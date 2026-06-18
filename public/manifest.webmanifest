@@ -1,0 +1,27 @@
+{
+  "name": "ISO/TC 154 — Processes, data elements and documents in commerce, industry and administration",
+  "short_name": "ISO/TC 154",
+  "description": "International standards for processes, data elements and documents used in commerce, industry and administration.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e3000f",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "education", "reference"],
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/og/iso-tc-154-card.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

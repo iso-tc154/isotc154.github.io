@@ -4,8 +4,10 @@ import { RouterLink, useRoute } from 'vue-router'
 import { mainNav } from './data/navigation'
 import { committee } from './data/committee'
 import { useTheme } from './composables/useTheme'
+import { useSeo } from './composables/useSeo'
 
 const { isDark, toggle: toggleTheme } = useTheme()
+useSeo()
 const isMobileMenuOpen = ref(false)
 const showScrollTop = ref(false)
 const scrollPercent = ref(0)
