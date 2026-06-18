@@ -1,0 +1,81 @@
+title: "32<sup>nd</sup> plenary meeting"
+ordinal: 32
+status: completed
+year: 2013
+landing_url: /events/plenary-meeting-32/
+
+time:
+  from:
+    date: 2013-10-21
+  to:
+    date: 2013-10-25
+
+general_area: "Berlin, Germany"
+
+venues:
+  - name: Deutsches Institut für Normung (DIN)
+    address: |
+      Am DIN-Platz
+      Burggrafenstraße 6
+      10787 Berlin
+      Germany
+    phone: "+49 30 2601-0"
+
+host: DIN
+hosts:
+  - ref: din
+    type: national-body
+
+secretariat:
+  name: Maarten Peelen
+  organization: NEN (Netherlands)
+  email: maarten.peelen@nen.nl
+  phone: "+31 15 2690 378"
+
+schedule:
+  - date: 2013-10-21
+    time: "9:00–10:30"
+    event: JWG 1 (ISO 9735)
+  - date: 2013-10-21
+    time: "11:00–12:00"
+    event: WG 3 (ISO 15000-5)
+  - date: 2013-10-21
+    time: "13:00–17:00"
+    event: WG 4 (ISO/TR 6422-3)
+  - date: 2013-10-22
+    time: "9:00–12:00"
+    event: PT (ISO/NP 8601-2)
+  - date: 2013-10-22
+    time: "13:00–17:00"
+    event: PT (ISO 14533-1)
+  - date: 2013-10-23
+    time: "9:00–17:00"
+    event: JMA TDED
+  - date: 2013-10-24
+    time: "9:00–17:00"
+    event: PT (ISO/TS 15000-1 to 4)
+  - date: 2013-10-24
+    time: "18:00–22:00"
+    event: Social event
+    description: Not funded — participants paid for themselves
+  - date: 2013-10-25
+    time: "9:00–17:00"
+    event: 32nd ISO/TC 154 Plenary meeting
+    description: Three delegates per national standards body; one delegate per observer organization
+
+deadlines:
+  - date: 2013-09-21
+    description: Registration (WG/PT and TDED JMA meetings)
+  - date: 2013-09-21
+    description: National delegation registration with TC secretariat (plenary meeting)
+
+practical_info:
+  registration_url: http://knaujok.wufoo.com/forms/isotc-154-tded-jma-annual-meeting-registration/
+  info_url: http://www.isotc154.org/2013-annual-meeting-information
+  visa:
+    eu_schengen: true
+    visa_free_countries: "EU, Iceland, Liechtenstein, Norway, Switzerland, Australia, Japan, Canada, Korea, Israel, New Zealand, USA — visa not required"
+    note: "Other nationals require a Schengen visa. Apply at the German embassy/consulship in your country."
+  climate: "October in Berlin: average 6–12°C, sunrise ~08:00, sunset ~18:00. Moderate/light rain common."
+  electrical: "230V / 50Hz — Type C / Type F (Schuko)"
+  public_transport: "BVG operates Berlin transport. Nearest U-Bahn to DIN: Wittenbergplatz (~5 min walk). From Tegel Airport: Bus 109 or X9 to Bahnhof Zoo (~20–30 min)."

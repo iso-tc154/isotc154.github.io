@@ -1,0 +1,116 @@
+title: "38<sup>th</sup> plenary meeting week"
+ordinal: 38
+status: completed
+year: 2019
+landing_url: /events/plenary-meeting-38/
+
+time:
+  from:
+    date: 2019-10-14
+  to:
+    date: 2019-10-18
+
+general_area: "Luxembourg City, Luxembourg"
+
+venues:
+  - name: University of Luxembourg (Kirchberg Campus)
+    address: |
+      6, rue Richard Coudenhove-Kalergi
+      L-1359 Luxembourg
+      Luxembourg
+    link: https://www.uni.lu/
+    note: "Meeting rooms D17 and D18, behind the reception."
+    lon: 6.1564
+    lat: 49.6289
+
+host: ILNAS (Luxembourg)
+hosts:
+  - ref: ilnas
+    type: national-body
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+local_contact:
+  name: Prof. Dr.-Ing. Peter Plapper
+  organization: Université du Luxembourg
+  email: peter.plapper@uni.lu
+  phone: "+352-46-66-44-5804"
+
+schedule:
+  - date: 2019-10-14
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2019-10-15
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2019-10-16
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2019-10-17
+    time: "9:00–17:00"
+    event: Working Group meetings / Project Team meetings
+  - date: 2019-10-18
+    time: "9:00–10:30"
+    event: WGs report to Plenary
+    description: WG report and WG recommendation to plenary
+  - date: 2019-10-18
+    time: "14:30–17:00"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business
+
+deadlines:
+  - date: 2019-09-20
+    description: Registration via ISO meeting platform
+  - date: 2019-09-20
+    description: Liaison and national body report submissions
+
+transport:
+  - label: From Luxembourg Airport (LUX/Findel)
+    options:
+      - mode: Bus 16
+        detail: "Take bus number 16 towards Hesperange and alight at Kirchberg, Konrad Adenauer. 5-minute walk to campus."
+    url: https://www.lux-airport.lu/
+
+  - label: From Luxembourg Gare (main railway station)
+    options:
+      - mode: Bus 1 or 125/1
+        detail: "Take bus number 125/1 or 1 towards Luxexpo Entrée Sud and alight at Kirchberg, Coudenhove-Kalergi — the destination is on your right."
+    url: https://www.mobiliteit.lu
+
+accommodation_options:
+  - name: Coque Hotel (3-star)
+    address: 2 Rue Léon Hengen, 1745 Luxembourg
+    link: http://www.coque.lu
+    notes: "10 minutes walking distance from the venue"
+
+  - name: Hôtel Victor Hugo (4-star)
+    address: 2 Avenue Victor Hugo, 1750 Luxembourg
+    link: http://www.grandhotelvictorhugo.lu/en/
+    notes: "8 minutes by Tram (towards Lux Expo) from Limpertsberg, Theater"
+
+  - name: Best Western Plus (4-star)
+    address: 3 Avenue Victor Hugo, 1750 Luxembourg
+    link: https://www.bestwestern.com/en_US.html
+    notes: "8 minutes by Tram (towards Lux Expo) from Limpertsberg, Theater"
+
+  - name: Parc Hotel Alvisse (4-star)
+    address: 120 Route d'Echternach, 1453 Luxembourg
+    link: http://www.parc-hotel.lu
+    notes: "30 minutes by regular bus to the venue"
+
+practical_info:
+  visa:
+    eu_schengen: true
+    info_url: https://www.auswaertiges-amt.de/en
+    invitation_contact: Prof. Dr.-Ing. Peter Plapper
+    invitation_email: peter.plapper@uni.lu
+    note: "Check with your nearest Luxembourg/Schengen Embassy before departure."
+  access:
+    badge_required: false
+    room: "Rooms D17 and D18 — behind the campus reception"
+  electrical: "230V / 50Hz"
+  public_transport: "Buses, trains and trams operate on a single-fare system; check schedules at https://www.mobiliteit.lu"

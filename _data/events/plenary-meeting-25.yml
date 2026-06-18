@@ -1,0 +1,51 @@
+title: "25<sup>th</sup> plenary meeting"
+ordinal: 25
+status: completed
+year: 2008
+landing_url: /events/plenary-meeting-25/
+
+time:
+  from:
+    date: 2008-11-24
+  to:
+    date: 2008-11-26
+
+general_area: "Brussels, Belgium"
+
+venues:
+  - name: World Customs Organization (WCO)
+    address: |
+      Rue du Marché, 30
+      B-1210 Brussels
+      Belgium
+    phone: "+32 2 209 94 42"
+
+host: WCO
+
+secretariat:
+  name: Gertjan van den Akker
+  organization: NEN (Netherlands)
+  email: gertjan.vandenakker@nen.nl
+  phone: "+31 15 2690 426"
+
+schedule:
+  - date: 2008-11-24
+    time: "9:00–12:00"
+    event: Informal working meeting
+  - date: 2008-11-24
+    time: "14:00–18:00"
+    event: TDED Joint MA meeting
+  - date: 2008-11-25
+    time: "9:00–12:00"
+    event: TDED Joint MA meeting
+  - date: 2008-11-25
+    time: "13:00–18:00"
+    event: Plenary opening
+    description: Opening, introduction of chairman and secretary, roll call, adoption of agenda, business plan review, WG reports
+  - date: 2008-11-26
+    time: "8:30–12:00"
+    event: Plenary closing
+    description: Liaison reports, meeting schedule, resolutions, closure
+
+deadlines:
+  - description: "Registration via national body (one month before meeting)"

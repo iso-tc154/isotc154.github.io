@@ -1,0 +1,43 @@
+title: "23<sup>rd</sup> plenary meeting"
+ordinal: 23
+status: completed
+year: 2005
+landing_url: /events/plenary-meeting-23/
+
+time:
+  from:
+    date: 2005-09-23
+  to:
+    date: 2005-09-23
+
+general_area: "Brussels, Belgium"
+
+venues:
+  - name: CEN/ISSS Workshop facilities
+    note: Hosted at the CEN (European Committee for Standardization) / ISSS premises in Brussels. Specific address not documented in available records.
+
+host: CEN/ISSS (Alain Dechamps)
+hosts:
+  - name: CEN/ISSS
+    type: external
+    contact:
+      name: Alain Dechamps
+      title: CEN/ISSS Workshop Manager
+
+secretariat:
+  name: François Vuilleumier
+  organization: SNV (Switzerland)
+  email: fvuille@attglobal.net
+
+chair:
+  name: François Vuilleumier
+
+schedule:
+  - date: 2005-09-23
+    event: 23rd plenary meeting
+    description: Held at CEN/ISSS, Brussels, the Friday immediately before the UN/CEFACT Forum in Lyon. CCTS Working Group meeting held at the same venue earlier in the same week.
+
+deadlines:
+  - description: "Registration via national body (one month before meeting, per ISO/IEC Directives)"
+
+note: "Mr. Alain Dechamps, CEN/ISSS Workshop Manager, was formally thanked by the committee for hosting. Back-to-back before the Lyon UN/CEFACT Forum enabled efficient liaison report handoffs."

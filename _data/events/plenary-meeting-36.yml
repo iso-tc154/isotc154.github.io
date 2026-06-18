@@ -1,0 +1,46 @@
+title: "36<sup>th</sup> virtual plenary meeting"
+ordinal: 36
+status: completed
+year: 2017
+landing_url: /events/plenary-meeting-36/
+
+time:
+  from:
+    date: 2017-10-27
+  to:
+    date: 2017-10-27
+
+general_area: "Virtual (WebEx)"
+
+venues:
+  - name: WebEx (ISO Meeting Participation Platform)
+    link: https://sd.iso.org/meetings/
+    note: "Held entirely online via WebEx. ISO Application Meeting Participation Platform mandatory per ISO/IEC Directives Part 1 Consolidated ISO Supplement 2017."
+
+host: SAC
+hosts:
+  - ref: sac
+    type: national-body
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+chair:
+  name: Ms. Judy Zhu
+
+schedule:
+  - date: 2017-10-27
+    time: "16:00–20:00 (UTC+8 Beijing)"
+    event: 36th Virtual Plenary meeting
+    description: Single 4-hour virtual plenary session. WG/PT work continued via scheduled WebEx calls throughout the year.
+
+deadlines:
+  - date: 2017-10-13
+    description: Registration via ISO meeting platform
+
+practical_info:
+  registration_note: "Authorized delegates/liaison reps could self-register on the ISO platform; others needed approval via their National Body or Liaison Organization (MPA — Meeting Participant Approver)."
+  webex_link: "Distributed to registered participants after registration closed."

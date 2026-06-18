@@ -1,0 +1,67 @@
+title: "40<sup>th</sup> plenary meeting of ISO/TC 154"
+ordinal: 40
+status: completed
+year: 2021
+landing_url: /events/plenary-meeting-40/
+
+time:
+  from:
+    date: 2021-09-02
+  to:
+    date: 2021-10-28
+
+general_area: "Virtual (Zoom, ISO meeting platform)"
+
+venues:
+  - name: Zoom (ISO meeting platform)
+    link: https://zoom.us
+    note: "Held entirely online due to the COVID-19 pandemic. ISO extended virtual-only measures until 30 September 2021."
+
+host: SAC
+hosts:
+  - ref: sac
+    type: national-body
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+schedule:
+  - date: 2021-09-02
+    time: "16:00–17:30 (UTC+8 Beijing)"
+    event: Plenary opening
+    description: Review of ISO/TC 154 work since last plenary meeting
+  - date: 2021-09-23
+    time: "20:00–22:00 (UTC+8 Beijing)"
+    event: JWG8 meeting
+    description: Discussion of ISO 23355, ISO 5909 and possible new projects
+  - date: 2021-09-23
+    time: "TBD"
+    event: JWG1 / WG4 / WG5 / WG6 / WG7 meetings
+    description: "WG-specific agendas circulated by conveners. Each WG may hold additional project meetings before its main session."
+  - date: 2021-10-21
+    time: "19:00–22:00 (UTC+8 Beijing)"
+    event: WGs report to Plenary
+    description: WG report and WG recommendation to plenary
+  - date: 2021-10-28
+    time: "20:00–21:30 (UTC+8 Beijing)"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business (date and location of next plenary, etc.)
+
+deadlines:
+  - date: 2021-10-14
+    description: WG conveners submit WG report and recommendation
+  - date: 2021-10-21
+    description: Registration via ISO meeting platform (one week before WG meeting / two weeks before plenary)
+
+practical_info:
+  attendance: "All sessions held on Zoom via the ISO meeting platform. WG conveners circulated meeting links separately."
+  participation_guide: "ISO/CS participation guide for virtual meetings is published as document N1136."
+  notes:
+    - "Each WG may organise more than one meeting as needed (e.g. project meetings before the WG meeting)."
+    - "WG meetings were recommended to be hosted in different weeks during the plenary period."
+    - "All delegates register via the ISO meeting platform individually or via their NSB / liaison organization."
+
+covid_note: "ISO decided to extend virtual-only measures until 30 September 2021 due to the continuing coronavirus situation. The 40th plenary was therefore held entirely online."

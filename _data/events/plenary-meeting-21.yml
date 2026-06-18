@@ -1,0 +1,45 @@
+title: "21<sup>st</sup> plenary meeting"
+ordinal: 21
+status: completed
+year: 2003
+landing_url: /events/plenary-meeting-21/
+
+time:
+  from:
+    date: 2003-09-12
+  to:
+    date: 2003-09-12
+
+general_area: "Gyeonggi-do (Kyunggi-do), Republic of Korea"
+
+venues:
+  - name: KATS venue, Gyeonggi-do
+    note: Hosted by the Korean Agency for Technology and Standards (KATS) in the Seoul capital region. Specific venue not documented in available records.
+
+host: KATS (Mr. Y.-G. Jung)
+hosts:
+  - ref: kats
+    type: national-body
+    contact:
+      name: Mr. Y.-G. Jung
+
+secretariat:
+  name: François Vuilleumier
+  organization: SNV (Switzerland)
+  email: fvuille@attglobal.net
+
+chair:
+  name: François Vuilleumier
+
+schedule:
+  - date: 2003-09-12
+    event: 21st plenary meeting
+    description: Plenary discussions and resolutions; back-to-back with ISO 7372 Maintenance Agency work.
+
+deadlines:
+  - description: "Registration via national body (one month before meeting, per ISO/IEC Directives)"
+
+practical_info:
+  documents_note: "All 21st meeting documents were distributed via the TC 154 web workspace. Final resolutions and action items circulated as document N453."
+
+note: "Mr. Y.-G. Jung and the KATS team were thanked by the chair for hosting. The committee's first return to the Republic of Korea since the 1994 Seoul-area meetings."

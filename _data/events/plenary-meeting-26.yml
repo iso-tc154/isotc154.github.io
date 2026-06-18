@@ -1,0 +1,68 @@
+title: "26<sup>th</sup> plenary meeting"
+ordinal: 26
+status: completed
+year: 2009
+landing_url: /events/plenary-meeting-26/
+
+time:
+  from:
+    date: 2009-09-24
+  to:
+    date: 2009-09-25
+
+general_area: "Tokyo, Japan"
+
+venues:
+  - name: JIPDEC (Japan Information Processing Development Corporation)
+    address: |
+      Kikai Shinko Kaikan Building
+      3rd Floor, 3-5-8 Shiba-koen, Minato-ku
+      Tokyo, Japan
+    phone: "+81-3-3436-7543"
+
+host: JISC / ISO/TC 154 Japan committee secretariat
+hosts:
+  - ref: jisc
+    type: national-body
+associates:
+  - name: ISO/TC 154 Japan committee secretariat
+    role: secretariat
+    parent_ref: jisc
+
+secretariat:
+  name: Gertjan van den Akker
+  organization: NEN (Netherlands)
+  email: gertjan.vandenakker@nen.nl
+  phone: "+31 15 2690 426"
+
+schedule:
+  - date: 2009-09-24
+    time: "9:00–17:00"
+    event: TDED Joint MA meeting
+  - date: 2009-09-25
+    time: "9:00–17:00"
+    event: Plenary meeting
+    description: Opening, adoption of agenda, reports of WG 1/JWG 1/WG 2/JWG 2/WG 3, TDED MA, MoU/MG, liaison reports, resolutions
+
+deadlines:
+  - description: "Registration via national body (one month before meeting)"
+
+accommodation_options:
+  - name: Tokyo Prince Hotel
+    address: 3-1, Shibakoen 3-chome, Minato-ku, Tokyo 105-8560
+    phone: "+81-3-3434-5551"
+    link: http://www.princehotelsjapan.com/tokyoprincehotel/
+    distance: "5 min walk"
+
+  - name: Shiba Park Hotel
+    address: 1-5-10 Shiba Park, Minato-ku, Tokyo 105-0011
+    phone: "+81-3-3433-4141"
+    link: http://www.shibaparkhotel.com/en/
+    distance: "10 min walk"
+
+transport:
+  - label: From Narita/Haneda Airport
+    options:
+      - mode: Airport Limousine Bus
+        detail: "Airport Limousine available — see http://www.limousinebus.co.jp/en/"
+    url: http://www.limousinebus.co.jp/en/

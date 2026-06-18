@@ -22,10 +22,44 @@ venues:
     lon: -118.100949
     lat: 33.851068
 
-host: OAGI / ANSI
+host: CalConnect / Ribose
+hosts:
+  - ref: calconnect
+    type: liaison
+associates:
+  - ref: ribose
+    role: co-organizer
 
 secretariat:
   name: Jianfang Zhang
   organization: SAC (CNIS)
   email: zhangjf@cnis.gov.cn
   phone: "+86-10-58811613"
+
+schedule:
+  - date: 2020-08-04
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2020-08-05
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2020-08-06
+    time: "9:00–17:00"
+    event: Working Group meetings
+  - date: 2020-08-07
+    time: "9:00–12:00"
+    event: WGs report to Plenary
+    description: WG report and WG recommendation to plenary
+  - date: 2020-08-07
+    time: "14:30–17:00"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business
+
+deadlines:
+  - date: 2020-06-30
+    description: Registration via ISO meeting platform
+
+practical_info:
+  attendance: "Held in person at The Westin South Coast Plaza in Costa Mesa, CA, USA (Orange County / Los Angeles area)."
+  electrical: "120V / 60Hz — Type A or B plug"
+  note: "Logistical information and visa requirements were circulated separately."

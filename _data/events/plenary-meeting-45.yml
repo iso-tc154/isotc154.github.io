@@ -24,6 +24,10 @@ venues:
 
 host: DIN (Germany)
 
+hosts:
+  - ref: din
+    type: national-body
+
 secretariat:
   name: Jianfang Zhang
   organization: SAC (CNIS)
@@ -67,7 +71,7 @@ accommodation_options:
     link: https://www.hotelairinberlin.de
     email: info@hotelairinberlin.de
     code: DIN
-    distance: 350m
+    distance: 160m
     rates:
       single: "€93"
       double: "€124"
@@ -163,6 +167,12 @@ practical_info:
     wifi: Provided onsite in meeting rooms
     smoking: Allowed in the DIN courtyard
   electrical: "230V / 50Hz — you may need an adaptor"
+  public_transport:
+    ubahn: "U1, U2, U3 to Wittenbergplatz; U2, U9 to Zoologischer Garten"
+    sbahn: "S3, S5, S7, S9, RB23, RE1, RE2, RE7 to Zoologischer Garten"
+    from_airport: "~45 min from Berlin Brandenburg (BER) to Zoologischer Garten"
+    airport_url: https://ber.berlin-airport.de/en.html
+  tipping: "Common practice, at your discretion. ~10% is typical."
 
 lunch_recommendations:
   - name: Kantini (Bikini Berlin)

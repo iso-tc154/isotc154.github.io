@@ -1,0 +1,52 @@
+---
+# Meeting associates: organizations that help organize or sponsor TC 154 plenary
+# meetings but are NOT ISO national bodies or official ISO liaisons. They have
+# logos and external URLs but no detail pages on this site. Used via `associates:`
+# in _data/events/plenary-meeting-N.yml.
+
+- id: nipa
+  name: National IT Industry Promotion Agency
+  short_name: NIPA
+  country: "Korea, Republic of"
+  iso_country_code: KR
+  category: government-agency
+  url: https://www.nipa.kr/
+  description: NIPA is a Korean government agency under the Ministry of Science and ICT supporting IT industry growth.
+
+- id: rra
+  name: Radio Research Agency
+  short_name: RRA
+  country: "Korea, Republic of"
+  iso_country_code: KR
+  category: government-agency
+  url: https://www.rra.go.kr/
+  description: RRA is the Korean spectrum and radio research agency under the Korea Communications Commission.
+
+- id: tta
+  name: Telecommunications Technology Association
+  short_name: TTA
+  country: "Korea, Republic of"
+  iso_country_code: KR
+  category: standards-body
+  url: https://www.tta.or.kr/
+  description: TTA is a Korean standards development organization for information and communications technologies.
+
+- id: kdca
+  name: Korea Digital Content Agency
+  short_name: KDCA
+  aliases:
+    - "Korea Digital Content Association"
+  country: "Korea, Republic of"
+  iso_country_code: KR
+  category: government-agency
+  url: https://www.koca.kr/
+  description: KDCA (formerly Korea Digital Content Association) is a Korean agency supporting digital content industries.
+
+- id: ribose
+  name: Ribose Ltd
+  short_name: Ribose
+  country: "Hong Kong Special Administrative Region of China"
+  iso_country_code: HK
+  category: company
+  url: https://www.ribose.com/
+  description: Ribose is a Hong Kong–based standards technology company active in ISO/IEC JTC 1 and TC 154.

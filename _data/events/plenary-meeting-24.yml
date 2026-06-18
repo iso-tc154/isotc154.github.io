@@ -1,0 +1,118 @@
+title: "24<sup>th</sup> plenary meeting"
+ordinal: 24
+status: completed
+year: 2006
+landing_url: /events/plenary-meeting-24/
+
+time:
+  from:
+    date: 2006-03-22
+  to:
+    date: 2006-03-22
+
+general_area: "Vancouver, BC, Canada"
+
+venues:
+  - name: Westin Bayshore (within the 8th UN/CEFACT Forum venue)
+    address: |
+      1601 Bayshore Drive
+      Vancouver, BC V6G 2V4
+      Canada
+    note: Hosted within the framework of the 8th UN/CEFACT Forum. The Westin Bayshore was the official Forum hotel and provided favorable terms for the FMG, MoU and CCTS meetings.
+
+host: Treasury Board of Canada (Ed Buchinski)
+associates:
+  - name: Treasury Board of Canada
+    role: host
+    contact:
+      name: Ed Buchinski
+      email: Buchinski.Ed@tbs-sct.gc.ca
+  - name: Department of Foreign Affairs and International Trade Canada
+    role: co-organizer
+    contact:
+      name: Gaétan Martineau
+      email: Gaetan.Martineau@international.gc.ca
+  - name: Adobe Systems
+    role: sponsor
+    contact:
+      name: Duane Nickull
+      title: Vice Chair, UN/CEFACT
+      email: dnickull@adobe.com
+      url: https://www.adobe.com
+    sponsorship: "Coffee breaks"
+  - name: SAP
+    role: sponsor
+    sponsorship: "Lunch-and-learns during the week and the hosting costs of the MRI room on Sunday 2006-03-12."
+  - name: eBusiness Apps
+    role: co-organizer
+    contact:
+      name: Andre Charland
+      email: acharland@ebusinessapplications.ca
+      url: http://www.ebusiness-apps.com/uncefact/index.htm
+    sponsorship: "Donated resources for the UN/CEFACT Forum website."
+  - name: UN/CEFACT Canada team
+    role: local-organizer
+    contact:
+      name: Pam Chadwick
+      email: pchadwick@ebusinessapplications.ca
+
+secretariat:
+  name: François Vuilleumier
+  organization: SNV (Switzerland)
+  address: OZD, CH-3003 Berne
+  email: fvuille@attglobal.net
+
+chair:
+  name: François Vuilleumier
+
+schedule:
+  - date: 2006-03-12
+    time: "All day"
+    event: MRI room setup (SAP-sponsored)
+    description: SAP also covered hosting costs for the MRI room on this Sunday.
+  - date: 2006-03-13
+    time: "All day"
+    event: 8th UN/CEFACT Forum (related, all week)
+    description: Vancouver, hosted by the UN/CEFACT Canada team.
+  - date: 2006-03-14
+    time: "All day"
+    event: 8th UN/CEFACT Forum (continued)
+  - date: 2006-03-15
+    time: "All day"
+    event: 8th UN/CEFACT Forum (continued)
+  - date: 2006-03-16
+    time: "All day"
+    event: 8th UN/CEFACT Forum (continued)
+  - date: 2006-03-17
+    time: "All day"
+    event: 8th UN/CEFACT Forum (continued)
+  - date: 2006-03-20
+    time: "All day"
+    event: e-Business MoU/MG meeting (related, back-to-back)
+    description: Vancouver.
+  - date: 2006-03-21
+    time: "All day"
+    event: e-Business MoU/MG meeting (continued)
+  - date: 2006-03-22
+    time: "All day"
+    event: 24th plenary meeting
+    description: Wednesday, the week after the UN/CEFACT Forum, immediately following the e-Business MoU/MG.
+
+accommodation_options:
+  - name: Westin Bayshore
+    address: 1601 Bayshore Drive, Vancouver, BC V6G 2V4, Canada
+    url: http://www.starwoodmeeting.com/StarGroupsWeb/booking/reservation?id=0512095387&key=2BB3C
+    note: "Preferred-rate booking via the UN/CEFACT Forum block — central Vancouver location, waterfront views, adjacent to Stanley Park."
+
+deadlines:
+  - date: 2006-02-13
+    description: Hotel reservation deadline for Westin Bayshore preferred rate.
+  - description: "Two required registrations: (1) ISO/TC 154 plenary via the chair (fvuille@attglobal.net); (2) UN/CEFACT Forum (including CCTS WG + JWG 2 eDocs) and e-Business MoU/MG via the Forum's web at ebusiness-apps.com/uncefact/eventinfo.htm."
+
+practical_info:
+  registration_note: "Forum registration (Carmen Turmer coordinating secretariat/reception desk) — advance registration required for name badges and quick check-in."
+  forum_website: http://www.ebusiness-apps.com/uncefact/index.htm
+  schedule_url: http://www.ebusiness-apps.com/uncefact/eventinfo.htm
+  visa_note: "Check with the nearest Canadian Embassy for current requirements."
+
+note: "The 24th plenary was hosted by the Treasury Board of Canada and the UN/CEFACT Canada team within the framework of the 8th UN/CEFACT Forum. The committee formally thanked Ed Buchinski, Gaétan Martineau, Duane Nickull and the UN/CEFACT Canada team for their work."

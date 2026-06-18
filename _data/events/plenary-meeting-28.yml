@@ -1,0 +1,57 @@
+title: "28<sup>th</sup> plenary meeting"
+ordinal: 28
+status: completed
+year: 2010
+landing_url: /events/plenary-meeting-28/
+
+time:
+  from:
+    date: 2010-08-27
+  to:
+    date: 2010-08-27
+
+general_area: "Geneva, Switzerland"
+
+venues:
+  - name: International Air Transport Association (IATA) — 'BALE' Room, 5th floor
+    address: |
+      33, Route de l'Aéroport
+      1215 Geneva 15 Airport
+      Switzerland
+    link: https://www.iata.org
+    phone: "+41 22 770 2690"
+
+host: IATA (Andrea Graf-Gruber, Manager Cargo Standards)
+hosts:
+  - ref: iata
+    type: liaison
+    contact:
+      name: Andrea Graf-Gruber
+      title: Manager Cargo Standards
+
+secretariat:
+  name: Tim Kniep
+  organization: NEN (Netherlands)
+  email: tim.kniep@nen.nl
+  phone: "+31 15 2690 100"
+
+schedule:
+  - date: 2010-08-23
+    time: "9:00–17:00"
+    event: UN/CEFACT TBG 17 (back-to-back)
+  - date: 2010-08-26
+    time: "Afternoon"
+    event: UNTDED–ISO 7372 Joint Maintenance Agency (back-to-back)
+  - date: 2010-08-27
+    time: "Morning"
+    event: UNTDED–ISO 7372 Joint Maintenance Agency (back-to-back)
+  - date: 2010-08-27
+    time: "13:00–16:00"
+    event: Plenary meeting
+    description: Opening, report on new Chair and Secretary, WG reports (JWG 1, WG 2, JWG 2, WG 3, TDED MA), MoU/MG, liaison reports, resolutions
+  - date: 2010-08-30
+    time: "9:00–17:00"
+    event: 17th UN/CEFACT Forum (back-to-back, all week)
+
+deadlines:
+  - description: "Registration via national body (one month before meeting)"

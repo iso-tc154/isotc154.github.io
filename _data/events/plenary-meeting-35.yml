@@ -1,0 +1,65 @@
+title: "35<sup>th</sup> plenary meeting"
+ordinal: 35
+status: completed
+year: 2016
+landing_url: /events/plenary-meeting-35/
+
+time:
+  from:
+    date: 2016-10-17
+  to:
+    date: 2016-10-21
+
+general_area: "Berlin, Germany"
+
+venues:
+  - name: Deutsches Institut für Normung (DIN)
+    address: |
+      Am DIN-Platz Burggrafenstraße 6
+      10787 Berlin
+      Germany
+    phone: "+49 30 2601-0"
+    lon: 13.3389
+    lat: 52.5032
+
+host: DIN (Germany)
+hosts:
+  - ref: din
+    type: national-body
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+schedule:
+  - date: 2016-10-17
+    time: "9:00–17:00"
+    event: WG 6 / PT 1
+  - date: 2016-10-18
+    time: "9:00–12:00"
+    event: WG 6 / PT 2
+  - date: 2016-10-18
+    time: "13:00–17:00"
+    event: WG 6 / PT 3
+  - date: 2016-10-19
+    time: "9:00–17:00"
+    event: WG 5
+  - date: 2016-10-20
+    time: "9:00–12:00"
+    event: NWIP (TBA)
+  - date: 2016-10-20
+    time: "13:00–17:00"
+    event: WG 5 (continued)
+  - date: 2016-10-21
+    time: "9:00–17:00"
+    event: ISO/TC 154 Plenary meeting
+
+deadlines:
+  - date: 2016-09-10
+    description: Registration via national body
+
+practical_info:
+  hotel_info_doc: N813
+  electrical: "230V / 50Hz — Type C / Type F (Schuko)"

@@ -20,6 +20,11 @@ venues:
     link: https://www.hkma.org.hk/room_rental/central-admiralty.asp
 
 host: CALCONNECT / ITCHKSAR
+hosts:
+  - ref: calconnect
+    type: liaison
+  - ref: itchksar
+    type: national-body
 
 secretariat:
   name: Jianfang Zhang
@@ -32,12 +37,30 @@ schedule:
     time: "9:00–10:30"
     event: Plenary opening
     description: Review of ISO/TC 154 work since last plenary meeting
+  - date: 2023-10-24
+    time: "11:00–12:30"
+    event: JWG1 meeting
+    description: Discussion of ISO 9735 Implementation Guide
+  - date: 2023-10-24
+    time: "14:30–16:00"
+    event: WG6 meeting
+    description: Discussion of ISO/AWI TR 19626-3, ISO 14533-3
   - date: 2023-10-25
-    time: "9:00–17:00"
-    event: Working Group meetings
+    time: "9:00–10:30"
+    event: WG5 meeting
+    description: Discussion of ISO 8601-2:2019/CD Amd 1
+  - date: 2023-10-25
+    time: "11:00–12:00"
+    event: Ad-hoc group meeting
+    description: Review of report; discussion of necessity to establish JWG with TC 307. ISO/PWI 36100, ISO/PWI 36200 if possible.
+  - date: 2023-10-25
+    time: "14:00–17:30"
+    event: TC-level projects / new JWG
+    description: Discussion of ISO 7372 (UNTDED), ISO/DIS 20197-1, ISO/FDIS 23355, ISO/WD 5909, ISO/PWI 16356
   - date: 2023-10-26
     time: "9:00–17:00"
-    event: Working Group meetings
+    event: WG7 meeting
+    description: Other parts of ISO 5054, other parts of ISO 15000, ISO/PWI 16320-1, ISO/PWI 20195, ISO/PWI 20191, ISO/PWI 20180, ISO/PWI TR 20194
   - date: 2023-10-27
     time: "9:00–12:00"
     event: WGs report to Plenary

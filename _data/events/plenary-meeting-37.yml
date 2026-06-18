@@ -1,0 +1,114 @@
+title: "37<sup>th</sup> plenary meeting week"
+ordinal: 37
+status: completed
+year: 2018
+landing_url: /events/plenary-meeting-37/
+
+time:
+  from:
+    date: 2018-10-08
+  to:
+    date: 2018-10-12
+
+general_area: "Hangzhou, China"
+
+venues:
+  - name: Hangzhou Xinqiao Hotel
+    address: |
+      No. 226 Jiefang Road, Shangcheng District
+      Hangzhou, China
+    phone: "+86-571-87076688"
+    note: "Four-star tourist hotel under the Hangzhou Municipal Commerce Tourism Group, near West Lake."
+
+host: SAC
+hosts:
+  - ref: sac
+    type: national-body
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+schedule:
+  - date: 2018-10-08
+    time: "9:00–12:00"
+    event: WG 5 meeting
+  - date: 2018-10-08
+    time: "13:00–17:00"
+    event: JWG 1 meeting
+  - date: 2018-10-08
+    time: "13:00–17:00"
+    event: ISO 7372 / UNTDED meeting
+  - date: 2018-10-09
+    time: "9:00–17:00"
+    event: WG 6 meeting (all day)
+    description: WG 6 / PT 1 morning, WG 6 / PT 2 morning + afternoon, WG 6 / PT 3 afternoon
+  - date: 2018-10-10
+    time: "9:00–17:00"
+    event: WG 7 meeting (all day)
+    description: WG 7 / PT 1 morning, WG 7 / PT 2 afternoon, WG 7 / PT 3 afternoon
+  - date: 2018-10-11
+    time: "9:00–17:00"
+    event: JWG 8 meeting
+  - date: 2018-10-11
+    time: "13:00–17:00"
+    event: NWIP (TBC)
+  - date: 2018-10-12
+    time: "9:00–17:00"
+    event: ISO/TC 154 Plenary meeting
+
+deadlines:
+  - date: 2018-09-07
+    description: Registration via ISO meeting platform
+
+accommodation_options:
+  - name: Hangzhou Xinqiao Hotel (primary venue hotel)
+    address: No. 226 Jiefang Road, Shangcheng District, Hangzhou
+    phone: "+86-571-87076688"
+    note: "Recommended first. International participants could email the hotel reservation form to zhangjf@cnis.gov.cn."
+
+  - name: Merchant Marco Hotel Hangzhou
+    address: No. 38 Pinghai Rd, Shangcheng, Hangzhou
+
+  - name: Hyatt Regency Hangzhou
+    address: No. 28, Hubing Road, Shangcheng, Hangzhou
+
+  - name: Renhe Hotel
+    address: No. 86, Youdian Rd, Shangcheng, Hangzhou
+
+  - name: Huachen International Hotel
+    address: No. 25 Pinghai Rd, Shangcheng, Hangzhou
+
+transport:
+  - label: Distances from venue
+    options:
+      - mode: City station railway station
+        detail: "2 km"
+      - mode: East Railway station
+        detail: "6.2 km"
+      - mode: Hangzhou Xiaoshan International Airport
+        detail: "30 km"
+
+practical_info:
+  visa:
+    info_url: http://cs.mfa.gov.cn/wgrlh/lhqz/lhqzjjs/
+    info_doc: N938
+    note: "Check with your local Chinese consulate as well as the MFA website."
+  sightseeing:
+    - "Longxiangqiao Metro Station (0.4 km)"
+    - "Remnant Snow on the Bridge in Winter (0.8 km)"
+    - "Wushan Night market (0.9 km)"
+    - "Bai Causeway (1.1 km)"
+    - "Baochu Pagoda (1.2 km)"
+    - "China Academy of Art (1.4 km)"
+    - "Wushan Square (1.6 km)"
+    - "Moon over the Peaceful Lake in Autumn (1.7 km)"
+    - "The Moon Reflected in Three Pools (2.4 km)"
+    - "Spring Dawn at Su Causeway (2.5 km)"
+    - "Huanglong Sport Centre (2.8 km)"
+    - "Wine-making Yard and Lotus Pool in Summer (3.0 km)"
+    - "Lingyin Temple (5.8 km)"
+    - "Hupao Spring (6.0 km)"
+    - "Xixi Wetland (9.3 km)"

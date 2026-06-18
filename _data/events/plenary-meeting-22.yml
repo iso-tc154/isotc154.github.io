@@ -1,0 +1,75 @@
+title: "22<sup>nd</sup> plenary meeting"
+ordinal: 22
+status: completed
+year: 2004
+landing_url: /events/plenary-meeting-22/
+
+time:
+  from:
+    date: 2004-09-10
+  to:
+    date: 2004-09-10
+
+general_area: "McLean, Virginia, USA (Washington, D.C. metro area)"
+
+venues:
+  - name: LMI Logistics Management Institute
+    address: |
+      2000 Corporate Ridge
+      McLean, VA
+      USA
+    link: https://www.lmi.org/AboutUs/Directions.aspx
+
+host: LMI (Mark Crawford)
+associates:
+  - name: LMI
+    role: host
+    contact:
+      name: Mark Crawford
+      title: Research Fellow
+      email: mcrawford@lmi.org
+
+secretariat:
+  name: François Vuilleumier
+  organization: SNV (Switzerland)
+  address: OZD, CH-3003 Berne
+  email: fvuille@attglobal.net
+
+chair:
+  name: François Vuilleumier
+
+schedule:
+  - date: 2004-09-06
+    time: "All day"
+    event: ISO 7372 Maintenance Agency meeting (related, back-to-back)
+    description: Held at LMI, McLean, VA, hosted by LMI.
+  - date: 2004-09-07
+    time: "All day"
+    event: ISO 7372 Maintenance Agency meeting (continued)
+  - date: 2004-09-08
+    time: "All day"
+    event: ISO 7372 Maintenance Agency meeting (continued)
+  - date: 2004-09-09
+    time: "All day"
+    event: ISO 7372 Maintenance Agency meeting (continued)
+  - date: 2004-09-10
+    time: "08:00–17:00"
+    event: 22nd plenary meeting
+    description: Single-day plenary session. Draft agenda as document N464.
+  - date: 2004-09-13
+    time: "All day"
+    event: UN/CEFACT Forum (related, back-to-back)
+    description: All UN/CEFACT groups meeting; Washington D.C. metro, hosted by DISA.
+
+accommodation_options:
+  - name: Best Western Tysons Westpark
+    address: McLean, VA, USA
+    note: Recommended hotel per N464.
+
+deadlines:
+  - description: "Registration of delegates — email fvuille@attglobal.net at least one month before the meeting. No interpretation provided (English only)."
+
+practical_info:
+  documents_note: "All documents distributed via the TC 154 web workspace, folder d.3 → 2004-09 → 154-22. Visa may have been required on a valid passport."
+
+note: "The 21st plenary had identified four location options for the 22nd meeting; LMI in McLean, Virginia was ultimately selected. Back-to-back with the ISO 7372 Maintenance Agency meeting (Sep 6–9) and the UN/CEFACT Forum (Sep 13–17)."

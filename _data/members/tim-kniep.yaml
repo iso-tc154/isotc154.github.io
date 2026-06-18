@@ -1,0 +1,23 @@
+---
+member-id: tim-kniep
+name: Tim Kniep
+active: false
+roles:
+- id: committee_manager
+  from:
+    date: 2010-08-01
+    precision: month
+  to:
+    date: 2012-09-01
+    precision: month
+affiliation: NEN, Netherlands
+bio: |-
+  Tim Kniep served as committee manager of ISO/TC 154 during the
+  middle years of the NEN (Royal Netherlands Standardization
+  Institute) secretariat, succeeding Gertjan van den Akker in
+  mid-2010. He supported chair Klaus-Dieter Naujok (DIN) through
+  the 28th (Geneva 2010), 29th (McLean 2011) and 30th (Geneva 2011)
+  plenary meetings.
+
+  Contact during tenure: tim.kniep@nen.nl, NEN, Delft,
+  the Netherlands.

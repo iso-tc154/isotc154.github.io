@@ -1,0 +1,87 @@
+title: "41<sup>st</sup> hybrid plenary meeting week"
+ordinal: 41
+status: completed
+year: 2022
+landing_url: /events/plenary-meeting-41/
+
+time:
+  from:
+    date: 2022-10-12
+  to:
+    date: 2022-10-14
+
+general_area: "Geneva, Switzerland (hybrid)"
+
+venues:
+  - name: Palais des Nations (United Nations Office at Geneva)
+    address: |
+      14 Avenue de la Paix
+      1211 Geneva 10
+      Switzerland
+    link: https://www.ungeneva.org/en
+    note: "Meeting room H-208. In-person participants require a UN entry badge."
+    lon: 6.1399
+    lat: 46.2208
+
+host: UNECE
+hosts:
+  - ref: unece
+    type: liaison
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+local_contact:
+  organization: UNECE secretariat
+  phone: "+41 22 917 3254"
+
+schedule:
+  - date: 2022-10-12
+    time: All day
+    event: Working Group meetings (hybrid)
+    description: WG meetings held hybrid at the Palais des Nations and via Zoom.
+  - date: 2022-10-13
+    time: "15:00–16:30 (UTC+2 Geneva)"
+    event: Plenary opening
+    description: Review of ISO/TC 154 work since last plenary meeting
+  - date: 2022-10-14
+    time: "9:00–12:00 (UTC+2 Geneva)"
+    event: WGs report to Plenary
+    description: WG report and WG recommendation to plenary
+  - date: 2022-10-14
+    time: "15:00–16:30 (UTC+2 Geneva)"
+    event: Plenary closing
+    description: Discussion of plenary resolution and other business
+
+deadlines:
+  - date: 2022-09-30
+    description: Liaison and national body report submissions
+  - date: 2022-09-30
+    description: WG conveners submit WG report (virtual WGs)
+  - date: 2022-10-12
+    description: WG conveners submit WG report (hybrid WGs in Geneva)
+  - description: "Registration via ISO meeting platform: one week before WG meeting / two weeks before plenary"
+
+practical_info:
+  visa:
+    invitation_required: true
+    invitation_info: "Full name, organisation, title, date of birth, passport number, issue date, expiration date, copy of passport, embassy/consulate where you will apply."
+    required_for: "Schengen visa for entering Switzerland"
+  un_badge:
+    required: true
+    pickup: "UN Accreditation/Security Building, Route de Pregny (across the street from the International Red Cross/CICR Headquarters)"
+    hours: "Monday–Friday, 8:00–17:00"
+    note: "Bring a valid passport or ID (driver licences and bank cards not accepted). Arrive at least one hour before the meeting for security check."
+    valid_period: "12–14 October (three days)"
+  registration:
+    iso_meeting_platform: https://sd.iso.org/meetings/113743
+    unece_indico: https://indico.un.org/event/1002201/registrations/
+    note: "In-person participants must register twice — on the ISO meeting platform AND on the UNECE INDICO link to receive a UN entry badge."
+  general_info_url: http://www.unece.org/meetings/practical.html
+
+external_links:
+  - name: UNECE practical information for delegates
+    url: http://www.unece.org/meetings/practical.html

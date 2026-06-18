@@ -1,0 +1,135 @@
+title: "34<sup>th</sup> virtual plenary meeting"
+ordinal: 34
+status: completed
+year: 2015
+landing_url: /events/plenary-meeting-34/
+
+time:
+  from:
+    date: 2015-10-23
+  to:
+    date: 2015-10-23
+
+general_area: "Virtual (WebEx)"
+
+venues:
+  - name: WebEx (ISO Meeting Participation Platform)
+    note: "Held online via WebEx. Link distributed to registered delegates after the registration deadline. Originally planned as a face-to-face week at GS1 in Brussels (19–23 October 2015) but converted to a virtual plenary after the CAT (10 June 2015) concluded only 1½–2 days of F2F work was needed."
+
+host: SAC
+hosts:
+  - ref: sac
+    type: national-body
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+  fax: "+86-10-58811637"
+
+chair:
+  name: Klaus-Dieter Naujok
+
+schedule:
+  - date: 2015-10-23
+    time: "07:00–11:00 UTC"
+    event: 34th Virtual Plenary meeting
+    description: Single 4-hour virtual plenary session. Working Groups and Project Teams continued their work via scheduled WebEx calls throughout the year; no F2F WG/PT meetings were held this cycle.
+
+deadlines:
+  - date: 2015-09-10
+    description: Registration — NSB delegates via their National Standards Body; IGO/NFO delegates directly with the TC 154 Secretary
+
+agenda_items:
+  - number: 1
+    title: Opening of the meeting
+    speaker: Chair
+  - number: 2
+    title: Roll call of delegates
+    speaker: Chair
+  - number: 3
+    title: Adoption of the agenda
+    speaker: Secretary
+    documents:
+      - N0789
+  - number: 4
+    title: Appointment of the Resolutions Editing Committee
+    speaker: Chair
+  - number: 5
+    title: Approval of minutes from previous meeting
+    speaker: Secretary
+    documents:
+      - N0776
+  - number: 6
+    title: Review of action items from previous meeting
+    speaker: Secretary
+    documents:
+      - N0777
+  - number: 7
+    title: Report from ISO/TC 154 management
+    items:
+      - number: 7.1
+        title: ISO/TC 154 Chairman Advisory Team (CAT)
+        speaker: Chair
+      - number: 7.2
+        title: Review of resolutions of the previous meeting (Resolution 01–014-2014)
+        speaker: Secretary
+        documents:
+          - N0771
+      - number: 7.3
+        title: Result of voting on ISO/NP 14533-3
+        speaker: Secretary
+  - number: 8
+    title: Working groups reports
+    items:
+      - number: 8.1
+        title: "ISO/TC 154/JWG 1 — Joint Syntax Working Group (with UNECE)"
+        speaker: K.-D. Naujok
+      - number: 8.2
+        title: "ISO/TC 154/WG 5 — Representation of dates and times"
+        speaker: K.-D. Naujok
+      - number: 8.3
+        title: "ISO/TC 154/WG 6 — Trusted eCommunication"
+        speaker: J. Chang
+  - number: 9
+    title: ISO 7372/UNTDED MA Report
+    speaker: F. Vuilleumier
+  - number: 10
+    title: Special project reports
+    items:
+      - number: 10.1
+        title: ISO 15000 OASIS submission
+        speaker: Chair
+      - number: 10.2
+        title: Review of work programme (not covered under item 8)
+        speaker: Chair
+  - number: 11
+    title: Strategic issues
+    items:
+      - number: 11.1
+        title: ISO/IEC/ITU/UNECE MoU Management Group
+        speaker: Chair
+      - number: 11.2
+        title: Other developments
+        speaker: Chair
+  - number: 12
+    title: Liaison reports
+    description: "Internal: JTC 1, JTC 1/SC 31, JTC 1/SC 32, TC 6, TC 8, TC 37, TC 46, TC 46/SC 11, TC 68, TC 104, TC 184, TC 184/SC 4, TC 204, TC 211, TC 215. External: AFACT, BIS/BRI, ETSI, FIATA, GS1, IMO, OAGi, OASIS, UIC, UN, UNCTAD, UNECE, UPU, WCO, WIPO."
+  - number: 13
+    title: Dates and locations for the next meeting(s)
+    speaker: Secretary
+  - number: 14
+    title: Any other business
+    speaker: Chair
+  - number: 15
+    title: Adoption of resolutions
+    speaker: Chair
+  - number: 16
+    title: Closing of the meeting
+    speaker: Chair
+
+practical_info:
+  registration_note: "NSB delegates register via their National Standards Body; IGO and NFO delegates register directly with the ISO/TC 154 Secretary before 10 September 2015."
+  webex_link: "Distributed to registered participants after the registration deadline."
+  background: "The CAT at its 10 June 2015 discussion concluded that, given the reduced workload, only 1½–2 days of F2F meetings were justified. Experts also indicated they preferred attending a full week of the UN/CEFACT Forum over travelling to a short TC 154 meeting. CAT therefore cancelled the WG/PT and Plenary F2F meetings (N778) and replaced them with a single virtual plenary."

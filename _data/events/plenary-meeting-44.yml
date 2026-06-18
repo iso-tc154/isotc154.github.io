@@ -18,9 +18,17 @@ venues:
       137 South Wilmington Street
       Raleigh, NC 27601, USA
     link: https://www.sitti-raleigh.com/
+    lat: 35.7772
+    lon: -78.6376
     note: "The meeting room is on the second floor above Sitti (Lebanese) and Gravy (Italian) restaurants, in downtown Raleigh."
 
 host: OAGI / ANSI
+
+hosts:
+  - ref: oagi
+    type: liaison
+  - ref: ansi
+    type: national-body
 
 secretariat:
   name: Jianfang Zhang
