@@ -6,7 +6,7 @@ export const committee = {
     'Standardization of processes, data elements and documents used in commerce, industry and administration, including the relevant regulatory, technical and supporting aspects.',
 
   secretariat: 'SAC (China)',
-  chair: 'Mr. Pan Wei',
+  chair: 'Ms. Pan Wei',
   established: 1972,
   publishedStandards: 40,
   participatingMembers: 21,
