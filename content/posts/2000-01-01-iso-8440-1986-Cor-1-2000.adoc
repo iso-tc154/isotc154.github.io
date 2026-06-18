@@ -1,0 +1,15 @@
+---
+layout: post
+title:  ISO 8440:1986/Cor 1:2000 published!
+date:   2000-01-01 00:00:00 +0800
+categories: site update
+see_also:
+---
+
+link:/standards/iso-8440-1986-cor-1-2000[ISO 8440:1986/Cor 1:2000] has been published
+as an International Standard, and will be available on ISO.org soon.
+
+// more
+
+Congratulations to link:/groups/wg4[e-Documents] on this excellent
+achievement!

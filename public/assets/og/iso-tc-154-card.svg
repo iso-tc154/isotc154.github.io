@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="55%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="red-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e3000f"/>
+      <stop offset="100%" stop-color="#a8000b"/>
+    </linearGradient>
+    <linearGradient id="red-glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#e3000f" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#e3000f" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="red-glow-rad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e3000f" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#e3000f" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Red glow behind ISO mark -->
+  <circle cx="980" cy="180" r="320" fill="url(#red-glow-rad)"/>
+
+  <!-- Left red accent bar -->
+  <rect x="0" y="0" width="14" height="630" fill="url(#red-bar)"/>
+
+  <!-- ISO logomark (stylized) -->
+  <g transform="translate(840, 100)">
+    <rect x="0" y="0" width="280" height="160" rx="4" fill="#e3000f"/>
+    <text x="140" y="118" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="108" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="-2">ISO</text>
+  </g>
+
+  <!-- TC 154 big mark -->
+  <g transform="translate(80, 220)">
+    <text x="0" y="0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="36" font-weight="600" fill="#e3000f" letter-spacing="6">ISO/TC 154</text>
+    <text x="0" y="80" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff" letter-spacing="-1.5">Processes, data</text>
+    <text x="0" y="158" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff" letter-spacing="-1.5">elements &amp; documents</text>
+    <text x="0" y="236" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff" letter-spacing="-1.5">in commerce, industry</text>
+    <text x="0" y="314" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff" letter-spacing="-1.5">&amp; administration</text>
+  </g>
+
+  <!-- Bottom strip -->
+  <rect x="0" y="600" width="1200" height="2" fill="#e3000f" fill-opacity="0.5"/>
+  <text x="80" y="580" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#ffffff" fill-opacity="0.55">www.isotc154.org</text>
+</svg>

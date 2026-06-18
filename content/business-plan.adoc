@@ -1,0 +1,315 @@
+---
+title: ISO/TC 154 Business Plan
+permalink: /business-plan/
+description: Strategy, work programme, and operating context for ISO/TC 154 — Processes, data elements and documents in commerce, industry and administration.
+layout: page
+---
+
+= ISO/TC 154 Business Plan
+
+[.business-plan-cta]
+****
+link:/assets/pdf/iso-tc-154-business-plan.pdf[Download the official Business Plan (PDF, N1001, 2018-11-18, ~255 KB)]
+****
+
+This page is the canonical, web-rendered edition of the ISO/TC 154 Business Plan.
+The committee last approved the plan by ballot in document N993; the published
+record is N1001, dated 2018-11-18. The PDF linked above remains the authoritative
+copy for citation and distribution.
+
+== Executive summary
+
+It is the vision of ISO/TC 154 that all parties in the supply and value chain
+use standardized data exchange to reduce cost in managing the processes in the
+private and public domain and to foster trade facilitation.
+
+The mission of ISO/TC 154 is both to undertake and to facilitate the development
+and maintenance of international standards for electronic business in the supply
+and value chain.
+
+These standards cover data exchange regardless of the media used.
+
+Wherever possible, ISO/TC 154 fosters harmonisation between and within
+international standards development organizations, particularly through the
+Memorandum of Understanding between the International Electrotechnical
+Commission, the International Organization for Standardization, the International
+Telecommunication Union and the United Nations Economic Commission for Europe
+concerning standardization in the field of electronic business.
+
+== 1. Introduction
+
+=== 1.1 ISO technical committees and business planning
+
+The extension of formal business planning to ISO Technical Committees (ISO/TCs)
+is an important measure which forms part of a major review of business. The aim
+is to align the ISO work programme with expressed business environment needs and
+trends, and to allow ISO/TCs to prioritize among different projects, to identify
+the benefits expected from the availability of International Standards, and to
+ensure adequate resources for projects throughout their development.
+
+=== 1.2 International standardization and the role of ISO
+
+The foremost aim of international standardization is to facilitate the exchange
+of goods and services through the elimination of technical barriers to trade.
+
+Three bodies are responsible for the planning, development and adoption of
+International Standards: ISO (International Organization for Standardization) is
+responsible for all sectors excluding Electrotechnical, which is the
+responsibility of IEC (International Electrotechnical Committee), and most of the
+Telecommunications Technologies, which are largely the responsibility of ITU
+(International Telecommunication Union).
+
+ISO is a legal association, the members of which are the National Standards
+Bodies (NSBs) of some 161 countries — organizations representing social and
+economic interests at the international level — supported by a Central
+Secretariat based in Geneva, Switzerland.
+
+The principal deliverable of ISO is the International Standard.
+
+An International Standard embodies the essential principles of global openness
+and transparency, consensus and technical coherence. These are safeguarded
+through its development in an ISO Technical Committee (ISO/TC), representative
+of all interested parties, supported by a public comment phase (the ISO
+Technical Enquiry). ISO and its Technical Committees are also able to offer the
+ISO Technical Specification (ISO/TS), the ISO Publicly Available Specification
+(ISO/PAS) and the ISO Technical Report (ISO/TR) as solutions to market needs.
+These ISO products represent lower levels of consensus and have therefore not
+the same status as an International Standard.
+
+ISO also offers the International Workshop Agreement (IWA) as a deliverable,
+which aims to bridge the gap between the activities of consortia and the formal
+process of standardization represented by ISO and its national members. An
+important distinction is that the IWA is developed by ISO workshops and fora,
+comprising only participants with direct interest, and so it is not accorded
+the status of an International Standard.
+
+== 2. Business environment of the ISO/TC
+
+=== 2.1 Description of the business environment
+
+The following political, economic, technical, regulatory, legal and social
+dynamics describe the business environment of the industry sector, products,
+materials, disciplines or practices related to the scope of this ISO/TC, and
+they may significantly influence how the relevant standards development
+processes are conducted and the content of the resulting standards:
+
+* International standards in the documentary, processes and information aspects
+  are explicitly recognized by the WTO/TBT (Technical Barriers to Trade)
+  Agreement 1994 — "_Where technical regulations are required and relevant
+  International Standards exist… Members shall use them… as a basis for
+  technical regulations._"
+
+* Use of international standards, uniform documentation requirements, exchange
+  of information and so on, are explicitly recognized by the "_Protocol
+  amending the Marrakesh Agreement establishing the WTO 2014_"; Members are
+  encouraged to use relevant international standards or parts thereof as a
+  basis.
+
+* Important changes have taken place in the way trade, transport and
+  administrative data is produced, dispatched and processed.
+
+* Currently there is a multitude of sectorial, governmental, intergovernmental
+  and standards development organizations involved in the creation of standards
+  aimed at the open interchange of data in the value chain.footnote:value_chain[Industry, trade, transport, financial and regulatory information — including trade in goods and services.]
+
+* The rapid development of online trade also requires globally recognized
+  international standards for electronic data exchange among e-commerce
+  enterprises, service providers, logistics providers, and relevant government
+  and inter-government departments.
+
+=== 2.2 Quantitative indicators
+
+The following list of quantitative indicators describes the business environment
+in order to provide adequate information to support actions of the ISO/TC:
+
+* It is widely recognized that billions of dollars can be saved by electronic
+  data interchange.
+
+* The _Doing Business_ project provides objective measures of business
+  regulations and their enforcement across 190 economies and selected cities
+  at the subnational and regional level. With regard to trading across borders
+  the project tracks main indicators:
+  ** number of all documents required to export/import goods,
+  ** time necessary to comply with all procedures required to export/import
+     goods, and
+  ** cost associated with all the procedures required to export/import goods.
+
+* In the field of electronic business, from the _Doing Business_ project's
+  "_Trading Across Borders (2017)_" report, by implementing standardized
+  electric data interchange techniques and submission of electronic data for
+  export and import border compliance, efficiency can improve significantly:
+  in the Philippines, customs custody time was reduced to 4–6 hours for
+  "_green channel_" shipments (from 6–8 days previously).
+
+== 3. Benefits expected from the work of the ISO/TC
+
+The introduction of standards for data exchange in international trade
+significantly reduces transaction costs and time. It facilitates enhanced
+security and transparency to combat fraud and other illegal activities, and
+reduces paperwork. In addition, data exchange systems provide an important
+migration path for MSMEs (Micro, Small and Medium Enterprises), developing and
+transition countries into the global economy.
+
+From the "_Trading Across Borders (2017)_" report: employing standardized
+digital platforms — such as port community systems — to ensure the smooth and
+reliable transfer of information between all members of the seaport network can
+improve trade efficiency and reduce shipping cost significantly. Improving port
+efficiency from the 25th to the 75th percentile reduces shipping costs by
+around 12%.
+
+The expected benefits of the use of the standards published by ISO/TC 154 are:
+
+* improved administrative and business functions,
+* lower transaction costs,
+* increased transparency, and
+* integration of developing and transition economies into the international
+  value chain.
+
+In 2015, the UN published the Sustainable Development Goals (15-year plan) to
+address some of the most pressing issues faced by the world. ISO recently
+updated the Form 04 template to support SDGs. The deliverables of ISO/TC 154
+will support possible SDGs, such as:
+
+* *SDG 8* — Decent Work and Economic Growth
+* *SDG 9* — Industry, Innovation and Infrastructure
+* *SDG 11* — Sustainable Cities and Communities
+
+== 4. Representation and participation
+
+=== 4.1 P-, O- and Liaison-members
+
+Currently the committee comprises *14 P-* and *25 O-members*, together with
+*17 internal* (ISO and JTC 1) *and 17 external* (e.g. UNECE, FIATA and WCO)
+*Liaison-members* from all areas of the world. Many high-ranking international
+organizations are kept informed of the work done by the committee through the
+extensive use of electronic means to disseminate information.
+
+The full, current roster of:
+
+* link:/national-bodies/[P- and O-members], and
+* link:/liaisons/[Liaison-members],
+
+is maintained on this site and reconciled with the
+link:https://www.iso.org/committee/53186.html?view=participation[ISO
+committee page,window=_blank].
+
+=== 4.2 Coordination with other bodies
+
+The coordination, liaison review and management with other ISO/TCs,
+ISO/IEC JTC 1/SCs, UNECE and other main international standardisation bodies
+are mainly relying on the activities of the *e-business MoU* — the Memorandum
+of Understanding between IEC, ISO, ITU and UNECE concerning standardization in
+the field of electronic business. The e-business MoU has specified a framework
+of cooperation among the bodies in the field of electronic business; Annex A of
+the MoU sets out the division of responsibilities.
+
+ISO/TC 154 will play an active role as a member of the ISO delegation to the
+e-business MoU/MG.
+
+== 5. Objectives and strategies
+
+=== 5.1 Defined objectives
+
+*Vision statement.* It is the vision of ISO/TC 154 that all parties in the
+supply and value chain use standardized data exchange to reduce cost in managing
+the processes in the private and public domain and to foster trade facilitation.
+
+*Mission statement.* The mission of ISO/TC 154 is both to undertake and to
+facilitate the development and maintenance of international standards for data
+exchange in the supply and value chain.
+
+These standards will consider syntax-specific aspects — such as the standards
+of UN/EDIFACT — or any standards based on XML, etc.
+
+Wherever possible, ISO/TC 154 fosters harmonisation between and within
+international standards development organizations, particularly through the
+e-business MoU/MG.
+
+=== 5.2 Strategies
+
+*Strategies*::
+
+* Offer a platform for collaboration on data exchange standards.
+* Encourage all relevant stakeholders to participate.
+* Promote the use of ISO/TC 154 deliverables.
+
+*Action points*::
+
+* Develop and maintain active liaisons with relevant stakeholder organisations.
+* Actively monitor developments that impact the data exchange between parties in
+  the supply and value chain.
+* Promote the role of ISO/TC 154 to the National Standards Bodies in order to
+  give them the possibilities to involve stakeholders.
+
+== 6. Factors affecting completion and implementation
+
+The following factors could affect the completion and implementation of the
+work programme of ISO/TC 154:
+
+. A lack of resources and the lack of active participation in ISO/TC 154.
+. The missing links between National Standards Bodies and interested
+  stakeholders.
+. The lack of up-to-date and complete data directories.
+. The inconsistency in procedures (particularly maintenance and development) and
+  the multiplication of working platforms across relevant stakeholder
+  organizations.
+. The lack of stakeholder awareness of the activities and the benefits of the
+  deliverables of ISO/TC 154.
+
+== 7. Structure, current projects and publications
+
+=== 7.1 Structure of the ISO committee
+
+The committee's work is organized through the following bodies. The current
+rosters, current projects, and active resolutions for each group are linked
+from the corresponding group page.
+
+*Coordination Advisory Group (CAG)*:: An advisory body — _not_ a
+decision-making body. Its detailed function is defined in document N607.
+
+*JWG 1 — Joint syntax working group (with UNECE)*:: Established by ISO/TC 154
+in collaboration with UNECE through UN/CEFACT. *Scope:* the maintenance, update
+and extension of ISO 9735 (EDIFACT application level syntax rules).
+
+*WG 5 — Date and time*:: *Scope:* to provide a common platform for all date and
+time stakeholders, to enable unified, interoperable representation of date and
+time across populations and systems. Specifically, the work involves the
+standardization of concepts and semantics related to date and time, systems and
+processes that use or measure date and time, and the interoperability of
+information systems that utilize date and time.
+
+*WG 6 — Trusted eCommunications*:: *Scope:* relates to business transactions of
+TC 154 scope such as e-commerce, e-industry and e-administration. It focuses on
+reliable and identifiable methods, requirements and technology which can be
+retained — such as legally binding e-transactions between communication
+entities — for long periods. WG 6 also covers considerations about trusted
+e-communications in the environment of mobile, IoT and cloud, aligned with the
+development of emerging ICT technology.
+
+*WG 7 — Digital business*:: *Scope:* a key task is to enhance interoperability
+by developing technical specifications in support of semantics, digital
+innovations and associated concepts that enable standardized cross-enterprise
+solutions. The provision of accessible or open data and related frameworks in
+the field of e-commerce helps to align business processes and foster global
+collaboration and interchange.
+
+*JWG 8 — Logistics data contents and process*:: Established by ISO/TC 154 in
+collaboration with UNECE through UN/CEFACT. *Scope:* to develop the process and
+data-element-related standards used for data exchange between e-commerce
+platforms and related logistics information service providers, to facilitate
+on-line trade.
+
+=== 7.2 Current projects and publications
+
+Current projects and published standards are maintained on the
+link:/projects/[projects] and link:/standards/[standards] pages of this site.
+They are reconciled with the ISO catalogue:
+
+* link:https://www.iso.org/committee/53186/x/catalogue/p/0/u/1/w/0/d/0[Current projects,window=_blank]
+* link:https://www.iso.org/committee/53186/x/catalogue/p/1/u/0/w/0/d/0[Published standards,window=_blank]
+
+== Reference information
+
+* link:https://isotc.iso.org/livelink/livelink/fetch/2000/2122/687806/Glossary.htm?nodeid=2778927&vernum=0[Glossary of terms and abbreviations used in ISO/TC Business Plans,window=_blank]
+* link:https://www.iso.org/standards-development.html[General information on the principles of ISO's technical work,window=_blank]
+* link:https://www.iso.org/sdgs.html[UN Sustainable Development Goals on ISO.org,window=_blank]

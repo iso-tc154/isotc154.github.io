@@ -1,0 +1,6 @@
+---
+permalink: /members/
+html_class: members
+title: Members
+layout: member_index
+---

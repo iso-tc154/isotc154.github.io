@@ -1,0 +1,838 @@
+# Canonical list of ISO/TC 154 plenary meetings.
+# Source: ISO/CS meeting export (Meetings.xlsx).
+# Regenerate with: python3 scripts/import-meetings-xlsx.py <Meetings.xlsx>
+# 52 meetings, ordinals 1–45.
+
+- ordinal: 45
+  iso_meeting_id: 182492
+  type: hybrid
+  status: registration-open
+  start_date: 31 Aug 2026 00:00 CEST
+  end_date: 04 Sep 2026 23:59 CEST
+  country: Germany
+  city: DIN, Berlin
+  address: null
+  virtual_address: ZOOM
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/182492
+- ordinal: 44
+  iso_meeting_id: 166950
+  type: hybrid
+  status: closed
+  start_date: 22 Sep 2025 00:00 EDT
+  end_date: 26 Sep 2025 23:59 EDT
+  country: United States
+  city: Sitti,  137 South Wilmington Street, Raleigh;
+  address: null
+  virtual_address: Zoom
+  participants: 36
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/166950
+- ordinal: 43
+  iso_meeting_id: 140474
+  type: face-to-face
+  status: closed
+  start_date: 21 Oct 2024 00:00 KST
+  end_date: 25 Oct 2024 23:59 KST
+  country: Korea, Republic of
+  city: Seongnam-city, Gyeonggi-do,
+  address: null
+  virtual_address: null
+  participants: 31
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/140474
+- ordinal: 42
+  iso_meeting_id: 127742
+  type: hybrid
+  status: closed
+  start_date: 24 Oct 2023 00:00 UTC
+  end_date: 27 Oct 2023 23:59 UTC
+  country: China
+  city: HongKong
+  address: null
+  virtual_address: ZOOM
+  participants: 42
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/127742
+- ordinal: 41
+  iso_meeting_id: 113743
+  type: hybrid
+  status: closed
+  start_date: 13 Oct 2022 00:00 UTC
+  end_date: 14 Oct 2022 23:59 UTC
+  country: Switzerland
+  city: H-208 (Room),  Palais des Nations,  Geneva
+  address: null
+  virtual_address: Webex
+  participants: 29
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/113743
+- ordinal: 41
+  iso_meeting_id: 112750
+  type: virtual
+  status: closed
+  start_date: 14 Jul 2022 20:00 CST
+  end_date: 14 Jul 2022 21:30 CST
+  country: null
+  city: null
+  address: null
+  virtual_address: ZOOM
+  participants: 8
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/112750
+- ordinal: 41
+  iso_meeting_id: 125207
+  type: virtual
+  status: closed
+  start_date: 26 Apr 2023 21:00 CST
+  end_date: 26 Apr 2023 22:00 CST
+  country: null
+  city: null
+  address: null
+  virtual_address: ZOOM
+  participants: 18
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/125207
+- ordinal: 40
+  iso_meeting_id: 79718
+  type: virtual
+  status: closed
+  start_date: 02 Sep 2021 00:00 Z
+  end_date: 02 Sep 2021 23:59 Z
+  country: null
+  city: null
+  address: null
+  virtual_address: Zoom (Plenary opening )
+  participants: 23
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/79718
+- ordinal: 40
+  iso_meeting_id: 79719
+  type: virtual
+  status: closed
+  start_date: 21 Oct 2021 00:00 UTC
+  end_date: 21 Oct 2021 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: Zoom (WGs report to Plenary)
+  participants: 30
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/79719
+- ordinal: 40
+  iso_meeting_id: 79720
+  type: virtual
+  status: closed
+  start_date: 28 Oct 2021 00:00 UTC
+  end_date: 28 Oct 2021 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: Zoom (40th Plenary closing)
+  participants: 33
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/79720
+- ordinal: 39
+  iso_meeting_id: 67789
+  type: virtual
+  status: cancelled
+  start_date: 04 Aug 2020 00:00 UTC
+  end_date: 07 Aug 2020 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: Future virtual meeting
+  reschedule_timeframe: Within 3 months
+  cancellation_comment: The physical meeting is cancelled for the reason of COVID-19, and several WG virtual
+    meetings and virtual plenary meetings will be held in different months and days.
+  iso_meeting_url: https://committee.iso.org/meetings/67789
+- ordinal: 39
+  iso_meeting_id: 70304
+  type: virtual
+  status: closed
+  start_date: 17 Jul 2020 00:00 UTC
+  end_date: 17 Jul 2020 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: Zoom-39th Plenary opening
+  participants: 27
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/70304
+- ordinal: 39
+  iso_meeting_id: 70311
+  type: virtual
+  status: closed
+  start_date: 20 Aug 2020 00:00 UTC
+  end_date: 20 Aug 2020 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: Zoom-  WGs report to 39th Plenary
+  participants: 25
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/70311
+- ordinal: 39
+  iso_meeting_id: 70441
+  type: virtual
+  status: closed
+  start_date: 27 Aug 2020 00:00 UTC
+  end_date: 27 Aug 2020 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: Zoom-39th Plenary closing
+  participants: 27
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/70441
+- ordinal: 38
+  iso_meeting_id: 60517
+  type: hybrid
+  status: closed
+  start_date: 14 Oct 2019 00:00 UTC
+  end_date: 18 Oct 2019 23:59 UTC
+  country: Luxembourg
+  city: University of Luxembourg
+  address: null
+  virtual_address: Zoom
+  participants: 33
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/60517
+- ordinal: 37
+  iso_meeting_id: 56995
+  type: hybrid
+  status: closed
+  start_date: 08 Oct 2018 00:00 UTC
+  end_date: 12 Oct 2018 23:59 UTC
+  country: China
+  city: Hangzhou XinQiao Hohel
+  address: Hangzhou XinQiao Hohel,China
+  virtual_address: Judy
+  participants: 28
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/56995
+- ordinal: 36
+  iso_meeting_id: 48312
+  type: virtual
+  status: closed
+  start_date: 27 Oct 2017 00:00 UTC
+  end_date: 27 Oct 2017 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: Webex
+  participants: 26
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/48312
+- ordinal: 35
+  iso_meeting_id: 47260
+  type: face-to-face
+  status: closed
+  start_date: 17 Oct 2016 00:00 UTC
+  end_date: 21 Oct 2016 23:59 UTC
+  country: Germany
+  city: Berlin
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/47260
+- ordinal: 34
+  iso_meeting_id: 43426
+  type: virtual
+  status: closed
+  start_date: 23 Oct 2015 00:00 UTC
+  end_date: 23 Oct 2015 23:59 UTC
+  country: null
+  city: null
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/43426
+- ordinal: 33
+  iso_meeting_id: 42221
+  type: face-to-face
+  status: closed
+  start_date: 20 Oct 2014 00:00 UTC
+  end_date: 24 Oct 2014 23:59 UTC
+  country: Korea, Republic of
+  city: Incheon
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/42221
+- ordinal: 32
+  iso_meeting_id: 39688
+  type: face-to-face
+  status: closed
+  start_date: 21 Oct 2013 00:00 UTC
+  end_date: 25 Oct 2013 23:59 UTC
+  country: Germany
+  city: Berlin
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/39688
+- ordinal: 31
+  iso_meeting_id: 36559
+  type: face-to-face
+  status: closed
+  start_date: 08 Oct 2012 00:00 UTC
+  end_date: 12 Oct 2012 23:59 UTC
+  country: United States
+  city: Concord, California
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/36559
+- ordinal: 30
+  iso_meeting_id: 35116
+  type: face-to-face
+  status: closed
+  start_date: 14 Sep 2011 00:00 UTC
+  end_date: 14 Sep 2011 23:59 UTC
+  country: Switzerland
+  city: Geneva
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/35116
+- ordinal: 29
+  iso_meeting_id: 33750
+  type: face-to-face
+  status: closed
+  start_date: 18 Feb 2011 00:00 UTC
+  end_date: 18 Feb 2011 23:59 UTC
+  country: United States
+  city: McLean, Virginia
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/33750
+- ordinal: 28
+  iso_meeting_id: 33452
+  type: face-to-face
+  status: closed
+  start_date: 27 Aug 2010 00:00 UTC
+  end_date: 27 Aug 2010 23:59 UTC
+  country: Switzerland
+  city: Geneva
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/33452
+- ordinal: 27
+  iso_meeting_id: 32590
+  type: face-to-face
+  status: cancelled
+  start_date: 04 May 2010 00:00 UTC
+  end_date: 04 May 2010 23:59 UTC
+  country: Thailand
+  city: Bangkok
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/32590
+- ordinal: 26
+  iso_meeting_id: 32311
+  type: face-to-face
+  status: closed
+  start_date: 25 Sep 2009 00:00 UTC
+  end_date: 25 Sep 2009 23:59 UTC
+  country: Japan
+  city: Tokyo
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/32311
+- ordinal: 25
+  iso_meeting_id: 1694
+  type: face-to-face
+  status: closed
+  start_date: 26 Nov 2008 00:00 UTC
+  end_date: 26 Nov 2008 23:59 UTC
+  country: Belgium
+  city: Brussels
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/1694
+- ordinal: 24
+  iso_meeting_id: 3493
+  type: face-to-face
+  status: closed
+  start_date: 22 Mar 2006 00:00 UTC
+  end_date: 22 Mar 2006 23:59 UTC
+  country: Canada
+  city: Vancouver
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/3493
+- ordinal: 23
+  iso_meeting_id: 35219
+  type: face-to-face
+  status: closed
+  start_date: 23 Sep 2005 00:00 UTC
+  end_date: 23 Sep 2005 23:59 UTC
+  country: Belgium
+  city: Brussels
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/35219
+- ordinal: 22
+  iso_meeting_id: 8464
+  type: face-to-face
+  status: closed
+  start_date: 10 Sep 2004 00:00 UTC
+  end_date: 10 Sep 2004 23:59 UTC
+  country: United States
+  city: McLean, Virginia
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/8464
+- ordinal: 21
+  iso_meeting_id: 7166
+  type: face-to-face
+  status: closed
+  start_date: 12 Sep 2003 00:00 UTC
+  end_date: 12 Sep 2003 23:59 UTC
+  country: Korea, Republic of
+  city: Kyunggi-do
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/7166
+- ordinal: 20
+  iso_meeting_id: 9919
+  type: face-to-face
+  status: closed
+  start_date: 07 Mar 2003 00:00 UTC
+  end_date: 07 Mar 2003 23:59 UTC
+  country: United States
+  city: San Diego
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/9919
+- ordinal: 19
+  iso_meeting_id: 5462
+  type: face-to-face
+  status: closed
+  start_date: 06 Sep 2002 00:00 UTC
+  end_date: 06 Sep 2002 23:59 UTC
+  country: Switzerland
+  city: Geneva
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/5462
+- ordinal: 18
+  iso_meeting_id: 10546
+  type: face-to-face
+  status: closed
+  start_date: 05 Sep 2001 00:00 UTC
+  end_date: 07 Sep 2001 23:59 UTC
+  country: Belgium
+  city: Brussels
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/10546
+- ordinal: 17
+  iso_meeting_id: 8276
+  type: face-to-face
+  status: closed
+  start_date: 20 Sep 2000 00:00 UTC
+  end_date: 21 Sep 2000 23:59 UTC
+  country: Czech Republic
+  city: Prague
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/8276
+- ordinal: 16
+  iso_meeting_id: 13840
+  type: face-to-face
+  status: closed
+  start_date: 07 Dec 1999 00:00 UTC
+  end_date: 08 Dec 1999 23:59 UTC
+  country: Switzerland
+  city: Geneva
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13840
+- ordinal: 15
+  iso_meeting_id: 13816
+  type: face-to-face
+  status: closed
+  start_date: 22 Oct 1998 00:00 UTC
+  end_date: 23 Oct 1998 23:59 UTC
+  country: France
+  city: Paris
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13816
+- ordinal: 14
+  iso_meeting_id: 13842
+  type: face-to-face
+  status: closed
+  start_date: 12 Mar 1998 00:00 UTC
+  end_date: 13 Mar 1998 23:59 UTC
+  country: Switzerland
+  city: Geneva
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13842
+- ordinal: 13
+  iso_meeting_id: 13834
+  type: face-to-face
+  status: closed
+  start_date: 12 Jun 1997 00:00 UTC
+  end_date: 22 Jun 1997 23:59 UTC
+  country: Germany
+  city: Berlin
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13834
+- ordinal: 12
+  iso_meeting_id: 13817
+  type: face-to-face
+  status: closed
+  start_date: 21 Oct 1996 00:00 UTC
+  end_date: 22 Oct 1996 23:59 UTC
+  country: France
+  city: Paris
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13817
+- ordinal: 11
+  iso_meeting_id: 13843
+  type: face-to-face
+  status: closed
+  start_date: 14 Mar 1996 00:00 UTC
+  end_date: 15 Mar 1996 23:59 UTC
+  country: Switzerland
+  city: Geneva
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13843
+- ordinal: 10
+  iso_meeting_id: 13833
+  type: face-to-face
+  status: closed
+  start_date: 31 Aug 1995 00:00 UTC
+  end_date: 10 Sep 1995 23:59 UTC
+  country: Germany
+  city: Cologne
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13833
+- ordinal: 9
+  iso_meeting_id: 13814
+  type: face-to-face
+  status: closed
+  start_date: 14 Sep 1989 00:00 UTC
+  end_date: 15 Sep 1989 23:59 UTC
+  country: United Kingdom
+  city: London
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13814
+- ordinal: 8
+  iso_meeting_id: 13838
+  type: face-to-face
+  status: closed
+  start_date: 11 Sep 1987 00:00 UTC
+  end_date: 11 Sep 1987 23:59 UTC
+  country: Germany
+  city: Berlin
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13838
+- ordinal: 7
+  iso_meeting_id: 13810
+  type: face-to-face
+  status: closed
+  start_date: 02 May 1985 00:00 UTC
+  end_date: 03 May 1985 23:59 UTC
+  country: United States
+  city: Gaithersburg
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13810
+- ordinal: 6
+  iso_meeting_id: 13832
+  type: face-to-face
+  status: closed
+  start_date: 29 Apr 1983 00:00 UTC
+  end_date: 29 Apr 1983 23:59 UTC
+  country: France
+  city: Paris
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/13832
+- ordinal: 5
+  iso_meeting_id: 35774
+  type: face-to-face
+  status: closed
+  start_date: 15 May 1981 00:00 UTC
+  end_date: 15 May 1981 23:59 UTC
+  country: Sweden
+  city: Stockholm
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/35774
+- ordinal: 4
+  iso_meeting_id: 35773
+  type: face-to-face
+  status: closed
+  start_date: 04 Oct 1979 00:00 UTC
+  end_date: 04 Oct 1979 23:59 UTC
+  country: Switzerland
+  city: Geneva
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/35773
+- ordinal: 3
+  iso_meeting_id: 35772
+  type: face-to-face
+  status: closed
+  start_date: 21 Oct 1976 00:00 UTC
+  end_date: 22 Oct 1976 23:59 UTC
+  country: Canada
+  city: Ottawa
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/35772
+- ordinal: 2
+  iso_meeting_id: 35771
+  type: face-to-face
+  status: closed
+  start_date: 09 Dec 1974 00:00 UTC
+  end_date: 10 Dec 1974 23:59 UTC
+  country: United Kingdom
+  city: London
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/35771
+- ordinal: 1
+  iso_meeting_id: 35770
+  type: face-to-face
+  status: closed
+  start_date: 13 Feb 1973 00:00 UTC
+  end_date: 14 Feb 1973 23:59 UTC
+  country: Sweden
+  city: Stockholm
+  address: null
+  virtual_address: null
+  participants: null
+  parent_iso_meeting_id: null
+  reschedule_note: null
+  reschedule_timeframe: null
+  cancellation_comment: null
+  iso_meeting_url: https://committee.iso.org/meetings/35770

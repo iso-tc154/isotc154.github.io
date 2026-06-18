@@ -1,0 +1,150 @@
+---
+title: About ISO/TC 154
+permalink: /about/
+layout: page
+---
+:page-liquid:
+
+= About ISO/TC 154
+
+== General
+
+{% assign chair = site.data.members.all['pan-wei'] %}
+{% assign secretary = site.data.members.all['jianfang-zhang'] %}
+{% assign tpm = site.data.members.all['laura-mathew'] %}
+{% assign epm = site.data.members.all['marcela-bonells'] %}
+
+* Name: Processes, data elements and documents in commerce, industry and administration
+
+* Secretariat: http://www.sac.gov.cn[SAC]
+* Chairperson: link:{{ chair.url }}[{{ chair.name }}] ({{ chair.affiliation }})
+* Committee manager: link:{{ secretary.url }}[{{ secretary.name }}] ({{ secretary.affiliation }})
+* ISO Technical Programme Manager: link:{{ tpm.url }}[{{ tpm.name }}] ({{ tpm.affiliation }})
+* ISO Editorial Programme Manager: link:{{ epm.url }}[{{ epm.name }}] ({{ epm.affiliation }})
+* Creation date: 1972
+
+== Mission
+
+It is the vision of ISO/TC 154 that all parties in the supply and value chain use standardized data exchange to reduce cost in managing the processes in the private and public domain and to foster trade facilitation.
+
+The mission of ISO/TC 154 is both to undertake and to facilitate the development and maintenance of international standards for electronic business in the supply and value chain.
+
+These standards cover data exchange regardless of the media used.
+
+Wherever possible, ISO/TC 154 fosters harmonisation between and within international standards development organizations, particularly through the Memorandum of Understanding between the International Electrotechnical Commission, the International Organization for Standardization, the International Telecommunication Union and the United Nations Economic Commission for Europe concerning standardization in the field of electronic business.
+
+== Scope
+
+
+International standardization and registration of business, and administration processes and supporting data used for information interchange between and within individual organizations and support for standardization activities in the field of industrial data.
+
+Development and maintenance of application specific meta standards for:
+
+* process specification (in the absence of development by other technical committees);
+* data specification with content;
+* forms-layout (paper / electronic).
+
+Development and maintenance of standards for:
+
+* process identification (in the absence of development by other technical committees);
+* data identification.
+
+Maintenance of the EDIFACT-Syntax.
+
+
+== Working Groups and Project Teams
+
+{% assign groups = site.groups | sort: "order" %}
+{% for group in groups %}
+* {% if group.name %}{{ group.name }} — {% endif %} link:{{ group.url }}[{{ group.title }}]
+{% endfor %}
+
+
+
+== Brief history
+
+ISO/TC 154 was established by ISO Council in 1972 and held its first plenary
+in Stockholm in February 1973, hosted by SIS (Sweden). The committee's early
+work focused on the foundational date-and-time representations
+(ISO 2014, ISO 2711, ISO 3307, ISO 8601), trade-document code placement
+(ISO 8440), and the emerging UN/EDIFACT syntax family.
+
+For three decades the secretariat was held by SNV (Switzerland), where
+link:/members/francois-vuilleumier/[François Vuilleumier] served as both
+Chair and Committee Manager (1998-2008). Under his tenure the committee
+delivered the consolidated EDIFACT syntax (ISO 9735 series), the
+ISO 8601:2004 revision, and the joint UN/CEFACT collaboration framework.
+
+In late 2008 the secretariat transferred to NEN (Netherlands) for a six-year
+period, during which three successive NEN committee managers —
+Gertjan van den Akker, Tim Kniep, and Maarten Peelen — supported chairs
+link:/members/robert-schubenel/[Robert Schubenel] (GS1) and
+link:/members/klaus-dieter-naujok/[Klaus-Dieter Naujok] (DIN).
+
+In 2014 the secretariat moved to link:http://www.sac.gov.cn[SAC] (China),
+where it has remained since, hosted at the China National Institute of
+Standardization (CNIS). SAC has provided three successive chairs —
+link:/members/judy-zhu/[Hongru (Judy) Zhu] (2017-2021),
+link:/members/shi-yu/[Shi Yu] (2021-2025), and the current chair
+link:/members/pan-wei/[Pan Wei] (2026-) — anchored by committee manager
+link:/members/jianfang-zhang/[Jianfang Zhang] (SAC/CNIS) since 2014.
+
+The committee has met 45 times in plenary across Europe, North America,
+and Asia. The most recent completed plenary was the 44th in Raleigh, North
+Carolina (September 2025); the 45th is upcoming in Berlin (August-September
+2026). A full chronology of plenaries, chairs, secretariats and standards
+milestones is on the link:/history/[History] page.
+
+
+== Secretariats
+
+* link:http://www.sac.gov.cn[SAC] — Standardization Administration of China, hosted at the China National Institute of Standardization (CNIS), Beijing. (2014-, current secretariat; committee manager: Jianfang Zhang)
+* link:https://www.nen.nl[NEN] — Royal Netherlands Standardization Institute, Delft. (2008-2014; committee managers: Gertjan van den Akker, Tim Kniep, Maarten Peelen)
+* link:https://www.snv.ch[SNV] — Swiss Association for Standardization, Zurich/Winterthur. (1972-2008, founding secretariat; committee manager from 1998: François Vuilleumier)
+
+
+== Past Chairs
+
+{% assign person = site.data.members.all['pan-wei'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) — Chair and convenor of the CAG (2026-, current)
+
+{% assign person = site.data.members.all['shi-yu'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) — Chair and convenor of the CAG (2021-2025)
+
+{% assign person = site.data.members.all['judy-zhu'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) — First SAC-affiliated chair and convenor of the CAG (2017-2021)
+
+{% assign person = site.data.members.all['klaus-dieter-naujok'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) — Long-time convenor of JWG 1 and principal author of the EDIFACT syntax revision (2011-2017)
+
+{% assign person = site.data.members.all['robert-schubenel'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) — Chair during the NEN secretariat years (2008-2011)
+
+{% assign person = site.data.members.all['francois-vuilleumier'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) — Anchored the late-1990s restructuring around UN/EDIFACT and ISO 8601; also served as committee manager (1998-2008)
+
+
+== Committee Managers / Secretaries
+
+{% assign person = site.data.members.all['jianfang-zhang'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2014-, current)
+
+{% assign person = site.data.members.all['maarten-peelen'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2012-2014)
+
+{% assign person = site.data.members.all['tim-kniep'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2010-2012)
+
+{% assign person = site.data.members.all['gertjan-van-den-akker'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) (2008-2010)
+
+{% assign person = site.data.members.all['francois-vuilleumier'] %}
+* link:{{ person.url }}[{{ person.name }}] ({{ person.affiliation }}) — Concurrently Chair and Committee Manager (1998-2008)
+
+
+== Disclaimer
+
+The content on this website is provided by the Technical Committee and
+its individual experts. If you have any questions or comments about
+this website, or would like to reproduce this content, please contact
+the Committee using the link:/contact[Contact] page.

@@ -1,0 +1,15 @@
+---
+layout: post
+title:  ISO 23354:2020 published!
+date:   2020-05-04 00:00:00 +0800
+categories: site update
+see_also:
+---
+
+link:/standards/iso-23354-2020[ISO 23354:2020] has been published as
+an International Standard, and will be available on ISO.org soon.
+
+// more
+
+Congratulations to link:/groups/jwg8[JWG 8] on this excellent
+achievement!

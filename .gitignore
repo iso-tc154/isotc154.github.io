@@ -12,6 +12,9 @@ public/vite
 # Build output
 dist/
 
+# Generated data (produced by scripts/build-data.mjs from _data/ YAML)
+public/data/
+
 # Reference materials (never commit; per project policy)
 reference-docs/
 
