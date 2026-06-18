@@ -1,0 +1,24 @@
+---
+member-id: maarten-peelen
+name: Maarten Peelen
+active: false
+roles:
+- id: committee_manager
+  from:
+    date: 2012-10-01
+    precision: month
+  to:
+    date: 2014-10-01
+    precision: month
+affiliation: NEN, Netherlands
+bio: |-
+  Maarten Peelen served as the final committee manager of ISO/TC 154
+  under the NEN (Royal Netherlands Standardization Institute)
+  secretariat, succeeding Tim Kniep in late 2012 and handing over
+  to Jianfang Zhang (SAC) when the secretariat transferred to the
+  Standardization Administration of China in 2014. He supported
+  chair Klaus-Dieter Naujok (DIN) through the 31st (Bundang 2012)
+  and 32nd (Berlin 2013) plenary meetings.
+
+  Contact during tenure: maarten.peelen@nen.nl, NEN, Delft,
+  the Netherlands.

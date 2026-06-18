@@ -1,0 +1,51 @@
+title: "29<sup>th</sup> plenary meeting"
+ordinal: 29
+status: completed
+year: 2011
+landing_url: /events/plenary-meeting-29/
+
+time:
+  from:
+    date: 2011-02-17
+  to:
+    date: 2011-02-18
+
+general_area: "McLean, Virginia, USA"
+
+venues:
+  - name: LMI Headquarters
+    address: |
+      2000 Corporate Ridge
+      McLean, Virginia 22102
+      USA
+    link: https://www.lmi.org/AboutUs/Directions.aspx
+
+host: LMI (Delta Pelgrim)
+associates:
+  - name: LMI
+    role: host
+    contact:
+      name: Delta Pelgrim
+
+secretariat:
+  name: Tim Kniep
+  organization: NEN (Netherlands)
+  email: tim.kniep@nen.nl
+  phone: "+31 15 2690 100"
+
+schedule:
+  - date: 2011-02-17
+    time: "13:00–17:00"
+    event: TDED Joint MA meeting (back-to-back)
+  - date: 2011-02-18
+    time: "8:30–11:30"
+    event: TDED Joint MA meeting (continued)
+  - date: 2011-02-18
+    time: "13:00–16:00"
+    event: Plenary meeting
+    description: Opening, Chair candidatures, CAG formation, periodical reviews (ISO 8439, ISO 8440), WG reports (JWG 1, WG 2, WG 3, JWG 4, TDED MA), MoU/MG, liaison reports, resolutions
+
+deadlines:
+  - description: "Registration via national body (one month before meeting). Note: this calling notice was circulated only 2 months before the meeting; members could object to the scheduling."
+
+note: "Called with shorter-than-usual notice (2 months prior). Members could inform the secretariat of objections to the scheduling."

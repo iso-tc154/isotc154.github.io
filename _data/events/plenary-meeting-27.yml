@@ -1,0 +1,66 @@
+title: "27<sup>th</sup> plenary meeting"
+ordinal: 27
+status: completed
+year: 2010
+landing_url: /events/plenary-meeting-27/
+
+time:
+  from:
+    date: 2010-05-03
+  to:
+    date: 2010-05-04
+
+general_area: "Bangkok, Thailand"
+
+venues:
+  - name: United Nations Conference Centre (UNCC), Meeting Room F
+    address: |
+      United Nations Economic and Social Commission for Asia and the Pacific (UNESCAP)
+      Bangkok, Thailand
+
+host: UNI (initiative of UN/CEFACT Forum host)
+hosts:
+  - ref: uni
+    type: national-body
+associates:
+  - ref: unece
+    role: co-organizer
+
+secretariat:
+  name: Gertjan van den Akker
+  organization: NEN (Netherlands)
+  email: gertjan.vandenakker@nen.nl
+  phone: "+31 15 2690 426"
+
+schedule:
+  - date: 2010-04-26
+    time: "9:00–17:00"
+    event: UN/CEFACT Forum (parallel)
+    description: UN/CEFACT Forum held all week in Bangkok
+  - date: 2010-05-03
+    time: "8:00–10:00"
+    event: JWG2 meeting
+  - date: 2010-05-03
+    time: "10:30–12:00"
+    event: Joint session UNESCAP–ISO/TC 154
+  - date: 2010-05-03
+    time: "13:00–16:00"
+    event: Plenary meeting
+    description: Opening, adoption of agenda, reports of WG/JWG, TDED MA, MoU/MG, liaison reports, resolutions
+  - date: 2010-05-04
+    time: "9:00–16:00"
+    event: UNESCAP–ISO TC154 Joint Meeting (parallel)
+    description: Joint meeting with UNESCAP, ran back-to-back with the TC 154 plenary
+
+deadlines:
+  - description: "Registration via national body (one month before meeting)"
+
+practical_info:
+  visa:
+    thailand_visa_exemption_30d: "Most nationalities (including EU, US, JP, KR, AU, NZ, CA) enter Thailand visa-free for up to 30 days"
+    thailand_visa_exemption_90d: "Argentina, Brazil, Chile, Republic of Korea, Peru — visa-free up to 90 days"
+    note: "Check with the nearest Royal Thai Embassy before departure."
+  access:
+    badge_required: true
+    badge_pickup: "Registration counter, ground floor, UNCC (08:00–09:00 on opening day)"
+    note: "Badges must be worn at all times inside the UN complex."

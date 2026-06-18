@@ -1,0 +1,25 @@
+---
+member-id: gertjan-van-den-akker
+name: Gertjan van den Akker
+active: false
+roles:
+- id: committee_manager
+  from:
+    date: 2008-11-01
+    precision: month
+  to:
+    date: 2010-07-01
+    precision: month
+affiliation: NEN, Netherlands
+bio: |-
+  Gertjan van den Akker served as committee manager (then called
+  committee secretary) of ISO/TC 154 during the early years of the
+  NEN (Royal Netherlands Standardization Institute) secretariat,
+  taking over from François Vuilleumier when the secretariat
+  transferred from SNV (Switzerland) to NEN (Netherlands) in late
+  2008. He supported chair Robert Schubenel (GS1) through the 25th,
+  26th and 27th plenary meetings (Brussels 2008, Geneva 2009,
+  Bangkok 2010).
+
+  Contact during tenure: gertjan.vandenakker@nen.nl, NEN, Delft,
+  the Netherlands.

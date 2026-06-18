@@ -10,17 +10,26 @@ time:
   to:
     date: 2024-10-25
 
-general_area: "Bundang (Seoul), Korea"
+general_area: "Bundang, Seongnam, Korea"
 
 venues:
-  - name: Hotel Skypark Central Seoul Pangyo
+  - name: Telecommunications Technology Association (TTA)
     address: |
-      36 Hwangsaeul-ro 311beon-gil, Bundang-gu
-      Seongnam, Gyeonggi-do, 13590, South Korea
-    link: https://www.skyparkhotel.com/html/accommdation/accom9_tab1_01.asp
-    phone: "+82-31-5170-7750"
+      47, Bundang-ro, Bundang-gu, Seongnam-city
+      Gyeonggi-do, 13591, Republic of Korea
+    link: http://tta.or.kr/eng/index.jsp
+    phone: "+82-31-780-9090"
+    note: "All sessions held in Room A. Remote participation via ISO Zoom."
 
 host: KATS / RRA / TTA
+hosts:
+  - ref: kats
+    type: national-body
+associates:
+  - ref: rra
+    role: co-organizer
+  - ref: tta
+    role: co-organizer
 
 secretariat:
   name: Jianfang Zhang
@@ -34,26 +43,60 @@ local_contact:
 
 schedule:
   - date: 2024-10-21
-    time: "9:00–10:30"
+    time: "9:00–10:30 (UTC+9 Seoul)"
     event: Plenary opening
     description: Review of ISO/TC 154 work since last plenary meeting
+    room: Room A
+  - date: 2024-10-21
+    time: "11:00–12:00 (UTC+9 Seoul)"
+    event: New PWI proposal discussion
+    description: Discussion if TC members propose new projects that cannot fall into existing (J)WGs
+    room: Room A
+  - date: 2024-10-21
+    time: "14:00–16:30 (UTC+9 Seoul)"
+    event: JWG1 meeting
+    description: Discussion of ISO 9735 Implementation Guide, etc.
+    room: Room A
   - date: 2024-10-22
-    time: "9:00–17:00"
-    event: Working Group meetings
+    time: "9:00–12:00 (UTC+9 Seoul)"
+    event: WG4 meeting (to be established)
+    description: Discussion of e-document projects, ISO/PWI 36100, ISO/PWI 36200, ISO/NP 22132
+    room: Room A
+  - date: 2024-10-22
+    time: "14:00–17:00 (UTC+9 Seoul)"
+    event: WG2 meeting
+    description: Discussion of ISO/WD 17369, ISO/PWI 25320 (Guidance of data registration for data utilization)
+    room: Room A
   - date: 2024-10-23
-    time: "9:00–17:00"
-    event: Working Group meetings
+    time: "9:00–12:00 (UTC+9 Seoul)"
+    event: WG7 meeting
+    description: Other parts of ISO 5054, other parts of ISO 15000, ISO/PWI 16320-1, ISO/PWI 20195, ISO/PWI 20180, ISO/PWI 20191-1, ISO/PWI TR 20194
+    room: Room A
+  - date: 2024-10-23
+    time: "14:00–17:00 (UTC+9 Seoul)"
+    event: JWG9 meeting
+    description: Discussion of ISO/WD 7372 (UNTDED), ISO/DIS 20197-1, ISO/WD 5909, ISO/PWI 16356
+    room: Room A
   - date: 2024-10-24
-    time: "9:00–17:00"
-    event: Working Group meetings
+    time: "9:00–12:00 (UTC+9 Seoul)"
+    event: WG5 meeting
+    description: Revision of two parts of ISO 8601
+    room: Room A
+  - date: 2024-10-24
+    time: "14:00–17:00 (UTC+9 Seoul)"
+    event: WG6 meeting
+    description: Discussion of ISO/DIS 14533-3, ISO 19626-3, a new part of ISO 14533
+    room: Room A
   - date: 2024-10-25
-    time: "9:00–12:00"
+    time: "9:00–12:00 (UTC+9 Seoul)"
     event: WGs report to Plenary
     description: WG report and WG recommendation to plenary
+    room: Room A
   - date: 2024-10-25
-    time: "14:30–17:00"
+    time: "14:30–17:30 (UTC+9 Seoul)"
     event: Plenary closing
-    description: Discussion of plenary resolution and other business
+    description: Discussion of plenary resolution and other business (date and location of next plenary meeting, etc.)
+    room: Room A
 
 deadlines:
   - date: 2024-08-31
@@ -88,33 +131,33 @@ transport:
 
 accommodation_options:
   - name: KYND Hotel
-    distance: "1 min walk"
+    distance: "7 min walk"
     address: Bundang, Seongnam
     link: http://www.kyndhotel.co.kr/en/index.php
     phone: "+82-31-781-0006"
 
   - name: SR Suites Bundang
-    distance: "2 min walk"
+    distance: "5 min walk"
     address: Bundang, Seongnam
     link: http://en.srsuites.com/
     phone: "+82-31-702-6565"
 
-  - name: Hotel Skypark Central Seoul Pangyo
-    distance: "1 min walk"
-    address: 36 Hwangsaeul-ro 311beon-gil, Bundang-gu, Seongnam
-    link: https://www.skyparkhotel.com/html/accommdation/accom9_tab1_01.asp
+  - name: Somerset Central Bundang
+    distance: "7 min walk"
+    address: Bundang, Seongnam
+    link: https://www.discoverasr.com/en/somerset-serviced-residence/korea-south/somerset-central-bundang
     phone: "+82-31-5170-7750"
 
   - name: Gravity Seoul Pangyo, Autograph Collection
     distance: "10 min by taxi"
     address: Pangyo, Seongnam
-    link: https://www.marriott.com/en-us/hotels/selay-gravityseoul-pangyo-autograph-collection/overview/
+    link: https://www.marriott.com/en-us/hotels/selay-gravity-seoul-pangyo-autograph-collection/overview/
     phone: "+82-31-539-4800"
 
   - name: Courtyard Marriott Pangyo
     distance: "15 min by taxi"
     address: Pangyo, Seongnam
-    link: https://www.marriott.com/en-us/hotels/selpncourtyard-seoul-pangyo/overview/
+    link: https://www.marriott.com/en-us/hotels/selpn-courtyard-seoul-pangyo/overview/
     phone: "+82-31-8060-2000"
 
   - name: Shilla Stay Seocho
@@ -128,9 +171,12 @@ practical_info:
     invitation_contact: Sejung Yoon
     invitation_email: sjyoon@tta.or.kr
     invitation_deadline: 2024-08-31
-    note: "Check with your nearest Korean Embassy before departure. Advance submission recommended."
-  electrical: "220V / 60Hz — round two-pin plug (same as Germany or France)"
+    visa_portal: https://www.visa.go.kr/openPage.do?MENU_ID=10101
+    note: "Check with your nearest Korean Embassy before departure. Invitation letter requests received after the deadline will NOT be processed."
+  venue_phone: "+82-31-780-9090"
+  venue_website: http://tta.or.kr/eng/index.jsp
+  electrical: "220V / 60Hz — round two-pin plug (Type C / Type F, same as Germany or France)"
   climate: "Average temperature in Bundang in October: 13.8–14.8°C"
-  currency: "Korean Won (KRW). Major currencies accepted at airport, hotels, and banks. Credit cards (VISA, MasterCard, AmEx) widely accepted."
+  currency: "Korean Won (KRW). Major currencies and traveler's checks can be exchanged at airport, hotels, and banks. Credit cards (VISA, MasterCard, AmEx) widely accepted."
   tipping: "No tipping in most cases."
   wifi: "Free high-speed WiFi provided at the meeting venue."

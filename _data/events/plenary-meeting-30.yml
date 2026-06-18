@@ -1,0 +1,55 @@
+title: "30<sup>th</sup> plenary meeting"
+ordinal: 30
+status: completed
+year: 2011
+landing_url: /events/plenary-meeting-30/
+
+time:
+  from:
+    date: 2011-09-12
+  to:
+    date: 2011-09-16
+
+general_area: "Geneva, Switzerland"
+
+venues:
+  - name: International Telecommunication Union (ITU)
+    address: |
+      Place des Nations
+      1202 Geneva
+      Switzerland
+    link: https://www.itu.int/
+
+host: ITU
+
+secretariat:
+  name: Tim Kniep
+  organization: NEN (Netherlands)
+  email: tim.kniep@nen.nl
+  phone: "+31 15 2690 100"
+
+schedule:
+  - date: 2011-09-12
+    time: "9:00–18:00"
+    event: WG/JWG/PT meetings (back-to-back)
+    description: JWG1, WG2, WG3, JWG4 and the TDED Joint MA — full schedule announced separately
+  - date: 2011-09-13
+    time: "9:00–18:00"
+    event: WG/JWG/PT meetings (continued)
+  - date: 2011-09-14
+    time: "9:00–16:00"
+    event: Plenary meeting
+    description: 30th plenary of ISO/TC 154
+  - date: 2011-09-15
+    time: "9:00–18:00"
+    event: MoU/MG on e-Business (back-to-back)
+  - date: 2011-09-16
+    time: "9:00–18:00"
+    event: MoU/MG on e-Business (continued)
+  - date: 2011-09-19
+    time: "9:00–17:00"
+    event: UN/CEFACT global meeting of experts (back-to-back, all week)
+    description: Held at the International Conference Centre in Geneva (ICCG)
+
+deadlines:
+  - description: "Registration via national body (one month before meeting)"

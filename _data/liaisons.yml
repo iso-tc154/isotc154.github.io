@@ -29,8 +29,11 @@
   logo_dark: "/assets/images/liaisons/logo-calconnect-dark.svg"
   description: 'The Calendaring and Scheduling Consortium (CalConnect) promotes standards for calendaring and scheduling, particularly in collaboration with ISO/TC 154 WG 5 on date and time standards.'
 - id: oagi
-  name: OAGi
+  name: OAGi (Open Applications Group)
   short_name: OAGi
+  aliases:
+    - OAG
+    - Open Applications Group
   category: A
   url: https://www.oagi.org/
   logo: "/assets/images/liaisons/logo-oagi.svg"
@@ -132,6 +135,13 @@
   url: https://fiata.com/
   logo: "/assets/images/liaisons/logo-fiata.svg"
   description: 'FIATA is the largest non-governmental organisation in the field of transportation, representing the freight forwarding and logistics industry worldwide.'
+- id: iata
+  name: International Air Transport Association
+  short_name: IATA
+  category: A
+  url: https://www.iata.org/
+  logo: "/assets/images/liaisons/logo-iata.svg"
+  description: "IATA is the trade association for the world's airlines, representing some 300 airlines or 83% of total air traffic. It develops standards for cargo, passenger, and aviation operations."
 - id: gsbn
   name: Global Shipping Business Network Limited
   short_name: GSBN

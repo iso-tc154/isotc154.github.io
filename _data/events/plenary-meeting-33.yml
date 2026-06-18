@@ -1,0 +1,82 @@
+title: "33<sup>rd</sup> plenary meeting"
+ordinal: 33
+status: completed
+year: 2014
+landing_url: /events/plenary-meeting-33/
+
+time:
+  from:
+    date: 2014-10-20
+  to:
+    date: 2014-10-24
+
+general_area: "Incheon, South Korea"
+
+venues:
+  - name: National Institute IT industry Promotion Agency (NIPA), RFID/USN Center
+    address: |
+      11-13, Songdo-dong, Yeonsugu
+      Incheon, South Korea
+    link: http://www.nipa.kr/eng/main.it
+
+host: KATS (sponsored by NIPA & Korea Digital Content Association)
+hosts:
+  - ref: kats
+    type: national-body
+associates:
+  - ref: nipa
+    role: sponsor
+  - ref: kdca
+    role: sponsor
+
+secretariat:
+  name: Jianfang Zhang
+  organization: SAC (CNIS)
+  email: zhangjf@cnis.gov.cn
+  phone: "+86-10-58811613"
+
+local_contact:
+  name: Euna Choi
+  email: aeuni@nipa.kr
+  phone: "+82-2-2132-1621"
+
+schedule:
+  - date: 2014-10-20
+    time: "9:00–12:00"
+    event: JWG 1 (ISO 9735) + Trusted Communication Platforms for e-Document
+  - date: 2014-10-20
+    time: "13:00–17:00"
+    event: WG 4 (ISO/TR 6422)
+  - date: 2014-10-21
+    time: "9:00–12:00"
+    event: WG 5 (ISO/NP 8601)
+  - date: 2014-10-21
+    time: "13:00–17:00"
+    event: PT (ISO 14533-3)
+  - date: 2014-10-22
+    time: "9:00–10:00"
+    event: WG 3 (ISO 15000-5)
+  - date: 2014-10-22
+    time: "10:30–12:00"
+    event: PT (ISO 15000 1–4 OASIS ebXML Parts)
+  - date: 2014-10-22
+    time: "13:00–17:00"
+    event: WGs & PT — finalize reports to plenary
+  - date: 2014-10-22
+    time: "18:00–22:00"
+    event: Social event
+    description: Not funded — participants paid for themselves
+  - date: 2014-10-23
+    time: "9:00–17:00"
+    event: MA (ISO 7372 / TDED)
+  - date: 2014-10-24
+    time: "9:00–17:00"
+    event: 33rd ISO/TC 154 Plenary meeting
+
+deadlines:
+  - date: 2014-09-20
+    description: Registration (online or via TC secretariat)
+
+practical_info:
+  registration_url: https://zhangjf.wufoo.com/forms/isotc-154-plenary-registration-for-2014/
+  info_url: http://www.isotc154.org/2014-annual-meeting-information

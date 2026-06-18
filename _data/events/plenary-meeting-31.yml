@@ -1,0 +1,74 @@
+title: "31<sup>st</sup> plenary meeting"
+ordinal: 31
+status: completed
+year: 2012
+landing_url: /events/plenary-meeting-31/
+
+time:
+  from:
+    date: 2012-10-08
+  to:
+    date: 2012-10-12
+
+general_area: "Concord, California, USA"
+
+venues:
+  - name: GXS — Concord Office
+    address: |
+      1000 Burnett Ave (3rd Floor)
+      Concord, CA 94520
+      USA
+
+host: GXS
+associates:
+  - name: GXS
+    role: host
+    country: United States
+    url: https://www.gxs.com
+
+secretariat:
+  name: Maarten Peelen
+  organization: NEN (Netherlands)
+  email: maarten.peelen@nen.nl
+  phone: "+31 15 2690 378"
+
+schedule:
+  - date: 2012-10-08
+    time: "9:00–17:00"
+    event: ODIF Project Team
+  - date: 2012-10-09
+    time: "9:00–10:30"
+    event: JWG 1 (ISO 9735 EDIFACT Syntax)
+  - date: 2012-10-09
+    time: "11:00–12:30"
+    event: WG 3 (ISO 15000-5 CCTS)
+  - date: 2012-10-09
+    time: "13:30–17:00"
+    event: WG 4 (ISO/TR 6422 eLayout Key)
+  - date: 2012-10-10
+    time: "9:00–12:00"
+    event: ISO 8601 Review
+  - date: 2012-10-10
+    time: "13:00–17:00"
+    event: As needed (ODIF or other)
+  - date: 2012-10-10
+    time: "18:00–22:00"
+    event: Social event
+    description: Not funded — participants paid for themselves
+  - date: 2012-10-11
+    time: "9:00–17:00"
+    event: JMA TDED (ISO 7372)
+  - date: 2012-10-12
+    time: "9:00–17:00"
+    event: 31st ISO/TC 154 Plenary meeting
+    description: Three delegates per national standards body; one delegate per observer organization
+
+deadlines:
+  - date: 2012-09-08
+    description: Registration (WG/PT and TDED JMA meetings)
+  - date: 2012-09-08
+    description: National delegation registration with TC secretariat (plenary meeting)
+
+practical_info:
+  registration_url: http://www.isotc154.org/2012-annual-meeting-information
+  note: "Travel, hotel and restaurant information was provided via the 2012 annual meeting website."

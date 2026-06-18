@@ -1,0 +1,689 @@
+---
+# Curated historical milestones of ISO/TC 154.
+# Drawn from: plenary resolutions (1973–), member role records, standards
+# publication dates, and the committee Business Plan (N1001, 2018-11-18).
+#
+# Each entry has:
+#   date: ISO date (or just year as YYYY-01-01) — used for sorting.
+#   date_precision: day | month | year — controls how the date is rendered.
+#   category: founding | leadership | structure | standard | liaison | meeting |
+#             cooperation | withdrawn
+#   title: short headline (imperative phrase or proper noun + verb).
+#   description: 1–3 sentence narrative. May contain markdown-style links in
+#     the form [label](/path/) — the renderer will format them.
+#   link: optional in-app URL the headline should point to (e.g. /groups/wg7/).
+#   resolution: optional resolution id (e.g. "P-2024-08") the milestone tracks.
+#   end_date: optional ISO date marking when a tenure/project closed.
+#   tags: optional free-form list for filtering.
+
+# === FOUNDING ===
+
+- date: 1972-01-01
+  date_precision: year
+  category: founding
+  title: "ISO/TC 154 established"
+  description: >
+    ISO Council establishes ISO/TC 154, "_Processes, data elements and
+    documents in commerce, industry and administration_," to carry forward
+    the EDI and trade-data work previously run under ISO/TC 154's predecessor
+    remit. The SNV (Switzerland) secretariat hosts the first meetings.
+
+# === EARLY STANDARDS ===
+
+- date: 1973-01-01
+  date_precision: year
+  category: standard
+  title: "ISO 2711 — Ordinal dates"
+  description: >
+    One of the committee's first published standards: a fixed representation
+    of ordinal dates (day-of-year) for information interchange.
+  link: /standards/iso-2711-1973/
+
+- date: 1975-01-01
+  date_precision: year
+  category: standard
+  title: "ISO 3307 — Time of day"
+  description: >
+    Representation of the time of day for information interchange, complementing
+    ISO 2711 and ISO 2014 in the foundational date-and-time suite.
+
+- date: 1986-01-01
+  date_precision: year
+  category: standard
+  title: "ISO 8440 — Location of codes in trade documents"
+  description: >
+    Establishes where UN/EDIFACT and other trade codes are placed in paper
+    and electronic trade documents. A 1999 corrigendum made the standard
+    Y2K-compatible.
+
+# === PLENARY MEETINGS — EARLY ERA ===
+
+- date: 1973-02-13
+  date_precision: day
+  category: meeting
+  title: "1st plenary meeting — Stockholm"
+  description: >
+    The committee meets for the first time in Stockholm, hosted by SIS.
+  link: /meetings/1/
+
+- date: 1974-12-09
+  date_precision: day
+  category: meeting
+  title: "2nd plenary meeting — London"
+  description: >
+    Hosted by BSI in London.
+  link: /meetings/2/
+
+- date: 1976-10-21
+  date_precision: day
+  category: meeting
+  title: "3rd plenary meeting — Ottawa"
+  description: >
+    First plenary outside Europe, hosted by SCC (Standards Council of Canada).
+  link: /meetings/3/
+
+- date: 1979-10-04
+  date_precision: day
+  category: meeting
+  title: "4th plenary meeting — Geneva"
+  description: >
+    Hosted at ISO Central Secretariat, Geneva.
+  link: /meetings/4/
+
+- date: 1981-05-15
+  date_precision: day
+  category: meeting
+  title: "5th plenary meeting — Stockholm"
+  description: >
+    The committee returns to Stockholm, hosted by SIS — the city of its
+    founding meeting in 1973.
+  link: /meetings/5/
+
+- date: 1983-04-29
+  date_precision: day
+  category: meeting
+  title: "6th plenary meeting — Paris"
+  description: >
+    Hosted by AFNOR in Paris.
+  link: /meetings/6/
+
+- date: 1985-05-02
+  date_precision: day
+  category: meeting
+  title: "7th plenary meeting — Gaithersburg"
+  description: >
+    First plenary held in the United States, hosted by ANSI at NIST in
+    Gaithersburg, Maryland.
+  link: /meetings/7/
+
+- date: 1987-09-11
+  date_precision: day
+  category: meeting
+  title: "8th plenary meeting — Berlin"
+  description: >
+    Hosted by DIN in Berlin — the committee's first Berlin plenary.
+  link: /meetings/8/
+
+- date: 1989-09-14
+  date_precision: day
+  category: meeting
+  title: "9th plenary meeting — London"
+  description: >
+    Hosted by BSI in London — the city of the 2nd plenary in 1974.
+  link: /meetings/9/
+
+# === SECRETARIAT ERA — SNV ===
+
+- date: 1998-01-01
+  date_precision: year
+  category: leadership
+  title: "François Vuilleumier becomes Chair and Committee Manager"
+  description: >
+    François Vuilleumier (SNV, Switzerland) begins a decade-long tenure
+    as both Chair and Committee Manager, anchoring the committee's
+    late-1990s restructuring around UN/EDIFACT and ISO 8601.
+  link: /members/francois-vuilleumier/
+
+- date: 1995-08-31
+  date_precision: day
+  category: meeting
+  title: "10th plenary meeting — Cologne"
+  description: >
+    Hosted by DIN in Cologne. The committee expresses its appreciation to
+    DIN, the chairman, and the secretary for their work.
+  link: /meetings/10/
+
+- date: 1997-06-12
+  date_precision: day
+  category: meeting
+  title: "13th plenary meeting — Berlin"
+  description: >
+    Hosted by DIN in Berlin. The committee resolves to establish an editing
+    committee for the revision of ISO 9735 (EDIFACT syntax), with Don
+    Trafford as chair and Bernd Boesler as secretary.
+  link: /meetings/13/
+
+- date: 1997-06-12
+  date_precision: day
+  category: structure
+  title: "ISO/TC 154/SC 2 disbanded"
+  description: >
+    Subcommittee SC 2 is disbanded, consolidating the committee's work
+    programme directly under the TC.
+  resolution: "134"
+
+- date: 1996-03-14
+  date_precision: day
+  category: meeting
+  title: "11th plenary meeting — Geneva"
+  description: >
+    Hosted at the ISO Central Secretariat, Geneva.
+  link: /meetings/11/
+
+- date: 1996-10-21
+  date_precision: day
+  category: meeting
+  title: "12th plenary meeting — Paris"
+  description: >
+    Hosted by AFNOR in Paris — the second plenary of 1996, following the
+    March Geneva meeting.
+  link: /meetings/12/
+
+- date: 1998-10-22
+  date_precision: day
+  category: meeting
+  title: "15th plenary meeting — Paris"
+  description: >
+    Hosted by AFNOR in Paris, chaired by Ingeborg Burger-Balogh. The
+    committee resolves to create a Working Group for the BSR (Basic
+    Semantic Repository).
+  link: /meetings/15/
+
+# === STANDARDS — ISO 8601 ERA ===
+
+- date: 1998-01-01
+  date_precision: year
+  category: standard
+  title: "ISO 8601 — Date and time representations"
+  description: >
+    The foundational standard unifying calendar dates, ordinal dates,
+    times, durations, and time intervals into a single interchange format.
+    TC 154 would later split it into the multi-part
+    ISO 8601-1 / ISO 8601-2 structure.
+
+- date: 1998-03-12
+  date_precision: day
+  category: meeting
+  title: "14th plenary meeting — Geneva"
+  description: >
+    Hosted at the ISO Central Secretariat, Geneva.
+  link: /meetings/14/
+
+- date: 1999-12-07
+  date_precision: day
+  category: meeting
+  title: "16th plenary meeting — Geneva"
+  description: >
+    Hosted at the ISO Central Secretariat, Geneva. The committee closes
+    the decade with back-to-back Geneva plenaries.
+  link: /meetings/16/
+
+# === 2000s — STRATEGIC COOPERATION ===
+
+- date: 2000-09-20
+  date_precision: day
+  category: meeting
+  title: "17th plenary meeting — Prague"
+  description: >
+    The committee resolves that all documents will be distributed
+    electronically only — closing the paper era and establishing the
+    all-digital working method still in use today.
+  link: /meetings/17/
+
+- date: 2000-09-20
+  date_precision: day
+  category: cooperation
+  title: "Chair Advisory Board created"
+  description: >
+    JISC (JP), BSI (GB), DIN (DE) and AFNOR (FR) form a Chair Advisory
+    Board to progress inter-sessional work. The board has no decision-making
+    authority and acts as a steering body for the Chair.
+
+- date: 2001-09-05
+  date_precision: day
+  category: meeting
+  title: "18th plenary meeting — Brussels"
+  description: >
+    Hosted by NBN at the heart of the EU regulatory district.
+  link: /meetings/18/
+
+- date: 2002-09-06
+  date_precision: day
+  category: meeting
+  title: "19th plenary meeting — Geneva"
+  description: >
+    At this meeting TC 154 resolves to migrate liaisons with the EWG and
+    CDWG to the newly-formed UN/CEFACT Forum.
+  link: /meetings/19/
+
+- date: 2002-01-01
+  date_precision: year
+  category: standard
+  title: "ISO 9735 (all parts) — UN/EDIFACT syntax"
+  description: >
+    The complete ISO 9735 series published in 2002 codifies the
+    UN/EDIFACT application-level syntax rules in nine parts, the
+    culmination of the post-1997 editing committee work.
+
+- date: 2003-03-07
+  date_precision: day
+  category: meeting
+  title: "20th plenary meeting — San Diego"
+  description: >
+    Hosted by ANSI in San Diego, California.
+  link: /meetings/20/
+
+- date: 2003-09-12
+  date_precision: day
+  category: meeting
+  title: "21st plenary meeting — Gyeonggi-do"
+  description: >
+    First plenary held in the Republic of Korea, hosted by KATS
+    (Mr. Y.-G. Jung) in the Seoul region. Final resolutions and action
+    items circulated as document N453.
+  link: /meetings/21/
+
+- date: 2004-09-10
+  date_precision: day
+  category: meeting
+  title: "22nd plenary meeting — McLean"
+  description: >
+    Hosted by LMI (Mark Crawford) in McLean, Virginia, back-to-back with
+    the ISO 7372 Maintenance Agency meeting and the UN/CEFACT Forum in
+    the Washington D.C. metro area.
+  link: /meetings/22/
+
+- date: 2005-09-23
+  date_precision: day
+  category: meeting
+  title: "23rd plenary meeting — Brussels"
+  description: >
+    Hosted by CEN/ISSS (Alain Dechamps) in Brussels, the Friday before
+    the UN/CEFACT Forum in Lyon.
+  link: /meetings/23/
+
+- date: 2006-03-22
+  date_precision: day
+  category: meeting
+  title: "24th plenary meeting — Vancouver"
+  description: >
+    Hosted by the Treasury Board of Canada (Ed Buchinski) at the Westin
+    Bayshore in Vancouver, within the framework of the 8th UN/CEFACT
+    Forum. Adobe, SAP, and eBusiness Apps co-sponsored.
+  link: /meetings/24/
+
+- date: 2003-01-01
+  date_precision: year
+  category: standard
+  title: "ISO 11180 withdrawn"
+  description: >
+    After systematic review, the 1993 Postal addressing standard is
+    withdrawn.
+  resolution: "244"
+
+# === TRANSITION — 2008 ===
+
+- date: 2008-11-25
+  date_precision: day
+  category: leadership
+  title: "François Vuilleumier steps down as Chair"
+  description: >
+    After ten years leading the committee, Vuilleumier resigns as both
+    Chair and Committee Manager. The secretariat transitions from SNV
+    (Switzerland) to NEN (Netherlands).
+  link: /members/francois-vuilleumier/
+
+- date: 2008-11-25
+  date_precision: day
+  category: leadership
+  title: "Robert Schubenel becomes Chair"
+  description: >
+    Robert Schubenel (GS1) begins a brief tenure as Chair during the
+    NEN (Netherlands) secretariat years.
+  link: /members/robert-schubenel/
+
+- date: 2008-11-26
+  date_precision: day
+  category: meeting
+  title: "25th plenary meeting — Brussels"
+  description: >
+    Hosted by NBN in Brussels. The committee notes with regret the
+    resignation of Mr. Vuilleumier as chair and secretary.
+  link: /meetings/25/
+
+# === STANDARDS — LATE 2000s / EARLY 2010s ===
+
+- date: 2005-01-01
+  date_precision: year
+  category: standard
+  title: "ISO 7372 — Trade data elements directory"
+  description: >
+    The Trade Data Elements Directory (UNTDED) reaches its 2005 edition,
+    maintained jointly with UNECE through the ISO 7372 Maintenance Agency.
+
+- date: 2009-09-25
+  date_precision: day
+  category: liaison
+  title: "Category A liaison with UN/CEFACT"
+  description: >
+    The committee establishes a Category A liaison with UN/CEFACT,
+    disbanding earlier direct liaisons with UN, LAS, AELE, and ICOGRADA
+    in favour of the unified UN/CEFACT channel. Also establishes an
+    A-liaison with IATA.
+  resolution: "298"
+
+- date: 2009-09-25
+  date_precision: day
+  category: meeting
+  title: "26th plenary meeting — Tokyo"
+  description: >
+    First plenary in Japan, hosted by JISC.
+  link: /meetings/26/
+
+- date: 2010-05-04
+  date_precision: day
+  category: meeting
+  title: "27th plenary meeting — Bangkok (cancelled)"
+  description: >
+    Originally planned for Bangkok, hosted by TISI; cancelled and
+    replaced by a virtual conference call on the same date (minutes
+    issued as document N576).
+  link: /meetings/27/
+
+- date: 2010-08-27
+  date_precision: day
+  category: meeting
+  title: "28th plenary meeting — Geneva"
+  description: >
+    Hosted at ISO Central Secretariat, Geneva.
+  link: /meetings/28/
+
+- date: 2011-02-18
+  date_precision: day
+  category: meeting
+  title: "29th plenary meeting — McLean"
+  description: >
+    Hosted by LMI (Delta Pelgrim) in McLean, Virginia, back-to-back
+    with the TDED Joint MA meeting. Called on shorter-than-usual notice
+    (2 months prior).
+  link: /meetings/29/
+
+# === SAC SECRETARIAT ERA — 2014 ===
+
+- date: 2011-06-01
+  date_precision: month
+  category: leadership
+  title: "Klaus-Dieter Naujok becomes Chair"
+  description: >
+    Klaus-Dieter Naujok (DIN, Germany) — long-time convenor of JWG 1 and
+    a principal author of the EDIFACT syntax revision — is appointed Chair.
+  link: /members/klaus-dieter-naujok/
+
+- date: 2011-09-14
+  date_precision: day
+  category: meeting
+  title: "30th plenary meeting — Geneva"
+  description: >
+    Hosted at ISO Central Secretariat, Geneva.
+  link: /meetings/30/
+
+- date: 2012-10-08
+  date_precision: day
+  category: meeting
+  title: "31st plenary meeting — Concord, California"
+  description: >
+    Hosted in the San Francisco Bay Area, strengthening ties with US
+    industry.
+  link: /meetings/31/
+
+- date: 2013-10-21
+  date_precision: day
+  category: meeting
+  title: "32nd plenary meeting — Berlin"
+  description: >
+    Hosted by DIN in Berlin — the committee's third Berlin plenary
+    after the 8th (1987) and 13th (1997).
+  link: /meetings/32/
+
+- date: 2014-01-01
+  date_precision: year
+  category: leadership
+  title: "Secretariat transfers from NEN to SAC"
+  description: >
+    The Standardization Administration of China (SAC) takes over the
+    ISO/TC 154 secretariat, with Jianfang Zhang (SAC/CNIS) as Committee
+    Manager. SAC has held the secretariat continuously since.
+  link: /members/jianfang-zhang/
+
+- date: 2014-03-12
+  date_precision: day
+  category: structure
+  title: "WG 6 — Trusted eCommunications established"
+  description: >
+    TC 154 establishes Working Group 6, "_Trusted eCommunication_," taking
+    on the trusted-communication-platform projects. WG 6 covers
+    legally-binding e-transactions and trusted e-communications across
+    mobile, IoT, and cloud environments.
+  resolution: "02-2014"
+  link: /groups/wg6/
+
+- date: 2014-03-12
+  date_precision: day
+  category: structure
+  title: "WG 3 and WG 4 disbanded"
+  description: >
+    With work items completed, WG 3 (CCTS) and WG 4 (e-documents) are
+    disbanded at the 33rd plenary.
+  resolution: "06-2014"
+
+- date: 2014-10-20
+  date_precision: day
+  category: meeting
+  title: "33rd plenary meeting — Incheon"
+  description: >
+    Hosted by KATS in Incheon, Republic of Korea.
+  link: /meetings/33/
+
+- date: 2015-10-23
+  date_precision: day
+  category: meeting
+  title: "34th plenary meeting — Fully virtual"
+  description: >
+    The committee's first fully virtual plenary, held via WebEx.
+  link: /meetings/34/
+
+- date: 2016-10-17
+  date_precision: day
+  category: meeting
+  title: "35th plenary meeting — Berlin"
+  description: >
+    Hosted by DIN in Berlin — the committee's return to in-person
+    plenaries after the virtual 34th, and the fourth Berlin plenary
+    overall.
+  link: /meetings/35/
+
+# === STANDARDS — ISO 8601 SPLIT ===
+
+- date: 2017-02-01
+  date_precision: month
+  category: leadership
+  title: "Hongru (Judy) Zhu becomes Chair"
+  description: >
+    Hongru (Judy) Zhu (SAC, China) is appointed Chair and convenor of the
+    CAG, becoming the first SAC-affiliated chair of the committee.
+  link: /members/judy-zhu/
+
+- date: 2017-10-27
+  date_precision: day
+  category: meeting
+  title: "36th plenary meeting"
+  description: >
+    25 resolutions adopted — one of the heaviest-resolution plenaries of
+    the decade.
+  link: /meetings/36/
+
+- date: 2016-10-21
+  date_precision: day
+  category: structure
+  title: "WG 7 — Digital Business established"
+  description: >
+    TC 154 creates Working Group 7, "_Business_" (later renamed "_Digital
+    Business_"), and appoints Klaus-Dieter Naujok as its first convenor.
+  resolution: "2016-10"
+  link: /groups/wg7/
+
+- date: 2018-10-08
+  date_precision: day
+  category: meeting
+  title: "37th plenary meeting — Hangzhou"
+  description: >
+    Hosted by SAC in Hangzhou, China. 35 resolutions adopted.
+  link: /meetings/37/
+
+- date: 2018-11-18
+  date_precision: day
+  category: cooperation
+  title: "Business Plan N1001 published"
+  description: >
+    The final 2018 Business Plan (document N1001) is approved by ballot
+    following N993, codifying the committee's vision, three strategies,
+    and three action points through the current term.
+  link: /business-plan/
+
+- date: 2019-02-01
+  date_precision: month
+  category: standard
+  title: "ISO 8601-1 and ISO 8601-2 published"
+  description: >
+    The single-part ISO 8601:2004 is split into two complementary
+    standards. ISO 8601-1 covers fundamental representations;
+    ISO 8601-2 extends them with disambiguated intervals, recurring
+    intervals, and sets.
+
+- date: 2019-10-14
+  date_precision: day
+  category: meeting
+  title: "38th plenary meeting — Luxembourg"
+  description: >
+    Hosted by ILNAS at the University of Luxembourg.
+  link: /meetings/38/
+
+# === PANDEMIC ERA ===
+
+- date: 2020-08-04
+  date_precision: day
+  category: meeting
+  title: "39th plenary meeting — Fully virtual"
+  description: >
+    The committee's first fully virtual plenary, in response to the
+    COVID-19 pandemic. 26 resolutions adopted — record for the era.
+  link: /meetings/39/
+
+- date: 2021-09-02
+  date_precision: day
+  category: meeting
+  title: "40th plenary meeting — Hybrid"
+  description: >
+    The committee returns to a hybrid format.
+  link: /meetings/40/
+
+- date: 2021-11-06
+  date_precision: day
+  category: leadership
+  title: "Shi Yu becomes Chair"
+  description: >
+    Shi Yu (SAC, China) is appointed Chair and convenor of the CAG
+    following Judy Zhu's tenure.
+  link: /members/shi-yu/
+
+- date: 2022-10-13
+  date_precision: day
+  category: meeting
+  title: "41st plenary meeting — Geneva"
+  description: >
+    Hosted in the Palais des Nations, Geneva — the committee's first
+    return to ISO's home city in over a decade.
+  link: /meetings/41/
+
+# === RECENT ERA — STANDARDS & STRUCTURE ===
+
+- date: 2023-10-24
+  date_precision: day
+  category: meeting
+  title: "42nd plenary meeting — Hong Kong"
+  description: >
+    Hosted by ITCHKSAR and CalConnect in Hong Kong SAR, China.
+  link: /meetings/42/
+
+- date: 2024-01-01
+  date_precision: year
+  category: structure
+  title: "WG 2 — Statistics data exchange established"
+  description: >
+    TC 154 establishes Working Group 2 to develop statistics-data-exchange
+    standards. Glenn Tice (BSI) is appointed convenor.
+  resolution: "2024-08"
+  link: /groups/wg2/
+
+- date: 2024-10-21
+  date_precision: day
+  category: meeting
+  title: "43rd plenary meeting — Seongnam (Bundang)"
+  description: >
+    Hosted by KATS with RRA and TTA as co-organizers in Bundang,
+    Republic of Korea. 18 resolutions adopted.
+  link: /meetings/43/
+
+- date: 2025-09-22
+  date_precision: day
+  category: meeting
+  title: "44th plenary meeting — Raleigh"
+  description: >
+    Hosted by OAGi (an A-liaison) and ANSI in Raleigh, North Carolina,
+    United States. Notable as one of the last plenaries with ANSI as a
+    P-member.
+  link: /meetings/44/
+
+- date: 2025-12-31
+  date_precision: year
+  category: structure
+  title: "ANSI and SCC end P-membership"
+  description: >
+    The United States (ANSI) and Canada (SCC) conclude their terms as
+    P-members of ISO/TC 154.
+  link: /national-bodies/?status=former
+
+- date: 2025-11-17
+  date_precision: day
+  category: leadership
+  title: "Shi Yu concludes term as Chair"
+  description: >
+    Shi Yu's term ends after four years leading the committee.
+  link: /members/shi-yu/
+
+- date: 2026-01-20
+  date_precision: month
+  category: leadership
+  title: "Pan Wei becomes Chair"
+  description: >
+    Pan Wei (SAC, China) is appointed Chair and convenor of the CAG.
+  link: /members/pan-wei/
+
+- date: 2026-08-31
+  date_precision: day
+  category: meeting
+  title: "45th plenary meeting — Berlin"
+  description: >
+    The committee returns to Berlin, hosted by DIN — site of the 1997
+    13th plenary.
+  link: /meetings/45/
