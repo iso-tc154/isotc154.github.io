@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { mainNav } from './data/navigation'
 import { committee } from './data/committee'
@@ -9,9 +9,37 @@ import { useSeo } from './composables/useSeo'
 const { isDark, toggle: toggleTheme } = useTheme()
 useSeo()
 const isMobileMenuOpen = ref(false)
+const openSections = ref<Set<string>>(new Set())
 const showScrollTop = ref(false)
 const scrollPercent = ref(0)
 const route = useRoute()
+
+function toggleSection(path: string) {
+  const next = new Set(openSections.value)
+  if (next.has(path)) next.delete(path)
+  else next.add(path)
+  openSections.value = next
+}
+
+function sectionContains(item: { to: string; children?: { to: string }[] }, path: string): boolean {
+  if (path === item.to) return true
+  return item.children?.some((c) => path === c.to || path.startsWith(c.to)) ?? false
+}
+
+watch(
+  () => route.path,
+  (path) => {
+    if (!isMobileMenuOpen.value) {
+      const next = new Set<string>()
+      for (const item of mainNav) {
+        if (item.children?.length && sectionContains(item, path)) next.add(item.to)
+      }
+      openSections.value = next
+    }
+    isMobileMenuOpen.value = false
+  },
+  { immediate: true },
+)
 
 function handleScroll() {
   showScrollTop.value = window.scrollY > 500
@@ -92,15 +120,33 @@ onUnmounted(() => {
 
     <div v-show="isMobileMenuOpen" class="mobile-menu" :class="{ 'mobile-menu--open': isMobileMenuOpen }">
       <template v-for="item in mainNav" :key="item.to">
-        <RouterLink :to="item.to" class="mobile-menu__link" @click="isMobileMenuOpen = false">{{ item.label }}</RouterLink>
+        <div v-if="item.children?.length" class="mobile-menu__group">
+          <button
+            type="button"
+            class="mobile-menu__toggle"
+            :class="{ 'mobile-menu__toggle--open': openSections.has(item.to) }"
+            :aria-expanded="openSections.has(item.to)"
+            @click="toggleSection(item.to)"
+          >
+            <span>{{ item.label }}</span>
+            <svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 8L2 4h8z"/></svg>
+          </button>
+          <div v-show="openSections.has(item.to)" class="mobile-menu__sub">
+            <RouterLink
+              v-for="child in item.children"
+              :key="child.to"
+              :to="child.to"
+              class="mobile-menu__link mobile-menu__link--sub"
+              @click="isMobileMenuOpen = false"
+            >{{ child.label }}</RouterLink>
+          </div>
+        </div>
         <RouterLink
-          v-for="child in item.children ?? []"
-          :key="child.to"
-          :to="child.to"
+          v-else
+          :to="item.to"
           class="mobile-menu__link"
-          style="padding-left: 2rem; font-size: 0.9375rem;"
           @click="isMobileMenuOpen = false"
-        >{{ child.label }}</RouterLink>
+        >{{ item.label }}</RouterLink>
       </template>
       <span class="mobile-menu__section-title">External Links</span>
       <a :href="committee.links.isoCommittee" target="_blank" rel="noopener noreferrer" class="mobile-menu__link">ISO Committee</a>
