@@ -140,7 +140,7 @@ function resolutionCount(ev: PlenaryEvent): number {
 .upcoming-card__ordinal {
   font-family: var(--font-serif);
   font-size: 3rem; font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   line-height: 1; flex-shrink: 0;
 }
 .upcoming-card__body { flex: 1; min-width: 0; }
@@ -182,7 +182,7 @@ function resolutionCount(ev: PlenaryEvent): number {
 .past-row__year {
   font-family: var(--font-serif);
   font-size: 1.25rem; font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
 .past-row__ordinal { font-size: 0.9375rem; font-weight: 600; color: #1c1917; }
 .dark .past-row__ordinal { color: #fafaf9; }

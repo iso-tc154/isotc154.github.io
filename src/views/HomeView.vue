@@ -106,8 +106,14 @@ onMounted(() => {
       </p>
 
       <h1 class="hero__title">
-        The syntax of
-        <span class="hero__title-accent">international commerce</span>.
+        We write the syntax of
+        <span class="hero__title-cycle" aria-roledescription="rotating tagline">
+          <span class="hero__title-accent" style="--i: 0;">international commerce</span>
+          <span class="hero__title-accent" style="--i: 1;">electronic interchange</span>
+          <span class="hero__title-accent" style="--i: 2;">interoperable systems</span>
+          <span class="hero__title-accent" style="--i: 3;">cross-border payments</span>
+          <span class="hero__title-accent" style="--i: 4;">every transaction</span>
+        </span>.
       </h1>
 
       <p class="hero__lead">
@@ -220,13 +226,13 @@ onMounted(() => {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 2.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.dark .hero__eyebrow { color: #f87171; }
+.dark .hero__eyebrow { color: #94b6e8; }
 .hero__eyebrow-rule {
   display: inline-block;
   width: 2.5rem;
@@ -248,10 +254,47 @@ onMounted(() => {
 .hero__title-accent {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
 }
-.dark .hero__title-accent { color: #f87171; }
+.dark .hero__title-accent { color: #94b6e8; }
+
+.hero__title-cycle {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  min-width: 11ch;
+}
+.hero__title-cycle::before {
+  content: "electronic interchange";
+  visibility: hidden;
+  white-space: nowrap;
+  font-style: italic;
+  font-weight: 400;
+}
+.hero__title-cycle .hero__title-accent {
+  position: absolute;
+  inset: 0;
+  white-space: nowrap;
+  opacity: 0;
+  animation: hero-cycle 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: calc(var(--i) * 2.4s);
+}
+@keyframes hero-cycle {
+  0% { opacity: 0; transform: translateY(0.18em); }
+  3%, 17% { opacity: 1; transform: translateY(0); }
+  20%, 100% { opacity: 0; transform: translateY(-0.18em); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__title-cycle .hero__title-accent {
+    position: static;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .hero__title-cycle .hero__title-accent:not(:first-child) { display: none; }
+  .hero__title-cycle::before { display: none; }
+}
 
 .hero__lead {
   font-family: var(--font-sans);
@@ -300,11 +343,11 @@ onMounted(() => {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-.dark .hero__standard-num { color: #f87171; }
+.dark .hero__standard-num { color: #94b6e8; }
 .hero__standard-body {
   margin: 0;
   display: flex;
@@ -347,13 +390,13 @@ onMounted(() => {
   transition: all 0.2s;
 }
 .hero__cta--primary {
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   color: #fff;
-  border: 1px solid var(--color-iso-red);
+  border: 1px solid var(--color-brand);
 }
 .hero__cta--primary:hover {
-  background: #991b1b;
-  border-color: #991b1b;
+  background: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
   transform: translateY(-1px);
 }
 .hero__cta--primary span {
@@ -422,11 +465,11 @@ onMounted(() => {
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   font-variant-numeric: tabular-nums;
   font-variation-settings: 'opsz' 144;
 }
-.dark .stats__value { color: #f87171; }
+.dark .stats__value { color: #94b6e8; }
 .stats__label {
   font-family: var(--font-sans);
   font-size: 0.75rem;
@@ -482,9 +525,9 @@ onMounted(() => {
 .sections__title-accent {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
-.dark .sections__title-accent { color: #f87171; }
+.dark .sections__title-accent { color: #94b6e8; }
 
 .sections__list {
   list-style: none;
@@ -519,7 +562,7 @@ onMounted(() => {
   top: 0;
   bottom: 0;
   width: 0;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   transition: width 0.2s;
 }
 .section-card:hover { background: rgb(185 28 28 / 0.03); }
@@ -537,11 +580,11 @@ onMounted(() => {
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   font-variant-numeric: tabular-nums;
   padding-top: 0.375rem;
 }
-.dark .section-card__n { color: #f87171; }
+.dark .section-card__n { color: #94b6e8; }
 
 .section-card__body {
   display: flex;
@@ -575,9 +618,9 @@ onMounted(() => {
   transition: transform 0.2s, color 0.2s;
 }
 .section-card:hover .section-card__arrow {
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   transform: translateX(4px);
 }
 .dark .section-card__arrow { color: #a8a29e; }
-.dark .section-card:hover .section-card__arrow { color: #f87171; }
+.dark .section-card:hover .section-card__arrow { color: #94b6e8; }
 </style>

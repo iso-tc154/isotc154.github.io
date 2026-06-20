@@ -446,12 +446,12 @@ function ordinalSuffix(n: number): string {
   display: inline-flex; align-items: center; gap: 0.625rem;
   font-size: 0.75rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.12em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 1rem;
 }
 .hero__eyebrow-dot {
   width: 0.5rem; height: 0.5rem; border-radius: 50%;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   box-shadow: 0 0 0 4px rgb(185 28 28 / 0.15);
   animation: pulse 2.4s ease-in-out infinite;
 }
@@ -513,7 +513,7 @@ function ordinalSuffix(n: number): string {
   font-family: var(--font-serif);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   line-height: 1;
   margin: 0 0 0.375rem;
   order: 1;
@@ -565,7 +565,7 @@ function ordinalSuffix(n: number): string {
 }
 .filters__search input:focus {
   outline: none;
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
   background: #fff;
   box-shadow: 0 0 0 3px rgb(185 28 28 / 0.12);
 }
@@ -573,7 +573,7 @@ function ordinalSuffix(n: number): string {
   background: #1c1917; border-color: #57534e; color: #fafaf9;
 }
 .dark .filters__search input:focus {
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
   background: #1c1917;
 }
 .filters__chips {
@@ -602,17 +602,17 @@ function ordinalSuffix(n: number): string {
   transition: all 0.15s;
 }
 .chip:hover {
-  border-color: var(--color-iso-red);
-  color: var(--color-iso-red);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
 }
 .chip--active {
-  background: var(--color-iso-red);
-  border-color: var(--color-iso-red);
+  background: var(--color-brand);
+  border-color: var(--color-brand);
   color: #fff;
 }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: var(--color-iso-red); color: #ff6b73; }
-.dark .chip--active { background: var(--color-iso-red); border-color: var(--color-iso-red); color: #fff; }
+.dark .chip:hover { border-color: var(--color-brand); color: #94b6e8; }
+.dark .chip--active { background: var(--color-brand); border-color: var(--color-brand); color: #fff; }
 
 .filters__meta {
   display: flex; justify-content: space-between; align-items: center;
@@ -626,7 +626,7 @@ function ordinalSuffix(n: number): string {
   font-family: inherit;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   cursor: pointer;
 }
 .filters__clear:hover { text-decoration: underline; }
@@ -648,7 +648,7 @@ function ordinalSuffix(n: number): string {
   margin-top: 1rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   color: #fff;
   border: 0;
   border-radius: 0.375rem;
@@ -708,7 +708,7 @@ function ordinalSuffix(n: number): string {
 }
 .dark .entry { border-bottom-color: #292524; }
 .dark .entry:hover, .dark .entry:focus-visible { background: rgb(185 28 28 / 0.07); }
-.entry:focus-visible { box-shadow: inset 3px 0 0 var(--color-iso-red); }
+.entry:focus-visible { box-shadow: inset 3px 0 0 var(--color-brand); }
 .entry:last-child { border-bottom: 0; }
 
 .entry--cancelled { opacity: 0.65; }
@@ -737,12 +737,12 @@ function ordinalSuffix(n: number): string {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.5rem;
 }
 .upcoming__pulse {
   width: 0.5rem; height: 0.5rem; border-radius: 50%;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   box-shadow: 0 0 0 0 rgb(185 28 28 / 0.6);
   animation: upcoming-pulse 2s infinite;
 }
@@ -799,7 +799,7 @@ function ordinalSuffix(n: number): string {
 }
 .ucard:hover, .ucard:focus-visible {
   transform: translateY(-1px);
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
   box-shadow: 0 12px 24px -12px rgb(185 28 28 / 0.3);
 }
 .ucard:focus-visible { box-shadow: 0 0 0 3px rgb(185 28 28 / 0.25); }
@@ -808,7 +808,7 @@ function ordinalSuffix(n: number): string {
 .ucard__rail {
   width: 4px;
   align-self: stretch;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   border-radius: 2px;
 }
 
@@ -821,7 +821,7 @@ function ordinalSuffix(n: number): string {
   font-family: var(--font-serif);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   line-height: 1;
   letter-spacing: -0.025em;
 }
@@ -873,13 +873,13 @@ function ordinalSuffix(n: number): string {
   padding: 0.1875rem 0.625rem;
   font-size: 0.75rem; font-weight: 700;
   border-radius: 9999px;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 .chip-status--open { background: #16a34a; }
-.chip-status--confirmed { background: var(--color-iso-red); }
+.chip-status--confirmed { background: var(--color-brand); }
 .chip-status--scheduled { background: #0369a1; }
 .chip-status--tentative { background: #b45309; }
 .chip-status--cancelled { background: #57534e; }
@@ -895,7 +895,7 @@ function ordinalSuffix(n: number): string {
 .chip-meta--outline {
   background: transparent;
   border: 1px solid rgb(185 28 28 / 0.4);
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
 .dark .chip-meta--outline { border-color: rgb(185 28 28 / 0.5); }
 
@@ -903,7 +903,7 @@ function ordinalSuffix(n: number): string {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   white-space: nowrap;
 }
 
@@ -957,7 +957,7 @@ function ordinalSuffix(n: number): string {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -1029,7 +1029,7 @@ function ordinalSuffix(n: number): string {
 }
 .dark .badge { background: #292524; color: #d6d3d1; }
 .badge--concluded { background: #f5f5f4; color: #78716c; }
-.badge--upcoming { background: var(--color-iso-red); color: #fff; }
+.badge--upcoming { background: var(--color-brand); color: #fff; }
 .badge--cancelled { background: #fee2e2; color: #991b1b; }
 .dark .badge--cancelled { background: rgb(185 28 28 / 0.2); color: #fca5a5; }
 .badge--type {
@@ -1043,8 +1043,8 @@ function ordinalSuffix(n: number): string {
 }
 .dark .badge--res { background: rgb(34 197 94 / 0.2); color: #86efac; }
 .badge--rich {
-  background: #fff; border: 1px solid var(--color-iso-red);
-  color: var(--color-iso-red);
+  background: #fff; border: 1px solid var(--color-brand);
+  color: var(--color-brand);
 }
 .dark .badge--rich { background: rgb(15 23 42 / 0.5); }
 
@@ -1055,7 +1055,7 @@ function ordinalSuffix(n: number): string {
   transition: transform 0.2s, color 0.2s;
 }
 .entry:hover .entry__arrow {
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   transform: translateX(4px);
 }
 

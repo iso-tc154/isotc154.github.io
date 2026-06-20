@@ -564,7 +564,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .md__hero--upcoming {
   background:
     radial-gradient(ellipse at top right, rgb(30 58 138 / 0.45), transparent 60%),
-    linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 60%, #b91c1c 140%);
+    linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 60%, #3b82f6 140%);
 }
 .md__hero--cancelled {
   background: linear-gradient(135deg, #44403c 0%, #1c1917 100%);
@@ -664,7 +664,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   backdrop-filter: blur(6px);
 }
 .pill--cancelled { background: rgba(0, 0, 0, 0.4); }
-.pill--upcoming { background: #fff; color: var(--color-iso-red); }
+.pill--upcoming { background: #fff; color: var(--color-brand); }
 .pill--concluded { background: rgba(255, 255, 255, 0.15); }
 .pill--meta, .pill--res { background: rgba(255, 255, 255, 0.12); }
 
@@ -724,7 +724,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   border-radius: 0.25rem;
   display: inline-flex;
 }
-.urn-bar__copy:hover { color: var(--color-iso-red); background: rgb(185 28 28 / 0.08); }
+.urn-bar__copy:hover { color: var(--color-brand); background: rgb(185 28 28 / 0.08); }
 
 /* ALERTS */
 .alert {
@@ -897,7 +897,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   width: 3rem;
   height: 3rem;
   border-radius: 0.375rem;
-  background: linear-gradient(135deg, var(--color-iso-red), var(--color-amber-warm, #b45309));
+  background: linear-gradient(135deg, var(--color-brand), var(--color-amber-warm, #b45309));
   color: #fff;
   font-family: var(--font-serif);
   font-weight: 700;
@@ -1046,7 +1046,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   background: #fafaf9;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
-  border-left: 3px solid var(--color-iso-red);
+  border-left: 3px solid var(--color-brand);
 }
 .dark .secretary-card { background: #292524; }
 .secretary-card__name { font-weight: 700; margin: 0 0 0.125rem; color: #1c1917; }
@@ -1063,7 +1063,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .schedule__date {
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.5rem;
 }
 .schedule__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
@@ -1177,7 +1177,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   font-family: var(--font-serif);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   letter-spacing: -0.01em;
 }
 .deadlines__label { font-weight: 600; margin: 0; color: #1c1917; }
@@ -1228,13 +1228,13 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 }
 .dark .res-card { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
 .res-card:hover {
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
   box-shadow: 0 4px 12px rgb(185 28 28 / 0.08);
   transform: translateY(-1px);
 }
 .dark .res-card:hover { box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
 .res-card__head { display: flex; align-items: baseline; gap: 0.5rem; }
-.res-card__id { font-family: ui-monospace, monospace; font-size: 0.8125rem; font-weight: 700; color: var(--color-iso-red); }
+.res-card__id { font-family: ui-monospace, monospace; font-size: 0.8125rem; font-weight: 700; color: var(--color-brand); }
 .res-card__kind {
   font-size: 0.6875rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.06em;
@@ -1255,8 +1255,8 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   line-height: 1.4;
 }
 .dark .res-card__title { color: #fafaf9; }
-.res-card:hover .res-card__title { color: var(--color-iso-red); }
-.dark .res-card:hover .res-card__title { color: #ff6b73; }
+.res-card:hover .res-card__title { color: var(--color-brand); }
+.dark .res-card:hover .res-card__title { color: #94b6e8; }
 .res-card__snippet {
   grid-column: 1 / -1;
   margin: 0;
@@ -1287,7 +1287,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   align-self: center;
   transition: transform 0.15s, color 0.15s;
 }
-.res-card:hover .res-card__arrow { color: var(--color-iso-red); transform: translateX(2px); }
+.res-card:hover .res-card__arrow { color: var(--color-brand); transform: translateX(2px); }
 
 @media (max-width: 640px) {
   .md__hero-stats { grid-template-columns: 1fr 1fr; }

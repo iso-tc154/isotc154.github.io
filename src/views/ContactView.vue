@@ -133,7 +133,7 @@ const committeeUrl = 'https://www.iso.org/committee/53186.html'
   padding: 1.5rem;
   background: #fafaf9;
   border-radius: 0.5rem;
-  border-left: 3px solid var(--color-iso-red);
+  border-left: 3px solid var(--color-brand);
 }
 .dark .secretariat {
   background: #292524;

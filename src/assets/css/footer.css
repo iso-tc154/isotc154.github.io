@@ -116,7 +116,7 @@
   }
   .site-footer__icon-link svg { width: 1rem; height: 1rem; }
   .site-footer__icon-link:hover {
-    background: var(--color-iso-red);
+    background: var(--color-brand);
     color: #fff;
     transform: translateY(-1px);
   }
@@ -125,7 +125,7 @@
     color: #d6d3d1;
   }
   .dark .site-footer__icon-link:hover {
-    background: var(--color-iso-red);
+    background: var(--color-brand);
     color: #fff;
   }
 

@@ -323,9 +323,9 @@ function primaryRoleLabel(m: Member): string {
 }
 .dark .card:hover { border-color: #5379bf; box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
 .card--chair {
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
 }
-.dark .card--chair { border-color: var(--color-iso-red); }
+.dark .card--chair { border-color: var(--color-brand); }
 .card--deceased { opacity: 0.85; }
 
 .card__avatar {
@@ -367,7 +367,7 @@ function primaryRoleLabel(m: Member): string {
   background: #f5f5f4; color: #57534e;
 }
 .dark .tag { background: #292524; color: #d6d3d1; }
-.tag--chair { background: var(--color-iso-red); color: #fff; }
+.tag--chair { background: var(--color-brand); color: #fff; }
 .tag--leadership { background: #fef3c7; color: #92400e; }
 .dark .tag--leadership { background: rgb(245 158 11 / 0.2); color: #fcd34d; }
 .tag--deceased { background: #e7e5e4; color: #57534e; font-style: italic; text-transform: none; }

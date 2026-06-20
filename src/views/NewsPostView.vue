@@ -62,7 +62,7 @@ const title = computed(() => {
 .dark .post__header { border-bottom-color: #292524; }
 .post__date {
   font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--color-iso-red);
+  letter-spacing: 0.08em; color: var(--color-brand);
   margin: 0 0 0.625rem;
 }
 .post__title {

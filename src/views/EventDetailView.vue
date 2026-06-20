@@ -355,7 +355,7 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
   max-width: 56rem; margin: 0 auto; padding: 0 0 4rem;
 }
 .event-detail__hero {
-  background: linear-gradient(135deg, var(--color-iso-red) 0%, #b0000b 100%);
+  background: linear-gradient(135deg, var(--color-brand) 0%, #b0000b 100%);
   color: #fff;
   padding: 3rem 1.5rem 2.5rem;
 }
@@ -433,7 +433,7 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 
 .secretary-card {
   background: #fafaf9; padding: 1rem 1.25rem;
-  border-radius: 0.5rem; border-left: 3px solid var(--color-iso-red);
+  border-radius: 0.5rem; border-left: 3px solid var(--color-brand);
 }
 .dark .secretary-card { background: #292524; }
 .secretary-card__name { font-weight: 700; margin: 0 0 0.125rem; color: #1c1917; }
@@ -449,7 +449,7 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 .schedule__date {
   font-size: 0.875rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.5rem;
 }
 .schedule__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
@@ -505,10 +505,10 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 .practical__label {
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.5rem;
 }
-.dark .practical__label { color: #ff6b73; }
+.dark .practical__label { color: #94b6e8; }
 .practical__scalar {
   margin: 0;
   color: #44403c;
@@ -563,7 +563,7 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 .deadlines__date {
   font-family: ui-monospace, monospace;
   font-size: 0.875rem;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   font-weight: 600;
 }
 .deadlines__label { font-weight: 600; margin: 0; color: #1c1917; }

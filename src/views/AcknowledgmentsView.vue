@@ -110,7 +110,7 @@ function memberUrl(name: string): string | null {
 .acks__standard {
   font-family: var(--font-serif);
   font-size: 1.25rem; font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.75rem;
   padding-bottom: 0.375rem;
   border-bottom: 1px solid #e7e5e4;

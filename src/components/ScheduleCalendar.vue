@@ -371,7 +371,7 @@ function shouldShowAsCalendar(): boolean {
   font-family: ui-monospace, monospace;
 }
 .dark .cal__context { color: #a8a29e; }
-.cal__venue { color: var(--color-iso-red); font-weight: 600; }
+.cal__venue { color: var(--color-brand); font-weight: 600; }
 .cal__sep { margin: 0 0.5rem; opacity: 0.5; }
 
 .cal__legend {
@@ -464,7 +464,7 @@ function shouldShowAsCalendar(): boolean {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
 .cal__day-date {
   font-family: var(--font-serif);
@@ -567,7 +567,7 @@ function shouldShowAsCalendar(): boolean {
   background: #fafaf9;
   border-radius: 0.5rem;
   padding: 0.875rem 1rem;
-  border-left: 3px solid var(--color-iso-red);
+  border-left: 3px solid var(--color-brand);
 }
 .dark .mini-day { background: #292524; }
 .mini-day__label {
@@ -581,7 +581,7 @@ function shouldShowAsCalendar(): boolean {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
 .mini-day__date {
   font-family: var(--font-serif);
@@ -645,7 +645,7 @@ function shouldShowAsCalendar(): boolean {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--color-iso-red);
+    color: var(--color-brand);
   }
   .cal__mobile-date {
     font-family: var(--font-serif);

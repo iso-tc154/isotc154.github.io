@@ -98,7 +98,7 @@ function postCategories(post: typeof posts.value[number]): string[] {
 .year-section__heading {
   font-family: var(--font-serif);
   font-size: 1.5rem; font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #e7e5e4;
@@ -132,7 +132,7 @@ function postCategories(post: typeof posts.value[number]): string[] {
 .post-card__date {
   font-size: 0.75rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.375rem;
 }
 .post-card__title {

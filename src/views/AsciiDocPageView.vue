@@ -148,7 +148,7 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
 .prose :deep(.business-plan-cta) {
   margin: 1.25rem 0 1.75rem;
   padding: 1.25rem 1.5rem;
-  border-left: 4px solid var(--color-iso-red);
+  border-left: 4px solid var(--color-brand);
   background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -156,13 +156,13 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
 }
 .dark .prose :deep(.business-plan-cta) {
   background: linear-gradient(135deg, rgb(185 28 28 / 0.08) 0%, rgb(15 23 42 / 0.5) 100%);
-  border-left-color: var(--color-iso-red);
+  border-left-color: var(--color-brand);
 }
 .prose :deep(.business-plan-cta a) {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   text-decoration: none;
   font-weight: 700;
 }
@@ -171,7 +171,7 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
   display: inline-block;
   font-size: 0.875rem;
 }
-.dark .prose :deep(.business-plan-cta a) { color: #ff6b73; }
+.dark .prose :deep(.business-plan-cta a) { color: #94b6e8; }
 .prose :deep(.business-plan-cta a:hover) { text-decoration: underline; }
 
 .loading { color: #78716c; padding: 4rem 0; text-align: center; }

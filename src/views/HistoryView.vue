@@ -42,7 +42,7 @@ const filtered = computed<HistoryMilestone[]>(() => {
   const list = selected.value === 'all'
     ? history.value
     : history.value.filter(h => h.category === selected.value)
-  return [...list].sort((a, b) => a.date.localeCompare(b.date))
+  return [...list].sort((a, b) => b.date.localeCompare(a.date))
 })
 
 const decades = computed(() => {
@@ -121,8 +121,9 @@ onMounted(() => {
         <span class="hero__title-accent">standardising trade data</span>
       </h1>
       <p class="hero__lead">
-        A curated record of the committee's milestones — from its 1972 founding,
-        through the EDIFACT era and the ISO 8601 split, to the present day.
+        A curated record of the committee's milestones — from the most recent
+        decisions back through the EDIFACT era and the ISO 8601 split, to its
+        1972 founding.
       </p>
       <dl class="hero__stats">
         <div><dt>{{ stats.years }}</dt><dd>distinct years</dd></div>
@@ -224,7 +225,7 @@ onMounted(() => {
 .progress__bar {
   height: 100%;
   width: var(--p, 0%);
-  background: linear-gradient(90deg, var(--color-iso-red), #fbbf24);
+  background: linear-gradient(90deg, var(--color-brand), #3b82f6);
   transition: width 0.1s linear;
 }
 
@@ -274,11 +275,11 @@ onMounted(() => {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 1rem;
   font-family: var(--font-sans);
 }
-.dark .hero__eyebrow { color: #f87171; }
+.dark .hero__eyebrow { color: #94b6e8; }
 
 .hero__title {
   font-family: var(--font-serif);
@@ -294,9 +295,9 @@ onMounted(() => {
 .hero__title-accent {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
-.dark .hero__title-accent { color: #f87171; }
+.dark .hero__title-accent { color: #94b6e8; }
 
 .hero__lead {
   font-size: 1.0625rem;
@@ -320,11 +321,11 @@ onMounted(() => {
   font-family: var(--font-serif);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   letter-spacing: -0.02em;
   line-height: 1;
 }
-.dark .hero__stats dt { color: #f87171; }
+.dark .hero__stats dt { color: #94b6e8; }
 .hero__stats dd {
   margin: 0;
   font-size: 0.75rem;
@@ -360,16 +361,16 @@ onMounted(() => {
   cursor: pointer;
   transition: all 0.15s;
 }
-.chip:hover { border-color: var(--color-iso-red); color: var(--color-iso-red); }
+.chip:hover { border-color: var(--color-brand); color: var(--color-brand); }
 .dark .chip { background: #1c1917; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #f87171; color: #f87171; }
-.chip--active { background: var(--color-iso-red); border-color: var(--color-iso-red); color: #fff; }
+.dark .chip:hover { border-color: #94b6e8; color: #94b6e8; }
+.chip--active { background: var(--color-brand); border-color: var(--color-brand); color: #fff; }
 .chip--active:hover { color: #fff; }
-.dark .chip--active { background: #b91c1c; border-color: #b91c1c; color: #fff; }
+.dark .chip--active { background: var(--color-brand); border-color: var(--color-brand); color: #fff; }
 
 .chip--cat.chip--active {
-  background: var(--cat-color, #b91c1c);
-  border-color: var(--cat-color, #b91c1c);
+  background: var(--cat-color, var(--color-brand));
+  border-color: var(--cat-color, var(--color-brand));
 }
 .chip__dot {
   width: 0.5rem;
@@ -442,13 +443,13 @@ onMounted(() => {
 .decade__suffix {
   font-size: clamp(1rem, 4vw, 1.25rem);
   font-style: italic;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin-top: 0.375rem;
 }
 @media (min-width: 640px) {
   .decade__suffix { font-size: clamp(1.25rem, 2.4vw, 2rem); margin-top: 0.5rem; }
 }
-.dark .decade__suffix { color: #f87171; }
+.dark .decade__suffix { color: #94b6e8; }
 
 .decade__events {
   list-style: none;
@@ -481,11 +482,11 @@ onMounted(() => {
   width: 0.875rem;
   height: 0.875rem;
   border-radius: 50%;
-  background: var(--cat-color, #b91c1c);
+  background: var(--cat-color, var(--color-brand));
   border: 3px solid #fafaf9;
   margin-left: -0.5rem;
   margin-top: 0.375rem;
-  box-shadow: 0 0 0 2px var(--cat-color, #b91c1c);
+  box-shadow: 0 0 0 2px var(--cat-color, var(--color-brand));
   z-index: 2;
   position: relative;
 }
@@ -496,14 +497,14 @@ onMounted(() => {
   top: 1.25rem;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, var(--cat-color, #b91c1c), transparent);
+  background: linear-gradient(to bottom, var(--cat-color, var(--color-brand)), transparent);
   opacity: 0.3;
 }
 
 .event__card {
   background: #fff;
   border: 1px solid #e7e5e4;
-  border-left: 3px solid var(--cat-color, #b91c1c);
+  border-left: 3px solid var(--cat-color, var(--color-brand));
   border-radius: 0.5rem;
   padding: 1rem 1.25rem;
   transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
@@ -511,7 +512,7 @@ onMounted(() => {
 .dark .event__card {
   background: rgb(15 23 42 / 0.45);
   border-color: #44403c;
-  border-left-color: var(--cat-color, #b91c1c);
+  border-left-color: var(--cat-color, var(--color-brand));
 }
 .event__card:hover {
   box-shadow: 0 6px 20px rgb(0 0 0 / 0.07);
@@ -532,7 +533,7 @@ onMounted(() => {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--cat-color, #b91c1c);
+  color: var(--cat-color, var(--color-brand));
 }
 .event__cat {
   font-size: 0.625rem;
@@ -557,7 +558,7 @@ onMounted(() => {
   letter-spacing: -0.012em;
 }
 .dark .event__title { color: #fafaf9; }
-.event__title-link:hover .event__title { color: var(--cat-color, #b91c1c); }
+.event__title-link:hover .event__title { color: var(--cat-color, var(--color-brand)); }
 
 .event__desc {
   font-size: 0.9375rem;
@@ -577,7 +578,7 @@ onMounted(() => {
 .event__more, .event__res {
   text-decoration: none;
   font-weight: 600;
-  color: var(--cat-color, #b91c1c);
+  color: var(--cat-color, var(--color-brand));
   border-bottom: 1px solid transparent;
   transition: border-color 0.15s;
 }
@@ -628,9 +629,9 @@ onMounted(() => {
   border-bottom: 1px solid transparent;
   transition: border-color 0.15s;
 }
-.eras__link:hover { border-bottom-color: var(--color-iso-red); color: var(--color-iso-red); }
+.eras__link:hover { border-bottom-color: var(--color-brand); color: var(--color-brand); }
 .dark .eras__link { color: #fafaf9; }
-.dark .eras__link:hover { color: #f87171; border-bottom-color: #f87171; }
+.dark .eras__link:hover { color: #94b6e8; border-bottom-color: #94b6e8; }
 .eras__count {
   font-family: var(--font-sans);
   font-size: 0.625rem;

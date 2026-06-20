@@ -236,7 +236,7 @@ onUnmounted(() => {
   top: 0; left: 0;
   width: var(--progress);
   height: 3px;
-  background: linear-gradient(90deg, #1e3a8a, #b91c1c);
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6);
   z-index: 100;
   transition: width 0.1s linear;
 }

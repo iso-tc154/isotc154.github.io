@@ -54,7 +54,7 @@ const suggestions = [
   font-weight: 700;
   margin: 0;
   line-height: 1;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   letter-spacing: -0.04em;
 }
 .not-found__title {

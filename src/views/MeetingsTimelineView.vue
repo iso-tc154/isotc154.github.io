@@ -377,9 +377,9 @@ watch([searchQuery, selectedYear, selectedCountry], () => {
   justify-self: center;
   display: block;
   border-radius: 50%;
-  background: var(--color-iso-red, var(--color-blue-accent));
+  background: var(--color-brand);
   border: 2px solid var(--bg-surface, white);
-  box-shadow: 0 0 0 1px var(--color-iso-red, var(--color-blue-accent));
+  box-shadow: 0 0 0 1px var(--color-brand);
   z-index: 1;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -467,7 +467,7 @@ watch([searchQuery, selectedYear, selectedCountry], () => {
 .timeline-entry:focus-visible .timeline-arrow {
   opacity: 1;
   transform: translateX(0);
-  color: var(--color-iso-red, var(--color-blue-accent));
+  color: var(--color-brand);
 }
 
 @media (max-width: 640px) {
