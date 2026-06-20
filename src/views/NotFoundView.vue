@@ -79,7 +79,7 @@ const suggestions = [
   margin: 0 0 2.5rem;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
   gap: 0.75rem;
   text-align: left;
 }

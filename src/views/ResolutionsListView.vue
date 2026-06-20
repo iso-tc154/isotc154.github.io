@@ -587,6 +587,9 @@ watch([searchQuery, selectedYear, sortOrder], () => {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   -webkit-appearance: none;
 }
+@media (max-width: 640px) {
+  .hero-search-input { padding-right: 1.25rem; font-size: 1rem; }
+}
 .dark .hero-search-input {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(15, 23, 42, 0.6);
@@ -614,6 +617,9 @@ watch([searchQuery, selectedYear, sortOrder], () => {
   font-size: 0.75rem;
   color: #78716c;
   pointer-events: none;
+}
+@media (max-width: 640px) {
+  .hero-search-hint { display: none; }
 }
 .hero-search-hint kbd {
   display: inline-flex;
@@ -828,6 +834,7 @@ watch([searchQuery, selectedYear, sortOrder], () => {
   padding-top: 0.75rem;
   margin-top: 0.5rem;
   border-top: 1px solid var(--color-slate-100);
+  flex-wrap: wrap;
 }
 .dark .std-filter__meta { border-top-color: var(--color-slate-800); }
 .std-filter__meta > span:first-child {
@@ -1087,7 +1094,7 @@ watch([searchQuery, selectedYear, sortOrder], () => {
 .loading-container { padding: 2.5rem 0; width: 100%; }
 .skeleton-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 0.75rem;
 }
 .skeleton-card {

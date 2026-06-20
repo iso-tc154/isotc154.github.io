@@ -157,9 +157,13 @@
   }
   .std-page__body pre code { background: none; padding: 0; color: inherit; }
   .std-page__body table {
+    display: block;
+    overflow-x: auto;
     width: 100%;
+    max-width: 100%;
     border-collapse: collapse;
     margin: 1rem 0;
+    -webkit-overflow-scrolling: touch;
   }
   .std-page__body th, .std-page__body td {
     padding: 0.625rem 0.875rem;

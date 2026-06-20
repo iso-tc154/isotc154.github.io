@@ -850,7 +850,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 /* HOST CARDS */
 .host-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
   gap: 0.75rem;
 }
 .host-grid__plain { margin: 0; color: #57534e; font-size: 1rem; }
@@ -934,7 +934,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
   gap: 0.5rem;
 }
 .assoc {
@@ -1085,7 +1085,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 /* LISTS */
 .list-card {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
   gap: 0.625rem;
 }
 .list-card__item {
@@ -1132,7 +1132,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 
 /* PRACTICAL */
 .practical {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
   gap: 0.625rem;
 }
 .practical__entry {
