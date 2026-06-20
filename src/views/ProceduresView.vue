@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import { usePages } from '../composables/usePages'
+import PageHero from '../components/PageHero.vue'
 
 const { pages, isLoaded, loadData } = usePages()
 
@@ -11,14 +12,16 @@ const procedures = computed(() => pages.value.filter(p => p.slug.startsWith('/pr
 
 <template>
   <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154</p>
-      <h1 class="page__title">Procedures</h1>
-      <p class="page__lead">
-        Operating procedures and submission processes used by ISO/TC 154
-        and its working groups.
-      </p>
-    </header>
+    <PageHero
+      variant="article"
+      eyebrow="ISO/TC 154"
+      title="Procedures"
+      lead="Operating procedures and submission processes used by ISO/TC 154 and its working groups."
+    >
+      <dl class="page__stats" v-if="procedures.length">
+        <div><dt>{{ procedures.length }}</dt><dd>documents</dd></div>
+      </dl>
+    </PageHero>
 
     <div v-if="!isLoaded" class="loading">Loading…</div>
 
@@ -39,26 +42,6 @@ const procedures = computed(() => pages.value.filter(p => p.slug.startsWith('/pr
 
 <style scoped>
 .page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__eyebrow {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin: 0 0 1rem;
-  letter-spacing: -0.02em;
-  color: #1c1917;
-}
-.dark .page__title { color: #fafaf9; }
-.page__lead {
-  font-size: 1.0625rem; line-height: 1.65; color: #57534e;
-  max-width: 48rem; margin: 0 0 3rem;
-}
-.dark .page__lead { color: #d6d3d1; }
 
 .procedure-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .procedure-card {
@@ -69,7 +52,7 @@ const procedures = computed(() => pages.value.filter(p => p.slug.startsWith('/pr
 }
 .dark .procedure-card { background: #292524; border-color: #44403c; }
 .procedure-card:hover {
-  border-color: var(--color-blue-accent);
+  border-color: var(--color-brand);
   transform: translateY(-1px);
 }
 .procedure-card__link {

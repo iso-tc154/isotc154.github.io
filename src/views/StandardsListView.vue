@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
 import { standardStatusLabel, type Standard } from '../types/standard'
+import PageHero from '../components/PageHero.vue'
 
 const { standards, isLoaded, loadData } = useStandards()
 const { loadData: loadGroups, get: getGroup } = useGroups()
@@ -86,14 +87,18 @@ function publicationYear(s: Standard): string {
 
 <template>
   <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154 Deliverables</p>
-      <h1>Standards</h1>
-      <p class="page__lead">
-        Published International Standards, Technical Specifications, Technical Reports,
-        and standards under development by ISO/TC 154.
-      </p>
-    </header>
+    <PageHero
+      variant="index"
+      eyebrow="ISO/TC 154 Deliverables"
+      title="Standards"
+      lead="Published International Standards, Technical Specifications, Technical Reports, and standards under development by ISO/TC 154."
+    >
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ standards.length }}</dt><dd>total</dd></div>
+        <div><dt>{{ availableStatuses.length }}</dt><dd>statuses</dd></div>
+        <div><dt>{{ availableTypes.length }}</dt><dd>deliverable types</dd></div>
+      </dl>
+    </PageHero>
 
     <div class="filter">
       <div class="filter__search-wrap">
@@ -179,30 +184,6 @@ function publicationYear(s: Standard): string {
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
 }
-.page__header { margin-bottom: 2rem; }
-.page__eyebrow {
-  font-size: 0.75rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__header h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0 0 0.75rem;
-}
-.dark .page__header h1 { color: #fafaf9; }
-.page__lead {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #57534e;
-  max-width: 48rem;
-  margin: 0;
-}
-.dark .page__lead { color: #d6d3d1; }
 
 .filter {
   background: #fff;

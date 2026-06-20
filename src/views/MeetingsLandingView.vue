@@ -4,6 +4,7 @@ import { useEvents } from '../composables/useEvents'
 import { useResolutions } from '../composables/useResolutions'
 import type { PlenaryEvent } from '../types/event'
 import { formatDate } from '../utils/format'
+import PageHero from '../components/PageHero.vue'
 
 const { events, isLoaded, loadData } = useEvents()
 const { resolutions } = useResolutions()
@@ -14,6 +15,13 @@ const upcoming = computed(() => events.value.filter(e => e.status === 'upcoming'
 const past = computed(() => events.value
   .filter(e => e.status !== 'upcoming')
   .sort((a, b) => b.year - a.year))
+
+const stats = computed(() => ({
+  total: events.value.length,
+  upcoming: upcoming.value.length,
+  past: past.value.length,
+  latest: past.value[0]?.year ?? '—',
+}))
 
 function dateRange(ev: PlenaryEvent): string {
   const from = ev.time?.from?.date
@@ -31,15 +39,18 @@ function resolutionCount(ev: PlenaryEvent): number {
 
 <template>
   <div class="page meetings-landing">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154</p>
-      <h1 class="page__title">Plenary Meetings</h1>
-      <p class="page__lead">
-        The committee meets annually in plenary session, hosted by a national body.
-        Each plenary week is the focal point for resolving technical decisions,
-        adopting resolutions, and shaping the committee's work programme.
-      </p>
-    </header>
+    <PageHero
+      variant="article"
+      eyebrow="ISO/TC 154"
+      title="Plenary Meetings"
+      lead="The committee meets annually in plenary session, hosted by a national body. Each plenary week is the focal point for resolving technical decisions, adopting resolutions, and shaping the committee's work programme."
+    >
+      <dl class="page__stats" v-if="isLoaded && stats.total">
+        <div><dt>{{ stats.total }}</dt><dd>plenaries</dd></div>
+        <div><dt>{{ stats.upcoming }}</dt><dd>upcoming</dd></div>
+        <div><dt>{{ stats.latest }}</dt><dd>most recent</dd></div>
+      </dl>
+    </PageHero>
 
     <section v-if="upcoming.length" class="upcoming-section">
       <h2 class="section-title">Upcoming</h2>
@@ -85,26 +96,6 @@ function resolutionCount(ev: PlenaryEvent): number {
 
 <style scoped>
 .page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__eyebrow {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin: 0 0 1rem;
-  letter-spacing: -0.02em;
-  color: #1c1917;
-}
-.dark .page__title { color: #fafaf9; }
-.page__lead {
-  font-size: 1.0625rem; line-height: 1.65; color: #57534e;
-  max-width: 48rem; margin: 0 0 3rem;
-}
-.dark .page__lead { color: #d6d3d1; }
 
 .section-title {
   font-size: 0.75rem; font-weight: 700; text-transform: uppercase;

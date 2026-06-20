@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useLiaisons } from '../composables/useLiaisons'
 import { useTheme } from '../composables/useTheme'
 import type { Liaison } from '../types/organization'
+import PageHero from '../components/PageHero.vue'
 
 const { liaisons, isLoaded, loadData } = useLiaisons()
 const router = useRouter()
@@ -19,6 +20,13 @@ const categories = computed(() => {
   for (const l of liaisons.value) if (l.category) set.add(l.category)
   return Array.from(set).sort()
 })
+
+const stats = computed(() => ({
+  total: liaisons.value.length,
+  catA: liaisons.value.filter(l => l.category === 'A').length,
+  catB: liaisons.value.filter(l => l.category === 'B').length,
+  other: liaisons.value.filter(l => l.category && !['A', 'B'].includes(l.category)).length,
+}))
 
 const filtered = computed<Liaison[]>(() => {
   const q = searchQuery.value.trim().toLowerCase()
@@ -54,14 +62,18 @@ function categoryLabel(cat: string): string {
 
 <template>
   <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">External organizations</p>
-      <h1>Liaisons</h1>
-      <p class="page__lead">
-        Organizations in liaison with ISO/TC 154 — Category A (active cooperation),
-        Category B (kept informed), and other external partners.
-      </p>
-    </header>
+    <PageHero
+      variant="index"
+      eyebrow="External organizations"
+      title="Liaisons"
+      lead="Organizations in liaison with ISO/TC 154 — Category A (active cooperation), Category B (kept informed), and other external partners."
+    >
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ stats.total }}</dt><dd>total</dd></div>
+        <div><dt>{{ stats.catA }}</dt><dd>category A</dd></div>
+        <div><dt>{{ stats.catB }}</dt><dd>category B</dd></div>
+      </dl>
+    </PageHero>
 
     <div class="filter">
       <div class="filter__search-wrap">
@@ -122,13 +134,6 @@ function categoryLabel(cat: string): string {
 
 <style scoped>
 .page { max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-.page__header { margin-bottom: 2rem; }
-.page__eyebrow { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-blue-accent); margin: 0 0 0.5rem; }
-.dark .page__eyebrow { color: #94b6e8; }
-.page__header h1 { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: #1c1917; margin: 0 0 0.75rem; }
-.dark .page__header h1 { color: #fafaf9; }
-.page__lead { font-size: 1rem; line-height: 1.6; color: #57534e; max-width: 48rem; margin: 0; }
-.dark .page__lead { color: #d6d3d1; }
 
 .filter { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
 .dark .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }

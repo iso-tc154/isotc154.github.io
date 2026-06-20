@@ -1,18 +1,17 @@
 <script setup lang="ts">
+import PageHero from '../components/PageHero.vue'
+
 const committeeUrl = 'https://www.iso.org/committee/53186.html'
 </script>
 
 <template>
   <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154</p>
-      <h1 class="page__title">Contact</h1>
-      <p class="page__lead">
-        For questions about ISO/TC 154, our standards, or participation,
-        please see the official ISO committee page for contact details of
-        our Committee Manager and Technical Programme Manager.
-      </p>
-    </header>
+    <PageHero
+      variant="article"
+      eyebrow="ISO/TC 154"
+      title="Contact"
+      lead="For questions about ISO/TC 154, our standards, or participation, please see the official ISO committee page for contact details of our Committee Manager and Technical Programme Manager."
+    />
 
     <div class="contact-card">
       <a
@@ -50,26 +49,6 @@ const committeeUrl = 'https://www.iso.org/committee/53186.html'
 
 <style scoped>
 .page { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__eyebrow {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin: 0 0 1rem;
-  letter-spacing: -0.02em;
-  color: #1c1917;
-}
-.dark .page__title { color: #fafaf9; }
-.page__lead {
-  font-size: 1.0625rem; line-height: 1.65; color: #57534e;
-  max-width: 36rem; margin: 0 0 2rem;
-}
-.dark .page__lead { color: #d6d3d1; }
 
 .contact-card {
   border: 1px solid #e7e5e4;

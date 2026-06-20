@@ -2,12 +2,19 @@
 import { computed, onMounted } from 'vue'
 import { usePosts } from '../composables/usePosts'
 import { formatDate } from '../utils/format'
+import PageHero from '../components/PageHero.vue'
 
 const { posts, isLoaded, loadData, byYear } = usePosts()
 
 onMounted(async () => { await loadData() })
 
 const yearGroups = computed(() => byYear())
+
+const stats = computed(() => ({
+  total: posts.value.length,
+  years: yearGroups.value.length,
+  latest: yearGroups.value[0]?.[0] ?? '—',
+}))
 
 function excerpt(html: string): string {
   const text = html
@@ -34,14 +41,18 @@ function postCategories(post: typeof posts.value[number]): string[] {
 
 <template>
   <div class="page news-list">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154</p>
-      <h1 class="page__title">News &amp; announcements</h1>
-      <p class="page__lead">
-        Publications of new and revised ISO/TC 154 standards, committee
-        announcements, and obituaries of esteemed colleagues.
-      </p>
-    </header>
+    <PageHero
+      variant="article"
+      eyebrow="ISO/TC 154"
+      title="News & announcements"
+      lead="Publications of new and revised ISO/TC 154 standards, committee announcements, and obituaries of esteemed colleagues."
+    >
+      <dl class="page__stats" v-if="isLoaded && stats.total">
+        <div><dt>{{ stats.total }}</dt><dd>posts</dd></div>
+        <div><dt>{{ stats.years }}</dt><dd>years</dd></div>
+        <div><dt>{{ stats.latest }}</dt><dd>latest</dd></div>
+      </dl>
+    </PageHero>
 
     <div v-if="!isLoaded" class="loading">Loading…</div>
 
@@ -73,26 +84,6 @@ function postCategories(post: typeof posts.value[number]): string[] {
 
 <style scoped>
 .page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__eyebrow {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin: 0 0 1rem;
-  letter-spacing: -0.02em;
-  color: #1c1917;
-}
-.dark .page__title { color: #fafaf9; }
-.page__lead {
-  font-size: 1.0625rem; line-height: 1.65; color: #57534e;
-  max-width: 48rem; margin: 0 0 3rem;
-}
-.dark .page__lead { color: #d6d3d1; }
 
 .year-section { margin-bottom: 2.5rem; }
 .year-section__heading {

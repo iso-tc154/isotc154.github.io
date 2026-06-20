@@ -5,6 +5,7 @@ import { useMembers } from '../composables/useMembers'
 import { useGroups } from '../composables/useGroups'
 import type { Member } from '../types/member'
 import { roleLabel } from '../utils/roles'
+import PageHero from '../components/PageHero.vue'
 
 const { index, isLoaded, loadData } = useMembers()
 const { groups, loadData: loadGroups } = useGroups()
@@ -25,6 +26,16 @@ onMounted(async () => {
 })
 
 const allMembers = computed<Member[]>(() => Object.values(index.value?.all ?? {}))
+
+const stats = computed(() => {
+  const all = allMembers.value
+  return {
+    total: all.length,
+    current: all.filter(m => m.is_current).length,
+    leadership: all.filter(m => m.is_in_leadership).length,
+    past: all.filter(m => !m.is_current).length,
+  }
+})
 
 const availableGroups = computed<string[]>(() => {
   const set = new Set<string>()
@@ -105,14 +116,19 @@ function primaryRoleLabel(m: Member): string {
 
 <template>
   <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154 People</p>
-      <h1>Members</h1>
-      <p class="page__lead">
-        Experts from national bodies, liaisons, and the Committee Advisory Group who carry out
-        TC 154's technical work — current and past.
-      </p>
-    </header>
+    <PageHero
+      variant="index"
+      eyebrow="ISO/TC 154 People"
+      title="Members"
+      lead="Experts from national bodies, liaisons, and the Committee Advisory Group who carry out TC 154's technical work — current and past."
+    >
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ stats.total }}</dt><dd>total</dd></div>
+        <div><dt>{{ stats.current }}</dt><dd>current</dd></div>
+        <div><dt>{{ stats.leadership }}</dt><dd>in leadership</dd></div>
+        <div><dt>{{ stats.past }}</dt><dd>past</dd></div>
+      </dl>
+    </PageHero>
 
     <div class="filter">
       <div class="filter__search-wrap">
@@ -203,32 +219,6 @@ function primaryRoleLabel(m: Member): string {
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
 }
-.page__header { margin-bottom: 2rem; }
-.page__eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__header h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0 0 0.75rem;
-}
-.dark .page__header h1 { color: #fafaf9; }
-.page__lead {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #57534e;
-  max-width: 48rem;
-  margin: 0;
-}
-.dark .page__lead { color: #d6d3d1; }
 
 .filter {
   background: #fff;

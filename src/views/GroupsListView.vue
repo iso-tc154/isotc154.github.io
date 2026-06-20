@@ -4,6 +4,7 @@ import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
 import { groupCategoryLabel, type Group } from '../types/group'
 import { useRouter } from 'vue-router'
+import PageHero from '../components/PageHero.vue'
 
 const { groups, isLoaded, loadData } = useGroups()
 const { loadData: loadMembers, get: getMember } = useMembers()
@@ -21,6 +22,12 @@ const categories = computed(() => {
   for (const g of groups.value) if (g.category) set.add(g.category)
   return Array.from(set).sort()
 })
+
+const stats = computed(() => ({
+  total: groups.value.length,
+  categories: categories.value.length,
+  withStandards: groups.value.filter(g => g.standards?.length).length,
+}))
 
 const filtered = computed<Group[]>(() => {
   const q = searchQuery.value.trim().toLowerCase()
@@ -59,14 +66,18 @@ import { ref } from 'vue'
 
 <template>
   <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154 Structure</p>
-      <h1>Groups</h1>
-      <p class="page__lead">
-        Working Groups, Advisory Groups, Maintenance Agencies and the Co-ordination Advisory Group
-        that carry out the technical work of ISO/TC 154.
-      </p>
-    </header>
+    <PageHero
+      variant="index"
+      eyebrow="ISO/TC 154 Structure"
+      title="Groups"
+      lead="Working Groups, Advisory Groups, Maintenance Agencies and the Co-ordination Advisory Group that carry out the technical work of ISO/TC 154."
+    >
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ stats.total }}</dt><dd>groups</dd></div>
+        <div><dt>{{ stats.categories }}</dt><dd>categories</dd></div>
+        <div><dt>{{ stats.withStandards }}</dt><dd>maintain standards</dd></div>
+      </dl>
+    </PageHero>
 
     <div class="filter">
       <div class="filter__search-wrap">
@@ -145,32 +156,6 @@ import { ref } from 'vue'
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
 }
-.page__header { margin-bottom: 2rem; }
-.page__eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__header h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0 0 0.75rem;
-}
-.dark .page__header h1 { color: #fafaf9; }
-.page__lead {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #57534e;
-  max-width: 48rem;
-  margin: 0;
-}
-.dark .page__lead { color: #d6d3d1; }
 
 .filter {
   background: #fff;

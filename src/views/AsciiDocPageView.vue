@@ -2,6 +2,7 @@
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePages } from '../composables/usePages'
+import PageHero from '../components/PageHero.vue'
 
 const props = defineProps<{ slug?: string }>()
 
@@ -22,43 +23,35 @@ const page = computed(() => {
 })
 
 const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
+const eyebrow = computed(() => page.value?.frontmatter.eyebrow || 'ISO/TC 154')
+const lead = computed(() => page.value?.frontmatter.lead || page.value?.frontmatter.description || '')
 </script>
 
 <template>
   <div v-if="!isLoaded" class="page"><p class="loading">Loading…</p></div>
 
   <article v-else-if="!page" class="page">
-    <header class="page__header">
-      <h1 class="page__title">Page not found</h1>
-      <p>No page matches <code>{{ slug }}</code>.</p>
-    </header>
+    <PageHero
+      variant="article"
+      eyebrow="404"
+      title="Page not found"
+      :lead="`No page matches \`${slug}\`.`"
+    />
   </article>
 
   <article v-else class="page">
-    <header class="page__header">
-      <h1 class="page__title">{{ title }}</h1>
-    </header>
+    <PageHero
+      variant="article"
+      :eyebrow="eyebrow"
+      :title="title"
+      :lead="lead"
+    />
     <div class="prose" v-html="page.html"></div>
   </article>
 </template>
 
 <style scoped>
 .page { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__header {
-  border-bottom: 1px solid #e7e5e4;
-  padding-bottom: 1.5rem;
-  margin-bottom: 2rem;
-}
-.dark .page__header { border-bottom-color: #292524; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  margin: 0;
-  color: #1c1917;
-  letter-spacing: -0.02em;
-}
-.dark .page__title { color: #fafaf9; }
 
 .prose {
   font-size: 1rem; line-height: 1.7;
@@ -96,7 +89,7 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
 }
 .dark .prose :deep(h4) { color: #fafaf9; }
 .prose :deep(p) { margin: 0 0 1rem; }
-.prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; }
+.prose :deep(a) { color: var(--color-brand); text-decoration: underline; }
 .dark .prose :deep(a) { color: #94b6e8; }
 .prose :deep(ul), .prose :deep(ol) { margin: 0 0 1rem; padding-left: 1.5rem; }
 .prose :deep(li) { margin-bottom: 0.375rem; }
@@ -109,7 +102,7 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
 }
 .dark .prose :deep(code) { background: #44403c; }
 .prose :deep(blockquote) {
-  border-left: 3px solid var(--color-blue-accent);
+  border-left: 3px solid var(--color-brand);
   padding: 0.5rem 1rem;
   margin: 1.5rem 0;
   background: #fafaf9;
@@ -149,13 +142,13 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
   margin: 1.25rem 0 1.75rem;
   padding: 1.25rem 1.5rem;
   border-left: 4px solid var(--color-brand);
-  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+  background: linear-gradient(135deg, rgb(30 58 138 / 0.05) 0%, #fff 100%);
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
 }
 .dark .prose :deep(.business-plan-cta) {
-  background: linear-gradient(135deg, rgb(185 28 28 / 0.08) 0%, rgb(15 23 42 / 0.5) 100%);
+  background: linear-gradient(135deg, rgb(51 133 214 / 0.08) 0%, rgb(15 23 42 / 0.5) 100%);
   border-left-color: var(--color-brand);
 }
 .prose :deep(.business-plan-cta a) {

@@ -3,6 +3,7 @@ import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePosts } from '../composables/usePosts'
 import { formatDate } from '../utils/format'
+import PageHero from '../components/PageHero.vue'
 
 const route = useRoute()
 const { posts, isLoaded, loadData } = usePosts()
@@ -25,22 +26,26 @@ const title = computed(() => {
   <div v-if="!isLoaded" class="post"><p class="loading">Loading…</p></div>
 
   <article v-else-if="!post" class="post">
-    <header class="post__header">
-      <h1 class="post__title">Post not found</h1>
-      <p>No post matches <code>{{ route.params.slug }}</code>.</p>
-      <RouterLink to="/posts/" class="back-link">← All news</RouterLink>
-    </header>
+    <PageHero
+      variant="article"
+      eyebrow="404"
+      title="Post not found"
+      lead="No post matches this slug."
+    />
+    <RouterLink to="/posts/" class="back-link">← All news</RouterLink>
   </article>
 
   <article v-else class="post">
-    <header class="post__header">
-      <RouterLink to="/posts/" class="back-link">← All news</RouterLink>
-      <p class="post__date">{{ formatDate(post.date) }}</p>
-      <h1 class="post__title">{{ title }}</h1>
+    <RouterLink to="/posts/" class="back-link">← All news</RouterLink>
+    <PageHero
+      variant="article"
+      :eyebrow="formatDate(post.date)"
+      :title="title"
+    >
       <div v-if="post.frontmatter.categories" class="post__tags">
         <span class="post__tag">{{ post.frontmatter.categories }}</span>
       </div>
-    </header>
+    </PageHero>
 
     <div class="post__body prose" v-html="post.html"></div>
   </article>
@@ -51,31 +56,14 @@ const title = computed(() => {
 .back-link {
   display: inline-block;
   font-size: 0.875rem; font-weight: 500;
-  color: var(--color-blue-accent);
+  color: var(--color-brand);
   text-decoration: none;
   margin-bottom: 1rem;
 }
 .back-link:hover { text-decoration: underline; }
 .dark .back-link { color: #94b6e8; }
 
-.post__header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e7e5e4; }
-.dark .post__header { border-bottom-color: #292524; }
-.post__date {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--color-brand);
-  margin: 0 0 0.625rem;
-}
-.post__title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0 0 0.625rem;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-.dark .post__title { color: #fafaf9; }
-.post__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.post__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
 .post__tag {
   font-size: 0.6875rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.05em;
@@ -114,7 +102,7 @@ const title = computed(() => {
 }
 .dark .prose :deep(h3) { color: #fafaf9; }
 .prose :deep(p) { margin: 0 0 1rem; }
-.prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; }
+.prose :deep(a) { color: var(--color-brand); text-decoration: underline; }
 .dark .prose :deep(a) { color: #94b6e8; }
 .prose :deep(ul), .prose :deep(ol) { margin: 0 0 1rem; padding-left: 1.5rem; }
 .prose :deep(li) { margin-bottom: 0.375rem; }
@@ -127,7 +115,7 @@ const title = computed(() => {
 }
 .dark .prose :deep(code) { background: #44403c; }
 .prose :deep(blockquote) {
-  border-left: 3px solid var(--color-blue-accent);
+  border-left: 3px solid var(--color-brand);
   padding: 0.5rem 1rem;
   margin: 1.5rem 0;
   background: #fafaf9;
