@@ -397,17 +397,18 @@ onMounted(() => {
 
 .decade {
   display: grid;
-  grid-template-columns: 6rem 1fr;
-  gap: 1rem 2rem;
-  margin-bottom: 3.5rem;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+@media (min-width: 640px) {
+  .decade { grid-template-columns: 6rem 1fr; gap: 1rem 2rem; }
 }
 @media (min-width: 768px) {
   .decade { grid-template-columns: 9rem 1fr; gap: 1rem 3rem; }
 }
 
 .decade__marker {
-  position: sticky;
-  top: 6rem;
   align-self: start;
   font-family: var(--font-serif);
   font-weight: 700;
@@ -417,18 +418,35 @@ onMounted(() => {
   display: flex;
   align-items: flex-start;
   user-select: none;
-  padding-top: 0.5rem;
+  padding: 0.5rem 0 0.25rem;
+  border-bottom: 1px solid #e7e5e4;
+  margin-bottom: 0.25rem;
 }
-.dark .decade__marker { color: #44403c; }
+.dark .decade__marker { color: #44403c; border-bottom-color: #292524; }
+@media (min-width: 640px) {
+  .decade__marker {
+    position: sticky;
+    top: 6rem;
+    padding-top: 0.5rem;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
 .decade__numeral {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(2.25rem, 12vw, 3rem);
   display: inline-block;
 }
+@media (min-width: 640px) {
+  .decade__numeral { font-size: clamp(3rem, 6vw, 5rem); }
+}
 .decade__suffix {
-  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  font-size: clamp(1rem, 4vw, 1.25rem);
   font-style: italic;
   color: var(--color-iso-red);
-  margin-top: 0.5rem;
+  margin-top: 0.375rem;
+}
+@media (min-width: 640px) {
+  .decade__suffix { font-size: clamp(1.25rem, 2.4vw, 2rem); margin-top: 0.5rem; }
 }
 .dark .decade__suffix { color: #f87171; }
 

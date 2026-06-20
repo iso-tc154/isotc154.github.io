@@ -19,6 +19,7 @@
   former: true
   former_until: 2025
   url: https://www.ansi.org/
+  logo: "/assets/images/national-bodies/logo-ansi.svg"
   description: ANSI oversaw the development of voluntary consensus standards and conformity assessment activities in the United States. ANSI was a P-member of ISO/TC 154 until 2025 and hosted multiple plenary meetings in the United States.
 
 - id: scc
@@ -30,6 +31,7 @@
   former: true
   former_until: 2024
   url: https://www.scc.ca/
+  logo: "/assets/images/national-bodies/logo-scc.svg"
   description: SCC is Canada's national standards body. SCC was a P-member of ISO/TC 154 from 2022 to 2024.
 
 - id: bds

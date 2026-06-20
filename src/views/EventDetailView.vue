@@ -474,7 +474,7 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 
 .list-card {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
   gap: 0.625rem;
 }
 .list-card__item {

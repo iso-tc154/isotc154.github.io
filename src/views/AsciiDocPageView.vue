@@ -121,10 +121,14 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
   border-left-color: #5379bf;
 }
 .prose :deep(table) {
+  display: block;
+  overflow-x: auto;
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9375rem;
+  -webkit-overflow-scrolling: touch;
 }
 .prose :deep(th), .prose :deep(td) {
   border: 1px solid #e7e5e4;
