@@ -2,13 +2,15 @@
 import { computed, onMounted, ref } from 'vue'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
+import { useGroupRoster } from '../composables/useGroupRoster'
 import { type Group, type LifecycleStatus } from '../types/group'
 import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
 import { useRouter } from 'vue-router'
 import PageHero from '../components/PageHero.vue'
 
 const { groups, isLoaded, loadData } = useGroups()
-const { loadData: loadMembers, get: getMember } = useMembers()
+const { loadData: loadMembers } = useMembers()
+const roster = useGroupRoster()
 const router = useRouter()
 
 onMounted(async () => {
@@ -78,10 +80,7 @@ function groupUrl(g: Group) {
 }
 
 function convenorNames(g: Group): string {
-  const ids = g.convenors ?? []
-  const names = ids.map(id => getMember(id)?.name).filter(Boolean) as string[]
-  if (names.length) return names.join(', ')
-  return ids.join(', ')
+  return (g.convenors ?? []).map(roster.nameOf).join(', ')
 }
 
 function memberCount(g: Group): number {

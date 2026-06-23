@@ -5,22 +5,14 @@ import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
 import { useStandards } from '../composables/useStandards'
 import { useProjects } from '../composables/useProjects'
+import { useGroupRoster, type HeroPerson, type StandardCard, type ProjectCard } from '../composables/useGroupRoster'
 import {
   type Group,
   type GroupCollaborativeParty,
   type ConvenorTerm,
   type SubnavSection,
 } from '../types/group'
-import type { Standard } from '../types/standard'
-import type { Project } from '../types/project'
-import type { Member } from '../types/member'
 import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
-import {
-  standardYear,
-  standardUrlFromRaw,
-  standardStatusLabel,
-} from '../domain/standardPresentation'
-import { projectStatusLabel, projectScopeExcerpt } from '../domain/projectPresentation'
 import { asciidocify } from '../utils/asciidoc'
 import { projectPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
@@ -31,10 +23,11 @@ import PersonCard from '../components/PersonCard.vue'
 import PeopleList from '../components/PeopleList.vue'
 
 const route = useRoute()
-const { groups, isLoaded, loadData, get: getGroup } = useGroups()
-const { loadData: loadMembers, get: getMember } = useMembers()
-const { standards, loadData: loadStandards } = useStandards()
-const { loadData: loadProjects, get: getProject } = useProjects()
+const { groups, isLoaded, loadData } = useGroups()
+const { loadData: loadMembers } = useMembers()
+const { loadData: loadStandards } = useStandards()
+const { loadData: loadProjects } = useProjects()
+const roster = useGroupRoster()
 const group = computed<Group | null>(() => {
   const id = String(route.params.id ?? '')
   return groups.value.find(g => g.id === id || g._id === id) ?? null
@@ -91,29 +84,16 @@ const managers = computed<string[]>(() => {
   return group.value.managers ?? group.value.organization?.managers ?? []
 })
 
-interface HeroPerson {
-  id: string
-  name: string
-  fromYear?: string
-}
-
 const heroConvenors = computed<HeroPerson[]>(() => {
   const ids = convenors.value.length ? convenors.value : coChairs.value
-  return ids.map(id => {
-    const term = convenorTerms.value.find(t => t.member_id === id)
-    return {
-      id,
-      name: memberName(id),
-      fromYear: term?.from ? String(term.from).slice(0, 4) : undefined,
-    }
-  })
+  return roster.heroPeople(ids, convenorTerms.value)
 })
 const heroConvenorLabel = computed(() =>
   convenors.value.length ? 'Convenor' : (coChairs.value.length ? 'Co-chair' : ''),
 )
 
 const heroManagers = computed<HeroPerson[]>(() =>
-  managers.value.map(id => ({ id, name: memberName(id) }))
+  roster.heroPeople(managers.value)
 )
 
 interface PeopleGroup {
@@ -132,63 +112,13 @@ const peopleGroups = computed<PeopleGroup[]>(() => {
   return list
 })
 
-const standardsByName = computed(() => {
-  const map = new Map<string, Standard>()
-  for (const s of standards.value) {
-    if (s.iso?.name) map.set(s.iso.name, s)
-  }
-  return map
-})
+const standardCards = computed<StandardCard[]>(() =>
+  roster.standardCardsFor(group.value?.standards ?? [])
+)
 
-interface StandardCard {
-  raw: string
-  standard?: Standard
-  url: string
-  year: string
-  stage: string
-}
-
-const standardCards = computed<StandardCard[]>(() => {
-  const list = group.value?.standards ?? []
-  return list.map(raw => {
-    const standard = standardsByName.value.get(raw)
-    return {
-      raw,
-      standard,
-      url: standardUrlFromRaw(standards.value, raw),
-      year: standardYear(standard),
-      stage: standard ? standardStatusLabel(standard.tc154?.status) : '',
-    }
-  })
-})
-
-interface ProjectCard {
-  id: string
-  project?: Project
-  url: string
-  name: string
-  title?: string
-  stage?: string
-  statusLabel: string
-  excerpt: string
-}
-
-const projectCards = computed<ProjectCard[]>(() => {
-  const list = group.value?.active_projects ?? []
-  return list.map(id => {
-    const project = getProject(id)
-    return {
-      id,
-      project,
-      url: projectPath(id),
-      name: project?.name ?? id,
-      title: project?.title,
-      stage: project?.stage,
-      statusLabel: project?.status ? projectStatusLabel(project.status) : '',
-      excerpt: project ? projectScopeExcerpt(project) : '',
-    }
-  })
-})
+const projectCards = computed<ProjectCard[]>(() =>
+  roster.projectCardsFor(group.value?.active_projects ?? [])
+)
 
 const sections = computed<SubnavSection[]>(() => {
   if (!group.value) return []
@@ -226,16 +156,9 @@ watch(subnavSections, (secs) => {
   activeTab.value = (hash && secs.some((s) => s.id === hash)) ? hash : secs[0].id
 }, { immediate: true })
 
-const predecessorTerms = computed<ConvenorTerm[]>(() => {
-  const pred = group.value?.predecessor
-  if (!pred) return []
-  return getGroup(pred.id)?.convenor_terms ?? []
-})
-
-function memberName(id: string): string {
-  const m = getMember(id) as Member | undefined
-  return m?.name ?? id
-}
+const predecessorTerms = computed<ConvenorTerm[]>(() =>
+  group.value ? roster.predecessorTermsOf(group.value) : [],
+)
 
 function projectUrl(id: string): string {
   return projectPath(id)
@@ -409,7 +332,7 @@ function sectionVisible(id: string): boolean {
                 v-for="id in group.history.leadership"
                 :key="id"
                 :id="id"
-                :name="memberName(id)"
+                :name="roster.nameOf(id)"
                 variant="leader"
                 size="sm"
               />
@@ -507,13 +430,13 @@ function sectionVisible(id: string): boolean {
         >
           <h2 class="group__section-title">Members</h2>
           <div class="people-grid">
-            <PeopleList :groups="peopleGroups" :name-of="memberName" />
+            <PeopleList :groups="peopleGroups" :name-of="roster.nameOf" />
           </div>
         </section>
       </div>
 
       <aside v-if="!tabbedMode && sectionEnabled('members')" class="group__aside">
-        <PeopleList :groups="peopleGroups" :name-of="memberName" />
+        <PeopleList :groups="peopleGroups" :name-of="roster.nameOf" />
       </aside>
     </div>
   </article>
