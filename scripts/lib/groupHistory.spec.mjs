@@ -211,16 +211,19 @@ describe('deriveGroupLifecycle', () => {
     })
   })
 
-  it('ignores override note fields (WG 2 re-establishment)', () => {
+  it('converts override note fields into note events (WG 2 re-establishment)', () => {
     const events = {
       events: [],
       overrides: [
-        { group_id: 'wg2', field: 'note', title: 'Re-established' },
+        { group_id: 'wg2', field: 'note', date: '2020-01-01', precision: 'year', title: 'Re-established', description: 'Note text' },
       ],
     }
     const result = deriveGroupLifecycle('wg2', events, {})
     expect(result.established).toBeNull()
-    expect(result.events).toEqual([])
+    expect(result.events).toHaveLength(1)
+    expect(result.events[0].type).toBe('note')
+    expect(result.events[0].title).toBe('Re-established')
+    expect(result.events[0].description).toBe('Note text')
   })
 
   it('sorts events by date ascending', () => {

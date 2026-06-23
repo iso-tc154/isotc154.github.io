@@ -12,6 +12,7 @@ export type LifecycleEventType =
   | 'scope_change'
   | 'succession'
   | 'title_change'
+  | 'note'
 
 export type DatePrecision = 'year' | 'month' | 'day'
 
@@ -100,6 +101,11 @@ export interface Group {
 }
 
 export type LifecycleStatus = 'active' | 'inactive' | 'dissolved'
+
+export interface SubnavSection {
+  id: string
+  label: string
+}
 
 // Display helpers (groupCategoryLabel, lifecycleStatus) live in
 // src/domain/groupPresentation.ts — this file is shape declarations only.

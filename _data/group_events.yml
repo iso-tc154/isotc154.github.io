@@ -35,6 +35,21 @@
 events:
 
   # ---- WG 1 (Semantic engine) --------------------------------------------
+  # WG 1 predates the plenary resolutions we hold (P10+). It was active
+  # from the early 1990s. P19 R159 changed its name to "Semantic engine".
+  - group_id: wg1
+    type: title_change
+    date: 2002-09-06
+    precision: day
+    title: Renamed to "Semantic engine"
+    description: |
+      WG 1 requested a name change to "Semantic engine" to provide better
+      visibility on its work as a central reference for universal,
+      multilingual understanding of data across commerce, industry and
+      administration.
+    resolution_ref: '159'
+    resolution_meeting: P19
+
   - group_id: wg1
     type: dissolved
     date: 2008-11-25
@@ -495,7 +510,9 @@ events:
     resolution_meeting: P41
 
   # ---- CAG (Co-ordination Advisory Group) --------------------------------
-  # P30 R319 (effective 2011-09-14): dissolve CAG.
+  # The CAG was dissolved at P30 R319 (2011-09-14) and later
+  # re-established; the re-establishment resolution is not in the
+  # plenary records we hold. By P38 (2018) the CAG was active again.
   - group_id: cag
     type: dissolved
     date: 2011-09-14
@@ -505,6 +522,23 @@ events:
       The Co-ordination Advisory Group was dissolved.
     resolution_ref: '319'
     resolution_meeting: P30
+
+  # P39 R2020-22 (effective 2020-08-27): extend the CAG convenor term
+  # (Mrs. Hongru Zhu) until the end of 2023.
+  - group_id: cag
+    type: convenor_extended
+    date: 2020-08-27
+    precision: day
+    title: Judy Zhu's convenor term extended to end of 2023
+    description: |
+      The terms of the CAG convenor (Hongru "Judy" Zhu, also serving as
+      ISO/TC 154 Chair) had expired; the committee resolved to extend
+      the term until the end of 2023.
+    resolution_ref: 2020-22
+    resolution_meeting: P39
+    person_name: Hongru (Judy) Zhu
+    person_member_id: judy-zhu
+    term_until: '2023-12-31'
 
   # P43 P-2024-14 (effective 2024-10-25): appoint Shi Yu (ISO/TC 154
   # Chair) as Convenor of CAG from 2025 to 2027.
@@ -648,6 +682,31 @@ events:
     person_member_id: ronald-tse
     term_until: '2026-09-26'
 
+  # ---- ISO 7372 (UNTDED) JMA ---------------------------------------------
+  # P37 R2018-23 (effective 2018-10-11): approve the Terms of Reference
+  # of the ISO 7372(UNTDED) Joint Maintenance Agency.
+  - group_id: iso7372ma
+    type: established
+    date: 2018-10-11
+    precision: day
+    title: Terms of Reference approved
+    description: |
+      The Terms of Reference of the ISO 7372(UNTDED) Joint Maintenance
+      Agency were approved, having been formally approved by UN/CEFACT.
+      The ToR was sent to ISO/CS for final approval and feasibility.
+    resolution_ref: 2018-23
+    resolution_meeting: P37
+
+  - group_id: iso7372ma
+    type: convenor_appointed
+    date: 2020-01-01
+    precision: day
+    title: Sue Probert appointed Convenor
+    description: |
+      Appointed as Convenor of the ISO 7372(UNTDED) JMA.
+    person_name: Sue Probert
+    person_member_id: sue-probert
+
 # Curated overrides for groups whose lifecycle is partially documented
 # outside resolutions (mostly establishment dates not captured in any
 # plenary resolution we hold).
@@ -665,11 +724,40 @@ overrides:
       ISO/TC 154 in March 2006, to maintain ISO/TS 15000-5 (Core
       Components Technical Specification) in liaison with UN/CEFACT.
 
+  # JWG 1 was established in the late 1980s as the Joint Syntax Working
+  # Group (JSWG) with UNECE. No establishment resolution exists in our
+  # records (we hold P10+; JWG 1 already existed).
+  - group_id: jwg1
+    field: established
+    date: 1988-01-01
+    precision: year
+    title: Established as Joint Syntax Working Group
+    description: |
+      JWG 1 was established in the late 1980s as the Joint Syntax
+      Working Group (JSWG) with the UNECE to develop and maintain the
+      EDIFACT syntax (ISO 9735). The first syntax version was published
+      in 1988.
+
+  # WG 1 predates the plenary resolutions we hold. It was active from the
+  # early days of TC 154 and was renamed to "Semantic engine" at P19.
+  - group_id: wg1
+    field: established
+    date: 1992-01-01
+    precision: year
+    title: Established
+    description: |
+      WG 1 was established in the early 1990s as a working group of
+      ISO/TC 154. Its objective was to act as a central reference to
+      assist in the universal, multilingual understanding of data across
+      commerce, industry and administration.
+
   # The current WG 2 (Supply chain) is a re-establishment after P30 R312.
   # The exact re-establishment resolution is not in the resolutions we
   # hold. We record only that the current WG 2 is active.
   - group_id: wg2
     field: note
+    date: 2020-01-01
+    precision: year
     title: Re-established
     description: |
       The current WG 2 (Supply chain data) is a re-establishment of the
@@ -680,8 +768,10 @@ overrides:
   # re-establishment is not captured in the plenary resolutions we hold.
   - group_id: cag
     field: note
+    date: 2017-01-01
+    precision: year
     title: Re-established
     description: |
-      The CAG is currently active under the chairmanship of Shi Yu
-      (2025–2027). It was previously dissolved at P30 R319 (2011-09-14)
-      and re-established at a later date.
+      The CAG was re-established at some point between P30 (2011) and
+      P38 (2018). By P39 (2020) it was active under convenor Hongru
+      (Judy) Zhu, who also served as ISO/TC 154 Chair from 2017 to 2021.

@@ -13,6 +13,7 @@ const ALL_TYPES: LifecycleEventType[] = [
   'scope_change',
   'succession',
   'title_change',
+  'note',
 ]
 
 describe('LIFECYCLE_EVENT_PRESENTATION', () => {
