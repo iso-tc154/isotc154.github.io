@@ -3,6 +3,7 @@ import path from 'node:path'
 import yaml from 'js-yaml'
 import { memberPath } from '../../src/utils/urn.ts'
 import { LEADERSHIP_ROLE_IDS } from '../../src/utils/roles.ts'
+import { toISODate, toNullableISODate } from './dates.mjs'
 
 export function loadGroups(groupsDir) {
   if (!fs.existsSync(groupsDir)) {
@@ -106,7 +107,12 @@ export function loadMembers(membersDir, chairMemberId) {
   return { all, chair, current, past, leadership }
 }
 
+const CONVENOR_ROLE_IDS = new Set(['convenor', 'co_chair'])
+
 export function attachMembersToGroups(groups, membersAll) {
+  for (const group of Object.values(groups)) {
+    group.convenor_terms = []
+  }
   for (const member of Object.values(membersAll)) {
     const roleRecords = member.roles?._all?.in
     if (!roleRecords) continue
@@ -124,6 +130,51 @@ export function attachMembersToGroups(groups, membersAll) {
         } else if (r.id === 'member') {
           group.past_members.push(member['member-id'])
         }
+        if (CONVENOR_ROLE_IDS.has(r.id)) {
+          const from = toISODate(r.from)
+          if (!from) continue
+          const to = toNullableISODate(r.to)
+          group.convenor_terms.push({
+            member_id: member['member-id'],
+            name: member.name,
+            from,
+            to,
+            current: isCurrent,
+            role: r.id,
+          })
+        }
+      }
+    }
+  }
+  for (const group of Object.values(groups)) {
+    group.convenor_terms.sort((a, b) => a.from.localeCompare(b.from) || a.name.localeCompare(b.name))
+  }
+}
+
+export function enrichConvenorTerms(groups, eventData) {
+  const appointmentByKey = new Map()
+  for (const ev of eventData.events) {
+    if (ev.type !== 'convenor_appointed' && ev.type !== 'convenor_extended') continue
+    if (!ev.person_member_id) continue
+    const key = `${ev.group_id}|${ev.person_member_id}`
+    const prev = appointmentByKey.get(key)
+    if (!prev || toISODate(ev.date) > toISODate(prev.date)) {
+      appointmentByKey.set(key, {
+        ...ev,
+        date: toISODate(ev.date),
+        term_until: toISODate(ev.term_until),
+      })
+    }
+  }
+  for (const [groupId, group] of Object.entries(groups)) {
+    if (!group.convenor_terms) continue
+    for (const term of group.convenor_terms) {
+      const ev = appointmentByKey.get(`${groupId}|${term.member_id}`)
+      if (!ev) continue
+      if (!term.resolution_ref && ev.resolution_ref) term.resolution_ref = ev.resolution_ref
+      if (ev.term_until && (!term.to || ev.term_until > term.to)) {
+        term.to = ev.term_until
+        term.current = false
       }
     }
   }

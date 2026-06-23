@@ -1,18 +1,25 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, RouterLink } from 'vue-router'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
-import { groupCategoryLabel, type Group, type GroupCollaborativeParty } from '../types/group'
+import {
+  groupCategoryLabel,
+  lifecycleStatus,
+  type Group,
+  type GroupCollaborativeParty,
+  type ConvenorTerm,
+} from '../types/group'
 import { asciidocify } from '../utils/asciidoc'
 import { memberPath, projectPath } from '../utils/urn'
 import type { Member } from '../types/member'
 import PageHero from '../components/PageHero.vue'
+import GroupTimeline from '../components/GroupTimeline.vue'
+import ConvenorTermBar from '../components/ConvenorTermBar.vue'
 
 const route = useRoute()
-const { groups, isLoaded, loadData } = useGroups()
+const { groups, isLoaded, loadData, get: getGroup } = useGroups()
 const { loadData: loadMembers, get: getMember } = useMembers()
-
 const group = computed<Group | null>(() => {
   const id = String(route.params.id ?? '')
   return groups.value.find(g => g.id === id || g._id === id) ?? null
@@ -46,6 +53,26 @@ const collaborativePartyHtml = (p: GroupCollaborativeParty): string => {
   if (!p.description) return ''
   return asciidocify(p.description)
 }
+
+const status = computed(() => group.value ? lifecycleStatus(group.value) : 'active')
+
+const establishedYear = computed(() => {
+  const date = group.value?.history?.established?.date
+  if (!date) return null
+  return String(date).slice(0, 4)
+})
+
+const dissolvedDate = computed(() => group.value?.history?.dissolved?.date ?? null)
+const dissolvedYear = computed(() => dissolvedDate.value ? String(dissolvedDate.value).slice(0, 4) : null)
+
+const lifecycleEvents = computed(() => group.value?.history?.events ?? [])
+const convenorTerms = computed(() => group.value?.convenor_terms ?? [])
+
+const predecessorTerms = computed<ConvenorTerm[]>(() => {
+  const pred = group.value?.predecessor
+  if (!pred) return []
+  return getGroup(pred.id)?.convenor_terms ?? []
+})
 
 function memberName(id: string): string {
   const m = getMember(id) as Member | undefined
@@ -107,13 +134,53 @@ const managers = computed<string[]>(() => {
       :lead="group.title"
     >
       <template #title>
-        <span v-html="group.name"></span>
+        <span :class="{ 'detail__title--muted': status === 'dissolved' }" v-html="group.name"></span>
       </template>
       <template #breadcrumb>
         <RouterLink to="/groups/">
           Groups
         </RouterLink>
       </template>
+
+      <div class="detail__badges">
+        <span :class="['detail__badge', `detail__badge--${status}`]">
+          <span class="detail__badge-dot" aria-hidden="true"></span>
+          <span class="detail__badge-text">{{ status === 'active' ? 'Active' : status === 'inactive' ? 'Inactive' : 'Dissolved' }}</span>
+        </span>
+        <span v-if="establishedYear" class="detail__badge detail__badge--neutral">
+          <span class="detail__badge-label">Est.</span>
+          <span class="detail__badge-text">{{ establishedYear }}</span>
+        </span>
+        <span v-if="dissolvedYear" class="detail__badge detail__badge--neutral">
+          <span class="detail__badge-label">Dissolved</span>
+          <span class="detail__badge-text">{{ dissolvedYear }}</span>
+        </span>
+      </div>
+
+      <div v-if="group.predecessor || group.successor" class="detail__lineage">
+        <RouterLink
+          v-if="group.predecessor"
+          :to="`/groups/${group.predecessor.id}/`"
+          class="detail__lineage-chip detail__lineage-chip--pred"
+        >
+          <span class="detail__lineage-arrow" aria-hidden="true">←</span>
+          <span class="detail__lineage-body">
+            <span class="detail__lineage-label">Succeeded</span>
+            <span class="detail__lineage-name">{{ group.predecessor.name }}</span>
+          </span>
+        </RouterLink>
+        <RouterLink
+          v-if="group.successor"
+          :to="`/groups/${group.successor.id}/`"
+          class="detail__lineage-chip detail__lineage-chip--succ"
+        >
+          <span class="detail__lineage-arrow" aria-hidden="true">→</span>
+          <span class="detail__lineage-body">
+            <span class="detail__lineage-label">Succeeded by</span>
+            <span class="detail__lineage-name">{{ group.successor.name }}</span>
+          </span>
+        </RouterLink>
+      </div>
     </PageHero>
 
     <div class="detail__grid">
@@ -131,6 +198,22 @@ const managers = computed<string[]>(() => {
         <section v-if="scopeHtml" class="detail__section">
           <h2 class="detail__section-title">Scope</h2>
           <div class="prose" v-html="scopeHtml"></div>
+        </section>
+
+        <section v-if="lifecycleEvents.length" class="detail__section detail__section--timeline">
+          <h2 class="detail__section-title">Lifecycle</h2>
+          <p class="detail__section-intro">Key moments in this group's history, traced through plenary resolutions.</p>
+          <GroupTimeline :events="lifecycleEvents" />
+        </section>
+
+        <section v-if="convenorTerms.length" class="detail__section detail__section--terms">
+          <h2 class="detail__section-title">Convenor terms</h2>
+          <p class="detail__section-intro">Leadership tenures on a shared timeline. Bars link to member profiles; chips link to appointing resolutions.</p>
+          <ConvenorTermBar
+            :terms="convenorTerms"
+            :predecessor-terms="predecessorTerms"
+            :predecessor-name="group.predecessor?.name"
+          />
         </section>
 
         <section v-if="group.history?.story && historyStoryHtml" class="detail__section">
@@ -259,6 +342,148 @@ const managers = computed<string[]>(() => {
 }
 .detail__back:hover { text-decoration: underline; }
 
+.detail__title--muted {
+  opacity: 0.85;
+}
+
+.detail__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+.detail__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.3125rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+}
+.detail__badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.detail__badge--active {
+  background: rgba(30, 58, 138, 0.08);
+  color: var(--color-brand);
+  border-color: rgba(30, 58, 138, 0.2);
+}
+.detail__badge--inactive {
+  background: rgba(180, 83, 9, 0.08);
+  color: var(--color-amber-warm);
+  border-color: rgba(180, 83, 9, 0.25);
+}
+.detail__badge--dissolved {
+  background: rgba(120, 113, 108, 0.1);
+  color: var(--color-slate-600);
+  border-color: rgba(120, 113, 108, 0.25);
+}
+.dark .detail__badge--dissolved { color: var(--color-slate-400); }
+.detail__badge--inactive .detail__badge-dot {
+  background: transparent;
+  border: 1.5px solid currentColor;
+  width: 0.4375rem;
+  height: 0.4375rem;
+}
+.detail__badge--dissolved .detail__badge-dot {
+  background: transparent;
+  border: 1.5px solid currentColor;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  position: relative;
+}
+.detail__badge--neutral {
+  background: var(--color-slate-50);
+  color: var(--color-slate-700);
+  border-color: var(--color-slate-200);
+}
+.dark .detail__badge--neutral {
+  background: var(--color-slate-800);
+  color: var(--color-slate-300);
+  border-color: var(--color-slate-700);
+}
+.detail__badge-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.detail__lineage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin: 0 0 1rem;
+}
+.detail__lineage-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem 0.375rem 0.625rem;
+  background: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.detail__lineage-chip:hover {
+  background: var(--color-slate-100);
+  transform: translateY(-1px);
+}
+.dark .detail__lineage-chip {
+  background: var(--color-slate-800);
+  border-color: var(--color-slate-700);
+}
+.dark .detail__lineage-chip:hover { background: var(--color-slate-700); }
+
+.detail__lineage-chip--pred {
+  border-left: 3px solid var(--color-slate-400);
+}
+.detail__lineage-chip--succ {
+  border-left: 3px solid var(--color-brand-fill);
+}
+.dark .detail__lineage-chip--pred { border-left-color: var(--color-slate-500); }
+
+.detail__lineage-arrow {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--color-slate-500);
+  flex-shrink: 0;
+}
+.dark .detail__lineage-arrow { color: var(--color-slate-400); }
+
+.detail__lineage-body {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.detail__lineage-label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-slate-500);
+  font-weight: 600;
+}
+.dark .detail__lineage-label { color: var(--color-slate-400); }
+.detail__lineage-name {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  color: var(--color-slate-900);
+  font-weight: 500;
+}
+.dark .detail__lineage-name { color: var(--color-slate-100); }
+.detail__lineage-chip:hover .detail__lineage-name { color: var(--color-brand); }
+
 .detail__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -280,6 +505,33 @@ const managers = computed<string[]>(() => {
   border-bottom: 1px solid #e7e5e4;
 }
 .dark .detail__section-title { color: #a8a29e; border-bottom-color: #292524; }
+
+.detail__section-intro {
+  font-size: 0.8125rem;
+  color: var(--color-slate-500);
+  font-style: italic;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.dark .detail__section-intro { color: var(--color-slate-400); }
+
+.detail__section--timeline,
+.detail__section--terms {
+  padding: 1.25rem 1.25rem 1rem;
+  background: #fff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.5rem;
+}
+.dark .detail__section--timeline,
+.dark .detail__section--terms {
+  background: rgba(15, 23, 42, 0.35);
+  border-color: var(--color-slate-700);
+}
+.detail__section--timeline .detail__section-title,
+.detail__section--terms .detail__section-title {
+  border-bottom-color: var(--color-slate-200);
+  margin-bottom: 0.5rem;
+}
 
 .prose {
   font-size: 0.9375rem;

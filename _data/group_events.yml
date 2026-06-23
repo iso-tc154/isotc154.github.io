@@ -1,0 +1,687 @@
+# Group lifecycle events curated from ISO/TC 154 plenary resolutions.
+#
+# Every event in this file is backed by text in a plenary resolution YAML.
+# The resolution_ref field links back to the source resolution identifier
+# (e.g. "003-2013" → /resolutions/003-2013) and resolution_meeting names
+# the plenary (e.g. "P32") that took the decision.
+#
+# Succession model: when a working group is renumbered or converted between
+# joint and non-joint forms, the old entity is DISSOLVED and the new entity
+# is ESTABLISHED at the same effective date, with predecessor/successor
+# links between them. Renames, scope changes, and convenor rotations are
+# same-entity lifecycle events.
+#
+# Field reference:
+#   group_id            group slug (matches _data/groups/{slug}.yml)
+#   type                established | dissolved | convenor_appointed
+#                       | convenor_extended | scope_change | succession
+#                       | title_change
+#   date                ISO 8601 date the action took effect
+#   precision           year | month | day (how precise `date` is)
+#   title               short headline shown on the timeline
+#   description         optional longer narrative
+#   resolution_ref      resolution identifier (links to /resolutions/<ref>)
+#   resolution_meeting  plenary ordinal (P25, P28, P30, ...)
+#   person_name         convenor name (convenor_appointed / convenor_extended)
+#   person_member_id    member slug if known
+#   term_until          ISO date the convenor term ends (convenor_appointed)
+#   predecessor         group slug this entity succeeded (established/succession)
+#   successor           group slug that succeeded this entity (dissolved/succession)
+#
+# Convenor appointments are mirrored into convenor_terms at build time from
+# member role records; entries here provide resolution_ref + term_until that
+# the member records do not carry.
+
+events:
+
+  # ---- WG 1 (Semantic engine) --------------------------------------------
+  - group_id: wg1
+    type: dissolved
+    date: 2008-11-25
+    precision: day
+    title: Disbanded
+    description: |
+      No active work items remained allocated to WG 1 (Semantic engine).
+    resolution_ref: '277'
+    resolution_meeting: P25
+
+  # ---- JWG 2 → JWG 4 → WG 4 lineage --------------------------------------
+  # P28 R305 (effective 2009-09-25): renumber JWG on eLK from 2 to 4.
+  # The succession model treats this as: JWG 2 dissolved, JWG 4 established.
+  - group_id: jwg2
+    type: dissolved
+    date: 2009-09-25
+    precision: day
+    title: Renumbered as JWG 4
+    description: |
+      The joint working group on the electronic Layout Key was renumbered
+      from JWG 2 to JWG 4.
+    resolution_ref: '305'
+    resolution_meeting: P28
+    successor: jwg4
+
+  - group_id: jwg4
+    type: established
+    date: 2009-09-25
+    precision: day
+    title: Renumbered from JWG 2
+    description: |
+      Established by renumbering the former JWG 2 on the electronic Layout
+      Key.
+    resolution_ref: '305'
+    resolution_meeting: P28
+    predecessor: jwg2
+
+  # P30 R316 (effective 2011-09-14): convert JWG 4 to a WG (no joint
+  # publication foreseen). JWG 4 dissolved; WG 4 established.
+  - group_id: jwg4
+    type: dissolved
+    date: 2011-09-14
+    precision: day
+    title: Converted to WG 4
+    description: |
+      With no joint publication foreseen with UNECE, JWG 4 was converted
+      to a single-organisation Working Group.
+    resolution_ref: '316'
+    resolution_meeting: P30
+    successor: wg4
+
+  - group_id: wg4
+    type: established
+    date: 2011-09-14
+    precision: day
+    title: Converted from JWG 4
+    description: |
+      ISO/TC 154 resolved together with the UNECE and UN/CEFACT liaisons
+      to change TC 154/JWG 4 to a Working Group as there was no joint
+      publication foreseen at this time.
+    resolution_ref: '316'
+    resolution_meeting: P30
+    predecessor: jwg4
+
+  # ---- WG 4 leadership ---------------------------------------------------
+  - group_id: wg4
+    type: convenor_appointed
+    date: 2012-10-12
+    precision: day
+    title: Michael Dill resigned as Convenor
+    description: |
+      With regret accepted the resignation of WG 4 Convenor Mr. Michael
+      Dill.
+    resolution_ref: 007-2012
+    resolution_meeting: P31
+    person_name: Michael Dill
+    person_member_id: michael-dill
+
+  - group_id: wg4
+    type: convenor_appointed
+    date: 2012-10-12
+    precision: day
+    title: Sue Probert appointed Convenor
+    resolution_ref: 008-2012
+    resolution_meeting: P31
+    person_name: Sue Probert
+    person_member_id: sue-probert
+
+  - group_id: wg4
+    type: dissolved
+    date: 2014-10-24
+    precision: day
+    title: Disbanded
+    description: |
+      With the automatic cancellation of ISO/PWI 6422-3 and no majority
+      to activate the work item, WG 4 had no more active work items.
+    resolution_ref: 08-2014
+    resolution_meeting: P33
+
+  # P37 R2018-19 (effective 2018-10-26) re-establishes WG 4 with title
+  # "e-document". P38 R2019-15 restates this and P38 R2019-16 appoints
+  # co-conveners; the re-establishment became effective with the ISO 36001
+  # ballot approval.
+  - group_id: wg4
+    type: established
+    date: 2018-10-26
+    precision: day
+    title: Re-established as "e-document"
+    description: |
+      Re-established to handle PWI projects under the title
+      "Standardization documents" (notably Metanorma and related
+      deliverables), with continuity from the previous eLK work.
+    resolution_ref: 2018-19
+    resolution_meeting: P37
+
+  - group_id: wg4
+    type: convenor_appointed
+    date: 2019-10-17
+    precision: day
+    title: Ronald Tse and Jamie Clark appointed co-conveners
+    description: |
+      Co-conveners appointed for a term of three years (until the end
+      of 2022).
+    resolution_ref: 2019-16
+    resolution_meeting: P38
+    person_name: Ronald Tse
+    person_member_id: ronald-tse
+    term_until: '2022-12-31'
+
+  - group_id: wg4
+    type: convenor_appointed
+    date: 2019-10-17
+    precision: day
+    title: Jamie Clark appointed co-convener
+    resolution_ref: 2019-16
+    resolution_meeting: P38
+    person_name: Jamie Clark
+    person_member_id: james-clark
+    term_until: '2022-12-31'
+
+  - group_id: wg4
+    type: dissolved
+    date: 2022-10-14
+    precision: day
+    title: Disbanded
+    description: |
+      Considering that there was no project in WG 4, the committee
+      resolved to disband it effective immediately per Clause 1.12.4 of
+      the ISO/IEC Directives.
+    resolution_ref: 2022-01
+    resolution_meeting: P41
+
+  # ---- WG 2 (Supply chain data) ------------------------------------------
+  # P30 R312 (effective 2011-09-14): dissolve the prior WG 2 after its
+  # ISO/TS 17369 deliverable was accepted. The current WG 2 (Supply chain)
+  # is a later re-establishment that is out of scope of the resolutions
+  # captured so far; its current record is preserved as-is.
+  - group_id: wg2
+    type: dissolved
+    date: 2011-09-14
+    precision: day
+    title: Disbanded (prior incarnation)
+    description: |
+      The prior WG 2 was dissolved after its deliverable, the latest
+      draft of ISO/NP TS 17369, was accepted as the deliverable of WG 2.
+    resolution_ref: '312'
+    resolution_meeting: P30
+
+  # ---- WG 3 (CCTS) -------------------------------------------------------
+  - group_id: wg3
+    type: dissolved
+    date: 2014-10-24
+    precision: day
+    title: Disbanded
+    description: |
+      WG 3 on ISO 15000-5 (ebXML Core Components Technical Specification)
+      was disbanded after the work was completed with publication as an
+      International Standard in April 2014.
+    resolution_ref: 06-2014
+    resolution_meeting: P33
+
+  # ---- WG 5 (Date and time) ----------------------------------------------
+  - group_id: wg5
+    type: established
+    date: 2013-10-28
+    precision: day
+    title: Established
+    description: |
+      Established to take on the work related to the ISO 8601 deliverables
+      with the title "Representation of dates and times".
+    resolution_ref: 003-2013
+    resolution_meeting: P32
+
+  - group_id: wg5
+    type: convenor_appointed
+    date: 2013-10-28
+    precision: day
+    title: Klaus-Dieter Naujok appointed Convenor
+    resolution_ref: 004-2013
+    resolution_meeting: P32
+    person_name: Klaus-Dieter Naujok
+    person_member_id: klaus-dieter-naujok
+
+  # P36 R2017-26 (effective 2018-01-01): Ray Denenberg appointed WG5
+  # Convenor and project leader of ISO 8601.
+  - group_id: wg5
+    type: convenor_appointed
+    date: 2018-01-01
+    precision: day
+    title: Ray Denenberg appointed Convenor
+    description: |
+      Also appointed project leader of ISO 8601.
+    resolution_ref: 2017-26
+    resolution_meeting: P36
+    person_name: Ray Denenberg
+    person_member_id: ray-denenberg
+
+  # P37 R2018-08 (effective 2018-10-26): Ronald Tse appointed Convenor of
+  # WG 5, effective after the publication of ISO 8601-1 and ISO 8601-2.
+  - group_id: wg5
+    type: convenor_appointed
+    date: 2018-10-26
+    precision: day
+    title: Ronald Tse appointed Convenor
+    resolution_ref: 2018-08
+    resolution_meeting: P37
+    person_name: Ronald Tse
+    person_member_id: ronald-tse
+
+  # P40 R2021-02 (effective 2021-10-28): extend WG 5 Convenor term to
+  # end of 2024.
+  - group_id: wg5
+    type: convenor_extended
+    date: 2021-10-28
+    precision: day
+    title: Convenor term extended to end of 2024
+    resolution_ref: 2021-02
+    resolution_meeting: P40
+    person_name: Ronald Tse
+    person_member_id: ronald-tse
+    term_until: '2024-12-31'
+
+  # P43 P-2024-14 (effective 2024-10-25): appoint Ronald Tse as Convenor
+  # of WG 5 from 2025 to 2027.
+  - group_id: wg5
+    type: convenor_extended
+    date: 2024-10-25
+    precision: day
+    title: Convenor term extended to end of 2027
+    resolution_ref: P-2024-14
+    resolution_meeting: P43
+    person_name: Ronald Tse
+    person_member_id: ronald-tse
+    term_until: '2027-12-31'
+
+  # ---- WG 6 (Trusted eCommunication) -------------------------------------
+  - group_id: wg6
+    type: established
+    date: 2014-10-24
+    precision: day
+    title: Established
+    description: |
+      Established with the title "Trusted eCommunication", covering the
+      projects "Trusted Communication Platform for Electronic Documents",
+      "Trusted Mobile e-Document Framework", and ISO 14533-3.
+    resolution_ref: 02-2014
+    resolution_meeting: P33
+
+  - group_id: wg6
+    type: convenor_appointed
+    date: 2014-10-24
+    precision: day
+    title: Jasmine Chang appointed Convenor
+    description: |
+      The secretariat of WG 6 was allocated to South Korea (KATS).
+    resolution_ref: 03-2014
+    resolution_meeting: P33
+    person_name: Jasmine Chang
+    person_member_id: jasmine-chang
+
+  # P39 R2020-22 extends WG 6 Convenor term to end of 2023.
+  - group_id: wg6
+    type: convenor_extended
+    date: 2020-08-27
+    precision: day
+    title: Convenor term extended to end of 2023
+    resolution_ref: 2020-22
+    resolution_meeting: P39
+    person_name: Jasmine Chang
+    person_member_id: jasmine-chang
+    term_until: '2023-12-31'
+
+  # P42 R2023-17 extends JWG1/WG6/WG7 conveners to end of 2026.
+  - group_id: wg6
+    type: convenor_extended
+    date: 2023-10-27
+    precision: day
+    title: Convenor term extended to end of 2026
+    resolution_ref: 2023-17
+    resolution_meeting: P42
+    person_name: Jasmine Chang
+    person_member_id: jasmine-chang
+    term_until: '2026-12-31'
+
+  # ---- WG 7 (Business) ---------------------------------------------------
+  - group_id: wg7
+    type: established
+    date: 2016-10-21
+    precision: day
+    title: Established
+    description: |
+      Established with the title "Business" following the approval of
+      ISO/NP 21981 ballot. Secretariat allocated to SAC.
+    resolution_ref: 2016-10
+    resolution_meeting: P35
+
+  - group_id: wg7
+    type: convenor_appointed
+    date: 2016-10-21
+    precision: day
+    title: Klaus-Dieter Naujok appointed Convenor
+    resolution_ref: 2016-11
+    resolution_meeting: P35
+    person_name: Klaus-Dieter Naujok
+    person_member_id: klaus-dieter-naujok
+
+  # P39 R2020-23: appoint Jim Wilson as WG 7 Convenor until end of 2023.
+  - group_id: wg7
+    type: convenor_appointed
+    date: 2020-08-27
+    precision: day
+    title: Jim Wilson appointed Convenor
+    resolution_ref: 2020-23
+    resolution_meeting: P39
+    person_name: Jim Wilson
+    person_member_id: jim-wilson
+    term_until: '2023-12-31'
+
+  - group_id: wg7
+    type: convenor_extended
+    date: 2023-10-27
+    precision: day
+    title: Convenor term extended to end of 2026
+    resolution_ref: 2023-17
+    resolution_meeting: P42
+    person_name: Jim Wilson
+    person_member_id: jim-wilson
+    term_until: '2026-12-31'
+
+  # ---- JWG 1 (EDIFACT syntax) --------------------------------------------
+  # P33 R01-2014 requested CAT to replace JWG 1 by an ISO/MA. This was
+  # later replaced by P36 R2017-03, which kept JWG 1.
+  - group_id: jwg1
+    type: scope_change
+    date: 2014-10-24
+    precision: day
+    title: Replacement by ISO/MA requested
+    description: |
+      Resolved to request CAT to work with ISO/CS to replace JWG 1 by an
+      ISO Maintenance Agency, keeping the secretariat at DIN. This
+      resolution was later replaced by P36 R2017-03.
+    resolution_ref: 01-2014
+    resolution_meeting: P33
+
+  - group_id: jwg1
+    type: scope_change
+    date: 2017-10-27
+    precision: day
+    title: JWG 1 retained
+    description: |
+      Resolved to remain ISO/TC 154/JWG 1 and not to establish the ISO
+      9735 MA or RA, replacing resolution 01-2014. UNECE renewed interest
+      in JWG 1 and nominated two new experts.
+    resolution_ref: 2017-03
+    resolution_meeting: P36
+
+  - group_id: jwg1
+    type: convenor_appointed
+    date: 2017-10-27
+    precision: day
+    title: Zhang Yan appointed Convenor
+    resolution_ref: 2017-04
+    resolution_meeting: P36
+    person_name: Zhang Yan
+    person_member_id: zhang-yan
+
+  # P42 R2023-03 (effective 2023-10-27): JWG1 title changed.
+  - group_id: jwg1
+    type: title_change
+    date: 2023-10-27
+    precision: day
+    title: Title changed
+    description: |
+      Title changed to "ISO/UNECE joint working group for EDIFACT syntax"
+      to reflect the equivalence of both organisations.
+    resolution_ref: 2023-03
+    resolution_meeting: P42
+
+  - group_id: jwg1
+    type: convenor_extended
+    date: 2023-10-27
+    precision: day
+    title: Convenor term extended to end of 2026
+    description: |
+      Anders Grangård's term as Convenor of JWG 1 extended.
+    resolution_ref: 2023-17
+    resolution_meeting: P42
+    person_name: Anders Grangård
+    person_member_id: anders-grangard
+    term_until: '2026-12-31'
+
+  # ---- JWG 8 (Logistics data) --------------------------------------------
+  - group_id: jwg8
+    type: established
+    date: 2017-10-27
+    precision: day
+    title: Established
+    description: |
+      Established with UNECE with the title "logistics data contents and
+      process" to cover three new PWI projects on logistics that existing
+      WGs could not cover.
+    resolution_ref: 2017-16
+    resolution_meeting: P36
+
+  - group_id: jwg8
+    type: convenor_appointed
+    date: 2017-10-27
+    precision: day
+    title: Dapeng Liu appointed Convenor
+    resolution_ref: 2017-17
+    resolution_meeting: P36
+    person_name: Dapeng Liu
+    person_member_id: max-liu
+
+  # P40 R2021-10 (effective 2021-10-28): extend JWG 8 Convenor term to
+  # end of 2024.
+  - group_id: jwg8
+    type: convenor_extended
+    date: 2021-10-28
+    precision: day
+    title: Convenor term extended to end of 2024
+    resolution_ref: 2021-10
+    resolution_meeting: P40
+    person_name: Dapeng Liu
+    person_member_id: max-liu
+    term_until: '2024-12-31'
+
+  - group_id: jwg8
+    type: dissolved
+    date: 2022-10-14
+    precision: day
+    title: Disbanded
+    description: |
+      Following UNECE's notification on 12 August 2022 that it had
+      withdrawn from JWG 8, the committee resolved to disband JWG 8
+      effective immediately.
+    resolution_ref: 2022-12
+    resolution_meeting: P41
+
+  # ---- CAG (Co-ordination Advisory Group) --------------------------------
+  # P30 R319 (effective 2011-09-14): dissolve CAG.
+  - group_id: cag
+    type: dissolved
+    date: 2011-09-14
+    precision: day
+    title: Dissolved
+    description: |
+      The Co-ordination Advisory Group was dissolved.
+    resolution_ref: '319'
+    resolution_meeting: P30
+
+  # P43 P-2024-14 (effective 2024-10-25): appoint Shi Yu (ISO/TC 154
+  # Chair) as Convenor of CAG from 2025 to 2027.
+  - group_id: cag
+    type: convenor_appointed
+    date: 2024-10-25
+    precision: day
+    title: Shi Yu appointed Convenor
+    description: |
+      Appointed Convenor of CAG for 2025–2027.
+    resolution_ref: P-2024-14
+    resolution_meeting: P43
+    person_name: Shi Yu
+    person_member_id: shi-yu
+    term_until: '2027-12-31'
+
+  # ---- AHG blockchain (P41→P42) ------------------------------------------
+  - group_id: ahg-blockchain
+    type: established
+    date: 2022-10-14
+    precision: day
+    title: Established
+    description: |
+      Ad-hoc group established with the title "application of blockchain
+      technologies for commerce, industry and administration" to
+      communicate with TC 307, gather questions and answers, and draft a
+      report on the potential JWG.
+    resolution_ref: 2022-14
+    resolution_meeting: P41
+
+  - group_id: ahg-blockchain
+    type: dissolved
+    date: 2023-10-27
+    precision: day
+    title: Disbanded
+    description: |
+      Report accepted; ad-hoc group disbanded with appreciation for its
+      experts and Mr. Cheng Chi's contributions.
+    resolution_ref: 2023-15
+    resolution_meeting: P42
+
+  # ---- AG 1 (Liaison review) ---------------------------------------------
+  - group_id: ag1
+    type: established
+    date: 2023-10-27
+    precision: day
+    title: Established
+    description: |
+      Advisory Group established with the title "liaison review" to
+      regularly review and encourage liaisons to actively participate in
+      TC 154.
+    resolution_ref: 2023-19
+    resolution_meeting: P42
+
+  - group_id: ag1
+    type: convenor_appointed
+    date: 2023-10-27
+    precision: day
+    title: Jianfang Zhang appointed Convenor
+    description: |
+      Appointed AG Convenor until the end of 2026.
+    resolution_ref: 2023-19
+    resolution_meeting: P42
+    person_name: Jianfang Zhang
+    person_member_id: jianfang-zhang
+    term_until: '2026-12-31'
+
+  # P44 P-2025-10 (effective 2025-09-26): extend AG 1 Convenor mandate
+  # for 2026–2028.
+  - group_id: ag1
+    type: convenor_extended
+    date: 2025-09-26
+    precision: day
+    title: Convenor term extended to end of 2028
+    resolution_ref: P-2025-10
+    resolution_meeting: P44
+    person_name: Jianfang Zhang
+    person_member_id: jianfang-zhang
+    term_until: '2028-12-31'
+
+  # ---- JWG 9 (Supply chain semantics with UNECE) -------------------------
+  - group_id: jwg9
+    type: established
+    date: 2023-10-27
+    precision: day
+    title: Established
+    description: |
+      Established with UNECE with the title "ISO/UNECE joint working
+      group for information exchange of supply chain aligned to
+      UN/CEFACT semantics".
+    resolution_ref: 2023-11
+    resolution_meeting: P42
+
+  - group_id: jwg9
+    type: convenor_appointed
+    date: 2023-10-27
+    precision: day
+    title: Yan Zhang and Jim Wilson appointed co-conveners
+    description: |
+      Co-conveners appointed with Kevin Bishop as secretary; terms
+      expire at the end of 2026.
+    resolution_ref: 2023-12
+    resolution_meeting: P42
+    person_name: Yan Zhang
+    person_member_id: yan-zhang
+    term_until: '2026-12-31'
+
+  - group_id: jwg9
+    type: convenor_appointed
+    date: 2023-10-27
+    precision: day
+    title: Jim Wilson appointed co-convener
+    resolution_ref: 2023-12
+    resolution_meeting: P42
+    person_name: Jim Wilson
+    person_member_id: jim-wilson
+    term_until: '2026-12-31'
+
+  # ---- SG 1 (Standardization content and document) -----------------------
+  - group_id: sg1
+    type: established
+    date: 2025-09-26
+    precision: day
+    title: Established
+    description: |
+      Study Group established with the title "Standardization content
+      and document" for ISO/PWI 36100 and ISO/PWI 36200.
+    resolution_ref: P-2025-01
+    resolution_meeting: P44
+
+  - group_id: sg1
+    type: convenor_appointed
+    date: 2025-09-26
+    precision: day
+    title: Ronald Tse appointed Convenor
+    description: |
+      Appointed Convenor for a period of one year.
+    resolution_ref: P-2025-01
+    resolution_meeting: P44
+    person_name: Ronald Tse
+    person_member_id: ronald-tse
+    term_until: '2026-09-26'
+
+# Curated overrides for groups whose lifecycle is partially documented
+# outside resolutions (mostly establishment dates not captured in any
+# plenary resolution we hold).
+overrides:
+
+  # WG 3 was established upon the former CCTS ad-hoc group of ISO/TC 154
+  # in March 2006 (per current wg3.yml intro).
+  - group_id: wg3
+    field: established
+    date: 2006-03-01
+    precision: month
+    title: Established from CCTS ad-hoc group
+    description: |
+      WG 3 was established upon the former CCTS ad-hoc group of
+      ISO/TC 154 in March 2006, to maintain ISO/TS 15000-5 (Core
+      Components Technical Specification) in liaison with UN/CEFACT.
+
+  # The current WG 2 (Supply chain) is a re-establishment after P30 R312.
+  # The exact re-establishment resolution is not in the resolutions we
+  # hold. We record only that the current WG 2 is active.
+  - group_id: wg2
+    field: note
+    title: Re-established
+    description: |
+      The current WG 2 (Supply chain data) is a re-establishment of the
+      committee after P30 R312 dissolved the prior incarnation that had
+      completed ISO/TS 17369.
+
+  # CAG was dissolved at P30 R319 and is currently active; its
+  # re-establishment is not captured in the plenary resolutions we hold.
+  - group_id: cag
+    field: note
+    title: Re-established
+    description: |
+      The CAG is currently active under the chairmanship of Shi Yu
+      (2025–2027). It was previously dissolved at P30 R319 (2011-09-14)
+      and re-established at a later date.

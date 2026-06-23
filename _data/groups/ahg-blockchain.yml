@@ -1,0 +1,28 @@
+---
+id: ahg-blockchain
+_id: ahg-blockchain
+name: AHG blockchain
+title: Application of blockchain technologies (historical)
+category: ahwg
+order: 99
+inactive: true
+intro: |
+  Ad-hoc group established at the 41st plenary (P41, resolution 2022-14,
+  effective 2022-10-14) with the title "application of blockchain
+  technologies for commerce, industry and administration". The group was
+  tasked to communicate with ISO/TC 307, gather questions and answers,
+  and draft a report on the potential for a joint working group. It was
+  disbanded at P42 (resolution 2023-15) after its report was accepted.
+scope: |
+    Communicate with ISO/TC 307 (Blockchain and distributed ledger
+    technologies), gather questions and answers, and draft a report on
+    the potential JWG between ISO/TC 154 and ISO/TC 307.
+history:
+  story: |
+    Established at P41 (2022-10-14). The committee resolved that the
+    ad-hoc group would communicate with ISO/TC 307, gather questions and
+    answers, and draft a report on the potential JWG.
+
+    At P42 (2023-10-27) the report was accepted and the ad-hoc group
+    disbanded with appreciation for its experts and Mr. Cheng Chi's
+    contributions.

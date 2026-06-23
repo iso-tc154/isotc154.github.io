@@ -12,6 +12,15 @@ export function resolutionPath(sourceType: string, sourceFile: string, id: strin
   return `/resolutions/${sourceType}/${sourceFile}/${id}/`
 }
 
+// Lifecycle events and convenor terms only carry the resolution id (e.g.
+// "003-2013" or "P-2025-10") — the source_type/source_file needed for the
+// canonical detail path is not known at the call site. Link to the list
+// view with the id as a search query, matching the convention used by
+// HistoryView for ref-based deep links.
+export function resolutionRefSearchPath(ref: string): string {
+  return `/resolutions/?q=${encodeURIComponent(ref)}`
+}
+
 // === Meeting identifiers ===
 
 export function meetingUrn(source: MeetingSource): string {
