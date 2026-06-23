@@ -5,11 +5,11 @@ import { mainNav } from './data/navigation'
 import { committee } from './data/committee'
 import { useTheme } from './composables/useTheme'
 import { useSeo } from './composables/useSeo'
-import { useMeta } from './composables/useMeta'
+import { useSiteStats } from './composables/useSiteStats'
 
 const { isDark, toggle: toggleTheme } = useTheme()
 useSeo()
-const { meta, load: loadMeta } = useMeta()
+const { siteStats, load: loadSiteStats } = useSiteStats()
 const isMobileMenuOpen = ref(false)
 const openSections = ref<Set<string>>(new Set())
 const showScrollTop = ref(false)
@@ -60,7 +60,7 @@ function scrollToTop() {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
-  loadMeta()
+  loadSiteStats()
 })
 
 onUnmounted(() => {
@@ -182,8 +182,8 @@ onUnmounted(() => {
             <li><strong>Secretariat:</strong> {{ committee.secretariat }}</li>
             <li><strong>Chair:</strong> {{ committee.chair }}</li>
             <li><strong>Established:</strong> {{ committee.established }}</li>
-            <li><strong>Standards:</strong> {{ meta?.counts.publishedStandards ?? '—' }} published</li>
-            <li><strong>Members:</strong> {{ meta?.counts.participatingMembers ?? '—' }} (P), {{ meta?.counts.observingMembers ?? '—' }} (O)</li>
+            <li><strong>Standards:</strong> {{ siteStats?.counts.publishedStandards ?? '—' }} published</li>
+            <li><strong>Members:</strong> {{ siteStats?.counts.participatingMembers ?? '—' }} (P), {{ siteStats?.counts.observingMembers ?? '—' }} (O)</li>
           </ul>
         </div>
 

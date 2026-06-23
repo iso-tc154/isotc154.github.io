@@ -1,8 +1,8 @@
-import { computed, watchEffect } from 'vue'
+import { computed, watch } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useRoute } from 'vue-router'
 import { buildHeadObject, SITE_CONFIG } from '../utils/seo'
-import { computeRouteMeta } from '../utils/routeMeta'
+import { computeRouteMeta, entitiesNeededForRoute, type RouteMetaEntity } from '../utils/routeMeta'
 import { useResolutions } from './useResolutions'
 import { useMembers } from './useMembers'
 import { useGroups } from './useGroups'
@@ -44,19 +44,30 @@ export function useSeo() {
 
   useHead(() => buildHeadObject(meta.value, SITE_CONFIG))
 
-  watchEffect(() => {
-    if (import.meta.env.SSR) return
-    Promise.all([
-      resolutionsStore.loadData(),
-      membersStore.loadData(),
-      groups.loadData(),
-      standards.loadData(),
-      projects.loadData(),
-      liaisons.loadData(),
-      nationalBodies.loadData(),
-      posts.loadData(),
-      pages.loadData(),
-      meetings.loadData(),
-    ]).catch((e) => console.error('SEO data load failed', e))
-  })
+  if (!import.meta.env.SSR) {
+    const loaders: Record<RouteMetaEntity, () => Promise<unknown>> = {
+      resolutions: () => resolutionsStore.loadData(),
+      members: () => membersStore.loadData(),
+      groups: () => groups.loadData(),
+      standards: () => standards.loadData(),
+      projects: () => projects.loadData(),
+      liaisons: () => liaisons.loadData(),
+      nationalBodies: () => nationalBodies.loadData(),
+      posts: () => posts.loadData(),
+      pages: () => pages.loadData(),
+      meetings: () => meetings.loadData(),
+    }
+
+    watch(
+      () => route.path,
+      (path) => {
+        const kinds = entitiesNeededForRoute(path)
+        if (kinds.length === 0) return
+        Promise.all(kinds.map((k) => loaders[k]())).catch((e) =>
+          console.error('SEO data load failed', e),
+        )
+      },
+      { immediate: true },
+    )
+  }
 }
