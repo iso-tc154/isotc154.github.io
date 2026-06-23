@@ -32,6 +32,8 @@ history:
 active_projects:
 - iso-34000
 - iso-34300
+- iso-cd-8601-1
+- iso-cd-8601-2
 standards:
 - ISO 2014:1976
 - ISO 2015:1976
