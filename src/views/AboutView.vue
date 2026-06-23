@@ -1,41 +1,37 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { committee } from '../data/committee'
-import { useStandards } from '../composables/useStandards'
-import { useGroups } from '../composables/useGroups'
-import { useMembers } from '../composables/useMembers'
+import { useMeta } from '../composables/useMeta'
 import { useCountUp } from '../composables/useCountUp'
 import PageHero from '../components/PageHero.vue'
 
-const standardsStore = useStandards()
-const groupsStore = useGroups()
-const membersStore = useMembers()
+const { meta, load: loadMeta } = useMeta()
 
 onMounted(() => {
-  standardsStore.loadData()
-  groupsStore.loadData()
-  membersStore.loadData()
+  loadMeta()
 })
 
 const statsRef = useTemplateRef<HTMLElement>('statsRef')
-const statsReady = ref(false)
+const statsVisible = ref(false)
+const statsReady = computed(() => statsVisible.value && meta.value !== null)
 
-const membersCount = useCountUp(committee.totalMembers, statsReady)
-const groupsCount = useCountUp(committee.activeGroups, statsReady)
-const plenariesCount = useCountUp(45, statsReady)
+const membersCount = useCountUp(computed(() => meta.value?.counts.totalMembers ?? 0), statsReady)
+const groupsCount = useCountUp(computed(() => meta.value?.counts.activeGroups ?? 0), statsReady)
+const plenariesCount = useCountUp(computed(() => meta.value?.counts.meetings ?? 0), statsReady)
+const publishedCount = useCountUp(computed(() => meta.value?.counts.publishedStandards ?? 0), statsReady)
 const establishedYear = committee.established
 
 onMounted(() => {
   const el = statsRef.value
   if (!el || typeof IntersectionObserver === 'undefined') {
-    statsReady.value = true
+    statsVisible.value = true
     return
   }
   const obs = new IntersectionObserver(
     (entries) => {
       for (const e of entries) {
         if (e.isIntersecting) {
-          statsReady.value = true
+          statsVisible.value = true
           obs.disconnect()
         }
       }
@@ -43,17 +39,6 @@ onMounted(() => {
     { threshold: 0.25 },
   )
   obs.observe(el)
-})
-
-// Pull live totals when available; fall back to committee.ts constants.
-const publishedCount = computed(() => {
-  const list = standardsStore.all()
-  if (!list.length) return committee.publishedStandards
-  return list.filter((s) => {
-    const stage = s.iso?.stage ?? ''
-    const status = s.tc154?.status ?? ''
-    return status === 'published' || /^60/.test(stage) || /^9[0-4]/.test(stage)
-  }).length || committee.publishedStandards
 })
 
 // Concrete artifacts TC 154 has authored — provenance, not decoration.
@@ -447,7 +432,7 @@ const involvement = [
 
       <div class="marquee__more">
         <RouterLink to="/standards/" class="more-link">
-          See all {{ publishedCount }}+ standards in the catalogue
+          See all {{ meta?.counts.publishedStandards ?? '' }} standards in the catalogue
           <span aria-hidden="true">→</span>
         </RouterLink>
       </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useMembers } from '../composables/useMembers'
 import { useGroups } from '../composables/useGroups'
 import type { Member } from '../types/member'
@@ -10,6 +10,7 @@ import PageHero from '../components/PageHero.vue'
 
 const { index, isLoaded, loadData } = useMembers()
 const { groups, loadData: loadGroups } = useGroups()
+const route = useRoute()
 const router = useRouter()
 
 function groupLabel(gid: string): string {
@@ -17,7 +18,7 @@ function groupLabel(gid: string): string {
   return g?.name ?? gid
 }
 
-const searchQuery = ref('')
+const searchQuery = ref((route.query.q as string) || '')
 const selectedGroup = ref('')
 const selectedRole = ref('')
 const selectedStatus = ref<'all' | 'current' | 'past' | 'leadership'>('current')

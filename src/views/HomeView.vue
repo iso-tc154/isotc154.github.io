@@ -1,30 +1,44 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { useRouter } from 'vue-router'
 import { committee } from '../data/committee'
+import { useMeta } from '../composables/useMeta'
 import { useCountUp } from '../composables/useCountUp'
 import PageHero from '../components/PageHero.vue'
 
-const statsSectionRef = useTemplateRef<HTMLElement>('statsSection')
-const statsReady = ref(false)
+const router = useRouter()
+const { meta, load: loadMeta } = useMeta()
 
-const standardsCount = useCountUp(committee.publishedStandards, statsReady)
-const totalMembersCount = useCountUp(committee.totalMembers, statsReady)
-// Founded year is a fixed historical fact — never animate it as a count-up.
+const statsSectionRef = useTemplateRef<HTMLElement>('statsSection')
+const statsVisible = ref(false)
+const statsReady = computed(() => statsVisible.value && meta.value !== null)
+
+const publishedStandardsCount = useCountUp(
+  computed(() => meta.value?.counts.publishedStandards ?? 0),
+  statsReady,
+)
+const totalMembersCount = useCountUp(
+  computed(() => meta.value?.counts.totalMembers ?? 0),
+  statsReady,
+)
 const establishedYear = ref(committee.established)
-const activeGroupsCount = useCountUp(committee.activeGroups, statsReady)
+const activeGroupsCount = useCountUp(
+  computed(() => meta.value?.counts.activeGroups ?? 0),
+  statsReady,
+)
 
 const headlineStandards = [
-  { num: 'ISO 8601', what: 'Date & time', used: 'Every timestamp on the internet' },
-  { num: 'ISO 9735', what: 'EDIFACT', used: 'Every electronic data interchange message' },
-  { num: 'ISO 7372', what: 'Trade Data Elements', used: 'Every data field in a customs declaration' },
-  { num: 'ISO 14533', what: 'Long-term signatures', used: 'Every verifiable electronic signature' },
+  { num: 'ISO 8601', what: 'Date & time', used: 'Every timestamp on the internet', to: '/standards/iso-8601-1-2019/' },
+  { num: 'ISO 9735', what: 'EDIFACT', used: 'Every electronic data interchange message', to: '/standards/iso-9735-1988/' },
+  { num: 'ISO 7372', what: 'Trade Data Elements', used: 'Every data field in a customs declaration', to: '/standards/iso-7372-2005/' },
+  { num: 'ISO 14533', what: 'Long-term signatures', used: 'Every verifiable electronic signature', to: '/standards/iso-14533-1-2022/' },
 ]
 
 const stats = computed(() => [
-  { value: establishedYear, label: 'Founded', caption: 'Five decades of continuous technical work.' },
-  { value: standardsCount, label: 'Published standards', caption: 'Deployed across global trade infrastructure.' },
-  { value: activeGroupsCount, label: 'Active groups', caption: 'Working groups driving today’s programmes.' },
-  { value: totalMembersCount, label: 'Member bodies', caption: 'National bodies shaping every standard.' },
+  { value: establishedYear, label: 'Founded', caption: 'Five decades of continuous technical work.', to: '/history/' },
+  { value: publishedStandardsCount, label: 'Published standards', caption: 'Deployed across global trade infrastructure.', to: '/standards/' },
+  { value: activeGroupsCount, label: 'Active groups', caption: 'Working groups driving today\'s programmes.', to: '/groups/' },
+  { value: totalMembersCount, label: 'Member bodies', caption: 'National bodies shaping every standard.', to: '/national-bodies/' },
 ])
 
 const sections = [
@@ -32,58 +46,97 @@ const sections = [
     n: '01',
     label: 'Standards',
     to: '/standards/',
-    blurb: 'ISO 8601, EDIFACT, ISO 7372, ISO 14533 — the rules behind global trade. Browse every published and in-development standard.',
+    blurb: 'ISO 8601, EDIFACT, ISO 7372 — the rules behind global trade.',
     accent: 'time',
   },
   {
     n: '02',
     label: 'Resolutions',
     to: '/resolutions/',
-    blurb: 'Every decision the committee has ever made — searchable by number, topic, meeting, or action type. With URN permalinks and a full audit trail.',
+    blurb: 'Every committee decision, searchable by number, topic, or meeting.',
     accent: 'resolve',
   },
   {
     n: '03',
     label: 'Members',
     to: '/members/',
-    blurb: 'Experts from 47 national bodies and liaison organisations, the working group convenors, and the Committee Advisory Group.',
+    blurb: 'Experts from 45 national bodies and liaison organisations.',
     accent: 'people',
   },
   {
     n: '04',
     label: 'Meetings',
     to: '/meetings/',
-    blurb: 'Plenary meetings since 1972 — host cities, venues, agendas, briefings, and every resolution adopted.',
+    blurb: 'Plenary meetings since 1972 — hosts, agendas, and resolutions.',
     accent: 'meet',
   },
   {
     n: '05',
     label: 'History',
     to: '/history/',
-    blurb: 'Five decades of milestones — founding, chairs and secretariats, structural changes, published standards, and meetings.',
+    blurb: 'Five decades of milestones — chairs, structural changes, publications.',
     accent: 'history',
   },
   {
     n: '06',
     label: 'Procedures',
     to: '/procedures/',
-    blurb: 'How the committee conducts its work — standing documents, submission processes, and the rules of consensus.',
+    blurb: 'How the committee works — standing documents and consensus rules.',
     accent: 'process',
   },
 ]
 
+// Current rail: next plenary, latest publication, open-for-comment documents.
+const nextPlenary = computed(() => meta.value?.current.nextPlenary ?? null)
+const latestPublication = computed(() => meta.value?.current.latestPublication ?? null)
+const openForComment = computed(() => meta.value?.current.openForComment ?? [])
+
+function plenaryDates(np: NonNullable<typeof nextPlenary.value>): string {
+  if (!np.from_date) return ''
+  const from = new Date(np.from_date)
+  if (!np.to_date) return from.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  const to = new Date(np.to_date)
+  if (from.getMonth() === to.getMonth()) {
+    return `${from.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}–${to.getDate()}, ${to.getFullYear()}`
+  }
+  return `${from.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}–${to.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}, ${to.getFullYear()}`
+}
+
+function publicationDate(iso: string | null): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+// Hero search — three scopes, navigates to the corresponding list page.
+type SearchScope = 'standards' | 'resolutions' | 'members'
+const searchScope = ref<SearchScope>('standards')
+const searchTerm = ref('')
+const scopeTargets: Record<SearchScope, string> = {
+  standards: '/standards/',
+  resolutions: '/resolutions/',
+  members: '/members/',
+}
+
+function submitSearch() {
+  const q = searchTerm.value.trim()
+  const path = scopeTargets[searchScope.value]
+  router.push(q ? `${path}?q=${encodeURIComponent(q)}` : path)
+}
+
 onMounted(() => {
+  loadMeta()
   const el = statsSectionRef.value
   if (!el) return
   if (typeof IntersectionObserver === 'undefined') {
-    statsReady.value = true
+    statsVisible.value = true
     return
   }
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          statsReady.value = true
+          statsVisible.value = true
           observer.disconnect()
         }
       }
@@ -120,15 +173,52 @@ onMounted(() => {
         </span>
         <span class="hero__title-line">a common language.</span>
       </template>
-      <dl class="hero__standards">
-        <div v-for="s in headlineStandards" :key="s.num" class="hero__standard">
-          <dt class="hero__standard-num">{{ s.num }}</dt>
-          <dd class="hero__standard-body">
-            <span class="hero__standard-what">{{ s.what }}</span>
-            <span class="hero__standard-used">{{ s.used }}</span>
-          </dd>
+
+      <form class="hero-search" @submit.prevent="submitSearch">
+        <div class="hero-search__scopes" role="tablist" aria-label="Search scope">
+          <button
+            v-for="scope in (['standards', 'resolutions', 'members'] as const)"
+            :key="scope"
+            type="button"
+            role="tab"
+            :aria-selected="searchScope === scope"
+            :class="['hero-search__scope', { 'hero-search__scope--active': searchScope === scope }]"
+            @click="searchScope = scope"
+          >{{ scope[0].toUpperCase() + scope.slice(1) }}</button>
         </div>
-      </dl>
+        <div class="hero-search__row">
+          <svg class="hero-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            v-model="searchTerm"
+            type="search"
+            class="hero-search__input"
+            :placeholder="`Search ${searchScope}…`"
+            aria-label="Search the catalogue"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="submit" class="hero-search__submit">
+            Search
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </form>
+
+      <ul class="hero__standards">
+        <li v-for="s in headlineStandards" :key="s.num">
+          <RouterLink :to="s.to" class="hero__standard">
+            <span class="hero__standard-num">{{ s.num }}</span>
+            <span class="hero__standard-body">
+              <span class="hero__standard-what">{{ s.what }}</span>
+              <span class="hero__standard-used">{{ s.used }}</span>
+            </span>
+          </RouterLink>
+        </li>
+      </ul>
+
       <template #actions>
         <RouterLink to="/standards/" class="hero__cta hero__cta--primary">
           Browse the catalogue
@@ -143,10 +233,67 @@ onMounted(() => {
     <div class="page page--wide">
       <section id="stats" ref="statsSection" class="stats">
         <div class="stats__inner">
-          <div v-for="stat in stats" :key="stat.label" class="stats__cell">
+          <RouterLink
+            v-for="stat in stats"
+            :key="stat.label"
+            :to="stat.to"
+            class="stats__cell"
+          >
             <span class="stats__value">{{ stat.value.value }}</span>
             <span class="stats__label">{{ stat.label }}</span>
             <span class="stats__caption">{{ stat.caption }}</span>
+          </RouterLink>
+        </div>
+      </section>
+
+      <section v-if="nextPlenary || latestPublication || openForComment.length" class="current">
+        <header class="current__head">
+          <p class="current__eyebrow">— Current</p>
+          <h2 class="current__title">What's happening now.</h2>
+        </header>
+        <div class="current__grid">
+          <RouterLink
+            v-if="nextPlenary"
+            :to="nextPlenary.url"
+            class="current-card current-card--plenary"
+          >
+            <span class="current-card__tag">Next plenary · #{{ nextPlenary.ordinal }}</span>
+            <h3 class="current-card__heading">{{ nextPlenary.general_area }}</h3>
+            <p class="current-card__meta">{{ plenaryDates(nextPlenary) }}</p>
+            <a
+              v-if="nextPlenary.registration_url"
+              :href="nextPlenary.registration_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="current-card__cta"
+              @click.stop
+            >
+              Register <span aria-hidden="true">↗</span>
+            </a>
+          </RouterLink>
+
+          <RouterLink
+            v-if="latestPublication"
+            :to="latestPublication.url"
+            class="current-card current-card--pub"
+          >
+            <span class="current-card__tag">Latest publication</span>
+            <h3 class="current-card__heading">{{ latestPublication.name }}</h3>
+            <p class="current-card__title-line">{{ latestPublication.title }}</p>
+            <p class="current-card__meta">{{ publicationDate(latestPublication.publication_date) }}</p>
+          </RouterLink>
+
+          <div v-if="openForComment.length" class="current-card current-card--comment">
+            <span class="current-card__tag">Open for comment</span>
+            <p class="current-card__intro">Draft documents in DIS / DTR / DTS balloting — national bodies can submit comments.</p>
+            <ul class="current-card__list">
+              <li v-for="doc in openForComment" :key="doc.id">
+                <RouterLink :to="doc.url" class="current-card__item">
+                  <span class="current-card__item-name">{{ doc.name }}</span>
+                  <span class="current-card__item-stage">stage {{ doc.stage }}</span>
+                </RouterLink>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -272,9 +419,117 @@ onMounted(() => {
   .hero__title-cycle::before { content: none; }
 }
 
-/* HERO standards grid (slotted into PageHero default slot) */
+/* HERO search — scoped input slotted below the title */
+.hero-search {
+  margin: 2rem 0 2.5rem;
+  max-width: 36rem;
+}
+.hero-search__scopes {
+  display: inline-flex;
+  gap: 0.125rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #e7e5e4;
+  padding-bottom: 0.25rem;
+}
+.dark .hero-search__scopes { border-bottom-color: #44403c; }
+.hero-search__scope {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #78716c;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.dark .hero-search__scope { color: #a8a29e; }
+.hero-search__scope:hover { color: #1c1917; }
+.dark .hero-search__scope:hover { color: #fafaf9; }
+.hero-search__scope--active {
+  color: var(--color-brand);
+  position: relative;
+}
+.hero-search__scope--active::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: -0.3rem;
+  height: 2px;
+  background: var(--color-brand);
+}
+.hero-search__row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid #d6d3d1;
+  background: #fafaf9;
+}
+.dark .hero-search__row {
+  border-color: #44403c;
+  background: rgb(15 23 42 / 0.6);
+}
+.hero-search__row:focus-within {
+  border-color: var(--color-blue-accent);
+  box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
+}
+.dark .hero-search__row:focus-within {
+  border-color: #5379bf;
+  box-shadow: 0 0 0 3px rgb(83 121 191 / 0.2);
+}
+.hero-search__icon {
+  align-self: center;
+  margin-left: 0.875rem;
+  color: #78716c;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+.dark .hero-search__icon { color: #a8a29e; }
+.hero-search__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.75rem 0.875rem;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  color: #1c1917;
+  outline: none;
+}
+.hero-search__input::placeholder {
+  color: #78716c;
+  font-style: italic;
+}
+.dark .hero-search__input { color: #fafaf9; }
+.dark .hero-search__input::placeholder { color: #a8a29e; }
+.hero-search__submit {
+  appearance: none;
+  border: none;
+  background: var(--color-brand-fill);
+  color: #fff;
+  padding: 0 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.15s;
+}
+.hero-search__submit:hover { background: var(--color-brand-hover); }
+.hero-search__submit span { transition: transform 0.15s; }
+.hero-search__submit:hover span { transform: translateX(3px); }
+
+/* HERO standards grid — now clickable RouterLinks */
 .hero__standards {
   margin: 0 0 3rem;
+  padding: 0;
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(1fr);
   gap: 0;
@@ -291,19 +546,42 @@ onMounted(() => {
   padding: 1.25rem 1rem 1.25rem 0;
   border-bottom: 1px solid #e7e5e4;
   align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+  position: relative;
 }
+.hero__standard:hover { background: rgb(30 58 138 / 0.03); }
+.dark .hero__standard:hover { background: rgb(148 182 232 / 0.05); }
 @media (min-width: 640px) {
   .hero__standard {
     border-right: 1px solid #e7e5e4;
     padding: 1.25rem;
   }
-  .hero__standard:nth-child(2n) { border-right: none; }
+  .hero__standards li:nth-child(2n) .hero__standard { border-right: none; }
 }
 @media (min-width: 1024px) {
-  .hero__standard:nth-child(2n) { border-right: 1px solid #e7e5e4; }
-  .hero__standard:nth-child(4n) { border-right: none; }
+  .hero__standards li:nth-child(2n) .hero__standard { border-right: 1px solid #e7e5e4; }
+  .hero__standards li:nth-child(4n) .hero__standard { border-right: none; }
 }
 .dark .hero__standard { border-bottom-color: #44403c; border-right-color: #44403c; }
+.hero__standard::after {
+  content: '→';
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: #a8a29e;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.hero__standard:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--color-brand);
+}
 
 .hero__standard-num {
   font-family: var(--font-serif);
@@ -384,7 +662,7 @@ onMounted(() => {
   background: rgb(255 255 255 / 0.05);
 }
 
-/* STATS — full-bleed band inside the page container */
+/* STATS — full-bleed band, now clickable */
 .stats {
   margin: 0 -1.5rem;
   padding: 4rem 1.5rem;
@@ -410,16 +688,39 @@ onMounted(() => {
   flex-direction: column;
   padding: 1.75rem 1.5rem;
   border-bottom: 1px solid #e7e5e4;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+  position: relative;
 }
+.stats__cell:hover { background: rgb(30 58 138 / 0.03); }
+.dark .stats__cell:hover { background: rgb(148 182 232 / 0.05); }
 @media (min-width: 640px) {
-  .stats__cell:nth-child(2n) { border-right: none; }
   .stats__cell { border-right: 1px solid #e7e5e4; }
+  .stats__inner > :nth-child(2n) { border-right: none; }
 }
 @media (min-width: 1024px) {
-  .stats__cell:nth-child(2n) { border-right: 1px solid #e7e5e4; }
-  .stats__cell:nth-child(4n) { border-right: none; }
+  .stats__inner > :nth-child(2n) { border-right: 1px solid #e7e5e4; }
+  .stats__inner > :nth-child(4n) { border-right: none; }
 }
 .dark .stats__cell { border-bottom-color: #292524; border-right-color: #292524; }
+.stats__cell::after {
+  content: '→';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: #a8a29e;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.stats__cell:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--color-brand);
+}
 
 .stats__value {
   font-family: var(--font-serif);
@@ -451,9 +752,168 @@ onMounted(() => {
 }
 .dark .stats__caption { color: #a8a29e; }
 
+/* CURRENT rail — next plenary, latest publication, open-for-comment */
+.current {
+  padding: 4rem 0 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+.current__head {
+  margin-bottom: 2rem;
+}
+.current__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #78716c;
+  margin: 0 0 0.75rem;
+}
+.dark .current__eyebrow { color: #a8a29e; }
+.current__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #1c1917;
+  margin: 0;
+}
+.dark .current__title { color: #fafaf9; }
+
+.current__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) { .current__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .current__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.current-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid #e7e5e4;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.dark .current-card {
+  border-color: #44403c;
+  background: rgb(15 23 42 / 0.5);
+}
+.current-card:hover {
+  border-color: var(--color-blue-accent);
+  transform: translateY(-2px);
+}
+.dark .current-card:hover { border-color: #5379bf; }
+.current-card__tag {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-brand);
+  margin-bottom: 0.75rem;
+}
+.current-card__heading {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: #1c1917;
+  margin: 0 0 0.375rem;
+}
+.dark .current-card__heading { color: #fafaf9; }
+.current-card__title-line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: #57534e;
+  margin: 0 0 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dark .current-card__title-line { color: #d6d3d1; }
+.current-card__meta {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: #78716c;
+  margin: 0;
+}
+.dark .current-card__meta { color: #a8a29e; }
+.current-card__cta {
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-brand-fill);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: background 0.15s, transform 0.15s;
+}
+.current-card__cta:hover {
+  background: var(--color-brand-hover);
+  transform: translateY(-1px);
+}
+.current-card__intro {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #57534e;
+  margin: 0 0 0.75rem;
+}
+.dark .current-card__intro { color: #d6d3d1; }
+.current-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e7e5e4;
+}
+.dark .current-card__list { border-top-color: #44403c; }
+.current-card__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid #e7e5e4;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.15s;
+}
+.dark .current-card__item { border-bottom-color: #44403c; }
+.current-card__item:hover .current-card__item-name { color: var(--color-brand); }
+.current-card__item-name {
+  font-family: ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1c1917;
+  transition: color 0.15s;
+}
+.dark .current-card__item-name { color: #fafaf9; }
+.current-card__item-stage {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: #78716c;
+  flex-shrink: 0;
+}
+.dark .current-card__item-stage { color: #a8a29e; }
+
 /* SECTIONS */
 .sections {
-  padding: 5rem 0 6rem;
+  padding: 4rem 0 6rem;
 }
 .sections__inner {
   max-width: 80rem;
@@ -525,14 +985,14 @@ onMounted(() => {
   background: var(--color-brand);
   transition: width 0.2s;
 }
-.section-card:hover { background: rgb(185 28 28 / 0.03); }
+.section-card:hover { background: rgb(30 58 138 / 0.03); }
 .section-card:hover::before { width: 3px; }
-.dark .section-card:hover { background: rgb(248 113 113 / 0.05); }
+.dark .section-card:hover { background: rgb(148 182 232 / 0.05); }
 @media (min-width: 1100px) {
-  .section-card:nth-child(3n) { border-right: none; }
+  .sections__list > li:nth-child(3n) .section-card { border-right: none; }
 }
 @media (min-width: 768px) and (max-width: 1099px) {
-  .section-card:nth-child(2n) { border-right: none; }
+  .sections__list > li:nth-child(2n) .section-card { border-right: none; }
 }
 
 .section-card__n {

@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useResolutions } from '../composables/useResolutions'
 import { useResolutionMeetings } from "../composables/useResolutionMeetings"
 import { committee } from '../data/committee'
+import { useMeta } from '../composables/useMeta'
 import { useCountUp } from '../composables/useCountUp'
 import { getActionColor } from '../data/actionTypes'
 import { formatDate } from '../utils/format'
@@ -16,6 +17,7 @@ const route = useRoute()
 
 const { resolutions, isLoaded, loadData, search } = useResolutions()
 const { meetings, loadData: loadMeetingsData } = useResolutionMeetings()
+const { meta, load: loadMeta } = useMeta()
 
 const searchQuery = ref((route.query.q as string) || '')
 const selectedYear = ref((route.query.year as string) || '')
@@ -35,7 +37,7 @@ const meetingFilterLabel = computed(() => {
 
 const totalResolutions = computed(() => resolutions.value.length)
 const totalMeetings = computed(() => meetings.value.length)
-const committeeStandards = computed(() => committee.publishedStandards)
+const committeeStandards = computed(() => meta.value?.counts.publishedStandards ?? 0)
 const committeeEst = computed(() => committee.established)
 
 const animResolutions = useCountUp(totalResolutions, isLoaded, 1500)
@@ -57,6 +59,7 @@ function formatNumber(n: number): string {
 onMounted(() => {
   loadData()
   loadMeetingsData()
+  loadMeta()
   window.addEventListener('keydown', handleGlobalKeydown)
 
   if (searchQuery.value || selectedYear.value || sortOrder.value !== 'newest') {
