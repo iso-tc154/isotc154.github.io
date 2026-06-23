@@ -14,7 +14,12 @@ import { loadResolutions } from './lib/resolutions.mjs'
 import { loadCanonicalMeetings } from './lib/meetings.mjs'
 import { loadGroupEvents } from './lib/groupHistory.mjs'
 import { toISODate } from './lib/dates.mjs'
-import { liaisonPath, nationalBodyPath } from '../src/utils/urn.ts'
+import {
+  partitionByStatus,
+  filterOpenForComment,
+  latestPublication,
+} from './lib/standardsClassification.mjs'
+import { buildOrgIndex } from './lib/orgIndex.mjs'
 import { load as yamlLoad } from 'js-yaml'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -39,82 +44,6 @@ function loadYaml(file) {
   const full = path.join(DATA_DIR, file)
   if (!fs.existsSync(full)) return null
   return yamlLoad(fs.readFileSync(full, 'utf-8'))
-}
-
-function normalizeKey(s) {
-  return String(s || '').trim().toLowerCase()
-}
-
-function buildOrgIndex(nationalBodies, liaisons, associates) {
-  const byKey = new Map() // normalized key -> { record, type }
-  const records = []
-
-  const add = (org, type) => {
-    if (!org || !org.id) return
-    const path = type === 'liaison'
-      ? liaisonPath(org.id)
-      : type === 'associate'
-        ? null
-        : nationalBodyPath(org.id)
-    const record = {
-      ref: org.id,
-      type,
-      kind: type,
-      name: org.short_name || org.name,
-      short_name: org.short_name,
-      url: org.url,
-      path,
-      logo: org.logo,
-      logo_light: org.logo_light,
-      logo_dark: org.logo_dark,
-      country: org.country,
-      category: org.category,
-    }
-    records.push({ record, raw: org, type })
-
-    const keys = new Set()
-    keys.add(org.id)
-    if (org.short_name) keys.add(org.short_name)
-    if (Array.isArray(org.aliases)) org.aliases.forEach((a) => keys.add(a))
-    keys.add(org.name)
-    // Also add short_name + parenthetical forms like "DIN (Germany)"
-    if (org.short_name && org.country) keys.add(`${org.short_name} (${org.country})`)
-    for (const k of keys) {
-      const nk = normalizeKey(k)
-      if (!nk) continue
-      // NBs and liaisons override associates on collision (canonical ISO orgs win)
-      if (byKey.has(nk)) {
-        const existing = byKey.get(nk)
-        const rank = { 'national-body': 3, liaison: 2, associate: 1 }
-        if (rank[type] > rank[existing.type]) byKey.set(nk, { record, type })
-      } else {
-        byKey.set(nk, { record, type })
-      }
-    }
-  }
-  // Add associates first so NBs/liaisons override on collision
-  for (const a of associates || []) add(a, 'associate')
-  for (const l of liaisons || []) add(l, 'liaison')
-  for (const nb of nationalBodies || []) add(nb, 'national-body')
-
-  return {
-    lookup(token, hintType) {
-      const key = normalizeKey(token)
-      if (!key) return null
-      const match = byKey.get(key)
-      if (!match) return null
-      if (hintType && match.type !== hintType) return null
-      return match.record
-    },
-    lookupAny(token, hintTypes) {
-      const key = normalizeKey(token)
-      if (!key) return null
-      const match = byKey.get(key)
-      if (!match) return null
-      if (hintTypes && hintTypes.length && !hintTypes.includes(match.type)) return null
-      return match.record
-    },
-  }
 }
 
 function main() {
@@ -167,34 +96,18 @@ function main() {
   const historyRaw = loadYaml('history.yml')
   const history = Array.isArray(historyRaw) ? historyRaw.filter((h) => h && h.date && h.title) : []
 
-  const publishedStandards = standards.filter((s) => {
-    const status = s.tc154?.status || 'published'
-    return status === 'published'
-  })
-  const withdrawnStandards = standards.filter((s) => (s.tc154?.status || '') === 'withdrawn')
-  const underDevelopmentStandards = standards.filter((s) => (s.tc154?.status || '') === 'under_development')
+  const {
+    published: publishedStandards,
+    withdrawn: withdrawnStandards,
+    underDevelopment: underDevelopmentStandards,
+  } = partitionByStatus(standards)
 
   // js-yaml parses unquoted dates as Date objects; quoted dates stay as strings.
   // Normalise both to YYYY-MM-DD so sorts compare apples to apples.
   const toDateStr = toISODate
-  const sortByPubDateDesc = (a, b) =>
-    toDateStr(b.iso?.publication_date).localeCompare(toDateStr(a.iso?.publication_date))
-  const latestPublication = publishedStandards
-    .slice()
-    .sort(sortByPubDateDesc)
-    .find((s) => s.iso?.publication_date)
+  const latestPub = latestPublication(publishedStandards)
 
-  // DIS / DTR / DTS documents are open for national-body comment.
-  // Stage codes: 40.x = DIS, 50.x = DTR/DTS — both balloting stages.
-  const isOpenForComment = (stage) => {
-    const s = String(stage || '')
-    if (!s) return false
-    const n = parseFloat(s)
-    return !Number.isNaN(n) && n >= 40 && n < 60
-  }
-  const openForComment = underDevelopmentStandards
-    .filter((s) => isOpenForComment(s.iso?.stage))
-    .sort((a, b) => parseFloat(b.iso?.stage || '0') - parseFloat(a.iso?.stage || '0'))
+  const openForComment = filterOpenForComment(underDevelopmentStandards)
 
   const upcomingPlenary = events
     .filter((e) => e.status === 'upcoming')
@@ -237,13 +150,13 @@ function main() {
       history: history.length,
     },
     current: {
-      latestPublication: latestPublication
+      latestPublication: latestPub
         ? {
-            id: latestPublication.id,
-            url: latestPublication.url,
-            name: latestPublication.iso?.name,
-            title: latestPublication.iso?.title,
-            publication_date: toDateStr(latestPublication.iso?.publication_date),
+            id: latestPub.id,
+            url: latestPub.url,
+            name: latestPub.iso?.name,
+            title: latestPub.iso?.title,
+            publication_date: toDateStr(latestPub.iso?.publication_date),
           }
         : null,
       latestResolution: latestResolution
