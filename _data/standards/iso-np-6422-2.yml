@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/NP 6422-2
+  type: international
+  title: 'Layout key for trade documents — Part 2: Electronic documents'
+  stage: '10.98'
+  ics: 01.140.30
+  store_id: 54845
+tc154:
+  status: under_development

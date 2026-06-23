@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/DIS 20625
+  type: international
+  title: Electronic data interchange for administration, commerce and transport (EDIFACT) — Rules for generation of XML scheme files (XSD) on the basis of EDI(FACT) implementation guidelines
+  stage: '40.98'
+  ics: 35.240.63
+  store_id: 35494
+tc154:
+  status: under_development

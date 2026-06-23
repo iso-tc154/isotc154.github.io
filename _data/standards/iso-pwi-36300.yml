@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 36300
+  type: international
+  title: Standardization documents — Representation in XML
+  stage: '0.98'
+  store_id: 77022
+tc154:
+  status: under_development

@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO 9735-1:1998/FDAmd 1
+  type: international
+  title: 'Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax rules (Syntax version number: 4) — Part 1: Syntax rules common to all parts, together with syntax service directories for each of the parts — Amendment 1'
+  stage: '50.98'
+  ics: 35.240.63
+  store_id: 30341
+tc154:
+  status: under_development

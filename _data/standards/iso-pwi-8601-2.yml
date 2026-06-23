@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 8601-2
+  type: international
+  title: 'Information interchange — Representation of dates, times and periods — Part 2: Extensions'
+  stage: '0.98'
+  store_id: 63730
+tc154:
+  status: under_development

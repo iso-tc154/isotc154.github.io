@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 36200
+  type: international
+  title: Standardized content – Document metadata
+  stage: '0.98'
+  store_id: 80104
+tc154:
+  status: under_development

@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP TS 15000-1
+  type: TS
+  title: 'Electronic business eXtensible mark-up language (ebXML) — Part 1: Technical architecture specification (TA)'
+  stage: '10.98'
+  store_id: 38304
+tc154:
+  status: under_development

@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP 18689
+  type: international
+  title: EDIFACT — Rules for the markup of UN/EDIFACT interchange structures with the eXtended markup language (XML) using document type definitions (DTDs)
+  stage: '10.98'
+  store_id: 33567
+tc154:
+  status: under_development

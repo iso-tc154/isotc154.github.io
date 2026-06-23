@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 16320-1
+  type: international
+  title: 'Documents and processes in e-commerce — Smart contract-based B2B electronic transaction execution and verification — Part 1: Reference model'
+  stage: '0.98'
+  store_id: 84546
+tc154:
+  status: under_development

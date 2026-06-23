@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 16356.2
+  type: international
+  title: Traceability of edible agricultural products by application of blockchain
+  stage: '0.60'
+  store_id: 84548
+tc154:
+  status: under_development

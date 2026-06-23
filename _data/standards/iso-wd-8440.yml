@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/WD 8440
+  type: international
+  title: Location of codes in trade documents
+  stage: '20.98'
+  store_id: 33027
+tc154:
+  status: under_development

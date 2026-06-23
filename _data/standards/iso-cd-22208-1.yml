@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/CD 22208-1
+  type: international
+  title: 'Processes, data elements and documents in commerce, industry and administration — Rules for the operation of EDI/EC registration authorites — Part 1: Scheme code registration system'
+  stage: '30.98'
+  ics: 35.240.63
+  store_id: 36254
+tc154:
+  status: under_development

@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/WD 34000
+  type: international
+  title: Date and time — Vocabulary
+  stage: '20.20'
+  store_id: 93048
+tc154:
+  status: under_development
