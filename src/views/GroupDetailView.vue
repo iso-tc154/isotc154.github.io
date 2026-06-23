@@ -28,6 +28,7 @@ import GroupTimeline from '../components/GroupTimeline.vue'
 import ConvenorTermBar from '../components/ConvenorTermBar.vue'
 import SectionTabs from '../components/SectionTabs.vue'
 import PersonCard from '../components/PersonCard.vue'
+import PeopleList from '../components/PeopleList.vue'
 
 const route = useRoute()
 const { groups, isLoaded, loadData, get: getGroup } = useGroups()
@@ -506,37 +507,13 @@ function sectionVisible(id: string): boolean {
         >
           <h2 class="group__section-title">Members</h2>
           <div class="people-grid">
-            <section v-for="pg in peopleGroups" :key="pg.id" class="people-block">
-              <h3 class="people-block__title">{{ pg.label }}</h3>
-              <div class="people-block__grid">
-                <PersonCard
-                  v-for="id in pg.members"
-                  :key="`${pg.id}-${id}`"
-                  :id="id"
-                  :name="memberName(id)"
-                  :variant="pg.variant"
-                  size="sm"
-                />
-              </div>
-            </section>
+            <PeopleList :groups="peopleGroups" :name-of="memberName" />
           </div>
         </section>
       </div>
 
       <aside v-if="!tabbedMode && sectionEnabled('members')" class="group__aside">
-        <section v-for="pg in peopleGroups" :key="pg.id" class="group__aside-block">
-          <h3 class="group__aside-title">{{ pg.label }}</h3>
-          <div class="group__aside-grid">
-            <PersonCard
-              v-for="id in pg.members"
-              :key="`${pg.id}-${id}`"
-              :id="id"
-              :name="memberName(id)"
-              :variant="pg.variant"
-              size="sm"
-            />
-          </div>
-        </section>
+        <PeopleList :groups="peopleGroups" :name-of="memberName" />
       </aside>
     </div>
   </article>
@@ -1161,71 +1138,11 @@ function sectionVisible(id: string): boolean {
 @media (min-width: 768px) {
   .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.people-block {
-  padding: 1.25rem 1.5rem;
-  background: #fff;
-  border: 1px solid var(--color-slate-200);
-  border-radius: 0.5rem;
-}
-.dark .people-block {
-  background: rgba(15, 23, 42, 0.4);
-  border-color: var(--color-slate-700);
-}
-.people-block__title {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-slate-500);
-  margin: 0 0 0.875rem;
-  padding-bottom: 0.625rem;
-  border-bottom: 1px solid var(--color-slate-200);
-}
-.dark .people-block__title {
-  color: var(--color-slate-400);
-  border-bottom-color: var(--color-slate-700);
-}
-.people-block__grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-}
 
 /* ─── Aside (non-tabbed mode) ─────────────────────────── */
 .group__aside {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-.group__aside-block {
-  padding: 1.25rem;
-  background: #fff;
-  border: 1px solid var(--color-slate-200);
-  border-radius: 0.5rem;
-}
-.dark .group__aside-block {
-  background: rgba(15, 23, 42, 0.4);
-  border-color: var(--color-slate-700);
-}
-.group__aside-title {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-slate-500);
-  margin: 0 0 0.875rem;
-  padding-bottom: 0.625rem;
-  border-bottom: 1px solid var(--color-slate-200);
-}
-.dark .group__aside-title {
-  color: var(--color-slate-400);
-  border-bottom-color: var(--color-slate-700);
-}
-.group__aside-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
 }
 </style>
