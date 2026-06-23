@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
 import { standardStatusLabel, type Standard } from '../types/standard'
@@ -9,9 +9,10 @@ import PageHero from '../components/PageHero.vue'
 
 const { standards, isLoaded, loadData } = useStandards()
 const { loadData: loadGroups, get: getGroup } = useGroups()
+const route = useRoute()
 const router = useRouter()
 
-const searchQuery = ref('')
+const searchQuery = ref((route.query.q as string) || '')
 const selectedStatus = ref('')
 const selectedGroup = ref('')
 const selectedType = ref('')

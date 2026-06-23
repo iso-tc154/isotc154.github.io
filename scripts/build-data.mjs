@@ -162,16 +162,71 @@ function main() {
   const historyRaw = loadYaml('history.yml')
   const history = Array.isArray(historyRaw) ? historyRaw.filter((h) => h && h.date && h.title) : []
 
+  const publishedStandards = standards.filter((s) => {
+    const status = s.tc154?.status || 'published'
+    return status === 'published'
+  })
+  const withdrawnStandards = standards.filter((s) => (s.tc154?.status || '') === 'withdrawn')
+  const underDevelopmentStandards = standards.filter((s) => (s.tc154?.status || '') === 'under_development')
+
+  // js-yaml parses unquoted dates as Date objects; quoted dates stay as strings.
+  // Normalise both to YYYY-MM-DD so sorts compare apples to apples.
+  const toDateStr = (v) => {
+    if (!v) return ''
+    if (v instanceof Date) return v.toISOString().slice(0, 10)
+    return String(v).slice(0, 10)
+  }
+  const sortByPubDateDesc = (a, b) =>
+    toDateStr(b.iso?.publication_date).localeCompare(toDateStr(a.iso?.publication_date))
+  const latestPublication = publishedStandards
+    .slice()
+    .sort(sortByPubDateDesc)
+    .find((s) => s.iso?.publication_date)
+
+  // DIS / DTR / DTS documents are open for national-body comment.
+  // Stage codes: 40.x = DIS, 50.x = DTR/DTS — both balloting stages.
+  const isOpenForComment = (stage) => {
+    const s = String(stage || '')
+    if (!s) return false
+    const n = parseFloat(s)
+    return !Number.isNaN(n) && n >= 40 && n < 60
+  }
+  const openForComment = underDevelopmentStandards
+    .filter((s) => isOpenForComment(s.iso?.stage))
+    .sort((a, b) => parseFloat(b.iso?.stage || '0') - parseFloat(a.iso?.stage || '0'))
+
+  const upcomingPlenary = events
+    .filter((e) => e.status === 'upcoming')
+    .sort((a, b) => (a.ordinal || 0) - (b.ordinal || 0))[0]
+
+  const resolutionsSortedNewest = resolutions
+    .slice()
+    .sort((a, b) => toDateStr(b.meeting_date).localeCompare(toDateStr(a.meeting_date)))
+  const latestResolution = resolutionsSortedNewest[0]
+
+  // ISO membership roster: P/O counts exclude `former: true` bodies (those have
+  // left the committee). `nationalBodies` above includes historical bodies.
+  const activeNb = nationalBodies.filter((nb) => !nb.former)
+  const participatingMembers = activeNb.filter((nb) => String(nb.membership).toUpperCase() === 'P').length
+  const observingMembers = activeNb.filter((nb) => String(nb.membership).toUpperCase() === 'O').length
+
   writeJson('meta.json', {
     generatedAt: new Date().toISOString(),
     counts: {
       groups: Object.keys(groups).length,
+      activeGroups: Object.values(groups).filter((g) => !g.inactive).length,
       members: Object.keys(members.all).length,
       standards: standards.length,
+      publishedStandards: publishedStandards.length,
+      withdrawnStandards: withdrawnStandards.length,
+      underDevelopmentStandards: underDevelopmentStandards.length,
       projects: projects.length,
       events: events.length,
       liaisons: liaisons.length,
       nationalBodies: nationalBodies.length,
+      participatingMembers,
+      observingMembers,
+      totalMembers: participatingMembers + observingMembers,
       associates: associates.length,
       resolutions: resolutions.length,
       meetings: meetings.length,
@@ -179,6 +234,45 @@ function main() {
       pages: pages.length,
       acknowledgments: acks.length,
       history: history.length,
+    },
+    current: {
+      latestPublication: latestPublication
+        ? {
+            id: latestPublication.id,
+            url: latestPublication.url,
+            name: latestPublication.iso?.name,
+            title: latestPublication.iso?.title,
+            publication_date: toDateStr(latestPublication.iso?.publication_date),
+          }
+        : null,
+      latestResolution: latestResolution
+        ? {
+            id: latestResolution.id,
+            url: latestResolution.url,
+            title: latestResolution.title,
+            meeting_date: toDateStr(latestResolution.meeting_date),
+            source_title: latestResolution.source_title,
+          }
+        : null,
+      openForComment: openForComment.map((s) => ({
+          id: s.id,
+          url: s.url,
+          name: s.iso?.name,
+          title: s.iso?.title,
+          stage: s.iso?.stage,
+          store_id: s.iso?.store_id,
+        })),
+      nextPlenary: upcomingPlenary
+        ? {
+            id: upcomingPlenary.id,
+            url: upcomingPlenary.url,
+            ordinal: upcomingPlenary.ordinal,
+            general_area: upcomingPlenary.general_area,
+            from_date: toDateStr(upcomingPlenary.time?.from?.date),
+            to_date: toDateStr(upcomingPlenary.time?.to?.date),
+            registration_url: upcomingPlenary.registration_url,
+          }
+        : null,
     },
   })
   writeJson('groups.json', Object.values(groups))
