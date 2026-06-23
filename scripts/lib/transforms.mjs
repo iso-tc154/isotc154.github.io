@@ -1,4 +1,9 @@
-export const URN_BASE = 'urn:iso:tc:154'
+import {
+  resolutionUrn,
+  resolutionPath,
+  meetingUrnFromParts,
+  meetingDetailPathFromParts,
+} from '../../src/utils/urn.ts'
 
 const PUA_BULLET_REPLACEMENTS = [
   [//g, '•'],
@@ -41,11 +46,10 @@ export function buildResolutionRecord(res, sourceType, sourceFile, metadata) {
   const year = meetingDate ? meetingDate.substring(0, 4) : ''
   const venue = metadata.venue || ''
   const sourceTitle = metadata.title || ''
-  const path = `/resolutions/${sourceType}/${sourceFile}/${identifier}/`
 
   return {
     id: identifier,
-    urn: `${URN_BASE}:resolution:${identifier}`,
+    urn: resolutionUrn(identifier),
     title: deriveDisplayTitle(res, acclamation),
     subject: res.subject || '',
     year,
@@ -61,8 +65,8 @@ export function buildResolutionRecord(res, sourceType, sourceFile, metadata) {
     categories: res.categories || [],
     dates: res.dates || [],
     snippet: normalizeSnippet(res.actions && res.actions.length > 0 ? res.actions[0].message : ''),
-    meeting_urn: `${URN_BASE}:meeting:${sourceType}:${sourceFile}`,
-    path,
+    meeting_urn: meetingUrnFromParts(sourceType, sourceFile),
+    path: resolutionPath(sourceType, sourceFile, identifier),
   }
 }
 
@@ -82,12 +86,6 @@ export function sortResolutions(a, b) {
   return (b.id || '').localeCompare(a.id)
 }
 
-// Build-time adapter: derives a meeting record per source from parsed YAML
-// metadata + records. The runtime counterpart is the pure
-// `groupResolutionsByMeeting` in `src/utils/groupByMeeting.ts`, which derives
-// the same shape from already-stamped resolution records. Both adapters
-// produce MeetingSummary records; the stamped fields on each resolution
-// (source_title, venue, meeting_date, year) are the contract between them.
 export function buildMeetingRecord(sourceType, sourceFile, metadata, resolutionsForMeeting) {
   const datesInfo = metadata.dates || []
   const meetingDate = datesInfo.length > 0 ? datesInfo[0].start : ''
@@ -96,10 +94,6 @@ export function buildMeetingRecord(sourceType, sourceFile, metadata, resolutions
   const sourceTitle = metadata.title || ''
   const resolutionCount = resolutionsForMeeting.length
   const acclamationCount = resolutionsForMeeting.filter(r => r.is_acclamation).length
-  const plenaryMatch = sourceFile.match(/^plenary-(\d+)$/)
-  const path = plenaryMatch
-    ? `/meetings/${plenaryMatch[1]}/`
-    : `/resolutions/meetings/${sourceType}/${sourceFile}/`
   return {
     source_type: sourceType,
     source_file: sourceFile,
@@ -109,7 +103,7 @@ export function buildMeetingRecord(sourceType, sourceFile, metadata, resolutions
     year,
     resolution_count: resolutionCount,
     acclamation_count: acclamationCount,
-    path,
-    meeting_urn: `${URN_BASE}:meeting:${sourceType}:${sourceFile}`,
+    path: meetingDetailPathFromParts(sourceType, sourceFile),
+    meeting_urn: meetingUrnFromParts(sourceType, sourceFile),
   }
 }

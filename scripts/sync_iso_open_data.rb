@@ -1,29 +1,37 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Sync ISO Open Data for standards in _data/standards/
+# Sync ISO Open Data for TC 154.
 #
 # Uses the official ISO Open Data dataset:
 #   https://www.iso.org/open-data.html
 #
-# This script:
-#   1. Downloads the ISO Deliverables Metadata JSONL from Azure Blob Storage
-#   2. Finds all deliverables owned by ISO/TC 154
-#   3. Matches them to local YAML files by reference (iso.name)
-#   4. Updates: store_id, stage, ics, publication_date
-#   5. Never overwrites tc154.* fields or existing iso.* values
+# This script downloads the ISO Deliverables Metadata JSONL once and performs
+# two phases in a single pass:
+#
+#   Phase 1 (sync): for every local YAML in _data/standards/, match by iso.name
+#     to a TC 154 deliverable and fill in missing iso.store_id, iso.stage,
+#     iso.ics, iso.publication_date. Never overwrites tc154.* or existing
+#     iso.* values.
+#
+#   Phase 2 (discover): for every TC 154 deliverable with no matching local
+#     YAML, append an entry to scripts/.new-standards.json (consumed by the
+#     workflow to open GitHub issues) and generate a placeholder YAML file
+#     if one with the derived slug doesn't yet exist.
 #
 # Usage: ruby scripts/sync_iso_open_data.rb
-# Exits 0 if no changes, 1 if YAML files were modified.
+# Exits 0 if no changes, 1 if any YAML was modified or created.
 
 require 'yaml'
 require 'json'
 require 'date'
 require 'open-uri'
+require 'set'
 
-STANDARDS_DIR = '_data/standards'
-ISO_DATA_URL = 'https://isopublicstorageprod.blob.core.windows.net/opendata/_latest/iso_deliverables_metadata/json/iso_deliverables_metadata.jsonl'
+STANDARDS_DIR   = '_data/standards'
+ISO_DATA_URL    = 'https://isopublicstorageprod.blob.core.windows.net/opendata/_latest/iso_deliverables_metadata/json/iso_deliverables_metadata.jsonl'
 OWNER_COMMITTEE = 'ISO/TC 154'
+MANIFEST_PATH   = 'scripts/.new-standards.json'
 
 # ─── Stage formatting ─────────────────────────────────────────────────────────
 # ISO Open Data uses integer stage codes: 6060 → "60.60", 9599 → "95.99"
@@ -31,8 +39,58 @@ OWNER_COMMITTEE = 'ISO/TC 154'
 def format_stage(code)
   return nil unless code.is_a?(Integer) && code > 0
   main = code / 100
-  sub = code % 100
-  "#{main}.#{sub.to_s.rjust(2, '0')}"
+  sub  = code % 100
+  format('%<main>d.%<sub>02d', main: main, sub: sub)
+end
+
+# Map an ISO stage code to a TC 154 site status.
+#   < 60.00        → under_development
+#   60.00 .. 95.20 → published (includes systematic review at 90.20)
+#   >= 95.99       → withdrawn
+def status_from_stage(stage)
+  return 'under_development' if stage.nil? || stage.to_s.empty?
+  normalized = stage.to_s.sub('.', '').to_i
+  return 'under_development' if normalized < 6000
+  return 'withdrawn'         if normalized >= 9599
+  'published'
+end
+
+# ISO reference prefix → deliverable type used by the site's `iso.type` field.
+# Searches anywhere in the reference so prefixes like "ISO/AWI TR …" or
+# "ISO/NP TS …" still resolve correctly.
+def type_from_reference(ref)
+  case ref.to_s
+  when /\b(FD)?TS\b/, /\bDTS\b/  then 'TS'
+  when /\b(FD)?TR\b/, /\bDTR\b/  then 'TR'
+  else 'international'
+  end
+end
+
+# ISO Open Data returns titles as { en: …, fr: … }; the site expects a string.
+def extract_title(raw)
+  return '(title pending)' unless raw
+  return raw.to_s unless raw.is_a?(Hash)
+  en = raw['en']
+  return en if en && !en.to_s.empty?
+  fr = raw['fr']
+  return fr if fr && !fr.to_s.empty? && !fr.to_s.downcase.include?('titre manque')
+  raw.values.find { |v| v && !v.to_s.empty? } || '(title pending)'
+end
+
+# "ISO/AWI 7372" → "iso-awi-7372"
+# "ISO 8601-1:2019" → "iso-8601-1-2019"
+# "ISO 9735:1988/Amd 1:1992" → "iso-9735-1988-amd-1-1992"
+def slugify(ref)
+  ref.to_s
+     .downcase
+     .gsub(/[^a-z0-9]+/, '-')
+     .gsub(/^-+|-+$/, '')
+end
+
+# Normalize Amd/Cor dashes so "ISO 9735:1988/Amd-1:1992" matches
+# "ISO 9735:1988/Amd 1:1992".
+def normalize_ref(ref)
+  ref.to_s.gsub(/([Aa]md|[Cc]or)\s*-\s*(\d)/, '\1 \2')
 end
 
 # ─── YAML helpers ─────────────────────────────────────────────────────────────
@@ -40,7 +98,7 @@ end
 def load_yaml(path)
   YAML.safe_load(File.read(path), permitted_classes: [Date])
 rescue StandardError => e
-  puts "  WARN: #{path}: #{e.message[0..80]}"
+  warn "  WARN: #{path}: #{e.message[0..80]}"
   nil
 end
 
@@ -53,13 +111,31 @@ def iso_field_missing?(existing, field)
   val.nil? || val.to_s.empty?
 end
 
+# All references already covered by local YAML, plus their normalized forms.
+def existing_references
+  refs = Set.new
+  Dir.glob("#{STANDARDS_DIR}/*.yml").each do |path|
+    d = load_yaml(path)
+    next unless d && d['iso']
+    name = d['iso']['name']
+    next unless name && !name.empty?
+    refs << name
+    normalized = normalize_ref(name)
+    refs << normalized if normalized != name
+  end
+  refs
+end
+
+def existing_slugs
+  Set.new(Dir.glob("#{STANDARDS_DIR}/*.yml").map { |f| File.basename(f, '.yml') })
+end
+
 # ─── Fetch ISO Open Data ──────────────────────────────────────────────────────
 
 def fetch_tc154_deliverables
-  puts "Downloading ISO Open Data from #{ISO_DATA_URL}..."
+  puts "Downloading ISO Open Data from #{ISO_DATA_URL}…"
   tc154 = {}
-
-  URI.open(ISO_DATA_URL, 'Accept' => 'application/json', :read_timeout => 120) do |f|
+  URI.open(ISO_DATA_URL, 'Accept' => 'application/json', read_timeout: 120) do |f|
     f.each_line do |line|
       begin
         j = JSON.parse(line)
@@ -67,22 +143,19 @@ def fetch_tc154_deliverables
         next
       end
       next unless j['ownerCommittee'] == OWNER_COMMITTEE
-
       ref = j['reference']
+      next unless ref && !ref.empty?
       tc154[ref] = j
     end
   end
-
   puts "  Found #{tc154.size} deliverables for #{OWNER_COMMITTEE}"
   tc154
 end
 
-# ─── Main ─────────────────────────────────────────────────────────────────────
+# ─── Phase 1: sync metadata for existing standards ────────────────────────────
 
-def main
-  tc154 = fetch_tc154_deliverables
+def sync_existing(tc154)
   changes = []
-
   Dir.glob("#{STANDARDS_DIR}/*.yml").sort.each do |yaml_path|
     existing = load_yaml(yaml_path)
     next unless existing && existing['iso']
@@ -91,49 +164,38 @@ def main
     iso_name = iso['name']
     next if iso_name.nil? || iso_name.empty?
 
-    # Match by iso.name → deliverable reference
-    # Try exact match first, then try normalizing spaces around dashes
-    deliverable = tc154[iso_name]
+    deliverable = tc154[iso_name] || tc154[normalize_ref(iso_name)]
     unless deliverable
-      # Try normalizing reference (e.g. "ISO 9735:1988/Amd-1:1992" → "ISO 9735:1988/Amd 1:1992")
-      normalized = iso_name.gsub(/([Aa]md|[Cc]or)\s*-\s*(\d)/, '\1 \2')
-      deliverable = tc154[normalized]
+      puts "  #{iso_name}: no match in ISO Open Data" if $VERBOSE
+      next
     end
 
     updated = false
+    store_id = deliverable['id']
+    stage    = format_stage(deliverable['currentStage'])
+    ics_raw  = deliverable['icsCode']
+    ics      = ics_raw && !Array(ics_raw).empty? ? Array(ics_raw).join(', ') : nil
+    pub_date = deliverable['publicationDate']
 
-    if deliverable
-      store_id = deliverable['id']
-      stage = format_stage(deliverable['currentStage'])
-      ics_raw = deliverable['icsCode']
-      ics = Array(ics_raw).join(', ') if ics_raw
-      pub_date = deliverable['publicationDate']
-
-      if store_id && iso_field_missing?(existing, 'store_id')
-        existing['iso']['store_id'] = store_id
-        puts "  #{iso_name}: store_id → #{store_id}"
-        updated = true
-      end
-
-      if stage && iso_field_missing?(existing, 'stage')
-        existing['iso']['stage'] = stage
-        puts "  #{iso_name}: stage → #{stage}"
-        updated = true
-      end
-
-      if ics && iso_field_missing?(existing, 'ics')
-        existing['iso']['ics'] = ics
-        puts "  #{iso_name}: ics → #{ics}"
-        updated = true
-      end
-
-      if pub_date && iso_field_missing?(existing, 'publication_date')
-        existing['iso']['publication_date'] = pub_date
-        puts "  #{iso_name}: publication_date → #{pub_date}"
-        updated = true
-      end
-    else
-      puts "  #{iso_name}: no match in ISO Open Data" if $VERBOSE
+    if store_id && iso_field_missing?(existing, 'store_id')
+      existing['iso']['store_id'] = store_id
+      puts "  #{iso_name}: store_id → #{store_id}"
+      updated = true
+    end
+    if stage && iso_field_missing?(existing, 'stage')
+      existing['iso']['stage'] = stage
+      puts "  #{iso_name}: stage → #{stage}"
+      updated = true
+    end
+    if ics && iso_field_missing?(existing, 'ics')
+      existing['iso']['ics'] = ics
+      puts "  #{iso_name}: ics → #{ics}"
+      updated = true
+    end
+    if pub_date && iso_field_missing?(existing, 'publication_date')
+      existing['iso']['publication_date'] = pub_date
+      puts "  #{iso_name}: publication_date → #{pub_date}"
+      updated = true
     end
 
     next unless updated
@@ -141,28 +203,91 @@ def main
     save_yaml(yaml_path, existing)
     changes << iso_name
   end
+  changes
+end
 
-  # Report unmatched deliverables (useful for discovering new standards)
-  matched_refs = Dir.glob("#{STANDARDS_DIR}/*.yml").map do |f|
-    d = load_yaml(f)
-    d&.dig('iso', 'name')
-  end.compact.to_set
+# ─── Phase 2: discover standards with no local YAML ───────────────────────────
 
-  unmatched = tc154.keys.reject { |ref| matched_refs.include?(ref) }
-  unless unmatched.empty?
-    puts "\n  Note: #{unmatched.size} deliverables in ISO Open Data have no matching YAML file:"
-    unmatched.sort.each { |ref| puts "    #{ref}" }
+def build_placeholder(deliverable)
+  ref   = deliverable['reference']
+  stage = format_stage(deliverable['currentStage'])
+  ics_raw = deliverable['icsCode']
+  ics     = ics_raw && !Array(ics_raw).empty? ? Array(ics_raw).join(', ') : nil
+
+  iso = {
+    'name'  => ref,
+    'type'  => type_from_reference(ref),
+    'title' => extract_title(deliverable['title']),
+  }
+  iso['stage']            = stage                          if stage
+  iso['publication_date'] = deliverable['publicationDate'] if deliverable['publicationDate']
+  iso['ics']              = ics                            if ics
+  iso['store_id']         = deliverable['id']              if deliverable['id']
+
+  { 'iso' => iso, 'tc154' => { 'status' => status_from_stage(stage) } }
+end
+
+def discover_new(tc154, refs, slugs)
+  manifest         = []
+  new_placeholders = []
+
+  tc154.keys.sort.each do |ref|
+    next if refs.include?(ref) || refs.include?(normalize_ref(ref))
+
+    deliverable  = tc154[ref]
+    slug         = slugify(ref)
+    placeholder  = build_placeholder(deliverable)
+    already      = slugs.include?(slug)
+
+    manifest << {
+      reference:          ref,
+      title:              extract_title(deliverable['title']),
+      stage:              placeholder['iso']['stage'],
+      status:             placeholder.dig('tc154', 'status'),
+      type:               placeholder['iso']['type'],
+      ics:                placeholder['iso']['ics'],
+      store_id:           deliverable['id'],
+      publication_date:   deliverable['publicationDate'],
+      iso_store_url:      deliverable['id'] ? "https://www.iso.org/standard/#{deliverable['id']}.html" : nil,
+      slug:               slug,
+      yaml_path:          "#{STANDARDS_DIR}/#{slug}.yml",
+      placeholder_created: !already,
+    }
+
+    if already
+      puts "  · Placeholder already exists: #{slug}.yml  (#{ref})"
+    else
+      save_yaml("#{STANDARDS_DIR}/#{slug}.yml", placeholder)
+      new_placeholders << slug
+      puts "  + Created placeholder:       #{slug}.yml  (#{ref})"
+    end
   end
 
-  if changes.empty?
+  File.write(MANIFEST_PATH, JSON.pretty_generate(manifest))
+  puts "\nPhase 2 — discover: #{manifest.size} unmatched deliverables, #{new_placeholders.size} new placeholder(s)"
+  new_placeholders
+end
+
+# ─── Main ─────────────────────────────────────────────────────────────────────
+
+def main
+  tc154 = fetch_tc154_deliverables
+
+  puts "\nPhase 1 — sync metadata for existing standards"
+  sync_changes = sync_existing(tc154)
+
+  puts "\nPhase 2 — discover new deliverables"
+  discover_count = discover_new(tc154, existing_references, existing_slugs).size
+
+  total_changes = sync_changes.size + discover_count
+  if total_changes.zero?
     puts "\nNo changes — exiting 0."
     exit 0
   else
-    puts "\n#{changes.size} file(s) updated: #{changes.join(', ')}"
+    puts "\n#{total_changes} change(s): #{sync_changes.size} metadata update(s), #{discover_count} new placeholder(s)."
     puts "Exiting 1 (changes made — GHA will create PR)."
     exit 1
   end
 end
 
-require 'set'
 main

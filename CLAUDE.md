@@ -70,6 +70,55 @@ roles:
 
 **Events** — stored in `_data/events/plenary-meeting-{n}.yml`. Accessed via `site.data.events["plenary-meeting-42"]` (key = filename without `.yml`).
 
+**Standards** — stored in `_data/standards/{slug}.yml`. Source of truth for the standards catalogue. Each file has an `iso:` block (name, type, title, stage, publication_date, ics, store_id, scope) and a `tc154:` block (status, group, introduction, scope, editorial fields). See "Standards Data Pipeline" below for how these files stay in sync with ISO Open Data.
+
+### Standards Data Pipeline
+
+`_data/standards/*.yml` is kept in sync with [ISO Open Data](https://www.iso.org/open-data.html) via a single Ruby script and a single GitHub Actions workflow. The script does both jobs in one pass after a single download of the JSONL dataset:
+
+| Component | Purpose |
+|-----------|---------|
+| `scripts/sync_iso_open_data.rb` | **Phase 1 (sync)**: for each local YAML, fill in missing `iso.store_id`, `iso.stage`, `iso.ics`, `iso.publication_date` from the matching TC 154 deliverable. Never overwrites existing values. **Phase 2 (discover)**: for each TC 154 deliverable with no matching local YAML, append to `scripts/.new-standards.json` manifest and generate a placeholder YAML file if one doesn't yet exist. |
+| `.github/workflows/sync_iso_data.yml` | Weekly Mon 02:00 UTC. Runs the script, ensures the `new-standard` label exists, creates one GitHub issue per discovered deliverable (idempotent), opens/updates a rolling PR on `chore/sync-iso-data` containing both metadata updates and placeholders. |
+
+**Idempotency** — safe to run repeatedly:
+- **Issues**: `gh issue list --label new-standard --state all` is fetched once per run and filtered by ISO reference in the title (via `jq`). Any existing issue (open or closed) for the same reference prevents duplicate creation.
+- **PR**: `peter-evans/create-pull-request@v7` on branch `chore/sync-iso-data` creates the PR on first run and pushes additional commits on subsequent runs. Never opens a second PR for the same branch. `delete-branch: true` recreates the branch cleanly after merge or close.
+- **Placeholders**: the script skips YAML generation if a file with the derived slug already exists. Matching against existing YAMLs uses `iso.name` plus Amd/Cor dash normalization (so `ISO 9735:1988/Amd-1:1992` matches `ISO 9735:1988/Amd 1:1992`).
+- **Metadata**: `iso_field_missing?` only writes a field when it's nil or empty — existing editorial values are never overwritten.
+
+**Placeholder YAML shape** (minimal — no editorial content):
+```yaml
+---
+iso:
+  name: ISO/AWI TR 24980        # reference from ISO Open Data
+  type: TR                       # derived: TS, TR, or international
+  title: Application of data…    # English title extracted from { en:, fr: }
+  stage: '10.99'                 # formatted from integer code
+  publication_date: '2026-04-29' # only if present
+  ics: 35.240.63                 # only if present
+  store_id: 90785                # ISO Store numeric ID
+tc154:
+  status: under_development      # derived from stage (<60.00 under_development, <95.99 published, else withdrawn)
+  # group, introduction, scope pending — see linked new-standard issue
+---
+```
+
+**Editor workflow when a `new-standard` issue lands**:
+1. Confirm responsible working group → set `tc154.group`.
+2. Draft introduction → set `tc154.introduction`.
+3. Confirm scope → set `iso.scope` (or `tc154.scope` if it differs).
+4. Add to publication history if applicable.
+5. Close the issue. The placeholder stays on `main`; future sync runs will keep its metadata current.
+
+**Local validation** — the script is safe to run directly; it will create real placeholder files in `_data/standards/` and a manifest at `scripts/.new-standards.json`. Remove both afterwards if this was just a check:
+```sh
+ruby scripts/sync_iso_open_data.rb
+# Inspect output, then clean up:
+rm -f scripts/.new-standards.json
+git status --short _data/standards/ | grep '^??' | awk '{print $2}' | xargs rm -f
+```
+
 ### Frontend Pipeline
 
 1. `vite.config.ts` — Vite config with RubyPlugin (reads `config/vite.json` for Jekyll asset paths)

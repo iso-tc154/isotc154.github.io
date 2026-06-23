@@ -1,20 +1,41 @@
 name: sync_iso_data
 
+# Weekly sync of TC 154 standards data against ISO Open Data.
+#
+# Two phases in a single run:
+#   1. Metadata sync: updates iso.store_id / iso.stage / iso.ics /
+#      iso.publication_date for any local YAML that's missing them.
+#   2. Discovery: detects TC 154 deliverables with no local YAML, opens one
+#      GitHub issue per deliverable (label `new-standard`, idempotent), and
+#      generates placeholder YAMLs.
+#
+# Both kinds of changes go into a single rolling PR on `chore/sync-iso-data`.
+#
+# Idempotency:
+#   - Issues: the workflow lists all issues (open + closed) with label
+#     `new-standard` and skips creation if any already references the same
+#     ISO reference in its title.
+#   - PR: peter-evans/create-pull-request@v7 pushes a new commit to the
+#     existing branch or creates the PR on first run; never opens a second
+#     PR for the same branch.
+#   - Placeholders: the script skips YAML generation if a file with the
+#     derived slug already exists.
+
 on:
   schedule:
-    # Run every Monday at 02:00 UTC
+    # Every Monday at 02:00 UTC
     - cron: '0 2 * * 1'
   workflow_dispatch:
     inputs:
       force:
-        description: 'Force re-sync even if no changes detected'
+        description: 'Force PR creation even if no changes detected'
         required: false
         default: 'false'
 
-# Set permissions for PR creation
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   sync:
@@ -31,28 +52,149 @@ jobs:
           bundler-cache: true
           cache-version: sync-v1
 
-      - name: Run ISO data sync
+      - name: Run ISO Open Data sync (metadata + discovery)
         id: sync
         run: |
           ruby scripts/sync_iso_open_data.rb
           echo "changed=$?" >> $GITHUB_OUTPUT
 
-      - name: Create PR if changes
+      - name: Ensure new-standard label exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create new-standard \
+            --description "New TC 154 deliverable detected in ISO Open Data; awaiting editorial content" \
+            --color BFD4F2 \
+            --force 2>/dev/null || true
+
+      - name: Create or skip issues for newly discovered deliverables
+        if: ${{ steps.sync.outputs.changed == '1' || github.event.inputs.force == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          manifest="scripts/.new-standards.json"
+          if [ ! -f "$manifest" ]; then
+            echo "No discovery manifest; skipping issue creation."
+            exit 0
+          fi
+          count=$(jq 'length' "$manifest")
+          if [ "$count" -eq 0 ]; then
+            echo "No new deliverables to track."
+            exit 0
+          fi
+          echo "Processing $count unmatched deliverable(s)…"
+
+          # Snapshot once; this list is small (one row per new-standard issue).
+          existing_titles_json=$(gh issue list --label new-standard --state all \
+            --json number,title --limit 500 2>/dev/null || echo '[]')
+
+          jq -c '.[]' "$manifest" | while IFS= read -r entry; do
+            ref=$(echo "$entry"       | jq -r '.reference')
+            title=$(echo "$entry"     | jq -r '.title // "(title pending)"')
+            stage=$(echo "$entry"     | jq -r '.stage // "unknown"')
+            status=$(echo "$entry"    | jq -r '.status // "unknown"')
+            ics=$(echo "$entry"       | jq -r '.ics // "—"')
+            store_url=$(echo "$entry" | jq -r '.iso_store_url // ""')
+            slug=$(echo "$entry"      | jq -r '.slug')
+            pub_date=$(echo "$entry"  | jq -r '.publication_date // ""')
+
+            existing=$(echo "$existing_titles_json" \
+              | jq -r --arg ref "$ref" \
+                '.[] | select(.title | contains($ref)) | .number' \
+              | head -1)
+
+            if [ -n "$existing" ]; then
+              echo "  · Issue #$existing already tracks $ref — skipping"
+              continue
+            fi
+
+            store_line=""
+            if [ -n "$store_url" ]; then
+              store_line="- **ISO Store:** $store_url"
+            fi
+            pub_line=""
+            if [ -n "$pub_date" ]; then
+              pub_line="- **Publication date:** $pub_date"
+            fi
+
+            body=$(cat <<EOF
+          A new TC 154 deliverable was detected in [ISO Open Data](https://www.iso.org/open-data.html) that has no editorial content on the site yet.
+
+          - **Reference:** \`$ref\`
+          - **Title:** $title
+          - **Stage:** \`$stage\`
+          - **Derived status:** \`$status\`
+          - **ICS:** \`$ics\`
+          $pub_line
+          $store_line
+
+          A placeholder entry has been added in the open \`chore/sync-iso-data\` PR
+          (file: \`_data/standards/${slug}.yml\`) so the standard appears on the catalogue
+          with basic metadata from ISO Open Data.
+
+          ### Editorial content needed
+
+          - [ ] Confirm responsible working group (\`tc154.group\`)
+          - [ ] Draft introduction (\`tc154.introduction\`)
+          - [ ] Confirm scope (\`iso.scope\`)
+          - [ ] Add to relevant publication history if applicable
+
+          Close this issue once editorial content is merged.
+          EOF
+          )
+
+            gh issue create \
+              --label new-standard \
+              --title "[new-standard] $ref — $title" \
+              --body "$body" >/dev/null
+            echo "  + Created issue for $ref"
+          done
+
+      - name: Open or update ISO Open Data PR
         if: ${{ steps.sync.outputs.changed == '1' || github.event.inputs.force == 'true' }}
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: sync ISO Open Data'
-          title: 'chore: update ISO Open Data'
+          commit-message: 'chore(standards): sync ISO Open Data (metadata + new placeholders)'
+          title: 'chore: ISO Open Data sync'
           body: |
             ## Summary
 
-            Auto-generated PR from ISO Open Data sync (weekly cron).
+            Auto-generated PR from the weekly ISO Open Data sync
+            (`.github/workflows/sync_iso_data.yml`).
 
-            Updated `iso.stage`, `iso.publication_date`, and/or `iso.ics` fields
-            where newer data was found on iso.org.
+            This PR contains two kinds of changes produced by `scripts/sync_iso_open_data.rb`:
 
-            Review the changes before merging.
+            ### 1. Metadata updates (existing standards)
+
+            `iso.stage`, `iso.publication_date`, `iso.ics`, and/or `iso.store_id` filled
+            in where missing for standards that already had a YAML file. Existing values
+            are never overwritten.
+
+            ### 2. Placeholder entries (newly detected deliverables)
+
+            Minimal YAML files for TC 154 deliverables detected in
+            [ISO Open Data](https://www.iso.org/open-data.html) that previously had no
+            entry on the site. Each placeholder contains only metadata sourced from
+            ISO Open Data — no editorial decisions are made by this PR.
+
+            For each placeholder, a tracking issue with label `new-standard` has been
+            opened with an editorial content checklist:
+
+            - [ ] Confirm responsible working group (`tc154.group`)
+            - [ ] Draft introduction (`tc154.introduction`)
+            - [ ] Confirm scope (`iso.scope`)
+            - [ ] Add to relevant publication history if applicable
+
+            Open issues:
+            ${{ github.server_url }}/${{ github.repository }}/issues?q=label%3Anew-standard
+
+            This PR is **rolling** — if it stays open across multiple weekly runs, new
+            changes accumulate as additional commits. Merging absorbs everything into
+            `main`; the next run opens a fresh PR if more changes appear.
           branch: chore/sync-iso-data
           delete-branch: true
           add-paths: '_data/standards/*.yml'
+          labels: |
+            automated
