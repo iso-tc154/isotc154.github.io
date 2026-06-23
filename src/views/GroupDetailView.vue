@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
@@ -7,16 +7,16 @@ import {
   type Group,
   type GroupCollaborativeParty,
   type ConvenorTerm,
+  type SubnavSection,
 } from '../types/group'
 import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
 import { asciidocify } from '../utils/asciidoc'
 import { memberPath, projectPath } from '../utils/urn'
 import type { Member } from '../types/member'
-import type { SubnavSection } from '../types/group'
 import PageHero from '../components/PageHero.vue'
 import GroupTimeline from '../components/GroupTimeline.vue'
 import ConvenorTermBar from '../components/ConvenorTermBar.vue'
-import SectionSubnav from '../components/SectionSubnav.vue'
+import SectionTabs from '../components/SectionTabs.vue'
 
 const route = useRoute()
 const { groups, isLoaded, loadData, get: getGroup } = useGroups()
@@ -69,6 +69,41 @@ const dissolvedYear = computed(() => dissolvedDate.value ? String(dissolvedDate.
 const lifecycleEvents = computed(() => group.value?.history?.events ?? [])
 const convenorTerms = computed(() => group.value?.convenor_terms ?? [])
 
+const convenors = computed<string[]>(() => {
+  if (!group.value) return []
+  return group.value.convenors ?? group.value.organization?.convenors ?? []
+})
+const coChairs = computed<string[]>(() => {
+  if (!group.value) return []
+  return group.value.co_chairs ?? group.value.organization?.co_chairs ?? []
+})
+const managers = computed<string[]>(() => {
+  if (!group.value) return []
+  return group.value.managers ?? group.value.organization?.managers ?? []
+})
+
+interface PeopleGroup {
+  id: string
+  label: string
+  members: string[]
+  variant: 'chip' | 'past' | 'plain'
+}
+
+const peopleGroups = computed<PeopleGroup[]>(() => {
+  if (!group.value) return []
+  const g = group.value
+  const list: PeopleGroup[] = []
+  if (convenors.value.length) list.push({ id: 'convenors', label: `Convenor${convenors.value.length > 1 ? 's' : ''}`, members: convenors.value, variant: 'chip' })
+  if (coChairs.value.length) list.push({ id: 'co-chairs', label: `Co-chair${coChairs.value.length > 1 ? 's' : ''}`, members: coChairs.value, variant: 'chip' })
+  if (managers.value.length) list.push({ id: 'managers', label: `Manager${managers.value.length > 1 ? 's' : ''}`, members: managers.value, variant: 'chip' })
+  if (g.members?.length) list.push({ id: 'members', label: `Members (${g.members.length})`, members: g.members, variant: 'chip' })
+  if (g.past_members?.length) list.push({ id: 'past-members', label: 'Past members', members: g.past_members, variant: 'past' })
+  if (g.history?.leadership?.length) list.push({ id: 'leadership', label: 'Past leadership', members: g.history.leadership, variant: 'plain' })
+  return list
+})
+
+const hasPeople = computed(() => peopleGroups.value.length > 0)
+
 const subnavSections = computed<SubnavSection[]>(() => {
   if (!group.value) return []
   const g = group.value
@@ -77,13 +112,28 @@ const subnavSections = computed<SubnavSection[]>(() => {
   if (g._description) sections.push({ id: 'mandate', label: 'Mandate' })
   if (g.scope) sections.push({ id: 'scope', label: 'Scope' })
   if (lifecycleEvents.value.length) sections.push({ id: 'lifecycle', label: 'Lifecycle' })
-  if (convenorTerms.value.length) sections.push({ id: 'convenors', label: 'Convenors' })
+  if (convenorTerms.value.length) sections.push({ id: 'leadership', label: 'Leadership' })
   if (g.history?.story) sections.push({ id: 'history', label: 'History' })
   if (g.collaborative_parties?.length) sections.push({ id: 'partners', label: 'Partners' })
   if (g.standards?.length) sections.push({ id: 'standards', label: 'Standards' })
   if (g.active_projects?.length) sections.push({ id: 'projects', label: 'Projects' })
+  if (hasPeople.value) sections.push({ id: 'people', label: 'People' })
   return sections
 })
+
+const tabbedMode = computed(() => subnavSections.value.length >= 3)
+
+const activeTab = ref('')
+
+watch(subnavSections, (secs) => {
+  if (!secs.length) {
+    activeTab.value = ''
+    return
+  }
+  if (activeTab.value && secs.some((s) => s.id === activeTab.value)) return
+  const hash = typeof window !== 'undefined' ? window.location.hash.replace(/^#/, '') : ''
+  activeTab.value = (hash && secs.some((s) => s.id === hash)) ? hash : secs[0].id
+}, { immediate: true })
 
 const predecessorTerms = computed<ConvenorTerm[]>(() => {
   const pred = group.value?.predecessor
@@ -111,18 +161,10 @@ function memberInitials(name: string): string {
   return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
 }
 
-const convenors = computed<string[]>(() => {
-  if (!group.value) return []
-  return group.value.convenors ?? group.value.organization?.convenors ?? []
-})
-const coChairs = computed<string[]>(() => {
-  if (!group.value) return []
-  return group.value.co_chairs ?? group.value.organization?.co_chairs ?? []
-})
-const managers = computed<string[]>(() => {
-  if (!group.value) return []
-  return group.value.managers ?? group.value.organization?.managers ?? []
-})
+function sectionVisible(id: string): boolean {
+  if (!tabbedMode.value) return true
+  return activeTab.value === id
+}
 </script>
 
 <template>
@@ -200,34 +242,64 @@ const managers = computed<string[]>(() => {
       </div>
     </PageHero>
 
-    <SectionSubnav v-if="subnavSections.length > 2" :sections="subnavSections" />
+    <SectionTabs v-if="tabbedMode" v-model="activeTab" :sections="subnavSections" />
 
-    <div class="detail__grid">
-      <div class="detail__main">
-        <section v-if="introHtml" id="overview" class="detail__section">
+    <div :class="tabbedMode ? 'detail__single' : 'detail__grid'">
+      <div :class="{ 'detail__main': !tabbedMode }">
+        <section
+          v-if="introHtml && sectionVisible('overview')"
+          id="overview"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-overview' : undefined"
+          class="detail__section"
+        >
           <h2 class="detail__section-title">Overview</h2>
           <div class="prose" v-html="introHtml"></div>
         </section>
 
-        <section v-if="description" id="mandate" class="detail__section">
+        <section
+          v-if="description && sectionVisible('mandate')"
+          id="mandate"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-mandate' : undefined"
+          class="detail__section"
+        >
           <h2 class="detail__section-title">Mandate</h2>
           <div class="prose" v-html="description"></div>
         </section>
 
-        <section v-if="scopeHtml" id="scope" class="detail__section">
+        <section
+          v-if="scopeHtml && sectionVisible('scope')"
+          id="scope"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-scope' : undefined"
+          class="detail__section"
+        >
           <h2 class="detail__section-title">Scope</h2>
           <div class="prose" v-html="scopeHtml"></div>
         </section>
 
-        <section v-if="lifecycleEvents.length" id="lifecycle" class="detail__section detail__section--timeline">
+        <section
+          v-if="lifecycleEvents.length && sectionVisible('lifecycle')"
+          id="lifecycle"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-lifecycle' : undefined"
+          class="detail__section detail__section--timeline"
+        >
           <h2 class="detail__section-title">Lifecycle</h2>
           <p class="detail__section-intro">Key moments in this group's history, traced through plenary resolutions.</p>
           <GroupTimeline :events="lifecycleEvents" />
         </section>
 
-        <section v-if="convenorTerms.length" id="convenors" class="detail__section detail__section--terms">
-          <h2 class="detail__section-title">Convenor terms</h2>
-          <p class="detail__section-intro">Leadership tenures on a shared timeline. Bars link to member profiles; chips link to appointing resolutions.</p>
+        <section
+          v-if="convenorTerms.length && sectionVisible('leadership')"
+          id="leadership"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-leadership' : undefined"
+          class="detail__section detail__section--terms"
+        >
+          <h2 class="detail__section-title">Leadership</h2>
+          <p class="detail__section-intro">Convenor tenures on a shared timeline. Bars link to member profiles; chips link to appointing resolutions.</p>
           <ConvenorTermBar
             :terms="convenorTerms"
             :predecessor-terms="predecessorTerms"
@@ -235,12 +307,24 @@ const managers = computed<string[]>(() => {
           />
         </section>
 
-        <section v-if="group.history?.story && historyStoryHtml" id="history" class="detail__section">
+        <section
+          v-if="group.history?.story && historyStoryHtml && sectionVisible('history')"
+          id="history"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-history' : undefined"
+          class="detail__section"
+        >
           <h2 class="detail__section-title">History</h2>
           <div class="prose" v-html="historyStoryHtml"></div>
         </section>
 
-        <section v-if="group.collaborative_parties?.length" id="partners" class="detail__section">
+        <section
+          v-if="group.collaborative_parties?.length && sectionVisible('partners')"
+          id="partners"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-partners' : undefined"
+          class="detail__section"
+        >
           <h2 class="detail__section-title">Collaborative parties</h2>
           <div v-for="(p, idx) in group.collaborative_parties" :key="idx" class="detail__party">
             <h3 class="detail__party-name">{{ p.entity_name }}</h3>
@@ -254,14 +338,26 @@ const managers = computed<string[]>(() => {
           </div>
         </section>
 
-        <section v-if="group.standards?.length" id="standards" class="detail__section">
+        <section
+          v-if="group.standards?.length && sectionVisible('standards')"
+          id="standards"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-standards' : undefined"
+          class="detail__section"
+        >
           <h2 class="detail__section-title">Standards</h2>
           <ul class="detail__standards">
             <li v-for="std in group.standards" :key="std">{{ std }}</li>
           </ul>
         </section>
 
-        <section v-if="group.active_projects?.length" id="projects" class="detail__section">
+        <section
+          v-if="group.active_projects?.length && sectionVisible('projects')"
+          id="projects"
+          :role="tabbedMode ? 'tabpanel' : undefined"
+          :aria-labelledby="tabbedMode ? 'tab-projects' : undefined"
+          class="detail__section"
+        >
           <h2 class="detail__section-title">Active projects</h2>
           <ul class="detail__projects">
             <li v-for="proj in group.active_projects" :key="proj">
@@ -269,74 +365,50 @@ const managers = computed<string[]>(() => {
             </li>
           </ul>
         </section>
+
+        <section
+          v-if="tabbedMode && sectionVisible('people') && hasPeople"
+          id="people"
+          role="tabpanel"
+          aria-labelledby="tab-people"
+          class="detail__section detail__section--people"
+        >
+          <h2 class="detail__section-title">People</h2>
+          <div class="detail__people-grid">
+            <section v-for="pg in peopleGroups" :key="pg.id" class="detail__people-block">
+              <h3 class="detail__people-block-title">{{ pg.label }}</h3>
+              <ul class="detail__people">
+                <li v-for="id in pg.members" :key="`${pg.id}-${id}`">
+                  <a
+                    v-if="pg.variant !== 'plain'"
+                    :href="memberUrl(id)"
+                    :class="['person-chip', { 'person-chip--past': pg.variant === 'past' }]"
+                  >
+                    <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
+                    <span class="person-chip__name">{{ memberName(id) }}</span>
+                  </a>
+                  <a v-else :href="memberUrl(id)" class="detail__people-link">{{ memberName(id) }}</a>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </section>
       </div>
 
-      <aside class="detail__aside">
-        <section v-if="convenors.length" class="detail__aside-block">
-          <h3 class="detail__aside-title">Convenor{{ convenors.length > 1 ? 's' : '' }}</h3>
+      <aside v-if="!tabbedMode && hasPeople" class="detail__aside">
+        <section v-for="pg in peopleGroups" :key="pg.id" class="detail__aside-block">
+          <h3 class="detail__aside-title">{{ pg.label }}</h3>
           <ul class="detail__people">
-            <li v-for="id in convenors" :key="`c-${id}`">
-              <a :href="memberUrl(id)" class="person-chip">
+            <li v-for="id in pg.members" :key="`${pg.id}-${id}`">
+              <a
+                v-if="pg.variant !== 'plain'"
+                :href="memberUrl(id)"
+                :class="['person-chip', { 'person-chip--past': pg.variant === 'past' }]"
+              >
                 <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
                 <span class="person-chip__name">{{ memberName(id) }}</span>
               </a>
-            </li>
-          </ul>
-        </section>
-
-        <section v-if="coChairs.length" class="detail__aside-block">
-          <h3 class="detail__aside-title">Co-chair{{ coChairs.length > 1 ? 's' : '' }}</h3>
-          <ul class="detail__people">
-            <li v-for="id in coChairs" :key="`co-${id}`">
-              <a :href="memberUrl(id)" class="person-chip">
-                <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
-                <span class="person-chip__name">{{ memberName(id) }}</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <section v-if="managers.length" class="detail__aside-block">
-          <h3 class="detail__aside-title">Manager{{ managers.length > 1 ? 's' : '' }}</h3>
-          <ul class="detail__people">
-            <li v-for="id in managers" :key="`m-${id}`">
-              <a :href="memberUrl(id)" class="person-chip">
-                <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
-                <span class="person-chip__name">{{ memberName(id) }}</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <section v-if="group.members?.length" class="detail__aside-block">
-          <h3 class="detail__aside-title">Members ({{ group.members.length }})</h3>
-          <ul class="detail__people">
-            <li v-for="id in group.members" :key="`mem-${id}`">
-              <a :href="memberUrl(id)" class="person-chip">
-                <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
-                <span class="person-chip__name">{{ memberName(id) }}</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <section v-if="group.past_members?.length" class="detail__aside-block">
-          <h3 class="detail__aside-title">Past members</h3>
-          <ul class="detail__people">
-            <li v-for="id in group.past_members" :key="`pm-${id}`">
-              <a :href="memberUrl(id)" class="person-chip person-chip--past">
-                <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
-                <span class="person-chip__name">{{ memberName(id) }}</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <section v-if="group.history?.leadership?.length" class="detail__aside-block">
-          <h3 class="detail__aside-title">Past leadership</h3>
-          <ul class="detail__leadership">
-            <li v-for="id in group.history.leadership" :key="`l-${id}`">
-              <a :href="memberUrl(id)">{{ memberName(id) }}</a>
+              <a v-else :href="memberUrl(id)">{{ memberName(id) }}</a>
             </li>
           </ul>
         </section>
@@ -512,6 +584,10 @@ const managers = computed<string[]>(() => {
   .detail__grid { grid-template-columns: minmax(0, 1fr) 22rem; }
 }
 
+.detail__single {
+  display: block;
+}
+
 .detail__section { margin-bottom: 2rem; scroll-margin-top: 5rem; }
 .detail__section-title {
   font-size: 0.75rem;
@@ -655,6 +731,31 @@ const managers = computed<string[]>(() => {
 }
 .dark .detail__aside-title { color: #a8a29e; }
 
+.detail__people-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .detail__people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.detail__people-block {
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.5rem;
+}
+.dark .detail__people-block { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+.detail__people-block-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #78716c;
+  margin: 0 0 0.75rem;
+}
+.dark .detail__people-block-title { color: #a8a29e; }
+
 .detail__people {
   list-style: none;
   margin: 0;
@@ -663,6 +764,13 @@ const managers = computed<string[]>(() => {
   flex-direction: column;
   gap: 0.375rem;
 }
+.detail__people-link {
+  color: var(--color-blue-accent);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+.detail__people-link:hover { text-decoration: underline; }
+
 .person-chip {
   display: flex;
   align-items: center;
@@ -693,19 +801,4 @@ const managers = computed<string[]>(() => {
 .person-chip--past .person-chip__avatar { background: #a8a29e; }
 .dark .person-chip--past .person-chip__avatar { background: #57534e; }
 .person-chip__name { font-size: 0.875rem; }
-
-.detail__leadership {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.875rem;
-}
-.detail__leadership a {
-  color: var(--color-blue-accent);
-  text-decoration: none;
-}
-.detail__leadership a:hover { text-decoration: underline; }
 </style>
