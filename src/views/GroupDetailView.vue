@@ -115,14 +115,6 @@ const heroManagers = computed<HeroPerson[]>(() =>
   managers.value.map(id => ({ id, name: memberName(id) }))
 )
 
-const hasLeadershipHistory = computed(() =>
-  Boolean(
-    lifecycleEvents.value.length
-    || convenorTerms.value.length
-    || group.value?.history?.leadership?.length
-  )
-)
-
 interface PeopleGroup {
   id: string
   label: string
@@ -138,10 +130,6 @@ const peopleGroups = computed<PeopleGroup[]>(() => {
   if (g.past_members?.length) list.push({ id: 'past-members', label: 'Past members', members: g.past_members, variant: 'past' })
   return list
 })
-
-const hasPeople = computed(() => peopleGroups.value.length > 0)
-
-const hasOverview = computed(() => Boolean(group.value?.intro || description.value || historyStoryHtml.value))
 
 const standardsByName = computed(() => {
   const map = new Map<string, Standard>()
@@ -201,18 +189,27 @@ const projectCards = computed<ProjectCard[]>(() => {
   })
 })
 
-const subnavSections = computed<SubnavSection[]>(() => {
+const sections = computed<SubnavSection[]>(() => {
   if (!group.value) return []
   const g = group.value
-  const sections: SubnavSection[] = []
-  if (hasOverview.value) sections.push({ id: 'overview', label: 'Overview' })
-  if (hasLeadershipHistory.value) sections.push({ id: 'history', label: 'History' })
-  if (g.collaborative_parties?.length) sections.push({ id: 'partners', label: 'Partners' })
-  if (g.standards?.length) sections.push({ id: 'standards', label: 'Standards' })
-  if (g.active_projects?.length) sections.push({ id: 'projects', label: 'Projects' })
-  if (hasPeople.value) sections.push({ id: 'members', label: 'Members' })
-  return sections
+  const all: Array<SubnavSection & { enabled: boolean }> = [
+    { id: 'overview', label: 'Overview', enabled: Boolean(g.intro || description.value || historyStoryHtml.value) },
+    { id: 'history', label: 'History', enabled: Boolean(lifecycleEvents.value.length || convenorTerms.value.length || g.history?.leadership?.length) },
+    { id: 'partners', label: 'Partners', enabled: !!g.collaborative_parties?.length },
+    { id: 'standards', label: 'Standards', enabled: !!g.standards?.length },
+    { id: 'projects', label: 'Projects', enabled: !!g.active_projects?.length },
+    { id: 'members', label: 'Members', enabled: peopleGroups.value.length > 0 },
+  ]
+  return all.filter(s => s.enabled).map(({ id, label }) => ({ id, label }))
 })
+
+const subnavSections = sections
+
+const enabledSectionIds = computed(() => new Set(sections.value.map(s => s.id)))
+
+function sectionEnabled(id: string): boolean {
+  return enabledSectionIds.value.has(id)
+}
 
 const tabbedMode = computed(() => subnavSections.value.length >= 3)
 
@@ -367,7 +364,7 @@ function sectionVisible(id: string): boolean {
     <div :class="['group__body', tabbedMode ? 'group__body--single' : 'group__body--grid']">
       <div :class="{ 'group__main': !tabbedMode }">
         <section
-          v-if="hasOverview && sectionVisible('overview')"
+          v-if="sectionEnabled('overview') && sectionVisible('overview')"
           id="overview"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-overview' : undefined"
@@ -380,7 +377,7 @@ function sectionVisible(id: string): boolean {
         </section>
 
         <section
-          v-if="hasLeadershipHistory && sectionVisible('history')"
+          v-if="sectionEnabled('history') && sectionVisible('history')"
           id="history"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-history' : undefined"
@@ -420,7 +417,7 @@ function sectionVisible(id: string): boolean {
         </section>
 
         <section
-          v-if="group.collaborative_parties?.length && sectionVisible('partners')"
+          v-if="sectionEnabled('partners') && sectionVisible('partners')"
           id="partners"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-partners' : undefined"
@@ -440,14 +437,14 @@ function sectionVisible(id: string): boolean {
         </section>
 
         <section
-          v-if="group.standards?.length && sectionVisible('standards')"
+          v-if="sectionEnabled('standards') && sectionVisible('standards')"
           id="standards"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-standards' : undefined"
           class="group__section"
         >
           <h2 class="group__section-title">Standards</h2>
-          <p class="group__section-intro">{{ group.standards.length }} catalogue entr{{ group.standards.length === 1 ? 'y' : 'ies' }} attributable to this group.</p>
+          <p class="group__section-intro">{{ standardCards.length }} catalogue entr{{ standardCards.length === 1 ? 'y' : 'ies' }} attributable to this group.</p>
           <ul class="standards-list">
             <li v-for="card in standardCards" :key="card.raw" class="standard">
               <a :href="card.url" class="standard__link">
@@ -469,14 +466,14 @@ function sectionVisible(id: string): boolean {
         </section>
 
         <section
-          v-if="group.active_projects?.length && sectionVisible('projects')"
+          v-if="sectionEnabled('projects') && sectionVisible('projects')"
           id="projects"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-projects' : undefined"
           class="group__section"
         >
           <h2 class="group__section-title">Active projects</h2>
-          <p class="group__section-intro">{{ group.active_projects.length }} active work item{{ group.active_projects.length === 1 ? '' : 's' }}.</p>
+          <p class="group__section-intro">{{ projectCards.length }} active work item{{ projectCards.length === 1 ? '' : 's' }}.</p>
           <ul class="projects-list">
             <li v-for="card in projectCards" :key="card.id" class="project">
               <a :href="card.url" class="project__link">
@@ -501,7 +498,7 @@ function sectionVisible(id: string): boolean {
         </section>
 
         <section
-          v-if="tabbedMode && sectionVisible('members') && hasPeople"
+          v-if="tabbedMode && sectionEnabled('members') && sectionVisible('members')"
           id="members"
           role="tabpanel"
           aria-labelledby="tab-members"
@@ -526,7 +523,7 @@ function sectionVisible(id: string): boolean {
         </section>
       </div>
 
-      <aside v-if="!tabbedMode && hasPeople" class="group__aside">
+      <aside v-if="!tabbedMode && sectionEnabled('members')" class="group__aside">
         <section v-for="pg in peopleGroups" :key="pg.id" class="group__aside-block">
           <h3 class="group__aside-title">{{ pg.label }}</h3>
           <div class="group__aside-grid">
