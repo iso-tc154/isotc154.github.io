@@ -99,23 +99,7 @@ export interface Group {
   url?: string
 }
 
-export function groupCategoryLabel(category: string): string {
-  switch (category) {
-    case 'working': return 'Working Group'
-    case 'advisory': return 'Advisory Group'
-    case 'cag': return 'Chairman\'s Advisory Group'
-    case 'joint': return 'Joint Working Group'
-    case 'ahwg': return 'Ad Hoc Working Group'
-    case 'sg': return 'Study Group'
-    case 'rtc': return 'Resolution Drafting Group'
-    default: return category.charAt(0).toUpperCase() + category.slice(1)
-  }
-}
-
 export type LifecycleStatus = 'active' | 'inactive' | 'dissolved'
 
-export function lifecycleStatus(group: Group): LifecycleStatus {
-  if (group.history?.dissolved) return 'dissolved'
-  if (group.inactive) return 'inactive'
-  return 'active'
-}
+// Display helpers (groupCategoryLabel, lifecycleStatus) live in
+// src/domain/groupPresentation.ts — this file is shape declarations only.
