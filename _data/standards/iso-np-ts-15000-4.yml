@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP TS 15000-4
+  type: TS
+  title: 'Electronic business eXtensible mark-up language (ebXML) — Part 4: Registry services specification (RS)'
+  stage: '10.98'
+  store_id: 38324
+tc154:
+  status: under_development

@@ -163,7 +163,10 @@ function flagEmoji(countryCode?: string): string {
                 :alt="nb.short_name ?? nb.name"
               />
               <div class="card__body">
-                <h3 class="card__name">{{ nb.short_name ?? nb.name }}</h3>
+                <h3 class="card__name">
+                  <span v-if="nb.short_name && nb.name && nb.short_name !== nb.name">{{ nb.name }} <span class="card__abbr">({{ nb.short_name }})</span></span>
+                  <span v-else>{{ nb.name ?? nb.short_name }}</span>
+                </h3>
                 <p class="card__country">
                   <span v-if="nb.iso_country_code">{{ flagEmoji(nb.iso_country_code) }}</span>
                   {{ nb.country ?? nb.name }}
@@ -199,7 +202,10 @@ function flagEmoji(countryCode?: string): string {
               />
               <div class="card__body">
                 <div class="card__name-row">
-                  <h3 class="card__name">{{ nb.short_name ?? nb.name }}</h3>
+                  <h3 class="card__name">
+                    <span v-if="nb.short_name && nb.name && nb.short_name !== nb.name">{{ nb.name }} <span class="card__abbr">({{ nb.short_name }})</span></span>
+                    <span v-else>{{ nb.name ?? nb.short_name }}</span>
+                  </h3>
                   <span class="card__former-badge">Former</span>
                 </div>
                 <p class="card__country">
@@ -258,6 +264,15 @@ function flagEmoji(countryCode?: string): string {
 .card__body { flex: 1; min-width: 0; }
 .card__name { font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0 0 0.125rem; }
 .dark .card__name { color: #fafaf9; }
+.card__abbr {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #57534e;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.dark .card__abbr { color: #a8a29e; }
 .card__country { font-size: 0.8125rem; color: #78716c; margin: 0 0 0.5rem; }
 .dark .card__country { color: #a8a29e; }
 .card__membership { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 700; }

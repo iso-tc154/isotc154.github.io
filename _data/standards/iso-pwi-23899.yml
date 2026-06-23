@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 23899
+  type: international
+  title: Alignment between ISO 7372, UN/EDIFACT EDED+UNCL and UN/CEFACT/CCL
+  stage: '0.98'
+  store_id: 77330
+tc154:
+  status: under_development

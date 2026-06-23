@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 4555
+  type: international
+  title: Specification for e-Commerce development index data model
+  stage: '0.98'
+  store_id: 80101
+tc154:
+  status: under_development

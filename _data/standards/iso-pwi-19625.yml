@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 19625
+  type: international
+  title: Alignment project between ISO 7372, UN/EDIFACT EDED+UNCL  and UNCEFACT/CCL
+  stage: '0.98'
+  store_id: 65535
+tc154:
+  status: under_development

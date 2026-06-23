@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP TS 15000-7
+  type: TS
+  title: 'Electronic business eXtensible mark-up language (ebXML) — Part 7: Message service specification (MS)'
+  stage: '10.98'
+  store_id: 38327
+tc154:
+  status: under_development

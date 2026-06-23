@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 9735-11
+  type: international
+  title: 'Electronic data interchange for administration, commerce and transport (EDIFACT) — Application level syntax — Part 11: Version 3 compatible profile for Version 4 of ISO 9735'
+  stage: '0.98'
+  store_id: 78494
+tc154:
+  status: under_development

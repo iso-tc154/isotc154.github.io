@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP 16493
+  type: international
+  title: EDIFACT — Implementation guide — Use of the service message type KEYMAN (Security key and certificate management message)
+  stage: '10.98'
+  store_id: 37900
+tc154:
+  status: under_development

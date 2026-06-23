@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 20195
+  type: international
+  title: Technical requirements for blockchain implementation in industrial internet
+  stage: '0.60'
+  store_id: 86128
+tc154:
+  status: under_development

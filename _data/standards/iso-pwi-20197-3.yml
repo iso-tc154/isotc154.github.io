@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 20197-3
+  type: international
+  title: 'Buy-Ship-Pay Reference Data Model — Part 3: Syntax'
+  stage: '0.98'
+  store_id: 86778
+tc154:
+  status: under_development

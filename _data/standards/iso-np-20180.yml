@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP 20180
+  type: international
+  title: Risk-based product quality data interchange in e-commerce
+  stage: '10.98'
+  store_id: 86125
+tc154:
+  status: under_development

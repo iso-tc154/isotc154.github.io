@@ -1,0 +1,11 @@
+---
+iso:
+  name: ISO/TS 16668:2000
+  type: TS
+  title: Basic Semantics Register (BSR)
+  stage: '95.99'
+  publication_date: '2000-09-28'
+  ics: 35.240.01, 01.140.30
+  store_id: 31039
+tc154:
+  status: withdrawn

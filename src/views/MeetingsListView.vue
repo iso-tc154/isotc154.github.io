@@ -41,8 +41,7 @@ const firstYear = computed(() => {
 const animMeetings = useCountUp(totalMeetings, loaded, 1600)
 const animResolutions = useCountUp(totalResolutions, loaded, 1600)
 const animCountries = useCountUp(totalCountries, loaded, 1600)
-const animFirstYear = computed(() => firstYear.value ?? 1972)
-const animFirstYearCount = useCountUp(animFirstYear, loaded, 1600)
+const firstYearDisplay = computed(() => firstYear.value ?? 1972)
 
 const availableDecades = computed(() => {
   const set = new Set<number>()
@@ -167,7 +166,7 @@ function typeInitials(m: Meeting): string {
         <div><dt>{{ animMeetings }}</dt><dd>Total plenaries</dd></div>
         <div><dt>{{ animResolutions }}</dt><dd>Resolutions adopted</dd></div>
         <div><dt>{{ animCountries }}</dt><dd>Countries hosted</dd></div>
-        <div><dt>{{ animFirstYearCount }}</dt><dd>First plenary</dd></div>
+        <div><dt>{{ firstYearDisplay }}</dt><dd>First plenary</dd></div>
       </dl>
       <dl class="page__stats" v-else>
         <div v-for="i in 4" :key="i">

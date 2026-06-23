@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/WD 0
+  type: international
+  title: Representation of addresses in a commercial environment
+  stage: '20.98'
+  store_id: 464
+tc154:
+  status: under_development

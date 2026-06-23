@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/NP 14533
+  type: international
+  title: Long term signature profiles for EDI Data and Electronic Documents
+  stage: '10.98'
+  ics: 35.240.63
+  store_id: 54871
+tc154:
+  status: under_development

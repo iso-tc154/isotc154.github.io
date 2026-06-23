@@ -363,7 +363,6 @@ onMounted(() => {
 .hero__title-verb {
   font-style: italic;
   font-weight: 700;
-  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
 }
 
 .hero__title-cycle {
@@ -389,7 +388,6 @@ onMounted(() => {
   font-style: italic;
   font-weight: 400;
   color: var(--color-brand);
-  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
   animation-name: hero-cycle;
   animation-duration: 10s;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

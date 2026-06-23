@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 34200
+  type: international
+  title: Date and time — Timezones
+  stage: '0.98'
+  store_id: 77020
+tc154:
+  status: under_development

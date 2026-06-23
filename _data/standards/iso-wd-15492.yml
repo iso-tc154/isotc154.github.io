@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/WD 15492
+  type: international
+  title: Data elements on general personal data
+  stage: '20.98'
+  store_id: 27908
+tc154:
+  status: under_development

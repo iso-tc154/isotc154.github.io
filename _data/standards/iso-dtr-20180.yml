@@ -6,6 +6,7 @@ iso:
   stage: '50.92'
   ics: 35.240.63
   scope: Risk-based product quality data interchange in e-commerce.
+  store_id: 90475
 tc154:
   group: wg7
   status: under_development

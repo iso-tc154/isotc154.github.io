@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/DTR 20180.2
+  type: TR
+  title: Risk-based product quality data interchange in e-commerce
+  stage: '50.00'
+  ics: 35.240.63
+  store_id: 90475
+tc154:
+  status: under_development

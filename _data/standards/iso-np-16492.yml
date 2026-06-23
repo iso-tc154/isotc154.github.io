@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP 16492
+  type: international
+  title: EDIFACT — Implementation guide — Use of the service message type AUTACK (Secure authentication and acknowledgement message)
+  stage: '10.98'
+  store_id: 37899
+tc154:
+  status: under_development

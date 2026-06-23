@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 34100
+  type: international
+  title: Date and time — Reference time scales
+  stage: '0.98'
+  store_id: 78166
+tc154:
+  status: under_development

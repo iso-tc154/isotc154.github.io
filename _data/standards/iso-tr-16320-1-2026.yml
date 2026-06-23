@@ -1,0 +1,11 @@
+---
+iso:
+  name: ISO/TR 16320-1:2026
+  type: TR
+  title: 'Processes and data in e-commerce — Smart contract-based B2B electronic transaction execution and verification — Part 1: Reference model'
+  stage: '60.60'
+  publication_date: '2026-04-29'
+  ics: 35.240.63
+  store_id: 90785
+tc154:
+  status: published

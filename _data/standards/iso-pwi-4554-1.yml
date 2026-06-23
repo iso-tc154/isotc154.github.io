@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 4554-1
+  type: international
+  title: 'Trusted smart contract-based electronic transactions for personal data and confidential business information — Part 1: Conceptual model'
+  stage: '0.98'
+  store_id: 80099
+tc154:
+  status: under_development

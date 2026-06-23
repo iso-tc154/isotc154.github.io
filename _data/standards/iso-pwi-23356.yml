@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 23356
+  type: international
+  title: Visibility logistics data interchange interface
+  stage: '0.98'
+  store_id: 75309
+tc154:
+  status: under_development

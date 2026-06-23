@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/PRF TR 18262
+  type: TR
+  title: Processes, data elements and documents in commerce, industry and administration — Open data interchange framework (ODIF)
+  stage: '50.98'
+  ics: 35.240.63
+  store_id: 61905
+tc154:
+  status: under_development
