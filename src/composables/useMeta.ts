@@ -70,23 +70,18 @@ export interface SiteMeta {
   }
 }
 
-const cached: { value: SiteMeta | null; promise: Promise<SiteMeta | null> | null } = {
-  value: null,
-  promise: null,
-}
+const meta: Ref<SiteMeta | null> = ref(null)
+let loadPromise: Promise<SiteMeta | null> | null = null
 
 export function useMeta(): { meta: Ref<SiteMeta | null>; load: () => Promise<SiteMeta | null> } {
-  const meta = ref<SiteMeta | null>(cached.value) as Ref<SiteMeta | null>
-
   const load = async (): Promise<SiteMeta | null> => {
-    if (cached.value) return cached.value
-    if (cached.promise) return cached.promise
+    if (meta.value) return meta.value
+    if (loadPromise) return loadPromise
 
-    cached.promise = (async () => {
+    loadPromise = (async () => {
       try {
         const res = await fetch(`${import.meta.env.BASE_URL}data/meta.json`)
         const data = (await res.json()) as SiteMeta
-        cached.value = data
         meta.value = data
         return data
       } catch (e) {
@@ -95,7 +90,7 @@ export function useMeta(): { meta: Ref<SiteMeta | null>; load: () => Promise<Sit
       }
     })()
 
-    return cached.promise
+    return loadPromise
   }
 
   return { meta, load }

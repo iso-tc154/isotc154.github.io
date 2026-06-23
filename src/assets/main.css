@@ -55,6 +55,7 @@ body {
   color: var(--color-slate-900);
   font-family: var(--font-sans);
   margin: 0;
+  font-optical-sizing: auto;
 }
 
 .dark body {

@@ -728,14 +728,12 @@ const involvement = [
   letter-spacing: -0.025em;
   color: #1c1917;
   margin: 0 0 1rem;
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
 }
 .dark .section-title { color: #fafaf9; }
 .section-accent {
   font-style: italic;
   font-weight: 400;
   color: var(--color-brand);
-  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
 }
 .section-lead {
   font-family: var(--font-sans);
@@ -914,7 +912,6 @@ const involvement = [
   line-height: 1.5;
   color: #1c1917;
   margin: 0;
-  font-variation-settings: 'opsz' 144, 'SOFT' 50;
   quotes: none;
 }
 .dark .mandate__quote { color: #fafaf9; }
@@ -1299,7 +1296,6 @@ const involvement = [
   color: #1c1917;
   margin: 0 0 0.375rem;
   line-height: 1.05;
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
 }
 .dark .secretariat__org { color: #fafaf9; }
 .secretariat__country {

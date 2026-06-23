@@ -20,8 +20,6 @@ const props = withDefaults(defineProps<{
 
 const { isDark } = useTheme()
 
-const hasDarkVariant = computed(() => Boolean(props.logo_dark))
-
 const logoUrl = computed<string | null>(() => {
   const explicit = isDark.value
     ? (props.logo_dark ?? props.logo_light)
@@ -46,11 +44,7 @@ const initials = computed(() => {
     class="org-logo"
     :class="[
       `org-logo--${size}`,
-      {
-        'org-logo--has-dark': hasDarkVariant,
-        'org-logo--always-white': !hasDarkVariant,
-        'org-logo--fallback': !logoUrl,
-      },
+      { 'org-logo--fallback': !logoUrl },
     ]"
     :style="{ '--org-radius': radius }"
   >
@@ -78,13 +72,11 @@ const initials = computed(() => {
   overflow: hidden;
   flex-shrink: 0;
   border-radius: var(--org-radius, 0.5rem);
-  background: #fafaf9;
+  background: #fff;
 }
-.org-logo--has-dark { background: #fafaf9; }
-.dark .org-logo--has-dark { background: #292524; }
-
-.org-logo--always-white { background: #fff; }
-.dark .org-logo--always-white { background: #fff; }
+.dark .org-logo {
+  background: #292524;
+}
 
 .org-logo--sm { width: 2.25rem; height: 2.25rem; padding: 0.25rem; }
 .org-logo--md { width: 3rem; height: 3rem; padding: 0.375rem; }
