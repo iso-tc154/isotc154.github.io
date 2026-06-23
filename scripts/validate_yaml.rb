@@ -214,7 +214,7 @@ ALL_ERRORS = []
   ['Liaisons', '_data/liaisons.yml', nil],
   ['National Bodies', '_data/national_bodies.yml', nil],
   ['Secretariat', '_data/secretariat.yml', nil],
-  ['Projects', '_projects/*.adoc', nil],
+  ['Projects', '_data/projects/*.yml', nil],
 ].each do |label, pattern, validator|
   puts "Validating #{label}..."
   files = pattern.include?('*') ? glob_files(pattern) : [Pathname.new(pattern)]

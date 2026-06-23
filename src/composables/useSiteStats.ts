@@ -70,19 +70,19 @@ export interface SiteMeta {
   }
 }
 
-const meta: Ref<SiteMeta | null> = ref(null)
+const siteStats: Ref<SiteMeta | null> = ref(null)
 let loadPromise: Promise<SiteMeta | null> | null = null
 
-export function useMeta(): { meta: Ref<SiteMeta | null>; load: () => Promise<SiteMeta | null> } {
+export function useSiteStats(): { siteStats: Ref<SiteMeta | null>; load: () => Promise<SiteMeta | null> } {
   const load = async (): Promise<SiteMeta | null> => {
-    if (meta.value) return meta.value
+    if (siteStats.value) return siteStats.value
     if (loadPromise) return loadPromise
 
     loadPromise = (async () => {
       try {
         const res = await fetch(`${import.meta.env.BASE_URL}data/meta.json`)
         const data = (await res.json()) as SiteMeta
-        meta.value = data
+        siteStats.value = data
         return data
       } catch (e) {
         console.error('Failed to load meta.json', e)
@@ -93,5 +93,5 @@ export function useMeta(): { meta: Ref<SiteMeta | null>; load: () => Promise<Sit
     return loadPromise
   }
 
-  return { meta, load }
+  return { siteStats, load }
 }

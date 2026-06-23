@@ -2,28 +2,28 @@
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { useRouter } from 'vue-router'
 import { committee } from '../data/committee'
-import { useMeta } from '../composables/useMeta'
+import { useSiteStats } from '../composables/useSiteStats'
 import { useCountUp } from '../composables/useCountUp'
 import PageHero from '../components/PageHero.vue'
 
 const router = useRouter()
-const { meta, load: loadMeta } = useMeta()
+const { siteStats, load: loadSiteStats } = useSiteStats()
 
 const statsSectionRef = useTemplateRef<HTMLElement>('statsSection')
 const statsVisible = ref(false)
-const statsReady = computed(() => statsVisible.value && meta.value !== null)
+const statsReady = computed(() => statsVisible.value && siteStats.value !== null)
 
 const publishedStandardsCount = useCountUp(
-  computed(() => meta.value?.counts.publishedStandards ?? 0),
+  computed(() => siteStats.value?.counts.publishedStandards ?? 0),
   statsReady,
 )
 const totalMembersCount = useCountUp(
-  computed(() => meta.value?.counts.totalMembers ?? 0),
+  computed(() => siteStats.value?.counts.totalMembers ?? 0),
   statsReady,
 )
 const establishedYear = ref(committee.established)
 const activeGroupsCount = useCountUp(
-  computed(() => meta.value?.counts.activeGroups ?? 0),
+  computed(() => siteStats.value?.counts.activeGroups ?? 0),
   statsReady,
 )
 
@@ -87,9 +87,9 @@ const sections = [
 ]
 
 // Current rail: next plenary, latest publication, open-for-comment documents.
-const nextPlenary = computed(() => meta.value?.current.nextPlenary ?? null)
-const latestPublication = computed(() => meta.value?.current.latestPublication ?? null)
-const openForComment = computed(() => meta.value?.current.openForComment ?? [])
+const nextPlenary = computed(() => siteStats.value?.current.nextPlenary ?? null)
+const latestPublication = computed(() => siteStats.value?.current.latestPublication ?? null)
+const openForComment = computed(() => siteStats.value?.current.openForComment ?? [])
 
 function plenaryDates(np: NonNullable<typeof nextPlenary.value>): string {
   if (!np.from_date) return ''
@@ -125,7 +125,7 @@ function submitSearch() {
 }
 
 onMounted(() => {
-  loadMeta()
+  loadSiteStats()
   const el = statsSectionRef.value
   if (!el) return
   if (typeof IntersectionObserver === 'undefined') {

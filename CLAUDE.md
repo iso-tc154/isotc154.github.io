@@ -2,7 +2,48 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Build Commands
+## Current stack (vite-ssg)
+
+The site is built with **vite-ssg + Vue 3 + TypeScript + Tailwind CSS v4**. Live code lives in `src/`, content in `content/`, raw data in `_data/`. Build entry points:
+
+```sh
+npm run dev       # Vite dev server (no SSG)
+npm run build     # vite-ssg build → dist/, writes sitemap.xml & robots.txt
+```
+
+Active directories:
+
+```
+src/              # Vue 3 application — views/, components/, composables/, domain/, types/, utils/
+src/domain/       # Deep pure-function modules (no Vue): meetingSource, resolutions, routeMetaHydrate
+src/types/        # Type model — plenary.ts is canonical for Plenary/PlenarySource; event.ts & meeting.ts are legacy re-export shims
+content/          # AsciiDoc / Markdown source for posts and pages
+_data/            # YAML data (national_bodies.yml, liaisons.yml, events/, members/, projects/, resolutions/, standards/)
+scripts/          # Build helpers (sync_iso_open_data.rb, build-data.mjs, post-build.mjs, validate_yaml.rb)
+.omo/             # Output of omo (local AI tooling) — not part of the site build
+.playwright-mcp/  # Playwright MCP screenshots — not part of the site build
+```
+
+### SEO pipeline
+
+Routes → `src/utils/routeMeta.ts` (dispatcher) → `src/data/routeMetaTable.ts` (static routes) or `src/domain/routeMetaHydrate.ts` (detail routes) → `src/utils/seo.ts:buildHeadObject` → `<head>` tags via `@unhead/vue`. The `src/composables/useSeo.ts` watcher lazy-loads only the entity kind a route needs via `entitiesNeededForRoute()`. Site-wide stats (counts, latest items) come from `data/meta.json` via `src/composables/useSiteStats.ts` — distinct from the SEO `<meta>` tags.
+
+### Sync ISO Open Data — Ruby → GHA handoff
+
+Weekly GitHub Actions workflow (`.github/workflows/sync_iso_data.yml`, Mon 02:00 UTC) runs `scripts/sync_iso_open_data.rb`. The script:
+
+1. Downloads the TC 154 slice of ISO's JSONL Open Data dataset once.
+2. **Sync phase** — for each `_data/standards/*.yml`, fills missing `iso.store_id`, `iso.stage`, `iso.ics`, `iso.publication_date` from the matching ISO deliverable. Never overwrites existing values.
+3. **Discover phase** — for each TC 154 deliverable with no matching local YAML, appends to `scripts/.new-standards.json` (transient manifest; safe to delete, regenerated each run) and emits a placeholder YAML in `_data/standards/`.
+4. The workflow then creates one GitHub issue per new deliverable (idempotent: existing issues are filtered by ISO reference in title) and opens/updates a rolling PR on `chore/sync-iso-data`.
+
+Placeholder YAMLs are real catalogue entries and MUST NOT be deleted — they represent TC 154 deliverables ISO has registered; deleting them silently drops standards from the site. See "Standards Data Pipeline" below for the editor workflow when a `new-standard` issue lands.
+
+## Historical: Jekyll stack (dormant)
+
+> The sections below describe the **previous** Jekyll-era stack. The migration to vite-ssg left `_plugins/`, `_layouts/`, `_includes/`, `_pages/`, `_frontend/` in place per the global no-delete rule. They are no longer part of the build — the live code is in `src/`. Treat the Jekyll notes as historical context for those dormant directories and for `_data/` YAML shapes that still flow into the new build via `scripts/build-data.mjs`.
+
+### Build Commands (historical)
 
 ```sh
 # Build the Jekyll site (runs Vite automatically via jekyll-vite plugin)
@@ -20,7 +61,7 @@ npm run build
 
 The `jekyll-vite` plugin runs Vite automatically during `jekyll build` — no separate build step needed for assets.
 
-## Architecture
+### Architecture (historical)
 
 ### Stack
 - **Jekyll 4** — static site generator, content in AsciiDoc (`.adoc`) and Markdown (`.md`)

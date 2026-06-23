@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { committee } from '../data/committee'
-import { useMeta } from '../composables/useMeta'
+import { useSiteStats } from '../composables/useSiteStats'
 import { useCountUp } from '../composables/useCountUp'
 import PageHero from '../components/PageHero.vue'
 
-const { meta, load: loadMeta } = useMeta()
+const { siteStats, load: loadSiteStats } = useSiteStats()
 
 onMounted(() => {
-  loadMeta()
+  loadSiteStats()
 })
 
 const statsRef = useTemplateRef<HTMLElement>('statsRef')
 const statsVisible = ref(false)
-const statsReady = computed(() => statsVisible.value && meta.value !== null)
+const statsReady = computed(() => statsVisible.value && siteStats.value !== null)
 
-const membersCount = useCountUp(computed(() => meta.value?.counts.totalMembers ?? 0), statsReady)
-const groupsCount = useCountUp(computed(() => meta.value?.counts.activeGroups ?? 0), statsReady)
-const plenariesCount = useCountUp(computed(() => meta.value?.counts.meetings ?? 0), statsReady)
-const publishedCount = useCountUp(computed(() => meta.value?.counts.publishedStandards ?? 0), statsReady)
+const membersCount = useCountUp(computed(() => siteStats.value?.counts.totalMembers ?? 0), statsReady)
+const groupsCount = useCountUp(computed(() => siteStats.value?.counts.activeGroups ?? 0), statsReady)
+const plenariesCount = useCountUp(computed(() => siteStats.value?.counts.meetings ?? 0), statsReady)
+const publishedCount = useCountUp(computed(() => siteStats.value?.counts.publishedStandards ?? 0), statsReady)
 const establishedYear = committee.established
 
 onMounted(() => {
@@ -432,7 +432,7 @@ const involvement = [
 
       <div class="marquee__more">
         <RouterLink to="/standards/" class="more-link">
-          See all {{ meta?.counts.publishedStandards ?? '' }} standards in the catalogue
+          See all {{ siteStats?.counts.publishedStandards ?? '' }} standards in the catalogue
           <span aria-hidden="true">→</span>
         </RouterLink>
       </div>

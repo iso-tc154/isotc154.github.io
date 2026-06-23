@@ -4,12 +4,21 @@ import { useRoute, useRouter } from 'vue-router'
 import { useResolutions } from '../composables/useResolutions'
 import { useResolutionMeetings } from "../composables/useResolutionMeetings"
 import { committee } from '../data/committee'
-import { useMeta } from '../composables/useMeta'
+import { useSiteStats } from '../composables/useSiteStats'
 import { useCountUp } from '../composables/useCountUp'
 import { getActionColor } from '../data/actionTypes'
 import { formatDate } from '../utils/format'
 import { highlightText } from '../utils/highlight'
-import { parseMeetingSourceParam, meetingSourceFromParts, meetingSourceShortTitle } from '../domain/meetingSource'
+import { parseMeetingSourceParam, meetingSourceShortTitle } from '../domain/meetingSource'
+import {
+  allActionTypes as listAllActionTypes,
+  filterResolutions,
+  resolutionYearRange,
+  resolutionYears,
+  topActionTypes as listTopActionTypes,
+  uniqueActionTypes,
+  type ResolutionsFilter,
+} from '../domain/resolutions'
 import PageHero from '../components/PageHero.vue'
 
 const router = useRouter()
@@ -17,7 +26,7 @@ const route = useRoute()
 
 const { resolutions, isLoaded, loadData, search } = useResolutions()
 const { meetings, loadData: loadMeetingsData } = useResolutionMeetings()
-const { meta, load: loadMeta } = useMeta()
+const { siteStats, load: loadSiteStats } = useSiteStats()
 
 const searchQuery = ref((route.query.q as string) || '')
 const selectedYear = ref((route.query.year as string) || '')
@@ -37,7 +46,7 @@ const meetingFilterLabel = computed(() => {
 
 const totalResolutions = computed(() => resolutions.value.length)
 const totalMeetings = computed(() => meetings.value.length)
-const committeeStandards = computed(() => meta.value?.counts.publishedStandards ?? 0)
+const committeeStandards = computed(() => siteStats.value?.counts.publishedStandards ?? 0)
 const committeeEst = computed(() => committee.established)
 
 const animResolutions = useCountUp(totalResolutions, isLoaded, 1500)
@@ -45,12 +54,7 @@ const animMeetings = useCountUp(totalMeetings, isLoaded, 1500)
 const animStandards = useCountUp(committeeStandards, isLoaded, 1500)
 const animEstablished = useCountUp(committeeEst, isLoaded, 1500)
 
-const yearRange = computed(() => {
-  if (!resolutions.value.length) return { earliest: '', latest: '' }
-  const years = resolutions.value.map(r => parseInt(r.year)).filter(y => !isNaN(y))
-  if (!years.length) return { earliest: '', latest: '' }
-  return { earliest: String(Math.min(...years)), latest: String(Math.max(...years)) }
-})
+const yearRange = computed(() => resolutionYearRange(resolutions.value))
 
 function formatNumber(n: number): string {
   return n.toLocaleString('en-US')
@@ -59,7 +63,7 @@ function formatNumber(n: number): string {
 onMounted(() => {
   loadData()
   loadMeetingsData()
-  loadMeta()
+  loadSiteStats()
   window.addEventListener('keydown', handleGlobalKeydown)
 
   if (searchQuery.value || selectedYear.value || sortOrder.value !== 'newest') {
@@ -90,42 +94,11 @@ function scrollToResults() {
   }
 }
 
-const availableYears = computed(() => {
-  const years = new Set<string>()
-  resolutions.value.forEach(r => {
-    if (r.year) years.add(r.year)
-  })
-  return Array.from(years).sort((a, b) => b.localeCompare(a))
-})
+const availableYears = computed(() => resolutionYears(resolutions.value))
 
-const topActionTypes = computed(() => {
-  if (!resolutions.value.length) return []
-  const counts: Record<string, number> = {}
-  resolutions.value.forEach(r => {
-    if (r.actions) {
-      r.actions.forEach(a => {
-        if (a.type) counts[a.type] = (counts[a.type] || 0) + 1
-      })
-    }
-  })
-  return Object.entries(counts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
-    .map(e => e[0])
-})
+const topActionTypes = computed(() => listTopActionTypes(resolutions.value))
 
-const allActionTypes = computed(() => {
-  if (!resolutions.value.length) return []
-  const types = new Set<string>()
-  resolutions.value.forEach(r => {
-    if (r.actions) {
-      r.actions.forEach(a => {
-        if (a.type) types.add(a.type)
-      })
-    }
-  })
-  return Array.from(types).sort()
-})
+const allActionTypes = computed(() => listAllActionTypes(resolutions.value))
 
 function toggleActionType(action: string) {
   const newSet = new Set(selectedActionTypes.value)
@@ -143,64 +116,20 @@ function clearAllFilters() {
 }
 
 function getUniqueActions(res: any): string[] {
-  if (!res.actions) return []
-  const types = new Set<string>()
-  res.actions.forEach((a: any) => {
-    if (a.type) types.add(a.type)
-  })
-  return Array.from(types)
+  return uniqueActionTypes(res)
 }
 
-const filteredResolutions = computed(() => {
-  let list = resolutions.value
+const filterModel = computed<ResolutionsFilter>(() => ({
+  searchQuery: searchQuery.value,
+  selectedYear: selectedYear.value,
+  selectedActionTypes: selectedActionTypes.value,
+  sortOrder: (sortOrder.value as ResolutionsFilter['sortOrder']) ?? 'newest',
+  meeting: meetingFilter.value,
+}))
 
-  const mf = meetingFilter.value
-  if (mf) {
-    list = list.filter(r => {
-      const rs = meetingSourceFromParts(r.source_type, r.source_file)
-      return rs !== null && rs.kind === mf.kind && rs.raw === mf.raw
-    })
-  }
-
-  if (selectedYear.value) {
-    list = list.filter(r => r.year === selectedYear.value)
-  }
-
-  if (selectedActionTypes.value.size > 0) {
-    list = list.filter(r => {
-      const types = getUniqueActions(r)
-      return types.some(t => selectedActionTypes.value.has(t))
-    })
-  }
-
-  if (searchQuery.value) {
-    const q = searchQuery.value.trim()
-    const matched = search(q)
-    if (matched.length > 0) {
-      const matchedIds = new Set(matched.map(r => r.id))
-      list = list.filter(r => matchedIds.has(r.id))
-    } else {
-      const qLower = q.toLowerCase()
-      list = list.filter(r =>
-        (r.title && r.title.toLowerCase().includes(qLower)) ||
-        (r.id && r.id.toLowerCase().includes(qLower)) ||
-        (r.subject && r.subject.toLowerCase().includes(qLower)) ||
-        (r.venue && r.venue.toLowerCase().includes(qLower)),
-      )
-    }
-  }
-
-  return list.slice().sort((a, b) => {
-    if (sortOrder.value === 'oldest') {
-      return (a.year || '').localeCompare(b.year || '') || a.id.localeCompare(b.id)
-    } else if (sortOrder.value === 'most_actions') {
-      const aCount = a.actions ? a.actions.length : 0
-      const bCount = b.actions ? b.actions.length : 0
-      return bCount - aCount || (b.year || '').localeCompare(a.year || '')
-    }
-    return (b.year || '').localeCompare(a.year || '') || b.id.localeCompare(a.id)
-  })
-})
+const filteredResolutions = computed(() =>
+  filterResolutions(resolutions.value, filterModel.value, search),
+)
 
 const paginatedResolutions = computed(() => filteredResolutions.value.slice(0, limit.value))
 const hasMore = computed(() => limit.value < filteredResolutions.value.length)
