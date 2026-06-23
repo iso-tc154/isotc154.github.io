@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useHistory } from '../composables/useHistory'
 import type { HistoryCategory, HistoryMilestone } from '../types/history'
+import PageHero from '../components/PageHero.vue'
 
 const { history, isLoaded, loadData } = useHistory()
 
@@ -105,34 +106,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <div class="progress" :style="{ '--p': (progress * 100).toFixed(1) + '%' }">
       <div class="progress__bar"></div>
     </div>
 
-    <header class="hero">
-      <div class="hero__bg" aria-hidden="true">
+    <PageHero
+      variant="landing"
+      bleed
+      eyebrow="Committee history · since 1972"
+      title="Five decades of"
+      accent="standardising trade data"
+      lead="A curated record of the committee's milestones — from the most recent decisions back through the EDIFACT era and the ISO 8601 split, to its 1972 founding."
+    >
+      <template #decoration>
         <div class="hero__orbit"></div>
         <div class="hero__orbit hero__orbit--2"></div>
-      </div>
-      <p class="hero__eyebrow">ISO/TC 154 — since 1972</p>
-      <h1 class="hero__title">
-        Five decades of
-        <span class="hero__title-accent">standardising trade data</span>
-      </h1>
-      <p class="hero__lead">
-        A curated record of the committee's milestones — from the most recent
-        decisions back through the EDIFACT era and the ISO 8601 split, to its
-        1972 founding.
-      </p>
-      <dl class="hero__stats">
+      </template>
+      <dl class="page__stats">
         <div><dt>{{ stats.years }}</dt><dd>distinct years</dd></div>
         <div><dt>{{ stats.total }}</dt><dd>curated milestones</dd></div>
         <div><dt>{{ stats.meetings }}</dt><dd>plenary meetings</dd></div>
         <div><dt>{{ stats.standards }}</dt><dd>standards milestones</dd></div>
       </dl>
-    </header>
+    </PageHero>
 
+    <div class="page page--wide">
     <nav class="chips" aria-label="Filter history by category">
       <button
         v-for="chip in filterChips"
@@ -201,14 +200,12 @@ onMounted(() => {
         </li>
       </ul>
     </aside>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .page {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 6rem;
   position: relative;
 }
 
@@ -229,21 +226,7 @@ onMounted(() => {
   transition: width 0.1s linear;
 }
 
-/* HERO */
-.hero {
-  position: relative;
-  padding: 2rem 0 3rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid #e7e5e4;
-}
-.dark .hero { border-bottom-color: #44403c; }
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
+/* Decorative orbits live behind the hero via PageHero's decoration slot */
 .hero__orbit, .hero__orbit--2 {
   position: absolute;
   border-radius: 50%;
@@ -267,74 +250,6 @@ onMounted(() => {
 }
 .dark .hero__orbit { border-color: rgb(252 165 165 / 0.15); }
 .dark .hero__orbit--2 { border-color: rgb(148 182 232 / 0.15); }
-
-.hero > *:not(.hero__bg) { position: relative; z-index: 1; }
-
-.hero__eyebrow {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-brand);
-  margin: 0 0 1rem;
-  font-family: var(--font-sans);
-}
-.dark .hero__eyebrow { color: #94b6e8; }
-
-.hero__title {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-size: clamp(2rem, 4.5vw, 3.75rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  color: #1c1917;
-  margin: 0 0 1.25rem;
-  max-width: 32em;
-}
-.dark .hero__title { color: #fafaf9; }
-.hero__title-accent {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--color-brand);
-}
-.dark .hero__title-accent { color: #94b6e8; }
-
-.hero__lead {
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: #57534e;
-  max-width: 42rem;
-  margin: 0 0 2rem;
-}
-.dark .hero__lead { color: #d6d3d1; }
-
-.hero__stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem 2rem;
-  margin: 0;
-  max-width: 42rem;
-}
-@media (min-width: 768px) { .hero__stats { grid-template-columns: repeat(4, 1fr); } }
-.hero__stats > div { display: flex; flex-direction: column; gap: 0.125rem; }
-.hero__stats dt {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--color-brand);
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-.dark .hero__stats dt { color: #94b6e8; }
-.hero__stats dd {
-  margin: 0;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #78716c;
-  font-weight: 600;
-}
-.dark .hero__stats dd { color: #a8a29e; }
 
 /* CHIPS */
 .chips {
@@ -363,14 +278,14 @@ onMounted(() => {
 }
 .chip:hover { border-color: var(--color-brand); color: var(--color-brand); }
 .dark .chip { background: #1c1917; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #94b6e8; color: #94b6e8; }
-.chip--active { background: var(--color-brand); border-color: var(--color-brand); color: #fff; }
+.dark .chip:hover { border-color: var(--color-brand); color: var(--color-brand); }
+.chip--active { background: var(--color-brand-fill); border-color: var(--color-brand-fill); color: #fff; }
 .chip--active:hover { color: #fff; }
-.dark .chip--active { background: var(--color-brand); border-color: var(--color-brand); color: #fff; }
+.dark .chip--active { background: var(--color-brand-fill); border-color: var(--color-brand-fill); color: #fff; }
 
 .chip--cat.chip--active {
-  background: var(--cat-color, var(--color-brand));
-  border-color: var(--cat-color, var(--color-brand));
+  background: var(--cat-color, var(--color-brand-fill));
+  border-color: var(--cat-color, var(--color-brand-fill));
 }
 .chip__dot {
   width: 0.5rem;
@@ -449,7 +364,6 @@ onMounted(() => {
 @media (min-width: 640px) {
   .decade__suffix { font-size: clamp(1.25rem, 2.4vw, 2rem); margin-top: 0.5rem; }
 }
-.dark .decade__suffix { color: #94b6e8; }
 
 .decade__events {
   list-style: none;
@@ -631,7 +545,6 @@ onMounted(() => {
 }
 .eras__link:hover { border-bottom-color: var(--color-brand); color: var(--color-brand); }
 .dark .eras__link { color: #fafaf9; }
-.dark .eras__link:hover { color: #94b6e8; border-bottom-color: #94b6e8; }
 .eras__count {
   font-family: var(--font-sans);
   font-size: 0.625rem;

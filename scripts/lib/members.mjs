@@ -1,6 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import yaml from 'js-yaml'
+import { memberPath } from '../../src/utils/urn.ts'
+import { LEADERSHIP_ROLE_IDS } from '../../src/utils/roles.ts'
 
 export function loadGroups(groupsDir) {
   if (!fs.existsSync(groupsDir)) {
@@ -37,14 +39,6 @@ export function loadMembers(membersDir, chairMemberId) {
   const past = []
   const leadership = []
   let chair = null
-
-  const LEADERSHIP_ROLE_IDS = new Set([
-    'chair',
-    'technical_programme_manager',
-    'committee_manager',
-    'convenor',
-    'co_chair',
-  ])
 
   for (const file of fs.readdirSync(membersDir)) {
     if (!/\.(ya?ml)$/.test(file)) continue
@@ -92,7 +86,7 @@ export function loadMembers(membersDir, chairMemberId) {
 
     const member = {
       ...data,
-      url: `/members/${id}/`,
+      url: memberPath(id),
       roles: byRoleId,
       is_current: isCurrent,
       is_the_chair: isTheChair,

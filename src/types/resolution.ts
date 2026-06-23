@@ -39,7 +39,7 @@ export interface Resolution {
   path: string
 }
 
-export interface Meeting {
+export interface MeetingSummary {
   source_type: string
   source_file: string
   source_title: string

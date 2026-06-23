@@ -4,18 +4,20 @@ import { useRoute } from 'vue-router'
 import { useMeetings } from '../composables/useMeetings'
 import { useResolutions } from '../composables/useResolutions'
 import { useClipboard } from '../composables/useClipboard'
+import { createNeighborNav } from '../composables/useNeighborNav'
 import { committee } from '../data/committee'
 import { venueToFlag } from '../data/countryFlags'
 import { ordinalText } from '../utils/ordinal'
+import { meetingDetailPathFromParts } from '../utils/urn'
 import { groupScheduleByDate } from '../utils/schedule'
 import {
   resolutionTypeLabel,
   sessionLabel,
   sessionLocation,
   sessionVirtual,
-  formatDate,
   associateRoleLabel,
 } from '../utils/meetingFormat'
+import { formatDateCompact } from '../utils/format'
 import {
   practicalLabel,
   isSection,
@@ -29,6 +31,9 @@ import {
 import type { Meeting, ResolvedHost, RichMeetingData } from '../types/meeting'
 import type { Resolution } from '../types/resolution'
 import ScheduleCalendar from '../components/ScheduleCalendar.vue'
+import PageHero from '../components/PageHero.vue'
+import OrgLogo from '../components/OrgLogo.vue'
+import PrevNextNav from '../components/PrevNextNav.vue'
 
 const route = useRoute()
 const { meetings, isLoaded, loadData } = useMeetings()
@@ -108,6 +113,32 @@ function rateLabel(key: string): string {
 }
 
 const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
+
+const registrationUrl = computed(() => rich.value?.registration_url ?? null)
+
+const sortedMeetings = computed(() => {
+  return [...meetings.value].sort((a, b) => a.ordinal - b.ordinal)
+})
+
+function meetingNavItem(m: Meeting) {
+  const loc = m.rich?.general_area || m.location_label || ''
+  const year = m.year ? String(m.year) : ''
+  const caption = [loc, year].filter(Boolean).join(' · ')
+  return {
+    to: meetingDetailPathFromParts('plenary', `plenary-${m.ordinal}`),
+    numeral: String(m.ordinal),
+    label: ordinalText(m.ordinal),
+    caption,
+  }
+}
+
+const { prev: prevMeetingRaw, next: nextMeetingRaw } = createNeighborNav<Meeting>(
+  sortedMeetings,
+  m => m.ordinal === ordinal.value,
+)
+const prevMeeting = computed(() => prevMeetingRaw.value ? meetingNavItem(prevMeetingRaw.value) : null)
+const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMeetingRaw.value) : null)
+
 </script>
 
 <template>
@@ -115,65 +146,88 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
     <p class="loading">Loading plenary meeting…</p>
   </div>
 
-  <article v-else-if="!meeting" class="page not-found">
-    <header class="not-found__header">
-      <p class="not-found__eyebrow">404</p>
-      <h1 class="not-found__title">Meeting not found</h1>
-      <p class="not-found__lead">No plenary matches ordinal <code>{{ ordinal }}</code>.</p>
-      <RouterLink to="/meetings/" class="back">← All plenary meetings</RouterLink>
-    </header>
-  </article>
+  <div v-else-if="!meeting" class="page">
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow="Not found"
+      title="Meeting not found"
+      :lead="`No plenary matches ordinal ${ordinal}.`"
+    >
+      <template #actions>
+        <RouterLink to="/meetings/" class="back">← All plenary meetings</RouterLink>
+      </template>
+    </PageHero>
+  </div>
 
   <article v-else class="md">
-    <header class="md__hero" :class="{ 'md__hero--upcoming': isUpcoming(meeting), 'md__hero--cancelled': meeting.status_label === 'Cancelled' }">
-      <div class="md__grid" aria-hidden="true"></div>
-      <div class="md__hero-inner">
-        <RouterLink to="/meetings/" class="md__back">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    <PageHero
+      variant="detail"
+      bleed
+      :class="['md-hero', { 'md-hero--upcoming': isUpcoming(meeting), 'md-hero--cancelled': meeting.status_label === 'Cancelled' }]"
+      :eyebrow="`${ordinalText(meeting.ordinal)} plenary · ${ordinalYear}${venueFlag ? ' ' + venueFlag : ''}`"
+      title="Plenary Meeting"
+      :lead="rich?.general_area || meeting.location_label || `A plenary of ${committee.name}.`"
+    >
+      <template #breadcrumb>
+        <RouterLink to="/meetings/">
           Plenary Index
         </RouterLink>
+      </template>
 
-        <div class="md__hero-meta">
-          <span class="md__hero-ordinal">{{ ordinalText(meeting.ordinal) }}</span>
-          <span class="md__hero-divider" aria-hidden="true">/</span>
-          <span class="md__hero-year">{{ ordinalYear }}</span>
-          <span v-if="venueFlag" class="md__hero-flag">{{ venueFlag }}</span>
+      <template #decoration>
+        <div class="md-hero__bg" aria-hidden="true"></div>
+        <div class="md-hero__grid" aria-hidden="true"></div>
+      </template>
+
+      <dl class="md-hero__stats">
+        <div v-if="meeting.date_label" class="md-hero__stat">
+          <dt>Dates</dt>
+          <dd>{{ meeting.date_label }}</dd>
         </div>
-
-        <h1 class="md__title">Plenary Meeting</h1>
-
-        <p class="md__lead" v-if="rich?.general_area">{{ rich.general_area }}</p>
-        <p class="md__lead md__lead--empty" v-else-if="!meeting.location_label">A plenary of {{ committee.name }}.</p>
-        <p class="md__lead" v-else>{{ meeting.location_label }}</p>
-
-        <dl class="md__hero-stats">
-          <div v-if="meeting.date_label" class="md__hero-stat">
-            <dt>Dates</dt>
-            <dd>{{ meeting.date_label }}</dd>
-          </div>
-          <div v-if="meeting.primary.country" class="md__hero-stat">
-            <dt>Host country</dt>
-            <dd>{{ meeting.primary.country }}</dd>
-          </div>
-          <div v-if="rich?.host" class="md__hero-stat">
-            <dt>Host</dt>
-            <dd>{{ rich.host }}</dd>
-          </div>
-          <div class="md__hero-stat">
-            <dt>Format</dt>
-            <dd>{{ meeting.type_label }}</dd>
-          </div>
-        </dl>
-
-        <div class="md__hero-badges">
-          <span v-if="meeting.status_label === 'Cancelled'" class="pill pill--cancelled">Cancelled</span>
-          <span v-else-if="isUpcoming(meeting)" class="pill pill--upcoming">{{ meeting.status_label }}</span>
-          <span v-else class="pill pill--concluded">Concluded</span>
-          <span v-if="meeting.participant_total" class="pill pill--meta">{{ meeting.participant_total }} participants</span>
-          <span v-if="meeting.resolution_count > 0" class="pill pill--res">{{ meeting.resolution_count }} resolution{{ meeting.resolution_count === 1 ? '' : 's' }}</span>
+        <div v-if="meeting.primary.country" class="md-hero__stat">
+          <dt>Host country</dt>
+          <dd>{{ meeting.primary.country }}</dd>
         </div>
+        <div v-if="rich?.host" class="md-hero__stat">
+          <dt>Host</dt>
+          <dd>{{ rich.host }}</dd>
+        </div>
+        <div class="md-hero__stat">
+          <dt>Format</dt>
+          <dd>{{ meeting.type_label }}</dd>
+        </div>
+      </dl>
+
+      <div class="md-hero__badges" v-if="!registrationUrl || meeting.participant_total || meeting.resolution_count > 0">
+        <span v-if="meeting.status_label === 'Cancelled'" class="pill pill--cancelled">Cancelled</span>
+        <span v-else-if="isUpcoming(meeting) && !registrationUrl" class="pill pill--upcoming">Upcoming</span>
+        <span v-else-if="!isUpcoming(meeting)" class="pill pill--concluded">Concluded</span>
+        <span v-if="meeting.participant_total" class="pill pill--meta">{{ meeting.participant_total }} participants</span>
+        <span v-if="meeting.resolution_count > 0" class="pill pill--res">{{ meeting.resolution_count }} resolution{{ meeting.resolution_count === 1 ? '' : 's' }}</span>
       </div>
-    </header>
+
+      <template #actions>
+        <a v-if="registrationUrl && isUpcoming(meeting)" :href="registrationUrl" target="_blank" rel="noopener noreferrer" class="reg-cta">
+          <span class="reg-cta__status">
+            <span class="reg-cta__pulse" aria-hidden="true"></span>
+            Registration open
+          </span>
+          <span class="reg-cta__action">
+            <span class="reg-cta__verb">Register</span>
+            <span class="reg-cta__arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+      </template>
+    </PageHero>
+
+    <div class="md__nav">
+      <PrevNextNav
+        :prev="prevMeeting"
+        :next="nextMeeting"
+        context-label="Other plenary meetings"
+      />
+    </div>
 
     <div class="md__body">
       <nav v-if="meeting.primary.iso_meeting_url || meeting.resolutions_meeting_urn" class="md__quick-links" aria-label="Meeting actions">
@@ -214,11 +268,17 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
             :to="h.path || undefined"
             :class="['host-card', { 'host-card--linkable': !!h.path }]"
           >
-            <div v-if="h.logo || h.logo_light || h.logo_dark" class="host-card__logo">
-              <img v-if="h.logo_light" :src="h.logo_light" :alt="h.name" class="host-card__logo-img host-card__logo-img--light" loading="lazy" />
-              <img v-if="h.logo_dark" :src="h.logo_dark" :alt="h.name" class="host-card__logo-img host-card__logo-img--dark" loading="lazy" />
-              <img v-if="!h.logo_light && !h.logo_dark && h.logo" :src="h.logo" :alt="h.name" class="host-card__logo-img" loading="lazy" />
-            </div>
+            <OrgLogo
+              v-if="h.logo || h.logo_light || h.logo_dark"
+              :logo="h.logo"
+              :logo_light="h.logo_light"
+              :logo_dark="h.logo_dark"
+              size="md"
+              radius="0.375rem"
+              class="host-card__logo"
+              :fallback-text="h.short_name ?? h.name"
+              :alt="h.name"
+            />
             <div v-else class="host-card__monogram" aria-hidden="true">
               {{ (h.name || '?').slice(0, 2).toUpperCase() }}
             </div>
@@ -259,11 +319,17 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
               class="assoc__main"
               @click="a.path || a.url ? '' : null"
             >
-              <div v-if="a.logo || a.logo_light || a.logo_dark" class="assoc__logo">
-                <img v-if="a.logo_light" :src="a.logo_light" :alt="a.name" class="assoc__logo-img assoc__logo-img--light" loading="lazy" />
-                <img v-if="a.logo_dark" :src="a.logo_dark" :alt="a.name" class="assoc__logo-img assoc__logo-img--dark" loading="lazy" />
-                <img v-if="!a.logo_light && !a.logo_dark && a.logo" :src="a.logo" :alt="a.name" class="assoc__logo-img" loading="lazy" />
-              </div>
+              <OrgLogo
+                v-if="a.logo || a.logo_light || a.logo_dark"
+                :logo="a.logo"
+                :logo_light="a.logo_light"
+                :logo_dark="a.logo_dark"
+                size="sm"
+                radius="0.3125rem"
+                class="assoc__logo"
+                :fallback-text="a.short_name ?? a.name"
+                :alt="a.name"
+              />
               <div v-else class="assoc__monogram" aria-hidden="true">
                 {{ (a.name || '?').slice(0, 2).toUpperCase() }}
               </div>
@@ -474,7 +540,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
         <h2 class="block__title">Key dates &amp; deadlines</h2>
         <ul class="deadlines">
           <li v-for="(d, i) in rich.deadlines" :key="i" class="deadlines__item">
-            <span v-if="d.date" class="deadlines__date">{{ formatDate(d.date) }}</span>
+            <span v-if="d.date" class="deadlines__date">{{ formatDateCompact(d.date) }}</span>
             <div>
               <p v-if="d.label" class="deadlines__label">{{ d.label }}</p>
               <p v-if="d.description" class="deadlines__desc">{{ d.description }}</p>
@@ -537,39 +603,33 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .page { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
 .loading { padding: 4rem 1rem; text-align: center; color: #78716c; }
 .dark .loading { color: #a8a29e; }
-
-/* NOT FOUND */
-.not-found { padding: 4rem 1rem; }
-.not-found__eyebrow { font-family: var(--font-serif); font-size: 4rem; font-weight: 700; color: var(--color-iso-red); margin: 0; line-height: 1; }
-.not-found__title { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; margin: 0.5rem 0 1rem; color: #1c1917; }
-.dark .not-found__title { color: #fafaf9; }
-.not-found__lead { color: #57534e; margin: 0 0 1.5rem; }
-.dark .not-found__lead { color: #d6d3d1; }
-.not-found__lead code { background: #fee2e2; color: #991b1b; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: ui-monospace, monospace; }
-.dark .not-found__lead code { background: rgb(185 28 28 / 0.2); color: #fca5a5; }
-.back { display: inline-block; color: var(--color-blue-accent); text-decoration: none; font-weight: 500; }
-.dark .back { color: #94b6e8; }
+.back { display: inline-block; color: var(--color-blue-accent); text-decoration: none; font-weight: 500; font-size: 0.875rem; }
 .back:hover { text-decoration: underline; }
 
-/* HERO */
-.md__hero {
+/* HERO (PageHero overrides for gradient + grid + white text) */
+.md-hero :deep(.ph) { margin-bottom: 0; }
+.md-hero :deep(.ph__inner) {
+  max-width: 48rem;
   position: relative;
+  z-index: 1;
+}
+.md-hero__bg {
+  position: absolute;
+  inset: 0;
   background:
     radial-gradient(ellipse at top right, rgb(185 28 28 / 0.35), transparent 60%),
     linear-gradient(135deg, #2a1012 0%, #5a1818 50%, #1e3a8a 130%);
-  color: #fff;
-  padding: 3rem 1.5rem 2.75rem;
-  overflow: hidden;
+  z-index: 0;
 }
-.md__hero--upcoming {
+.md-hero--upcoming .md-hero__bg {
   background:
     radial-gradient(ellipse at top right, rgb(30 58 138 / 0.45), transparent 60%),
     linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 60%, #3b82f6 140%);
 }
-.md__hero--cancelled {
+.md-hero--cancelled .md-hero__bg {
   background: linear-gradient(135deg, #44403c 0%, #1c1917 100%);
 }
-.md__grid {
+.md-hero__grid {
   position: absolute;
   inset: -2rem;
   background-image:
@@ -578,51 +638,131 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   background-size: 2.5rem 2.5rem;
   pointer-events: none;
   mask-image: radial-gradient(ellipse at top right, black, transparent 70%);
+  z-index: 0;
 }
-.md__hero-inner { position: relative; max-width: 48rem; margin: 0 auto; }
-.md__back {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.8125rem; font-weight: 500;
-  color: rgba(255, 255, 255, 0.85); text-decoration: none;
+.md-hero :deep(.ph__eyebrow),
+.md-hero :deep(.ph__eyebrow-rule) {
+  color: rgba(255, 255, 255, 0.9);
 }
-.md__back:hover { color: #fff; text-decoration: underline; }
+.md-hero :deep(.ph__eyebrow-rule) {
+  background: rgba(255, 255, 255, 0.9);
+}
+.md-hero :deep(.ph__title) { color: #fff; }
+.md-hero :deep(.ph__lead) { color: rgba(255, 255, 255, 0.92); }
+.md-hero :deep(.ph__extra) { margin-top: 1.25rem; }
+.md-hero :deep(.ph__actions) {
+  margin-top: 1.75rem;
+  align-items: center;
+}
 
-.md__hero-meta {
-  display: flex; align-items: baseline; gap: 0.875rem;
-  margin: 1.5rem 0 0.625rem;
-  font-family: var(--font-serif);
+/* Breadcrumb sits on the dark gradient hero — needs light treatment
+   regardless of theme. */
+.md-hero :deep(.ph__breadcrumb) {
+  color: rgba(255, 255, 255, 0.78);
 }
-.md__hero-ordinal {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+.md-hero :deep(.ph__breadcrumb a) {
+  color: rgba(255, 255, 255, 0.78);
+}
+.md-hero :deep(.ph__breadcrumb a:hover) {
+  color: #fff;
+}
+
+/* Registration CTA — a "live status" card that absorbs the upcoming state.
+   The pulse dot signals registration is currently open; the serif "Register"
+   verb gives the action weight against the editorial hero typography.
+   Sits on the dark gradient hero, so the card is always white. */
+.reg-cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 0.75rem 1.25rem 0.875rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow:
+    0 4px 16px rgb(0 0 0 / 0.22),
+    0 0 0 1px rgb(255 255 255 / 0.6) inset;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.reg-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgb(16 185 129 / 0.06), transparent 60%);
+  pointer-events: none;
+}
+.reg-cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 28px rgb(0 0 0 / 0.3),
+    0 0 0 1px rgb(255 255 255 / 0.8) inset;
+}
+.reg-cta__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #047857;
+  position: relative;
 }
-.md__hero-divider { font-size: 1.75rem; opacity: 0.5; }
-.md__hero-year {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+.reg-cta__pulse {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #10b981;
+  position: relative;
+  flex-shrink: 0;
+}
+.reg-cta__pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #10b981;
+  animation: reg-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes reg-pulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(2.6); opacity: 0;   }
+  100% { transform: scale(2.6); opacity: 0;   }
+}
+.reg-cta__action {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  position: relative;
+}
+.reg-cta__verb {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--color-blue-accent);
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+}
+.reg-cta__arrow {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
   font-weight: 500;
-  opacity: 0.85;
+  color: var(--color-blue-accent);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.md__hero-flag { font-size: 1.5rem; margin-left: 0.25rem; }
+.reg-cta:hover .reg-cta__arrow { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .reg-cta__pulse::after { animation: none; }
+  .reg-cta:hover { transform: none; }
+  .reg-cta:hover .reg-cta__arrow { transform: none; }
+}
 
-.md__title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 700;
-  margin: 0 0 0.625rem;
-  letter-spacing: -0.02em;
-}
-.md__lead {
-  font-size: 1.0625rem;
-  line-height: 1.5;
-  margin: 0 0 1.75rem;
-  opacity: 0.95;
-  max-width: 42rem;
-}
-.md__lead--empty { opacity: 0.8; font-style: italic; }
-
-.md__hero-stats {
+.md-hero__stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.125rem;
@@ -631,29 +771,30 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 @media (min-width: 768px) {
-  .md__hero-stats { grid-template-columns: repeat(4, 1fr); }
+  .md-hero__stats { grid-template-columns: repeat(4, 1fr); }
 }
-.md__hero-stat {
+.md-hero__stat {
   margin: 0;
   padding: 0.875rem 1rem;
   border-left: 1px solid rgba(255, 255, 255, 0.18);
 }
-.md__hero-stat:first-child { border-left: 0; }
-.md__hero-stat dt {
+.md-hero__stat:first-child { border-left: 0; }
+.md-hero__stat dt {
   font-size: 0.625rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.75);
   margin: 0 0 0.25rem;
 }
-.md__hero-stat dd {
+.md-hero__stat dd {
   margin: 0;
   font-family: var(--font-serif);
   font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.3;
+  color: #fff;
 }
 
-.md__hero-badges { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.md-hero__badges { display: flex; flex-wrap: wrap; gap: 0.375rem; }
 .pill {
   display: inline-flex; align-items: center;
   padding: 0.3125rem 0.625rem;
@@ -669,6 +810,15 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .pill--meta, .pill--res { background: rgba(255, 255, 255, 0.12); }
 
 /* BODY */
+.md__nav {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.md__nav :deep(.pnn) {
+  margin-top: 0;
+}
+
 .md__body {
   max-width: 48rem;
   margin: 0 auto;
@@ -695,7 +845,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   text-decoration: none;
   transition: all 0.15s;
 }
-.dark .quick-link { background: #292524; border-color: #44403c; color: #94b6e8; }
+.dark .quick-link { background: #292524; border-color: #44403c; }
 .quick-link:hover { border-color: var(--color-blue-accent); box-shadow: 0 1px 4px rgb(30 58 138 / 0.1); }
 
 .urn-bar {
@@ -818,7 +968,6 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   text-decoration: none;
 }
 .venue-card__links a:hover { text-decoration: underline; }
-.dark .venue-card__links a { color: #94b6e8; }
 
 .venue-map {
   display: flex;
@@ -875,23 +1024,9 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 }
 .dark .host-card { background: #292524; border-color: #44403c; }
 .host-card__logo {
-  flex-shrink: 0;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
   border: 1px solid #e7e5e4;
-  border-radius: 0.375rem;
-  padding: 0.375rem;
-  overflow: hidden;
 }
-.dark .host-card__logo { background: #1c1917; border-color: #44403c; }
-.host-card__logo-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.host-card__logo-img--dark { display: none; }
-.dark .host-card__logo-img--light { display: none; }
-.dark .host-card__logo-img--dark { display: block; }
+.dark .host-card__logo { border-color: #44403c; }
 .host-card__monogram {
   flex-shrink: 0;
   width: 3rem;
@@ -914,7 +1049,6 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .dark .host-card__kind { color: #a8a29e; }
 .host-card__link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.25rem; font-size: 0.8125rem; color: var(--color-blue-accent); text-decoration: none; }
 .host-card__link:hover { text-decoration: underline; }
-.dark .host-card__link { color: #94b6e8; }
 
 .host-card__contact {
   margin: 0.25rem 0 0;
@@ -958,23 +1092,9 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   color: inherit;
 }
 .assoc__logo {
-  flex-shrink: 0;
-  width: 2.25rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
   border: 1px solid #e7e5e4;
-  border-radius: 0.3125rem;
-  padding: 0.25rem;
-  overflow: hidden;
 }
-.dark .assoc__logo { background: #1c1917; border-color: #44403c; }
-.assoc__logo-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.assoc__logo-img--dark { display: none; }
-.dark .assoc__logo-img--light { display: none; }
-.dark .assoc__logo-img--dark { display: block; }
+.dark .assoc__logo { border-color: #44403c; }
 .assoc__monogram {
   flex-shrink: 0;
   width: 2.25rem;
@@ -1040,7 +1160,6 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   font-size: 0.75rem;
   color: var(--color-blue-accent);
 }
-.dark .assoc__link { color: #94b6e8; }
 
 .secretary-card {
   background: #fafaf9;
@@ -1056,7 +1175,6 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .secretary-card__contact { font-size: 0.875rem; margin: 0.125rem 0; color: #57534e; }
 .dark .secretary-card__contact { color: #d6d3d1; }
 .secretary-card__contact a { color: var(--color-blue-accent); }
-.dark .secretary-card__contact a { color: #94b6e8; }
 
 /* SCHEDULE */
 .schedule { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -1105,7 +1223,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
   background: rgb(30 58 138 / 0.08);
   color: var(--color-blue-accent);
 }
-.dark .list-card__chip { background: rgb(148 182 232 / 0.12); color: #94b6e8; }
+.dark .list-card__chip { background: rgb(148 182 232 / 0.12); }
 .list-card__chip--code { background: rgb(180 83 9 / 0.08); color: var(--color-amber-warm, #b45309); }
 .dark .list-card__chip--code { background: rgb(180 83 9 / 0.16); color: #fbbf24; }
 .list-card__rates {
@@ -1120,7 +1238,6 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .list-card__rates dd { margin: 0; color: #1c1917; font-weight: 600; font-family: ui-monospace, monospace; }
 .dark .list-card__rates dd { color: #fafaf9; }
 .list-card__name { font-weight: 600; color: var(--color-blue-accent); }
-.dark .list-card__name { color: #94b6e8; }
 .list-card__name a { color: inherit; text-decoration: none; }
 .list-card__name a:hover { text-decoration: underline; }
 .list-card__meta { font-size: 0.8125rem; color: #78716c; margin: 0.25rem 0 0; }
@@ -1151,14 +1268,12 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .practical__scalar { margin: 0; color: #57534e; font-size: 0.875rem; word-break: break-word; }
 .dark .practical__scalar { color: #d6d3d1; }
 .practical__scalar a { color: var(--color-blue-accent); }
-.dark .practical__scalar a { color: #94b6e8; }
 .practical__dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.625rem; }
 .practical__dt { font-size: 0.75rem; color: #78716c; font-weight: 500; }
 .dark .practical__dt { color: #a8a29e; }
 .practical__dd { margin: 0; font-size: 0.875rem; color: #57534e; word-break: break-word; }
 .dark .practical__dd { color: #d6d3d1; }
 .practical__dd a { color: var(--color-blue-accent); }
-.dark .practical__dd a { color: #94b6e8; }
 .practical__list { margin: 0; padding-left: 1.125rem; }
 .practical__list--top { font-size: 0.875rem; color: #57534e; }
 .dark .practical__list--top { color: #d6d3d1; }
@@ -1204,7 +1319,6 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .sessions__link { font-size: 0.8125rem; color: var(--color-blue-accent); text-decoration: none; }
 .sessions__link:hover { text-decoration: underline; }
 .sessions__link--plain { color: #a8a29e; }
-.dark .sessions__link { color: #94b6e8; }
 .sessions__date { margin: 0; font-weight: 600; color: #1c1917; font-size: 0.9375rem; }
 .dark .sessions__date { color: #fafaf9; }
 .sessions__loc { margin: 0.125rem 0 0; font-size: 0.875rem; color: #57534e; }
@@ -1256,7 +1370,6 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 }
 .dark .res-card__title { color: #fafaf9; }
 .res-card:hover .res-card__title { color: var(--color-brand); }
-.dark .res-card:hover .res-card__title { color: #94b6e8; }
 .res-card__snippet {
   grid-column: 1 / -1;
   margin: 0;
@@ -1290,7 +1403,7 @@ const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
 .res-card:hover .res-card__arrow { color: var(--color-brand); transform: translateX(2px); }
 
 @media (max-width: 640px) {
-  .md__hero-stats { grid-template-columns: 1fr 1fr; }
+  .md-hero__stats { grid-template-columns: 1fr 1fr; }
   .schedule__item { grid-template-columns: 1fr; gap: 0.25rem; }
   .deadlines__item { grid-template-columns: 1fr; gap: 0.25rem; }
 }

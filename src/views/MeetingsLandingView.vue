@@ -38,10 +38,11 @@ function resolutionCount(ev: PlenaryEvent): number {
 </script>
 
 <template>
-  <div class="page meetings-landing">
+  <div>
     <PageHero
-      variant="article"
-      eyebrow="ISO/TC 154"
+      variant="index"
+      bleed
+      eyebrow="Plenary meetings"
       title="Plenary Meetings"
       lead="The committee meets annually in plenary session, hosted by a national body. Each plenary week is the focal point for resolving technical decisions, adopting resolutions, and shaping the committee's work programme."
     >
@@ -52,50 +53,54 @@ function resolutionCount(ev: PlenaryEvent): number {
       </dl>
     </PageHero>
 
-    <section v-if="upcoming.length" class="upcoming-section">
-      <h2 class="section-title">Upcoming</h2>
-      <div class="upcoming-list">
-        <article v-for="ev in upcoming" :key="ev.id" class="upcoming-card">
-          <RouterLink :to="ev.url" class="upcoming-card__main">
-            <span class="upcoming-card__ordinal">{{ ev.ordinal }}<sup>th</sup></span>
-            <div class="upcoming-card__body">
-              <h3 class="upcoming-card__title">ISO/TC 154 Plenary · {{ ev.year }}</h3>
-              <p class="upcoming-card__meta">
-                <span class="upcoming-card__date">{{ dateRange(ev) }}</span>
-                <span v-if="ev.general_area" class="upcoming-card__area">{{ ev.general_area }}</span>
-              </p>
-              <p v-if="ev.host" class="upcoming-card__host">Hosted by {{ ev.host }}</p>
-            </div>
-          </RouterLink>
-        </article>
+    <div class="page page--wide meetings-landing">
+      <div class="meetings-shell">
+        <section v-if="upcoming.length" class="upcoming-section">
+          <h2 class="section-title">Upcoming</h2>
+          <div class="upcoming-list">
+            <article v-for="ev in upcoming" :key="ev.id" class="upcoming-card">
+              <RouterLink :to="ev.url" class="upcoming-card__main">
+                <span class="upcoming-card__ordinal">{{ ev.ordinal }}<sup>th</sup></span>
+                <div class="upcoming-card__body">
+                  <h3 class="upcoming-card__title">ISO/TC 154 Plenary · {{ ev.year }}</h3>
+                  <p class="upcoming-card__meta">
+                    <span class="upcoming-card__date">{{ dateRange(ev) }}</span>
+                    <span v-if="ev.general_area" class="upcoming-card__area">{{ ev.general_area }}</span>
+                  </p>
+                  <p v-if="ev.host" class="upcoming-card__host">Hosted by {{ ev.host }}</p>
+                </div>
+              </RouterLink>
+            </article>
+          </div>
+        </section>
+
+        <section v-if="past.length" class="past-section">
+          <h2 class="section-title">Past plenaries</h2>
+          <ul class="past-list">
+            <li v-for="ev in past" :key="ev.id" class="past-row">
+              <RouterLink :to="ev.url" class="past-row__link">
+                <span class="past-row__year">{{ ev.year }}</span>
+                <span class="past-row__ordinal">{{ ev.ordinal }}<sup>th</sup> plenary</span>
+                <span v-if="ev.general_area" class="past-row__area">{{ ev.general_area }}</span>
+                <span v-if="ev.host" class="past-row__host">{{ ev.host }}</span>
+                <span v-if="resolutionCount(ev) > 0" class="past-row__res">
+                  {{ resolutionCount(ev) }} resolutions
+                </span>
+              </RouterLink>
+            </li>
+          </ul>
+        </section>
+
+        <div v-if="isLoaded && !events.length" class="empty">
+          <p>No plenary meeting data available.</p>
+        </div>
       </div>
-    </section>
-
-    <section v-if="past.length" class="past-section">
-      <h2 class="section-title">Past plenaries</h2>
-      <ul class="past-list">
-        <li v-for="ev in past" :key="ev.id" class="past-row">
-          <RouterLink :to="ev.url" class="past-row__link">
-            <span class="past-row__year">{{ ev.year }}</span>
-            <span class="past-row__ordinal">{{ ev.ordinal }}<sup>th</sup> plenary</span>
-            <span v-if="ev.general_area" class="past-row__area">{{ ev.general_area }}</span>
-            <span v-if="ev.host" class="past-row__host">{{ ev.host }}</span>
-            <span v-if="resolutionCount(ev) > 0" class="past-row__res">
-              {{ resolutionCount(ev) }} resolutions
-            </span>
-          </RouterLink>
-        </li>
-      </ul>
-    </section>
-
-    <div v-if="isLoaded && !events.length" class="empty">
-      <p>No plenary meeting data available.</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+.meetings-shell { max-width: 48rem; }
 
 .section-title {
   font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
@@ -190,7 +195,7 @@ function resolutionCount(ev: PlenaryEvent): number {
   padding: 0.25rem 0.625rem; border-radius: 9999px;
   white-space: nowrap;
 }
-.dark .past-row__res { color: #94b6e8; background: rgba(102, 163, 224, 0.12); }
+.dark .past-row__res { background: rgba(102, 163, 224, 0.12); }
 
 @media (max-width: 640px) {
   .past-row__link { grid-template-columns: 3rem 1fr; }

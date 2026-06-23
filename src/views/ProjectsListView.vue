@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProjects } from '../composables/useProjects'
 import { projectStatusLabel, type Project } from '../types/project'
+import { projectPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
 
 const { projects, isLoaded, loadData } = useProjects()
@@ -37,18 +38,22 @@ const filtered = computed<Project[]>(() => {
 })
 
 function projectUrl(p: Project): string {
-  return `/projects/${p.id}/`
+  return projectPath(p.id)
 }
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <PageHero
       variant="index"
-      eyebrow="Work in progress"
+      bleed
+      eyebrow="Under development"
       title="Projects"
       lead="New standards under development by ISO/TC 154 — at AWI, NP, WD, CD, DIS, FDIS, and other ISO stages."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--flow"></div>
+      </template>
       <dl class="page__stats" v-if="isLoaded">
         <div><dt>{{ stats.total }}</dt><dd>projects</dd></div>
         <div><dt>{{ stats.active }}</dt><dd>active</dd></div>
@@ -56,6 +61,7 @@ function projectUrl(p: Project): string {
       </dl>
     </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -110,11 +116,11 @@ function projectUrl(p: Project): string {
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
 .filter { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
 .dark .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
@@ -133,7 +139,7 @@ function projectUrl(p: Project): string {
 .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
 .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
 .dark .filter__meta { color: #a8a29e; }

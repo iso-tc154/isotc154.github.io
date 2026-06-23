@@ -104,14 +104,13 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/about/',
     name: 'about',
-    component: () => import('../views/AsciiDocPageView.vue'),
-    props: { slug: 'about' },
+    component: () => import('../views/AboutView.vue'),
   },
   {
     path: '/business-plan/',
     name: 'business-plan',
     component: () => import('../views/AsciiDocPageView.vue'),
-    props: { slug: 'business-plan' },
+    props: { slug: 'business-plan', decorationPattern: 'rules' },
   },
   {
     path: '/history/',
@@ -122,12 +121,13 @@ export const routes: RouteRecordRaw[] = [
     path: '/faq/',
     name: 'faq',
     component: () => import('../views/AsciiDocPageView.vue'),
-    props: { slug: 'faq' },
+    props: { slug: 'faq', decorationPattern: 'rules' },
   },
   {
     path: '/faq/:slug/',
     name: 'faq-item',
     component: () => import('../views/AsciiDocPageView.vue'),
+    props: { decorationPattern: 'rules' },
   },
   {
     path: '/procedures/',
@@ -138,6 +138,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/procedures/:slug/',
     name: 'procedure-detail',
     component: () => import('../views/AsciiDocPageView.vue'),
+    props: { decorationPattern: 'flow' },
   },
   {
     path: '/contact/',

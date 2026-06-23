@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import yaml from 'js-yaml'
+import { meetingDetailPathFromParts } from '../../src/utils/urn.ts'
 
 /**
  * Canonical meetings: the xlsx-derived list of every TC 154 plenary.
@@ -300,7 +301,7 @@ export function loadCanonicalMeetings(meetingsYmlPath, eventsDir, resolutionMeet
     const meeting = {
       ordinal,
       year,
-      url: `/meetings/${ordinal}/`,
+      url: meetingDetailPathFromParts('plenary', `plenary-${ordinal}`),
       sessions: sessions.map(s => ({
         iso_meeting_id: s.iso_meeting_id ?? null,
         type: s.type,

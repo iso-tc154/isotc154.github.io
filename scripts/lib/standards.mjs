@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import yaml from 'js-yaml'
+import { standardPath, projectPath } from '../../src/utils/urn.ts'
 
 export function loadStandards(standardsDir) {
   if (!fs.existsSync(standardsDir)) return []
@@ -14,7 +15,7 @@ export function loadStandards(standardsDir) {
     out.push({
       ...data,
       id,
-      url: `/standards/${id}/`,
+      url: standardPath(id),
     })
   }
   return out
@@ -30,7 +31,7 @@ export function loadProjects(projectsDir) {
     if (!data || !data.id) continue
     out.push({
       ...data,
-      url: `/projects/${data.id}/`,
+      url: projectPath(data.id),
     })
   }
   return out

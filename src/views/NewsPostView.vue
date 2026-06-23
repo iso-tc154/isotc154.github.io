@@ -23,36 +23,55 @@ const title = computed(() => {
 </script>
 
 <template>
-  <div v-if="!isLoaded" class="post"><p class="loading">Loading…</p></div>
+  <div v-if="!isLoaded">
+    <PageHero variant="article" bleed title="Loading…" />
+    <div class="page page--wide">
+      <div class="post-shell"><p class="loading">Loading…</p></div>
+    </div>
+  </div>
 
-  <article v-else-if="!post" class="post">
+  <div v-else-if="!post">
     <PageHero
       variant="article"
+      bleed
       eyebrow="404"
       title="Post not found"
       lead="No post matches this slug."
     />
-    <RouterLink to="/posts/" class="back-link">← All news</RouterLink>
-  </article>
+    <div class="page page--wide">
+      <div class="post-shell">
+        <RouterLink to="/posts/" class="back-link">← All news</RouterLink>
+      </div>
+    </div>
+  </div>
 
-  <article v-else class="post">
-    <RouterLink to="/posts/" class="back-link">← All news</RouterLink>
+  <div v-else>
     <PageHero
       variant="article"
+      bleed
       :eyebrow="formatDate(post.date)"
       :title="title"
     >
+      <template #breadcrumb>
+        <RouterLink to="/posts/">
+          News &amp; posts
+        </RouterLink>
+      </template>
       <div v-if="post.frontmatter.categories" class="post__tags">
         <span class="post__tag">{{ post.frontmatter.categories }}</span>
       </div>
     </PageHero>
 
-    <div class="post__body prose" v-html="post.html"></div>
-  </article>
+    <article class="page page--wide">
+      <div class="post-shell">
+        <div class="post__body prose" v-html="post.html"></div>
+      </div>
+    </article>
+  </div>
 </template>
 
 <style scoped>
-.post { max-width: 48rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.post-shell { max-width: 48rem; }
 .back-link {
   display: inline-block;
   font-size: 0.875rem; font-weight: 500;
@@ -61,7 +80,6 @@ const title = computed(() => {
   margin-bottom: 1rem;
 }
 .back-link:hover { text-decoration: underline; }
-.dark .back-link { color: #94b6e8; }
 
 .post__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
 .post__tag {
@@ -103,7 +121,6 @@ const title = computed(() => {
 .dark .prose :deep(h3) { color: #fafaf9; }
 .prose :deep(p) { margin: 0 0 1rem; }
 .prose :deep(a) { color: var(--color-brand); text-decoration: underline; }
-.dark .prose :deep(a) { color: #94b6e8; }
 .prose :deep(ul), .prose :deep(ol) { margin: 0 0 1rem; padding-left: 1.5rem; }
 .prose :deep(li) { margin-bottom: 0.375rem; }
 .prose :deep(code) {

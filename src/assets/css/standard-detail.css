@@ -79,7 +79,7 @@
   }
   .std-page__badge--link { text-decoration: none; transition: background 0.15s; }
   .std-page__badge--link:hover { background: #e6f0fa; color: var(--color-blue-accent); }
-  .dark .std-page__badge--link:hover { background: rgb(30 58 138 / 0.15); color: #94b6e8; }
+  .dark .std-page__badge--link:hover { background: rgb(30 58 138 / 0.15); }
 
   .std-page__badge--withdrawn { background: #fef2f2; color: #991b1b; }
   .dark .std-page__badge--withdrawn { background: rgb(220 38 38 / 0.12); color: #fca5a5; }

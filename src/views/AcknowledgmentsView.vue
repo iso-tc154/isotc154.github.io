@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useMembers } from '../composables/useMembers'
 import { formatDate } from '../utils/format'
+import { memberPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
 
 interface AckEntry {
@@ -41,53 +42,61 @@ function memberUrl(name: string): string | null {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
   const m = getMember(slug)
-  return m ? `/members/${slug}/` : null
+  return m ? memberPath(slug) : null
 }
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <PageHero
-      variant="article"
-      eyebrow="ISO/TC 154"
+      variant="index"
+      bleed
+      eyebrow="Errata & contributions"
       title="Acknowledgments"
       lead="ISO/TC 154 gratefully acknowledges the following individuals and organizations who have contributed errata reports, feedback, and improvements to our standards."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--dots hero-pattern--subtle"></div>
+      </template>
       <dl class="page__stats" v-if="acks.length">
         <div><dt>{{ acks.length }}</dt><dd>contributions</dd></div>
         <div><dt>{{ grouped.length }}</dt><dd>standards</dd></div>
       </dl>
     </PageHero>
 
-    <section v-if="grouped.length" class="acks">
-      <section v-for="[standard, entries] in grouped" :key="standard" class="acks__group">
-        <h2 class="acks__standard">{{ standard }}</h2>
-        <ul class="acks__list">
-          <li v-for="(ack, idx) in entries" :key="idx" class="acks__item">
-            <p class="acks__name">
-              <a v-if="ack.url" :href="ack.url" target="_blank" rel="noopener noreferrer">{{ ack.name }}</a>
-              <RouterLink v-else-if="memberUrl(ack.name)" :to="memberUrl(ack.name)!">{{ ack.name }}</RouterLink>
-              <template v-else>{{ ack.name }}</template>
-              <span v-if="ack.affiliation" class="acks__aff"> · {{ ack.affiliation }}</span>
-            </p>
-            <p v-if="ack.date" class="acks__date">{{ formatDate(ack.date) }}</p>
-            <p v-if="ack.contribution" class="acks__contribution">{{ ack.contribution }}</p>
-          </li>
-        </ul>
-      </section>
-    </section>
+    <div class="page page--wide">
+      <div class="acks-shell">
+        <section v-if="grouped.length" class="acks">
+          <section v-for="[standard, entries] in grouped" :key="standard" class="acks__group">
+            <h2 class="acks__standard">{{ standard }}</h2>
+            <ul class="acks__list">
+              <li v-for="(ack, idx) in entries" :key="idx" class="acks__item">
+                <p class="acks__name">
+                  <a v-if="ack.url" :href="ack.url" target="_blank" rel="noopener noreferrer">{{ ack.name }}</a>
+                  <RouterLink v-else-if="memberUrl(ack.name)" :to="memberUrl(ack.name)!">{{ ack.name }}</RouterLink>
+                  <template v-else>{{ ack.name }}</template>
+                  <span v-if="ack.affiliation" class="acks__aff"> · {{ ack.affiliation }}</span>
+                </p>
+                <p v-if="ack.date" class="acks__date">{{ formatDate(ack.date) }}</p>
+                <p v-if="ack.contribution" class="acks__contribution">{{ ack.contribution }}</p>
+              </li>
+            </ul>
+          </section>
+        </section>
 
-    <div v-else class="empty">
-      <p>
-        No errata reports or feedback acknowledgments yet. Contributions will
-        be recognized here as they are received.
-      </p>
+        <div v-else class="empty">
+          <p>
+            No errata reports or feedback acknowledgments yet. Contributions will
+            be recognized here as they are received.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+.acks-shell { max-width: 48rem; }
 
 .acks { display: flex; flex-direction: column; gap: 2rem; }
 .acks__standard {
@@ -116,7 +125,6 @@ function memberUrl(name: string): string | null {
   text-decoration: none;
 }
 .acks__name a:hover { text-decoration: underline; }
-.dark .acks__name a { color: #94b6e8; }
 .acks__aff { font-weight: 400; color: #78716c; }
 .dark .acks__aff { color: #a8a29e; }
 .acks__date {

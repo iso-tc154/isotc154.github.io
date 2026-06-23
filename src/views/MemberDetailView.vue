@@ -7,6 +7,7 @@ import type { RoleRecord } from '../types/member'
 import { flattenMemberRoles, memberRoleSpan } from '../types/member'
 import { asciidocify } from '../utils/asciidoc'
 import { roleLabel as formatRoleLabel } from '../utils/roles'
+import PageHero from '../components/PageHero.vue'
 
 const route = useRoute()
 const { index, isLoaded, loadData } = useMembers()
@@ -73,34 +74,46 @@ function sortedRoles(list: RoleRecord[]): RoleRecord[] {
   </div>
 
   <div class="detail" v-else-if="!member">
-    <header class="detail__header">
-      <h1>Member not found</h1>
-      <p>No member matches <code>{{ route.params.id }}</code>.</p>
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow="Not found"
+      title="Member not found"
+      :lead="`No member matches ${route.params.id}.`"
+    />
+    <div class="detail__body">
       <RouterLink to="/members/" class="detail__back">← All members</RouterLink>
-    </header>
+    </div>
   </div>
 
   <article class="detail" v-else :key="member['member-id']">
-    <header class="detail__header">
-      <RouterLink to="/members/" class="detail__back">← All members</RouterLink>
-      <div class="detail__head">
-        <div class="detail__avatar" :class="{ 'detail__avatar--deceased': member.deceased }">
-          <img v-if="pictureUrl" :src="pictureUrl" :alt="member.name" />
-          <span v-else>{{ memberInitials(member.name) }}</span>
-        </div>
-        <div>
-          <p class="detail__eyebrow">
-            <span v-if="member.is_the_chair">Chair of ISO/TC 154</span>
-            <span v-else-if="member.is_in_leadership">Leadership</span>
-            <span v-else-if="member.is_current">Current member</span>
-            <span v-else>Past member</span>
-            <span v-if="member.deceased"> · In Memoriam</span>
-          </p>
-          <h1>{{ member.name }}</h1>
-          <p class="detail__affiliation" v-if="member.affiliation">{{ member.affiliation }}</p>
-        </div>
+    <PageHero
+      variant="detail"
+      bleed
+      :eyebrow="member.is_the_chair
+        ? 'Chair of ISO/TC 154'
+        : member.is_in_leadership
+          ? 'Leadership'
+          : member.is_current
+            ? 'Current member'
+            : 'Past member'"
+      :title="member.name"
+      :lead="member.affiliation"
+    >
+      <template #breadcrumb>
+        <RouterLink to="/members/">
+          Members
+        </RouterLink>
+      </template>
+    </PageHero>
+
+    <div class="member-head">
+      <div class="detail__avatar" :class="{ 'detail__avatar--deceased': member.deceased }">
+        <img v-if="pictureUrl" :src="pictureUrl" :alt="member.name" />
+        <span v-else>{{ memberInitials(member.name) }}</span>
       </div>
-    </header>
+      <p v-if="member.deceased" class="in-memoriam">In Memoriam</p>
+    </div>
 
     <div class="detail__body">
       <section v-if="bioHtml" class="detail__section">
@@ -137,23 +150,27 @@ function sortedRoles(list: RoleRecord[]): RoleRecord[] {
 
 <style scoped>
 .detail {
-  max-width: 56rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 0 1.5rem 4rem;
 }
 .detail__loading { color: #78716c; padding: 4rem 0; text-align: center; }
-.detail__header { margin-bottom: 2rem; }
 .detail__back {
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-blue-accent);
   text-decoration: none;
-  margin-bottom: 1rem;
 }
 .detail__back:hover { text-decoration: underline; }
-.dark .detail__back { color: #94b6e8; }
-.detail__head { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
+
+.member-head {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: -1rem 0 1.5rem;
+  flex-wrap: wrap;
+}
 .detail__avatar {
   width: 6rem; height: 6rem;
   border-radius: 9999px;
@@ -166,28 +183,16 @@ function sortedRoles(list: RoleRecord[]): RoleRecord[] {
 }
 .detail__avatar img { width: 100%; height: 100%; object-fit: cover; }
 .detail__avatar--deceased img { filter: grayscale(1); }
-.detail__eyebrow {
-  font-size: 0.75rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .detail__eyebrow { color: #94b6e8; }
-.detail__header h1 {
+.in-memoriam {
   font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0 0 0.5rem;
-  letter-spacing: -0.01em;
+  font-style: italic;
+  font-size: 1rem;
+  color: #78716c;
+  margin: 0;
 }
-.dark .detail__header h1 { color: #fafaf9; }
-.detail__affiliation {
-  font-size: 1rem; color: #57534e; margin: 0;
-}
-.dark .detail__affiliation { color: #d6d3d1; }
+.dark .in-memoriam { color: #a8a29e; }
 
-.detail__body { margin-top: 2rem; }
+.detail__body { margin-top: 0; }
 .detail__section { margin-bottom: 2.5rem; }
 .detail__section-title {
   font-size: 0.75rem; font-weight: 700;
@@ -208,7 +213,6 @@ function sortedRoles(list: RoleRecord[]): RoleRecord[] {
 .prose :deep(p) { margin: 0 0 0.875rem; }
 .prose :deep(p:last-child) { margin-bottom: 0; }
 .prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; }
-.dark .prose :deep(a) { color: #94b6e8; }
 
 .roles {
   list-style: none;
@@ -263,6 +267,6 @@ function sortedRoles(list: RoleRecord[]): RoleRecord[] {
   text-decoration: none;
 }
 .links a:hover { background: #e0e7ff; }
-.dark .links a { background: #292524; color: #94b6e8; }
+.dark .links a { background: #292524; }
 .dark .links a:hover { background: #44403c; }
 </style>

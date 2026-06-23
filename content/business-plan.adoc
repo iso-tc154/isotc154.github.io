@@ -3,6 +3,7 @@ title: ISO/TC 154 Business Plan
 permalink: /business-plan/
 description: Strategy, work programme, and operating context for ISO/TC 154 — Processes, data elements and documents in commerce, industry and administration.
 layout: page
+eyebrow: Committee strategy
 ---
 
 = ISO/TC 154 Business Plan

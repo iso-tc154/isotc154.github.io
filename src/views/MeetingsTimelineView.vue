@@ -1,11 +1,20 @@
 <template>
-  <div class="res-page">
-    <header class="res-page__header">
-      <h1 class="animate-up" style="--nth: 1">Meetings</h1>
-      <p class="res-page__subtitle animate-up" style="--nth: 2">Browse resolutions by plenary meeting.</p>
-    </header>
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Resolutions by meeting"
+      title="Plenary"
+      accent="meetings timeline"
+      lead="Browse every ISO/TC 154 plenary meeting by decade. Each meeting links to the resolutions adopted there."
+    >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--rules"></div>
+      </template>
+    </PageHero>
 
-    <div class="std-filter animate-up" style="--nth: 3">
+    <div class="res-page">
+    <div class="std-filter">
       <div class="std-filter__search-wrap">
         <svg class="std-filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="8"/>
@@ -65,7 +74,7 @@
       </div>
     </div>
 
-    <div class="timeline-section animate-up" style="--nth: 4" v-if="isLoaded">
+    <div class="timeline-section" v-if="isLoaded">
       <!-- Legend -->
       <div class="timeline-legend">
         <div class="legend-item legend-item--size">
@@ -148,6 +157,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </template>
 
@@ -157,6 +167,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useResolutionMeetings, groupMeetingsByDecade } from "../composables/useResolutionMeetings"
 import { venueToFlag, venueToCountryCode } from '../data/countryFlags'
 import { formatDateShort } from '../utils/format'
+import PageHero from '../components/PageHero.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -241,13 +252,6 @@ watch([searchQuery, selectedYear, selectedCountry], () => {
 </script>
 
 <style scoped>
-.animate-up {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--nth) * 0.1s);
-}
-
 .timeline-section {
   margin-top: 1.5rem;
 }

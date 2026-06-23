@@ -5,7 +5,9 @@ import { useEvents } from '../composables/useEvents'
 import { useResolutions } from '../composables/useResolutions'
 import type { PlenaryEvent, PracticalSection, PracticalValue } from '../types/event'
 import { formatDate } from '../utils/format'
+import { meetingDetailPathFromParts } from '../utils/urn'
 import ScheduleCalendar from '../components/ScheduleCalendar.vue'
+import PageHero from '../components/PageHero.vue'
 
 const route = useRoute()
 const { events, isLoaded, loadData } = useEvents()
@@ -41,7 +43,7 @@ const meetingResolutions = computed(() => {
 const meetingResolutionsPath = computed(() => {
   if (!meetingResolutions.value.length) return null
   const sample = meetingResolutions.value[0]
-  return `/resolutions/meetings/${sample.source_type}/${sample.source_file}/`
+  return meetingDetailPathFromParts(sample.source_type, sample.source_file)
 })
 
 const scheduleByDate = computed(() => {
@@ -146,20 +148,28 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
     </header>
   </article>
 
-  <article v-else class="event-detail">
-    <header class="event-detail__hero">
-      <div class="event-detail__hero-inner">
-        <RouterLink to="/meetings/" class="back-link">← All meetings</RouterLink>
-        <p class="event-detail__eyebrow">
-          {{ event.status === 'upcoming' ? 'Upcoming plenary' : 'Past plenary' }}
-        </p>
-        <h1 class="event-detail__title">{{ title }}</h1>
-        <p class="event-detail__area" v-if="event.general_area">{{ event.general_area }}</p>
-        <p class="event-detail__host" v-if="event.host">Hosted by {{ event.host }}</p>
-        <p class="event-detail__date" v-if="dateRange">{{ dateRange }}</p>
-      </div>
-    </header>
+  <div v-else>
+    <PageHero
+      variant="detail"
+      bleed
+      :eyebrow="event.status === 'upcoming' ? 'Upcoming plenary' : 'Past plenary'"
+      :title="title"
+      class="event-hero"
+    >
+      <template #breadcrumb>
+        <RouterLink to="/meetings/">
+          Plenary Index
+        </RouterLink>
+      </template>
+      <template #decoration>
+        <div class="event-hero__bg" aria-hidden="true"></div>
+      </template>
+      <p v-if="event.general_area" class="event-hero__area">{{ event.general_area }}</p>
+      <p v-if="event.host" class="event-hero__host">Hosted by {{ event.host }}</p>
+      <p v-if="dateRange" class="event-hero__date">{{ dateRange }}</p>
+    </PageHero>
 
+    <div class="event-detail">
     <div class="event-detail__body">
       <section v-if="event.venues?.length" class="block">
         <h2 class="block__title">Venue</h2>
@@ -347,50 +357,76 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
         </RouterLink>
       </section>
     </div>
-  </article>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.event-detail {
-  max-width: 56rem; margin: 0 auto; padding: 0 0 4rem;
+.event-hero {
+  margin-bottom: 0;
 }
-.event-detail__hero {
+.event-hero__bg {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(135deg, var(--color-brand) 0%, #b0000b 100%);
+  z-index: 0;
+}
+.event-hero :deep(.ph__inner) {
+  position: relative;
+  z-index: 1;
+}
+.event-hero :deep(.ph__eyebrow),
+.event-hero :deep(.ph__eyebrow-rule) {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+}
+.event-hero :deep(.ph__eyebrow) { background: transparent; }
+.event-hero :deep(.ph__eyebrow-rule) { height: 1px; }
+.event-hero :deep(.ph__title) {
   color: #fff;
-  padding: 3rem 1.5rem 2.5rem;
 }
-.event-detail__hero-inner { max-width: 48rem; margin: 0 auto; }
-.event-detail__hero .back-link { color: rgba(255,255,255,0.85); }
-.event-detail__hero .back-link:hover { color: #fff; }
-.event-detail__eyebrow {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.12em; margin: 1rem 0 0.5rem;
-  color: rgba(255,255,255,0.9);
+.event-hero :deep(.ph__lead) {
+  color: rgba(255, 255, 255, 0.92);
 }
-.event-detail__title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 4vw, 2.75rem);
-  font-weight: 700; margin: 0 0 0.5rem;
-  letter-spacing: -0.02em;
+.event-hero__area {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  color: #fff;
 }
-.event-detail__area { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.25rem; }
-.event-detail__host { font-size: 1rem; margin: 0 0 0.5rem; opacity: 0.9; }
-.event-detail__date {
-  font-size: 0.9375rem; opacity: 0.85;
+.event-hero__host {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+.event-hero__date {
+  font-size: 0.9375rem;
   font-family: ui-monospace, monospace;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1rem;
 }
-
-.back-link {
+.event-hero__back {
   display: inline-block;
-  font-size: 0.875rem; font-weight: 500;
-  color: var(--color-blue-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  margin-bottom: 1rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.375rem;
+  transition: all 0.2s;
 }
-.back-link:hover { text-decoration: underline; }
-.dark .back-link { color: #94b6e8; }
+.event-hero__back:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
 
-.event-detail__body { padding: 2.5rem 1.5rem 0; }
+.event-detail {
+  max-width: 56rem; margin: 0 auto; padding: 0 1.5rem 4rem;
+}
+.event-detail__body { padding-top: 2.5rem; }
 
 .block { margin-bottom: 2.5rem; }
 .block__title {
@@ -429,7 +465,6 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
   margin-right: 1rem;
 }
 .venue-card__link:hover { text-decoration: underline; }
-.dark .venue-card__link { color: #94b6e8; }
 
 .secretary-card {
   background: #fafaf9; padding: 1rem 1.25rem;
@@ -443,34 +478,6 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 .secretary-card__contact { font-size: 0.875rem; margin: 0.125rem 0; color: #57534e; }
 .dark .secretary-card__contact { color: #d6d3d1; }
 .secretary-card__contact a { color: var(--color-blue-accent); }
-.dark .secretary-card__contact a { color: #94b6e8; }
-
-.schedule { display: flex; flex-direction: column; gap: 1.5rem; }
-.schedule__date {
-  font-size: 0.875rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--color-brand);
-  margin: 0 0 0.5rem;
-}
-.schedule__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-.schedule__item {
-  display: grid; grid-template-columns: 7rem 1fr;
-  gap: 1rem;
-  padding: 0.625rem 0.875rem;
-  background: #fafaf9;
-  border-radius: 0.375rem;
-}
-.dark .schedule__item { background: #292524; }
-.schedule__time {
-  font-family: ui-monospace, monospace;
-  font-size: 0.8125rem;
-  color: #78716c;
-}
-.dark .schedule__time { color: #a8a29e; }
-.schedule__event { font-weight: 600; margin: 0; color: #1c1917; }
-.dark .schedule__event { color: #fafaf9; }
-.schedule__desc { font-size: 0.875rem; color: #57534e; margin: 0.125rem 0 0; }
-.dark .schedule__desc { color: #d6d3d1; }
 
 .list-card {
   list-style: none; margin: 0; padding: 0;
@@ -483,7 +490,6 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 }
 .dark .list-card__item { background: #292524; }
 .list-card__name { font-weight: 600; color: var(--color-blue-accent); }
-.dark .list-card__name { color: #94b6e8; }
 .list-card__name a { color: inherit; text-decoration: none; }
 .list-card__name a:hover { text-decoration: underline; }
 .list-card__meta { font-size: 0.8125rem; color: #78716c; margin: 0.25rem 0 0; }
@@ -508,7 +514,6 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
   color: var(--color-brand);
   margin: 0 0 0.5rem;
 }
-.dark .practical__label { color: #94b6e8; }
 .practical__scalar {
   margin: 0;
   color: #44403c;
@@ -539,7 +544,6 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
   word-break: break-all;
 }
 .practical__dd a:hover { text-decoration: underline; }
-.dark .practical__dd a { color: #94b6e8; }
 .practical__list {
   margin: 0;
   padding-left: 1.25rem;
@@ -586,7 +590,6 @@ function touristInfoAsSection(value: PracticalSection | { name?: string; link?: 
 .loading { color: #78716c; padding: 4rem 0; text-align: center; }
 
 @media (max-width: 640px) {
-  .schedule__item { grid-template-columns: 1fr; gap: 0.25rem; }
   .deadlines__item { grid-template-columns: 1fr; gap: 0.25rem; }
   .list-card { grid-template-columns: 1fr; }
 }

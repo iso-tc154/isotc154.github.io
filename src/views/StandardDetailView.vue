@@ -5,6 +5,7 @@ import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
 import { standardStatusLabel } from '../types/standard'
 import { asciidocify } from '../utils/asciidoc'
+import PageHero from '../components/PageHero.vue'
 
 const route = useRoute()
 const { standards, isLoaded, loadData } = useStandards()
@@ -32,6 +33,8 @@ const introductionHtml = computed(() => {
 const publicationDate = computed(() => {
   const d = standard.value?.iso?.publication_date
   if (!d) return ''
+  const year = parseInt(d.substring(0, 4), 10)
+  if (year > 2026 || year < 1900) return ''
   const dt = new Date(d)
   if (isNaN(dt.getTime())) return ''
   return dt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
@@ -40,9 +43,9 @@ const publicationDate = computed(() => {
 const publicationYear = computed(() => {
   const d = standard.value?.iso?.publication_date
   if (!d) return ''
-  const dt = new Date(d)
-  if (isNaN(dt.getTime())) return ''
-  return String(dt.getUTCFullYear())
+  const year = parseInt(d.substring(0, 4), 10)
+  if (year > 2026 || year < 1900) return ''
+  return String(year)
 })
 
 const groupName = computed(() => {
@@ -79,24 +82,36 @@ function statusLabel(): string {
   </div>
 
   <div class="detail" v-else-if="!standard">
-    <header class="detail__header">
-      <h1>Standard not found</h1>
-      <p>No standard matches <code>{{ route.params.id }}</code>.</p>
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow="Not found"
+      title="Standard not found"
+      :lead="`No standard matches ${route.params.id}.`"
+    />
+    <div class="detail__body">
       <RouterLink to="/standards/" class="detail__back">← All standards</RouterLink>
-    </header>
+    </div>
   </div>
 
   <article class="detail" v-else :key="standard.id">
-    <header class="detail__header">
-      <RouterLink to="/standards/" class="detail__back">← All standards</RouterLink>
-      <div class="detail__eyebrow-row">
+    <PageHero
+      variant="detail"
+      bleed
+      :eyebrow="`${standard.iso?.name}${publicationYear ? ' (' + publicationYear + ')' : ''}`"
+      :title="standard.iso?.title"
+    >
+      <div class="detail__badges">
         <span class="detail__status" :class="`detail__status--${standard.tc154?.status ?? 'published'}`">{{ statusLabel() }}</span>
         <span v-if="standard.iso?.type && standard.iso.type !== 'international'" class="detail__type">{{ standard.iso.type }}</span>
         <span v-if="standard.iso?.stage" class="detail__stage">Stage {{ standard.iso.stage }}</span>
       </div>
-      <p class="detail__number">{{ standard.iso?.name }}<span v-if="publicationYear"> ({{ publicationYear }})</span></p>
-      <h1>{{ standard.iso?.title }}</h1>
-    </header>
+      <template #breadcrumb>
+        <RouterLink to="/standards/">
+          Standards
+        </RouterLink>
+      </template>
+    </PageHero>
 
     <div class="detail__grid">
       <div class="detail__main">
@@ -160,25 +175,23 @@ function statusLabel(): string {
 
 <style scoped>
 .detail {
-  max-width: 64rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 0 1.5rem 4rem;
 }
 .detail__loading { color: #78716c; padding: 4rem 0; text-align: center; }
-.detail__header { margin-bottom: 2rem; }
+.detail__body { padding-top: 1.5rem; }
 .detail__back {
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-blue-accent);
   text-decoration: none;
-  margin-bottom: 1rem;
 }
 .detail__back:hover { text-decoration: underline; }
-.dark .detail__back { color: #94b6e8; }
-.detail__eyebrow-row {
+.detail__badges {
   display: flex; flex-wrap: wrap; gap: 0.375rem; align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 .detail__status {
   font-size: 0.6875rem; font-weight: 700;
@@ -201,36 +214,19 @@ function statusLabel(): string {
   padding: 0.25rem 0.625rem; border-radius: 0.25rem;
   background: #e0e7ff; color: var(--color-blue-accent);
 }
-.dark .detail__type { background: rgb(51 133 214 / 0.2); color: #94b6e8; }
+.dark .detail__type { background: rgb(51 133 214 / 0.2); }
 .detail__stage {
   font-size: 0.75rem;
   font-family: ui-monospace, monospace;
   color: #78716c;
 }
 .dark .detail__stage { color: #a8a29e; }
-.detail__number {
-  font-family: ui-monospace, monospace;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #78716c;
-  margin: 0 0 0.5rem;
-}
-.dark .detail__number { color: #a8a29e; }
-.detail__header h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-}
-.dark .detail__header h1 { color: #fafaf9; }
 
 .detail__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
+  margin-top: 2rem;
 }
 @media (min-width: 1024px) {
   .detail__grid { grid-template-columns: minmax(0, 1fr) 20rem; }
@@ -256,7 +252,6 @@ function statusLabel(): string {
 .prose :deep(p) { margin: 0 0 0.875rem; }
 .prose :deep(p:last-child) { margin-bottom: 0; }
 .prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; }
-.dark .prose :deep(a) { color: #94b6e8; }
 
 .detail__aside { display: flex; flex-direction: column; gap: 1rem; }
 .detail__aside-block {
@@ -301,7 +296,6 @@ function statusLabel(): string {
   text-decoration: none;
 }
 .meta__row dd a:hover { text-decoration: underline; }
-.dark .meta__row dd a { color: #94b6e8; }
 .meta__row code {
   font-family: ui-monospace, monospace;
   font-size: 0.8125rem;

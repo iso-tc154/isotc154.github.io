@@ -40,13 +40,17 @@ function postCategories(post: typeof posts.value[number]): string[] {
 </script>
 
 <template>
-  <div class="page news-list">
+  <div>
     <PageHero
-      variant="article"
-      eyebrow="ISO/TC 154"
+      variant="index"
+      bleed
+      eyebrow="Announcements"
       title="News & announcements"
       lead="Publications of new and revised ISO/TC 154 standards, committee announcements, and obituaries of esteemed colleagues."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--rules"></div>
+      </template>
       <dl class="page__stats" v-if="isLoaded && stats.total">
         <div><dt>{{ stats.total }}</dt><dd>posts</dd></div>
         <div><dt>{{ stats.years }}</dt><dd>years</dd></div>
@@ -54,36 +58,40 @@ function postCategories(post: typeof posts.value[number]): string[] {
       </dl>
     </PageHero>
 
-    <div v-if="!isLoaded" class="loading">Loading…</div>
+    <div class="page page--wide news-list">
+      <div class="news-shell">
+        <div v-if="!isLoaded" class="loading">Loading…</div>
 
-    <section
-      v-for="[year, items] in yearGroups"
-      :key="year"
-      class="year-section"
-    >
-      <h2 class="year-section__heading">{{ year }}</h2>
-      <ul class="post-list">
-        <li v-for="post in items" :key="post.slug" class="post-card">
-          <RouterLink :to="`/posts/${post.slug}/`" class="post-card__link">
-            <p class="post-card__date">{{ formatDate(post.date) }}</p>
-            <h3 class="post-card__title">{{ postTitle(post) }}</h3>
-            <p v-if="excerpt(post.html)" class="post-card__excerpt">{{ excerpt(post.html) }}</p>
-            <div v-if="postCategories(post).length" class="post-card__tags">
-              <span v-for="c in postCategories(post)" :key="c" class="post-card__tag">{{ c }}</span>
-            </div>
-          </RouterLink>
-        </li>
-      </ul>
-    </section>
+        <section
+          v-for="[year, items] in yearGroups"
+          :key="year"
+          class="year-section"
+        >
+          <h2 class="year-section__heading">{{ year }}</h2>
+          <ul class="post-list">
+            <li v-for="post in items" :key="post.slug" class="post-card">
+              <RouterLink :to="`/posts/${post.slug}/`" class="post-card__link">
+                <p class="post-card__date">{{ formatDate(post.date) }}</p>
+                <h3 class="post-card__title">{{ postTitle(post) }}</h3>
+                <p v-if="excerpt(post.html)" class="post-card__excerpt">{{ excerpt(post.html) }}</p>
+                <div v-if="postCategories(post).length" class="post-card__tags">
+                  <span v-for="c in postCategories(post)" :key="c" class="post-card__tag">{{ c }}</span>
+                </div>
+              </RouterLink>
+            </li>
+          </ul>
+        </section>
 
-    <div v-if="isLoaded && !posts.length" class="empty">
-      <p>No posts published yet.</p>
+        <div v-if="isLoaded && !posts.length" class="empty">
+          <p>No posts published yet.</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+.news-shell { max-width: 48rem; }
 
 .year-section { margin-bottom: 2.5rem; }
 .year-section__heading {

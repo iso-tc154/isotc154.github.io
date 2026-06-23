@@ -5,6 +5,7 @@ import { useMembers } from '../composables/useMembers'
 import { useGroups } from '../composables/useGroups'
 import type { Member } from '../types/member'
 import { roleLabel } from '../utils/roles'
+import { memberPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
 
 const { index, isLoaded, loadData } = useMembers()
@@ -89,7 +90,7 @@ const filtered = computed<Member[]>(() => {
 })
 
 function memberUrl(m: Member): string {
-  return `/members/${m['member-id']}/`
+  return memberPath(m['member-id'])
 }
 
 function memberInitials(name: string): string {
@@ -115,13 +116,17 @@ function primaryRoleLabel(m: Member): string {
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <PageHero
       variant="index"
-      eyebrow="ISO/TC 154 People"
+      bleed
+      eyebrow="People of TC 154"
       title="Members"
       lead="Experts from national bodies, liaisons, and the Committee Advisory Group who carry out TC 154's technical work — current and past."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--nodes"></div>
+      </template>
       <dl class="page__stats" v-if="isLoaded">
         <div><dt>{{ stats.total }}</dt><dd>total</dd></div>
         <div><dt>{{ stats.current }}</dt><dd>current</dd></div>
@@ -130,6 +135,7 @@ function primaryRoleLabel(m: Member): string {
       </dl>
     </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -210,16 +216,11 @@ function primaryRoleLabel(m: Member): string {
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-}
-
 .filter {
   background: #fff;
   border: 1px solid #e7e5e4;
@@ -271,7 +272,7 @@ function primaryRoleLabel(m: Member): string {
 .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
 .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
 .dark .filter__meta { color: #a8a29e; }
@@ -357,7 +358,7 @@ function primaryRoleLabel(m: Member): string {
   background: #f5f5f4; color: #57534e;
 }
 .dark .tag { background: #292524; color: #d6d3d1; }
-.tag--chair { background: var(--color-brand); color: #fff; }
+.tag--chair { background: var(--color-brand-fill); color: #fff; }
 .tag--leadership { background: #fef3c7; color: #92400e; }
 .dark .tag--leadership { background: rgb(245 158 11 / 0.2); color: #fcd34d; }
 .tag--deceased { background: #e7e5e4; color: #57534e; font-style: italic; text-transform: none; }

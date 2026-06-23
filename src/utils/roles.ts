@@ -1,4 +1,4 @@
-import { labelTable } from './labelTable'
+import { labelTable } from './labelTable.ts'
 
 const ROLE_LABELS: Record<string, string> = {
   chair: 'Chair',
@@ -17,5 +17,13 @@ const ROLE_LABELS: Record<string, string> = {
   technical_programme_manager: 'Technical Programme Manager',
   'technical-programme-manager': 'Technical Programme Manager',
 }
+
+export const LEADERSHIP_ROLE_IDS: ReadonlySet<string> = new Set([
+  'chair',
+  'technical_programme_manager',
+  'committee_manager',
+  'convenor',
+  'co_chair',
+])
 
 export const roleLabel = labelTable(ROLE_LABELS)

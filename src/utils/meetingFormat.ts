@@ -36,19 +36,6 @@ export function sessionVirtual(s: MeetingSession): string | null {
   return s.virtual_address
 }
 
-export function formatDate(raw?: string): string {
-  if (!raw) return ''
-  const s = String(raw)
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  if (m) {
-    const [, y, mo, d] = m
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    const monthIdx = parseInt(mo, 10) - 1
-    if (monthIdx >= 0 && monthIdx < 12) return `${parseInt(d, 10)} ${months[monthIdx]} ${y}`
-  }
-  return s
-}
-
 const ASSOC_ROLE_LABELS: Record<string, string> = {
   'co-organizer': 'Co-organizer',
   'cohost': 'Co-host',

@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
 import { standardStatusLabel, type Standard } from '../types/standard'
+import { standardPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
 
 const { standards, isLoaded, loadData } = useStandards()
@@ -57,14 +58,24 @@ const filtered = computed<Standard[]>(() => {
     }
     return true
   }).sort((a, b) => {
-    const an = a.iso?.name ?? ''
-    const bn = b.iso?.name ?? ''
-    return an.localeCompare(bn, undefined, { numeric: true, sensitivity: 'base' })
+    const validDate = (s: Standard) => {
+      const d = s.iso?.publication_date
+      if (!d) return ''
+      const year = parseInt(d.substring(0, 4), 10)
+      if (year > 2026 || year < 1900) return ''
+      return d
+    }
+    const ad = validDate(a)
+    const bd = validDate(b)
+    if (ad && bd) return bd.localeCompare(ad)
+    if (ad) return -1
+    if (bd) return 1
+    return (a.iso?.name ?? '').localeCompare(b.iso?.name ?? '', undefined, { numeric: true })
   })
 })
 
 function standardUrl(s: Standard): string {
-  return `/standards/${s.id}/`
+  return standardPath(s.id)
 }
 
 function statusLabel(s: Standard): string {
@@ -79,20 +90,24 @@ function groupLabel(g?: string): string {
 function publicationYear(s: Standard): string {
   const d = s.iso?.publication_date
   if (!d) return ''
-  const dt = new Date(d)
-  if (isNaN(dt.getTime())) return ''
-  return String(dt.getUTCFullYear())
+  const year = parseInt(d.substring(0, 4), 10)
+  if (year > 2026 || year < 1900) return ''
+  return String(year)
 }
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <PageHero
       variant="index"
-      eyebrow="ISO/TC 154 Deliverables"
+      bleed
+      eyebrow="Published deliverables"
       title="Standards"
       lead="Published International Standards, Technical Specifications, Technical Reports, and standards under development by ISO/TC 154."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--dots"></div>
+      </template>
       <dl class="page__stats" v-if="isLoaded">
         <div><dt>{{ standards.length }}</dt><dd>total</dd></div>
         <div><dt>{{ availableStatuses.length }}</dt><dd>statuses</dd></div>
@@ -100,6 +115,7 @@ function publicationYear(s: Standard): string {
       </dl>
     </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -175,15 +191,11 @@ function publicationYear(s: Standard): string {
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-}
 
 .filter {
   background: #fff;
@@ -237,7 +249,7 @@ function publicationYear(s: Standard): string {
 .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
 .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
 .dark .filter__meta { color: #a8a29e; }
@@ -331,5 +343,5 @@ function publicationYear(s: Standard): string {
   color: var(--color-blue-accent);
   font-weight: 600;
 }
-.dark .card__group, .dark .card__type { background: rgb(51 133 214 / 0.2); color: #94b6e8; }
+.dark .card__group, .dark .card__type { background: rgb(51 133 214 / 0.2); }
 </style>

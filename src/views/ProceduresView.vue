@@ -11,37 +11,45 @@ const procedures = computed(() => pages.value.filter(p => p.slug.startsWith('/pr
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <PageHero
-      variant="article"
-      eyebrow="ISO/TC 154"
+      variant="index"
+      bleed
+      eyebrow="Operating procedures"
       title="Procedures"
       lead="Operating procedures and submission processes used by ISO/TC 154 and its working groups."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--flow"></div>
+      </template>
       <dl class="page__stats" v-if="procedures.length">
         <div><dt>{{ procedures.length }}</dt><dd>documents</dd></div>
       </dl>
     </PageHero>
 
-    <div v-if="!isLoaded" class="loading">Loading…</div>
+    <div class="page page--wide">
+      <div class="procedures-shell">
+        <div v-if="!isLoaded" class="loading">Loading…</div>
 
-    <section v-if="procedures.length" class="procedure-list">
-      <article v-for="p in procedures" :key="p.slug" class="procedure-card">
-        <RouterLink :to="p.url" class="procedure-card__link">
-          <h2 class="procedure-card__title">{{ p.frontmatter.title || p.slug }}</h2>
-          <p v-if="p.frontmatter.wg" class="procedure-card__wg">{{ p.frontmatter.wg }}</p>
-        </RouterLink>
-      </article>
-    </section>
+        <section v-if="procedures.length" class="procedure-list">
+          <article v-for="p in procedures" :key="p.slug" class="procedure-card">
+            <RouterLink :to="p.url" class="procedure-card__link">
+              <h2 class="procedure-card__title">{{ p.frontmatter.title || p.slug }}</h2>
+              <p v-if="p.frontmatter.wg" class="procedure-card__wg">{{ p.frontmatter.wg }}</p>
+            </RouterLink>
+          </article>
+        </section>
 
-    <div v-else-if="isLoaded" class="empty">
-      <p>No procedures documented yet.</p>
+        <div v-else-if="isLoaded" class="empty">
+          <p>No procedures documented yet.</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+.procedures-shell { max-width: 48rem; }
 
 .procedure-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .procedure-card {

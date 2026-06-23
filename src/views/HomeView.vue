@@ -2,27 +2,29 @@
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { committee } from '../data/committee'
 import { useCountUp } from '../composables/useCountUp'
+import PageHero from '../components/PageHero.vue'
 
 const statsSectionRef = useTemplateRef<HTMLElement>('statsSection')
 const statsReady = ref(false)
 
 const standardsCount = useCountUp(committee.publishedStandards, statsReady)
-const participatingCount = useCountUp(committee.participatingMembers, statsReady)
-const establishedYear = useCountUp(committee.established, statsReady, 2200)
-const yearsActive = useCountUp(new Date().getFullYear() - committee.established, statsReady)
+const totalMembersCount = useCountUp(committee.totalMembers, statsReady)
+// Founded year is a fixed historical fact — never animate it as a count-up.
+const establishedYear = ref(committee.established)
+const activeGroupsCount = useCountUp(committee.activeGroups, statsReady)
 
 const headlineStandards = [
   { num: 'ISO 8601', what: 'Date & time', used: 'Every timestamp on the internet' },
-  { num: 'ISO 9735', what: 'EDIFACT', used: 'Electronic data interchange for global trade' },
-  { num: 'ISO 20022', what: 'Financial messaging', used: 'How banks speak to each other' },
-  { num: 'ISO 15000', what: 'ebXML', used: 'XML business frameworks for commerce' },
+  { num: 'ISO 9735', what: 'EDIFACT', used: 'Every electronic data interchange message' },
+  { num: 'ISO 7372', what: 'Trade Data Elements', used: 'Every data field in a customs declaration' },
+  { num: 'ISO 14533', what: 'Long-term signatures', used: 'Every verifiable electronic signature' },
 ]
 
 const stats = computed(() => [
-  { value: establishedYear, label: 'Founded', caption: 'Geneva, 1972 — the UN/EDIFACT era begins.' },
-  { value: yearsActive, label: 'Years active', caption: 'Continuous technical work across five decades.' },
-  { value: standardsCount, label: 'Published standards', caption: 'Foundational infrastructure for global commerce.' },
-  { value: participatingCount, label: 'P-members', caption: 'National bodies with voting rights.' },
+  { value: establishedYear, label: 'Founded', caption: 'Five decades of continuous technical work.' },
+  { value: standardsCount, label: 'Published standards', caption: 'Deployed across global trade infrastructure.' },
+  { value: activeGroupsCount, label: 'Active groups', caption: 'Working groups driving today’s programmes.' },
+  { value: totalMembersCount, label: 'Member bodies', caption: 'National bodies shaping every standard.' },
 ])
 
 const sections = [
@@ -30,7 +32,7 @@ const sections = [
     n: '01',
     label: 'Standards',
     to: '/standards/',
-    blurb: 'ISO 8601, EDIFACT, ISO 20022 — the syntax of international commerce. Browse the catalogue of every published and in-development standard.',
+    blurb: 'ISO 8601, EDIFACT, ISO 7372, ISO 14533 — the rules behind global trade. Browse every published and in-development standard.',
     accent: 'time',
   },
   {
@@ -93,35 +95,31 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="hero">
-    <div class="hero__grid" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
-
-    <div class="hero__inner">
-      <p class="hero__eyebrow">
-        <span class="hero__eyebrow-rule"></span>
-        {{ committee.name }} · since {{ committee.established }}
-      </p>
-
-      <h1 class="hero__title">
-        We write the syntax of
+  <div class="home-page">
+    <PageHero
+      variant="landing"
+      bleed
+      :eyebrow="`${committee.name} · since ${committee.established}`"
+      lead="Every timestamp in your logs. Every message in a customs declaration. Every signed contract that has to hold up in court twenty years from now. TC 154 publishes the standards these systems share — so they understand each other."
+    >
+      <template #decoration>
+        <div class="hero__grid" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="hero__glow" aria-hidden="true"></div>
+      </template>
+      <template #title>
+        <span class="hero__title-line">We <em class="hero__title-verb">give</em></span>
         <span class="hero__title-cycle" aria-roledescription="rotating tagline">
-          <span class="hero__title-accent" style="--i: 0;">international commerce</span>
-          <span class="hero__title-accent" style="--i: 1;">electronic interchange</span>
-          <span class="hero__title-accent" style="--i: 2;">interoperable systems</span>
-          <span class="hero__title-accent" style="--i: 3;">cross-border payments</span>
-          <span class="hero__title-accent" style="--i: 4;">every transaction</span>
-        </span>.
-      </h1>
-
-      <p class="hero__lead">
-        TC 154 writes the standards you never think about — the date and time formats in
-        every log file, the EDIFACT messages behind every customs declaration, the
-        financial messaging schemas behind every cross-border payment. Since 1972.
-      </p>
-
+          <span class="hero__title-accent">global commerce</span>
+          <span class="hero__title-accent">every interchange</span>
+          <span class="hero__title-accent">interoperable systems</span>
+          <span class="hero__title-accent">every digital transaction</span>
+          <span class="hero__title-accent">every cross-border handshake</span>
+        </span>
+        <span class="hero__title-line">a common language.</span>
+      </template>
       <dl class="hero__standards">
         <div v-for="s in headlineStandards" :key="s.num" class="hero__standard">
           <dt class="hero__standard-num">{{ s.num }}</dt>
@@ -131,8 +129,7 @@ onMounted(() => {
           </dd>
         </div>
       </dl>
-
-      <div class="hero__actions">
+      <template #actions>
         <RouterLink to="/standards/" class="hero__cta hero__cta--primary">
           Browse the catalogue
           <span aria-hidden="true">→</span>
@@ -140,63 +137,50 @@ onMounted(() => {
         <RouterLink to="/about/" class="hero__cta hero__cta--secondary">
           About the committee
         </RouterLink>
-      </div>
-    </div>
-  </section>
+      </template>
+    </PageHero>
 
-  <section id="stats" ref="statsSection" class="stats">
-    <div class="stats__inner">
-      <div v-for="stat in stats" :key="stat.label" class="stats__cell">
-        <span class="stats__value">{{ stat.value.value }}</span>
-        <span class="stats__label">{{ stat.label }}</span>
-        <span class="stats__caption">{{ stat.caption }}</span>
-      </div>
-    </div>
-  </section>
+    <div class="page page--wide">
+      <section id="stats" ref="statsSection" class="stats">
+        <div class="stats__inner">
+          <div v-for="stat in stats" :key="stat.label" class="stats__cell">
+            <span class="stats__value">{{ stat.value.value }}</span>
+            <span class="stats__label">{{ stat.label }}</span>
+            <span class="stats__caption">{{ stat.caption }}</span>
+          </div>
+        </div>
+      </section>
 
-  <section class="sections">
-    <div class="sections__inner">
-      <header class="sections__head">
-        <p class="sections__eyebrow">— Explore</p>
-        <h2 class="sections__title">
-          Six ways into the work of
-          <span class="sections__title-accent">TC&nbsp;154</span>.
-        </h2>
-      </header>
+      <section class="sections">
+        <div class="sections__inner">
+          <header class="sections__head">
+            <p class="sections__eyebrow">— Explore</p>
+            <h2 class="sections__title">
+              Six ways into the work of
+              <span class="sections__title-accent">TC&nbsp;154</span>.
+            </h2>
+          </header>
 
-      <ul class="sections__list">
-        <li v-for="card in sections" :key="card.to">
-          <RouterLink :to="card.to" class="section-card" :data-accent="card.accent">
-            <span class="section-card__n">{{ card.n }}</span>
-            <div class="section-card__body">
-              <h3 class="section-card__heading">{{ card.label }}</h3>
-              <p class="section-card__blurb">{{ card.blurb }}</p>
-            </div>
-            <span class="section-card__arrow" aria-hidden="true">→</span>
-          </RouterLink>
-        </li>
-      </ul>
+          <ul class="sections__list">
+            <li v-for="card in sections" :key="card.to">
+              <RouterLink :to="card.to" class="section-card" :data-accent="card.accent">
+                <span class="section-card__n">{{ card.n }}</span>
+                <div class="section-card__body">
+                  <h3 class="section-card__heading">{{ card.label }}</h3>
+                  <p class="section-card__blurb">{{ card.blurb }}</p>
+                </div>
+                <span class="section-card__arrow" aria-hidden="true">→</span>
+              </RouterLink>
+            </li>
+          </ul>
+        </div>
+      </section>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
-.hero {
-  position: relative;
-  padding: 6rem 1.5rem 5rem;
-  overflow: hidden;
-  border-bottom: 1px solid #e7e5e4;
-  background:
-    radial-gradient(ellipse at top right, rgb(185 28 28 / 0.05), transparent 60%),
-    radial-gradient(ellipse at bottom left, rgb(30 58 138 / 0.04), transparent 50%);
-}
-.dark .hero {
-  border-bottom-color: #292524;
-  background:
-    radial-gradient(ellipse at top right, rgb(248 113 113 / 0.07), transparent 60%),
-    radial-gradient(ellipse at bottom left, rgb(148 182 232 / 0.04), transparent 50%);
-}
-
+/* HERO decoration — grid + radial glow layered behind PageHero */
 .hero__grid {
   position: absolute;
   inset: 0;
@@ -204,7 +188,6 @@ onMounted(() => {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(2, 1fr);
   pointer-events: none;
-  z-index: 0;
 }
 .hero__grid span {
   border-right: 1px solid rgb(120 113 108 / 0.06);
@@ -212,100 +195,84 @@ onMounted(() => {
 .dark .hero__grid span {
   border-right-color: rgb(255 255 255 / 0.025);
 }
-
-.hero__inner {
-  position: relative;
-  z-index: 1;
-  max-width: 64rem;
-  margin: 0 auto;
+.hero__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top right, rgb(185 28 28 / 0.05), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgb(30 58 138 / 0.04), transparent 50%);
+}
+.dark .hero__glow {
+  background:
+    radial-gradient(ellipse at top right, rgb(248 113 113 / 0.07), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgb(148 182 232 / 0.04), transparent 50%);
 }
 
-.hero__eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
+/* Rotating verb animation — preserves homepage identity inside the title slot */
+.hero__title-line {
+  display: block;
+}
+.hero__title-verb {
+  font-style: italic;
   font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-brand);
-  margin: 0 0 2.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.dark .hero__eyebrow { color: #94b6e8; }
-.hero__eyebrow-rule {
-  display: inline-block;
-  width: 2.5rem;
-  height: 1px;
-  background: currentColor;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
 }
 
-.hero__title {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
-  color: #1c1917;
-  margin: 0 0 2rem;
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+.hero__title-cycle {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0.35em;
+  padding-bottom: 0.25em;
 }
-.dark .hero__title { color: #fafaf9; }
+.hero__title-cycle::before {
+  content: "every cross-border handshake";
+  visibility: hidden;
+  white-space: nowrap;
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+}
 .hero__title-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
   font-style: italic;
   font-weight: 400;
   color: var(--color-brand);
   font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
+  animation-name: hero-cycle;
+  animation-duration: 10s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-iteration-count: infinite;
 }
-.dark .hero__title-accent { color: #94b6e8; }
+.hero__title-accent:nth-child(1) { animation-delay: 0s; }
+.hero__title-accent:nth-child(2) { animation-delay: 2s; }
+.hero__title-accent:nth-child(3) { animation-delay: 4s; }
+.hero__title-accent:nth-child(4) { animation-delay: 6s; }
+.hero__title-accent:nth-child(5) { animation-delay: 8s; }
 
-.hero__title-cycle {
-  position: relative;
-  display: inline-block;
-  vertical-align: baseline;
-  min-width: 11ch;
-}
-.hero__title-cycle::before {
-  content: "electronic interchange";
-  visibility: hidden;
-  white-space: nowrap;
-  font-style: italic;
-  font-weight: 400;
-}
-.hero__title-cycle .hero__title-accent {
-  position: absolute;
-  inset: 0;
-  white-space: nowrap;
-  opacity: 0;
-  animation: hero-cycle 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  animation-delay: calc(var(--i) * 2.4s);
-}
 @keyframes hero-cycle {
-  0% { opacity: 0; transform: translateY(0.18em); }
-  3%, 17% { opacity: 1; transform: translateY(0); }
-  20%, 100% { opacity: 0; transform: translateY(-0.18em); }
+  0%   { opacity: 0; transform: translate3d(0, 100%, 0); }
+  5%   { opacity: 1; transform: translate3d(0, 0, 0); }
+  20%  { opacity: 1; transform: translate3d(0, 0, 0); }
+  25%  { opacity: 0; transform: translate3d(0, -100%, 0); }
+  100% { opacity: 0; transform: translate3d(0, -100%, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero__title-cycle .hero__title-accent {
+  .hero__title-cycle { overflow: visible; }
+  .hero__title-accent {
     position: static;
-    opacity: 1;
-    transform: none;
     animation: none;
+    opacity: 1;
   }
-  .hero__title-cycle .hero__title-accent:not(:first-child) { display: none; }
-  .hero__title-cycle::before { display: none; }
+  .hero__title-accent:not(:first-child) { display: none; }
+  .hero__title-cycle::before { content: none; }
 }
 
-.hero__lead {
-  font-family: var(--font-sans);
-  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
-  line-height: 1.6;
-  color: #44403c;
-  max-width: 42rem;
-  margin: 0 0 3rem;
-}
-.dark .hero__lead { color: #d6d3d1; }
-
+/* HERO standards grid (slotted into PageHero default slot) */
 .hero__standards {
   margin: 0 0 3rem;
   display: grid;
@@ -347,7 +314,6 @@ onMounted(() => {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-.dark .hero__standard-num { color: #94b6e8; }
 .hero__standard-body {
   margin: 0;
   display: flex;
@@ -371,12 +337,7 @@ onMounted(() => {
 }
 .dark .hero__standard-used { color: #a8a29e; }
 
-.hero__actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
+/* HERO CTAs (slotted into PageHero #actions) */
 .hero__cta {
   display: inline-flex;
   align-items: center;
@@ -390,9 +351,9 @@ onMounted(() => {
   transition: all 0.2s;
 }
 .hero__cta--primary {
-  background: var(--color-brand);
+  background: var(--color-brand-fill);
   color: #fff;
-  border: 1px solid var(--color-brand);
+  border: 1px solid var(--color-brand-fill);
 }
 .hero__cta--primary:hover {
   background: var(--color-brand-hover);
@@ -423,8 +384,9 @@ onMounted(() => {
   background: rgb(255 255 255 / 0.05);
 }
 
-/* STATS */
+/* STATS — full-bleed band inside the page container */
 .stats {
+  margin: 0 -1.5rem;
   padding: 4rem 1.5rem;
   background: #fafaf9;
   border-bottom: 1px solid #e7e5e4;
@@ -469,7 +431,6 @@ onMounted(() => {
   font-variant-numeric: tabular-nums;
   font-variation-settings: 'opsz' 144;
 }
-.dark .stats__value { color: #94b6e8; }
 .stats__label {
   font-family: var(--font-sans);
   font-size: 0.75rem;
@@ -492,7 +453,7 @@ onMounted(() => {
 
 /* SECTIONS */
 .sections {
-  padding: 5rem 1.5rem 6rem;
+  padding: 5rem 0 6rem;
 }
 .sections__inner {
   max-width: 80rem;
@@ -527,7 +488,6 @@ onMounted(() => {
   font-weight: 400;
   color: var(--color-brand);
 }
-.dark .sections__title-accent { color: #94b6e8; }
 
 .sections__list {
   list-style: none;
@@ -584,7 +544,6 @@ onMounted(() => {
   font-variant-numeric: tabular-nums;
   padding-top: 0.375rem;
 }
-.dark .section-card__n { color: #94b6e8; }
 
 .section-card__body {
   display: flex;
@@ -622,5 +581,4 @@ onMounted(() => {
   transform: translateX(4px);
 }
 .dark .section-card__arrow { color: #a8a29e; }
-.dark .section-card:hover .section-card__arrow { color: #94b6e8; }
 </style>

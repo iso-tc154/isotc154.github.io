@@ -5,6 +5,7 @@ import { useProjects } from '../composables/useProjects'
 import { useGroups } from '../composables/useGroups'
 import { projectStatusLabel, type Project } from '../types/project'
 import { asciidocify } from '../utils/asciidoc'
+import PageHero from '../components/PageHero.vue'
 
 const route = useRoute()
 const { projects, isLoaded, loadData } = useProjects()
@@ -32,21 +33,33 @@ const owningGroups = computed(() => {
     <p class="detail__loading">Loading…</p>
   </div>
   <div class="detail" v-else-if="!project">
-    <header class="detail__header">
-      <h1>Project not found</h1>
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow="Not found"
+      title="Project not found"
+    />
+    <div class="detail__body">
       <RouterLink to="/projects/" class="detail__back">← All projects</RouterLink>
-    </header>
+    </div>
   </div>
   <article class="detail" v-else :key="project.id">
-    <header class="detail__header">
-      <RouterLink to="/projects/" class="detail__back">← All projects</RouterLink>
-      <div class="detail__eyebrow-row">
+    <PageHero
+      variant="detail"
+      bleed
+      :eyebrow="`${project.name} · Stage ${project.stage ?? '—'}`"
+      :title="project.title"
+    >
+      <div class="detail__badges">
         <span class="detail__status" :class="`detail__status--${project.status ?? 'unknown'}`">{{ projectStatusLabel(project.status) }}</span>
         <span v-if="project.stage" class="detail__stage">Stage {{ project.stage }}</span>
       </div>
-      <p class="detail__number">{{ project.name }}</p>
-      <h1>{{ project.title }}</h1>
-    </header>
+      <template #breadcrumb>
+        <RouterLink to="/projects/">
+          Projects
+        </RouterLink>
+      </template>
+    </PageHero>
 
     <div class="detail__grid">
       <div class="detail__main">
@@ -82,13 +95,12 @@ const owningGroups = computed(() => {
 </template>
 
 <style scoped>
-.detail { max-width: 64rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.detail { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
 .detail__loading { color: #78716c; padding: 4rem 0; text-align: center; }
-.detail__header { margin-bottom: 2rem; }
-.detail__back { display: inline-block; font-size: 0.875rem; font-weight: 500; color: var(--color-blue-accent); text-decoration: none; margin-bottom: 1rem; }
+.detail__body { padding-top: 1.5rem; }
+.detail__back { display: inline-block; font-size: 0.875rem; font-weight: 500; color: var(--color-blue-accent); text-decoration: none; }
 .detail__back:hover { text-decoration: underline; }
-.dark .detail__back { color: #94b6e8; }
-.detail__eyebrow-row { display: flex; flex-wrap: wrap; gap: 0.375rem; align-items: center; margin-bottom: 0.5rem; }
+.detail__badges { display: flex; flex-wrap: wrap; gap: 0.375rem; align-items: center; margin-bottom: 0.75rem; }
 .detail__status { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.25rem 0.625rem; border-radius: 0.25rem; background: #f5f5f4; color: #57534e; }
 .dark .detail__status { background: #292524; color: #d6d3d1; }
 .detail__status--current { background: rgb(30 58 138 / 0.1); color: var(--color-blue-accent); }
@@ -99,12 +111,8 @@ const owningGroups = computed(() => {
 .dark .detail__status--withdrawn { background: #292524; color: #a8a29e; }
 .detail__stage { font-size: 0.75rem; font-family: ui-monospace, monospace; color: #78716c; }
 .dark .detail__stage { color: #a8a29e; }
-.detail__number { font-family: ui-monospace, monospace; font-size: 1rem; font-weight: 600; color: #78716c; margin: 0 0 0.5rem; }
-.dark .detail__number { color: #a8a29e; }
-.detail__header h1 { font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: #1c1917; margin: 0; letter-spacing: -0.01em; line-height: 1.25; }
-.dark .detail__header h1 { color: #fafaf9; }
 
-.detail__grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+.detail__grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2rem; }
 @media (min-width: 1024px) { .detail__grid { grid-template-columns: minmax(0, 1fr) 20rem; } }
 
 .detail__section { margin-bottom: 2rem; }
@@ -118,7 +126,7 @@ const owningGroups = computed(() => {
 
 .external { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem; background: #fafaf9; border-radius: 0.375rem; font-size: 0.875rem; color: var(--color-blue-accent); text-decoration: none; word-break: break-all; }
 .external:hover { background: #e0e7ff; }
-.dark .external { background: #292524; color: #94b6e8; }
+.dark .external { background: #292524; }
 .dark .external:hover { background: #44403c; }
 
 .detail__aside { display: flex; flex-direction: column; gap: 1rem; }
@@ -133,7 +141,6 @@ const owningGroups = computed(() => {
 .dark .groups a { background: #292524; }
 .dark .groups a:hover { background: #44403c; }
 .groups strong { color: var(--color-blue-accent); font-size: 0.9375rem; font-weight: 700; }
-.dark .groups strong { color: #94b6e8; }
 .groups span { color: #78716c; font-size: 0.8125rem; }
 .dark .groups span { color: #a8a29e; }
 </style>

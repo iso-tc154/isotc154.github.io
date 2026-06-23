@@ -5,7 +5,9 @@ import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
 import { groupCategoryLabel, type Group, type GroupCollaborativeParty } from '../types/group'
 import { asciidocify } from '../utils/asciidoc'
+import { memberPath, projectPath } from '../utils/urn'
 import type { Member } from '../types/member'
+import PageHero from '../components/PageHero.vue'
 
 const route = useRoute()
 const { groups, isLoaded, loadData } = useGroups()
@@ -51,11 +53,11 @@ function memberName(id: string): string {
 }
 
 function memberUrl(id: string): string {
-  return `/members/${id}/`
+  return memberPath(id)
 }
 
 function projectUrl(id: string): string {
-  return `/projects/${id}/`
+  return projectPath(id)
 }
 
 function memberInitials(name: string): string {
@@ -85,20 +87,34 @@ const managers = computed<string[]>(() => {
   </div>
 
   <div class="detail" v-else-if="!group">
-    <header class="detail__header">
-      <h1>Group not found</h1>
-      <p>No group matches <code>{{ route.params.id }}</code>.</p>
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow="Not found"
+      title="Group not found"
+      :lead="`No group matches ${route.params.id}.`"
+    />
+    <div class="detail__body">
       <RouterLink to="/groups/" class="detail__back">← All groups</RouterLink>
-    </header>
+    </div>
   </div>
 
   <article class="detail" v-else :key="group.id">
-    <header class="detail__header">
-      <p class="detail__eyebrow">{{ groupCategoryLabel(group.category) }}</p>
-      <h1 v-html="group.name"></h1>
-      <p class="detail__title" v-if="group.title">{{ group.title }}</p>
-      <RouterLink to="/groups/" class="detail__back">← All groups</RouterLink>
-    </header>
+    <PageHero
+      variant="detail"
+      bleed
+      :eyebrow="`${groupCategoryLabel(group.category)}`"
+      :lead="group.title"
+    >
+      <template #title>
+        <span v-html="group.name"></span>
+      </template>
+      <template #breadcrumb>
+        <RouterLink to="/groups/">
+          Groups
+        </RouterLink>
+      </template>
+    </PageHero>
 
     <div class="detail__grid">
       <div class="detail__main">
@@ -229,46 +245,19 @@ const managers = computed<string[]>(() => {
 
 <style scoped>
 .detail {
-  max-width: 72rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 0 1.5rem 4rem;
 }
 .detail__loading { color: #78716c; padding: 4rem 0; text-align: center; }
-.detail__header { margin-bottom: 2rem; }
-.detail__eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .detail__eyebrow { color: #94b6e8; }
-.detail__header h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0 0 0.5rem;
-  letter-spacing: -0.01em;
-}
-.dark .detail__header h1 { color: #fafaf9; }
-.detail__title {
-  font-size: 1.125rem;
-  color: #57534e;
-  margin: 0 0 1rem;
-}
-.dark .detail__title { color: #d6d3d1; }
 .detail__back {
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-blue-accent);
   text-decoration: none;
-  margin-top: 0.5rem;
 }
 .detail__back:hover { text-decoration: underline; }
-.dark .detail__back { color: #94b6e8; }
 
 .detail__grid {
   display: grid;
@@ -301,7 +290,6 @@ const managers = computed<string[]>(() => {
 .prose :deep(p) { margin: 0 0 0.875rem; }
 .prose :deep(p:last-child) { margin-bottom: 0; }
 .prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; }
-.dark .prose :deep(a) { color: #94b6e8; }
 .prose :deep(ul), .prose :deep(ol) { margin: 0 0 0.875rem; padding-left: 1.25rem; }
 .prose :deep(li) { margin-bottom: 0.25rem; }
 .prose :deep(code) {
@@ -341,7 +329,7 @@ const managers = computed<string[]>(() => {
   text-decoration: none;
 }
 .detail__projects li a:hover { background: #e0e7ff; }
-.dark .detail__projects li a { background: #292524; color: #94b6e8; }
+.dark .detail__projects li a { background: #292524; }
 .dark .detail__projects li a:hover { background: #44403c; }
 
 .detail__party {
@@ -373,7 +361,6 @@ const managers = computed<string[]>(() => {
 }
 .pill a { color: var(--color-blue-accent); text-decoration: none; }
 .dark .pill { background: #292524; }
-.dark .pill a { color: #94b6e8; }
 
 .detail__aside {
   display: flex;
@@ -450,5 +437,4 @@ const managers = computed<string[]>(() => {
   text-decoration: none;
 }
 .detail__leadership a:hover { text-decoration: underline; }
-.dark .detail__leadership a { color: #94b6e8; }
 </style>

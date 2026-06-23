@@ -28,6 +28,25 @@
   background-color: var(--color-slate-800);
 }
 
+/* ─── Page containers ───────────────────────────────────────
+   Every view's outermost wrapper carries .page plus one width
+   modifier. The hero sits inside this wrapper, so the same
+   horizontal rhythm applies across the site. */
+
+.page {
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+.page--narrow { max-width: 48rem; }
+.page--detail { max-width: 56rem; }
+.page--medium { max-width: 64rem; }
+.page--wide   { max-width: 80rem; }
+.page--full   { max-width: none; }
+
+@media (max-width: 640px) {
+  .page { padding: 1.5rem 1.25rem 3rem; }
+}
+
 /* Hero entrance — staggered fade-up driven by --nth custom property.
    Apply .hero-enter to eyebrow/title/lead/etc with --nth:0/1/2/3. */
 .hero-enter {
@@ -71,7 +90,6 @@
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
-.dark .page__stats dt { color: #94b6e8; }
 .page__stats dd {
   margin: 0.375rem 0 0;
   font-family: var(--font-sans);
@@ -98,3 +116,182 @@
 @media (prefers-reduced-motion: reduce) {
   .detail__header > * { opacity: 1; animation: none; }
 }
+
+/* ─── Hero patterns ─────────────────────────────────────────
+   Five-pattern vocabulary themed to TC 154's scope — "processes,
+   elements, and documents for the interchange of business data."
+
+   Each pattern is a self-contained `.hero-pattern--<name>` class
+   that fills its parent (the PageHero `#decoration` slot's
+   `.ph__decoration` is `position:absolute; inset:0`). All patterns
+   are pure CSS — no SVG assets, no JS.
+
+   Pattern       →  TC 154 scope tie-in
+   ─────────────────────────────────────
+   --dots        →  data elements (regular catalogue grid)
+   --rules       →  documents (columnar, page-edge feel)
+   --rings       →  structure (groups within the committee)
+   --nodes       →  interchange / network
+   --flow        →  processes (repeated chevron marks)
+
+   Modifier classes (composable):
+   --tr          →  concentrate pattern in the top-right
+   --bl          →  concentrate pattern in the bottom-left
+   --full        →  span the entire hero (default; no class needed)
+   --subtle      →  lower opacity for already-busy pages
+
+   Colour: all patterns use the blue accent family so they sit
+   naturally on the brand palette without competing with the ISO
+   red used for emphasis text. Light mode uses the saturated
+   blue; dark mode uses a paler blue for visibility. */
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* DOTS — regular dot grid, fading toward the bottom-left */
+.hero-pattern--dots {
+  background-image: radial-gradient(circle, rgb(30 58 138 / 0.10) 1px, transparent 1.5px);
+  background-size: 1.5rem 1.5rem;
+  background-position: top right;
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, black 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at top right, black 0%, black 30%, transparent 75%);
+}
+.dark .hero-pattern--dots {
+  background-image: radial-gradient(circle, rgb(148 182 232 / 0.14) 1px, transparent 1.5px);
+}
+
+/* RULES — vertical column rules, masked toward the bottom */
+.hero-pattern--rules {
+  background-image:
+    linear-gradient(to right, rgb(30 58 138 / 0.08) 1px, transparent 1px);
+  background-size: 8rem 100%;
+  background-position: top right;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 90%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 90%);
+}
+.dark .hero-pattern--rules {
+  background-image: linear-gradient(to right, rgb(148 182 232 / 0.10) 1px, transparent 1px);
+}
+
+/* RINGS — concentric circles anchored to the top-right corner */
+.hero-pattern--rings {
+  background:
+    radial-gradient(circle at top right,
+      transparent 28%,
+      rgb(30 58 138 / 0.09) 28.4%, rgb(30 58 138 / 0.09) 28.8%,
+      transparent 29.2%,
+      transparent 42%,
+      rgb(30 58 138 / 0.07) 42.4%, rgb(30 58 138 / 0.07) 42.8%,
+      transparent 43.2%,
+      transparent 58%,
+      rgb(30 58 138 / 0.05) 58.4%, rgb(30 58 138 / 0.05) 58.8%,
+      transparent 59.2%
+    );
+  background-size: 32rem 32rem;
+  background-position: top right;
+  background-repeat: no-repeat;
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, transparent 80%);
+  mask-image: radial-gradient(ellipse at top right, black 0%, transparent 80%);
+}
+.dark .hero-pattern--rings {
+  background:
+    radial-gradient(circle at top right,
+      transparent 28%,
+      rgb(148 182 232 / 0.12) 28.4%, rgb(148 182 232 / 0.12) 28.8%,
+      transparent 29.2%,
+      transparent 42%,
+      rgb(148 182 232 / 0.10) 42.4%, rgb(148 182 232 / 0.10) 42.8%,
+      transparent 43.2%,
+      transparent 58%,
+      rgb(148 182 232 / 0.08) 58.4%, rgb(148 182 232 / 0.08) 58.8%,
+      transparent 59.2%
+    );
+  background-size: 32rem 32rem;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+/* NODES — dot lattice with diagonal connectors (interchange) */
+.hero-pattern--nodes {
+  background-image:
+    radial-gradient(circle, rgb(30 58 138 / 0.14) 1.5px, transparent 2px),
+    linear-gradient(45deg, rgb(30 58 138 / 0.05) 1px, transparent 1px),
+    linear-gradient(-45deg, rgb(30 58 138 / 0.05) 1px, transparent 1px);
+  background-size: 3rem 3rem, 3rem 3rem, 3rem 3rem;
+  background-position: top right;
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, black 35%, transparent 85%);
+  mask-image: radial-gradient(ellipse at top right, black 0%, black 35%, transparent 85%);
+}
+.dark .hero-pattern--nodes {
+  background-image:
+    radial-gradient(circle, rgb(148 182 232 / 0.18) 1.5px, transparent 2px),
+    linear-gradient(45deg, rgb(148 182 232 / 0.08) 1px, transparent 1px),
+    linear-gradient(-45deg, rgb(148 182 232 / 0.08) 1px, transparent 1px);
+  background-size: 3rem 3rem, 3rem 3rem, 3rem 3rem;
+}
+
+/* FLOW — repeated chevron marks, diagonal placement (processes) */
+.hero-pattern--flow {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 1.5rem,
+    rgb(30 58 138 / 0.08) 1.5rem,
+    rgb(30 58 138 / 0.08) 1.5625rem,
+    transparent 1.5625rem,
+    transparent 3rem
+  );
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, black 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse at top right, black 0%, black 30%, transparent 80%);
+}
+.dark .hero-pattern--flow {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 1.5rem,
+    rgb(148 182 232 / 0.10) 1.5rem,
+    rgb(148 182 232 / 0.10) 1.5625rem,
+    transparent 1.5625rem,
+    transparent 3rem
+  );
+}
+
+/* Modifiers — placement & intensity */
+
+/* Bottom-left placement */
+.hero-pattern--bl {
+  background-position: bottom left !important;
+  -webkit-mask-image: radial-gradient(ellipse at bottom left, black 0%, black 30%, transparent 80%) !important;
+  mask-image: radial-gradient(ellipse at bottom left, black 0%, black 30%, transparent 80%) !important;
+}
+
+/* Top-right placement (most patterns default here; this is an explicit marker) */
+.hero-pattern--tr {
+  background-position: top right !important;
+}
+
+/* Subtle — halve the opacity for pages with busy bodies */
+.hero-pattern--subtle {
+  opacity: 0.5;
+}
+
+/* Full bleed — explicitly mark full-coverage (no mask change, mostly documentary) */
+.hero-pattern--full {
+  /* no-op: default behaviour already covers the full parent */
+}
+
+@media (max-width: 640px) {
+  /* On small screens, the hero shrinks — scale patterns down so they don't dominate */
+  .hero-pattern { opacity: 0.7; }
+  .hero-pattern--subtle { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Patterns are static — no special handling needed, but keep this here
+     as documentation that we have considered reduced motion. */
+}
+

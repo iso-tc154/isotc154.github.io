@@ -2,13 +2,13 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useLiaisons } from '../composables/useLiaisons'
-import { useTheme } from '../composables/useTheme'
 import type { Liaison } from '../types/organization'
+import { liaisonPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
+import OrgLogo from '../components/OrgLogo.vue'
 
 const { liaisons, isLoaded, loadData } = useLiaisons()
 const router = useRouter()
-const { isDark } = useTheme()
 
 const searchQuery = ref('')
 const selectedCategory = ref('')
@@ -40,15 +40,7 @@ const filtered = computed<Liaison[]>(() => {
 })
 
 function liaisonUrl(l: Liaison): string {
-  return `/liaisons/${l.id}/`
-}
-
-function logoUrl(l: Liaison): string | null {
-  const explicit = isDark.value ? (l.logo_dark ?? l.logo_light) : (l.logo_light ?? l.logo_dark)
-  const candidate = explicit ?? l.logo
-  if (!candidate) return null
-  if (candidate.startsWith('http') || candidate.startsWith('/')) return candidate
-  return `/assets/images/liaisons/${candidate}`
+  return liaisonPath(l.id)
 }
 
 function categoryLabel(cat: string): string {
@@ -61,13 +53,17 @@ function categoryLabel(cat: string): string {
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <PageHero
       variant="index"
-      eyebrow="External organizations"
+      bleed
+      eyebrow="External liaisons"
       title="Liaisons"
       lead="Organizations in liaison with ISO/TC 154 — Category A (active cooperation), Category B (kept informed), and other external partners."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--nodes"></div>
+      </template>
       <dl class="page__stats" v-if="isLoaded">
         <div><dt>{{ stats.total }}</dt><dd>total</dd></div>
         <div><dt>{{ stats.catA }}</dt><dd>category A</dd></div>
@@ -75,6 +71,7 @@ function categoryLabel(cat: string): string {
       </dl>
     </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -117,10 +114,16 @@ function categoryLabel(cat: string): string {
     <ul v-else class="grid">
       <li v-for="l in filtered" :key="l.id">
         <a :href="liaisonUrl(l)" class="card" @click.prevent="router.push(liaisonUrl(l))">
-          <div class="card__logo">
-            <img v-if="logoUrl(l)" :src="logoUrl(l) ?? undefined" :alt="l.short_name ?? l.name" loading="lazy" />
-            <span v-else class="card__logo-fallback">{{ (l.short_name ?? l.name).charAt(0) }}</span>
-          </div>
+          <OrgLogo
+            :logo="l.logo"
+            :logo_light="l.logo_light"
+            :logo_dark="l.logo_dark"
+            asset-prefix="/assets/images/liaisons/"
+            size="xl"
+            radius="0.5rem"
+            :fallback-text="l.short_name ?? l.name"
+            :alt="l.short_name ?? l.name"
+          />
           <div class="card__body">
             <h3 class="card__name">{{ l.short_name ?? l.name }}</h3>
             <p class="card__full-name" v-if="l.short_name">{{ l.name }}</p>
@@ -129,11 +132,11 @@ function categoryLabel(cat: string): string {
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
 .filter { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
 .dark .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
@@ -152,7 +155,7 @@ function categoryLabel(cat: string): string {
 .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
 .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
 .dark .filter__meta { color: #a8a29e; }
@@ -171,16 +174,11 @@ function categoryLabel(cat: string): string {
 .card:hover { border-color: var(--color-blue-accent); box-shadow: 0 4px 12px rgb(30 58 138 / 0.08); transform: translateY(-2px); }
 .dark .card:hover { border-color: #5379bf; box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
 
-.card__logo { width: 4rem; height: 4rem; border-radius: 0.5rem; background: #fafaf9; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; padding: 0.5rem; }
-.dark .card__logo { background: #292524; }
-.card__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.card__logo-fallback { font-size: 1.5rem; font-weight: 700; color: var(--color-blue-accent); }
-.dark .card__logo-fallback { color: #94b6e8; }
 .card__body { flex: 1; min-width: 0; }
 .card__name { font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0 0 0.125rem; }
 .dark .card__name { color: #fafaf9; }
 .card__full-name { font-size: 0.8125rem; color: #78716c; margin: 0 0 0.5rem; line-height: 1.4; }
 .dark .card__full-name { color: #a8a29e; }
 .card__category { display: inline-block; padding: 0.125rem 0.5rem; background: #e0e7ff; color: var(--color-blue-accent); border-radius: 0.25rem; font-size: 0.6875rem; font-weight: 600; }
-.dark .card__category { background: rgb(51 133 214 / 0.2); color: #94b6e8; }
+.dark .card__category { background: rgb(51 133 214 / 0.2); }
 </style>

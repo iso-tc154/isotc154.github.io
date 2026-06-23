@@ -5,15 +5,27 @@
       <div class="reading-progress-fill" :style="{ '--progress': readingProgress + '%' }"></div>
     </div>
 
-    <!-- Back link -->
-    <button @click="$router.back()" class="std-page__back back-link animate-up" style="--nth: 1">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-link__icon"><path d="m15 18-6-6 6-6"/></svg>
-      Back to results
-    </button>
-
     <!-- Header -->
-    <header class="std-page__header res-detail-header animate-up" style="--nth: 2">
-      <div class="std-page__meta res-detail-meta">
+    <PageHero
+      variant="detail"
+      bleed
+      :eyebrow="resolution.is_acclamation
+        ? 'Acclamation'
+        : resolution.source_type === 'plenary'
+          ? 'Plenary resolution'
+          : resolution.source_type === 'ballots'
+            ? 'Ballot resolution'
+            : 'Resolution'"
+      :title="resolution.title"
+      class="res-hero"
+    >
+      <template #breadcrumb>
+        <RouterLink :to="{ name: 'resolutions' }">
+          All resolutions
+        </RouterLink>
+      </template>
+
+      <div class="res-hero__meta">
         <span v-if="resolution.is_acclamation" class="std-page__badge res-detail-badge--acclamation">Acclamation</span>
         <span v-else-if="resolution.id" class="std-page__badge font-mono badge-id">{{ resolution.id }}</span>
 
@@ -35,19 +47,20 @@
         </router-link>
 
         <span v-if="resolution.meeting_date" class="std-page__badge badge-date">{{ formatDate(resolution.meeting_date) }}</span>
-        <span v-if="!resolution.is_acclamation" class="std-page__badge">
-          <template v-if="resolution.source_type === 'plenary'">Plenary resolution</template>
-          <template v-else-if="resolution.source_type === 'ballots'">Ballot resolution</template>
-          <template v-else>Resolution</template>
-        </span>
       </div>
-
-      <h1 v-if="resolution.title" class="std-page__title res-detail-title">{{ resolution.title }}</h1>
 
       <p v-if="resolution.source_title" class="res-detail-subtitle">
         {{ resolution.source_title }}
       </p>
-    </header>
+    </PageHero>
+
+    <!-- Prev / Next Navigation -->
+    <PrevNextNav
+      :prev="prevNav"
+      :next="nextNav"
+      :context-label="meetingResolutions.length > 1 ? `Resolutions of ${meetingLinkLabel}` : 'Adjacent resolutions'"
+      class="res-detail-nav"
+    />
 
     <!-- URN Identifier -->
     <div v-if="resolution.urn" class="urn-bar animate-up" style="--nth: 3">
@@ -149,35 +162,6 @@
         </div>
       </section>
 
-      <!-- Prev / Next Navigation -->
-      <nav class="res-navigation animate-up" style="--nth: 10" aria-label="Resolution navigation">
-        <router-link
-          v-if="prevResolution"
-          :to="prevResolution.path"
-          class="res-nav-card res-nav-card--prev"
-        >
-          <span class="res-nav-label">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            Previous
-          </span>
-          <span class="res-nav-title">{{ prevResolution.title || prevResolution.id }}</span>
-        </router-link>
-        <div v-else class="res-nav-empty"></div>
-
-        <router-link
-          v-if="nextResolution"
-          :to="nextResolution.path"
-          class="res-nav-card res-nav-card--next"
-        >
-          <span class="res-nav-label">
-            Next
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-          </span>
-          <span class="res-nav-title">{{ nextResolution.title || nextResolution.id }}</span>
-        </router-link>
-        <div v-else class="res-nav-empty"></div>
-      </nav>
-
     </div>
   </div>
 
@@ -233,6 +217,10 @@ import { asciidocify } from '../utils/asciidoc'
 import { getActionColor } from '../data/actionTypes'
 import { formatDate } from '../utils/format'
 import { useClipboard } from '../composables/useClipboard'
+import { createNeighborNav } from '../composables/useNeighborNav'
+import PageHero from '../components/PageHero.vue'
+import PrevNextNav from '../components/PrevNextNav.vue'
+import { meetingSourceFromParts, meetingSourceShortTitle } from '../domain/meetingSource'
 
 const router = useRouter()
 const route = useRoute()
@@ -300,51 +288,41 @@ const meeting = computed(() => {
 const meetingLinkLabel = computed(() => {
   const res = resolution.value
   if (!res) return ''
-  return meetingTitleFromSource(res.source_type, res.source_file) || res.source_title || 'Meeting'
+  const src = meetingSourceFromParts(res.source_type, res.source_file)
+  return (src ? meetingSourceShortTitle(src) : '') || res.source_title || 'Meeting'
 })
-
-function meetingTitleFromSource(sourceType?: string, sourceFile?: string): string {
-  if (!sourceType || !sourceFile) return ''
-  const ordinalSuffix = (n: number): string => {
-    const lastTwo = n % 100
-    if (lastTwo >= 11 && lastTwo <= 13) return 'th'
-    const last = n % 10
-    if (last === 1) return 'st'
-    if (last === 2) return 'nd'
-    if (last === 3) return 'rd'
-    return 'th'
-  }
-  if (sourceType === 'plenary') {
-    const m = sourceFile.match(/^plenary-(\d+)(?:_([2-9]))?$/)
-    if (m) {
-      const n = parseInt(m[1], 10)
-      const part = m[2] ? ` (part ${m[2]})` : ''
-      return `${n}${ordinalSuffix(n)} Plenary Meeting${part}`
-    }
-  }
-  if (sourceType === 'ballots') {
-    const m = sourceFile.match(/^ballots-(\d{4})$/)
-    if (m) return `${m[1]} Committee Ballots`
-  }
-  return ''
-}
 
 const meetingResolutions = computed(() => {
   if (!isMeetingsLoaded.value || !resolution.value) return []
-  return getMeetingResolutions(resolution.value.source_type, resolution.value.source_file)
+  const items = getMeetingResolutions(resolution.value.source_type, resolution.value.source_file)
+  return [...items].sort((a, b) => {
+    const an = parseInt(String(a.id).match(/(\d+)$/)?.[1] ?? '0', 10)
+    const bn = parseInt(String(b.id).match(/(\d+)$/)?.[1] ?? '0', 10)
+    return an - bn
+  })
 })
 
-const prevResolution = computed(() => {
-  if (meetingResolutions.value.length === 0 || !resolution.value) return null
-  const idx = meetingResolutions.value.findIndex(r => r.id === resolution.value?.id)
-  return idx > 0 ? meetingResolutions.value[idx - 1] : null
-})
+function resolutionNumeral(id: string): string {
+  const m = id.match(/(\d+)$/)
+  return m ? m[1] : id
+}
 
-const nextResolution = computed(() => {
-  if (meetingResolutions.value.length === 0 || !resolution.value) return null
-  const idx = meetingResolutions.value.findIndex(r => r.id === resolution.value?.id)
-  return idx !== -1 && idx < meetingResolutions.value.length - 1 ? meetingResolutions.value[idx + 1] : null
-})
+function resolutionNavItem(r: { id: string; title: string; path: string; meeting_date: string }) {
+  const title = r.title || `Resolution ${r.id}`
+  return {
+    to: r.path,
+    numeral: resolutionNumeral(r.id),
+    label: title.length > 80 ? title.slice(0, 78).trim() + '…' : title,
+    caption: r.meeting_date ? formatDate(r.meeting_date) : '',
+  }
+}
+
+const { prev: prevResolution, next: nextResolution } = createNeighborNav(
+  meetingResolutions,
+  r => r.id === resolution.value?.id,
+)
+const prevNav = computed(() => prevResolution.value ? resolutionNavItem(prevResolution.value) : null)
+const nextNav = computed(() => nextResolution.value ? resolutionNavItem(nextResolution.value) : null)
 
 const relatedResolutions = computed(() => {
   if (!isLoaded.value || !resolution.value) return []
@@ -422,41 +400,49 @@ function submitSearch() {
 }
 
 /* Base layout */
-.back-link {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-slate-500);
-  transition: color 0.2s;
-  padding: 0;
-  margin-bottom: 2rem;
-}
-.back-link:hover,
-.back-link:focus-visible {
-  color: var(--color-brand);
-  outline: none;
-}
-.dark .back-link:hover,
-.dark .back-link:focus-visible {
-  color: #ff5e63;
-}
-.back-link__icon {
-  transition: transform 0.2s;
-}
-.back-link:hover .back-link__icon {
-  transform: translateX(-4px);
-}
-
 .res-detail-header {
   margin-bottom: 4rem;
 }
+
+.res-hero :deep(.ph--detail) {
+  padding-top: 0;
+  margin-bottom: 2rem;
+}
+.res-hero :deep(.ph__inner) {
+  max-width: 56rem;
+}
+.res-hero__meta {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.res-hero :deep(.ph__title) {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  color: var(--color-slate-900);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+.dark .res-hero :deep(.ph__title) { color: white; }
+
+.res-detail-nav {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.res-detail-nav :deep(.pnn) {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+.res-detail-subtitle {
+  font-size: 1.0625rem;
+  color: var(--color-slate-500);
+  font-style: italic;
+  margin: 0;
+}
+.dark .res-detail-subtitle { color: var(--color-slate-400); }
 
 .res-detail-meta {
   margin-bottom: 1.5rem;
@@ -515,9 +501,9 @@ function submitSearch() {
 
 .meeting-link-badge:hover,
 .meeting-link-badge:focus-visible {
-  background: var(--color-brand);
+  background: var(--color-brand-fill);
   color: white;
-  border-color: var(--color-brand);
+  border-color: var(--color-brand-fill);
   outline: none;
 }
 
@@ -815,77 +801,10 @@ function submitSearch() {
 }
 
 
-/* Navigation */
-.res-navigation {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-slate-200);
-}
-.dark .res-navigation { border-top-color: var(--color-slate-800); }
+/* Navigation — replaced by PrevNextNav component */
 
-.res-nav-card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background: var(--color-slate-50);
-  border: 1px solid var(--color-slate-100);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-.dark .res-nav-card {
-  background: rgba(30, 41, 59, 0.5);
-  border-color: var(--color-slate-800);
-}
-.res-nav-card:hover,
-.res-nav-card:focus-visible {
-  background: white;
-  border-color: var(--color-brand);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  transform: translateY(-2px);
-  outline: none;
-}
-.dark .res-nav-card:hover,
-.dark .res-nav-card:focus-visible {
-  background: var(--color-slate-900);
-  border-color: #ff5e63;
-}
 
-.res-nav-card--prev { text-align: left; }
-.res-nav-card--next { text-align: right; }
-
-.res-nav-empty { flex: 1; }
-
-.res-nav-label {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-slate-500);
-  margin-bottom: 0.25rem;
-}
-.res-nav-card--next .res-nav-label { justify-content: flex-end; }
-
-.res-nav-title {
-  font-weight: 500;
-  color: var(--color-slate-900);
-  font-size: 0.9375rem;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.dark .res-nav-title { color: white; }
-.res-nav-card:hover .res-nav-title { color: var(--color-brand); }
-.dark .res-nav-card:hover .res-nav-title { color: #ff5e63; }
-
+/* Loading & Not Found states */
 .res-loading {
   display: flex;
   flex-direction: column;
@@ -961,7 +880,7 @@ function submitSearch() {
 .not-found-submit {
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
-  background: var(--color-brand);
+  background: var(--color-brand-fill);
   color: white;
   font-weight: 600;
   border: none;
@@ -1049,8 +968,8 @@ function submitSearch() {
 }
 .urn-copy-btn:hover,
 .urn-copy-btn:focus-visible {
-  background: var(--color-brand);
-  border-color: var(--color-brand);
+  background: var(--color-brand-fill);
+  border-color: var(--color-brand-fill);
   color: white;
   outline: none;
 }

@@ -65,13 +65,17 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <PageHero
       variant="index"
-      eyebrow="ISO/TC 154 Structure"
+      bleed
+      eyebrow="Working groups & structure"
       title="Groups"
       lead="Working Groups, Advisory Groups, Maintenance Agencies and the Co-ordination Advisory Group that carry out the technical work of ISO/TC 154."
     >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--rings"></div>
+      </template>
       <dl class="page__stats" v-if="isLoaded">
         <div><dt>{{ stats.total }}</dt><dd>groups</dd></div>
         <div><dt>{{ stats.categories }}</dt><dd>categories</dd></div>
@@ -79,6 +83,7 @@ import { ref } from 'vue'
       </dl>
     </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -147,16 +152,11 @@ import { ref } from 'vue'
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-}
-
 .filter {
   background: #fff;
   border: 1px solid #e7e5e4;
@@ -242,7 +242,7 @@ import { ref } from 'vue'
   border-color: #57534e;
   color: #d6d3d1;
 }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta {
   margin-top: 1rem;
@@ -310,7 +310,6 @@ import { ref } from 'vue'
   letter-spacing: 0.08em;
   color: var(--color-blue-accent);
 }
-.dark .card__category { color: #94b6e8; }
 .card__count {
   font-size: 0.75rem;
   color: #78716c;
@@ -366,7 +365,7 @@ import { ref } from 'vue'
 }
 .dark .card__pill { background: #292524; color: #d6d3d1; }
 .card__pill--more { background: #e0e7ff; color: var(--color-blue-accent); }
-.dark .card__pill--more { background: rgb(51 133 214 / 0.2); color: #94b6e8; }
+.dark .card__pill--more { background: rgb(51 133 214 / 0.2); }
 .card__arrow {
   position: absolute;
   bottom: 1rem;
@@ -374,7 +373,6 @@ import { ref } from 'vue'
   font-size: 1.125rem;
   color: var(--color-blue-accent);
 }
-.dark .card__arrow { color: #94b6e8; }
 .card:hover .card__arrow { transform: translateX(4px); }
 .card__arrow { transition: transform 0.2s; }
 </style>
