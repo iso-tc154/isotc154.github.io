@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
 
 @import "tailwindcss";
 
@@ -36,7 +36,7 @@
 
 :root {
   --site-header-height: calc(4rem + 3px);
-  --font-serif: 'Fraunces', serif;
+  --font-serif: 'Source Serif 4', serif;
   --font-sans: 'DM Sans', sans-serif;
   --surface-bg: #fafaf9;
   --surface-bg-dark: #1a1a1a;

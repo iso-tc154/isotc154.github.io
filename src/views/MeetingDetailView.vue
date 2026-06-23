@@ -746,7 +746,6 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
   font-weight: 600;
   letter-spacing: -0.015em;
   color: var(--color-blue-accent);
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
 }
 .reg-cta__arrow {
   font-family: var(--font-sans);

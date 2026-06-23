@@ -226,7 +226,6 @@ a.pnn__cell:hover .pnn__hint {
   line-height: 1;
   letter-spacing: -0.02em;
   color: #1c1917;
-  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
   font-style: italic;
   transition: color 220ms ease;
   margin: 0.0625rem 0;

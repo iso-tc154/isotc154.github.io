@@ -160,7 +160,7 @@ withDefaults(defineProps<Props>(), { variant: 'index', align: 'start', bleed: fa
   line-height: 1.05;
   color: #1c1917;
   margin: 0 0 1rem;
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+  font-variation-settings: 'opsz' 60;
 }
 .dark .ph__title { color: #fafaf9; }
 .ph__title-link { color: inherit; text-decoration: none; }
@@ -168,7 +168,7 @@ withDefaults(defineProps<Props>(), { variant: 'index', align: 'start', bleed: fa
   font-style: italic;
   font-weight: 400;
   color: var(--color-brand);
-  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
+  font-variation-settings: 'opsz' 60;
 }
 
 .ph__lead {

@@ -81,7 +81,6 @@ const decorationClass = computed(() => {
   letter-spacing: -0.025em;
   color: #1c1917;
   margin: 2.5rem 0 1rem;
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
 }
 .dark .prose :deep(h1) { color: #fafaf9; }
 .prose :deep(h2) {
@@ -94,7 +93,6 @@ const decorationClass = computed(() => {
   margin: 2.5rem 0 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #e7e5e4;
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
 }
 .dark .prose :deep(h2) { color: #fafaf9; border-bottom-color: #44403c; }
 .prose :deep(h3) {
