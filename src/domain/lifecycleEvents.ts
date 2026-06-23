@@ -20,6 +20,7 @@ export const LIFECYCLE_EVENT_PRESENTATION: Record<LifecycleEventType, LifecycleM
   scope_change:       { glyph: '✎', label: 'Scope change' },
   succession:         { glyph: '⇄', label: 'Succession' },
   title_change:       { glyph: '“', label: 'Title change' },
+  note:               { glyph: '✦', label: 'Note' },
 }
 
 const FALLBACK_MARKER: LifecycleMarker = { glyph: '·', label: 'Event' }

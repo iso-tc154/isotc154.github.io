@@ -104,6 +104,23 @@ function applyEstablishedOverride(events, established, overrides) {
   }])
 }
 
+// Curated notes provide narrative context for lifecycle gaps we cannot
+// pin to a specific resolution (e.g. re-establishment between plenaries
+// whose records we do not hold). They surface on the timeline as
+// informational annotations rather than structural events.
+function applyNoteOverrides(events, overrides) {
+  const notes = overrides.filter((o) => o.field === 'note')
+  if (notes.length === 0) return events
+  const noteEvents = notes.map((ov) => ({
+    type: 'note',
+    date: toISODate(ov.date) || '0000-01-01',
+    precision: ov.precision || 'year',
+    title: ov.title || 'Note',
+    description: ov.description,
+  }))
+  return events.concat(noteEvents)
+}
+
 export function deriveGroupLifecycle(groupId, eventData, groupsById) {
   const group = groupsById[groupId]
   const groupEvents = sortByDate(
@@ -112,7 +129,10 @@ export function deriveGroupLifecycle(groupId, eventData, groupsById) {
   const groupOverrides = eventData.overrides.filter((o) => o.group_id === groupId)
 
   const establishedFromEvents = deriveEstablished(groupEvents, group)
-  const eventsWithOverrides = applyEstablishedOverride(groupEvents, establishedFromEvents, groupOverrides)
+  const eventsWithOverrides = applyNoteOverrides(
+    applyEstablishedOverride(groupEvents, establishedFromEvents, groupOverrides),
+    groupOverrides,
+  )
   const overrideEstablished = groupOverrides.find((o) => o.field === 'established')
 
   return {

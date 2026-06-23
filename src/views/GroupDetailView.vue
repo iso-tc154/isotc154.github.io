@@ -12,9 +12,11 @@ import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation
 import { asciidocify } from '../utils/asciidoc'
 import { memberPath, projectPath } from '../utils/urn'
 import type { Member } from '../types/member'
+import type { SubnavSection } from '../types/group'
 import PageHero from '../components/PageHero.vue'
 import GroupTimeline from '../components/GroupTimeline.vue'
 import ConvenorTermBar from '../components/ConvenorTermBar.vue'
+import SectionSubnav from '../components/SectionSubnav.vue'
 
 const route = useRoute()
 const { groups, isLoaded, loadData, get: getGroup } = useGroups()
@@ -66,6 +68,22 @@ const dissolvedYear = computed(() => dissolvedDate.value ? String(dissolvedDate.
 
 const lifecycleEvents = computed(() => group.value?.history?.events ?? [])
 const convenorTerms = computed(() => group.value?.convenor_terms ?? [])
+
+const subnavSections = computed<SubnavSection[]>(() => {
+  if (!group.value) return []
+  const g = group.value
+  const sections: SubnavSection[] = []
+  if (g.intro) sections.push({ id: 'overview', label: 'Overview' })
+  if (g._description) sections.push({ id: 'mandate', label: 'Mandate' })
+  if (g.scope) sections.push({ id: 'scope', label: 'Scope' })
+  if (lifecycleEvents.value.length) sections.push({ id: 'lifecycle', label: 'Lifecycle' })
+  if (convenorTerms.value.length) sections.push({ id: 'convenors', label: 'Convenors' })
+  if (g.history?.story) sections.push({ id: 'history', label: 'History' })
+  if (g.collaborative_parties?.length) sections.push({ id: 'partners', label: 'Partners' })
+  if (g.standards?.length) sections.push({ id: 'standards', label: 'Standards' })
+  if (g.active_projects?.length) sections.push({ id: 'projects', label: 'Projects' })
+  return sections
+})
 
 const predecessorTerms = computed<ConvenorTerm[]>(() => {
   const pred = group.value?.predecessor
@@ -182,30 +200,32 @@ const managers = computed<string[]>(() => {
       </div>
     </PageHero>
 
+    <SectionSubnav v-if="subnavSections.length > 2" :sections="subnavSections" />
+
     <div class="detail__grid">
       <div class="detail__main">
-        <section v-if="introHtml" class="detail__section">
+        <section v-if="introHtml" id="overview" class="detail__section">
           <h2 class="detail__section-title">Overview</h2>
           <div class="prose" v-html="introHtml"></div>
         </section>
 
-        <section v-if="description" class="detail__section">
+        <section v-if="description" id="mandate" class="detail__section">
           <h2 class="detail__section-title">Mandate</h2>
           <div class="prose" v-html="description"></div>
         </section>
 
-        <section v-if="scopeHtml" class="detail__section">
+        <section v-if="scopeHtml" id="scope" class="detail__section">
           <h2 class="detail__section-title">Scope</h2>
           <div class="prose" v-html="scopeHtml"></div>
         </section>
 
-        <section v-if="lifecycleEvents.length" class="detail__section detail__section--timeline">
+        <section v-if="lifecycleEvents.length" id="lifecycle" class="detail__section detail__section--timeline">
           <h2 class="detail__section-title">Lifecycle</h2>
           <p class="detail__section-intro">Key moments in this group's history, traced through plenary resolutions.</p>
           <GroupTimeline :events="lifecycleEvents" />
         </section>
 
-        <section v-if="convenorTerms.length" class="detail__section detail__section--terms">
+        <section v-if="convenorTerms.length" id="convenors" class="detail__section detail__section--terms">
           <h2 class="detail__section-title">Convenor terms</h2>
           <p class="detail__section-intro">Leadership tenures on a shared timeline. Bars link to member profiles; chips link to appointing resolutions.</p>
           <ConvenorTermBar
@@ -215,12 +235,12 @@ const managers = computed<string[]>(() => {
           />
         </section>
 
-        <section v-if="group.history?.story && historyStoryHtml" class="detail__section">
+        <section v-if="group.history?.story && historyStoryHtml" id="history" class="detail__section">
           <h2 class="detail__section-title">History</h2>
           <div class="prose" v-html="historyStoryHtml"></div>
         </section>
 
-        <section v-if="group.collaborative_parties?.length" class="detail__section">
+        <section v-if="group.collaborative_parties?.length" id="partners" class="detail__section">
           <h2 class="detail__section-title">Collaborative parties</h2>
           <div v-for="(p, idx) in group.collaborative_parties" :key="idx" class="detail__party">
             <h3 class="detail__party-name">{{ p.entity_name }}</h3>
@@ -234,14 +254,14 @@ const managers = computed<string[]>(() => {
           </div>
         </section>
 
-        <section v-if="group.standards?.length" class="detail__section">
+        <section v-if="group.standards?.length" id="standards" class="detail__section">
           <h2 class="detail__section-title">Standards</h2>
           <ul class="detail__standards">
             <li v-for="std in group.standards" :key="std">{{ std }}</li>
           </ul>
         </section>
 
-        <section v-if="group.active_projects?.length" class="detail__section">
+        <section v-if="group.active_projects?.length" id="projects" class="detail__section">
           <h2 class="detail__section-title">Active projects</h2>
           <ul class="detail__projects">
             <li v-for="proj in group.active_projects" :key="proj">
@@ -492,7 +512,7 @@ const managers = computed<string[]>(() => {
   .detail__grid { grid-template-columns: minmax(0, 1fr) 22rem; }
 }
 
-.detail__section { margin-bottom: 2rem; }
+.detail__section { margin-bottom: 2rem; scroll-margin-top: 5rem; }
 .detail__section-title {
   font-size: 0.75rem;
   font-weight: 700;
