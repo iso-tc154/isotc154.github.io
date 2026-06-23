@@ -2,7 +2,8 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProjects } from '../composables/useProjects'
-import { projectStatusLabel, type Project } from '../types/project'
+import { projectStatusLabel } from '../domain/projectPresentation'
+import type { Project } from '../types/project'
 import { projectPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
 

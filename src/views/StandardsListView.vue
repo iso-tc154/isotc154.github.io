@@ -3,8 +3,8 @@ import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
-import { standardStatusLabel, type Standard } from '../types/standard'
-import { standardPath } from '../utils/urn'
+import { standardStatusLabel, standardUrl } from '../domain/standardPresentation'
+import type { Standard } from '../types/standard'
 import PageHero from '../components/PageHero.vue'
 
 const { standards, isLoaded, loadData } = useStandards()
@@ -74,10 +74,6 @@ const filtered = computed<Standard[]>(() => {
     return (a.iso?.name ?? '').localeCompare(b.iso?.name ?? '', undefined, { numeric: true })
   })
 })
-
-function standardUrl(s: Standard): string {
-  return standardPath(s.id)
-}
 
 function statusLabel(s: Standard): string {
   return standardStatusLabel(s.tc154?.status ?? 'published')

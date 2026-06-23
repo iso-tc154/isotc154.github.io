@@ -23,18 +23,3 @@ export interface Standard {
   id: string
   url: string
 }
-
-export function standardStatusLabel(status?: string): string {
-  if (!status) return ''
-  switch (status.toLowerCase()) {
-    case 'published': return 'Published'
-    case 'withdrawn': return 'Withdrawn'
-    case 'current': return 'Current'
-    case 'under-development':
-    case 'under_development': return 'Under development'
-    case 'under-review':
-    case 'under_review': return 'Under review'
-    case 'deleted': return 'Deleted'
-    default: return status.charAt(0).toUpperCase() + status.slice(1)
-  }
-}
