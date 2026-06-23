@@ -1,0 +1,19 @@
+---
+id: wg1
+_id: wg1
+name: WG 1
+title: Semantic engine (historical)
+category: working
+order: 99
+inactive: true
+intro: |
+  WG 1 (Semantic engine) was an early ISO/TC 154 working group. With no
+  active work items remaining allocated to it, the committee resolved
+  at P25 (resolution 277, effective 2008-11-25) to disband WG 1.
+scope: |
+  Original scope related to semantic engine standardisation under
+  ISO/TC 154.
+history:
+  story: |
+    WG 1 was disbanded at the 25th plenary (P25, resolution 277,
+    2008-11-25) as no active work items remained allocated to it.

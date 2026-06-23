@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
-import { groupCategoryLabel, type Group } from '../types/group'
+import { groupCategoryLabel, lifecycleStatus, type Group, type LifecycleStatus } from '../types/group'
 import { useRouter } from 'vue-router'
 import PageHero from '../components/PageHero.vue'
 
@@ -16,6 +16,7 @@ onMounted(async () => {
 
 const searchQuery = ref('')
 const selectedCategory = ref('')
+const activeOnly = ref(false)
 
 const categories = computed(() => {
   const set = new Set<string>()
@@ -23,26 +24,53 @@ const categories = computed(() => {
   return Array.from(set).sort()
 })
 
-const stats = computed(() => ({
-  total: groups.value.length,
-  categories: categories.value.length,
-  withStandards: groups.value.filter(g => g.standards?.length).length,
-}))
+function statusRank(g: Group): number {
+  const s = lifecycleStatus(g)
+  return s === 'active' ? 0 : s === 'inactive' ? 1 : 2
+}
+
+function establishedYear(g: Group): string | null {
+  const date = g.history?.established?.date
+  return date ? String(date).slice(0, 4) : null
+}
+
+function lineageHaystack(g: Group): string {
+  return [g.predecessor?.name, g.successor?.name].filter(Boolean).join(' ').toLowerCase()
+}
+
+const stats = computed(() => {
+  const total = groups.value.length
+  const active = groups.value.filter(g => lifecycleStatus(g) === 'active').length
+  return {
+    total,
+    active,
+    historical: total - active,
+    categories: categories.value.length,
+    withStandards: groups.value.filter(g => g.standards?.length).length,
+  }
+})
 
 const filtered = computed<Group[]>(() => {
   const q = searchQuery.value.trim().toLowerCase()
   return groups.value
     .filter(g => !selectedCategory.value || g.category === selectedCategory.value)
+    .filter(g => !activeOnly.value || lifecycleStatus(g) === 'active')
     .filter(g => {
       if (!q) return true
-      return (
-        g.name.toLowerCase().includes(q) ||
-        g.title.toLowerCase().includes(q) ||
-        (g.intro ?? '').toLowerCase().includes(q)
-      )
+      const haystack = [
+        g.name,
+        g.title,
+        g.intro ?? '',
+        lineageHaystack(g),
+      ].join(' ').toLowerCase()
+      return haystack.includes(q)
     })
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .sort((a, b) => statusRank(a) - statusRank(b) || (a.order ?? 0) - (b.order ?? 0))
 })
+
+function statusLabel(s: LifecycleStatus): string {
+  return s === 'active' ? 'Active' : s === 'inactive' ? 'Inactive' : 'Dissolved'
+}
 
 function groupUrl(g: Group) {
   return `/groups/${g.id}/`
@@ -60,10 +88,6 @@ function memberCount(g: Group): number {
 }
 </script>
 
-<script lang="ts">
-import { ref } from 'vue'
-</script>
-
 <template>
   <div>
     <PageHero
@@ -77,7 +101,8 @@ import { ref } from 'vue'
         <div class="hero-pattern hero-pattern--rings"></div>
       </template>
       <dl class="page__stats" v-if="isLoaded">
-        <div><dt>{{ stats.total }}</dt><dd>groups</dd></div>
+        <div><dt>{{ stats.active }}</dt><dd>active</dd></div>
+        <div><dt>{{ stats.historical }}</dt><dd>historical</dd></div>
         <div><dt>{{ stats.categories }}</dt><dd>categories</dd></div>
         <div><dt>{{ stats.withStandards }}</dt><dd>maintain standards</dd></div>
       </dl>
@@ -118,6 +143,21 @@ import { ref } from 'vue'
             >{{ groupCategoryLabel(cat) }}</button>
           </div>
         </div>
+        <div class="filter__field">
+          <span class="filter__label">Status</span>
+          <div class="filter__chips">
+            <button
+              class="chip"
+              :class="{ 'chip--active': !activeOnly }"
+              @click="activeOnly = false"
+            >All</button>
+            <button
+              class="chip"
+              :class="{ 'chip--active': activeOnly }"
+              @click="activeOnly = true"
+            >Active only</button>
+          </div>
+        </div>
       </div>
       <div class="filter__meta">
         <span>{{ filtered.length }} of {{ groups.length }} groups</span>
@@ -133,14 +173,31 @@ import { ref } from 'vue'
 
     <ul v-else class="grid">
       <li v-for="g in filtered" :key="g.id">
-        <a :href="groupUrl(g)" class="card" @click.prevent="router.push(groupUrl(g))">
+        <a :href="groupUrl(g)" :class="['card', `card--${lifecycleStatus(g)}`]" @click.prevent="router.push(groupUrl(g))">
           <div class="card__top">
-            <span class="card__category">{{ groupCategoryLabel(g.category) }}</span>
+            <div class="card__top-left">
+              <span :class="['card__status', `card__status--${lifecycleStatus(g)}`]">
+                <span class="card__status-dot" aria-hidden="true"></span>
+                <span class="card__status-text">{{ statusLabel(lifecycleStatus(g)) }}</span>
+              </span>
+              <span class="card__category">{{ groupCategoryLabel(g.category) }}</span>
+            </div>
             <span class="card__count" v-if="memberCount(g)">{{ memberCount(g) }} members</span>
           </div>
           <h3 class="card__name" v-html="g.name"></h3>
+          <div class="card__meta">
+            <span v-if="establishedYear(g)" class="card__est">Est. {{ establishedYear(g) }}</span>
+          </div>
           <p class="card__title">{{ g.title }}</p>
           <p class="card__intro" v-if="g.intro">{{ g.intro }}</p>
+          <p class="card__lineage" v-if="g.predecessor">
+            <span class="card__lineage-arrow">↳</span>
+            Succeeded {{ g.predecessor.name }}
+          </p>
+          <p class="card__lineage card__lineage--succ" v-else-if="g.successor">
+            <span class="card__lineage-arrow">↳</span>
+            Succeeded by {{ g.successor.name }}
+          </p>
           <p class="card__convenor" v-if="convenorNames(g)">
             <span class="card__convenor-label">Convenor:</span> {{ convenorNames(g) }}
           </p>
@@ -303,6 +360,55 @@ import { ref } from 'vue'
   gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.card__top-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.card__status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.card__status--active { color: var(--color-brand); }
+.card__status--inactive { color: var(--color-amber-warm); }
+.card__status--inactive .card__status-dot {
+  background: transparent;
+  border: 1.5px solid currentColor;
+  width: 0.4375rem;
+  height: 0.4375rem;
+}
+.card__status--dissolved { color: var(--color-slate-500); }
+.card__status--dissolved .card__status-dot {
+  background: transparent;
+  border: 1.5px solid currentColor;
+  width: 0.4375rem;
+  height: 0.4375rem;
+}
+.dark .card__status--dissolved { color: var(--color-slate-400); }
+
+.card--dissolved .card__name {
+  color: var(--color-slate-500);
+}
+.dark .card--dissolved .card__name {
+  color: var(--color-slate-400);
+}
+.card--dissolved {
+  opacity: 0.9;
+}
+.card--dissolved:hover { opacity: 1; }
+
 .card__category {
   font-size: 0.6875rem;
   font-weight: 700;
@@ -320,9 +426,36 @@ import { ref } from 'vue'
   font-size: 1.25rem;
   font-weight: 700;
   color: #1c1917;
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.125rem;
 }
 .dark .card__name { color: #fafaf9; }
+.card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+}
+.dark .card__meta { color: var(--color-slate-400); }
+.card__est {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+.card__lineage {
+  font-size: 0.75rem;
+  color: var(--color-slate-600);
+  margin: 0 0 0.5rem;
+  font-style: italic;
+}
+.dark .card__lineage { color: var(--color-slate-400); }
+.card__lineage-arrow {
+  font-family: var(--font-serif);
+  font-style: normal;
+  margin-right: 0.25rem;
+}
+.card__lineage--succ { color: var(--color-brand); }
+.dark .card__lineage--succ { color: var(--color-blue-accent); }
 .card__title {
   font-size: 0.9375rem;
   font-weight: 600;

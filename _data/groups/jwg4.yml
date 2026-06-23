@@ -1,0 +1,25 @@
+---
+id: jwg4
+_id: jwg4
+name: JWG 4
+title: Electronic Layout Key (historical)
+category: joint
+order: 99
+inactive: true
+intro: |
+  JWG 4 was the joint ISO/TC 154 – UN/CEFACT working group on the
+  electronic Layout Key, formed at P28 (2009) by renumbering the former
+  JWG 2. At P30 (effective 2011-09-14), with no joint publication
+  foreseen with UNECE, JWG 4 was converted to a single-organisation
+  Working Group — today's WG 4.
+scope: |
+  Continuation of the electronic Layout Key work, renumbered from JWG 2
+  at P28 to align numbering across ISO/TC 154 working groups.
+history:
+  story: |
+    Renumbered from JWG 2 at the 28th plenary (P28, resolution 305,
+    effective 2009-09-25). The work programme continued unchanged.
+
+    At P30 (resolution 316, effective 2011-09-14), ISO/TC 154 resolved
+    together with the UNECE and UN/CEFACT liaisons to convert JWG 4 to a
+    Working Group (WG 4) as no joint publication was foreseen at that time.
