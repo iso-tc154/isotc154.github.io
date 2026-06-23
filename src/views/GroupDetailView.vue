@@ -3,31 +3,38 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
+import { useStandards } from '../composables/useStandards'
+import { useProjects } from '../composables/useProjects'
 import {
   type Group,
   type GroupCollaborativeParty,
   type ConvenorTerm,
   type SubnavSection,
 } from '../types/group'
+import type { Standard } from '../types/standard'
+import type { Project } from '../types/project'
+import type { Member } from '../types/member'
 import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
 import { asciidocify } from '../utils/asciidoc'
-import { memberPath, projectPath } from '../utils/urn'
-import type { Member } from '../types/member'
+import { projectPath, standardPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
 import GroupTimeline from '../components/GroupTimeline.vue'
 import ConvenorTermBar from '../components/ConvenorTermBar.vue'
 import SectionTabs from '../components/SectionTabs.vue'
+import PersonCard from '../components/PersonCard.vue'
 
 const route = useRoute()
 const { groups, isLoaded, loadData, get: getGroup } = useGroups()
 const { loadData: loadMembers, get: getMember } = useMembers()
+const { standards, loadData: loadStandards } = useStandards()
+const { loadData: loadProjects, get: getProject } = useProjects()
 const group = computed<Group | null>(() => {
   const id = String(route.params.id ?? '')
   return groups.value.find(g => g.id === id || g._id === id) ?? null
 })
 
 onMounted(async () => {
-  await Promise.all([loadData(), loadMembers()])
+  await Promise.all([loadData(), loadMembers(), loadStandards(), loadProjects()])
 })
 
 const description = computed(() => {
@@ -38,11 +45,6 @@ const description = computed(() => {
 const introHtml = computed(() => {
   if (!group.value?.intro) return ''
   return asciidocify(group.value.intro)
-})
-
-const scopeHtml = computed(() => {
-  if (!group.value?.scope) return ''
-  return asciidocify(group.value.scope)
 })
 
 const historyStoryHtml = computed(() => {
@@ -82,42 +84,127 @@ const managers = computed<string[]>(() => {
   return group.value.managers ?? group.value.organization?.managers ?? []
 })
 
+interface HeroPerson {
+  id: string
+  name: string
+  fromYear?: string
+}
+
+const heroConvenors = computed<HeroPerson[]>(() => {
+  const ids = convenors.value.length ? convenors.value : coChairs.value
+  return ids.map(id => {
+    const term = convenorTerms.value.find(t => t.member_id === id)
+    return {
+      id,
+      name: memberName(id),
+      fromYear: term?.from ? String(term.from).slice(0, 4) : undefined,
+    }
+  })
+})
+const heroConvenorLabel = computed(() =>
+  convenors.value.length ? 'Convenor' : (coChairs.value.length ? 'Co-chair' : ''),
+)
+
+const heroManagers = computed<HeroPerson[]>(() =>
+  managers.value.map(id => ({ id, name: memberName(id) }))
+)
+
+const hasLeadershipHistory = computed(() =>
+  Boolean(
+    lifecycleEvents.value.length
+    || convenorTerms.value.length
+    || group.value?.history?.leadership?.length
+  )
+)
+
 interface PeopleGroup {
   id: string
   label: string
   members: string[]
-  variant: 'chip' | 'past' | 'plain'
+  variant: 'current' | 'past'
 }
 
 const peopleGroups = computed<PeopleGroup[]>(() => {
   if (!group.value) return []
   const g = group.value
   const list: PeopleGroup[] = []
-  if (convenors.value.length) list.push({ id: 'convenors', label: `Convenor${convenors.value.length > 1 ? 's' : ''}`, members: convenors.value, variant: 'chip' })
-  if (coChairs.value.length) list.push({ id: 'co-chairs', label: `Co-chair${coChairs.value.length > 1 ? 's' : ''}`, members: coChairs.value, variant: 'chip' })
-  if (managers.value.length) list.push({ id: 'managers', label: `Manager${managers.value.length > 1 ? 's' : ''}`, members: managers.value, variant: 'chip' })
-  if (g.members?.length) list.push({ id: 'members', label: `Members (${g.members.length})`, members: g.members, variant: 'chip' })
+  if (g.members?.length) list.push({ id: 'members', label: `Members (${g.members.length})`, members: g.members, variant: 'current' })
   if (g.past_members?.length) list.push({ id: 'past-members', label: 'Past members', members: g.past_members, variant: 'past' })
-  if (g.history?.leadership?.length) list.push({ id: 'leadership', label: 'Past leadership', members: g.history.leadership, variant: 'plain' })
   return list
 })
 
 const hasPeople = computed(() => peopleGroups.value.length > 0)
 
+const hasOverview = computed(() => Boolean(group.value?.intro || description.value || historyStoryHtml.value))
+
+const standardsByName = computed(() => {
+  const map = new Map<string, Standard>()
+  for (const s of standards.value) {
+    if (s.iso?.name) map.set(s.iso.name, s)
+  }
+  return map
+})
+
+function standardByRaw(raw: string): Standard | undefined {
+  return standardsByName.value.get(raw)
+}
+
+function slugifyStandard(raw: string): string {
+  return raw.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+}
+
+function standardYear(s?: Standard): string {
+  if (!s?.iso?.publication_date) return ''
+  return String(s.iso.publication_date).slice(0, 4)
+}
+
+function standardStageLabel(s?: Standard): string {
+  const status = s?.tc154?.status
+  if (!status) return ''
+  return status.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
+function standardUrl(raw: string): string {
+  const s = standardByRaw(raw)
+  return standardPath(s?.id ?? slugifyStandard(raw))
+}
+
+function projectDetail(id: string): Project | undefined {
+  return getProject(id)
+}
+
+function projectStatusLabel(status?: string): string {
+  if (!status) return ''
+  switch (status.toLowerCase()) {
+    case 'current': return 'Current'
+    case 'deleted': return 'Deleted'
+    case 'withdrawn': return 'Withdrawn'
+    case 'new': return 'New'
+    default: return status.charAt(0).toUpperCase() + status.slice(1)
+  }
+}
+
+function projectScopeExcerpt(p: Project): string {
+  if (!p.scope) return ''
+  const text = p.scope
+    .replace(/^==\s*.*$/gm, '')
+    .replace(/\*\*/g, '')
+    .replace(/\n{2,}/g, '\n\n')
+    .trim()
+  const firstPara = text.split(/\n\n/)[0] ?? ''
+  return firstPara.length > 280 ? firstPara.slice(0, 280).trimEnd() + '…' : firstPara
+}
+
 const subnavSections = computed<SubnavSection[]>(() => {
   if (!group.value) return []
   const g = group.value
   const sections: SubnavSection[] = []
-  if (g.intro) sections.push({ id: 'overview', label: 'Overview' })
-  if (g._description) sections.push({ id: 'mandate', label: 'Mandate' })
-  if (g.scope) sections.push({ id: 'scope', label: 'Scope' })
-  if (lifecycleEvents.value.length) sections.push({ id: 'lifecycle', label: 'Lifecycle' })
-  if (convenorTerms.value.length) sections.push({ id: 'leadership', label: 'Leadership' })
-  if (g.history?.story) sections.push({ id: 'history', label: 'History' })
+  if (hasOverview.value) sections.push({ id: 'overview', label: 'Overview' })
+  if (hasLeadershipHistory.value) sections.push({ id: 'history', label: 'History' })
   if (g.collaborative_parties?.length) sections.push({ id: 'partners', label: 'Partners' })
   if (g.standards?.length) sections.push({ id: 'standards', label: 'Standards' })
   if (g.active_projects?.length) sections.push({ id: 'projects', label: 'Projects' })
-  if (hasPeople.value) sections.push({ id: 'people', label: 'People' })
+  if (hasPeople.value) sections.push({ id: 'members', label: 'Members' })
   return sections
 })
 
@@ -146,19 +233,8 @@ function memberName(id: string): string {
   return m?.name ?? id
 }
 
-function memberUrl(id: string): string {
-  return memberPath(id)
-}
-
 function projectUrl(id: string): string {
   return projectPath(id)
-}
-
-function memberInitials(name: string): string {
-  if (!name) return '?'
-  const parts = name.trim().split(/\s+/)
-  if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
-  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
 }
 
 function sectionVisible(id: string): boolean {
@@ -185,7 +261,7 @@ function sectionVisible(id: string): boolean {
     </div>
   </div>
 
-  <article class="detail" v-else :key="group.id">
+  <article class="group" v-else :key="group.id">
     <PageHero
       variant="detail"
       bleed
@@ -201,18 +277,56 @@ function sectionVisible(id: string): boolean {
         </RouterLink>
       </template>
 
+      <p v-if="group.scope" class="hero-scope">
+        {{ group.scope.trim() }}
+      </p>
+
+      <div v-if="heroConvenors.length || heroManagers.length || establishedYear || dissolvedYear" class="hero-people">
+        <div v-if="heroConvenors.length" class="hero-people__group">
+          <span class="hero-people__label">{{ heroConvenorLabel }}</span>
+          <div class="hero-people__cards">
+            <PersonCard
+              v-for="c in heroConvenors"
+              :key="c.id"
+              :id="c.id"
+              :name="c.name"
+              :meta="c.fromYear ? `since ${c.fromYear}` : undefined"
+            />
+          </div>
+        </div>
+
+        <div v-if="heroManagers.length" class="hero-people__group">
+          <span class="hero-people__label">Manager</span>
+          <div class="hero-people__cards">
+            <PersonCard
+              v-for="m in heroManagers"
+              :key="m.id"
+              :id="m.id"
+              :name="m.name"
+              variant="leader"
+            />
+          </div>
+        </div>
+
+        <div v-if="establishedYear || dissolvedYear" class="hero-people__group">
+          <span class="hero-people__label">First established</span>
+          <div class="hero-people__cards hero-people__cards--text">
+            <span v-if="establishedYear" class="hero-fact">
+              <span class="hero-fact__value">{{ establishedYear }}</span>
+              <span class="hero-fact__hint">established</span>
+            </span>
+            <span v-if="dissolvedYear" class="hero-fact">
+              <span class="hero-fact__value">{{ dissolvedYear }}</span>
+              <span class="hero-fact__hint">dissolved</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div class="detail__badges">
         <span :class="['detail__badge', `detail__badge--${status}`]">
           <span class="detail__badge-dot" aria-hidden="true"></span>
           <span class="detail__badge-text">{{ status === 'active' ? 'Active' : status === 'inactive' ? 'Inactive' : 'Dissolved' }}</span>
-        </span>
-        <span v-if="establishedYear" class="detail__badge detail__badge--neutral">
-          <span class="detail__badge-label">Est.</span>
-          <span class="detail__badge-text">{{ establishedYear }}</span>
-        </span>
-        <span v-if="dissolvedYear" class="detail__badge detail__badge--neutral">
-          <span class="detail__badge-label">Dissolved</span>
-          <span class="detail__badge-text">{{ dissolvedYear }}</span>
         </span>
       </div>
 
@@ -244,78 +358,59 @@ function sectionVisible(id: string): boolean {
 
     <SectionTabs v-if="tabbedMode" v-model="activeTab" :sections="subnavSections" />
 
-    <div :class="tabbedMode ? 'detail__single' : 'detail__grid'">
-      <div :class="{ 'detail__main': !tabbedMode }">
+    <div :class="['group__body', tabbedMode ? 'group__body--single' : 'group__body--grid']">
+      <div :class="{ 'group__main': !tabbedMode }">
         <section
-          v-if="introHtml && sectionVisible('overview')"
+          v-if="hasOverview && sectionVisible('overview')"
           id="overview"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-overview' : undefined"
-          class="detail__section"
+          class="group__section"
         >
-          <h2 class="detail__section-title">Overview</h2>
-          <div class="prose" v-html="introHtml"></div>
+          <h2 class="group__section-title">Overview</h2>
+          <div v-if="introHtml" class="prose" v-html="introHtml"></div>
+          <div v-if="description" :class="['prose', introHtml ? 'group__prose-block' : '']" v-html="description"></div>
+          <div v-if="historyStoryHtml" :class="['prose', introHtml || description ? 'group__prose-block' : '']" v-html="historyStoryHtml"></div>
         </section>
 
         <section
-          v-if="description && sectionVisible('mandate')"
-          id="mandate"
-          :role="tabbedMode ? 'tabpanel' : undefined"
-          :aria-labelledby="tabbedMode ? 'tab-mandate' : undefined"
-          class="detail__section"
-        >
-          <h2 class="detail__section-title">Mandate</h2>
-          <div class="prose" v-html="description"></div>
-        </section>
-
-        <section
-          v-if="scopeHtml && sectionVisible('scope')"
-          id="scope"
-          :role="tabbedMode ? 'tabpanel' : undefined"
-          :aria-labelledby="tabbedMode ? 'tab-scope' : undefined"
-          class="detail__section"
-        >
-          <h2 class="detail__section-title">Scope</h2>
-          <div class="prose" v-html="scopeHtml"></div>
-        </section>
-
-        <section
-          v-if="lifecycleEvents.length && sectionVisible('lifecycle')"
-          id="lifecycle"
-          :role="tabbedMode ? 'tabpanel' : undefined"
-          :aria-labelledby="tabbedMode ? 'tab-lifecycle' : undefined"
-          class="detail__section detail__section--timeline"
-        >
-          <h2 class="detail__section-title">Lifecycle</h2>
-          <p class="detail__section-intro">Key moments in this group's history, traced through plenary resolutions.</p>
-          <GroupTimeline :events="lifecycleEvents" />
-        </section>
-
-        <section
-          v-if="convenorTerms.length && sectionVisible('leadership')"
-          id="leadership"
-          :role="tabbedMode ? 'tabpanel' : undefined"
-          :aria-labelledby="tabbedMode ? 'tab-leadership' : undefined"
-          class="detail__section detail__section--terms"
-        >
-          <h2 class="detail__section-title">Leadership</h2>
-          <p class="detail__section-intro">Convenor tenures on a shared timeline. Bars link to member profiles; chips link to appointing resolutions.</p>
-          <ConvenorTermBar
-            :terms="convenorTerms"
-            :predecessor-terms="predecessorTerms"
-            :predecessor-name="group.predecessor?.name"
-          />
-        </section>
-
-        <section
-          v-if="group.history?.story && historyStoryHtml && sectionVisible('history')"
+          v-if="hasLeadershipHistory && sectionVisible('history')"
           id="history"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-history' : undefined"
-          class="detail__section"
+          class="group__section"
         >
-          <h2 class="detail__section-title">History</h2>
-          <div class="prose" v-html="historyStoryHtml"></div>
+          <h2 class="group__section-title">History</h2>
+
+          <div v-if="lifecycleEvents.length" class="group__history-block group__section--card">
+            <h3 class="group__history-heading">Lifecycle</h3>
+            <p class="group__section-intro">Key moments in this group's history, traced through plenary resolutions.</p>
+            <GroupTimeline :events="lifecycleEvents" />
+          </div>
+
+          <div v-if="convenorTerms.length" class="group__history-block group__section--card">
+            <h3 class="group__history-heading">Leadership timeline</h3>
+            <p class="group__section-intro">Convenor tenures on a shared timeline. Bars link to member profiles; chips link to appointing resolutions.</p>
+            <ConvenorTermBar
+              :terms="convenorTerms"
+              :predecessor-terms="predecessorTerms"
+              :predecessor-name="group.predecessor?.name"
+            />
+          </div>
+
+          <div v-if="group.history?.leadership?.length" class="group__history-block group__section--card">
+            <h3 class="group__history-heading">Past leadership</h3>
+            <div class="group__leadership-grid">
+              <PersonCard
+                v-for="id in group.history.leadership"
+                :key="id"
+                :id="id"
+                :name="memberName(id)"
+                variant="leader"
+                size="sm"
+              />
+            </div>
+          </div>
         </section>
 
         <section
@@ -323,13 +418,13 @@ function sectionVisible(id: string): boolean {
           id="partners"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-partners' : undefined"
-          class="detail__section"
+          class="group__section"
         >
-          <h2 class="detail__section-title">Collaborative parties</h2>
-          <div v-for="(p, idx) in group.collaborative_parties" :key="idx" class="detail__party">
-            <h3 class="detail__party-name">{{ p.entity_name }}</h3>
-            <div v-if="p.projects?.length" class="detail__party-projects">
-              <span class="detail__party-label">Projects:</span>
+          <h2 class="group__section-title">Collaborative parties</h2>
+          <div v-for="(p, idx) in group.collaborative_parties" :key="idx" class="group__party">
+            <h3 class="group__party-name">{{ p.entity_name }}</h3>
+            <div v-if="p.projects?.length" class="group__party-projects">
+              <span class="group__party-label">Projects:</span>
               <span v-for="proj in p.projects" :key="proj" class="pill">
                 <a :href="projectUrl(proj)">{{ proj }}</a>
               </span>
@@ -343,11 +438,27 @@ function sectionVisible(id: string): boolean {
           id="standards"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-standards' : undefined"
-          class="detail__section"
+          class="group__section"
         >
-          <h2 class="detail__section-title">Standards</h2>
-          <ul class="detail__standards">
-            <li v-for="std in group.standards" :key="std">{{ std }}</li>
+          <h2 class="group__section-title">Standards</h2>
+          <p class="group__section-intro">{{ group.standards.length }} catalogue entr{{ group.standards.length === 1 ? 'y' : 'ies' }} attributable to this group.</p>
+          <ul class="standards-list">
+            <li v-for="raw in group.standards" :key="raw" class="standard">
+              <a :href="standardUrl(raw)" class="standard__link">
+                <span class="standard__main">
+                  <span class="standard__code">{{ raw }}</span>
+                  <span v-if="standardByRaw(raw)?.iso.title" class="standard__title">
+                    {{ standardByRaw(raw)?.iso.title }}
+                  </span>
+                  <span v-if="standardYear(standardByRaw(raw)) || standardStageLabel(standardByRaw(raw))" class="standard__meta">
+                    <span v-if="standardYear(standardByRaw(raw))" class="standard__year">{{ standardYear(standardByRaw(raw)) }}</span>
+                    <span v-if="standardYear(standardByRaw(raw)) && standardStageLabel(standardByRaw(raw))" class="standard__meta-sep" aria-hidden="true">·</span>
+                    <span v-if="standardStageLabel(standardByRaw(raw))" class="standard__stage">{{ standardStageLabel(standardByRaw(raw)) }}</span>
+                  </span>
+                </span>
+                <span class="standard__arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
           </ul>
         </section>
 
@@ -356,61 +467,72 @@ function sectionVisible(id: string): boolean {
           id="projects"
           :role="tabbedMode ? 'tabpanel' : undefined"
           :aria-labelledby="tabbedMode ? 'tab-projects' : undefined"
-          class="detail__section"
+          class="group__section"
         >
-          <h2 class="detail__section-title">Active projects</h2>
-          <ul class="detail__projects">
-            <li v-for="proj in group.active_projects" :key="proj">
-              <a :href="projectUrl(proj)">{{ proj }}</a>
+          <h2 class="group__section-title">Active projects</h2>
+          <p class="group__section-intro">{{ group.active_projects.length }} active work item{{ group.active_projects.length === 1 ? '' : 's' }}.</p>
+          <ul class="projects-list">
+            <li v-for="projId in group.active_projects" :key="projId" class="project">
+              <a :href="projectUrl(projId)" class="project__link">
+                <span class="project__main">
+                  <span class="project__code">{{ projectDetail(projId)?.name ?? projId }}</span>
+                  <span v-if="projectDetail(projId)?.title" class="project__title">
+                    {{ projectDetail(projId)?.title }}
+                  </span>
+                  <span v-if="projectDetail(projId)?.stage || projectDetail(projId)?.status" class="project__meta">
+                    <span v-if="projectDetail(projId)?.stage" class="project__stage">{{ projectDetail(projId)?.stage }}</span>
+                    <span v-if="projectDetail(projId)?.stage && projectDetail(projId)?.status" class="project__meta-sep" aria-hidden="true">·</span>
+                    <span v-if="projectDetail(projId)?.status" class="project__status">{{ projectStatusLabel(projectDetail(projId)?.status) }}</span>
+                  </span>
+                  <span v-if="projectScopeExcerpt(projectDetail(projId)!)" class="project__excerpt">
+                    {{ projectScopeExcerpt(projectDetail(projId)!) }}
+                  </span>
+                </span>
+                <span class="project__arrow" aria-hidden="true">→</span>
+              </a>
             </li>
           </ul>
         </section>
 
         <section
-          v-if="tabbedMode && sectionVisible('people') && hasPeople"
-          id="people"
+          v-if="tabbedMode && sectionVisible('members') && hasPeople"
+          id="members"
           role="tabpanel"
-          aria-labelledby="tab-people"
-          class="detail__section detail__section--people"
+          aria-labelledby="tab-members"
+          class="group__section"
         >
-          <h2 class="detail__section-title">People</h2>
-          <div class="detail__people-grid">
-            <section v-for="pg in peopleGroups" :key="pg.id" class="detail__people-block">
-              <h3 class="detail__people-block-title">{{ pg.label }}</h3>
-              <ul class="detail__people">
-                <li v-for="id in pg.members" :key="`${pg.id}-${id}`">
-                  <a
-                    v-if="pg.variant !== 'plain'"
-                    :href="memberUrl(id)"
-                    :class="['person-chip', { 'person-chip--past': pg.variant === 'past' }]"
-                  >
-                    <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
-                    <span class="person-chip__name">{{ memberName(id) }}</span>
-                  </a>
-                  <a v-else :href="memberUrl(id)" class="detail__people-link">{{ memberName(id) }}</a>
-                </li>
-              </ul>
+          <h2 class="group__section-title">Members</h2>
+          <div class="people-grid">
+            <section v-for="pg in peopleGroups" :key="pg.id" class="people-block">
+              <h3 class="people-block__title">{{ pg.label }}</h3>
+              <div class="people-block__grid">
+                <PersonCard
+                  v-for="id in pg.members"
+                  :key="`${pg.id}-${id}`"
+                  :id="id"
+                  :name="memberName(id)"
+                  :variant="pg.variant"
+                  size="sm"
+                />
+              </div>
             </section>
           </div>
         </section>
       </div>
 
-      <aside v-if="!tabbedMode && hasPeople" class="detail__aside">
-        <section v-for="pg in peopleGroups" :key="pg.id" class="detail__aside-block">
-          <h3 class="detail__aside-title">{{ pg.label }}</h3>
-          <ul class="detail__people">
-            <li v-for="id in pg.members" :key="`${pg.id}-${id}`">
-              <a
-                v-if="pg.variant !== 'plain'"
-                :href="memberUrl(id)"
-                :class="['person-chip', { 'person-chip--past': pg.variant === 'past' }]"
-              >
-                <span class="person-chip__avatar">{{ memberInitials(memberName(id)) }}</span>
-                <span class="person-chip__name">{{ memberName(id) }}</span>
-              </a>
-              <a v-else :href="memberUrl(id)">{{ memberName(id) }}</a>
-            </li>
-          </ul>
+      <aside v-if="!tabbedMode && hasPeople" class="group__aside">
+        <section v-for="pg in peopleGroups" :key="pg.id" class="group__aside-block">
+          <h3 class="group__aside-title">{{ pg.label }}</h3>
+          <div class="group__aside-grid">
+            <PersonCard
+              v-for="id in pg.members"
+              :key="`${pg.id}-${id}`"
+              :id="id"
+              :name="memberName(id)"
+              :variant="pg.variant"
+              size="sm"
+            />
+          </div>
         </section>
       </aside>
     </div>
@@ -433,9 +555,82 @@ function sectionVisible(id: string): boolean {
 }
 .detail__back:hover { text-decoration: underline; }
 
-.detail__title--muted {
-  opacity: 0.85;
+.detail__title--muted { opacity: 0.85; }
+
+/* ─── Hero inlays: scope paragraph + person cards ─── */
+.hero-scope {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: #44403c;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 2px solid var(--color-blue-accent);
+  background: rgba(30, 58, 138, 0.03);
+  max-width: 48rem;
+  font-style: italic;
 }
+.dark .hero-scope {
+  color: #d6d3d1;
+  background: rgba(83, 121, 191, 0.07);
+}
+
+.hero-people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  margin: 0 0 1.25rem;
+  max-width: 56rem;
+}
+.hero-people__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.hero-people__label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-slate-500);
+}
+.dark .hero-people__label { color: var(--color-slate-400); }
+.hero-people__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.hero-people__cards--text {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.hero-fact {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.hero-fact__value {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-slate-900);
+  letter-spacing: -0.01em;
+}
+.dark .hero-fact__value { color: var(--color-slate-100); }
+.hero-fact__hint {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-slate-500);
+  margin-top: 0.125rem;
+}
+.dark .hero-fact__hint { color: var(--color-slate-400); }
 
 .detail__badges {
   display: flex;
@@ -478,35 +673,12 @@ function sectionVisible(id: string): boolean {
   border-color: rgba(120, 113, 108, 0.25);
 }
 .dark .detail__badge--dissolved { color: var(--color-slate-400); }
-.detail__badge--inactive .detail__badge-dot {
-  background: transparent;
-  border: 1.5px solid currentColor;
-  width: 0.4375rem;
-  height: 0.4375rem;
-}
+.detail__badge--inactive .detail__badge-dot,
 .detail__badge--dissolved .detail__badge-dot {
   background: transparent;
   border: 1.5px solid currentColor;
   width: 0.4375rem;
   height: 0.4375rem;
-  position: relative;
-}
-.detail__badge--neutral {
-  background: var(--color-slate-50);
-  color: var(--color-slate-700);
-  border-color: var(--color-slate-200);
-}
-.dark .detail__badge--neutral {
-  background: var(--color-slate-800);
-  color: var(--color-slate-300);
-  border-color: var(--color-slate-700);
-}
-.detail__badge-label {
-  font-size: 0.625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.7;
 }
 
 .detail__lineage {
@@ -536,12 +708,8 @@ function sectionVisible(id: string): boolean {
 }
 .dark .detail__lineage-chip:hover { background: var(--color-slate-700); }
 
-.detail__lineage-chip--pred {
-  border-left: 3px solid var(--color-slate-400);
-}
-.detail__lineage-chip--succ {
-  border-left: 3px solid var(--color-brand-fill);
-}
+.detail__lineage-chip--pred { border-left: 3px solid var(--color-slate-400); }
+.detail__lineage-chip--succ { border-left: 3px solid var(--color-brand-fill); }
 .dark .detail__lineage-chip--pred { border-left-color: var(--color-slate-500); }
 
 .detail__lineage-arrow {
@@ -575,230 +743,486 @@ function sectionVisible(id: string): boolean {
 .dark .detail__lineage-name { color: var(--color-slate-100); }
 .detail__lineage-chip:hover .detail__lineage-name { color: var(--color-brand); }
 
-.detail__grid {
+/* ─── Body layout ─────────────────────────────────────── */
+.group__body {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+.group__body--grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 3rem;
 }
 @media (min-width: 1024px) {
-  .detail__grid { grid-template-columns: minmax(0, 1fr) 22rem; }
+  .group__body--grid { grid-template-columns: minmax(0, 1fr) 22rem; }
+}
+.group__body--single {
+  padding-top: 3rem;
 }
 
-.detail__single {
-  display: block;
+/* ─── Section rhythm ──────────────────────────────────── */
+.group__section {
+  margin-bottom: 3rem;
+  scroll-margin-top: 9rem;
+}
+.group__section:last-child { margin-bottom: 0; }
+
+.group__section-title {
+  font-family: var(--font-serif);
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: var(--color-slate-900);
+  margin: 0 0 1.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-slate-200);
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  font-variation-settings: 'opsz' 32;
+}
+.dark .group__section-title {
+  color: var(--color-slate-100);
+  border-top-color: var(--color-slate-700);
+}
+.group__section:first-of-type .group__section-title {
+  border-top: none;
+  padding-top: 0;
 }
 
-.detail__section { margin-bottom: 2rem; scroll-margin-top: 5rem; }
-.detail__section-title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #78716c;
-  margin: 0 0 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e7e5e4;
-}
-.dark .detail__section-title { color: #a8a29e; border-bottom-color: #292524; }
-
-.detail__section-intro {
-  font-size: 0.8125rem;
+.group__section-intro {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
   color: var(--color-slate-500);
   font-style: italic;
-  margin: 0 0 1rem;
-  line-height: 1.5;
+  margin: 0 0 1.5rem;
+  line-height: 1.55;
+  max-width: 42rem;
 }
-.dark .detail__section-intro { color: var(--color-slate-400); }
+.dark .group__section-intro { color: var(--color-slate-400); }
 
-.detail__section--timeline,
-.detail__section--terms {
-  padding: 1.25rem 1.25rem 1rem;
+.group__prose-block { margin-top: 2rem; }
+.group__prose-block::before {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--color-slate-300);
+  margin-bottom: 1.5rem;
+}
+.dark .group__prose-block::before { background: var(--color-slate-600); }
+
+/* History tab: stacked sub-blocks */
+.group__history-block {
+  margin-bottom: 1.5rem;
+}
+.group__history-block:last-child { margin-bottom: 0; }
+.group__history-block.group__section--card {
+  padding: 1.5rem;
+}
+.group__history-heading {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-slate-900);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+.dark .group__history-heading { color: var(--color-slate-100); }
+.group__history-block .group__section-intro { margin-bottom: 1.25rem; }
+
+.group__leadership-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Card variant: timeline, leadership */
+.group__section--card {
+  padding: 1.75rem;
   background: #fff;
   border: 1px solid var(--color-slate-200);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 1px 2px rgba(120, 113, 108, 0.04);
 }
-.dark .detail__section--timeline,
-.dark .detail__section--terms {
-  background: rgba(15, 23, 42, 0.35);
+.dark .group__section--card {
+  background: rgba(15, 23, 42, 0.45);
   border-color: var(--color-slate-700);
+  box-shadow: none;
 }
-.detail__section--timeline .detail__section-title,
-.detail__section--terms .detail__section-title {
-  border-bottom-color: var(--color-slate-200);
+.group__section--card .group__section-title {
+  border-top: none;
+  padding-top: 0;
   margin-bottom: 0.5rem;
+  font-size: 1.375rem;
 }
 
+/* ─── Prose ───────────────────────────────────────────── */
 .prose {
-  font-size: 0.9375rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
   color: #44403c;
+  max-width: 48rem;
 }
 .dark .prose { color: #d6d3d1; }
-.prose :deep(p) { margin: 0 0 0.875rem; }
+.prose :deep(p) { margin: 0 0 1rem; }
 .prose :deep(p:last-child) { margin-bottom: 0; }
-.prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; }
-.prose :deep(ul), .prose :deep(ol) { margin: 0 0 0.875rem; padding-left: 1.25rem; }
-.prose :deep(li) { margin-bottom: 0.25rem; }
+.prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; text-underline-offset: 2px; }
+.prose :deep(h2),
+.prose :deep(h3),
+.prose :deep(h4) {
+  font-family: var(--font-serif);
+  color: var(--color-slate-900);
+  margin: 1.5rem 0 0.75rem;
+  line-height: 1.3;
+}
+.dark .prose :deep(h2),
+.dark .prose :deep(h3),
+.dark .prose :deep(h4) { color: var(--color-slate-100); }
+.prose :deep(ul), .prose :deep(ol) { margin: 0 0 1rem; padding-left: 1.5rem; }
+.prose :deep(li) { margin-bottom: 0.375rem; }
 .prose :deep(code) {
   font-family: ui-monospace, monospace;
   background: #f5f5f4;
-  padding: 0.125rem 0.25rem;
+  padding: 0.125rem 0.375rem;
   border-radius: 0.25rem;
   font-size: 0.875em;
 }
 .dark .prose :deep(code) { background: #292524; }
 
-.detail__standards, .detail__projects {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-.detail__standards li {
-  padding: 0.5rem 0.75rem;
-  background: #fafaf9;
+/* ─── Collaborative party cards ───────────────────────── */
+.group__party {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-slate-200);
+  border-left: 3px solid var(--color-blue-accent);
   border-radius: 0.375rem;
-  font-family: ui-monospace, monospace;
-  font-size: 0.8125rem;
-  color: #44403c;
-}
-.dark .detail__standards li { background: #292524; color: #d6d3d1; }
-.detail__projects li a {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  background: #fafaf9;
-  border-radius: 0.375rem;
-  font-family: ui-monospace, monospace;
-  font-size: 0.8125rem;
-  color: var(--color-blue-accent);
-  text-decoration: none;
-}
-.detail__projects li a:hover { background: #e0e7ff; }
-.dark .detail__projects li a { background: #292524; }
-.dark .detail__projects li a:hover { background: #44403c; }
-
-.detail__party {
-  padding: 1rem;
-  border: 1px solid #e7e5e4;
-  border-radius: 0.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   background: #fff;
 }
-.dark .detail__party { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
-.detail__party-name { font-size: 1rem; font-weight: 600; margin: 0 0 0.5rem; color: #1c1917; }
-.dark .detail__party-name { color: #fafaf9; }
-.detail__party-projects {
+.dark .group__party {
+  background: rgba(15, 23, 42, 0.4);
+  border-color: var(--color-slate-700);
+  border-left-color: var(--color-blue-accent);
+}
+.group__party-name {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--color-slate-900);
+}
+.dark .group__party-name { color: var(--color-slate-100); }
+.group__party-projects {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-bottom: 0.5rem;
+  gap: 0.375rem;
+  margin-bottom: 0.75rem;
   font-size: 0.8125rem;
+  align-items: center;
 }
-.detail__party-label { color: #78716c; }
-.dark .detail__party-label { color: #a8a29e; }
+.group__party-label {
+  color: var(--color-slate-500);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 0.25rem;
+}
+.dark .group__party-label { color: var(--color-slate-400); }
 .pill {
   display: inline-block;
-  padding: 0.125rem 0.5rem;
-  background: #f5f5f4;
+  padding: 0.1875rem 0.625rem;
+  background: var(--color-slate-100);
   border-radius: 0.25rem;
   font-size: 0.75rem;
   font-family: ui-monospace, monospace;
 }
 .pill a { color: var(--color-blue-accent); text-decoration: none; }
-.dark .pill { background: #292524; }
+.pill a:hover { text-decoration: underline; }
+.dark .pill { background: var(--color-slate-800); }
 
-.detail__aside {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.detail__aside-block {
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid #e7e5e4;
-  border-radius: 0.5rem;
-}
-.dark .detail__aside-block { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
-.detail__aside-title {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #78716c;
-  margin: 0 0 0.75rem;
-}
-.dark .detail__aside-title { color: #a8a29e; }
-
-.detail__people-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-@media (min-width: 768px) {
-  .detail__people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-.detail__people-block {
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid #e7e5e4;
-  border-radius: 0.5rem;
-}
-.dark .detail__people-block { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
-.detail__people-block-title {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #78716c;
-  margin: 0 0 0.75rem;
-}
-.dark .detail__people-block-title { color: #a8a29e; }
-
-.detail__people {
+/* ─── Standards list ────────────────────────────────────
+   Robust flex layout: a main column (code/title/meta stacked)
+   and a right-side arrow. No CSS grid template areas, no
+   :has() selectors — those broke when title was absent. */
+.standards-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
+  gap: 0.5rem;
 }
-.detail__people-link {
-  color: var(--color-blue-accent);
-  text-decoration: none;
-  font-size: 0.875rem;
+.standard {
+  background: #fff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.5rem;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
 }
-.detail__people-link:hover { text-decoration: underline; }
-
-.person-chip {
+.dark .standard {
+  background: rgba(15, 23, 42, 0.4);
+  border-color: var(--color-slate-700);
+}
+.standard:hover {
+  border-color: var(--color-blue-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
+}
+.standard__link {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.375rem 0.5rem;
-  border-radius: 0.375rem;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
   text-decoration: none;
-  color: #44403c;
-  transition: background 0.15s;
+  color: inherit;
 }
-.person-chip:hover { background: #f5f5f4; }
-.dark .person-chip { color: #d6d3d1; }
-.dark .person-chip:hover { background: #292524; }
-.person-chip__avatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 9999px;
-  background: var(--color-blue-accent);
-  color: #fff;
-  font-size: 0.6875rem;
+.standard__main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+}
+.standard__code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9375rem;
   font-weight: 600;
-  flex-shrink: 0;
+  color: var(--color-slate-900);
+  letter-spacing: -0.01em;
 }
-.dark .person-chip__avatar { background: #5379bf; }
-.person-chip--past .person-chip__avatar { background: #a8a29e; }
-.dark .person-chip--past .person-chip__avatar { background: #57534e; }
-.person-chip__name { font-size: 0.875rem; }
+.dark .standard__code { color: var(--color-slate-100); }
+.standard__title {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-slate-600);
+  font-style: italic;
+  line-height: 1.4;
+}
+.dark .standard__title { color: var(--color-slate-300); }
+.standard__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+  margin-top: 0.125rem;
+}
+.dark .standard__meta { color: var(--color-slate-400); }
+.standard__year {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+.standard__meta-sep {
+  color: var(--color-slate-300);
+}
+.dark .standard__meta-sep { color: var(--color-slate-600); }
+.standard__stage {
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+.standard__arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: var(--color-slate-400);
+  transition: color 0.15s, transform 0.15s;
+}
+.standard:hover .standard__arrow {
+  color: var(--color-blue-accent);
+  transform: translateX(2px);
+}
+.dark .standard:hover .standard__arrow { color: var(--color-blue-accent); }
+
+/* ─── Projects list (mirrors standards pattern) ───────── */
+.projects-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.project {
+  background: #fff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.5rem;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.dark .project {
+  background: rgba(15, 23, 42, 0.4);
+  border-color: var(--color-slate-700);
+}
+.project:hover {
+  border-color: var(--color-blue-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
+}
+.project__link {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.125rem;
+  text-decoration: none;
+  color: inherit;
+}
+.project__main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.project__code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-slate-900);
+  letter-spacing: -0.01em;
+}
+.dark .project__code { color: var(--color-slate-100); }
+.project__title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-slate-700);
+  line-height: 1.4;
+}
+.dark .project__title { color: var(--color-slate-200); }
+.project__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-slate-500);
+  margin-top: 0.125rem;
+}
+.dark .project__meta { color: var(--color-slate-400); }
+.project__stage {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  background: rgba(30, 58, 138, 0.08);
+  color: var(--color-brand);
+  border-radius: 0.1875rem;
+  letter-spacing: 0.06em;
+}
+.dark .project__stage {
+  background: rgba(83, 121, 191, 0.16);
+  color: var(--color-blue-accent);
+}
+.project__status {
+  color: var(--color-slate-500);
+}
+.dark .project__status { color: var(--color-slate-400); }
+.project__meta-sep {
+  color: var(--color-slate-300);
+}
+.dark .project__meta-sep { color: var(--color-slate-600); }
+.project__excerpt {
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-slate-500);
+  line-height: 1.55;
+  margin-top: 0.375rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--color-slate-200);
+}
+.dark .project__excerpt {
+  color: var(--color-slate-400);
+  border-top-color: var(--color-slate-700);
+}
+.project__arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: var(--color-slate-400);
+  transition: color 0.15s, transform 0.15s;
+}
+.project:hover .project__arrow {
+  color: var(--color-blue-accent);
+  transform: translateX(2px);
+}
+.dark .project:hover .project__arrow { color: var(--color-blue-accent); }
+
+/* ─── People grid (tab mode) ──────────────────────────── */
+.people-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.people-block {
+  padding: 1.25rem 1.5rem;
+  background: #fff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.5rem;
+}
+.dark .people-block {
+  background: rgba(15, 23, 42, 0.4);
+  border-color: var(--color-slate-700);
+}
+.people-block__title {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-slate-500);
+  margin: 0 0 0.875rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--color-slate-200);
+}
+.dark .people-block__title {
+  color: var(--color-slate-400);
+  border-bottom-color: var(--color-slate-700);
+}
+.people-block__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+/* ─── Aside (non-tabbed mode) ─────────────────────────── */
+.group__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.group__aside-block {
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.5rem;
+}
+.dark .group__aside-block {
+  background: rgba(15, 23, 42, 0.4);
+  border-color: var(--color-slate-700);
+}
+.group__aside-title {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-slate-500);
+  margin: 0 0 0.875rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--color-slate-200);
+}
+.dark .group__aside-title {
+  color: var(--color-slate-400);
+  border-bottom-color: var(--color-slate-700);
+}
+.group__aside-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
 </style>
