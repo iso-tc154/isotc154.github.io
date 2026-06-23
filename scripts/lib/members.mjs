@@ -174,7 +174,8 @@ export function enrichConvenorTerms(groups, eventData) {
       if (!term.resolution_ref && ev.resolution_ref) term.resolution_ref = ev.resolution_ref
       if (ev.term_until && (!term.to || ev.term_until > term.to)) {
         term.to = ev.term_until
-        term.current = false
+        const today = new Date().toISOString().slice(0, 10)
+        if (ev.term_until < today) term.current = false
       }
     }
   }
