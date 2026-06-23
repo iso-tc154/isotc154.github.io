@@ -2,7 +2,8 @@
 import { computed, onMounted, ref } from 'vue'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
-import { groupCategoryLabel, lifecycleStatus, type Group, type LifecycleStatus } from '../types/group'
+import { type Group, type LifecycleStatus } from '../types/group'
+import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
 import { useRouter } from 'vue-router'
 import PageHero from '../components/PageHero.vue'
 

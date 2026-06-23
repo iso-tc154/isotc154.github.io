@@ -2,7 +2,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { loadGroups, loadMembers, attachMembersToGroups, buildOrganizationMembers, enrichConvenorTerms } from './lib/members.mjs'
+import { loadGroups, loadMembers, buildOrganizationMembers } from './lib/members.mjs'
+import { buildGroupRecords } from './lib/groupPipeline.mjs'
 import { loadStandards, loadProjects } from './lib/standards.mjs'
 import {
   loadEvents,
@@ -11,7 +12,7 @@ import {
 import { loadPosts, loadPages, buildSiteContext } from './lib/content.mjs'
 import { loadResolutions } from './lib/resolutions.mjs'
 import { loadCanonicalMeetings } from './lib/meetings.mjs'
-import { loadGroupEvents, attachGroupLifecycle } from './lib/groupHistory.mjs'
+import { loadGroupEvents } from './lib/groupHistory.mjs'
 import { toISODate } from './lib/dates.mjs'
 import { liaisonPath, nationalBodyPath } from '../src/utils/urn.ts'
 import { load as yamlLoad } from 'js-yaml'
@@ -119,17 +120,12 @@ function buildOrgIndex(nationalBodies, liaisons, associates) {
 function main() {
   if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true })
 
-  // Groups + Members (mirror members.rb)
+  // Groups + Members + lifecycle (curated events → history, lineage, terms).
+  // The pipeline encodes the three-pass build order; see groupPipeline.mjs.
   const groups = loadGroups(path.join(DATA_DIR, 'groups'))
   const members = loadMembers(path.join(DATA_DIR, 'members'), CHAIR_MEMBER_ID)
-  attachMembersToGroups(groups, members.all)
-
-  // Group lifecycle events (curated) → history.events, established, dissolved,
-  // predecessor, successor, plus resolution_ref/term_until enrichment on
-  // convenor_terms.
   const groupEvents = loadGroupEvents(path.join(DATA_DIR, 'group_events.yml'))
-  attachGroupLifecycle(groups, groupEvents)
-  enrichConvenorTerms(groups, groupEvents)
+  buildGroupRecords(groups, members.all, groupEvents)
 
   // Organizations
   const liaisons = loadYamlList(path.join(DATA_DIR, 'liaisons.yml'))

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { GroupLifecycleEvent, LifecycleEventType } from '../types/group'
+import type { GroupLifecycleEvent } from '../types/group'
 import { resolutionRefSearchPath } from '../utils/urn'
+import { markerOf } from '../domain/lifecycleEvents'
 
 const props = defineProps<{
   events: GroupLifecycleEvent[]
@@ -10,20 +11,6 @@ const props = defineProps<{
 const sorted = computed(() =>
   [...props.events].sort((a, b) => String(a.date).localeCompare(String(b.date))),
 )
-
-const MARKER: Record<LifecycleEventType, { glyph: string; label: string }> = {
-  established:        { glyph: '◇', label: 'Established' },
-  dissolved:          { glyph: '✕', label: 'Dissolved' },
-  convenor_appointed: { glyph: '●', label: 'Convenor appointed' },
-  convenor_extended:  { glyph: '◐', label: 'Term extended' },
-  scope_change:       { glyph: '✎', label: 'Scope change' },
-  succession:         { glyph: '⇄', label: 'Succession' },
-  title_change:       { glyph: '“', label: 'Title change' },
-}
-
-function markerOf(type: LifecycleEventType) {
-  return MARKER[type] ?? { glyph: '·', label: type }
-}
 
 function formatYear(date: string): string {
   return String(date || '').slice(0, 4)

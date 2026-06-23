@@ -4,12 +4,11 @@ import { useRoute, RouterLink } from 'vue-router'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
 import {
-  groupCategoryLabel,
-  lifecycleStatus,
   type Group,
   type GroupCollaborativeParty,
   type ConvenorTerm,
 } from '../types/group'
+import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
 import { asciidocify } from '../utils/asciidoc'
 import { memberPath, projectPath } from '../utils/urn'
 import type { Member } from '../types/member'

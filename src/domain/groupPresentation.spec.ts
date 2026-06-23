@@ -1,9 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import {
-  groupCategoryLabel,
-  lifecycleStatus,
-  type Group,
-} from './group'
+import type { Group } from '../types/group'
+import { groupCategoryLabel, lifecycleStatus } from './groupPresentation'
 
 // Real model instances — no doubles. Plain objects typed as Group.
 
@@ -77,7 +74,7 @@ describe('lifecycleStatus', () => {
     expect(lifecycleStatus(group)).toBe('dissolved')
   })
 
-  it('returns "inactive" when group.inactive is true and no dissolved record', () => {
+  it('returns "inactive" when group.inactive is true and no dissolved summary', () => {
     const group = makeGroup({ inactive: true })
     expect(lifecycleStatus(group)).toBe('inactive')
   })
