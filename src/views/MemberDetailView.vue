@@ -47,10 +47,16 @@ function roleLabel(roleId: string): string {
   return formatRoleLabel(roleId)
 }
 
-function groupLabel(groupId?: string): string {
+function groupName(groupId?: string): string {
   if (!groupId) return ''
   const g = getGroup(groupId)
-  return g?.title ?? groupId
+  return g?.name ?? groupId
+}
+
+function groupTitle(groupId?: string): string {
+  if (!groupId) return ''
+  const g = getGroup(groupId)
+  return g?.title ?? ''
 }
 
 function groupUrl(groupId?: string): string | null {
@@ -127,8 +133,14 @@ function sortedRoles(list: RoleRecord[]): RoleRecord[] {
           <li v-for="(r, idx) in sortedRoles(roles)" :key="idx" class="role">
             <div class="role__head">
               <span class="role__title">{{ roleLabel(r.id) }}</span>
-              <a v-if="groupUrl(r.group)" :href="groupUrl(r.group)!" class="role__group">{{ groupLabel(r.group) }}</a>
-              <span v-else-if="r.group" class="role__group role__group--plain">{{ groupLabel(r.group) }}</span>
+              <a v-if="groupUrl(r.group)" :href="groupUrl(r.group)!" class="role__group">
+                <span class="role__group-name">{{ groupName(r.group) }}</span>
+                <span v-if="groupTitle(r.group)" class="role__group-title">· {{ groupTitle(r.group) }}</span>
+              </a>
+              <span v-else-if="r.group" class="role__group role__group--plain">
+                <span class="role__group-name">{{ groupName(r.group) }}</span>
+                <span v-if="groupTitle(r.group)" class="role__group-title">· {{ groupTitle(r.group) }}</span>
+              </span>
               <span v-else class="role__group role__group--plain">Committee-wide</span>
             </div>
             <span class="role__span">{{ memberRoleSpan(r) }}</span>
@@ -238,11 +250,20 @@ function sortedRoles(list: RoleRecord[]): RoleRecord[] {
 }
 .dark .role__title { color: #fafaf9; }
 .role__group {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
   font-size: 0.875rem; color: var(--color-blue-accent);
   text-decoration: none;
   font-weight: 500;
 }
 .role__group:hover { text-decoration: underline; }
+.role__group-name { font-weight: 600; }
+.role__group-title {
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
 .role__group--plain { color: #78716c; }
 .dark .role__group--plain { color: #a8a29e; }
 .role__span {
