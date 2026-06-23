@@ -24,8 +24,8 @@ organization:
   convenors:
   - jasmine-chang
 active_projects:
-- iso-14533
-- iso-19626-1
+- iso-14533-2
+- iso-19626-2
 standards:
 - ISO 14533-1:2012
 - ISO 14533-1:2014

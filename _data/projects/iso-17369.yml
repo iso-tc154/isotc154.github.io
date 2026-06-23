@@ -7,7 +7,7 @@ stage: NP
 scope: |-
   == Purpose
 
-  Revision of link:/standards/isots-173692005[ISO/TS 17369 - Statistical data and metadata exchange (SDMX)], as an International Standard (IS).
+  Revision of link:/standards/isots-17369-2005[ISO/TS 17369 - Statistical data and metadata exchange (SDMX)], as an International Standard (IS).
 
   == Scope
 
