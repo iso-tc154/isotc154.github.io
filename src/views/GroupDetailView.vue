@@ -15,8 +15,14 @@ import type { Standard } from '../types/standard'
 import type { Project } from '../types/project'
 import type { Member } from '../types/member'
 import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
+import {
+  standardYear,
+  standardUrlFromRaw,
+  standardStatusLabel,
+} from '../domain/standardPresentation'
+import { projectStatusLabel, projectScopeExcerpt } from '../domain/projectPresentation'
 import { asciidocify } from '../utils/asciidoc'
-import { projectPath, standardPath } from '../utils/urn'
+import { projectPath } from '../utils/urn'
 import PageHero from '../components/PageHero.vue'
 import GroupTimeline from '../components/GroupTimeline.vue'
 import ConvenorTermBar from '../components/ConvenorTermBar.vue'
@@ -145,55 +151,55 @@ const standardsByName = computed(() => {
   return map
 })
 
-function standardByRaw(raw: string): Standard | undefined {
-  return standardsByName.value.get(raw)
+interface StandardCard {
+  raw: string
+  standard?: Standard
+  url: string
+  year: string
+  stage: string
 }
 
-function slugifyStandard(raw: string): string {
-  return raw.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+const standardCards = computed<StandardCard[]>(() => {
+  const list = group.value?.standards ?? []
+  return list.map(raw => {
+    const standard = standardsByName.value.get(raw)
+    return {
+      raw,
+      standard,
+      url: standardUrlFromRaw(standards.value, raw),
+      year: standardYear(standard),
+      stage: standard ? standardStatusLabel(standard.tc154?.status) : '',
+    }
+  })
+})
+
+interface ProjectCard {
+  id: string
+  project?: Project
+  url: string
+  name: string
+  title?: string
+  stage?: string
+  statusLabel: string
+  excerpt: string
 }
 
-function standardYear(s?: Standard): string {
-  if (!s?.iso?.publication_date) return ''
-  return String(s.iso.publication_date).slice(0, 4)
-}
-
-function standardStageLabel(s?: Standard): string {
-  const status = s?.tc154?.status
-  if (!status) return ''
-  return status.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
-}
-
-function standardUrl(raw: string): string {
-  const s = standardByRaw(raw)
-  return standardPath(s?.id ?? slugifyStandard(raw))
-}
-
-function projectDetail(id: string): Project | undefined {
-  return getProject(id)
-}
-
-function projectStatusLabel(status?: string): string {
-  if (!status) return ''
-  switch (status.toLowerCase()) {
-    case 'current': return 'Current'
-    case 'deleted': return 'Deleted'
-    case 'withdrawn': return 'Withdrawn'
-    case 'new': return 'New'
-    default: return status.charAt(0).toUpperCase() + status.slice(1)
-  }
-}
-
-function projectScopeExcerpt(p: Project): string {
-  if (!p.scope) return ''
-  const text = p.scope
-    .replace(/^==\s*.*$/gm, '')
-    .replace(/\*\*/g, '')
-    .replace(/\n{2,}/g, '\n\n')
-    .trim()
-  const firstPara = text.split(/\n\n/)[0] ?? ''
-  return firstPara.length > 280 ? firstPara.slice(0, 280).trimEnd() + '…' : firstPara
-}
+const projectCards = computed<ProjectCard[]>(() => {
+  const list = group.value?.active_projects ?? []
+  return list.map(id => {
+    const project = getProject(id)
+    return {
+      id,
+      project,
+      url: projectPath(id),
+      name: project?.name ?? id,
+      title: project?.title,
+      stage: project?.stage,
+      statusLabel: project?.status ? projectStatusLabel(project.status) : '',
+      excerpt: project ? projectScopeExcerpt(project) : '',
+    }
+  })
+})
 
 const subnavSections = computed<SubnavSection[]>(() => {
   if (!group.value) return []
@@ -443,17 +449,17 @@ function sectionVisible(id: string): boolean {
           <h2 class="group__section-title">Standards</h2>
           <p class="group__section-intro">{{ group.standards.length }} catalogue entr{{ group.standards.length === 1 ? 'y' : 'ies' }} attributable to this group.</p>
           <ul class="standards-list">
-            <li v-for="raw in group.standards" :key="raw" class="standard">
-              <a :href="standardUrl(raw)" class="standard__link">
+            <li v-for="card in standardCards" :key="card.raw" class="standard">
+              <a :href="card.url" class="standard__link">
                 <span class="standard__main">
-                  <span class="standard__code">{{ raw }}</span>
-                  <span v-if="standardByRaw(raw)?.iso.title" class="standard__title">
-                    {{ standardByRaw(raw)?.iso.title }}
+                  <span class="standard__code">{{ card.raw }}</span>
+                  <span v-if="card.standard?.iso.title" class="standard__title">
+                    {{ card.standard.iso.title }}
                   </span>
-                  <span v-if="standardYear(standardByRaw(raw)) || standardStageLabel(standardByRaw(raw))" class="standard__meta">
-                    <span v-if="standardYear(standardByRaw(raw))" class="standard__year">{{ standardYear(standardByRaw(raw)) }}</span>
-                    <span v-if="standardYear(standardByRaw(raw)) && standardStageLabel(standardByRaw(raw))" class="standard__meta-sep" aria-hidden="true">·</span>
-                    <span v-if="standardStageLabel(standardByRaw(raw))" class="standard__stage">{{ standardStageLabel(standardByRaw(raw)) }}</span>
+                  <span v-if="card.year || card.stage" class="standard__meta">
+                    <span v-if="card.year" class="standard__year">{{ card.year }}</span>
+                    <span v-if="card.year && card.stage" class="standard__meta-sep" aria-hidden="true">·</span>
+                    <span v-if="card.stage" class="standard__stage">{{ card.stage }}</span>
                   </span>
                 </span>
                 <span class="standard__arrow" aria-hidden="true">→</span>
@@ -472,20 +478,20 @@ function sectionVisible(id: string): boolean {
           <h2 class="group__section-title">Active projects</h2>
           <p class="group__section-intro">{{ group.active_projects.length }} active work item{{ group.active_projects.length === 1 ? '' : 's' }}.</p>
           <ul class="projects-list">
-            <li v-for="projId in group.active_projects" :key="projId" class="project">
-              <a :href="projectUrl(projId)" class="project__link">
+            <li v-for="card in projectCards" :key="card.id" class="project">
+              <a :href="card.url" class="project__link">
                 <span class="project__main">
-                  <span class="project__code">{{ projectDetail(projId)?.name ?? projId }}</span>
-                  <span v-if="projectDetail(projId)?.title" class="project__title">
-                    {{ projectDetail(projId)?.title }}
+                  <span class="project__code">{{ card.name }}</span>
+                  <span v-if="card.title" class="project__title">
+                    {{ card.title }}
                   </span>
-                  <span v-if="projectDetail(projId)?.stage || projectDetail(projId)?.status" class="project__meta">
-                    <span v-if="projectDetail(projId)?.stage" class="project__stage">{{ projectDetail(projId)?.stage }}</span>
-                    <span v-if="projectDetail(projId)?.stage && projectDetail(projId)?.status" class="project__meta-sep" aria-hidden="true">·</span>
-                    <span v-if="projectDetail(projId)?.status" class="project__status">{{ projectStatusLabel(projectDetail(projId)?.status) }}</span>
+                  <span v-if="card.stage || card.statusLabel" class="project__meta">
+                    <span v-if="card.stage" class="project__stage">{{ card.stage }}</span>
+                    <span v-if="card.stage && card.statusLabel" class="project__meta-sep" aria-hidden="true">·</span>
+                    <span v-if="card.statusLabel" class="project__status">{{ card.statusLabel }}</span>
                   </span>
-                  <span v-if="projectScopeExcerpt(projectDetail(projId)!)" class="project__excerpt">
-                    {{ projectScopeExcerpt(projectDetail(projId)!) }}
+                  <span v-if="card.excerpt" class="project__excerpt">
+                    {{ card.excerpt }}
                   </span>
                 </span>
                 <span class="project__arrow" aria-hidden="true">→</span>

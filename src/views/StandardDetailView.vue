@@ -3,7 +3,7 @@ import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
-import { standardStatusLabel } from '../types/standard'
+import { standardStatusLabel } from '../domain/standardPresentation'
 import { asciidocify } from '../utils/asciidoc'
 import PageHero from '../components/PageHero.vue'
 
