@@ -2,8 +2,9 @@
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePages } from '../composables/usePages'
+import PageHero from '../components/PageHero.vue'
 
-const props = defineProps<{ slug?: string }>()
+const props = defineProps<{ slug?: string; decorationPattern?: string }>()
 
 const route = useRoute()
 const { pages, isLoaded, loadData } = usePages()
@@ -22,82 +23,102 @@ const page = computed(() => {
 })
 
 const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
+const eyebrow = computed(() => page.value?.frontmatter.eyebrow || '')
+const lead = computed(() => page.value?.frontmatter.lead || page.value?.frontmatter.description || '')
+
+const decorationClass = computed(() => {
+  const p = props.decorationPattern
+  if (!p) return null
+  return `hero-pattern hero-pattern--${p}`
+})
 </script>
 
 <template>
-  <div v-if="!isLoaded" class="page"><p class="loading">Loading…</p></div>
+  <div v-if="!isLoaded">
+    <PageHero variant="index" bleed title="Loading…" />
+  </div>
 
-  <article v-else-if="!page" class="page">
-    <header class="page__header">
-      <h1 class="page__title">Page not found</h1>
-      <p>No page matches <code>{{ slug }}</code>.</p>
-    </header>
-  </article>
+  <div v-else-if="!page">
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="404"
+      title="Page not found"
+      :lead="`No page matches \`${slug}\`.`"
+    />
+  </div>
 
-  <article v-else class="page">
-    <header class="page__header">
-      <h1 class="page__title">{{ title }}</h1>
-    </header>
-    <div class="prose" v-html="page.html"></div>
-  </article>
+  <div v-else>
+    <PageHero
+      variant="index"
+      bleed
+      :eyebrow="eyebrow"
+      :title="title"
+      :lead="lead"
+    >
+      <template v-if="decorationClass" #decoration>
+        <div :class="decorationClass"></div>
+      </template>
+    </PageHero>
+    <article class="page page--wide">
+      <div class="prose" v-html="page.html"></div>
+    </article>
+  </div>
 </template>
 
 <style scoped>
-.page { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__header {
-  border-bottom: 1px solid #e7e5e4;
-  padding-bottom: 1.5rem;
-  margin-bottom: 2rem;
-}
-.dark .page__header { border-bottom-color: #292524; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  margin: 0;
-  color: #1c1917;
-  letter-spacing: -0.02em;
-}
-.dark .page__title { color: #fafaf9; }
-
 .prose {
+  max-width: 48rem;
   font-size: 1rem; line-height: 1.7;
   color: #44403c;
 }
 .dark .prose { color: #d6d3d1; }
 .prose :deep(h1) {
   font-family: var(--font-serif);
-  font-size: 1.875rem; font-weight: 700;
+  font-size: clamp(1.625rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   color: #1c1917;
-  margin: 2rem 0 1rem;
-  letter-spacing: -0.01em;
+  margin: 2.5rem 0 1rem;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
 }
 .dark .prose :deep(h1) { color: #fafaf9; }
 .prose :deep(h2) {
   font-family: var(--font-serif);
-  font-size: 1.5rem; font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: #1c1917;
-  margin: 2rem 0 0.875rem;
-  padding-bottom: 0.25rem;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid #e7e5e4;
-  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
 }
 .dark .prose :deep(h2) { color: #fafaf9; border-bottom-color: #44403c; }
 .prose :deep(h3) {
-  font-size: 1.25rem; font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
   color: #1c1917;
-  margin: 1.5rem 0 0.625rem;
+  margin: 2rem 0 0.75rem;
 }
 .dark .prose :deep(h3) { color: #fafaf9; }
 .prose :deep(h4) {
-  font-size: 1rem; font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: #1c1917;
-  margin: 1.25rem 0 0.5rem;
+  margin: 1.5rem 0 0.5rem;
 }
 .dark .prose :deep(h4) { color: #fafaf9; }
 .prose :deep(p) { margin: 0 0 1rem; }
-.prose :deep(a) { color: var(--color-blue-accent); text-decoration: underline; }
-.dark .prose :deep(a) { color: #94b6e8; }
+.prose :deep(a) { color: var(--color-brand); text-decoration: underline; }
 .prose :deep(ul), .prose :deep(ol) { margin: 0 0 1rem; padding-left: 1.5rem; }
 .prose :deep(li) { margin-bottom: 0.375rem; }
 .prose :deep(code) {
@@ -109,7 +130,7 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
 }
 .dark .prose :deep(code) { background: #44403c; }
 .prose :deep(blockquote) {
-  border-left: 3px solid var(--color-blue-accent);
+  border-left: 3px solid var(--color-brand);
   padding: 0.5rem 1rem;
   margin: 1.5rem 0;
   background: #fafaf9;
@@ -148,21 +169,21 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
 .prose :deep(.business-plan-cta) {
   margin: 1.25rem 0 1.75rem;
   padding: 1.25rem 1.5rem;
-  border-left: 4px solid var(--color-iso-red);
-  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+  border-left: 4px solid var(--color-brand);
+  background: linear-gradient(135deg, rgb(30 58 138 / 0.05) 0%, #fff 100%);
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
 }
 .dark .prose :deep(.business-plan-cta) {
-  background: linear-gradient(135deg, rgb(185 28 28 / 0.08) 0%, rgb(15 23 42 / 0.5) 100%);
-  border-left-color: var(--color-iso-red);
+  background: linear-gradient(135deg, rgb(51 133 214 / 0.08) 0%, rgb(15 23 42 / 0.5) 100%);
+  border-left-color: var(--color-brand);
 }
 .prose :deep(.business-plan-cta a) {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   text-decoration: none;
   font-weight: 700;
 }
@@ -171,7 +192,6 @@ const title = computed(() => page.value?.frontmatter.title || targetUrl.value)
   display: inline-block;
   font-size: 0.875rem;
 }
-.dark .prose :deep(.business-plan-cta a) { color: #ff6b73; }
 .prose :deep(.business-plan-cta a:hover) { text-decoration: underline; }
 
 .loading { color: #78716c; padding: 4rem 0; text-align: center; }

@@ -84,6 +84,7 @@ export interface RichMeetingData {
   tourist_info?: import('./event').PracticalSection | import('./event').EventAccommodation[]
   local_contact?: import('./event').EventContact
   landing_url?: string
+  registration_url?: string
 }
 
 export interface Meeting {
@@ -102,10 +103,4 @@ export interface Meeting {
   resolutions_url: string | null
   resolutions_meeting_urn: string | null
   rich?: RichMeetingData
-}
-
-export function ordinalFromSourceFile(sourceType: string, sourceFile: string): number | null {
-  if (sourceType !== 'plenary') return null
-  const m = sourceFile.match(/plenary-(\d+)/)
-  return m ? parseInt(m[1], 10) : null
 }

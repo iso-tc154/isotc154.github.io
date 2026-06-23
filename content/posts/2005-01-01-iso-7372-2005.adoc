@@ -6,7 +6,7 @@ categories: site update
 see_also:
 ---
 
-link:/standards/iso-73722005[ISO 7372:2005] has been published
+link:/standards/iso-7372-2005[ISO 7372:2005] has been published
 as an International Standard, and will be available on ISO.org soon.
 
 // more

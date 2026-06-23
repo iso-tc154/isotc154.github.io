@@ -8,6 +8,8 @@ import { useCountUp } from '../composables/useCountUp'
 import { getActionColor } from '../data/actionTypes'
 import { formatDate } from '../utils/format'
 import { highlightText } from '../utils/highlight'
+import { parseMeetingSourceParam, meetingSourceFromParts, meetingSourceShortTitle } from '../domain/meetingSource'
+import PageHero from '../components/PageHero.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -19,9 +21,17 @@ const searchQuery = ref((route.query.q as string) || '')
 const selectedYear = ref((route.query.year as string) || '')
 const sortOrder = ref((route.query.sort as string) || 'newest')
 const selectedActionTypes = ref<Set<string>>(new Set())
+const selectedMeeting = ref((route.query.meeting as string) || '')
 const limit = ref(50)
 const searchInputRef = ref<HTMLInputElement | null>(null)
 const isLegendOpen = ref(false)
+
+const meetingFilter = computed(() => parseMeetingSourceParam(selectedMeeting.value))
+
+const meetingFilterLabel = computed(() => {
+  const s = meetingFilter.value
+  return s ? meetingSourceShortTitle(s) : ''
+})
 
 const totalResolutions = computed(() => resolutions.value.length)
 const totalMeetings = computed(() => meetings.value.length)
@@ -126,6 +136,7 @@ function clearAllFilters() {
   selectedYear.value = ''
   selectedActionTypes.value = new Set()
   sortOrder.value = 'newest'
+  selectedMeeting.value = ''
 }
 
 function getUniqueActions(res: any): string[] {
@@ -139,6 +150,14 @@ function getUniqueActions(res: any): string[] {
 
 const filteredResolutions = computed(() => {
   let list = resolutions.value
+
+  const mf = meetingFilter.value
+  if (mf) {
+    list = list.filter(r => {
+      const rs = meetingSourceFromParts(r.source_type, r.source_file)
+      return rs !== null && rs.kind === mf.kind && rs.raw === mf.raw
+    })
+  }
 
   if (selectedYear.value) {
     list = list.filter(r => r.year === selectedYear.value)
@@ -187,90 +206,73 @@ function loadMore() {
   limit.value += 50
 }
 
-watch([searchQuery, selectedYear, sortOrder], () => {
+watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
   limit.value = 50
   const query: Record<string, string> = {}
   if (searchQuery.value) query.q = searchQuery.value
   if (selectedYear.value) query.year = selectedYear.value
   if (sortOrder.value && sortOrder.value !== 'newest') query.sort = sortOrder.value
+  if (selectedMeeting.value) query.meeting = selectedMeeting.value
   router.replace({ query })
 })
 </script>
 
 <template>
-  <div class="home-page">
-    <section class="hero-section">
-      <div class="hero-bg">
-        <div class="hero-bg__mesh"></div>
-        <div class="hero-bg__grid"></div>
-      </div>
-
-      <div class="hero-content">
-        <h1 class="hero-title animate-up" style="--nth: 1">
-          <span class="text-blue-accent">TC&nbsp;154 Resolutions</span>
-        </h1>
-
-        <p class="hero-subtitle animate-up" style="--nth: 2">
-          <template v-if="!isLoaded">Loading data…</template>
-          <template v-else>
-            {{ formatNumber(animResolutions) }} resolutions from {{ formatNumber(animMeetings) }} plenary meetings and committee ballots, spanning {{ yearRange.earliest }} to {{ yearRange.latest }}. {{ committee.tagline }}.
-          </template>
-        </p>
-
-        <div class="hero-stats animate-up" style="--nth: 3">
-          <div class="stat-item">
-            <span class="stat-value">
-              <template v-if="!isLoaded">—</template>
-              <template v-else>{{ formatNumber(animResolutions) }}</template>
-            </span>
-            <span class="stat-label">Resolutions</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">
-              <template v-if="!isLoaded">—</template>
-              <template v-else>{{ formatNumber(animMeetings) }}</template>
-            </span>
-            <span class="stat-label">Meetings &amp; Ballots</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">{{ formatNumber(animStandards) }}</span>
-            <span class="stat-label">Published Standards</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">{{ animEstablished }}</span>
-            <span class="stat-label">Established</span>
-          </div>
-        </div>
-
-        <div class="hero-search-wrapper animate-up" style="--nth: 4">
-          <div class="hero-search-input-box">
-            <svg class="hero-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
-            <input
-              ref="searchInputRef"
-              type="search"
-              v-model="searchQuery"
-              class="hero-search-input"
-              placeholder="Search by topic, number, or keyword…"
-              autocomplete="off"
-              spellcheck="false"
-              aria-label="Search resolutions"
-            />
-            <div class="hero-search-hint"><kbd>/</kbd> to search</div>
-          </div>
-        </div>
-
-        <div class="hero-actions animate-up" style="--nth: 5">
-          <button @click="scrollToResults" class="hero-btn hero-btn--primary">Browse Resolutions</button>
-          <RouterLink to="/resolutions/meetings/" class="hero-btn hero-btn--secondary">Browse Meetings</RouterLink>
-        </div>
-      </div>
-    </section>
+  <div class="res-page-wrap">
+    <PageHero
+      variant="landing"
+      bleed
+      eyebrow="Resolutions archive"
+      title="Every decision the committee"
+      accent="has ever made."
+      :lead="isLoaded
+        ? `${formatNumber(totalResolutions)} resolutions from ${formatNumber(totalMeetings)} plenary meetings and committee ballots, spanning ${yearRange.earliest} to ${yearRange.latest}. ${committee.tagline}.`
+        : 'Loading the archive…'"
+    >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--nodes"></div>
+      </template>
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ formatNumber(animResolutions) }}</dt><dd>Resolutions</dd></div>
+        <div><dt>{{ formatNumber(animMeetings) }}</dt><dd>Meetings &amp; ballots</dd></div>
+        <div><dt>{{ formatNumber(animStandards) }}</dt><dd>Published standards</dd></div>
+        <div><dt>{{ animEstablished }}</dt><dd>Established</dd></div>
+      </dl>
+      <template #actions>
+        <button @click="scrollToResults" class="hero-btn hero-btn--primary">Browse Resolutions</button>
+        <RouterLink to="/resolutions/meetings/" class="hero-btn hero-btn--secondary">Browse Meetings</RouterLink>
+      </template>
+    </PageHero>
 
     <div class="res-page" id="results-section">
+      <div v-if="meetingFilter" class="meeting-filter-banner">
+        <div class="meeting-filter-banner__info">
+          <span class="meeting-filter-banner__label">Filtered by</span>
+          <span class="meeting-filter-banner__name">{{ meetingFilterLabel }}</span>
+        </div>
+        <button class="meeting-filter-banner__clear" @click="selectedMeeting = ''">
+          View all resolutions
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
       <div class="std-filter std-filter--elevated">
+        <div class="std-filter__search">
+          <svg class="std-filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            ref="searchInputRef"
+            type="search"
+            v-model="searchQuery"
+            class="std-filter__search-input"
+            placeholder="Search by topic, number, or keyword…"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Search resolutions"
+          />
+        </div>
         <div class="std-filter__controls">
           <div class="std-filter__field">
             <span class="std-filter__label">Filter by Year</span>
@@ -436,220 +438,26 @@ watch([searchQuery, selectedYear, sortOrder], () => {
 </template>
 
 <style scoped>
-.home-page { display: flex; flex-direction: column; width: 100%; }
+.res-page-wrap { display: flex; flex-direction: column; }
 
-.hero-section {
-  position: relative;
-  width: 100%;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  overflow: hidden;
-  background-color: #fafaf9;
-  color: #1c1917;
-  border-bottom: 1px solid #e7e5e4;
+/* Pull the results section up into the hero's shadow so the elevated
+   filter card overlaps the hero bottom, eliminating the dead strip
+   that the default .ph margin + res-page padding was creating. */
+.res-page-wrap :deep(.ph) {
+  margin-bottom: 0;
+  padding-bottom: 2rem;
 }
-.dark .hero-section {
-  background-color: #0c0a09;
-  color: #fff;
-  border-bottom: 1px solid #292524;
+.res-page-wrap :deep(.ph__actions) {
+  margin-top: 2rem;
 }
 
-.hero-bg { position: absolute; inset: 0; z-index: 0; }
-
-.hero-bg__mesh {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 50%, rgba(0, 97, 173, 0.08), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(227, 0, 15, 0.06), transparent 25%);
-  opacity: 0.8;
-}
-.dark .hero-bg__mesh {
-  background:
-    radial-gradient(circle at 15% 50%, rgba(0, 97, 173, 0.15), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(227, 0, 15, 0.12), transparent 25%);
-}
-
-.hero-bg__grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-}
-.dark .hero-bg__grid {
-  background-image:
-    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 60rem;
-  width: 100%;
-}
-
-.hero-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-  color: #1c1917;
-  text-align: center;
-}
-.dark .hero-title { color: #fafaf9; }
-
-.text-blue-accent { color: var(--color-blue-accent); }
-.dark .text-blue-accent { color: #94b6e8; }
-
-.hero-subtitle {
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  color: #57534e;
-  max-width: 48rem;
-  line-height: 1.6;
-  margin-bottom: 3rem;
-  font-weight: 400;
-  text-align: center;
-}
-.dark .hero-subtitle { color: #a8a29e; }
-
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3.5rem;
-  width: 100%;
-}
-@media (min-width: 768px) { .hero-stats { gap: 4rem; } }
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-}
-.stat-value {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #1c1917;
-  line-height: 1;
-}
-.dark .stat-value { color: #fff; }
-.stat-label {
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #78716c;
-  font-weight: 600;
-}
-
-.hero-search-wrapper {
-  width: 100%;
-  max-width: 42rem;
-  margin-bottom: 3rem;
-}
-.hero-search-input-box {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-.hero-search-icon {
-  position: absolute;
-  left: 1.25rem;
-  color: #78716c;
-  pointer-events: none;
-}
-.hero-search-input {
-  width: 100%;
-  padding: 1.25rem 6.5rem 1.25rem 3.5rem;
-  font-size: 1.125rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  color: #1c1917;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  -webkit-appearance: none;
-}
-@media (max-width: 640px) {
-  .hero-search-input { padding-right: 1.25rem; font-size: 1rem; }
-}
-.dark .hero-search-input {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(15, 23, 42, 0.6);
-  color: #fff;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-.hero-search-input::placeholder { color: #78716c; }
-.dark .hero-search-input::placeholder { color: #57534e; }
-.hero-search-input:focus {
-  outline: none;
-  border-color: var(--color-blue-accent);
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(0, 97, 173, 0.1), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-.dark .hero-search-input:focus {
-  background: rgba(15, 23, 42, 0.8);
-  box-shadow: 0 0 0 4px rgba(0, 97, 173, 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-}
-.hero-search-hint {
-  position: absolute;
-  right: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.75rem;
-  color: #78716c;
-  pointer-events: none;
-}
-@media (max-width: 640px) {
-  .hero-search-hint { display: none; }
-}
-.hero-search-hint kbd {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.125rem 0.375rem;
-  border-radius: 0.25rem;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  color: #57534e;
-}
-.dark .hero-search-hint kbd {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #a8a29e;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+/* HERO buttons (slotted into PageHero #actions) */
 .hero-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.875rem 1.75rem;
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;
   border-radius: 9999px;
@@ -658,15 +466,15 @@ watch([searchQuery, selectedYear, sortOrder], () => {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hero-btn--primary {
-  background-color: var(--color-blue-accent);
+  background-color: var(--color-brand-fill);
   color: #fff;
   border: 1px solid transparent;
-  box-shadow: 0 4px 6px -1px rgba(0, 97, 173, 0.3), 0 2px 4px -1px rgba(0, 97, 173, 0.2);
+  box-shadow: 0 4px 6px -1px rgb(185 28 28 / 0.3), 0 2px 4px -1px rgb(185 28 28 / 0.2);
 }
 .hero-btn--primary:hover, .hero-btn--primary:focus-visible {
-  background-color: #172554;
+  background-color: #7f1313;
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 97, 173, 0.4), 0 4px 6px -2px rgba(0, 97, 173, 0.2);
+  box-shadow: 0 10px 15px -3px rgb(185 28 28 / 0.4), 0 4px 6px -2px rgb(185 28 28 / 0.2);
   outline: none;
 }
 .hero-btn--primary:active { transform: translateY(0); }
@@ -691,12 +499,6 @@ watch([searchQuery, selectedYear, sortOrder], () => {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.animate-up {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--nth) * 0.15s);
-}
 .animate-card {
   opacity: 0;
   transform: translateY(15px);
@@ -715,6 +517,108 @@ watch([searchQuery, selectedYear, sortOrder], () => {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
   border-color: rgba(51, 65, 85, 0.8);
 }
+
+.meeting-filter-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+.dark .meeting-filter-banner {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: var(--color-slate-700);
+}
+.meeting-filter-banner__info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.meeting-filter-banner__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-slate-500);
+}
+.dark .meeting-filter-banner__label { color: var(--color-slate-400); }
+.meeting-filter-banner__name {
+  font-weight: 600;
+  color: var(--color-brand);
+}
+.dark .meeting-filter-banner__name { color: #ff7d82; }
+.meeting-filter-banner__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: transparent;
+  border: none;
+  color: var(--color-slate-500);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: color 0.15s, background-color 0.15s;
+}
+.dark .meeting-filter-banner__clear { color: var(--color-slate-300); }
+.meeting-filter-banner__clear:hover {
+  color: var(--color-brand);
+  background: rgba(227, 0, 15, 0.06);
+}
+.dark .meeting-filter-banner__clear:hover {
+  color: #ff7d82;
+  background: rgba(255, 94, 99, 0.08);
+}
+
+.std-filter__search {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.std-filter__search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a8a29e;
+  pointer-events: none;
+}
+.std-filter__search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  border: 1px solid #d6d3d1;
+  border-radius: 0.5rem;
+  background: #fafaf9;
+  color: #1c1917;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  -webkit-appearance: none;
+  appearance: textfield;
+}
+.std-filter__search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.std-filter__search-input:focus {
+  outline: none;
+  border-color: var(--color-blue-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
+}
+.dark .std-filter__search-input {
+  background: #292524;
+  border-color: #57534e;
+  color: #fafaf9;
+}
+.dark .std-filter__search-input:focus {
+  border-color: #5379bf;
+  background: #1c1917;
+}
+.dark .std-filter__search-icon { color: #a8a29e; }
 
 .std-filter__controls {
   display: flex;

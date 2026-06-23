@@ -24,3 +24,15 @@ export function formatDateShort(dateStr: string): string {
     return dateStr
   }
 }
+
+export function formatDateCompact(dateStr: string): string {
+  if (!dateStr) return ''
+  const s = String(dateStr)
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  if (!m) return s
+  const [, y, mo, d] = m
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const monthIdx = parseInt(mo, 10) - 1
+  if (monthIdx < 0 || monthIdx >= 12) return s
+  return `${parseInt(d, 10)} ${months[monthIdx]} ${y}`
+}

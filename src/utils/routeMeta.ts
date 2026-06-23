@@ -6,6 +6,7 @@ import type { Project } from '../types/project'
 import type { Liaison, NationalBody } from '../types/organization'
 import type { Post, PageDoc } from '../types/content'
 import type { Meeting } from '../types/meeting'
+import { ordinalSuffix } from './ordinal'
 import {
   SITE_CONFIG,
   type SeoMeta,
@@ -25,15 +26,6 @@ export interface RouteMetaContext {
   meetings: Meeting[]
   posts: Post[]
   pages: PageDoc[]
-}
-
-export function ordinalSuffix(n: number): string {
-  if (n >= 11 && n <= 13) return 'th'
-  const r = n % 10
-  if (r === 1) return 'st'
-  if (r === 2) return 'nd'
-  if (r === 3) return 'rd'
-  return 'th'
 }
 
 function titleParts(...parts: (string | null | undefined)[]): string {

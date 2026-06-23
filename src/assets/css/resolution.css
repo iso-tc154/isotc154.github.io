@@ -135,7 +135,6 @@
   }
   .dark .std-chip:hover {
     border-color: #5379bf;
-    color: #94b6e8;
     background: rgb(51 133 214 / 0.08);
   }
   .std-chip.is-active {
@@ -185,7 +184,6 @@
     font-family: 'Noto Sans Mono', monospace;
     color: var(--color-blue-accent);
   }
-  .dark .res-page .std-results__name { color: #94b6e8; }
   .res-page .std-results__type {
     font-size: 0.5625rem;
     font-weight: 600;

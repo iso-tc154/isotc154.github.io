@@ -3,6 +3,8 @@ import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProjects } from '../composables/useProjects'
 import { projectStatusLabel, type Project } from '../types/project'
+import { projectPath } from '../utils/urn'
+import PageHero from '../components/PageHero.vue'
 
 const { projects, isLoaded, loadData } = useProjects()
 const router = useRouter()
@@ -18,6 +20,12 @@ const statuses = computed(() => {
   return Array.from(set).sort()
 })
 
+const stats = computed(() => ({
+  total: projects.value.length,
+  active: projects.value.filter(p => p.status === 'current' || p.status === 'under_development' || p.status === 'under-development').length,
+  stages: statuses.value.length,
+}))
+
 const filtered = computed<Project[]>(() => {
   const q = searchQuery.value.trim().toLowerCase()
   return projects.value
@@ -30,21 +38,30 @@ const filtered = computed<Project[]>(() => {
 })
 
 function projectUrl(p: Project): string {
-  return `/projects/${p.id}/`
+  return projectPath(p.id)
 }
 </script>
 
 <template>
-  <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">Work in progress</p>
-      <h1>Projects</h1>
-      <p class="page__lead">
-        New standards under development by ISO/TC 154 — at AWI, NP, WD, CD, DIS, FDIS,
-        and other ISO stages.
-      </p>
-    </header>
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Under development"
+      title="Projects"
+      lead="New standards under development by ISO/TC 154 — at AWI, NP, WD, CD, DIS, FDIS, and other ISO stages."
+    >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--flow"></div>
+      </template>
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ stats.total }}</dt><dd>projects</dd></div>
+        <div><dt>{{ stats.active }}</dt><dd>active</dd></div>
+        <div><dt>{{ stats.stages }}</dt><dd>distinct stages</dd></div>
+      </dl>
+    </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -99,18 +116,11 @@ function projectUrl(p: Project): string {
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-.page__header { margin-bottom: 2rem; }
-.page__eyebrow { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-blue-accent); margin: 0 0 0.5rem; }
-.dark .page__eyebrow { color: #94b6e8; }
-.page__header h1 { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: #1c1917; margin: 0 0 0.75rem; }
-.dark .page__header h1 { color: #fafaf9; }
-.page__lead { font-size: 1rem; line-height: 1.6; color: #57534e; max-width: 48rem; margin: 0; }
-.dark .page__lead { color: #d6d3d1; }
 
 .filter { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
 .dark .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
@@ -129,7 +139,7 @@ function projectUrl(p: Project): string {
 .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
 .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
 .dark .filter__meta { color: #a8a29e; }

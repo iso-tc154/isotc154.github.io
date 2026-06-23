@@ -4,6 +4,7 @@ import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
 import { groupCategoryLabel, type Group } from '../types/group'
 import { useRouter } from 'vue-router'
+import PageHero from '../components/PageHero.vue'
 
 const { groups, isLoaded, loadData } = useGroups()
 const { loadData: loadMembers, get: getMember } = useMembers()
@@ -21,6 +22,12 @@ const categories = computed(() => {
   for (const g of groups.value) if (g.category) set.add(g.category)
   return Array.from(set).sort()
 })
+
+const stats = computed(() => ({
+  total: groups.value.length,
+  categories: categories.value.length,
+  withStandards: groups.value.filter(g => g.standards?.length).length,
+}))
 
 const filtered = computed<Group[]>(() => {
   const q = searchQuery.value.trim().toLowerCase()
@@ -58,16 +65,25 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154 Structure</p>
-      <h1>Groups</h1>
-      <p class="page__lead">
-        Working Groups, Advisory Groups, Maintenance Agencies and the Co-ordination Advisory Group
-        that carry out the technical work of ISO/TC 154.
-      </p>
-    </header>
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Working groups & structure"
+      title="Groups"
+      lead="Working Groups, Advisory Groups, Maintenance Agencies and the Co-ordination Advisory Group that carry out the technical work of ISO/TC 154."
+    >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--rings"></div>
+      </template>
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ stats.total }}</dt><dd>groups</dd></div>
+        <div><dt>{{ stats.categories }}</dt><dd>categories</dd></div>
+        <div><dt>{{ stats.withStandards }}</dt><dd>maintain standards</dd></div>
+      </dl>
+    </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -136,42 +152,11 @@ import { ref } from 'vue'
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-}
-.page__header { margin-bottom: 2rem; }
-.page__eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__header h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 700;
-  color: #1c1917;
-  margin: 0 0 0.75rem;
-}
-.dark .page__header h1 { color: #fafaf9; }
-.page__lead {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #57534e;
-  max-width: 48rem;
-  margin: 0;
-}
-.dark .page__lead { color: #d6d3d1; }
-
 .filter {
   background: #fff;
   border: 1px solid #e7e5e4;
@@ -257,7 +242,7 @@ import { ref } from 'vue'
   border-color: #57534e;
   color: #d6d3d1;
 }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta {
   margin-top: 1rem;
@@ -325,7 +310,6 @@ import { ref } from 'vue'
   letter-spacing: 0.08em;
   color: var(--color-blue-accent);
 }
-.dark .card__category { color: #94b6e8; }
 .card__count {
   font-size: 0.75rem;
   color: #78716c;
@@ -381,7 +365,7 @@ import { ref } from 'vue'
 }
 .dark .card__pill { background: #292524; color: #d6d3d1; }
 .card__pill--more { background: #e0e7ff; color: var(--color-blue-accent); }
-.dark .card__pill--more { background: rgb(51 133 214 / 0.2); color: #94b6e8; }
+.dark .card__pill--more { background: rgb(51 133 214 / 0.2); }
 .card__arrow {
   position: absolute;
   bottom: 1rem;
@@ -389,7 +373,6 @@ import { ref } from 'vue'
   font-size: 1.125rem;
   color: var(--color-blue-accent);
 }
-.dark .card__arrow { color: #94b6e8; }
 .card:hover .card__arrow { transform: translateX(4px); }
 .card__arrow { transition: transform 0.2s; }
 </style>

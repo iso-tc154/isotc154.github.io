@@ -13,7 +13,7 @@ iso:
 tc154:
   group: wg2
   content: "// more"
-  purpose: Revision of link:/standards/isots-173692005[ISO/TS 17369 - Statistical data and metadata exchange (SDMX)], as an International Standard (IS).
+  purpose: Revision of link:/standards/isots-17369-2005[ISO/TS 17369 - Statistical data and metadata exchange (SDMX)], as an International Standard (IS).
   scope: |-
     ISO/TS 17369 was originally published in 2005 as Technical Specification. It specifies a way for Statistical Data and Metadata Exchange (SDMX) in six sections covering the following topics:
 

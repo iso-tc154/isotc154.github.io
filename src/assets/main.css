@@ -14,6 +14,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --color-brand: #1e3a8a;
+  --color-brand-hover: #172554;
+  --color-brand-soft: #3b82f6;
+  --color-brand-fill: #1e3a8a;
   --color-blue-accent: #1e3a8a;
   --color-iso-red: #b91c1c;
   --color-amber-warm: #b45309;
@@ -57,6 +61,12 @@ body {
   background-color: var(--surface-bg-dark);
   background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   color: var(--text-strong-dark);
+}
+
+.dark {
+  --color-brand: #94b6e8;
+  --color-brand-fill: #2563eb;
+  --color-blue-accent: #94b6e8;
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif { font-family: var(--font-serif); }

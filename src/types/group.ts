@@ -16,6 +16,7 @@ export interface Group {
   title: string
   category: string
   order: number
+  inactive?: boolean
   featured_on_home?: boolean
   scope?: string
   intro?: string

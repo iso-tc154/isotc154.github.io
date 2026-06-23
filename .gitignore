@@ -26,3 +26,10 @@ member-list-raw/
 
 # Root-level logo sources (copied into /assets on demand)
 /*.svg
+
+# Local scratch / agent tooling
+.lycheecache
+.omo/
+.playwright-mcp/
+hero-verification.png
+*.bak

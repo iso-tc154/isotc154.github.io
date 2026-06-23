@@ -4,6 +4,7 @@ import { useEvents } from '../composables/useEvents'
 import { useResolutions } from '../composables/useResolutions'
 import type { PlenaryEvent } from '../types/event'
 import { formatDate } from '../utils/format'
+import PageHero from '../components/PageHero.vue'
 
 const { events, isLoaded, loadData } = useEvents()
 const { resolutions } = useResolutions()
@@ -14,6 +15,13 @@ const upcoming = computed(() => events.value.filter(e => e.status === 'upcoming'
 const past = computed(() => events.value
   .filter(e => e.status !== 'upcoming')
   .sort((a, b) => b.year - a.year))
+
+const stats = computed(() => ({
+  total: events.value.length,
+  upcoming: upcoming.value.length,
+  past: past.value.length,
+  latest: past.value[0]?.year ?? '—',
+}))
 
 function dateRange(ev: PlenaryEvent): string {
   const from = ev.time?.from?.date
@@ -30,81 +38,69 @@ function resolutionCount(ev: PlenaryEvent): number {
 </script>
 
 <template>
-  <div class="page meetings-landing">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154</p>
-      <h1 class="page__title">Plenary Meetings</h1>
-      <p class="page__lead">
-        The committee meets annually in plenary session, hosted by a national body.
-        Each plenary week is the focal point for resolving technical decisions,
-        adopting resolutions, and shaping the committee's work programme.
-      </p>
-    </header>
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Plenary meetings"
+      title="Plenary Meetings"
+      lead="The committee meets annually in plenary session, hosted by a national body. Each plenary week is the focal point for resolving technical decisions, adopting resolutions, and shaping the committee's work programme."
+    >
+      <dl class="page__stats" v-if="isLoaded && stats.total">
+        <div><dt>{{ stats.total }}</dt><dd>plenaries</dd></div>
+        <div><dt>{{ stats.upcoming }}</dt><dd>upcoming</dd></div>
+        <div><dt>{{ stats.latest }}</dt><dd>most recent</dd></div>
+      </dl>
+    </PageHero>
 
-    <section v-if="upcoming.length" class="upcoming-section">
-      <h2 class="section-title">Upcoming</h2>
-      <div class="upcoming-list">
-        <article v-for="ev in upcoming" :key="ev.id" class="upcoming-card">
-          <RouterLink :to="ev.url" class="upcoming-card__main">
-            <span class="upcoming-card__ordinal">{{ ev.ordinal }}<sup>th</sup></span>
-            <div class="upcoming-card__body">
-              <h3 class="upcoming-card__title">ISO/TC 154 Plenary · {{ ev.year }}</h3>
-              <p class="upcoming-card__meta">
-                <span class="upcoming-card__date">{{ dateRange(ev) }}</span>
-                <span v-if="ev.general_area" class="upcoming-card__area">{{ ev.general_area }}</span>
-              </p>
-              <p v-if="ev.host" class="upcoming-card__host">Hosted by {{ ev.host }}</p>
-            </div>
-          </RouterLink>
-        </article>
+    <div class="page page--wide meetings-landing">
+      <div class="meetings-shell">
+        <section v-if="upcoming.length" class="upcoming-section">
+          <h2 class="section-title">Upcoming</h2>
+          <div class="upcoming-list">
+            <article v-for="ev in upcoming" :key="ev.id" class="upcoming-card">
+              <RouterLink :to="ev.url" class="upcoming-card__main">
+                <span class="upcoming-card__ordinal">{{ ev.ordinal }}<sup>th</sup></span>
+                <div class="upcoming-card__body">
+                  <h3 class="upcoming-card__title">ISO/TC 154 Plenary · {{ ev.year }}</h3>
+                  <p class="upcoming-card__meta">
+                    <span class="upcoming-card__date">{{ dateRange(ev) }}</span>
+                    <span v-if="ev.general_area" class="upcoming-card__area">{{ ev.general_area }}</span>
+                  </p>
+                  <p v-if="ev.host" class="upcoming-card__host">Hosted by {{ ev.host }}</p>
+                </div>
+              </RouterLink>
+            </article>
+          </div>
+        </section>
+
+        <section v-if="past.length" class="past-section">
+          <h2 class="section-title">Past plenaries</h2>
+          <ul class="past-list">
+            <li v-for="ev in past" :key="ev.id" class="past-row">
+              <RouterLink :to="ev.url" class="past-row__link">
+                <span class="past-row__year">{{ ev.year }}</span>
+                <span class="past-row__ordinal">{{ ev.ordinal }}<sup>th</sup> plenary</span>
+                <span v-if="ev.general_area" class="past-row__area">{{ ev.general_area }}</span>
+                <span v-if="ev.host" class="past-row__host">{{ ev.host }}</span>
+                <span v-if="resolutionCount(ev) > 0" class="past-row__res">
+                  {{ resolutionCount(ev) }} resolutions
+                </span>
+              </RouterLink>
+            </li>
+          </ul>
+        </section>
+
+        <div v-if="isLoaded && !events.length" class="empty">
+          <p>No plenary meeting data available.</p>
+        </div>
       </div>
-    </section>
-
-    <section v-if="past.length" class="past-section">
-      <h2 class="section-title">Past plenaries</h2>
-      <ul class="past-list">
-        <li v-for="ev in past" :key="ev.id" class="past-row">
-          <RouterLink :to="ev.url" class="past-row__link">
-            <span class="past-row__year">{{ ev.year }}</span>
-            <span class="past-row__ordinal">{{ ev.ordinal }}<sup>th</sup> plenary</span>
-            <span v-if="ev.general_area" class="past-row__area">{{ ev.general_area }}</span>
-            <span v-if="ev.host" class="past-row__host">{{ ev.host }}</span>
-            <span v-if="resolutionCount(ev) > 0" class="past-row__res">
-              {{ resolutionCount(ev) }} resolutions
-            </span>
-          </RouterLink>
-        </li>
-      </ul>
-    </section>
-
-    <div v-if="isLoaded && !events.length" class="empty">
-      <p>No plenary meeting data available.</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__eyebrow {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin: 0 0 1rem;
-  letter-spacing: -0.02em;
-  color: #1c1917;
-}
-.dark .page__title { color: #fafaf9; }
-.page__lead {
-  font-size: 1.0625rem; line-height: 1.65; color: #57534e;
-  max-width: 48rem; margin: 0 0 3rem;
-}
-.dark .page__lead { color: #d6d3d1; }
+.meetings-shell { max-width: 48rem; }
 
 .section-title {
   font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
@@ -140,7 +136,7 @@ function resolutionCount(ev: PlenaryEvent): number {
 .upcoming-card__ordinal {
   font-family: var(--font-serif);
   font-size: 3rem; font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   line-height: 1; flex-shrink: 0;
 }
 .upcoming-card__body { flex: 1; min-width: 0; }
@@ -182,7 +178,7 @@ function resolutionCount(ev: PlenaryEvent): number {
 .past-row__year {
   font-family: var(--font-serif);
   font-size: 1.25rem; font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
 .past-row__ordinal { font-size: 0.9375rem; font-weight: 600; color: #1c1917; }
 .dark .past-row__ordinal { color: #fafaf9; }
@@ -199,7 +195,7 @@ function resolutionCount(ev: PlenaryEvent): number {
   padding: 0.25rem 0.625rem; border-radius: 9999px;
   white-space: nowrap;
 }
-.dark .past-row__res { color: #94b6e8; background: rgba(102, 163, 224, 0.12); }
+.dark .past-row__res { background: rgba(102, 163, 224, 0.12); }
 
 @media (max-width: 640px) {
   .past-row__link { grid-template-columns: 3rem 1fr; }

@@ -11,6 +11,7 @@ import {
 import { loadPosts, loadPages, buildSiteContext } from './lib/content.mjs'
 import { loadResolutions } from './lib/resolutions.mjs'
 import { loadCanonicalMeetings } from './lib/meetings.mjs'
+import { liaisonPath, nationalBodyPath } from '../src/utils/urn.ts'
 import { load as yamlLoad } from 'js-yaml'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -48,10 +49,10 @@ function buildOrgIndex(nationalBodies, liaisons, associates) {
   const add = (org, type) => {
     if (!org || !org.id) return
     const path = type === 'liaison'
-      ? `/liaisons/${org.id}/`
+      ? liaisonPath(org.id)
       : type === 'associate'
         ? null
-        : `/national-bodies/${org.id}/`
+        : nationalBodyPath(org.id)
     const record = {
       ref: org.id,
       type,

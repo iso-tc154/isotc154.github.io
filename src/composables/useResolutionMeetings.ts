@@ -1,20 +1,19 @@
 import { computed, type ComputedRef } from 'vue'
 import { useResolutions } from './useResolutions'
-import { groupResolutionsByMeeting, type MeetingSummary } from '../utils/groupByMeeting'
-import type { Meeting } from '../types/resolution'
+import { groupResolutionsByMeeting } from '../utils/groupByMeeting'
+import type { MeetingSummary } from '../types/resolution'
 
-export type { Meeting }
 export type { MeetingSummary }
 
 export interface DecadeGroup {
   label: string
   resCount: number
   accCount: number
-  meetings: Meeting[]
+  meetings: MeetingSummary[]
 }
 
-export function groupMeetingsByDecade(meetings: Meeting[]): DecadeGroup[] {
-  const decades: Record<string, { meetings: Meeting[]; resCount: number; accCount: number }> = {}
+export function groupMeetingsByDecade(meetings: MeetingSummary[]): DecadeGroup[] {
+  const decades: Record<string, { meetings: MeetingSummary[]; resCount: number; accCount: number }> = {}
 
   meetings.forEach(m => {
     const year = parseInt(m.year)
@@ -48,11 +47,11 @@ export function groupMeetingsByDecade(meetings: Meeting[]): DecadeGroup[] {
 export function useResolutionMeetings() {
   const { resolutions, isLoaded, loadData } = useResolutions()
 
-  const meetings: ComputedRef<Meeting[]> = computed(() =>
-    groupResolutionsByMeeting(resolutions.value) as Meeting[]
+  const meetings: ComputedRef<MeetingSummary[]> = computed(() =>
+    groupResolutionsByMeeting(resolutions.value),
   )
 
-  const getMeeting = (sourceType: string, sourceFile: string): Meeting | undefined => {
+  const getMeeting = (sourceType: string, sourceFile: string): MeetingSummary | undefined => {
     return meetings.value.find(m => m.source_type === sourceType && m.source_file === sourceFile)
   }
 

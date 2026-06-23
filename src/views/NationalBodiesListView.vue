@@ -2,12 +2,13 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useNationalBodies } from '../composables/useNationalBodies'
-import { useTheme } from '../composables/useTheme'
 import { membershipLabel, type NationalBody } from '../types/organization'
+import { nationalBodyPath } from '../utils/urn'
+import PageHero from '../components/PageHero.vue'
+import OrgLogo from '../components/OrgLogo.vue'
 
 const { nationalBodies, isLoaded, loadData } = useNationalBodies()
 const router = useRouter()
-const { isDark } = useTheme()
 
 const searchQuery = ref('')
 const selectedMembership = ref('')
@@ -30,6 +31,13 @@ const formerBodies = computed<NationalBody[]>(() =>
     .filter(nb => nb.former)
     .sort((a, b) => ((Number(a.former_until) || 0) < (Number(b.former_until) || 0) ? 1 : -1)),
 )
+
+const stats = computed(() => ({
+  total: nationalBodies.value.length,
+  pMembers: currentBodies.value.filter(nb => nb.membership === 'P').length,
+  oMembers: currentBodies.value.filter(nb => nb.membership === 'O').length,
+  former: formerBodies.value.length,
+}))
 
 function applySearch(list: NationalBody[]): NationalBody[] {
   const q = searchQuery.value.trim().toLowerCase()
@@ -55,15 +63,7 @@ const showCurrent = computed(() => selectedStatus.value !== 'former')
 const showFormer = computed(() => selectedStatus.value !== 'current')
 
 function bodyUrl(nb: NationalBody): string {
-  return `/national-bodies/${nb.id}/`
-}
-
-function logoUrl(nb: NationalBody): string | null {
-  const explicit = isDark.value ? (nb.logo_dark ?? nb.logo_light) : (nb.logo_light ?? nb.logo_dark)
-  const candidate = explicit ?? nb.logo
-  if (!candidate) return null
-  if (candidate.startsWith('http') || candidate.startsWith('/')) return candidate
-  return `/assets/images/national-bodies/${candidate}`
+  return nationalBodyPath(nb.id)
 }
 
 function flagEmoji(countryCode?: string): string {
@@ -74,16 +74,26 @@ function flagEmoji(countryCode?: string): string {
 </script>
 
 <template>
-  <div class="page">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO member bodies</p>
-      <h1>National Bodies</h1>
-      <p class="page__lead">
-        National standards bodies that participate in ISO/TC 154 as
-        Participating (P) or Observing (O) members.
-      </p>
-    </header>
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="National member bodies"
+      title="National Bodies"
+      lead="National standards bodies that participate in ISO/TC 154 as Participating (P) or Observing (O) members."
+    >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--dots hero-pattern--tr"></div>
+      </template>
+      <dl class="page__stats" v-if="isLoaded">
+        <div><dt>{{ stats.pMembers }}</dt><dd>P-members</dd></div>
+        <div><dt>{{ stats.oMembers }}</dt><dd>O-members</dd></div>
+        <div><dt>{{ stats.former }}</dt><dd>former</dd></div>
+        <div><dt>{{ stats.total }}</dt><dd>total</dd></div>
+      </dl>
+    </PageHero>
 
+    <div class="page page--wide">
     <div class="filter">
       <div class="filter__search-wrap">
         <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -141,10 +151,17 @@ function flagEmoji(countryCode?: string): string {
         <ul class="grid">
           <li v-for="nb in filteredCurrent" :key="nb.id">
             <a :href="bodyUrl(nb)" class="card" @click.prevent="router.push(bodyUrl(nb))">
-              <div class="card__logo">
-                <img v-if="logoUrl(nb)" :src="logoUrl(nb) ?? undefined" :alt="nb.short_name ?? nb.name" loading="lazy" />
-                <span v-else class="card__logo-fallback">{{ flagEmoji(nb.iso_country_code) || (nb.short_name ?? nb.name).charAt(0) }}</span>
-              </div>
+              <OrgLogo
+                :logo="nb.logo"
+                :logo_light="nb.logo_light"
+                :logo_dark="nb.logo_dark"
+                asset-prefix="/assets/images/national-bodies/"
+                size="xl"
+                radius="0.5rem"
+                :fallback="flagEmoji(nb.iso_country_code) ? 'flag' : 'monogram'"
+                :fallback-text="flagEmoji(nb.iso_country_code) || (nb.short_name ?? nb.name)"
+                :alt="nb.short_name ?? nb.name"
+              />
               <div class="card__body">
                 <h3 class="card__name">{{ nb.short_name ?? nb.name }}</h3>
                 <p class="card__country">
@@ -168,10 +185,18 @@ function flagEmoji(countryCode?: string): string {
         <ul class="grid">
           <li v-for="nb in filteredFormer" :key="nb.id">
             <a :href="bodyUrl(nb)" class="card card--former" @click.prevent="router.push(bodyUrl(nb))">
-              <div class="card__logo card__logo--former">
-                <img v-if="logoUrl(nb)" :src="logoUrl(nb) ?? undefined" :alt="nb.short_name ?? nb.name" loading="lazy" />
-                <span v-else class="card__logo-fallback">{{ flagEmoji(nb.iso_country_code) || (nb.short_name ?? nb.name).charAt(0) }}</span>
-              </div>
+              <OrgLogo
+                :logo="nb.logo"
+                :logo_light="nb.logo_light"
+                :logo_dark="nb.logo_dark"
+                asset-prefix="/assets/images/national-bodies/"
+                size="xl"
+                radius="0.5rem"
+                class="card__logo--former"
+                :fallback="flagEmoji(nb.iso_country_code) ? 'flag' : 'monogram'"
+                :fallback-text="flagEmoji(nb.iso_country_code) || (nb.short_name ?? nb.name)"
+                :alt="nb.short_name ?? nb.name"
+              />
               <div class="card__body">
                 <div class="card__name-row">
                   <h3 class="card__name">{{ nb.short_name ?? nb.name }}</h3>
@@ -188,18 +213,11 @@ function flagEmoji(countryCode?: string): string {
         </ul>
       </section>
     </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-.page__header { margin-bottom: 2rem; }
-.page__eyebrow { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-blue-accent); margin: 0 0 0.5rem; }
-.dark .page__eyebrow { color: #94b6e8; }
-.page__header h1 { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: #1c1917; margin: 0 0 0.75rem; }
-.dark .page__header h1 { color: #fafaf9; }
-.page__lead { font-size: 1rem; line-height: 1.6; color: #57534e; max-width: 48rem; margin: 0; }
-.dark .page__lead { color: #d6d3d1; }
 
 .filter { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
 .dark .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
@@ -218,7 +236,7 @@ function flagEmoji(countryCode?: string): string {
 .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
 .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: #5379bf; color: #94b6e8; }
+.dark .chip:hover { border-color: #5379bf; }
 .dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
 .dark .filter__meta { color: #a8a29e; }
@@ -237,10 +255,6 @@ function flagEmoji(countryCode?: string): string {
 .card:hover { border-color: var(--color-blue-accent); box-shadow: 0 4px 12px rgb(30 58 138 / 0.08); transform: translateY(-2px); }
 .dark .card:hover { border-color: #5379bf; box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
 
-.card__logo { width: 4rem; height: 4rem; border-radius: 0.5rem; background: #fafaf9; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; padding: 0.5rem; }
-.dark .card__logo { background: #292524; }
-.card__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.card__logo-fallback { font-size: 1.5rem; }
 .card__body { flex: 1; min-width: 0; }
 .card__name { font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0 0 0.125rem; }
 .dark .card__name { color: #fafaf9; }

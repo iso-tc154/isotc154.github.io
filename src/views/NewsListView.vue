@@ -2,12 +2,19 @@
 import { computed, onMounted } from 'vue'
 import { usePosts } from '../composables/usePosts'
 import { formatDate } from '../utils/format'
+import PageHero from '../components/PageHero.vue'
 
 const { posts, isLoaded, loadData, byYear } = usePosts()
 
 onMounted(async () => { await loadData() })
 
 const yearGroups = computed(() => byYear())
+
+const stats = computed(() => ({
+  total: posts.value.length,
+  years: yearGroups.value.length,
+  latest: yearGroups.value[0]?.[0] ?? '—',
+}))
 
 function excerpt(html: string): string {
   const text = html
@@ -33,72 +40,64 @@ function postCategories(post: typeof posts.value[number]): string[] {
 </script>
 
 <template>
-  <div class="page news-list">
-    <header class="page__header">
-      <p class="page__eyebrow">ISO/TC 154</p>
-      <h1 class="page__title">News &amp; announcements</h1>
-      <p class="page__lead">
-        Publications of new and revised ISO/TC 154 standards, committee
-        announcements, and obituaries of esteemed colleagues.
-      </p>
-    </header>
-
-    <div v-if="!isLoaded" class="loading">Loading…</div>
-
-    <section
-      v-for="[year, items] in yearGroups"
-      :key="year"
-      class="year-section"
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Announcements"
+      title="News & announcements"
+      lead="Publications of new and revised ISO/TC 154 standards, committee announcements, and obituaries of esteemed colleagues."
     >
-      <h2 class="year-section__heading">{{ year }}</h2>
-      <ul class="post-list">
-        <li v-for="post in items" :key="post.slug" class="post-card">
-          <RouterLink :to="`/posts/${post.slug}/`" class="post-card__link">
-            <p class="post-card__date">{{ formatDate(post.date) }}</p>
-            <h3 class="post-card__title">{{ postTitle(post) }}</h3>
-            <p v-if="excerpt(post.html)" class="post-card__excerpt">{{ excerpt(post.html) }}</p>
-            <div v-if="postCategories(post).length" class="post-card__tags">
-              <span v-for="c in postCategories(post)" :key="c" class="post-card__tag">{{ c }}</span>
-            </div>
-          </RouterLink>
-        </li>
-      </ul>
-    </section>
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--rules"></div>
+      </template>
+      <dl class="page__stats" v-if="isLoaded && stats.total">
+        <div><dt>{{ stats.total }}</dt><dd>posts</dd></div>
+        <div><dt>{{ stats.years }}</dt><dd>years</dd></div>
+        <div><dt>{{ stats.latest }}</dt><dd>latest</dd></div>
+      </dl>
+    </PageHero>
 
-    <div v-if="isLoaded && !posts.length" class="empty">
-      <p>No posts published yet.</p>
+    <div class="page page--wide news-list">
+      <div class="news-shell">
+        <div v-if="!isLoaded" class="loading">Loading…</div>
+
+        <section
+          v-for="[year, items] in yearGroups"
+          :key="year"
+          class="year-section"
+        >
+          <h2 class="year-section__heading">{{ year }}</h2>
+          <ul class="post-list">
+            <li v-for="post in items" :key="post.slug" class="post-card">
+              <RouterLink :to="`/posts/${post.slug}/`" class="post-card__link">
+                <p class="post-card__date">{{ formatDate(post.date) }}</p>
+                <h3 class="post-card__title">{{ postTitle(post) }}</h3>
+                <p v-if="excerpt(post.html)" class="post-card__excerpt">{{ excerpt(post.html) }}</p>
+                <div v-if="postCategories(post).length" class="post-card__tags">
+                  <span v-for="c in postCategories(post)" :key="c" class="post-card__tag">{{ c }}</span>
+                </div>
+              </RouterLink>
+            </li>
+          </ul>
+        </section>
+
+        <div v-if="isLoaded && !posts.length" class="empty">
+          <p>No posts published yet.</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-.page__eyebrow {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--color-blue-accent);
-  margin: 0 0 0.5rem;
-}
-.dark .page__eyebrow { color: #94b6e8; }
-.page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin: 0 0 1rem;
-  letter-spacing: -0.02em;
-  color: #1c1917;
-}
-.dark .page__title { color: #fafaf9; }
-.page__lead {
-  font-size: 1.0625rem; line-height: 1.65; color: #57534e;
-  max-width: 48rem; margin: 0 0 3rem;
-}
-.dark .page__lead { color: #d6d3d1; }
+.news-shell { max-width: 48rem; }
 
 .year-section { margin-bottom: 2.5rem; }
 .year-section__heading {
   font-family: var(--font-serif);
   font-size: 1.5rem; font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #e7e5e4;
@@ -132,7 +131,7 @@ function postCategories(post: typeof posts.value[number]): string[] {
 .post-card__date {
   font-size: 0.75rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.05em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.375rem;
 }
 .post-card__title {

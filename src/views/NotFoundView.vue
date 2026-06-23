@@ -47,14 +47,13 @@ const suggestions = [
   color: var(--color-blue-accent);
   margin: 0 0 1rem;
 }
-.dark .not-found__eyebrow { color: #94b6e8; }
 .not-found__code {
   font-family: var(--font-serif);
   font-size: clamp(4rem, 12vw, 7rem);
   font-weight: 700;
   margin: 0;
   line-height: 1;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   letter-spacing: -0.04em;
 }
 .not-found__title {
@@ -122,6 +121,5 @@ const suggestions = [
   text-decoration: none;
   padding: 0.5rem 0;
 }
-.dark .not-found__home { color: #94b6e8; }
 .not-found__home:hover { text-decoration: underline; }
 </style>

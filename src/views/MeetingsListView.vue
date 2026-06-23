@@ -5,6 +5,8 @@ import { useMeetings } from '../composables/useMeetings'
 import { committee } from '../data/committee'
 import { useCountUp } from '../composables/useCountUp'
 import type { Meeting } from '../types/meeting'
+import PageHero from '../components/PageHero.vue'
+import { ordinalSuffix } from '../utils/ordinal'
 
 const router = useRouter()
 const { meetings, isLoaded, loadData } = useMeetings()
@@ -147,60 +149,35 @@ function typeInitials(m: Meeting): string {
   if (m.type_label === 'In person') return 'F2F'
   return m.type_label.slice(0, 3).toUpperCase()
 }
-
-function ordinalSuffix(n: number): string {
-  if (n >= 11 && n <= 13) return 'th'
-  switch (n % 10) {
-    case 1: return 'st'
-    case 2: return 'nd'
-    case 3: return 'rd'
-    default: return 'th'
-  }
-}
 </script>
 
 <template>
-  <div class="page meetings-page">
-    <header class="hero">
-      <div class="hero__grid-overlay" aria-hidden="true"></div>
-      <div class="hero__inner">
-        <p class="hero__eyebrow">
-          <span class="hero__eyebrow-dot"></span>
-          {{ committee.name }} · Plenary Index
-        </p>
-        <h1 class="hero__title">
-          Plenary Meetings
-        </h1>
-        <p class="hero__lead">
-          Every plenary of ISO/TC 154 since the committee's founding —
-          the annual focal point where technical decisions are made,
-          resolutions adopted, and the work programme shaped.
-        </p>
-
-        <dl class="hero__stats" v-if="loaded">
-          <div class="hero__stat">
-            <dt>Total plenaries</dt>
-            <dd>{{ animMeetings }}</dd>
-          </div>
-          <div class="hero__stat">
-            <dt>Resolutions adopted</dt>
-            <dd>{{ animResolutions }}</dd>
-          </div>
-          <div class="hero__stat">
-            <dt>Countries hosted</dt>
-            <dd>{{ animCountries }}</dd>
-          </div>
-          <div class="hero__stat">
-            <dt>First plenary</dt>
-            <dd>{{ animFirstYearCount }}</dd>
-          </div>
-        </dl>
-        <div class="hero__stats hero__stats--skeleton" v-else>
-          <div v-for="i in 4" :key="i" class="hero__stat hero__stat--skeleton"></div>
+  <div class="meetings-page">
+    <PageHero
+      variant="landing"
+      bleed
+      :eyebrow="`Annual plenaries since ${committee.established}`"
+      title="Plenary Meetings"
+      lead="Every plenary of ISO/TC 154 since the committee's founding — the annual focal point where technical decisions are made, resolutions adopted, and the work programme shaped."
+    >
+      <template #decoration>
+        <div class="hero-pattern hero-pattern--flow"></div>
+      </template>
+      <dl class="page__stats" v-if="loaded">
+        <div><dt>{{ animMeetings }}</dt><dd>Total plenaries</dd></div>
+        <div><dt>{{ animResolutions }}</dt><dd>Resolutions adopted</dd></div>
+        <div><dt>{{ animCountries }}</dt><dd>Countries hosted</dd></div>
+        <div><dt>{{ animFirstYearCount }}</dt><dd>First plenary</dd></div>
+      </dl>
+      <dl class="page__stats" v-else>
+        <div v-for="i in 4" :key="i">
+          <dt class="stat-skeleton"></dt>
+          <dd>&nbsp;</dd>
         </div>
-      </div>
-    </header>
+      </dl>
+    </PageHero>
 
+    <div class="meetings-content">
     <section class="filters" aria-label="Filter meetings">
       <div class="filters__search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -408,130 +385,32 @@ function ordinalSuffix(n: number): string {
         </div>
       </div>
     </section>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1.5rem 5rem;
-}
-
-/* HERO */
-.hero {
-  position: relative;
-  padding: 4rem 0 3rem;
-  margin-bottom: 2rem;
-  overflow: hidden;
-}
-.hero__grid-overlay {
-  position: absolute;
-  inset: -2rem -2rem 0 auto;
-  width: 28rem;
-  background-image:
-    linear-gradient(to right, rgb(0 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(0 0 0 / 0.04) 1px, transparent 1px);
-  background-size: 2rem 2rem;
-  pointer-events: none;
-  mask-image: radial-gradient(ellipse at top right, black, transparent 70%);
-}
-.dark .hero__grid-overlay {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
-}
-.hero__inner { position: relative; max-width: 48rem; }
-.hero__eyebrow {
-  display: inline-flex; align-items: center; gap: 0.625rem;
-  font-size: 0.75rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.12em;
-  color: var(--color-iso-red);
-  margin: 0 0 1rem;
-}
-.hero__eyebrow-dot {
-  width: 0.5rem; height: 0.5rem; border-radius: 50%;
-  background: var(--color-iso-red);
-  box-shadow: 0 0 0 4px rgb(185 28 28 / 0.15);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgb(185 28 28 / 0.15); }
-  50% { box-shadow: 0 0 0 8px rgb(185 28 28 / 0); }
-}
-.hero__title {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  color: #1c1917;
-  margin: 0 0 1.25rem;
-}
-.dark .hero__title { color: #fafaf9; }
-.hero__lead {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.65;
-  color: #57534e;
-  margin: 0 0 2.5rem;
-  max-width: 42rem;
-}
-.dark .hero__lead { color: #d6d3d1; }
-
-.hero__stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.125rem;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid #e7e5e4;
-  border-bottom: 1px solid #e7e5e4;
-}
-@media (min-width: 768px) {
-  .hero__stats { grid-template-columns: repeat(4, 1fr); }
-}
-.dark .hero__stats { border-color: #292524; }
-.hero__stat {
-  margin: 0;
-  padding: 1rem 1.25rem;
-  border-left: 1px solid #e7e5e4;
-  display: flex; flex-direction: column;
-  gap: 0.25rem;
-}
-.hero__stat:first-child { border-left: 0; }
-.dark .hero__stat { border-left-color: #292524; }
-.hero__stat dt {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #78716c;
-  order: 2;
-}
-.dark .hero__stat dt { color: #a8a29e; }
-.hero__stat dd {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--color-iso-red);
-  line-height: 1;
-  margin: 0 0 0.375rem;
-  order: 1;
-  letter-spacing: -0.02em;
-}
-.hero__stats--skeleton .hero__stat--skeleton {
-  height: 4.5rem;
+/* Hero stat skeleton (loaded state) */
+.stat-skeleton {
+  height: 2rem;
+  width: 3.5rem;
+  border-radius: 0.25rem;
   background: linear-gradient(90deg, #f5f5f4 0%, #e7e5e4 50%, #f5f5f4 100%);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
 }
-.dark .hero__stats--skeleton .hero__stat--skeleton {
+.dark .stat-skeleton {
   background: linear-gradient(90deg, #292524 0%, #44403c 50%, #292524 100%);
   background-size: 200% 100%;
 }
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
 /* FILTERS */
+.meetings-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
 .filters {
   background: #fff;
   border: 1px solid #e7e5e4;
@@ -565,7 +444,7 @@ function ordinalSuffix(n: number): string {
 }
 .filters__search input:focus {
   outline: none;
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
   background: #fff;
   box-shadow: 0 0 0 3px rgb(185 28 28 / 0.12);
 }
@@ -573,7 +452,7 @@ function ordinalSuffix(n: number): string {
   background: #1c1917; border-color: #57534e; color: #fafaf9;
 }
 .dark .filters__search input:focus {
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
   background: #1c1917;
 }
 .filters__chips {
@@ -602,17 +481,17 @@ function ordinalSuffix(n: number): string {
   transition: all 0.15s;
 }
 .chip:hover {
-  border-color: var(--color-iso-red);
-  color: var(--color-iso-red);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
 }
 .chip--active {
-  background: var(--color-iso-red);
-  border-color: var(--color-iso-red);
+  background: var(--color-brand-fill);
+  border-color: var(--color-brand-fill);
   color: #fff;
 }
 .dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: var(--color-iso-red); color: #ff6b73; }
-.dark .chip--active { background: var(--color-iso-red); border-color: var(--color-iso-red); color: #fff; }
+.dark .chip:hover { border-color: var(--color-brand); color: var(--color-brand); }
+.dark .chip--active { background: var(--color-brand-fill); border-color: var(--color-brand-fill); color: #fff; }
 
 .filters__meta {
   display: flex; justify-content: space-between; align-items: center;
@@ -626,7 +505,7 @@ function ordinalSuffix(n: number): string {
   font-family: inherit;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   cursor: pointer;
 }
 .filters__clear:hover { text-decoration: underline; }
@@ -648,7 +527,7 @@ function ordinalSuffix(n: number): string {
   margin-top: 1rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: var(--color-iso-red);
+  background: var(--color-brand-fill);
   color: #fff;
   border: 0;
   border-radius: 0.375rem;
@@ -708,7 +587,7 @@ function ordinalSuffix(n: number): string {
 }
 .dark .entry { border-bottom-color: #292524; }
 .dark .entry:hover, .dark .entry:focus-visible { background: rgb(185 28 28 / 0.07); }
-.entry:focus-visible { box-shadow: inset 3px 0 0 var(--color-iso-red); }
+.entry:focus-visible { box-shadow: inset 3px 0 0 var(--color-brand); }
 .entry:last-child { border-bottom: 0; }
 
 .entry--cancelled { opacity: 0.65; }
@@ -737,12 +616,12 @@ function ordinalSuffix(n: number): string {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   margin: 0 0 0.5rem;
 }
 .upcoming__pulse {
   width: 0.5rem; height: 0.5rem; border-radius: 50%;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   box-shadow: 0 0 0 0 rgb(185 28 28 / 0.6);
   animation: upcoming-pulse 2s infinite;
 }
@@ -799,7 +678,7 @@ function ordinalSuffix(n: number): string {
 }
 .ucard:hover, .ucard:focus-visible {
   transform: translateY(-1px);
-  border-color: var(--color-iso-red);
+  border-color: var(--color-brand);
   box-shadow: 0 12px 24px -12px rgb(185 28 28 / 0.3);
 }
 .ucard:focus-visible { box-shadow: 0 0 0 3px rgb(185 28 28 / 0.25); }
@@ -808,7 +687,7 @@ function ordinalSuffix(n: number): string {
 .ucard__rail {
   width: 4px;
   align-self: stretch;
-  background: var(--color-iso-red);
+  background: var(--color-brand);
   border-radius: 2px;
 }
 
@@ -821,7 +700,7 @@ function ordinalSuffix(n: number): string {
   font-family: var(--font-serif);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   line-height: 1;
   letter-spacing: -0.025em;
 }
@@ -873,13 +752,13 @@ function ordinalSuffix(n: number): string {
   padding: 0.1875rem 0.625rem;
   font-size: 0.75rem; font-weight: 700;
   border-radius: 9999px;
-  background: var(--color-iso-red);
+  background: var(--color-brand-fill);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 .chip-status--open { background: #16a34a; }
-.chip-status--confirmed { background: var(--color-iso-red); }
+.chip-status--confirmed { background: var(--color-brand-fill); }
 .chip-status--scheduled { background: #0369a1; }
 .chip-status--tentative { background: #b45309; }
 .chip-status--cancelled { background: #57534e; }
@@ -895,7 +774,7 @@ function ordinalSuffix(n: number): string {
 .chip-meta--outline {
   background: transparent;
   border: 1px solid rgb(185 28 28 / 0.4);
-  color: var(--color-iso-red);
+  color: var(--color-brand);
 }
 .dark .chip-meta--outline { border-color: rgb(185 28 28 / 0.5); }
 
@@ -903,7 +782,7 @@ function ordinalSuffix(n: number): string {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   white-space: nowrap;
 }
 
@@ -957,7 +836,7 @@ function ordinalSuffix(n: number): string {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -1029,7 +908,7 @@ function ordinalSuffix(n: number): string {
 }
 .dark .badge { background: #292524; color: #d6d3d1; }
 .badge--concluded { background: #f5f5f4; color: #78716c; }
-.badge--upcoming { background: var(--color-iso-red); color: #fff; }
+.badge--upcoming { background: var(--color-brand-fill); color: #fff; }
 .badge--cancelled { background: #fee2e2; color: #991b1b; }
 .dark .badge--cancelled { background: rgb(185 28 28 / 0.2); color: #fca5a5; }
 .badge--type {
@@ -1043,8 +922,8 @@ function ordinalSuffix(n: number): string {
 }
 .dark .badge--res { background: rgb(34 197 94 / 0.2); color: #86efac; }
 .badge--rich {
-  background: #fff; border: 1px solid var(--color-iso-red);
-  color: var(--color-iso-red);
+  background: #fff; border: 1px solid var(--color-brand);
+  color: var(--color-brand);
 }
 .dark .badge--rich { background: rgb(15 23 42 / 0.5); }
 
@@ -1055,7 +934,7 @@ function ordinalSuffix(n: number): string {
   transition: transform 0.2s, color 0.2s;
 }
 .entry:hover .entry__arrow {
-  color: var(--color-iso-red);
+  color: var(--color-brand);
   transform: translateX(4px);
 }
 

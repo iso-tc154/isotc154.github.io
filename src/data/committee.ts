@@ -11,6 +11,8 @@ export const committee = {
   publishedStandards: 40,
   participatingMembers: 21,
   observingMembers: 26,
+  totalMembers: 47,
+  activeGroups: 10,
 
   links: {
     iso: 'https://www.iso.org',

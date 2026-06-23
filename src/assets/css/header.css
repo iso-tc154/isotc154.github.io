@@ -105,7 +105,6 @@
   .dark .site-header__nav-link { color: #d6d3d1; }
   .dark .site-header__nav-link.router-link-active,
   .dark .site-header__nav-link.router-link-exact-active {
-    color: #94b6e8;
     background: rgb(51 133 214 / 0.1);
   }
   .site-header__nav-link:hover {
