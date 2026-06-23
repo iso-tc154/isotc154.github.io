@@ -84,7 +84,7 @@ roles:
 **Idempotency** — safe to run repeatedly:
 - **Issues**: `gh issue list --label new-standard --state all` is fetched once per run and filtered by ISO reference in the title (via `jq`). Any existing issue (open or closed) for the same reference prevents duplicate creation.
 - **PR**: `peter-evans/create-pull-request@v7` on branch `chore/sync-iso-data` creates the PR on first run and pushes additional commits on subsequent runs. Never opens a second PR for the same branch. `delete-branch: true` recreates the branch cleanly after merge or close.
-- **Placeholders**: the script skips YAML generation if a file with the derived slug already exists. Matching against existing YAMLs uses `iso.name` plus Amd/Cor dash normalization (so `ISO 9735:1988/Amd-1:1992` matches `ISO 9735:1988/Amd 1:1992`).
+- **Placeholders**: the script skips YAML generation if a file with the derived slug already exists. Matching against existing YAMLs uses `iso.name` plus two normalizations: Amd/Cor dash (`ISO …/Amd-1:…` ↔ `ISO …/Amd 1:…`) and D-stage iteration suffix (`ISO/DTR 20180.2` ↔ `ISO/DTR 20180`, where `.N` is the Nth circulation of a DIS/DTR/DTS/FDIS/FDTR/FDTS/PRF draft). Non-D-stage suffixes (e.g. `ISO/PWI 16356.2`) are left intact — they are not iteration counters.
 - **Metadata**: `iso_field_missing?` only writes a field when it's nil or empty — existing editorial values are never overwritten.
 
 **Placeholder YAML shape** (minimal — no editorial content):
@@ -111,13 +111,17 @@ tc154:
 4. Add to publication history if applicable.
 5. Close the issue. The placeholder stays on `main`; future sync runs will keep its metadata current.
 
-**Local validation** — the script is safe to run directly; it will create real placeholder files in `_data/standards/` and a manifest at `scripts/.new-standards.json`. Remove both afterwards if this was just a check:
+**Local validation** — the script is safe to run directly; it will create real placeholder files in `_data/standards/` and a manifest at `scripts/.new-standards.json`. **Placeholder YAMLs are real catalogue entries and MUST NOT be deleted.** They represent TC 154 deliverables that ISO has registered; deleting them silently drops standards from the site and re-creating them on the next run loses any local edits.
 ```sh
 ruby scripts/sync_iso_open_data.rb
-# Inspect output, then clean up:
-rm -f scripts/.new-standards.json
-git status --short _data/standards/ | grep '^??' | awk '{print $2}' | xargs rm -f
+# To review what changed:
+git status _data/standards/
+git diff _data/standards/      # metadata updates on existing YAMLs
+git status --short _data/standards/ | grep '^??'   # new placeholder YAMLs
+# Then commit the placeholders + metadata updates — do NOT delete them.
 ```
+
+The manifest at `scripts/.new-standards.json` is a transient artifact (consumed by the GHA workflow to open issues) and is safe to leave untracked or remove; it is regenerated on every run.
 
 ### Frontend Pipeline
 

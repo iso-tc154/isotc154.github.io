@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP TS 15000-6
+  type: TS
+  title: 'Electronic business eXtensible mark-up language (ebXML) — Part 6: Collaboration protocol profile and agreement specification (CPPA)'
+  stage: '10.98'
+  store_id: 38326
+tc154:
+  status: under_development

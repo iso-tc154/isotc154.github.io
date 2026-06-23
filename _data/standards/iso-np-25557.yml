@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP 25557
+  type: international
+  title: Cross-border trade digital paper (eDocs)
+  stage: '10.98'
+  store_id: 42992
+tc154:
+  status: under_development

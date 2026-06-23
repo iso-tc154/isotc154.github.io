@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/AWI TR 24980
+  type: TR
+  title: Application of data exchange for commercial off-the-shelf (COTS) components
+  stage: '10.99'
+  store_id: 94425
+tc154:
+  status: under_development

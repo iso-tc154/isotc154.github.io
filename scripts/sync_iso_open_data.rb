@@ -87,10 +87,28 @@ def slugify(ref)
      .gsub(/^-+|-+$/, '')
 end
 
-# Normalize Amd/Cor dashes so "ISO 9735:1988/Amd-1:1992" matches
-# "ISO 9735:1988/Amd 1:1992".
+# Whether `ref` is a D-stage deliverable — DIS, DTR, DTS, FDIS, FDTR, FDTS,
+# PRF (and final-draft amendments/corrigenda). At this stage ISO Open Data
+# appends a ".N" iteration counter to indicate which circulation of the
+# draft the record represents (e.g. ISO/DTR 20180.2 = 2nd DTR circulation).
+# Plain published types (IS, TR, TS) are intentionally excluded — those have
+# no draft iterations.
+D_STAGE_PATTERN = /\b((?:FD|D)(?:IS|TR|TS)|PRF|FDAMD|FDCOR)\b/
+
+def d_stage?(ref)
+  D_STAGE_PATTERN.match?(ref.to_s)
+end
+
+# Normalize references so two forms of the same deliverable match:
+#   * Amd/Cor dashes: "ISO 9735:1988/Amd-1:1992" ↔ "ISO 9735:1988/Amd 1:1992"
+#   * D-stage iteration suffix: "ISO/DTR 20180.2" ↔ "ISO/DTR 20180"
+#     Only stripped for D-stage refs (DIS/DTR/DTS/FDIS/FDTR/FDTS/PRF), where
+#     ".N" is the circulation counter. Other stages (PWI, NP, AWI, WD, CD)
+#     use ".N" with different semantics, so we leave it intact.
 def normalize_ref(ref)
-  ref.to_s.gsub(/([Aa]md|[Cc]or)\s*-\s*(\d)/, '\1 \2')
+  s = ref.to_s.gsub(/([Aa]md|[Cc]or)\s*-\s*(\d)/, '\1 \2')
+  return s unless d_stage?(s)
+  s.gsub(/\.(\d+)$/, '')
 end
 
 # ─── YAML helpers ─────────────────────────────────────────────────────────────
@@ -135,6 +153,7 @@ end
 def fetch_tc154_deliverables
   puts "Downloading ISO Open Data from #{ISO_DATA_URL}…"
   tc154 = {}
+  unique = {}
   URI.open(ISO_DATA_URL, 'Accept' => 'application/json', read_timeout: 120) do |f|
     f.each_line do |line|
       begin
@@ -145,10 +164,12 @@ def fetch_tc154_deliverables
       next unless j['ownerCommittee'] == OWNER_COMMITTEE
       ref = j['reference']
       next unless ref && !ref.empty?
-      tc154[ref] = j
+      normalized = normalize_ref(ref)
+      tc154[normalized] = j
+      unique[normalized] = j
     end
   end
-  puts "  Found #{tc154.size} deliverables for #{OWNER_COMMITTEE}"
+  puts "  Found #{unique.size} deliverables for #{OWNER_COMMITTEE} (#{tc154.size} reference forms)"
   tc154
 end
 
@@ -209,8 +230,9 @@ end
 # ─── Phase 2: discover standards with no local YAML ───────────────────────────
 
 def build_placeholder(deliverable)
-  ref   = deliverable['reference']
-  stage = format_stage(deliverable['currentStage'])
+  raw_ref = deliverable['reference']
+  ref     = normalize_ref(raw_ref)
+  stage   = format_stage(deliverable['currentStage'])
   ics_raw = deliverable['icsCode']
   ics     = ics_raw && !Array(ics_raw).empty? ? Array(ics_raw).join(', ') : nil
 
@@ -234,13 +256,14 @@ def discover_new(tc154, refs, slugs)
   tc154.keys.sort.each do |ref|
     next if refs.include?(ref) || refs.include?(normalize_ref(ref))
 
-    deliverable  = tc154[ref]
-    slug         = slugify(ref)
-    placeholder  = build_placeholder(deliverable)
-    already      = slugs.include?(slug)
+    deliverable = tc154[ref]
+    raw_ref     = deliverable['reference']
+    slug        = slugify(ref)
+    placeholder = build_placeholder(deliverable)
+    already     = slugs.include?(slug)
 
     manifest << {
-      reference:          ref,
+      reference:          raw_ref,
       title:              extract_title(deliverable['title']),
       stage:              placeholder['iso']['stage'],
       status:             placeholder.dig('tc154', 'status'),
@@ -255,11 +278,11 @@ def discover_new(tc154, refs, slugs)
     }
 
     if already
-      puts "  · Placeholder already exists: #{slug}.yml  (#{ref})"
+      puts "  · Placeholder already exists: #{slug}.yml  (#{raw_ref})"
     else
       save_yaml("#{STANDARDS_DIR}/#{slug}.yml", placeholder)
       new_placeholders << slug
-      puts "  + Created placeholder:       #{slug}.yml  (#{ref})"
+      puts "  + Created placeholder:       #{slug}.yml  (#{raw_ref})"
     end
   end
 

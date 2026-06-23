@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP 5909
+  type: international
+  title: Data interchange processes of blockchain based negotiable maritime bill of lading related to e-Commerce platform
+  stage: '10.98'
+  store_id: 81815
+tc154:
+  status: under_development

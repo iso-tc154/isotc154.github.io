@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/NP TS 15000-5
+  type: TS
+  title: 'Electronic business eXtensible mark-up language (ebXML) — Part 5: ebXML requirements specification (REQ)'
+  stage: '10.98'
+  ics: 35.040.50
+  store_id: 38325
+tc154:
+  status: under_development

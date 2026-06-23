@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/WD TS 21981
+  type: TS
+  title: Business semantics thesaurus (BST)
+  stage: '20.98'
+  store_id: 72054
+tc154:
+  status: under_development

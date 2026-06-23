@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 34500
+  type: international
+  title: Date and time — Temporal reference model
+  stage: '0.98'
+  store_id: 81813
+tc154:
+  status: under_development

@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 20191-1
+  type: international
+  title: 'Processes, data elements and documents in commerce, industry and administration - Carbon data interoperability — Part 1: Framework'
+  stage: '0.98'
+  store_id: 86126
+tc154:
+  status: under_development

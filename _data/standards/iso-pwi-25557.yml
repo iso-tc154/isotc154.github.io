@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 25557
+  type: international
+  title: Cross-border trade digital paper (eDocs)
+  stage: '0.98'
+  store_id: 43735
+tc154:
+  status: under_development

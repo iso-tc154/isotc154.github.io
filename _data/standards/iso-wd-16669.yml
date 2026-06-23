@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/WD 16669
+  type: international
+  title: Basic Semantic Register (BSR) - Content (semantic components, semantic constructs and bridges)
+  stage: '20.98'
+  store_id: 31040
+tc154:
+  status: under_development

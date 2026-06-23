@@ -1,0 +1,11 @@
+---
+iso:
+  name: ISO/TS 15000-5:2005/Amd 1:2011
+  type: TS
+  title: 'Electronic Business Extensible Markup Language (ebXML) — Part 5: ebXML Core Components Technical Specification, Version 2.01(ebCCTS) — Amendment 1'
+  stage: '95.99'
+  publication_date: '2011-05-23'
+  ics: 35.040.50
+  store_id: 59225
+tc154:
+  status: withdrawn

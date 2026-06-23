@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/NP 36100
+  type: international
+  title: Standardized content — Document metamodel
+  stage: '10.98'
+  store_id: 77056
+tc154:
+  status: under_development

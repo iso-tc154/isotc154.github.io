@@ -1,0 +1,10 @@
+---
+iso:
+  name: ISO/NP 16375
+  type: international
+  title: Cross industry invoice
+  stage: '10.98'
+  ics: 01.140.30
+  store_id: 56544
+tc154:
+  status: under_development

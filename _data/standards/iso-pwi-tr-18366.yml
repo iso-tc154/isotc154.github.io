@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI TR 18366
+  type: TR
+  title: Impact analysis of change requests for ISO 8601
+  stage: '0.98'
+  store_id: 62270
+tc154:
+  status: under_development

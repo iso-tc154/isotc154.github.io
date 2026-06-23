@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 56100
+  type: international
+  title: Directory — Common profile — Persons and organizations
+  stage: '0.98'
+  store_id: 77023
+tc154:
+  status: under_development

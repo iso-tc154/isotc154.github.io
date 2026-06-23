@@ -1,0 +1,9 @@
+---
+iso:
+  name: ISO/PWI 16669
+  type: international
+  title: Basic Semantic Register (BSR) - Content (semantic components, semantic constructs and bridges)
+  stage: '0.98'
+  store_id: 37349
+tc154:
+  status: under_development
