@@ -6,7 +6,20 @@ import { committee } from '../data/committee'
 import { useCountUp } from '../composables/useCountUp'
 import type { Meeting } from '../types/meeting'
 import PageHero from '../components/PageHero.vue'
+import FilterBar from '../components/FilterBar.vue'
+import FilterChip from '../components/FilterChip.vue'
+import FilterFacet from '../components/FilterFacet.vue'
+import EmptyState from '../components/EmptyState.vue'
+import ListCardSkeleton from '../components/ListCardSkeleton.vue'
 import { ordinalSuffix } from '../utils/ordinal'
+import {
+  isUpcoming,
+  decadeFacets,
+  decadeLabel,
+  groupByDecade,
+  typeInitials,
+  searchHaystack,
+} from '../domain/meetingPresentation'
 
 const router = useRouter()
 const { meetings, isLoaded, loadData } = useMeetings()
@@ -43,21 +56,14 @@ const animResolutions = useCountUp(totalResolutions, loaded, 1600)
 const animCountries = useCountUp(totalCountries, loaded, 1600)
 const firstYearDisplay = computed(() => firstYear.value ?? 1972)
 
-const availableDecades = computed(() => {
-  const set = new Set<number>()
-  for (const m of meetings.value) {
-    if (m.year) set.add(Math.floor(m.year / 10) * 10)
-  }
-  return Array.from(set).sort((a, b) => b - a)
-})
+const availableDecades = computed(() => decadeFacets(meetings.value))
 
-function decadeLabel(d: number): string {
-  return `${d}s`
-}
-
-function isUpcoming(m: Meeting): boolean {
-  return m.status_label !== 'Concluded' && m.status_label !== 'Cancelled'
-}
+const hasActiveFilters = computed(() =>
+  !!searchQuery.value ||
+  selectedDecade.value !== null ||
+  selectedType.value !== 'all' ||
+  selectedStatus.value !== 'all',
+)
 
 const filtered = computed<Meeting[]>(() => {
   const q = searchQuery.value.trim().toLowerCase()
@@ -68,7 +74,6 @@ const filtered = computed<Meeting[]>(() => {
     }
     if (selectedType.value !== 'all') {
       const types = new Set(m.sessions.map(s => s.type))
-      // a meeting "matches" if any session is the selected type
       if (!types.has(selectedType.value)) return false
     }
     if (selectedStatus.value !== 'all') {
@@ -76,25 +81,10 @@ const filtered = computed<Meeting[]>(() => {
       if (selectedStatus.value === 'concluded' && m.status_label !== 'Concluded') return false
       if (selectedStatus.value === 'cancelled' && m.status_label !== 'Cancelled') return false
     }
-    if (q) {
-      const hay = [
-        String(m.ordinal),
-        m.year ? String(m.year) : '',
-        m.location_label,
-        ...m.sessions.map(s => [s.country, s.city, s.virtual_address].filter(Boolean).join(' ')),
-      ].join(' ').toLowerCase()
-      if (!hay.includes(q)) return false
-    }
+    if (q && !searchHaystack(m).includes(q)) return false
     return true
   })
 })
-
-interface DecadeGroup {
-  decade: number
-  label: string
-  meetings: Meeting[]
-  resolutionCount: number
-}
 
 const upcomingMeetings = computed<Meeting[]>(() =>
   filtered.value
@@ -106,30 +96,14 @@ const pastFiltered = computed<Meeting[]>(() =>
   filtered.value.filter(m => !isUpcoming(m)),
 )
 
-const grouped = computed<DecadeGroup[]>(() => {
-  const map = new Map<number, Meeting[]>()
-  for (const m of pastFiltered.value) {
-    if (!m.year) continue
-    const d = Math.floor(m.year / 10) * 10
-    if (!map.has(d)) map.set(d, [])
-    map.get(d)!.push(m)
-  }
-  return Array.from(map.entries())
-    .sort((a, b) => b[0] - a[0])
-    .map(([decade, ms]) => ({
-      decade,
-      label: decadeLabel(decade),
-      meetings: ms.sort((a, b) => b.ordinal - a.ordinal),
-      resolutionCount: ms.reduce((acc, m) => acc + (m.resolution_count || 0), 0),
-    }))
-})
+const grouped = computed(() => groupByDecade(pastFiltered.value))
 
 const showUpcomingSection = computed(() =>
-  selectedStatus.value !== 'concluded' && selectedStatus.value !== 'cancelled' && upcomingMeetings.value.length > 0,
+  selectedStatus.value !== 'concluded' &&
+  selectedStatus.value !== 'cancelled' &&
+  upcomingMeetings.value.length > 0,
 )
-const showPastSection = computed(() =>
-  selectedStatus.value !== 'upcoming',
-)
+const showPastSection = computed(() => selectedStatus.value !== 'upcoming')
 
 function clearAll() {
   searchQuery.value = ''
@@ -140,13 +114,6 @@ function clearAll() {
 
 function openMeeting(m: Meeting) {
   router.push(m.url)
-}
-
-function typeInitials(m: Meeting): string {
-  if (m.type_label === 'Hybrid') return 'HYB'
-  if (m.type_label === 'Virtual') return 'VRT'
-  if (m.type_label === 'In person') return 'F2F'
-  return m.type_label.slice(0, 3).toUpperCase()
 }
 </script>
 
@@ -177,213 +144,197 @@ function typeInitials(m: Meeting): string {
     </PageHero>
 
     <div class="meetings-content">
-    <section class="filters" aria-label="Filter meetings">
-      <div class="filters__search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <input
-          type="search"
-          v-model="searchQuery"
-          placeholder="Search by city, country, year, or plenary number…"
-          aria-label="Search meetings"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
+      <FilterBar
+        v-model="searchQuery"
+        elevated
+        search-placeholder="Search by city, country, year, or plenary number…"
+        search-label="Search meetings"
+        :showing="filtered.length"
+        :total="totalMeetings"
+        total-label="plenaries"
+        :clearable="hasActiveFilters"
+        @clear="clearAll"
+      >
+        <template #facets>
+          <FilterFacet label="Decade">
+            <FilterChip
+              :active="selectedDecade === null"
+              @click="selectedDecade = null"
+            >All</FilterChip>
+            <FilterChip
+              v-for="d in availableDecades"
+              :key="d"
+              :active="selectedDecade === d"
+              @click="selectedDecade = d"
+            >{{ decadeLabel(d) }}</FilterChip>
+          </FilterFacet>
 
-      <div class="filters__chips">
-        <span class="filters__label">Decade</span>
-        <button
-          class="chip"
-          :class="{ 'chip--active': selectedDecade === null }"
-          @click="selectedDecade = null"
-        >All</button>
-        <button
-          v-for="d in availableDecades"
-          :key="d"
-          class="chip"
-          :class="{ 'chip--active': selectedDecade === d }"
-          @click="selectedDecade = d"
-        >{{ decadeLabel(d) }}</button>
-      </div>
+          <FilterFacet label="Format">
+            <FilterChip
+              v-for="opt in [{v:'all',l:'All'},{v:'face-to-face',l:'In person'},{v:'hybrid',l:'Hybrid'},{v:'virtual',l:'Virtual'}]"
+              :key="opt.v"
+              :active="selectedType === opt.v"
+              @click="selectedType = opt.v as typeof selectedType"
+            >{{ opt.l }}</FilterChip>
+          </FilterFacet>
 
-      <div class="filters__chips">
-        <span class="filters__label">Format</span>
-        <button
-          v-for="opt in [{v:'all',l:'All'},{v:'face-to-face',l:'In person'},{v:'hybrid',l:'Hybrid'},{v:'virtual',l:'Virtual'}]"
-          :key="opt.v"
-          class="chip"
-          :class="{ 'chip--active': selectedType === opt.v }"
-          @click="selectedType = opt.v as typeof selectedType"
-        >{{ opt.l }}</button>
-      </div>
+          <FilterFacet label="Status">
+            <FilterChip
+              v-for="opt in [{v:'all',l:'All'},{v:'upcoming',l:'Upcoming'},{v:'concluded',l:'Concluded'},{v:'cancelled',l:'Cancelled'}]"
+              :key="opt.v"
+              :active="selectedStatus === opt.v"
+              @click="selectedStatus = opt.v as typeof selectedStatus"
+            >{{ opt.l }}</FilterChip>
+          </FilterFacet>
+        </template>
+      </FilterBar>
 
-      <div class="filters__chips">
-        <span class="filters__label">Status</span>
-        <button
-          v-for="opt in [{v:'all',l:'All'},{v:'upcoming',l:'Upcoming'},{v:'concluded',l:'Concluded'},{v:'cancelled',l:'Cancelled'}]"
-          :key="opt.v"
-          class="chip"
-          :class="{ 'chip--active': selectedStatus === opt.v }"
-          @click="selectedStatus = opt.v as typeof selectedStatus"
-        >{{ opt.l }}</button>
-      </div>
+      <ListCardSkeleton v-if="!loaded" :count="4" :min-card-width="320" />
 
-      <div class="filters__meta">
-        <span>{{ filtered.length }} of {{ meetings.length }} plenaries</span>
-        <button
-          v-if="searchQuery || selectedDecade !== null || selectedType !== 'all' || selectedStatus !== 'all'"
-          class="filters__clear"
-          @click="clearAll"
-        >Clear filters</button>
-      </div>
-    </section>
+      <EmptyState
+        v-else-if="grouped.length === 0 && !showUpcomingSection"
+        title="No plenaries match"
+        message="Try a different decade, format, or search term — or clear the filters and start over."
+      >
+        <FilterChip @click="clearAll">Clear filters</FilterChip>
+      </EmptyState>
 
-    <section v-if="!loaded" class="state state--loading">
-      Loading plenary meetings…
-    </section>
-
-    <section v-else-if="grouped.length === 0 && !showUpcomingSection" class="state state--empty">
-      <h3>No matches</h3>
-      <p>Try a different decade, format, or search.</p>
-      <button class="cta" @click="clearAll">Clear filters</button>
-    </section>
-
-    <section v-else class="index">
-      <!-- UPCOMING: prominent card layout -->
-      <div v-if="showUpcomingSection" class="upcoming">
-        <header class="upcoming__header">
-          <div class="upcoming__header-text">
-            <p class="upcoming__eyebrow">
-              <span class="upcoming__pulse" aria-hidden="true"></span>
-              <span>Upcoming</span>
-              <span class="upcoming__eyebrow-meta" v-if="upcomingMeetings.length === 1">Next plenary</span>
-              <span class="upcoming__eyebrow-meta" v-else>{{ upcomingMeetings.length }} plenaries scheduled</span>
-            </p>
-            <h2 class="upcoming__title">In the calendar</h2>
-            <p class="upcoming__lead">
-              Plenary weeks still to come — book travel, register, and prepare contributions.
-            </p>
-          </div>
-        </header>
-
-        <ol class="upcoming__list">
-          <li
-            v-for="m in upcomingMeetings"
-            :key="m.ordinal"
-            class="ucard"
-            :class="{
-              'ucard--rich': !!m.rich,
-              'ucard--cancelled': m.status_label === 'Cancelled',
-            }"
-            tabindex="0"
-            @click="openMeeting(m)"
-            @keydown.enter="openMeeting(m)"
-          >
-            <div class="ucard__rail" aria-hidden="true"></div>
-            <div class="ucard__main">
-              <div class="ucard__ordinal-row">
-                <span class="ucard__ordinal">
-                  {{ m.ordinal }}<sup>{{ ordinalSuffix(m.ordinal) }}</sup>
-                </span>
-                <span class="ucard__ordinal-label">Plenary</span>
-                <span class="ucard__year">{{ m.year ?? '—' }}</span>
-              </div>
-
-              <h3 class="ucard__date" v-if="m.date_label">{{ m.date_label }}</h3>
-              <h3 class="ucard__date ucard__date--empty" v-else>Date to be confirmed</h3>
-
-              <p class="ucard__location" v-if="m.location_label">{{ m.location_label }}</p>
-              <p class="ucard__location ucard__location--empty" v-else>Location to be confirmed</p>
-
-              <div class="ucard__chips">
-                <span v-if="m.status_label === 'Cancelled'" class="chip-status chip-status--cancelled">Cancelled</span>
-                <span v-else-if="m.status_label === 'Registration open'" class="chip-status chip-status--open">Registration open</span>
-                <span v-else-if="m.status_label === 'Confirmed'" class="chip-status chip-status--confirmed">Confirmed</span>
-                <span v-else-if="m.status_label === 'Scheduled'" class="chip-status chip-status--scheduled">Scheduled</span>
-                <span v-else-if="m.status_label === 'Tentative'" class="chip-status chip-status--tentative">Tentative</span>
-                <span v-else class="chip-status">{{ m.status_label }}</span>
-                <span v-if="m.type_label" class="chip-meta">{{ m.type_label }}</span>
-                <span v-if="m.rich" class="chip-meta chip-meta--outline">Briefing available</span>
-              </div>
+      <section v-else class="index">
+        <!-- UPCOMING: prominent card layout -->
+        <div v-if="showUpcomingSection" class="upcoming">
+          <header class="upcoming__header">
+            <div class="upcoming__header-text">
+              <p class="upcoming__eyebrow">
+                <span class="upcoming__pulse" aria-hidden="true"></span>
+                <span>Upcoming</span>
+                <span class="upcoming__eyebrow-meta" v-if="upcomingMeetings.length === 1">Next plenary</span>
+                <span class="upcoming__eyebrow-meta" v-else>{{ upcomingMeetings.length }} plenaries scheduled</span>
+              </p>
+              <h2 class="upcoming__title">In the calendar</h2>
+              <p class="upcoming__lead">
+                Plenary weeks still to come — book travel, register, and prepare contributions.
+              </p>
             </div>
-
-            <div class="ucard__arrow" aria-hidden="true">
-              <span>Open</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </li>
-        </ol>
-      </div>
-
-      <!-- PAST: decade grouping -->
-      <div v-if="showPastSection">
-        <h2 v-if="showUpcomingSection" class="past-section-label">
-          <span>Past plenaries</span>
-          <span class="past-section-rule" aria-hidden="true"></span>
-        </h2>
-
-        <div v-if="grouped.length === 0" class="state state--empty state--inline">
-          <p>No past plenaries match the current filters.</p>
-        </div>
-
-        <div v-for="group in grouped" :key="group.decade" class="decade">
-          <header class="decade__header">
-            <h3 class="decade__label">{{ group.label }}</h3>
-            <p class="decade__meta">
-              {{ group.meetings.length }} plenar{{ group.meetings.length === 1 ? 'y' : 'ies' }}
-              <span v-if="group.resolutionCount > 0"> · {{ group.resolutionCount }} resolutions</span>
-            </p>
-            <span class="decade__rule" aria-hidden="true"></span>
           </header>
 
-          <ol class="decade__list">
+          <ol class="upcoming__list">
             <li
-              v-for="m in group.meetings"
+              v-for="m in upcomingMeetings"
               :key="m.ordinal"
-              class="entry"
+              class="ucard"
               :class="{
-                'entry--cancelled': m.status_label === 'Cancelled',
-                'entry--rich': !!m.rich,
+                'ucard--rich': !!m.rich,
+                'ucard--cancelled': m.status_label === 'Cancelled',
               }"
               tabindex="0"
               @click="openMeeting(m)"
               @keydown.enter="openMeeting(m)"
             >
-              <div class="entry__year">
-                <span class="entry__year-num">{{ m.year ?? '—' }}</span>
-                <span class="entry__year-tag">{{ typeInitials(m) }}</span>
-              </div>
-
-              <div class="entry__ordinal">
-                <span class="entry__ordinal-num">{{ m.ordinal }}<sup>{{ ordinalSuffix(m.ordinal) }}</sup></span>
-                <span class="entry__ordinal-label">Plenary</span>
-              </div>
-
-              <div class="entry__body">
-                <p class="entry__date">{{ m.date_label || 'Date TBC' }}</p>
-                <p class="entry__location" v-if="m.location_label">{{ m.location_label }}</p>
-                <p class="entry__location entry__location--empty" v-else>Location TBC</p>
-
-                <div class="entry__chips">
-                  <span v-if="m.status_label === 'Cancelled'" class="badge badge--cancelled">Cancelled</span>
-                  <span v-else class="badge badge--concluded">Concluded</span>
-                  <span v-if="m.type_label" class="badge badge--type">{{ m.type_label }}</span>
-                  <span v-if="m.participant_total" class="badge badge--meta">{{ m.participant_total }} attended</span>
-                  <span v-if="m.resolution_count > 0" class="badge badge--res">
-                    {{ m.resolution_count }} resolution{{ m.resolution_count === 1 ? '' : 's' }}
+              <div class="ucard__rail" aria-hidden="true"></div>
+              <div class="ucard__main">
+                <div class="ucard__ordinal-row">
+                  <span class="ucard__ordinal">
+                    {{ m.ordinal }}<sup>{{ ordinalSuffix(m.ordinal) }}</sup>
                   </span>
-                  <span v-if="m.rich" class="badge badge--rich">Briefing available</span>
+                  <span class="ucard__ordinal-label">Plenary</span>
+                  <span class="ucard__year">{{ m.year ?? '—' }}</span>
+                </div>
+
+                <h3 class="ucard__date" v-if="m.date_label">{{ m.date_label }}</h3>
+                <h3 class="ucard__date ucard__date--empty" v-else>Date to be confirmed</h3>
+
+                <p class="ucard__location" v-if="m.location_label">{{ m.location_label }}</p>
+                <p class="ucard__location ucard__location--empty" v-else>Location to be confirmed</p>
+
+                <div class="ucard__chips">
+                  <span v-if="m.status_label === 'Cancelled'" class="chip-status chip-status--cancelled">Cancelled</span>
+                  <span v-else-if="m.status_label === 'Registration open'" class="chip-status chip-status--open">Registration open</span>
+                  <span v-else-if="m.status_label === 'Confirmed'" class="chip-status chip-status--confirmed">Confirmed</span>
+                  <span v-else-if="m.status_label === 'Scheduled'" class="chip-status chip-status--scheduled">Scheduled</span>
+                  <span v-else-if="m.status_label === 'Tentative'" class="chip-status chip-status--tentative">Tentative</span>
+                  <span v-else class="chip-status">{{ m.status_label }}</span>
+                  <span v-if="m.type_label" class="chip-meta">{{ m.type_label }}</span>
+                  <span v-if="m.rich" class="chip-meta chip-meta--outline">Briefing available</span>
                 </div>
               </div>
 
-              <div class="entry__arrow" aria-hidden="true">→</div>
+              <div class="ucard__arrow" aria-hidden="true">
+                <span>Open</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
             </li>
           </ol>
         </div>
-      </div>
-    </section>
+
+        <!-- PAST: decade grouping -->
+        <div v-if="showPastSection">
+          <h2 v-if="showUpcomingSection" class="past-section-label">
+            <span>Past plenaries</span>
+            <span class="past-section-rule" aria-hidden="true"></span>
+          </h2>
+
+          <EmptyState
+            v-if="grouped.length === 0"
+            title="No past plenaries match"
+            message="Adjust the filters to widen the search."
+          />
+
+          <div v-for="group in grouped" :key="group.decade" class="decade">
+            <header class="decade__header">
+              <h3 class="decade__label">{{ group.label }}</h3>
+              <p class="decade__meta">
+                {{ group.meetings.length }} plenar{{ group.meetings.length === 1 ? 'y' : 'ies' }}
+                <span v-if="group.resolutionCount > 0"> · {{ group.resolutionCount }} resolutions</span>
+              </p>
+              <span class="decade__rule" aria-hidden="true"></span>
+            </header>
+
+            <ol class="decade__list">
+              <li
+                v-for="m in group.meetings"
+                :key="m.ordinal"
+                class="entry"
+                :class="{
+                  'entry--cancelled': m.status_label === 'Cancelled',
+                  'entry--rich': !!m.rich,
+                }"
+                tabindex="0"
+                @click="openMeeting(m)"
+                @keydown.enter="openMeeting(m)"
+              >
+                <div class="entry__year">
+                  <span class="entry__year-num">{{ m.year ?? '—' }}</span>
+                  <span class="entry__year-tag">{{ typeInitials(m) }}</span>
+                </div>
+
+                <div class="entry__ordinal">
+                  <span class="entry__ordinal-num">{{ m.ordinal }}<sup>{{ ordinalSuffix(m.ordinal) }}</sup></span>
+                  <span class="entry__ordinal-label">Plenary</span>
+                </div>
+
+                <div class="entry__body">
+                  <p class="entry__date">{{ m.date_label || 'Date TBC' }}</p>
+                  <p class="entry__location" v-if="m.location_label">{{ m.location_label }}</p>
+                  <p class="entry__location entry__location--empty" v-else>Location TBC</p>
+
+                  <div class="entry__chips">
+                    <span v-if="m.status_label === 'Cancelled'" class="badge badge--cancelled">Cancelled</span>
+                    <span v-else class="badge badge--concluded">Concluded</span>
+                    <span v-if="m.type_label" class="badge badge--type">{{ m.type_label }}</span>
+                    <span v-if="m.participant_total" class="badge badge--meta">{{ m.participant_total }} attended</span>
+                    <span v-if="m.resolution_count > 0" class="badge badge--res">
+                      {{ m.resolution_count }} resolution{{ m.resolution_count === 1 ? '' : 's' }}
+                    </span>
+                    <span v-if="m.rich" class="badge badge--rich">Briefing available</span>
+                  </div>
+                </div>
+
+                <div class="entry__arrow" aria-hidden="true">→</div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -404,140 +355,14 @@ function typeInitials(m: Meeting): string {
 }
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-/* FILTERS */
 .meetings-content {
   max-width: 80rem;
   margin: 0 auto;
   padding: 0 1.5rem 4rem;
 }
-.filters {
-  background: #fff;
-  border: 1px solid #e7e5e4;
-  border-radius: 0.75rem;
-  padding: 1.25rem 1.25rem 1rem;
-  margin-bottom: 3rem;
-  display: flex; flex-direction: column;
-  gap: 0.75rem;
-}
-.dark .filters { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
-.filters__search {
-  position: relative;
-  display: flex; align-items: center;
-}
-.filters__search svg {
-  position: absolute;
-  left: 0.875rem;
-  width: 1.125rem; height: 1.125rem;
-  color: #a8a29e;
-}
-.filters__search input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
-  border: 1px solid #d6d3d1;
-  border-radius: 0.5rem;
-  background: #fafaf9;
-  font-family: inherit;
-  font-size: 0.9375rem;
-  color: #1c1917;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-.filters__search input:focus {
-  outline: none;
-  border-color: var(--color-brand);
-  background: #fff;
-  box-shadow: 0 0 0 3px rgb(185 28 28 / 0.12);
-}
-.dark .filters__search input {
-  background: #1c1917; border-color: #57534e; color: #fafaf9;
-}
-.dark .filters__search input:focus {
-  border-color: var(--color-brand);
-  background: #1c1917;
-}
-.filters__chips {
-  display: flex; flex-wrap: wrap; align-items: center;
-  gap: 0.375rem;
-}
-.filters__label {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #a8a29e;
-  margin-right: 0.5rem;
-}
-.chip {
-  display: inline-flex; align-items: center;
-  padding: 0.375rem 0.875rem;
-  border-radius: 9999px;
-  border: 1px solid #d6d3d1;
-  background: #fff;
-  color: #57534e;
-  font-family: inherit;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.chip:hover {
-  border-color: var(--color-brand);
-  color: var(--color-brand);
-}
-.chip--active {
-  background: var(--color-brand-fill);
-  border-color: var(--color-brand-fill);
-  color: #fff;
-}
-.dark .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: var(--color-brand); color: var(--color-brand); }
-.dark .chip--active { background: var(--color-brand-fill); border-color: var(--color-brand-fill); color: #fff; }
-
-.filters__meta {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 0.8125rem; color: #78716c;
-  padding-top: 0.5rem;
-  border-top: 1px dashed #e7e5e4;
-}
-.dark .filters__meta { color: #a8a29e; border-top-color: #292524; }
-.filters__clear {
-  background: none; border: 0; padding: 0;
-  font-family: inherit;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-brand);
-  cursor: pointer;
-}
-.filters__clear:hover { text-decoration: underline; }
-
-/* STATE */
-.state {
-  padding: 4rem 1rem;
-  text-align: center;
-  color: #78716c;
-}
-.state--empty h3 {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  color: #1c1917;
-  margin: 0 0 0.5rem;
-}
-.dark .state--empty h3 { color: #fafaf9; }
-.cta {
-  margin-top: 1rem;
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: var(--color-brand-fill);
-  color: #fff;
-  border: 0;
-  border-radius: 0.375rem;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-.cta:hover { background: #b0000b; }
 
 /* INDEX */
-.index { display: flex; flex-direction: column; gap: 3rem; }
+.index { display: flex; flex-direction: column; gap: 3rem; margin-top: 2.5rem; }
 .decade__header {
   position: relative;
   display: flex; align-items: baseline; gap: 1rem;
@@ -580,13 +405,13 @@ function typeInitials(m: Meeting): string {
   outline: none;
 }
 .entry:hover, .entry:focus-visible {
-  background: rgb(185 28 28 / 0.025);
+  background: rgb(30 58 138 / 0.025);
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
 .dark .entry { border-bottom-color: #292524; }
-.dark .entry:hover, .dark .entry:focus-visible { background: rgb(185 28 28 / 0.07); }
-.entry:focus-visible { box-shadow: inset 3px 0 0 var(--color-brand); }
+.dark .entry:hover, .dark .entry:focus-visible { background: rgb(148 182 232 / 0.05); }
+.entry:focus-visible { box-shadow: inset 3px 0 0 var(--color-blue-accent); }
 .entry:last-child { border-bottom: 0; }
 
 .entry--cancelled { opacity: 0.65; }
@@ -597,16 +422,16 @@ function typeInitials(m: Meeting): string {
   padding: 1.75rem;
   border-radius: 1rem;
   background:
-    radial-gradient(ellipse at top right, rgb(185 28 28 / 0.08), transparent 60%),
-    linear-gradient(180deg, #fff 0%, rgb(254 242 242 / 0.4) 100%);
-  border: 1px solid rgb(185 28 28 / 0.2);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.05), 0 12px 28px -12px rgb(185 28 28 / 0.18);
+    radial-gradient(ellipse at top right, rgb(30 58 138 / 0.08), transparent 60%),
+    linear-gradient(180deg, #fff 0%, rgb(219 234 254 / 0.4) 100%);
+  border: 1px solid rgb(30 58 138 / 0.2);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.05), 0 12px 28px -12px rgb(30 58 138 / 0.18);
 }
 .dark .upcoming {
   background:
-    radial-gradient(ellipse at top right, rgb(185 28 28 / 0.16), transparent 60%),
+    radial-gradient(ellipse at top right, rgb(148 182 232 / 0.16), transparent 60%),
     linear-gradient(180deg, rgb(28 25 23 / 0.6) 0%, rgb(15 23 42 / 0.5) 100%);
-  border-color: rgb(185 28 28 / 0.35);
+  border-color: rgb(148 182 232 / 0.35);
 }
 .upcoming__header {
   margin-bottom: 1.25rem;
@@ -615,19 +440,24 @@ function typeInitials(m: Meeting): string {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-brand);
+  color: var(--color-blue-accent);
   margin: 0 0 0.5rem;
 }
+.dark .upcoming__eyebrow { color: #94b6e8; }
 .upcoming__pulse {
   width: 0.5rem; height: 0.5rem; border-radius: 50%;
-  background: var(--color-brand);
-  box-shadow: 0 0 0 0 rgb(185 28 28 / 0.6);
+  background: var(--color-blue-accent);
+  box-shadow: 0 0 0 0 rgb(30 58 138 / 0.6);
   animation: upcoming-pulse 2s infinite;
 }
+.dark .upcoming__pulse {
+  background: #94b6e8;
+  box-shadow: 0 0 0 0 rgb(148 182 232 / 0.6);
+}
 @keyframes upcoming-pulse {
-  0% { box-shadow: 0 0 0 0 rgb(185 28 28 / 0.55); }
-  70% { box-shadow: 0 0 0 0.625rem rgb(185 28 28 / 0); }
-  100% { box-shadow: 0 0 0 0 rgb(185 28 28 / 0); }
+  0% { box-shadow: 0 0 0 0 rgb(30 58 138 / 0.55); }
+  70% { box-shadow: 0 0 0 0.625rem rgb(30 58 138 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(30 58 138 / 0); }
 }
 .upcoming__eyebrow-meta {
   color: #a8a29e;
@@ -665,7 +495,7 @@ function typeInitials(m: Meeting): string {
   align-items: center;
   padding: 1.25rem 1.5rem;
   background: #fff;
-  border: 1px solid rgb(185 28 28 / 0.25);
+  border: 1px solid rgb(30 58 138 / 0.25);
   border-radius: 0.75rem;
   cursor: pointer;
   outline: none;
@@ -673,22 +503,27 @@ function typeInitials(m: Meeting): string {
 }
 .dark .ucard {
   background: rgb(28 25 23 / 0.85);
-  border-color: rgb(185 28 28 / 0.4);
+  border-color: rgb(148 182 232 / 0.4);
 }
 .ucard:hover, .ucard:focus-visible {
   transform: translateY(-1px);
-  border-color: var(--color-brand);
-  box-shadow: 0 12px 24px -12px rgb(185 28 28 / 0.3);
+  border-color: var(--color-blue-accent);
+  box-shadow: 0 12px 24px -12px rgb(30 58 138 / 0.3);
 }
-.ucard:focus-visible { box-shadow: 0 0 0 3px rgb(185 28 28 / 0.25); }
+.dark .ucard:hover, .dark .ucard:focus-visible {
+  border-color: #94b6e8;
+  box-shadow: 0 12px 24px -12px rgb(148 182 232 / 0.25);
+}
+.ucard:focus-visible { box-shadow: 0 0 0 3px rgb(30 58 138 / 0.25); }
 .ucard--cancelled { opacity: 0.7; }
 
 .ucard__rail {
   width: 4px;
   align-self: stretch;
-  background: var(--color-brand);
+  background: var(--color-blue-accent);
   border-radius: 2px;
 }
+.dark .ucard__rail { background: #94b6e8; }
 
 .ucard__main { min-width: 0; }
 .ucard__ordinal-row {
@@ -699,10 +534,11 @@ function typeInitials(m: Meeting): string {
   font-family: var(--font-serif);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-brand);
+  color: var(--color-blue-accent);
   line-height: 1;
   letter-spacing: -0.025em;
 }
+.dark .ucard__ordinal { color: #94b6e8; }
 .ucard__ordinal sup {
   font-size: 0.5em;
   vertical-align: super;
@@ -751,13 +587,14 @@ function typeInitials(m: Meeting): string {
   padding: 0.1875rem 0.625rem;
   font-size: 0.75rem; font-weight: 700;
   border-radius: 9999px;
-  background: var(--color-brand-fill);
+  background: var(--color-blue-accent);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+.dark .chip-status { background: var(--color-brand-fill); }
 .chip-status--open { background: #16a34a; }
-.chip-status--confirmed { background: var(--color-brand-fill); }
+.chip-status--confirmed { background: var(--color-blue-accent); }
 .chip-status--scheduled { background: #0369a1; }
 .chip-status--tentative { background: #b45309; }
 .chip-status--cancelled { background: #57534e; }
@@ -772,18 +609,19 @@ function typeInitials(m: Meeting): string {
 .dark .chip-meta { background: #292524; color: #d6d3d1; }
 .chip-meta--outline {
   background: transparent;
-  border: 1px solid rgb(185 28 28 / 0.4);
-  color: var(--color-brand);
+  border: 1px solid rgb(30 58 138 / 0.4);
+  color: var(--color-blue-accent);
 }
-.dark .chip-meta--outline { border-color: rgb(185 28 28 / 0.5); }
+.dark .chip-meta--outline { border-color: rgb(148 182 232 / 0.5); color: #94b6e8; }
 
 .ucard__arrow {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-brand);
+  color: var(--color-blue-accent);
   white-space: nowrap;
 }
+.dark .ucard__arrow { color: #94b6e8; }
 
 /* PAST section header (after upcoming) */
 .past-section-label {
@@ -803,11 +641,6 @@ function typeInitials(m: Meeting): string {
   background: linear-gradient(90deg, #d6d3d1, transparent);
 }
 .dark .past-section-rule { background: linear-gradient(90deg, #44403c, transparent); }
-
-.state--inline {
-  padding: 2rem 1rem;
-  text-align: center;
-}
 
 @media (max-width: 768px) {
   .ucard {
@@ -835,10 +668,11 @@ function typeInitials(m: Meeting): string {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-brand);
+  color: var(--color-blue-accent);
   line-height: 1;
   letter-spacing: -0.02em;
 }
+.dark .entry__year-num { color: #94b6e8; }
 .entry__year-tag {
   font-family: ui-monospace, monospace;
   font-size: 0.6875rem;
@@ -907,7 +741,8 @@ function typeInitials(m: Meeting): string {
 }
 .dark .badge { background: #292524; color: #d6d3d1; }
 .badge--concluded { background: #f5f5f4; color: #78716c; }
-.badge--upcoming { background: var(--color-brand-fill); color: #fff; }
+.badge--upcoming { background: var(--color-blue-accent); color: #fff; }
+.dark .badge--upcoming { background: var(--color-brand-fill); }
 .badge--cancelled { background: #fee2e2; color: #991b1b; }
 .dark .badge--cancelled { background: rgb(185 28 28 / 0.2); color: #fca5a5; }
 .badge--type {
@@ -921,10 +756,14 @@ function typeInitials(m: Meeting): string {
 }
 .dark .badge--res { background: rgb(34 197 94 / 0.2); color: #86efac; }
 .badge--rich {
-  background: #fff; border: 1px solid var(--color-brand);
-  color: var(--color-brand);
+  background: #fff; border: 1px solid var(--color-blue-accent);
+  color: var(--color-blue-accent);
 }
-.dark .badge--rich { background: rgb(15 23 42 / 0.5); }
+.dark .badge--rich {
+  background: rgb(15 23 42 / 0.5);
+  border-color: #94b6e8;
+  color: #94b6e8;
+}
 
 .entry__arrow {
   align-self: center;
@@ -933,9 +772,10 @@ function typeInitials(m: Meeting): string {
   transition: transform 0.2s, color 0.2s;
 }
 .entry:hover .entry__arrow {
-  color: var(--color-brand);
+  color: var(--color-blue-accent);
   transform: translateX(4px);
 }
+.dark .entry:hover .entry__arrow { color: #94b6e8; }
 
 @media (max-width: 768px) {
   .entry {

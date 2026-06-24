@@ -10,12 +10,18 @@ const props = withDefaults(defineProps<{
   variant?: Variant
   meta?: string
   size?: 'sm' | 'md'
+  picture?: string
+  deceased?: boolean
 }>(), {
   variant: 'current',
   size: 'md',
 })
 
 const href = computed(() => memberPath(props.id))
+const pictureUrl = computed<string | null>(() => {
+  if (!props.picture) return null
+  return `/assets/images/members/${props.picture}`
+})
 
 function initials(name: string): string {
   if (!name) return '?'
@@ -26,8 +32,19 @@ function initials(name: string): string {
 </script>
 
 <template>
-  <RouterLink :to="href" :class="['pcard', `pcard--${variant}`, `pcard--${size}`]">
-    <span class="pcard__avatar" aria-hidden="true">{{ initials(name) }}</span>
+  <RouterLink
+    :to="href"
+    :class="[
+      'pcard',
+      `pcard--${variant}`,
+      `pcard--${size}`,
+      { 'pcard--photo': pictureUrl, 'pcard--deceased': deceased },
+    ]"
+  >
+    <span class="pcard__avatar" aria-hidden="true">
+      <img v-if="pictureUrl" :src="pictureUrl" :alt="name" loading="lazy" />
+      <template v-else>{{ initials(name) }}</template>
+    </span>
     <span class="pcard__body">
       <span class="pcard__name">{{ name }}</span>
       <span v-if="meta" class="pcard__meta">{{ meta }}</span>
@@ -77,6 +94,17 @@ function initials(name: string): string {
   font-size: 0.625rem;
 }
 
+/* When a photo is present, bump the avatar so the face is visible. */
+.pcard--photo .pcard__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.75rem;
+}
+.pcard--sm.pcard--photo .pcard__avatar {
+  width: 2.125rem;
+  height: 2.125rem;
+}
+
 .pcard__avatar {
   display: inline-flex;
   align-items: center;
@@ -91,8 +119,15 @@ function initials(name: string): string {
   font-weight: 600;
   flex-shrink: 0;
   letter-spacing: 0.02em;
+  overflow: hidden;
 }
 .dark .pcard__avatar { background: #5379bf; }
+.pcard__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pcard--deceased .pcard__avatar img { filter: grayscale(1); }
 
 .pcard__body {
   display: flex;
@@ -123,3 +158,4 @@ function initials(name: string): string {
 .pcard--leader .pcard__avatar { background: var(--color-slate-500); }
 .dark .pcard--leader .pcard__avatar { background: var(--color-slate-500); }
 </style>
+
