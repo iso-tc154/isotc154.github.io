@@ -5,16 +5,43 @@ name: WG 3
 title: CCTS
 category: working
 order: 3
+inactive: true
+established:
+  date: '2006-03-01'
+  precision: month
+dissolved:
+  date: '2014-10-24'
+  precision: day
+  resolution_ref: '06-2014'
+  resolution_meeting: P33
 intro: |
-  ISO/TC 154/WG 3 is currently inactive.
+  WG 3 was disbanded at the 33rd plenary (P33, resolution 06-2014,
+  2014-10-24) after ISO/TS 15000-5 was published as an International
+  Standard in April 2014. The convenor, Mary Kay Blantz, was thanked
+  for her leadership in completing the work.
 
-  WG 3 was established upon the former "`CCTS`" ad-hoc group of ISO/TC 154 in March 2006.
-  The purpose is to maintain the ISO/TS 15000-5 "`Core Components Technical Specification, V2.01`"
-  in close liaison with UN/CEFACT.
+  Established in March 2006 from the former "`CCTS`" ad-hoc group, WG 3
+  maintained ISO/TS 15000-5 "`Core Components Technical Specification`"
+  in liaison with OASIS and UN/CEFACT.
+scope: |
+  Maintenance of ISO/TS 15000-5 (ebXML Core Components Technical
+  Specification) in close liaison with OASIS and UN/CEFACT. The Core
+  Components Technical Specification provides a way to identify, capture
+  and maximize the re-use of business information to support and enhance
+  information interoperability across multiple business situations.
+collaborative_parties:
+- entity_name: OASIS
+  description: |
+    https://www.oasis-open.org[OASIS] was a Category A liaison partner for
+    WG 3's maintenance of the ebXML Core Components Technical Specification
+    (link:/standards/iso-15000-5-2014[ISO/TS 15000-5]). The specification
+    originated as joint work between OASIS, UN/CEFACT and ISO/TC 154 under
+    the ebXML initiative.
 
-  The Core Components Technical Specification provides a way to identify, capture and maximize
-  the re-use of business information to support and enhance information interoperability
-  across multiple business situations.
+    WG 3 was disbanded at P33 (2014-10-24) following publication of
+    ISO/TS 15000-5 as an International Standard in April 2014. The
+    maintenance mandate for the ISO 15000 series subsequently moved to
+    link:/groups/wg4/[WG 4].
 active_projects: []
 standards: []
 _description: |-
@@ -47,4 +74,3 @@ _description: |-
   ** Remove references no longer applicable, such as to UN/CEFACT, where appropriate
   ** Remove the constraint language chapter
   ** Update or remove the data types
-inactive: true

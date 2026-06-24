@@ -6,6 +6,8 @@ title: EDIFACT Syntax
 category: working
 order: 2
 featured_on_home: true
+joint_with:
+- UNECE
 intro: |
   The EDIFACT Application Level Syntax Rules (ISO 9735) is the main deliverable
   of the Joint Working Group (ISO/TC 154/JWG 1),
@@ -18,8 +20,16 @@ organization:
   - gregor-roschkowski
   convenors:
   - anders-grangard
+convenor_seats:
+- label: ISO
+  member_ids:
+  - anders-grangard
+- label: UNECE
+  member_ids:
+  - anders-grangard
 history:
   leadership:
+  - sue-probert
   - yan-zhang
   - klaus-dieter-naujok
   story: |-
@@ -33,6 +43,22 @@ history:
     on the twice-per-year update of the syntax codes directory
     (in alignment with the EDIFACT user directories)
     on the corresponding https://www.gefeg.com/jswg/[JSWG website].
+collaborative_parties:
+- entity_name: UNECE
+  relationship: joint_sponsor
+  description: |
+    The https://unece.org[United Nations Economic Commission for Europe (UNECE)]
+    co-sponsors JWG 1 with ISO/TC 154. The group's secretariat is shared, and
+    the convenor seats are held jointly — one representing ISO, one representing
+    UNECE. Its subsidiary, the
+    https://uncefact.unece.org[United Nations Centre for Trade Facilitation and
+    Electronic Business (UN/CEFACT)], is an intergovernmental body with a global
+    membership whose experts develop and maintain the UN/EDIFACT directories that
+    ISO 9735 underpins.
+
+    Joint deliverables are published by both bodies: ISO 9735 carries dual
+    branding, and directory updates (link:/projects/iso-9735-11[ISO 9735-11])
+    flow through the UN/CEFACT process on a twice-yearly cycle.
 active_projects:
 - iso-9735-11
 standards:
@@ -71,4 +97,4 @@ _description: |-
 
   ISO 9735 represents the rules at the application level for the structuring of data in the interchange of electronic messages in an open environment, based on the requirements of either batch or interactive processing. In particular these syntax rules serve to support the global UN/EDIFACT standard for EDI. The syntax rules include the definition of the service envelopes, service messages (latest version) and syntax constructs such as the default separator characters and rules for inclusion and exclusion.
 
-  NOTE: Please see Syntax Data Maintenance Request Submission and Processing Procedures (SDMR) for SDMR procedures.
+  NOTE: Please see link:/procedures/sdmr/[Syntax Data Maintenance Request Submission and Processing Procedures (SDMR)] for SDMR procedures.

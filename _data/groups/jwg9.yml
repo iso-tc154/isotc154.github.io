@@ -5,6 +5,13 @@ name: JWG 9
 title: Smart Trade
 category: working
 order: 9
+joint_with:
+- UNECE
+intro: |
+  JWG 9 is the joint ISO/TC 154 – UNECE working group on smart trade.
+  It develops international standards for digital trade, smart trade
+  facilitation and cross-border supply chain visibility, with work
+  shared between ISO and UN/CEFACT experts.
 scope: |
   JWG 9 develops international standards for digital trade,
   smart trade facilitation and cross-border supply chain visibility.
@@ -12,10 +19,33 @@ organization:
   convenors:
   - jim-wilson
   - yan-zhang
+  secretaries:
+  - kevin-bishop
+convenor_seats:
+- label: ISO
+  member_ids:
+  - jim-wilson
+- label: UNECE
+  member_ids:
+  - yan-zhang
 active_projects: []
 standards:
 - ISO 20197-1:2024
 - ISO/AWI 20197-2
+collaborative_parties:
+- entity_name: UNECE
+  relationship: joint_sponsor
+  description: |
+    The https://unece.org[United Nations Economic Commission for Europe (UNECE)]
+    co-sponsors JWG 9 with ISO/TC 154. The group operates with two convenor
+    seats — one representing ISO, one representing UNECE — and reports to both
+    bodies. Its subsidiary,
+    https://uncefact.unece.org[UN/CEFACT], develops trade-facilitation
+    recommendations and electronic-business standards that feed the smart
+    trade agenda.
+
+    Joint deliverables include the link:/standards/iso-20197-1-2024[ISO 20197]
+    series on smart trade semantics.
 _description: |-
   :page-liquid:
 

@@ -2,10 +2,15 @@
 id: jwg2
 _id: jwg2
 name: JWG 2
-title: Electronic Layout Key (historical)
+title: Electronic Layout Key
 category: joint
 order: 99
 inactive: true
+established:
+  date: '2006-03-01'
+  precision: month
+joint_with:
+- UNECE
 intro: |
   JWG 2 was a joint ISO/TC 154 – UN/CEFACT working group on the electronic
   Layout Key (eLK), established at the UN/CEFACT Forum in Vancouver
@@ -30,3 +35,15 @@ history:
 
     At P28 (2009-09-25) the joint working group was renumbered from JWG 2
     to JWG 4 by resolution 305.
+collaborative_parties:
+- entity_name: UNECE
+  relationship: joint_sponsor
+  description: |
+    The https://unece.org[United Nations Economic Commission for Europe (UNECE)]
+    co-sponsored JWG 2 with ISO/TC 154 through its subsidiary body
+    https://uncefact.unece.org[UN/CEFACT]. The joint working group was
+    established at the UN/CEFACT Forum in Vancouver (March 2006) to develop
+    an electronic Layout Key as a joint deliverable.
+
+    The work was reframed as a multi-part suite around ISO 6422 (the original
+    UN Layout Key) before the group was renumbered as JWG 4 at P28.

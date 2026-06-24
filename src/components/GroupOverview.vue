@@ -43,6 +43,9 @@ defineProps<{
 .dark .prose :deep(h3),
 .dark .prose :deep(h4) { color: var(--color-slate-100); }
 .prose :deep(ul), .prose :deep(ol) { margin: 0 0 1rem; padding-left: 1.5rem; }
+.prose :deep(ul) { list-style: disc outside; }
+.prose :deep(ol) { list-style: decimal outside; }
+.prose :deep(ul ul), .prose :deep(ol ul) { list-style: circle outside; }
 .prose :deep(li) { margin-bottom: 0.375rem; }
 .prose :deep(code) {
   font-family: ui-monospace, monospace;

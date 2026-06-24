@@ -7,9 +7,26 @@ const props = defineProps<{
   terms: ConvenorTerm[]
   predecessorTerms?: ConvenorTerm[]
   predecessorName?: string
+  seats?: { label: string; member_ids: string[] }[]
 }>()
 
 const TODAY = new Date().toISOString().slice(0, 10)
+
+const seatByMember = computed<Map<string, string>>(() => {
+  const m = new Map<string, string>()
+  for (const seat of props.seats ?? []) {
+    for (const id of seat.member_ids) {
+      m.set(id, seat.label)
+    }
+  }
+  return m
+})
+
+function seatLabels(term: ConvenorTerm): string[] {
+  if (term.seat?.length) return term.seat
+  const fromGroup = seatByMember.value.get(term.member_id)
+  return fromGroup ? [fromGroup] : []
+}
 
 const allFroms = computed(() =>
   [...(props.terms ?? []), ...(props.predecessorTerms ?? [])]
@@ -141,6 +158,14 @@ const hasPredecessorTerms = computed(() => (props.predecessorTerms?.length ?? 0)
             width: barWidth(term.from, term.to) + '%',
           }"
         >
+          <span v-if="seatLabels(term).length" class="cterms__bar-seats">
+            <span
+              v-for="seat in seatLabels(term)"
+              :key="seat"
+              class="cterms__bar-seat"
+              :class="`cterms__bar-seat--${seat.toLowerCase()}`"
+            >{{ seat }}</span>
+          </span>
           <span class="cterms__bar-name">{{ term.name }}</span>
           <span class="cterms__bar-years">{{ formatRange(term.from, term.to) }}</span>
           <a
@@ -355,6 +380,40 @@ const hasPredecessorTerms = computed(() => (props.predecessorTerms?.length ?? 0)
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.cterms__bar-seats {
+  display: flex;
+  gap: 0.1875rem;
+  margin-bottom: 0.125rem;
+}
+
+.cterms__bar-seat {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.0625rem 0.375rem;
+  border-radius: 0.125rem;
+  background: rgba(255, 255, 255, 0.22);
+  color: inherit;
+  line-height: 1.3;
+}
+.cterms__bar-seat--iso {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.cterms__bar-seat--unece {
+  background: rgba(252, 211, 77, 0.35);
+  color: #fffbeb;
+  border: 1px solid rgba(252, 211, 77, 0.5);
+}
+.dark .cterms__bar-seat--unece {
+  background: rgba(252, 211, 77, 0.25);
+  color: #fde68a;
+  border-color: rgba(252, 211, 77, 0.4);
 }
 .cterms__bar-years {
   font-size: 0.6875rem;

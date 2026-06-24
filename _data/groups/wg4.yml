@@ -51,6 +51,21 @@ history:
     In addition the standard(s) should allow others to derive aligned electronic documents
     based on the electronic Layout Key in a similar way to the development of aligned paper documents
     based on the original UNLK for Trade Documents.
+collaborative_parties:
+- entity_name: OASIS
+  description: |
+    https://www.oasis-open.org[OASIS] is a Category A liaison of ISO/TC 154 and the
+    originator of the ebXML suite published as the
+    link:/standards/iso-15000-1-2021[ISO 15000] series. WG 4 maintains these
+    deliverables — ebXML Messaging Services (15000-1/2), Collaboration Protocol
+    Profile and Agreement (15000-3), and the Core Components Technical
+    Specification (15000-5) — jointly with OASIS and UN/CEFACT.
+
+    OASIS has a broad technical agenda encompassing cybersecurity, blockchain,
+    privacy, cryptography, cloud computing, IoT, urban mobility, emergency
+    management, and content technologies. Many OASIS Standards (AMQP, SAML, DOC,
+    DITA, KMIP, MQTT, OpenC2, OpenDocument, PKCS, STIX, TAXII, TOSCA, UBL, XLIFF)
+    have gone on to be published as ISO, IEC, or ITU standards.
 active_projects:
 - iso-36001
 standards:
@@ -72,31 +87,9 @@ standards:
 _description: |-
   :page-liquid:
 
-  == Collaborative parties
+  == Project teams
 
-  === CalConnect
-
-   the Calendaring and Scheduling Consortium, is
-  a Category A liaison of ISO/TC 154.
-
-  CalConnect is focused on the interoperable exchange of calendaring and scheduling information between dissimilar programs, platforms, and technologies. Our mission is to promote general understanding of and provide mechanisms to allow interoperable calendaring and scheduling methodologies, tools and applications to enter the mainstream of computing.
-
-  CalConnect's TC PUBLISH is heavily engaged with WG 4 projects, including its contribution to ISO 8601-2.
-
-  Current collaborative projects include:
-
-  * ISO 34000
-  * ISO 34300
-
-  === OASIS
-
-   is a Category A liaison with ISO/TC 154.
-
-  OASIS has a broad technical agenda encompassing cybersecurity, blockchain, privacy, cryptography, cloud computing, IoT, urban mobility, emergency management, content technologies. In fact, any initiative for developing code, APIs, specifications, or reference implementations can find a home at OASIS.
-
-  The OASIS community is committed to advancing work that lowers cost, improves efficiency, stimulates innovation, grows global markets, and promotes interoperability. Each project operates independently under industry-leading process and clear IPR policies.
-
-  Some of the most widely adopted OASIS Standards include AMQP, CAP, CMIS, DITA, DocBook, KMIP, MQTT, OpenC2, OpenDocument, PKCS, SAML, STIX, TAXII, TOSCA, UBL, and XLIFF. Many of these have gone on to be published as ISO, IEC, or ITU standards. New work is encouraged, and all are welcome to participate.
-
-  OASIS members can be found in 100+ countries on virtually every continent. Major multinational companies, SMEs, government agencies, NGOs, universities, research institutions, consulting groups, and individuals are all represented
+  * PT ISO 6422 — UN Layout Key suite (electronic Layout Key continuation)
+  * PT ISO 8440 — Trade documents
+  * PT ISO 15000 — ebXML suite maintenance
 inactive: true

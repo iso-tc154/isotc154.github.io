@@ -8,6 +8,10 @@ order: 0
 intro: |-
   The Standardization Content and Document Group (ISO/TC 154/SG 1) is responsible for
   coordinating the standardization content and document management activities of ISO/TC 154.
+scope: |
+  SG 1 co-ordinates the standardization content and document management
+  activities of ISO/TC 154, ensuring consistent terminology, document
+  structure and editorial practice across the committee's deliverables.
 active_projects: []
 standards: []
 _description: ":page-liquid:"

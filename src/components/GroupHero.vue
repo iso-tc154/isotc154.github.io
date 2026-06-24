@@ -1,24 +1,34 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import PageHero from './PageHero.vue'
 import PersonCard from './PersonCard.vue'
 import type { Group, LifecycleStatus } from '../types/group'
 import type { HeroPerson } from '../composables/useGroupRoster'
-import { groupCategoryLabel } from '../domain/groupPresentation'
+import {
+  groupCategoryLabel,
+  lifecycleStatusLabel,
+  establishedYear as establishedYearOf,
+  dissolvedYear as dissolvedYearOf,
+} from '../domain/groupPresentation'
 
-defineProps<{
+const props = defineProps<{
   group: Group
   status: LifecycleStatus
   heroConvenors: HeroPerson[]
   heroConvenorLabel: string
   heroManagers: HeroPerson[]
-  establishedYear: string | null
-  dissolvedYear: string | null
+  heroSecretaries: HeroPerson[]
+  convenorSeats?: { label: string; people: HeroPerson[] }[]
 }>()
 
-function statusLabel(s: LifecycleStatus): string {
-  return s === 'active' ? 'Active' : s === 'inactive' ? 'Inactive' : 'Dissolved'
-}
+const establishedYear = computed(() => establishedYearOf(props.group))
+const dissolvedYear = computed(() => dissolvedYearOf(props.group))
+const statusLabel = computed(() => lifecycleStatusLabel(props.status))
+
+const jointPartners = computed<string[]>(() => props.group.joint_with ?? [])
+const isJoint = computed(() => jointPartners.value.length > 0)
+const hasSeats = computed(() => !!props.convenorSeats?.length)
 </script>
 
 <template>
@@ -29,7 +39,7 @@ function statusLabel(s: LifecycleStatus): string {
     :lead="group.title"
   >
     <template #title>
-      <span :class="{ 'ghero__title--muted': status === 'dissolved' }" v-html="group.name"></span>
+      <span :class="{ 'ghero__title--muted': status === 'dissolved' }">{{ group.name }}</span>
     </template>
     <template #breadcrumb>
       <RouterLink to="/groups/">
@@ -37,16 +47,51 @@ function statusLabel(s: LifecycleStatus): string {
       </RouterLink>
     </template>
 
+    <div v-if="isJoint" class="ghero__joint" role="group" :aria-label="`Joint working group with ${jointPartners.join(', ')}`">
+      <div class="ghero__joint-rail" aria-hidden="true"></div>
+      <div class="ghero__joint-body">
+        <div class="ghero__joint-orgs">
+          <span class="ghero__joint-org ghero__joint-org--iso">
+            <span class="ghero__joint-mark">ISO</span>
+            <span class="ghero__joint-sep">·</span>
+            <span class="ghero__joint-parent">TC 154</span>
+          </span>
+          <template v-for="org in jointPartners" :key="org">
+            <span class="ghero__joint-cross" aria-hidden="true">×</span>
+            <span class="ghero__joint-org ghero__joint-org--partner">
+              <span class="ghero__joint-mark">{{ org }}</span>
+            </span>
+          </template>
+        </div>
+        <div class="ghero__joint-tag">Jointly convened working group</div>
+      </div>
+    </div>
+
     <p v-if="group.scope" class="ghero__scope">
       {{ group.scope.trim() }}
     </p>
 
     <div
-      v-if="heroConvenors.length || heroManagers.length || establishedYear || dissolvedYear"
+      v-if="hasSeats || heroConvenors.length || heroManagers.length || heroSecretaries.length || establishedYear || dissolvedYear"
       class="ghero__people"
     >
-      <div v-if="heroConvenors.length" class="ghero__group">
-        <span class="ghero__label">{{ heroConvenorLabel }}</span>
+      <div v-for="seat in convenorSeats" :key="seat.label" class="ghero__group ghero__group--seat">
+        <span class="ghero__label">{{ heroConvenorLabel }} <span class="ghero__seat-mark">({{ seat.label }})</span></span>
+        <div class="ghero__cards">
+          <PersonCard
+            v-for="c in seat.people"
+            :key="`${seat.label}-${c.id}`"
+            :id="c.id"
+            :name="c.name"
+            :meta="c.fromYear ? `since ${c.fromYear}` : undefined"
+            :picture="c.picture"
+            :deceased="c.deceased"
+          />
+        </div>
+      </div>
+
+      <div v-if="!hasSeats && heroConvenors.length" class="ghero__group">
+        <span class="ghero__label">{{ heroConvenorLabel }}{{ heroConvenors.length > 1 ? 's' : '' }}</span>
         <div class="ghero__cards">
           <PersonCard
             v-for="c in heroConvenors"
@@ -54,12 +99,14 @@ function statusLabel(s: LifecycleStatus): string {
             :id="c.id"
             :name="c.name"
             :meta="c.fromYear ? `since ${c.fromYear}` : undefined"
+            :picture="c.picture"
+            :deceased="c.deceased"
           />
         </div>
       </div>
 
       <div v-if="heroManagers.length" class="ghero__group">
-        <span class="ghero__label">Manager</span>
+        <span class="ghero__label">Manager{{ heroManagers.length > 1 ? 's' : '' }}</span>
         <div class="ghero__cards">
           <PersonCard
             v-for="m in heroManagers"
@@ -67,6 +114,24 @@ function statusLabel(s: LifecycleStatus): string {
             :id="m.id"
             :name="m.name"
             variant="leader"
+            :picture="m.picture"
+            :deceased="m.deceased"
+          />
+        </div>
+      </div>
+
+      <div v-if="heroSecretaries.length" class="ghero__group">
+        <span class="ghero__label">Secretary{{ heroSecretaries.length > 1 ? 'ies' : '' }}</span>
+        <div class="ghero__cards">
+          <PersonCard
+            v-for="s in heroSecretaries"
+            :key="s.id"
+            :id="s.id"
+            :name="s.name"
+            variant="leader"
+            :meta="s.fromYear ? `since ${s.fromYear}` : undefined"
+            :picture="s.picture"
+            :deceased="s.deceased"
           />
         </div>
       </div>
@@ -89,7 +154,7 @@ function statusLabel(s: LifecycleStatus): string {
     <div class="ghero__badges">
       <span :class="['ghero__badge', `ghero__badge--${status}`]">
         <span class="ghero__badge-dot" aria-hidden="true"></span>
-        <span class="ghero__badge-text">{{ statusLabel(status) }}</span>
+        <span class="ghero__badge-text">{{ statusLabel }}</span>
       </span>
     </div>
 
@@ -122,6 +187,91 @@ function statusLabel(s: LifecycleStatus): string {
 
 <style scoped>
 .ghero__title--muted { opacity: 0.85; }
+
+.ghero__joint {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+  padding: 0.875rem 1.25rem;
+  max-width: 48rem;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.045) 0%, rgba(180, 83, 9, 0.03) 100%);
+  border: 1px solid rgba(30, 58, 138, 0.12);
+  border-radius: 0.5rem;
+}
+.dark .ghero__joint {
+  background: linear-gradient(135deg, rgba(51, 133, 214, 0.09) 0%, rgba(180, 83, 9, 0.06) 100%);
+  border-color: rgba(51, 133, 214, 0.22);
+}
+.ghero__joint-rail {
+  width: 3px;
+  background: linear-gradient(180deg, var(--color-brand) 0%, var(--color-amber-warm) 100%);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.dark .ghero__joint-rail {
+  background: linear-gradient(180deg, #93c5fd 0%, #fcd34d 100%);
+}
+.ghero__joint-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+  min-width: 0;
+}
+.ghero__joint-orgs {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+.ghero__joint-org {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+.ghero__joint-mark {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+.ghero__joint-org--iso .ghero__joint-mark { color: var(--color-brand); }
+.dark .ghero__joint-org--iso .ghero__joint-mark { color: #93c5fd; }
+.ghero__joint-org--partner .ghero__joint-mark { color: var(--color-amber-warm); }
+.dark .ghero__joint-org--partner .ghero__joint-mark { color: #fcd34d; }
+.ghero__joint-parent {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-slate-500);
+}
+.dark .ghero__joint-parent { color: var(--color-slate-400); }
+.ghero__joint-sep {
+  color: var(--color-slate-400);
+  font-weight: 400;
+}
+.dark .ghero__joint-sep { color: var(--color-slate-500); }
+.ghero__joint-cross {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-slate-400);
+  line-height: 1;
+}
+.dark .ghero__joint-cross { color: var(--color-slate-500); }
+.ghero__joint-tag {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-slate-500);
+}
+.dark .ghero__joint-tag { color: var(--color-slate-400); }
 
 .ghero__scope {
   font-family: var(--font-serif);
@@ -162,6 +312,21 @@ function statusLabel(s: LifecycleStatus): string {
   color: var(--color-slate-500);
 }
 .dark .ghero__label { color: var(--color-slate-400); }
+.ghero__seat-mark {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-amber-warm);
+  margin-left: 0.125rem;
+}
+.dark .ghero__seat-mark { color: #fcd34d; }
+.ghero__group--seat .ghero__label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
 .ghero__cards {
   display: flex;
   flex-wrap: wrap;
