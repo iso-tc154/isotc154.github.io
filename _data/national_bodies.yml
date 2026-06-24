@@ -363,13 +363,13 @@
 
 - id: dsm
   name: Department of Standards Malaysia
-  short_name: JSM
+  short_name: DSM
   iso_country_code: MY
   country: Malaysia
   membership: O
   url: https://www.jsm.gov.my
   logo: "/assets/images/national-bodies/logo-jsm.png"
-  description: JSM is the national standards body of Malaysia.
+  description: DSM (Department of Standards Malaysia, formerly JSM) is the national standards body of Malaysia.
 
 - id: nzso
   name: Standards New Zealand

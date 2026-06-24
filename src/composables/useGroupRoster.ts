@@ -17,6 +17,8 @@ export interface HeroPerson {
   id: string
   name: string
   fromYear?: string
+  picture?: string
+  deceased?: boolean
 }
 
 export interface StandardCard {
@@ -48,13 +50,32 @@ export function useGroupRoster() {
     return getMember(id)?.name ?? id
   }
 
+  function pictureOf(id: string): string | undefined {
+    return getMember(id)?.picture
+  }
+
+  function deceasedOf(id: string): boolean {
+    return Boolean(getMember(id)?.deceased)
+  }
+
+  function affiliationOf(id: string): string | undefined {
+    return getMember(id)?.affiliation
+  }
+
+  function termFor(memberId: string, terms: ConvenorTerm[]): ConvenorTerm | undefined {
+    return terms.find(t => t.member_id === memberId)
+  }
+
   function heroPeople(ids: string[], terms: ConvenorTerm[] = []): HeroPerson[] {
     return ids.map(id => {
+      const member = getMember(id)
       const term = terms.find(t => t.member_id === id)
       return {
         id,
-        name: nameOf(id),
+        name: member?.name ?? id,
         fromYear: term?.from ? String(term.from).slice(0, 4) : undefined,
+        picture: member?.picture,
+        deceased: Boolean(member?.deceased),
       }
     })
   }
@@ -97,5 +118,15 @@ export function useGroupRoster() {
     return getGroup(pred.id)?.convenor_terms ?? []
   }
 
-  return { nameOf, heroPeople, standardCardsFor, projectCardsFor, predecessorTermsOf }
+  return {
+    nameOf,
+    pictureOf,
+    deceasedOf,
+    affiliationOf,
+    termFor,
+    heroPeople,
+    standardCardsFor,
+    projectCardsFor,
+    predecessorTermsOf,
+  }
 }

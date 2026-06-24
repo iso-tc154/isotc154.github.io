@@ -1,16 +1,9 @@
-import { createCollection } from './createCollection'
+import { createListCollection } from './createCollection'
 import type { Standard } from '../types/standard'
 
-const collection = createCollection<Standard[]>({
-  url: 'data/standards.json',
-  initial: [],
-})
+const c = createListCollection<Standard>({ url: 'data/standards.json', by: 'id' })
 
 export function useStandards() {
-  const { items: standards, isLoaded, loadData } = collection
-
-  const all = () => standards.value
-  const get = (id: string): Standard | undefined => standards.value.find(s => s.id === id)
-
+  const { items: standards, isLoaded, loadData, all, get } = c
   return { standards, isLoaded, loadData, all, get }
 }

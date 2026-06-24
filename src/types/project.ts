@@ -6,4 +6,6 @@ export interface Project {
   stage?: string
   scope?: string
   url?: string
+  leaders?: string[]
+  editors?: string[]
 }

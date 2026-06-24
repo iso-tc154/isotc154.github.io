@@ -5,6 +5,8 @@ title: Processes, data elements and documents in commerce, industry and administ
   -- Open data interchange framework
 status: current
 stage: DTR
+leaders:
+- jianfang-zhang
 scope: |-
   == Purpose
 
@@ -48,11 +50,6 @@ scope: |-
 
   == Who needs this standard?
 
-  Facilitating national and international transactions, through the simplification and harmonization of processes, procedures and information flows, and so contributing to the growth of global commerce.
-
-
-  == Project leader
-
-  {% assign leader = site.members | where: "member-id", "jianfang-zhang" | first %}
-
-  link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+  Facilitating national and international transactions, through the simplification
+  and harmonization of processes, procedures and information flows, and so contributing
+  to the growth of global commerce.

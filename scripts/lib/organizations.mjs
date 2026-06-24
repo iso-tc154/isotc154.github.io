@@ -19,7 +19,7 @@ export function loadEvents(eventsDir) {
     out.push({
       ...data,
       id,
-      url: `/events/${id}/`,
+      url: Number.isInteger(data.ordinal) ? `/meetings/${data.ordinal}/` : `/meetings/`,
     })
   }
   return out.sort((a, b) => (b.ordinal || 0) - (a.ordinal || 0))

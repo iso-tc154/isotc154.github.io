@@ -38,6 +38,7 @@ export interface MetaNextPlenary {
 export interface MetaCounts {
   groups: number
   activeGroups: number
+  activeWorkingGroups: number
   members: number
   standards: number
   publishedStandards: number

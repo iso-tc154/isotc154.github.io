@@ -3,30 +3,57 @@ import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProjects } from '../composables/useProjects'
 import { useGroups } from '../composables/useGroups'
+import { useMembers } from '../composables/useMembers'
 import { projectStatusLabel } from '../domain/projectPresentation'
 import type { Project } from '../types/project'
-import { asciidocify } from '../utils/asciidoc'
+import type { Member } from '../types/member'
+import { renderProse } from '../utils/prose'
+import { committee } from '../data/committee'
 import PageHero from '../components/PageHero.vue'
+import PersonCard from '../components/PersonCard.vue'
 
 const route = useRoute()
 const { projects, isLoaded, loadData } = useProjects()
 const { loadData: loadGroups, all: allGroups } = useGroups()
+const { loadData: loadMembers, get: getMember } = useMembers()
 const project = computed<Project | null>(() => {
   const id = String(route.params.id ?? '')
   return projects.value.find(p => p.id === id) ?? null
 })
 
-onMounted(async () => { await Promise.all([loadData(), loadGroups()]) })
+onMounted(async () => { await Promise.all([loadData(), loadGroups(), loadMembers()]) })
 
 const scopeHtml = computed(() => {
   if (!project.value?.scope) return ''
-  return asciidocify(project.value.scope)
+  return renderProse(project.value.scope)
 })
 
 const owningGroups = computed(() => {
   if (!project.value) return []
   return allGroups().filter(g => (g.active_projects ?? []).includes(project.value!.id))
 })
+
+interface ResolvedPerson {
+  id: string
+  name: string
+  affiliation?: string
+  picture?: string
+  deceased?: boolean
+}
+
+function resolvePeople(ids: string[] | undefined): ResolvedPerson[] {
+  if (!ids?.length) return []
+  return ids
+    .map(id => {
+      const m: Member | undefined = getMember(id)
+      return m
+        ? { id, name: m.name, affiliation: m.affiliation, picture: m.picture, deceased: Boolean(m.deceased) }
+        : { id, name: id, affiliation: undefined }
+    })
+}
+
+const leaders = computed(() => resolvePeople(project.value?.leaders))
+const editors = computed(() => resolvePeople(project.value?.editors))
 </script>
 
 <template>
@@ -64,27 +91,66 @@ const owningGroups = computed(() => {
 
     <div class="detail__grid">
       <div class="detail__main">
+        <a
+          :href="committee.links.isoCommittee"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="detail__cta"
+        >
+          <span class="detail__cta-label">
+            View on ISO.org
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </span>
+          <span class="detail__cta-meta">{{ committee.name }} committee page · project tracker, ballots, membership</span>
+        </a>
+
         <section v-if="scopeHtml" class="detail__section">
           <h2 class="detail__section-title">Scope</h2>
           <div class="prose" v-html="scopeHtml"></div>
         </section>
-
-        <section v-if="project.url" class="detail__section">
-          <h2 class="detail__section-title">ISO project page</h2>
-          <a :href="project.url" target="_blank" rel="noopener noreferrer" class="external">
-            {{ project.url }}
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-          </a>
-        </section>
       </div>
 
       <aside class="detail__aside">
+        <section v-if="leaders.length" class="detail__aside-block">
+          <h3 class="detail__aside-title">Project leader{{ leaders.length > 1 ? 's' : '' }}</h3>
+          <div class="detail__people">
+            <PersonCard
+              v-for="p in leaders"
+              :key="`leader-${p.id}`"
+              :id="p.id"
+              :name="p.name"
+              :meta="p.affiliation"
+              :picture="p.picture"
+              :deceased="p.deceased"
+              variant="leader"
+              size="sm"
+            />
+          </div>
+        </section>
+
+        <section v-if="editors.length" class="detail__aside-block">
+          <h3 class="detail__aside-title">Project editor{{ editors.length > 1 ? 's' : '' }}</h3>
+          <div class="detail__people">
+            <PersonCard
+              v-for="p in editors"
+              :key="`editor-${p.id}`"
+              :id="p.id"
+              :name="p.name"
+              :meta="p.affiliation"
+              :picture="p.picture"
+              :deceased="p.deceased"
+              variant="leader"
+              size="sm"
+            />
+          </div>
+        </section>
+
         <section v-if="owningGroups.length" class="detail__aside-block">
           <h3 class="detail__aside-title">Responsible group{{ owningGroups.length > 1 ? 's' : '' }}</h3>
           <ul class="groups">
             <li v-for="g in owningGroups" :key="g.id">
               <a :href="`/groups/${g.id}/`">
-                <strong v-html="g.name"></strong>
+                <strong>{{ g.name }}</strong>
                 <span>{{ g.title }}</span>
               </a>
             </li>
@@ -124,17 +190,81 @@ const owningGroups = computed(() => {
 .dark .prose { color: #d6d3d1; }
 .prose :deep(p) { margin: 0 0 0.875rem; }
 .prose :deep(p:last-child) { margin-bottom: 0; }
+.prose :deep(.sect1) { margin: 0 0 1.5rem; }
+.prose :deep(.sect1:last-child) { margin-bottom: 0; }
+.prose :deep(.sect1) > h2 {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.005em;
+  color: #1c1917;
+  margin: 0 0 0.625rem;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px solid #e7e5e4;
+  line-height: 1.25;
+}
+.dark .prose :deep(.sect1) > h2 { color: #fafaf9; border-bottom-color: #292524; }
+.prose :deep(.sect2) > h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1c1917;
+  margin: 1.25rem 0 0.5rem;
+  line-height: 1.3;
+}
+.dark .prose :deep(.sect2) > h3 { color: #fafaf9; }
+.prose :deep(ul) { margin: 0 0 0.875rem; padding-left: 1.25rem; }
+.prose :deep(ol) { margin: 0 0 0.875rem; padding-left: 1.25rem; }
+.prose :deep(li) { margin: 0.25rem 0; }
+.prose :deep(li::marker) { color: var(--color-blue-accent); }
+.prose :deep(strong) { color: #1c1917; font-weight: 600; }
+.dark .prose :deep(strong) { color: #fafaf9; }
 
 .external { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem; background: #fafaf9; border-radius: 0.375rem; font-size: 0.875rem; color: var(--color-blue-accent); text-decoration: none; word-break: break-all; }
 .external:hover { background: #e0e7ff; }
 .dark .external { background: #292524; }
 .dark .external:hover { background: #44403c; }
 
+.detail__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  border-radius: 0.625rem;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.18s, box-shadow 0.18s;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.08);
+}
+.detail__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgb(30 58 138 / 0.28);
+}
+.detail__cta-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+.detail__cta-meta {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: rgb(255 255 255 / 0.78);
+}
+
 .detail__aside { display: flex; flex-direction: column; gap: 1rem; }
 .detail__aside-block { padding: 1.25rem; background: #fff; border: 1px solid #e7e5e4; border-radius: 0.5rem; }
 .dark .detail__aside-block { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
 .detail__aside-title { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #78716c; margin: 0 0 0.875rem; }
 .dark .detail__aside-title { color: #a8a29e; }
+
+.detail__people { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
 
 .groups { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .groups a { display: flex; flex-direction: column; padding: 0.625rem 0.75rem; background: #fafaf9; border-radius: 0.375rem; text-decoration: none; transition: background 0.15s; }

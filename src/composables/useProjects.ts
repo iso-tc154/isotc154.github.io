@@ -1,16 +1,9 @@
-import { createCollection } from './createCollection'
+import { createListCollection } from './createCollection'
 import type { Project } from '../types/project'
 
-const collection = createCollection<Project[]>({
-  url: 'data/projects.json',
-  initial: [],
-})
+const c = createListCollection<Project>({ url: 'data/projects.json', by: 'id' })
 
 export function useProjects() {
-  const { items: projects, isLoaded, loadData } = collection
-
-  const all = () => projects.value
-  const get = (id: string): Project | undefined => projects.value.find(p => p.id === id)
-
+  const { items: projects, isLoaded, loadData, all, get } = c
   return { projects, isLoaded, loadData, all, get }
 }

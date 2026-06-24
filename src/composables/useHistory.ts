@@ -1,12 +1,12 @@
 import { createCollection } from './createCollection'
 import type { HistoryMilestone } from '../types/history'
 
-const collection = createCollection<HistoryMilestone[]>({
+const c = createCollection<HistoryMilestone[]>({
   url: 'data/history.json',
   initial: [],
 })
 
 export function useHistory() {
-  const { items: history, isLoaded, loadData } = collection
+  const { items: history, isLoaded, loadData } = c
   return { history, isLoaded, loadData }
 }
