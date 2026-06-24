@@ -8,6 +8,11 @@ order: 0
 intro: |-
   The Liaison Review Group (ISO/TC 154/AG 1) is responsible for reviewing and
   managing liaison relationships between ISO/TC 154 and external organizations.
+scope: |
+  AG 1 reviews and co-ordinates ISO/TC 154's liaison relationships with
+  external standards bodies and consortia, evaluates incoming and outgoing
+  liaison requests, and recommends liaison representatives and categories
+  to the committee.
 active_projects: []
 standards: []
 _description: ":page-liquid:"

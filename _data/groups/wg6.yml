@@ -7,22 +7,37 @@ category: working
 order: 6
 featured_on_home: true
 intro: |
-  WG6 was established in 2014 to develop and standardize methods
+  WG 6 was established in 2014 to develop and standardize methods
   used to facilitate trusted electronic and business transactions,
   including those in e-commerce, e-industry and e-administration.
   It also covers considerations of trusted and legally binding electronic communications
   in the mobile, IoT and cloud environments.
 scope: |
-  The scope of WG6 related to business transactions of TC154 scope such as e-commerce,
+  The scope of WG 6 relates to business transactions within TC 154's scope, such as e-commerce,
   e-industry and e-administration. It focuses on reliable and identifiable methods,
   requirements and technology which can be retained such as legally binding e-transactions
   between communication entities for long periods.
 
-  WG6 also covers considerations about trusted e-communications, in the environment of mobile,
-  IoT and cloud, which is aligned with the development of emerging ICT technology.
+  WG 6 also covers considerations about trusted e-communications in the environment of mobile,
+  IoT and cloud, aligned with the development of emerging ICT technology.
 organization:
   convenors:
   - jasmine-chang
+collaborative_parties:
+- entity_name: ETSI
+  description: |
+    The https://www.etsi.org[European Telecommunications Standards Institute (ETSI)]
+    is a Category A liaison of ISO/TC 154, working with WG 6 on trusted e-communications
+    and long-term electronic signatures. The partnership is anchored in
+    https://www.etsi.org/technologies/electronic-signatures[ETSI TC ESI] (Electronic
+    Signatures and Infrastructures), whose baseline signature formats — CAdES, XAdES,
+    PAdES and the newer JAdES — underpin WG 6's work on ISO 14533 (long-term signature
+    profiles) and ISO 19626 (trusted communication platforms for electronic documents).
+
+    Formal liaison was established at P30 (resolution 013-2011, effective 2011-09-14)
+    with a directive to ballot ETSI TC ESI's NWIP in TC 154. Subsequent contributions
+    include ETSI's update of XAdES (noted at P36) and the JSON Advanced Electronic
+    Signatures (JAdES) submission referenced at P43.
 active_projects:
 - iso-14533-2
 - iso-19626-2

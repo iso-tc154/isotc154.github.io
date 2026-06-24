@@ -5,8 +5,12 @@ name: WG 7
 title: Digital Business
 category: working
 order: 7
+intro: |
+  WG 7 develops technical specifications for digital business semantics,
+  value stream management, open data interchange, and related concepts
+  that enable standardized cross-enterprise solutions in e-commerce.
 scope: |
-  A key task of WG7 is to enhance interoperability by developing
+  A key task of WG 7 is to enhance interoperability by developing
   technical specifications in support of semantics, digital
   innovations and associated concepts that enable standardized
   cross-enterprise solutions. Furthermore, the provision of
@@ -38,31 +42,8 @@ standards:
 _description: |-
   :page-liquid:
 
-  == Organization
+  == Project teams
 
-  There are 3 projects teams in WG7:
-
-  . PT1 -- ISO/TS 21981 Business Semantics Thesaurus (BST)
-  . PT2 -- ISO/DIS 22468 Value Stream Management (VSM)
-  . PT3 -- ISO/DTR 18262 Open Data Interchange Framework (ODIF)
-
-  == Standards
-
-  * ISO 8601-1 published 2019/03/25
-  * ISO 8601-2 published 2019/03/25
-
-  == Members
-
-  * Luxembourg:    Prof. P. Plapper (project lead), J. Mangers, H. Krämer
-  * Netherlands:   J. Valkenburg
-  * Germany:       Prof. P. Kuhlang
-  * China:         Y. Zhang, J. Zhang
-  * South Korea:   Prof. Y. Lee
-
-  == Related links
-
-  *  Unternehmensübergreifende Wertstom Management Methode (ISO 22468)]
-
-  == News and others
-
-  *  cross-enterprise Value Stream Management Method (StreaM)]
+  . PT1 — ISO/TS 21981 Business Semantics Thesaurus (BST)
+  . PT2 — ISO/DIS 22468 Value Stream Management Method (VSM)
+  . PT3 — ISO/DTR 18262 Open Data Interchange Framework (ODIF)

@@ -22,3 +22,23 @@ export function lifecycleStatus(group: Group): LifecycleStatus {
   if (group.inactive) return 'inactive'
   return 'active'
 }
+
+export const LIFECYCLE_STATUS_PRESENTATION: Record<LifecycleStatus, { label: string }> = {
+  active: { label: 'Active' },
+  inactive: { label: 'Inactive' },
+  dissolved: { label: 'Dissolved' },
+}
+
+export function lifecycleStatusLabel(s: LifecycleStatus): string {
+  return LIFECYCLE_STATUS_PRESENTATION[s].label
+}
+
+export function establishedYear(group: Group): string | null {
+  const d = group.history?.established?.date
+  return d ? String(d).slice(0, 4) : null
+}
+
+export function dissolvedYear(group: Group): string | null {
+  const d = group.history?.dissolved?.date
+  return d ? String(d).slice(0, 4) : null
+}

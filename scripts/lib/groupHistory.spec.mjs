@@ -132,7 +132,7 @@ describe('deriveGroupLifecycle', () => {
       date: '2022-10-14',
       resolution_ref: '2022-01',
     })
-    expect(result.established).toBeNull()
+    expect(result.established).toMatchObject({ date: '2011-09-14' })
   })
 
   it('does NOT derive dissolved when group is active (CAG case)', () => {

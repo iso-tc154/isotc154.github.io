@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import type { GroupLifecycleEvent } from '../types/group'
 import { resolutionRefSearchPath } from '../utils/urn'
+import { formatDatePrecision } from '../utils/format'
 import { markerOf } from '../domain/lifecycleEvents'
 
 const props = defineProps<{
@@ -14,18 +15,6 @@ const sorted = computed(() =>
 
 function formatYear(date: string): string {
   return String(date || '').slice(0, 4)
-}
-
-function formatFullDate(date: string, precision?: string): string {
-  if (!date) return ''
-  const d = new Date(String(date).slice(0, 10) + 'T00:00:00.000Z')
-  if (Number.isNaN(d.getTime())) return String(date)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  const day = d.getUTCDate()
-  const year = d.getUTCFullYear()
-  if (precision === 'year') return String(year)
-  if (precision === 'month') return `${month} ${year}`
-  return `${day} ${month} ${year}`
 }
 
 function successorUrl(event: GroupLifecycleEvent): string | null {
@@ -54,7 +43,7 @@ function predecessorUrl(event: GroupLifecycleEvent): string | null {
           <span class="gtimeline__type">{{ markerOf(ev.type).label }}</span>
           <span class="gtimeline__date" :datetime="ev.date">
             <span class="gtimeline__year">{{ formatYear(ev.date) }}</span>
-            <span class="gtimeline__fulldate">{{ formatFullDate(ev.date, ev.precision) }}</span>
+            <span class="gtimeline__fulldate">{{ formatDatePrecision(ev.date, ev.precision) }}</span>
           </span>
         </div>
 

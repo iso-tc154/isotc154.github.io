@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
 import { useStandards } from '../composables/useStandards'
 import { useProjects } from '../composables/useProjects'
 import { useGroupRoster } from '../composables/useGroupRoster'
-import { type Group, type SubnavSection } from '../types/group'
+import { useGroupSections } from '../composables/useGroupSections'
+import { type Group } from '../types/group'
 import { lifecycleStatus } from '../domain/groupPresentation'
-import { asciidocify } from '../utils/asciidoc'
+import { resolveGroupHeroData } from '../domain/groupHero'
+import { renderProse } from '../utils/prose'
 import PageHero from '../components/PageHero.vue'
 import SectionTabs from '../components/SectionTabs.vue'
 import GroupHero from '../components/GroupHero.vue'
@@ -45,30 +47,20 @@ onMounted(async () => {
 
 const description = computed(() => {
   if (!group.value?._description) return ''
-  return asciidocify(group.value._description)
+  return renderProse(group.value._description)
 })
 
 const introHtml = computed(() => {
   if (!group.value?.intro) return ''
-  return asciidocify(group.value.intro)
+  return renderProse(group.value.intro)
 })
 
 const historyStoryHtml = computed(() => {
   if (!group.value?.history?.story) return ''
-  return asciidocify(group.value.history.story)
+  return renderProse(group.value.history.story)
 })
 
 const status = computed(() => group.value ? lifecycleStatus(group.value) : 'active')
-
-const establishedYear = computed(() => {
-  const date = group.value?.history?.established?.date
-  return date ? String(date).slice(0, 4) : null
-})
-
-const dissolvedYear = computed(() => {
-  const date = group.value?.history?.dissolved?.date
-  return date ? String(date).slice(0, 4) : null
-})
 
 const lifecycleEvents = computed(() => group.value?.history?.events ?? [])
 const convenorTerms = computed(() => group.value?.convenor_terms ?? [])
@@ -76,27 +68,6 @@ const pastLeadership = computed(() => group.value?.history?.leadership ?? [])
 const predecessorTerms = computed(() =>
   group.value ? roster.predecessorTermsOf(group.value) : [],
 )
-
-const convenors = computed<string[]>(() => {
-  if (!group.value) return []
-  return group.value.convenors ?? group.value.organization?.convenors ?? []
-})
-const coChairs = computed<string[]>(() => {
-  if (!group.value) return []
-  return group.value.co_chairs ?? group.value.organization?.co_chairs ?? []
-})
-const managers = computed<string[]>(() => {
-  if (!group.value) return []
-  return group.value.managers ?? group.value.organization?.managers ?? []
-})
-
-const heroConvenors = computed(() =>
-  roster.heroPeople(convenors.value.length ? convenors.value : coChairs.value, convenorTerms.value),
-)
-const heroConvenorLabel = computed(() =>
-  convenors.value.length ? 'Convenor' : (coChairs.value.length ? 'Co-chair' : ''),
-)
-const heroManagers = computed(() => roster.heroPeople(managers.value))
 
 const peopleGroups = computed<PeopleGroup[]>(() => {
   if (!group.value) return []
@@ -107,45 +78,29 @@ const peopleGroups = computed<PeopleGroup[]>(() => {
   return list
 })
 
-const standardCards = computed(() => roster.standardCardsFor(group.value?.standards ?? []))
-const projectCards = computed(() => roster.projectCardsFor(group.value?.active_projects ?? []))
+const heroData = computed(() =>
+  group.value ? resolveGroupHeroData(group.value, roster, convenorTerms.value) : null,
+)
+const heroConvenors = computed(() => heroData.value?.heroConvenors ?? [])
+const heroConvenorLabel = computed(() => heroData.value?.heroConvenorLabel ?? '')
+const heroManagers = computed(() => heroData.value?.heroManagers ?? [])
+const heroSecretaries = computed(() => heroData.value?.heroSecretaries ?? [])
+const convenorSeats = computed(() => heroData.value?.convenorSeats)
+const standardCards = computed(() => heroData.value?.standardCards ?? [])
+const projectCards = computed(() => heroData.value?.projectCards ?? [])
 
-const sections = computed<SubnavSection[]>(() => {
-  if (!group.value) return []
-  const g = group.value
-  const all: Array<SubnavSection & { enabled: boolean }> = [
-    { id: 'overview', label: 'Overview', enabled: Boolean(g.intro || description.value || historyStoryHtml.value) },
-    { id: 'history', label: 'History', enabled: Boolean(lifecycleEvents.value.length || convenorTerms.value.length || g.history?.leadership?.length) },
-    { id: 'partners', label: 'Partners', enabled: !!g.collaborative_parties?.length },
-    { id: 'standards', label: 'Standards', enabled: !!g.standards?.length },
-    { id: 'projects', label: 'Projects', enabled: !!g.active_projects?.length },
-    { id: 'members', label: 'Members', enabled: peopleGroups.value.length > 0 },
-  ]
-  return all.filter(s => s.enabled).map(({ id, label }) => ({ id, label }))
+const hasOverview = computed(() => Boolean(group.value?.intro || description.value || historyStoryHtml.value))
+const hasHistory = computed(() => Boolean(
+  lifecycleEvents.value.length || convenorTerms.value.length || group.value?.history?.leadership?.length,
+))
+const hasMembers = computed(() => peopleGroups.value.length > 0)
+
+const { sections, sectionEnabled, tabbedMode, activeTab, sectionVisible } = useGroupSections({
+  group,
+  hasOverview,
+  hasHistory,
+  hasMembers,
 })
-
-const enabledSectionIds = computed(() => new Set(sections.value.map(s => s.id)))
-function sectionEnabled(id: string): boolean {
-  return enabledSectionIds.value.has(id)
-}
-
-const tabbedMode = computed(() => sections.value.length >= 3)
-const activeTab = ref('')
-
-watch(sections, (secs) => {
-  if (!secs.length) {
-    activeTab.value = ''
-    return
-  }
-  if (activeTab.value && secs.some((s) => s.id === activeTab.value)) return
-  const hash = typeof window !== 'undefined' ? window.location.hash.replace(/^#/, '') : ''
-  activeTab.value = (hash && secs.some((s) => s.id === hash)) ? hash : secs[0].id
-}, { immediate: true })
-
-function sectionVisible(id: string): boolean {
-  if (!tabbedMode.value) return true
-  return activeTab.value === id
-}
 
 function standardCountLabel(n: number): string {
   return `${n} catalogue entr${n === 1 ? 'y' : 'ies'} attributable to this group.`
@@ -180,8 +135,8 @@ function projectCountLabel(n: number): string {
       :hero-convenors="heroConvenors"
       :hero-convenor-label="heroConvenorLabel"
       :hero-managers="heroManagers"
-      :established-year="establishedYear"
-      :dissolved-year="dissolvedYear"
+      :hero-secretaries="heroSecretaries"
+      :convenor-seats="convenorSeats"
     />
 
     <SectionTabs v-if="tabbedMode" v-model="activeTab" :sections="sections" />
@@ -216,6 +171,10 @@ function projectCountLabel(n: number): string {
             :predecessor-name="group.predecessor?.name"
             :past-leadership="pastLeadership"
             :name-of="roster.nameOf"
+            :picture-of="roster.pictureOf"
+            :deceased-of="roster.deceasedOf"
+            :affiliation-of="roster.affiliationOf"
+            :seats="group.convenor_seats"
           />
         </GroupSection>
 
@@ -259,13 +218,23 @@ function projectCountLabel(n: number): string {
           :visible="sectionVisible('members')"
         >
           <div class="group__people-grid">
-            <PeopleList :groups="peopleGroups" :name-of="roster.nameOf" />
+            <PeopleList
+              :groups="peopleGroups"
+              :name-of="roster.nameOf"
+              :picture-of="roster.pictureOf"
+              :deceased-of="roster.deceasedOf"
+            />
           </div>
         </GroupSection>
       </div>
 
       <aside v-if="!tabbedMode && sectionEnabled('members')" class="group__aside">
-        <PeopleList :groups="peopleGroups" :name-of="roster.nameOf" />
+        <PeopleList
+          :groups="peopleGroups"
+          :name-of="roster.nameOf"
+          :picture-of="roster.pictureOf"
+          :deceased-of="roster.deceasedOf"
+        />
       </aside>
     </div>
   </article>

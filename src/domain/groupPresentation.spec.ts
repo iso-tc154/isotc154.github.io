@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import type { Group } from '../types/group'
-import { groupCategoryLabel, lifecycleStatus } from './groupPresentation'
+import {
+  groupCategoryLabel,
+  lifecycleStatus,
+  lifecycleStatusLabel,
+  establishedYear,
+  dissolvedYear,
+} from './groupPresentation'
 
 // Real model instances — no doubles. Plain objects typed as Group.
 
@@ -89,5 +95,35 @@ describe('lifecycleStatus', () => {
       },
     })
     expect(lifecycleStatus(group)).toBe('active')
+  })
+})
+
+describe('lifecycleStatusLabel', () => {
+  it('labels each status', () => {
+    expect(lifecycleStatusLabel('active')).toBe('Active')
+    expect(lifecycleStatusLabel('inactive')).toBe('Inactive')
+    expect(lifecycleStatusLabel('dissolved')).toBe('Dissolved')
+  })
+})
+
+describe('establishedYear', () => {
+  it('extracts year from history.established.date', () => {
+    const group = makeGroup({ history: { established: { date: '2013-10-28' } } })
+    expect(establishedYear(group)).toBe('2013')
+  })
+
+  it('returns null when not set', () => {
+    expect(establishedYear(makeGroup())).toBeNull()
+  })
+})
+
+describe('dissolvedYear', () => {
+  it('extracts year from history.dissolved.date', () => {
+    const group = makeGroup({ history: { dissolved: { date: '2022-10-14' } } })
+    expect(dissolvedYear(group)).toBe('2022')
+  })
+
+  it('returns null when not set', () => {
+    expect(dissolvedYear(makeGroup())).toBeNull()
   })
 })

@@ -53,14 +53,14 @@ function buildLineageLink(linkedId, event, groupsById) {
 function deriveEstablished(groupEvents, group) {
   const stateEvents = groupEvents.filter((e) => STATE_TYPES.has(e.type))
   if (stateEvents.length === 0) return null
-  const last = stateEvents[stateEvents.length - 1]
-  if (last.type !== 'established') return null
+  const established = stateEvents.find((e) => e.type === 'established')
+  if (!established) return null
   return {
-    date: eventDate(last),
-    precision: last.precision,
-    resolution_ref: last.resolution_ref,
-    resolution_meeting: last.resolution_meeting,
-    predecessor: last.predecessor,
+    date: eventDate(established),
+    precision: established.precision,
+    resolution_ref: established.resolution_ref,
+    resolution_meeting: established.resolution_meeting,
+    predecessor: established.predecessor,
   }
 }
 
@@ -158,11 +158,20 @@ export function attachGroupLifecycle(groups, eventData) {
     const lifecycle = deriveGroupLifecycle(groupId, eventData, groups)
     const group = groups[groupId]
     const legacyHistory = group.history || {}
+    const curatedEstablished = group.established
+      ? { date: toISODate(group.established.date), precision: group.established.precision }
+      : null
+    const curatedDissolved = group.dissolved
+      ? { date: toISODate(group.dissolved.date), precision: group.dissolved.precision,
+          resolution_ref: group.dissolved.resolution_ref,
+          resolution_meeting: group.dissolved.resolution_meeting,
+          successor: group.dissolved.successor }
+      : null
     group.history = {
       ...legacyHistory,
       events: lifecycle.events,
-      established: lifecycle.established || legacyHistory.established || null,
-      dissolved: lifecycle.dissolved || legacyHistory.dissolved || null,
+      established: lifecycle.established || legacyHistory.established || curatedEstablished || null,
+      dissolved: lifecycle.dissolved || legacyHistory.dissolved || curatedDissolved || null,
     }
     if (lifecycle.predecessor) group.predecessor = lifecycle.predecessor
     if (lifecycle.successor) group.successor = lifecycle.successor

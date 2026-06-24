@@ -3,10 +3,18 @@ import { computed, onMounted, ref } from 'vue'
 import { useGroups } from '../composables/useGroups'
 import { useMembers } from '../composables/useMembers'
 import { useGroupRoster } from '../composables/useGroupRoster'
-import { type Group, type LifecycleStatus } from '../types/group'
-import { groupCategoryLabel, lifecycleStatus } from '../domain/groupPresentation'
+import { type Group } from '../types/group'
+import {
+  groupCategoryLabel,
+  lifecycleStatus,
+  lifecycleStatusLabel,
+  establishedYear,
+} from '../domain/groupPresentation'
 import { useRouter } from 'vue-router'
 import PageHero from '../components/PageHero.vue'
+import FilterBar from '../components/FilterBar.vue'
+import FilterChip from '../components/FilterChip.vue'
+import FilterFacet from '../components/FilterFacet.vue'
 
 const { groups, isLoaded, loadData } = useGroups()
 const { loadData: loadMembers } = useMembers()
@@ -30,11 +38,6 @@ const categories = computed(() => {
 function statusRank(g: Group): number {
   const s = lifecycleStatus(g)
   return s === 'active' ? 0 : s === 'inactive' ? 1 : 2
-}
-
-function establishedYear(g: Group): string | null {
-  const date = g.history?.established?.date
-  return date ? String(date).slice(0, 4) : null
 }
 
 function lineageHaystack(g: Group): string {
@@ -71,10 +74,6 @@ const filtered = computed<Group[]>(() => {
     .sort((a, b) => statusRank(a) - statusRank(b) || (a.order ?? 0) - (b.order ?? 0))
 })
 
-function statusLabel(s: LifecycleStatus): string {
-  return s === 'active' ? 'Active' : s === 'inactive' ? 'Inactive' : 'Dissolved'
-}
-
 function groupUrl(g: Group) {
   return `/groups/${g.id}/`
 }
@@ -109,66 +108,38 @@ function memberCount(g: Group): number {
     </PageHero>
 
     <div class="page page--wide">
-    <div class="filter">
-      <div class="filter__search-wrap">
-        <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="8"/>
-          <path d="m21 21-4.35-4.35"/>
-        </svg>
-        <input
-          type="search"
-          v-model="searchQuery"
-          class="filter__search"
-          placeholder="Search by name, title or intro…"
-          autocomplete="off"
-          spellcheck="false"
-          aria-label="Search groups"
-        />
-      </div>
-      <div class="filter__controls">
-        <div class="filter__field">
-          <span class="filter__label">Category</span>
-          <div class="filter__chips">
-            <button
-              class="chip"
-              :class="{ 'chip--active': selectedCategory === '' }"
-              @click="selectedCategory = ''"
-            >All</button>
-            <button
-              v-for="cat in categories"
-              :key="cat"
-              class="chip"
-              :class="{ 'chip--active': selectedCategory === cat }"
-              @click="selectedCategory = cat"
-            >{{ groupCategoryLabel(cat) }}</button>
-          </div>
-        </div>
-        <div class="filter__field">
-          <span class="filter__label">Status</span>
-          <div class="filter__chips">
-            <button
-              class="chip"
-              :class="{ 'chip--active': !activeOnly }"
-              @click="activeOnly = false"
-            >All</button>
-            <button
-              class="chip"
-              :class="{ 'chip--active': activeOnly }"
-              @click="activeOnly = true"
-            >Active only</button>
-          </div>
-        </div>
-      </div>
-      <div class="filter__meta">
-        <span>{{ filtered.length }} of {{ groups.length }} groups</span>
-      </div>
-    </div>
+    <FilterBar
+      v-model="searchQuery"
+      search-placeholder="Search by name, title or intro…"
+      search-label="Search groups"
+      :showing="filtered.length"
+      :total="groups.length"
+      total-label="groups"
+      :clearable="!!searchQuery || !!selectedCategory || activeOnly"
+      @clear="searchQuery = ''; selectedCategory = ''; activeOnly = false"
+    >
+      <template #facets>
+        <FilterFacet label="Category">
+          <FilterChip :active="selectedCategory === ''" @click="selectedCategory = ''">All</FilterChip>
+          <FilterChip
+            v-for="cat in categories"
+            :key="cat"
+            :active="selectedCategory === cat"
+            @click="selectedCategory = cat"
+          >{{ groupCategoryLabel(cat) }}</FilterChip>
+        </FilterFacet>
+        <FilterFacet label="Status">
+          <FilterChip :active="!activeOnly" @click="activeOnly = false">All</FilterChip>
+          <FilterChip :active="activeOnly" @click="activeOnly = true">Active only</FilterChip>
+        </FilterFacet>
+      </template>
+    </FilterBar>
 
     <div v-if="!isLoaded" class="loading">Loading groups…</div>
 
     <div v-else-if="filtered.length === 0" class="empty">
       <h3>No groups match your filters</h3>
-      <button class="chip" @click="searchQuery=''; selectedCategory=''">Clear filters</button>
+      <button class="chip chip--text" @click="searchQuery=''; selectedCategory=''">Clear filters</button>
     </div>
 
     <ul v-else class="grid">
@@ -178,13 +149,13 @@ function memberCount(g: Group): number {
             <div class="card__top-left">
               <span :class="['card__status', `card__status--${lifecycleStatus(g)}`]">
                 <span class="card__status-dot" aria-hidden="true"></span>
-                <span class="card__status-text">{{ statusLabel(lifecycleStatus(g)) }}</span>
+                <span class="card__status-text">{{ lifecycleStatusLabel(lifecycleStatus(g)) }}</span>
               </span>
               <span class="card__category">{{ groupCategoryLabel(g.category) }}</span>
             </div>
             <span class="card__count" v-if="memberCount(g)">{{ memberCount(g) }} members</span>
           </div>
-          <h3 class="card__name" v-html="g.name"></h3>
+          <h3 class="card__name">{{ g.name }}</h3>
           <div class="card__meta">
             <span v-if="establishedYear(g)" class="card__est">Est. {{ establishedYear(g) }}</span>
           </div>
@@ -214,99 +185,21 @@ function memberCount(g: Group): number {
 </template>
 
 <style scoped>
-.filter {
-  background: #fff;
-  border: 1px solid #e7e5e4;
-  border-radius: 0.75rem;
-  padding: 1.25rem;
-  margin-bottom: 2rem;
-}
-.dark .filter {
-  background: rgb(15 23 42 / 0.5);
-  border-color: #44403c;
-}
-.filter__search-wrap { position: relative; margin-bottom: 1rem; }
-.filter__search-icon {
-  position: absolute;
-  left: 0.75rem; top: 50%;
-  transform: translateY(-50%);
-  color: #a8a29e;
-  pointer-events: none;
-}
-.filter__search {
-  width: 100%;
-  padding: 0.625rem 0.875rem 0.625rem 2.25rem;
-  border-radius: 0.5rem;
-  border: 1px solid #d6d3d1;
-  background: #fafaf9;
-  color: #1c1917;
-  font-size: 0.9375rem;
-  font-family: inherit;
-}
-.filter__search:focus {
-  outline: none;
-  border-color: var(--color-blue-accent);
-  background: #fff;
-  box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
-}
-.dark .filter__search {
-  background: #292524;
-  border-color: #57534e;
-  color: #fafaf9;
-}
-.dark .filter__search:focus {
-  border-color: #5379bf;
-  background: #1c1917;
-}
-.filter__controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-  align-items: flex-end;
-}
-.filter__field { display: flex; flex-direction: column; gap: 0.5rem; }
-.filter__label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #78716c;
-}
-.dark .filter__label { color: #a8a29e; }
-.filter__chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
-.chip {
+.chip--text {
   display: inline-flex;
   align-items: center;
-  padding: 0.375rem 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: 9999px;
   border: 1px solid #d6d3d1;
   background: #fff;
-  color: #57534e;
-  font-size: 0.8125rem;
-  font-weight: 500;
+  color: var(--color-blue-accent);
   font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
 }
-.chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
-.chip--active {
-  background: var(--color-blue-accent);
-  border-color: var(--color-blue-accent);
-  color: #fff;
-}
-.dark .chip {
-  background: #292524;
-  border-color: #57534e;
-  color: #d6d3d1;
-}
-.dark .chip:hover { border-color: #5379bf; }
-.dark .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
-.filter__meta {
-  margin-top: 1rem;
-  font-size: 0.875rem;
-  color: #78716c;
-}
-.dark .filter__meta { color: #a8a29e; }
+.chip--text:hover { background: var(--color-blue-accent); color: #fff; border-color: var(--color-blue-accent); }
 
 .loading, .empty {
   padding: 3rem 1rem;

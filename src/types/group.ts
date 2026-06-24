@@ -1,7 +1,10 @@
+export type CollaborativePartyRelationship = 'liaison' | 'joint_sponsor'
+
 export interface GroupCollaborativeParty {
   entity_name: string
   projects?: string[]
   description?: string
+  relationship?: CollaborativePartyRelationship
 }
 
 export type LifecycleEventType =
@@ -45,6 +48,7 @@ export interface ConvenorTerm {
   to: string | null
   current: boolean
   role?: string
+  seat?: string[]
   resolution_ref?: string
 }
 
@@ -72,6 +76,11 @@ export interface GroupHistory {
   dissolved?: GroupDissolved
 }
 
+export interface ConvenorSeat {
+  label: string
+  member_ids: string[]
+}
+
 export interface Group {
   id: string
   _id?: string
@@ -90,12 +99,15 @@ export interface Group {
   convenors?: string[]
   co_chairs?: string[]
   managers?: string[]
-  organization?: { convenors?: string[]; co_chairs?: string[]; managers?: string[] }
+  secretaries?: string[]
+  organization?: { convenors?: string[]; co_chairs?: string[]; managers?: string[]; secretaries?: string[] }
   history?: GroupHistory
   convenor_terms?: ConvenorTerm[]
   predecessor?: GroupLineageLink
   successor?: GroupLineageLink
   collaborative_parties?: GroupCollaborativeParty[]
+  joint_with?: string[]
+  convenor_seats?: ConvenorSeat[]
   _description?: string
   url?: string
 }

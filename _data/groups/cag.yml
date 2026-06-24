@@ -9,6 +9,11 @@ intro: |
   The Co-ordination Advisory Group (ISO/TC 154/CAG) advises the TC on the administrative matters.
 
   The group's membership comprises of the TC 154 chair, committee manager, WG/JWG/JMA conveners and their managers.
+scope: |
+  The CAG advises ISO/TC 154 on administrative matters, identifies issues
+  and topics that need resolution within the team or as agenda items for
+  upcoming plenary meetings, and co-ordinates the committee's work
+  programme across its working groups.
 organization:
   convenors:
   - pan-wei
