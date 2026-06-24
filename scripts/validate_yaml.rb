@@ -14,9 +14,9 @@ DEFS = YAML.safe_load(SCHEMA_FILE.read, permitted_classes: [], permitted_symbols
 # ── Stage enum ────────────────────────────────────────────────────────────────
 
 STAGES = %w[PWI NP WD WDS CD CDTS DIS IS DTS DTR DAM FDIS AWI].freeze
-ROLE_IDS = %w[chair convenor manager member committee_manager technical_programme_manager editorial_programme_manager technical-programme-manager editorial-programme-manager project_leader observer partner].freeze
+ROLE_IDS = %w[chair co_chair convenor manager member committee_manager technical_programme_manager editorial_programme_manager technical-programme-manager editorial-programme-manager project_leader observer partner secretary].freeze
 DOC_TYPES = %w[international TS TR].freeze
-GROUP_STATUSES = %w[withdrawn under_development deleted].freeze
+GROUP_STATUSES = %w[withdrawn under_development published deleted].freeze
 LIAISON_CATEGORIES = %w[A B].freeze
 PROJECT_STATUSES = %w[new current].freeze
 DATE_PRECISIONS = %w[year month day].freeze
@@ -146,7 +146,13 @@ def validate_standard(data, file)
   errors << err("tc154 is required", file) unless data['tc154'].is_a?(Hash)
   if data['tc154'].is_a?(Hash)
     tc154 = data['tc154']
-    errors << err("tc154.group required", file) unless present?(tc154['group'])
+    # Placeholders from the ISO Open Data sync intentionally omit tc154.group
+    # and tc154.introduction until an editor processes the linked new-standard
+    # issue (see CLAUDE.md "Editor workflow"). Require group only once the
+    # standard has been editor-claimed (introduction present).
+    if present?(tc154['introduction'])
+      errors << err("tc154.group required", file) unless present?(tc154['group'])
+    end
     errors << err("tc154.status must be one of: #{GROUP_STATUSES.join(', ')}", file) if tc154.key?('status') && !GROUP_STATUSES.include?(tc154['status'])
   end
   errors
@@ -173,7 +179,7 @@ def validate_national_body(entry, index, file)
     code = entry['iso_country_code']
     errors << err("[entry #{index + 1}]: iso_country_code must be a 2-letter ISO code or false", file) if !code.is_a?(String) || code !~ /^[A-Z]{2}$/
   end
-  errors << err("[entry #{index + 1}]: logo required", file) unless present?(entry['logo'])
+  errors << err("[entry #{index + 1}]: logo required", file) unless present?(entry['logo']) || (present?(entry['logo_light']) && present?(entry['logo_dark']))
   errors << err("[entry #{index + 1}]: description required", file) unless present?(entry['description'])
   errors
 end
@@ -279,5 +285,6 @@ if ALL_ERRORS.empty?
   exit 0
 else
   puts "#{ALL_ERRORS.size} total error(s)."
+  ALL_ERRORS.each { |e| puts "  - #{e}" }
   exit 1
 end
