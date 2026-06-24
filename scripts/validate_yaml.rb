@@ -1,25 +1,28 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Validates all Jekyll data files against schemas/schema.yaml
+# Validates all vite-ssg data files against schemas/schema.yaml
 # Usage: ruby scripts/validate_yaml.rb
 
 require 'yaml'
 require 'pathname'
 require 'date'
+require_relative 'lib/schema_enums'
 
 SCHEMA_FILE = Pathname.new(__dir__).parent.join('schemas', 'schema.yaml').freeze
-DEFS = YAML.safe_load(SCHEMA_FILE.read, permitted_classes: [], permitted_symbols: [], aliases: true)['$defs']
+DEFS = SchemaEnums::DEFS
 
 # ── Stage enum ────────────────────────────────────────────────────────────────
+# Sourced from schemas/schema.yaml via SchemaEnums — no parallel declarations.
+# To add a new stage/role/status, edit schemas/schema.yaml and re-run.
 
-STAGES = %w[PWI NP WD WDS CD CDTS DIS IS DTS DTR DAM FDIS AWI].freeze
-ROLE_IDS = %w[chair co_chair convenor manager member committee_manager technical_programme_manager editorial_programme_manager technical-programme-manager editorial-programme-manager project_leader observer partner secretary].freeze
-DOC_TYPES = %w[international TS TR].freeze
-GROUP_STATUSES = %w[withdrawn under_development published deleted].freeze
-LIAISON_CATEGORIES = %w[A B].freeze
-PROJECT_STATUSES = %w[new current].freeze
-DATE_PRECISIONS = %w[year month day].freeze
+STAGES = SchemaEnums.stages
+ROLE_IDS = SchemaEnums.role_ids
+DOC_TYPES = SchemaEnums.doc_types
+GROUP_STATUSES = SchemaEnums.group_statuses
+LIAISON_CATEGORIES = SchemaEnums.liaison_categories
+PROJECT_STATUSES = SchemaEnums.project_statuses
+DATE_PRECISIONS = SchemaEnums.date_precisions
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
