@@ -11,6 +11,7 @@ time:
     date: 2011-02-18
 
 general_area: "McLean, Virginia, USA"
+country_code: US
 
 venues:
   - name: LMI Headquarters

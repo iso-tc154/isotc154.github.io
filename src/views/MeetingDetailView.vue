@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMeetings } from '../composables/useMeetings'
 import { useResolutions } from '../composables/useResolutions'
 import { useClipboard } from '../composables/useClipboard'
 import { createNeighborNav } from '../composables/useNeighborNav'
 import { committee } from '../data/committee'
-import { venueToFlag } from '../data/countryFlags'
+import { countryCodeToFlag } from '../data/countryFlags'
 import { ordinalText } from '../utils/ordinal'
 import { meetingDetailPathFromParts } from '../utils/urn'
 import { groupScheduleByDate } from '../utils/schedule'
@@ -30,7 +30,9 @@ import {
 } from '../composables/usePracticalInfo'
 import type { Meeting, ResolvedHost, RichMeetingData } from '../types/meeting'
 import type { Resolution } from '../types/resolution'
+import type { AgendaSession } from '../types/event'
 import ScheduleCalendar from '../components/ScheduleCalendar.vue'
+import AgendaDrawer from '../components/AgendaDrawer.vue'
 import PageHero from '../components/PageHero.vue'
 import OrgLogo from '../components/OrgLogo.vue'
 import PrevNextNav from '../components/PrevNextNav.vue'
@@ -73,9 +75,7 @@ function isUpcoming(m: Meeting): boolean {
 const venueFlag = computed(() => {
   const m = meeting.value
   if (!m) return ''
-  const city = m.primary.city ?? ''
-  const country = m.primary.country ?? ''
-  return venueToFlag(country) || venueToFlag(city)
+  return countryCodeToFlag(m.rich?.country_code)
 })
 
 const venueMapUrl = computed(() => {
@@ -113,6 +113,53 @@ function rateLabel(key: string): string {
 }
 
 const scheduleByDate = computed(() => groupScheduleByDate(rich.value?.schedule))
+
+function normalizeAgendaDate(raw: unknown): string {
+  if (!raw) return ''
+  const s = String(raw)
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  return m ? `${m[1]}-${m[2]}-${m[3]}` : s
+}
+
+interface AgendaSessionLink {
+  label: string
+  date: string
+  session: AgendaSession
+}
+
+const agendaSessions = computed<AgendaSessionLink[]>(() => {
+  const a = rich.value?.agenda
+  if (!a) return []
+  const out: AgendaSessionLink[] = []
+  if (a.opening_session) {
+    out.push({ label: 'Opening session', date: normalizeAgendaDate(a.opening_session.date), session: a.opening_session })
+  }
+  if (a.closing_session) {
+    out.push({ label: 'Closing session', date: normalizeAgendaDate(a.closing_session.date), session: a.closing_session })
+  }
+  return out
+})
+
+const agendaClickableDates = computed(() =>
+  agendaSessions.value.map(s => s.date).filter(Boolean),
+)
+
+const agendaDraftDate = computed(() => {
+  const src = rich.value?.agenda?.source_doc ?? ''
+  const m = src.match(/\d{4}-\d{2}-\d{2}/)
+  return m ? m[0] : null
+})
+
+const agendaSourceDoc = computed(() => rich.value?.agenda?.source_doc ?? '')
+
+const selectedSession = ref<AgendaSessionLink | null>(null)
+
+function onAgendaEventClick(payload: { date: string }) {
+  const match = agendaSessions.value.find(s => s.date === payload.date)
+  if (match) {
+    selectedSession.value = match
+  }
+}
 
 const registrationUrl = computed(() => rich.value?.registration_url ?? null)
 
@@ -185,9 +232,9 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
           <dt>Dates</dt>
           <dd>{{ meeting.date_label }}</dd>
         </div>
-        <div v-if="meeting.primary.country" class="md-hero__stat">
-          <dt>Host country</dt>
-          <dd>{{ meeting.primary.country }}</dd>
+        <div v-if="rich?.general_area || meeting.primary.country" class="md-hero__stat">
+          <dt>Location</dt>
+          <dd>{{ rich?.general_area || meeting.primary.country }}</dd>
         </div>
         <div v-if="rich?.host" class="md-hero__stat">
           <dt>Host</dt>
@@ -386,9 +433,9 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
         </div>
       </section>
 
-      <section v-else-if="meeting.location_label" class="block">
+      <section v-else-if="rich?.general_area || meeting.location_label" class="block">
         <h2 class="block__title">Location</h2>
-        <p class="block__scalar">{{ meeting.location_label }}</p>
+        <p class="block__scalar">{{ rich?.general_area || meeting.location_label }}</p>
       </section>
 
       <section v-if="rich?.secretariat" class="block">
@@ -404,11 +451,13 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
       </section>
 
       <section v-if="scheduleByDate.length" class="block">
-        <h2 class="block__title">Agenda</h2>
+        <h2 class="block__title">Daily schedule</h2>
         <ScheduleCalendar
           :schedule="rich?.schedule ?? []"
           :venue-name="rich?.venues?.[0]?.name"
           :general-area="rich?.general_area"
+          :clickable-dates="agendaClickableDates"
+          @event-click="onAgendaEventClick"
         />
       </section>
 
@@ -596,6 +645,14 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
         <p class="block__lead">No resolutions were recorded for this plenary in the archive.</p>
       </section>
     </div>
+
+    <AgendaDrawer
+      :session="selectedSession?.session ?? null"
+      :label="selectedSession?.label ?? ''"
+      :draft-date="agendaDraftDate"
+      :source-doc="agendaSourceDoc"
+      @close="selectedSession = null"
+    />
   </article>
 </template>
 

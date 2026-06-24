@@ -11,6 +11,7 @@ time:
     date: 2020-08-07
 
 general_area: "Costa Mesa, California, USA"
+country_code: US
 
 venues:
   - name: Westin South Coast Plaza

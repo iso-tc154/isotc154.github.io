@@ -33,6 +33,39 @@ export interface EventScheduleItem {
   description?: string
 }
 
+export interface AgendaItem {
+  number?: number | string
+  title: string
+  speaker?: string
+  n_doc?: string
+  note?: string
+  subitems?: AgendaItem[]
+}
+
+export interface AgendaSession {
+  date?: string
+  note?: string
+  items: AgendaItem[]
+}
+
+export interface WorkingGroupMeetings {
+  dates?: string[]
+  note?: string
+}
+
+export interface PlenaryAgenda {
+  source_doc?: string
+  structure?: string
+  opening_session?: AgendaSession
+  wg_meetings?: WorkingGroupMeetings
+  closing_session?: AgendaSession
+}
+
+export interface ReferenceDocument {
+  id: string
+  description?: string
+}
+
 export interface EventDeadline {
   date?: string
   label?: string
@@ -79,6 +112,7 @@ export interface PlenaryEvent {
   year: number
   time: EventTime
   general_area?: string
+  country_code?: string
   venues?: EventVenue[]
   host?: string
   secretariat?: EventContact
@@ -90,4 +124,6 @@ export interface PlenaryEvent {
   biergartens?: EventAccommodation[]
   tourist_info?: PracticalSection | EventAccommodation[]
   local_contact?: EventContact
+  agenda?: PlenaryAgenda
+  reference_documents?: ReferenceDocument[]
 }

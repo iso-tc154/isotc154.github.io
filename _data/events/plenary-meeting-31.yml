@@ -11,6 +11,7 @@ time:
     date: 2012-10-12
 
 general_area: "Concord, California, USA"
+country_code: US
 
 venues:
   - name: GXS — Concord Office

@@ -11,6 +11,7 @@ time:
     date: 2014-10-24
 
 general_area: "Incheon, South Korea"
+country_code: KR
 
 venues:
   - name: National Institute IT industry Promotion Agency (NIPA), RFID/USN Center

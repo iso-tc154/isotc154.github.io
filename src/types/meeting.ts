@@ -69,6 +69,7 @@ export interface ResolvedAssociate {
 export interface RichMeetingData {
   title?: string
   general_area?: string
+  country_code?: string
   host?: string
   hosts?: ResolvedHost[]
   associates?: ResolvedAssociate[]
@@ -83,6 +84,8 @@ export interface RichMeetingData {
   biergartens?: import('./event').EventAccommodation[]
   tourist_info?: import('./event').PracticalSection | import('./event').EventAccommodation[]
   local_contact?: import('./event').EventContact
+  agenda?: import('./event').PlenaryAgenda
+  reference_documents?: import('./event').ReferenceDocument[]
   landing_url?: string
   registration_url?: string
 }

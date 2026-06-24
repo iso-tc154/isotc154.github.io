@@ -11,6 +11,7 @@ time:
     date: 2010-05-04
 
 general_area: "Bangkok, Thailand"
+country_code: TH
 
 venues:
   - name: United Nations Conference Centre (UNCC), Meeting Room F
