@@ -1,16 +1,9 @@
-import { createCollection } from './createCollection'
+import { createListCollection } from './createCollection'
 import type { NationalBody } from '../types/organization'
 
-const collection = createCollection<NationalBody[]>({
-  url: 'data/national-bodies.json',
-  initial: [],
-})
+const c = createListCollection<NationalBody>({ url: 'data/national-bodies.json', by: 'id' })
 
 export function useNationalBodies() {
-  const { items: nationalBodies, isLoaded, loadData } = collection
-
-  const all = () => nationalBodies.value
-  const get = (id: string): NationalBody | undefined => nationalBodies.value.find(nb => nb.id === id)
-
+  const { items: nationalBodies, isLoaded, loadData, all, get } = c
   return { nationalBodies, isLoaded, loadData, all, get }
 }

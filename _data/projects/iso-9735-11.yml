@@ -6,6 +6,8 @@ title: 'Electronic data interchange for administration, commerce and transport (
   4 of ISO 9735'
 status: new
 stage: NP
+leaders:
+- anders-grangard
 scope: |-
   == Purpose
 
@@ -23,11 +25,5 @@ scope: |-
 
   == Who needs this standard?
 
-  Communities with wide EDIFACT adoption, e.g. retail, maritime, customs will ensure support of existing EDI solutions and enabling new implementations.
-
-
-  == Project leader
-
-  {% assign leader = site.members | where: "member-id", "anders-grangard" | first %}
-
-  link:{{ leader.url }}[{{ leader.name }}] ({{ leader.affiliation }})
+  Communities with wide EDIFACT adoption, e.g. retail, maritime, customs will ensure
+  support of existing EDI solutions and enabling new implementations.

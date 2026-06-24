@@ -1,16 +1,9 @@
-import { createCollection } from './createCollection'
+import { createListCollection } from './createCollection'
 import type { PageDoc } from '../types/content'
 
-const collection = createCollection<PageDoc[]>({
-  url: 'data/pages.json',
-  initial: [],
-})
+const c = createListCollection<PageDoc>({ url: 'data/pages.json', by: 'slug' })
 
 export function usePages() {
-  const { items: pages, isLoaded, loadData } = collection
-
-  const all = () => pages.value
-  const get = (slug: string): PageDoc | undefined => pages.value.find(p => p.slug === slug)
-
+  const { items: pages, isLoaded, loadData, all, get } = c
   return { pages, isLoaded, loadData, all, get }
 }

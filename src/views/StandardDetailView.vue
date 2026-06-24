@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
 import { standardStatusLabel } from '../domain/standardPresentation'
-import { asciidocify } from '../utils/asciidoc'
+import { renderProse } from '../utils/prose'
 import PageHero from '../components/PageHero.vue'
 
 const route = useRoute()
@@ -22,12 +22,12 @@ onMounted(async () => {
 
 const scopeHtml = computed(() => {
   const text = standard.value?.tc154?.scope || standard.value?.iso?.scope
-  return text ? asciidocify(text) : ''
+  return text ? renderProse(text) : ''
 })
 
 const introductionHtml = computed(() => {
   const text = standard.value?.tc154?.introduction
-  return text ? asciidocify(text) : ''
+  return text ? renderProse(text) : ''
 })
 
 const publicationDate = computed(() => {

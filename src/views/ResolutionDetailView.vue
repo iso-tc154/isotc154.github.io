@@ -92,7 +92,7 @@
         <div class="std-page__body res-detail-list">
           <div v-for="(cons, idx) in resolution.considerations" :key="idx" class="consideration-item res-detail-card">
             <span v-if="cons.type" class="res-detail-card-type">{{ cons.type }}</span>
-            <div class="res-detail-richtext" v-html="asciidocify(cons.message)"></div>
+            <div class="res-detail-richtext" v-html="renderProse(cons.message)"></div>
           </div>
         </div>
       </section>
@@ -109,7 +109,7 @@
               {{ act.type }}
             </span>
             <p v-if="act.subject" class="res-detail-card-subject">{{ act.subject }}</p>
-            <div class="res-detail-richtext" v-html="asciidocify(act.message)"></div>
+            <div class="res-detail-richtext" v-html="renderProse(act.message)"></div>
             <template v-if="act.dates && act.dates.length > 0">
               <div class="res-detail-dates">
                 <span v-for="(d, didx) in act.dates" :key="didx" class="res-detail-date">
@@ -213,7 +213,7 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useResolutions } from '../composables/useResolutions'
 import { useResolutionMeetings } from "../composables/useResolutionMeetings"
-import { asciidocify } from '../utils/asciidoc'
+import { renderProse } from '../utils/prose'
 import { getActionColor } from '../data/actionTypes'
 import { formatDate } from '../utils/format'
 import { useClipboard } from '../composables/useClipboard'
