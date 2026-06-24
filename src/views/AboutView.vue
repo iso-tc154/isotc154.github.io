@@ -16,7 +16,7 @@ const statsVisible = ref(false)
 const statsReady = computed(() => statsVisible.value && meta.value !== null)
 
 const membersCount = useCountUp(computed(() => meta.value?.counts.totalMembers ?? 0), statsReady)
-const groupsCount = useCountUp(computed(() => meta.value?.counts.activeGroups ?? 0), statsReady)
+const groupsCount = useCountUp(computed(() => meta.value?.counts.activeWorkingGroups ?? 0), statsReady)
 const plenariesCount = useCountUp(computed(() => meta.value?.counts.meetings ?? 0), statsReady)
 const publishedCount = useCountUp(computed(() => meta.value?.counts.publishedStandards ?? 0), statsReady)
 const establishedYear = committee.established
@@ -1386,8 +1386,16 @@ const involvement = [
 @media (min-width: 640px) { .involve__grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1100px) { .involve__grid { grid-template-columns: repeat(4, 1fr); } }
 
+.involve__grid > li {
+  display: flex;
+  margin: 0;
+}
+
 .involve__card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 1.75rem 1.5rem;
   text-decoration: none;
   color: inherit;
@@ -1432,6 +1440,7 @@ const involvement = [
   color: var(--color-brand);
   transition: transform 0.15s;
   display: inline-block;
+  margin-top: auto;
 }
 .involve__card:hover .involve__cta { transform: translateX(3px); }
 
