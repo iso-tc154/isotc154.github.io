@@ -37,6 +37,14 @@ const initials = computed(() => {
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
   return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
 })
+
+const hasThemeVariants = computed(() =>
+  Boolean(props.logo_light || props.logo_dark),
+)
+
+const forceLightBg = computed(() =>
+  !hasThemeVariants.value && Boolean(logoUrl.value),
+)
 </script>
 
 <template>
@@ -44,7 +52,7 @@ const initials = computed(() => {
     class="org-logo"
     :class="[
       `org-logo--${size}`,
-      { 'org-logo--fallback': !logoUrl },
+      { 'org-logo--fallback': !logoUrl, 'org-logo--force-light': forceLightBg },
     ]"
     :style="{ '--org-radius': radius }"
   >
@@ -76,6 +84,12 @@ const initials = computed(() => {
 }
 .dark .org-logo {
   background: #292524;
+}
+.org-logo--force-light {
+  background: #fff;
+}
+.dark .org-logo--force-light {
+  background: #fff;
 }
 
 .org-logo--sm { width: 2.25rem; height: 2.25rem; padding: 0.25rem; }
