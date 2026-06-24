@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStandards } from '../composables/useStandards'
 import { useGroups } from '../composables/useGroups'
+import { useFilteredCollection } from '../composables/useFilteredCollection'
 import { standardStatusLabel, standardUrl } from '../domain/standardPresentation'
 import type { Standard } from '../types/standard'
 import PageHero from '../components/PageHero.vue'
@@ -12,68 +13,74 @@ const { loadData: loadGroups, get: getGroup } = useGroups()
 const route = useRoute()
 const router = useRouter()
 
-const searchQuery = ref((route.query.q as string) || '')
-const selectedStatus = ref('')
-const selectedGroup = ref('')
-const selectedType = ref('')
-
 onMounted(async () => {
   await Promise.all([loadData(), loadGroups()])
 })
 
-const availableStatuses = computed<string[]>(() => {
-  const set = new Set<string>()
-  for (const s of standards.value) {
-    if (s.tc154?.status) set.add(s.tc154.status)
-    else set.add('published')
+function compareStandards(a: Standard, b: Standard): number {
+  const validDate = (s: Standard) => {
+    const d = s.iso?.publication_date
+    if (!d) return ''
+    const year = parseInt(d.substring(0, 4), 10)
+    if (year > 2026 || year < 1900) return ''
+    return d
   }
-  return Array.from(set).sort()
+  const ad = validDate(a)
+  const bd = validDate(b)
+  if (ad && bd) return bd.localeCompare(ad)
+  if (ad) return -1
+  if (bd) return 1
+  return (a.iso?.name ?? '').localeCompare(b.iso?.name ?? '', undefined, { numeric: true })
+}
+
+const {
+  searchQuery,
+  selection,
+  available,
+  filtered,
+} = useFilteredCollection<Standard>(standards, {
+  text: {
+    haystack: s => `${s.iso?.name ?? ''} ${s.iso?.title ?? ''} ${s.iso?.ics ?? ''}`,
+    initialQuery: (route.query.q as string) || '',
+  },
+  facets: [
+    {
+      id: 'status',
+      values: computed(() => {
+        const set = new Set<string>()
+        for (const s of standards.value) {
+          if (s.tc154?.status) set.add(s.tc154.status)
+          else set.add('published')
+        }
+        return Array.from(set).sort()
+      }),
+      test: (s, v) => (s.tc154?.status ?? 'published') === v,
+    },
+    {
+      id: 'group',
+      values: computed(() => {
+        const set = new Set<string>()
+        for (const s of standards.value) if (s.tc154?.group) set.add(s.tc154.group)
+        return Array.from(set).sort()
+      }),
+      test: (s, v) => s.tc154?.group === v,
+    },
+    {
+      id: 'type',
+      values: computed(() => {
+        const set = new Set<string>()
+        for (const s of standards.value) if (s.iso?.type) set.add(s.iso.type)
+        return Array.from(set).sort()
+      }),
+      test: (s, v) => s.iso?.type === v,
+    },
+  ],
+  sort: compareStandards,
 })
 
-const availableGroups = computed<string[]>(() => {
-  const set = new Set<string>()
-  for (const s of standards.value) {
-    if (s.tc154?.group) set.add(s.tc154.group)
-  }
-  return Array.from(set).sort()
-})
-
-const availableTypes = computed<string[]>(() => {
-  const set = new Set<string>()
-  for (const s of standards.value) {
-    if (s.iso?.type) set.add(s.iso.type)
-  }
-  return Array.from(set).sort()
-})
-
-const filtered = computed<Standard[]>(() => {
-  const q = searchQuery.value.trim().toLowerCase()
-  return standards.value.filter(s => {
-    const status = s.tc154?.status ?? 'published'
-    if (selectedStatus.value && status !== selectedStatus.value) return false
-    if (selectedGroup.value && s.tc154?.group !== selectedGroup.value) return false
-    if (selectedType.value && s.iso?.type !== selectedType.value) return false
-    if (q) {
-      const hay = `${s.iso?.name ?? ''} ${s.iso?.title ?? ''} ${s.iso?.ics ?? ''}`.toLowerCase()
-      if (!hay.includes(q)) return false
-    }
-    return true
-  }).sort((a, b) => {
-    const validDate = (s: Standard) => {
-      const d = s.iso?.publication_date
-      if (!d) return ''
-      const year = parseInt(d.substring(0, 4), 10)
-      if (year > 2026 || year < 1900) return ''
-      return d
-    }
-    const ad = validDate(a)
-    const bd = validDate(b)
-    if (ad && bd) return bd.localeCompare(ad)
-    if (ad) return -1
-    if (bd) return 1
-    return (a.iso?.name ?? '').localeCompare(b.iso?.name ?? '', undefined, { numeric: true })
-  })
-})
+const selectedStatus = selection.status
+const selectedGroup = selection.group
+const selectedType = selection.type
 
 function statusLabel(s: Standard): string {
   return standardStatusLabel(s.tc154?.status ?? 'published')
@@ -107,8 +114,8 @@ function publicationYear(s: Standard): string {
       </template>
       <dl class="page__stats" v-if="isLoaded">
         <div><dt>{{ standards.length }}</dt><dd>total</dd></div>
-        <div><dt>{{ availableStatuses.length }}</dt><dd>statuses</dd></div>
-        <div><dt>{{ availableTypes.length }}</dt><dd>deliverable types</dd></div>
+        <div><dt>{{ available.status.value.length }}</dt><dd>statuses</dd></div>
+        <div><dt>{{ available.type.value.length }}</dt><dd>deliverable types</dd></div>
       </dl>
     </PageHero>
 
@@ -134,25 +141,25 @@ function publicationYear(s: Standard): string {
           <span class="filter__label">Status</span>
           <div class="filter__chips">
             <button class="chip" :class="{ 'chip--active': selectedStatus === '' }" @click="selectedStatus = ''">All</button>
-            <button v-for="s in availableStatuses" :key="s"
+            <button v-for="s in available.status.value" :key="s"
               class="chip" :class="{ 'chip--active': selectedStatus === s }"
               @click="selectedStatus = s">{{ standardStatusLabel(s) }}</button>
           </div>
         </div>
-        <div class="filter__field" v-if="availableGroups.length">
+        <div class="filter__field" v-if="available.group.value.length">
           <span class="filter__label">Group</span>
           <div class="filter__chips">
             <button class="chip" :class="{ 'chip--active': selectedGroup === '' }" @click="selectedGroup = ''">Any</button>
-            <button v-for="g in availableGroups" :key="g"
+            <button v-for="g in available.group.value" :key="g"
               class="chip" :class="{ 'chip--active': selectedGroup === g }"
               @click="selectedGroup = g">{{ g }}</button>
           </div>
         </div>
-        <div class="filter__field" v-if="availableTypes.length">
+        <div class="filter__field" v-if="available.type.value.length">
           <span class="filter__label">Type</span>
           <div class="filter__chips">
             <button class="chip" :class="{ 'chip--active': selectedType === '' }" @click="selectedType = ''">Any</button>
-            <button v-for="t in availableTypes" :key="t"
+            <button v-for="t in available.type.value" :key="t"
               class="chip" :class="{ 'chip--active': selectedType === t }"
               @click="selectedType = t">{{ t === 'international' ? 'IS' : t }}</button>
           </div>

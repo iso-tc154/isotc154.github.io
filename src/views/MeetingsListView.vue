@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useMeetings } from '../composables/useMeetings'
+import { useFilteredCollection } from '../composables/useFilteredCollection'
 import { committee } from '../data/committee'
 import { useCountUp } from '../composables/useCountUp'
 import type { Meeting } from '../types/meeting'
@@ -24,14 +25,49 @@ import {
 const router = useRouter()
 const { meetings, isLoaded, loadData } = useMeetings()
 
-const searchQuery = ref('')
-const selectedDecade = ref<number | null>(null)
-const selectedType = ref<'all' | 'face-to-face' | 'hybrid' | 'virtual'>('all')
-const selectedStatus = ref<'all' | 'upcoming' | 'concluded' | 'cancelled'>('all')
-
 onMounted(async () => { await loadData() })
 
 const loaded = computed(() => isLoaded.value && meetings.value.length > 0)
+
+const {
+  searchQuery,
+  selection,
+  available,
+  filtered,
+  hasActiveFilters,
+  clearAll: clearFilters,
+} = useFilteredCollection<Meeting>(meetings, {
+  text: { haystack: m => searchHaystack(m) },
+  facets: [
+    {
+      id: 'decade',
+      values: computed(() => decadeFacets(meetings.value).map(String)),
+      test: (m, v) => Math.floor((m.year ?? 0) / 10) * 10 === parseInt(v, 10),
+    },
+    {
+      id: 'type',
+      values: computed(() => ['face-to-face', 'hybrid', 'virtual']),
+      test: (m, v) => new Set(m.sessions.map(s => s.type)).has(v),
+    },
+    {
+      id: 'status',
+      values: computed(() => ['upcoming', 'concluded', 'cancelled']),
+      test: (m, v) => {
+        if (v === 'upcoming') return isUpcoming(m)
+        if (v === 'concluded') return m.status_label === 'Concluded'
+        if (v === 'cancelled') return m.status_label === 'Cancelled'
+        return false
+      },
+    },
+  ],
+})
+
+const selectedDecade = computed({
+  get: () => selection.decade.value === '' ? null : parseInt(selection.decade.value, 10),
+  set: (v: number | null) => { selection.decade.value = v === null ? '' : String(v) },
+})
+const selectedType = selection.type
+const selectedStatus = selection.status
 
 const totalMeetings = computed(() => meetings.value.length)
 const totalResolutions = computed(() =>
@@ -56,35 +92,12 @@ const animResolutions = useCountUp(totalResolutions, loaded, 1600)
 const animCountries = useCountUp(totalCountries, loaded, 1600)
 const firstYearDisplay = computed(() => firstYear.value ?? 1972)
 
-const availableDecades = computed(() => decadeFacets(meetings.value))
-
-const hasActiveFilters = computed(() =>
-  !!searchQuery.value ||
-  selectedDecade.value !== null ||
-  selectedType.value !== 'all' ||
-  selectedStatus.value !== 'all',
+const showUpcomingSection = computed(() =>
+  selectedStatus.value !== 'concluded' &&
+  selectedStatus.value !== 'cancelled' &&
+  upcomingMeetings.value.length > 0,
 )
-
-const filtered = computed<Meeting[]>(() => {
-  const q = searchQuery.value.trim().toLowerCase()
-  return meetings.value.filter(m => {
-    if (selectedDecade.value !== null && m.year) {
-      const d = Math.floor(m.year / 10) * 10
-      if (d !== selectedDecade.value) return false
-    }
-    if (selectedType.value !== 'all') {
-      const types = new Set(m.sessions.map(s => s.type))
-      if (!types.has(selectedType.value)) return false
-    }
-    if (selectedStatus.value !== 'all') {
-      if (selectedStatus.value === 'upcoming' && !isUpcoming(m)) return false
-      if (selectedStatus.value === 'concluded' && m.status_label !== 'Concluded') return false
-      if (selectedStatus.value === 'cancelled' && m.status_label !== 'Cancelled') return false
-    }
-    if (q && !searchHaystack(m).includes(q)) return false
-    return true
-  })
-})
+const showPastSection = computed(() => selectedStatus.value !== 'upcoming')
 
 const upcomingMeetings = computed<Meeting[]>(() =>
   filtered.value
@@ -98,18 +111,8 @@ const pastFiltered = computed<Meeting[]>(() =>
 
 const grouped = computed(() => groupByDecade(pastFiltered.value))
 
-const showUpcomingSection = computed(() =>
-  selectedStatus.value !== 'concluded' &&
-  selectedStatus.value !== 'cancelled' &&
-  upcomingMeetings.value.length > 0,
-)
-const showPastSection = computed(() => selectedStatus.value !== 'upcoming')
-
 function clearAll() {
-  searchQuery.value = ''
-  selectedDecade.value = null
-  selectedType.value = 'all'
-  selectedStatus.value = 'all'
+  clearFilters()
 }
 
 function openMeeting(m: Meeting) {
@@ -162,8 +165,7 @@ function openMeeting(m: Meeting) {
               @click="selectedDecade = null"
             >All</FilterChip>
             <FilterChip
-              v-for="d in availableDecades"
-              :key="d"
+              v-for="d in available.decade.value.map(Number)" :key="d"
               :active="selectedDecade === d"
               @click="selectedDecade = d"
             >{{ decadeLabel(d) }}</FilterChip>
@@ -171,19 +173,19 @@ function openMeeting(m: Meeting) {
 
           <FilterFacet label="Format">
             <FilterChip
-              v-for="opt in [{v:'all',l:'All'},{v:'face-to-face',l:'In person'},{v:'hybrid',l:'Hybrid'},{v:'virtual',l:'Virtual'}]"
+              v-for="opt in [{v:'',l:'All'},{v:'face-to-face',l:'In person'},{v:'hybrid',l:'Hybrid'},{v:'virtual',l:'Virtual'}]"
               :key="opt.v"
               :active="selectedType === opt.v"
-              @click="selectedType = opt.v as typeof selectedType"
+              @click="selectedType = opt.v"
             >{{ opt.l }}</FilterChip>
           </FilterFacet>
 
           <FilterFacet label="Status">
             <FilterChip
-              v-for="opt in [{v:'all',l:'All'},{v:'upcoming',l:'Upcoming'},{v:'concluded',l:'Concluded'},{v:'cancelled',l:'Cancelled'}]"
+              v-for="opt in [{v:'',l:'All'},{v:'upcoming',l:'Upcoming'},{v:'concluded',l:'Concluded'},{v:'cancelled',l:'Cancelled'}]"
               :key="opt.v"
               :active="selectedStatus === opt.v"
-              @click="selectedStatus = opt.v as typeof selectedStatus"
+              @click="selectedStatus = opt.v"
             >{{ opt.l }}</FilterChip>
           </FilterFacet>
         </template>

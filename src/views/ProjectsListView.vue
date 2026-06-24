@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProjects } from '../composables/useProjects'
+import { useFilteredCollection } from '../composables/useFilteredCollection'
 import { projectStatusLabel } from '../domain/projectPresentation'
 import type { Project } from '../types/project'
 import { projectPath } from '../utils/urn'
@@ -10,33 +11,36 @@ import PageHero from '../components/PageHero.vue'
 const { projects, isLoaded, loadData } = useProjects()
 const router = useRouter()
 
-const searchQuery = ref('')
-const selectedStatus = ref('')
-
 onMounted(() => { loadData() })
 
-const statuses = computed(() => {
-  const set = new Set<string>()
-  for (const p of projects.value) if (p.status) set.add(p.status)
-  return Array.from(set).sort()
+const {
+  searchQuery,
+  selection,
+  available,
+  filtered,
+} = useFilteredCollection<Project>(projects, {
+  text: { haystack: p => `${p.name} ${p.title ?? ''}` },
+  facets: [
+    {
+      id: 'status',
+      values: computed(() => {
+        const set = new Set<string>()
+        for (const p of projects.value) if (p.status) set.add(p.status)
+        return Array.from(set).sort()
+      }),
+      test: (p, v) => p.status === v,
+    },
+  ],
+  sort: (a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }),
 })
+
+const selectedStatus = selection.status
 
 const stats = computed(() => ({
   total: projects.value.length,
   active: projects.value.filter(p => p.status === 'current' || p.status === 'under_development' || p.status === 'under-development').length,
-  stages: statuses.value.length,
+  stages: available.status.value.length,
 }))
-
-const filtered = computed<Project[]>(() => {
-  const q = searchQuery.value.trim().toLowerCase()
-  return projects.value
-    .filter(p => !selectedStatus.value || p.status === selectedStatus.value)
-    .filter(p => {
-      if (!q) return true
-      return `${p.name} ${p.title ?? ''}`.toLowerCase().includes(q)
-    })
-    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }))
-})
 
 function projectUrl(p: Project): string {
   return projectPath(p.id)
@@ -79,12 +83,12 @@ function projectUrl(p: Project): string {
           aria-label="Search projects"
         />
       </div>
-      <div class="filter__controls" v-if="statuses.length">
+      <div class="filter__controls" v-if="available.status.value.length">
         <div class="filter__field">
           <span class="filter__label">Status</span>
           <div class="filter__chips">
             <button class="chip" :class="{ 'chip--active': selectedStatus === '' }" @click="selectedStatus = ''">All</button>
-            <button v-for="s in statuses" :key="s"
+            <button v-for="s in available.status.value" :key="s"
               class="chip" :class="{ 'chip--active': selectedStatus === s }"
               @click="selectedStatus = s">{{ projectStatusLabel(s) }}</button>
           </div>
