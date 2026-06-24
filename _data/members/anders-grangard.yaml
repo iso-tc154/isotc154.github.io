@@ -5,6 +5,9 @@ picture: anders-grangard.jpg
 roles:
 - id: convenor
   group: jwg1
+  seat:
+  - ISO
+  - UNECE
   from:
     date: 2023-01-01
     precision: year

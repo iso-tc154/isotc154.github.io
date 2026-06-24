@@ -5,7 +5,7 @@ import { useMembers } from '../composables/useMembers'
 import { useGroups } from '../composables/useGroups'
 import type { RoleRecord } from '../types/member'
 import { flattenMemberRoles, memberRoleSpan } from '../types/member'
-import { asciidocify } from '../utils/asciidoc'
+import { renderProse } from '../utils/prose'
 import { roleLabel as formatRoleLabel } from '../utils/roles'
 import PageHero from '../components/PageHero.vue'
 
@@ -29,7 +29,7 @@ const roles = computed<RoleRecord[]>(() => {
 
 const bioHtml = computed(() => {
   if (!member.value?.bio) return ''
-  return asciidocify(member.value.bio)
+  return renderProse(member.value.bio)
 })
 
 const pictureUrl = computed<string | null>(() => {

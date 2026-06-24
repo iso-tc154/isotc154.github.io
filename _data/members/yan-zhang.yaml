@@ -5,11 +5,13 @@ picture: yan-zhang.jpg
 roles:
 - id: convenor
   group: jwg9
+  seat: UNECE
   from:
     date: 2024-01-01
     precision: year
 - id: convenor
   group: jwg1
+  seat: UNECE
   from:
     date: 2017-10-27
     precision: day

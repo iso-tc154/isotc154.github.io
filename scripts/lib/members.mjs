@@ -4,29 +4,26 @@ import yaml from 'js-yaml'
 import { memberPath } from '../../src/utils/urn.ts'
 import { LEADERSHIP_ROLE_IDS } from '../../src/utils/roles.ts'
 import { toISODate, toNullableISODate } from './dates.mjs'
+import { loadYamlDir } from './yamlDir.mjs'
 
 export function loadGroups(groupsDir) {
-  if (!fs.existsSync(groupsDir)) {
-    console.warn(`[members] groups dir not found: ${groupsDir}`)
-    return {}
-  }
-  const groups = {}
-  for (const file of fs.readdirSync(groupsDir)) {
-    if (!/\.(ya?ml)$/.test(file)) continue
-    const id = file.replace(/\.ya?ml$/, '')
-    const fullPath = path.join(groupsDir, file)
-    const data = yaml.load(fs.readFileSync(fullPath, 'utf8'))
-    groups[id] = {
-      ...data,
-      id: data.id || id,
-      members: [],
-      past_members: [],
-      convenors: [],
-      co_chairs: [],
-      managers: [],
-    }
-  }
-  return groups
+  return loadYamlDir(groupsDir, {
+    transform: (data, file) => {
+      const id = data.id || file.replace(/\.ya?ml$/, '')
+      return {
+        ...data,
+        id,
+        members: [],
+        past_members: [],
+        convenors: [],
+        co_chairs: [],
+        managers: [],
+      }
+    },
+  }).reduce((acc, g) => {
+    acc[g.id] = g
+    return acc
+  }, {})
 }
 
 export function loadMembers(membersDir, chairMemberId) {
@@ -134,6 +131,7 @@ export function attachMembersToGroups(groups, membersAll) {
           const from = toISODate(r.from)
           if (!from) continue
           const to = toNullableISODate(r.to)
+          const seat = Array.isArray(r.seat) ? r.seat : (r.seat ? [r.seat] : undefined)
           group.convenor_terms.push({
             member_id: member['member-id'],
             name: member.name,
@@ -141,6 +139,7 @@ export function attachMembersToGroups(groups, membersAll) {
             to,
             current: isCurrent,
             role: r.id,
+            seat,
           })
         }
       }
@@ -151,25 +150,22 @@ export function attachMembersToGroups(groups, membersAll) {
   }
 }
 
-export function enrichConvenorTerms(groups, eventData) {
-  const appointmentByKey = new Map()
-  for (const ev of eventData.events) {
-    if (ev.type !== 'convenor_appointed' && ev.type !== 'convenor_extended') continue
-    if (!ev.person_member_id) continue
-    const key = `${ev.group_id}|${ev.person_member_id}`
-    const prev = appointmentByKey.get(key)
-    if (!prev || toISODate(ev.date) > toISODate(prev.date)) {
-      appointmentByKey.set(key, {
-        ...ev,
-        date: toISODate(ev.date),
-        term_until: toISODate(ev.term_until),
-      })
-    }
-  }
-  for (const [groupId, group] of Object.entries(groups)) {
+export function enrichConvenorTerms(groups) {
+  for (const group of Object.values(groups)) {
     if (!group.convenor_terms) continue
+    const events = group.history?.events
+    if (!events) continue
+    const appointmentByMember = new Map()
+    for (const ev of events) {
+      if (ev.type !== 'convenor_appointed' && ev.type !== 'convenor_extended') continue
+      if (!ev.person_member_id) continue
+      const prev = appointmentByMember.get(ev.person_member_id)
+      if (!prev || ev.date > prev.date) {
+        appointmentByMember.set(ev.person_member_id, ev)
+      }
+    }
     for (const term of group.convenor_terms) {
-      const ev = appointmentByKey.get(`${groupId}|${term.member_id}`)
+      const ev = appointmentByMember.get(term.member_id)
       if (!ev) continue
       if (!term.resolution_ref && ev.resolution_ref) term.resolution_ref = ev.resolution_ref
       if (ev.term_until && (!term.to || ev.term_until > term.to)) {
