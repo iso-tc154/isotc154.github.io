@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/navigation_main_config
 # Main Navigation (Header)
 # Used in _includes/header.html
 

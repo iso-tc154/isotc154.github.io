@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=schema.yaml#/$defs/stage_labels_file
 PWI: Preliminary Work Item
 NP: New Proposal
 WD: Working Draft

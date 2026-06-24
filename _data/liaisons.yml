@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/liaisons_file
 ---
 - id: unece
   name: United Nations Economic Commission for Europe

@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/associates_file
 ---
 # Meeting associates: organizations that help organize or sponsor TC 154 plenary
 # meetings but are NOT ISO national bodies or official ISO liaisons. They have

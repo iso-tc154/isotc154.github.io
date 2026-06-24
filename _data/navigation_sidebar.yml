@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/navigation_sidebar_config
 # Sidebar Navigation Configuration
 # Fully declarative - the layout has no knowledge of specific pages.
 #

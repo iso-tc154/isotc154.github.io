@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/project
 ---
 id: iso-19626-2
 name: ISO/DIS 19626-2

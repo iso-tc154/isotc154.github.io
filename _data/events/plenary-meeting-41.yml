@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/plenary_event
 title: "41<sup>st</sup> hybrid plenary meeting week"
 ordinal: 41
 status: completed

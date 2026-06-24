@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/project
 ---
 id: iso-15000-5
 name: ISO/NP 15000-5

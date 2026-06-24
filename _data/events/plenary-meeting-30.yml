@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/plenary_event
 title: "30<sup>th</sup> plenary meeting"
 ordinal: 30
 status: completed

@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/plenary_event
 title: "45<sup>th</sup> plenary meeting week"
 ordinal: 45
 status: upcoming

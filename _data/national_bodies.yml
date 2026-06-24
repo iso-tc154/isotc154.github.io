@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/national_bodies_file
 ---
 # Participating (P) members — 19
 - id: asi

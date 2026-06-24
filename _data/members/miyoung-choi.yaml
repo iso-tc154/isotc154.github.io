@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/member
 ---
 member-id: miyoung-choi
 name: Mi Young Choi
