@@ -11,6 +11,7 @@ time:
     date: 2008-11-26
 
 general_area: "Brussels, Belgium"
+country_code: BE
 
 venues:
   - name: World Customs Organization (WCO)

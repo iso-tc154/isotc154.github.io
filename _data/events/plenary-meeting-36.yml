@@ -11,6 +11,7 @@ time:
     date: 2017-10-27
 
 general_area: "Virtual (WebEx)"
+country_code: ""
 
 venues:
   - name: WebEx (ISO Meeting Participation Platform)

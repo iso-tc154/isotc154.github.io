@@ -11,6 +11,7 @@ time:
     date: 2005-09-23
 
 general_area: "Brussels, Belgium"
+country_code: BE
 
 venues:
   - name: CEN/ISSS Workshop facilities

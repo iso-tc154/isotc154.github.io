@@ -22,6 +22,10 @@ const COUNTRY_CODE_MAP: Record<string, string> = {
   'the netherlands': 'NL',
   'hong kong': 'HK',
   'hong kong sar': 'HK',
+  'hong kong, china': 'HK',
+  'macao': 'MO',
+  'macau': 'MO',
+  'taiwan': 'TW',
   'austria': 'AT',
   'czech republic': 'CZ',
   'czechia': 'CZ',
@@ -39,21 +43,33 @@ function countryCodeToEmoji(code: string): string {
     .replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)))
 }
 
+export function countryCodeToFlag(code: string | undefined | null): string {
+  if (!code) return ''
+  const trimmed = code.trim().toUpperCase()
+  if (!/^[A-Z]{2}$/.test(trimmed)) return ''
+  return countryCodeToEmoji(trimmed)
+}
+
 export function venueToCountryCode(venue: string | undefined | null): string {
   if (!venue) return ''
   const lower = venue.toLowerCase().trim()
   if (lower === 'virtual' || lower.includes('virtual')) return ''
-  const parts = venue.split(',')
-  const countryName = parts[parts.length - 1].trim().toLowerCase()
-  return COUNTRY_CODE_MAP[countryName] || ''
+  // Try the full string first (handles "Hong Kong, China" → HK).
+  if (COUNTRY_CODE_MAP[lower]) return COUNTRY_CODE_MAP[lower]
+  // Then try each comma-separated segment first-to-last, returning the first
+  // match. This lets "Hong Kong, China" resolve to HK (SAR) before CN.
+  const parts = venue.split(',').map(p => p.trim().toLowerCase()).filter(Boolean)
+  for (const p of parts) {
+    if (COUNTRY_CODE_MAP[p]) return COUNTRY_CODE_MAP[p]
+  }
+  return ''
 }
 
 export function venueToCountryFlag(venue: string | undefined | null): string {
   if (!venue) return ''
   const lower = venue.toLowerCase().trim()
   if (lower === 'virtual' || lower.includes('virtual')) return '🌐'
-  const code = venueToCountryCode(venue)
-  return code ? countryCodeToEmoji(code) : ''
+  return countryCodeToFlag(venueToCountryCode(venue))
 }
 
 export const venueToFlag = venueToCountryFlag

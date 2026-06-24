@@ -12,6 +12,7 @@ time:
     date: 2026-09-04
 
 general_area: Berlin, Germany
+country_code: DE
 
 venues:
   - name: Deutsches Institut für Normung (DIN)
