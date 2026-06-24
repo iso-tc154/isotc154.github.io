@@ -92,6 +92,10 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../views/MeetingDetailView.vue'),
   },
   {
+    path: '/events/plenary-meeting-:ordinal(\\d+)/',
+    redirect: (to) => `/meetings/${to.params.ordinal}/`,
+  },
+  {
     path: '/posts/',
     name: 'posts',
     component: () => import('../views/NewsListView.vue'),

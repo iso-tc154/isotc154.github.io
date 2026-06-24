@@ -7,13 +7,8 @@ import type { Liaison, NationalBody } from '../types/organization'
 import type { Post, PageDoc } from '../types/content'
 import type { Meeting } from '../types/meeting'
 import { ordinalSuffix } from './ordinal'
-import {
-  SITE_CONFIG,
-  type SeoMeta,
-  type SiteConfig,
-  organizationJsonLd,
-  websiteJsonLd,
-} from './seo'
+import { SITE_CONFIG, type SeoMeta, type SiteConfig } from './seo'
+import { STATIC_ROUTE_META, resolveStaticRouteMeta } from './staticRouteMeta'
 
 export interface RouteMetaContext {
   resolutions: Resolution[]
@@ -26,10 +21,6 @@ export interface RouteMetaContext {
   meetings: Meeting[]
   posts: Post[]
   pages: PageDoc[]
-}
-
-function titleParts(...parts: (string | null | undefined)[]): string {
-  return parts.filter(Boolean).join(' — ').trim()
 }
 
 function isResolutionDetailRoute(route: string): boolean {
@@ -51,6 +42,10 @@ function firstParagraph(html: string): string {
   return m ? stripHtml(m[1]) : ''
 }
 
+// Resolves per-route SEO metadata. Static routes (list pages, about, faq,
+// contact, etc.) are looked up from STATIC_ROUTE_META — adding one is a
+// one-line table edit. Dynamic detail routes (resolution/member/group/etc.)
+// need data from ctx and stay inline below.
 export function computeRouteMeta(
   route: string,
   ctx: RouteMetaContext,
@@ -58,59 +53,9 @@ export function computeRouteMeta(
 ): SeoMeta {
   const cleanRoute = route.replace(/\/+$/, '') || '/'
   const parts = cleanRoute.split('/').filter(Boolean)
-  const { committeeName: name, committeeFull: full } = cfg
 
-  const home: SeoMeta = {
-    title: `${name} — Processes, data elements and documents in commerce, industry and administration`,
-    description: `${full}. Browse ISO/TC 154 standards, plenary meetings, resolutions, and members.`,
-    canonicalPath: '/',
-    type: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@graph': [organizationJsonLd(cfg), websiteJsonLd(cfg)],
-    },
-    breadcrumbs: [{ name: 'Home', path: '/' }],
-  }
-  if (cleanRoute === '/') return home
-
-  const collectionPage = (
-    path: string,
-    title: string,
-    description: string,
-    breadcrumbs: { name: string; path: string }[],
-  ): SeoMeta => ({
-    title: `${title} | ${name}`,
-    description,
-    canonicalPath: `${path}/`,
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: `${title} | ${name}`,
-      isPartOf: { '@id': `${cfg.siteUrl}/#website` },
-    },
-    breadcrumbs,
-  })
-
-  if (cleanRoute === '/resolutions') {
-    return collectionPage(
-      '/resolutions',
-      'Resolutions',
-      `Search and browse resolutions adopted by ${name} since its first plenary.`,
-      [{ name: 'Home', path: '/' }, { name: 'Resolutions', path: '/resolutions/' }],
-    )
-  }
-  if (cleanRoute === '/resolutions/meetings') {
-    return collectionPage(
-      '/resolutions/meetings',
-      'Meetings Timeline',
-      `Browse ${name} resolutions grouped by plenary meeting and ballot.`,
-      [
-        { name: 'Home', path: '/' },
-        { name: 'Resolutions', path: '/resolutions/' },
-        { name: 'Meetings', path: '/resolutions/meetings/' },
-      ],
-    )
-  }
+  const staticEntry = STATIC_ROUTE_META[cleanRoute]
+  if (staticEntry) return resolveStaticRouteMeta(cleanRoute, staticEntry, cfg)
 
   if (isResolutionDetailRoute(route)) {
     const [sourceType, sourceFile, id] = [parts[1], parts[2], parts[3]]
@@ -121,9 +66,9 @@ export function computeRouteMeta(
     const desc =
       res?.snippet ||
       res?.subject ||
-      `${headline} — resolution adopted by ${name}.`
+      `${headline} — resolution adopted by ${cfg.committeeName}.`
     return {
-      title: `${headline} | Resolutions | ${name}`,
+      title: `${headline} | Resolutions | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       type: 'article',
@@ -158,11 +103,11 @@ export function computeRouteMeta(
       ? ` in ${[m.primary.city, m.primary.country].filter(Boolean).join(', ')}`
       : ''
     const headline = `${ordinal}${suffix} Plenary Meeting${yearPart}`
-    const desc = `The ${ordinal}${suffix} plenary meeting of ${name}${yearPart}${hostPart}. ${m?.resolution_count ? `${m.resolution_count} resolution${m.resolution_count === 1 ? '' : 's'} adopted.` : ''}`.trim()
+    const desc = `The ${ordinal}${suffix} plenary meeting of ${cfg.committeeName}${yearPart}${hostPart}. ${m?.resolution_count ? `${m.resolution_count} resolution${m.resolution_count === 1 ? '' : 's'} adopted.` : ''}`.trim()
     const startDate = m?.primary?.start_date || undefined
     const endDate = m?.primary?.end_date || undefined
     return {
-      title: `${headline} | ${name}`,
+      title: `${headline} | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       type: 'article',
@@ -176,7 +121,7 @@ export function computeRouteMeta(
         ? {
             '@context': 'https://schema.org',
             '@type': 'Event',
-            name: `${ordinal}${suffix} plenary meeting of ${name}`,
+            name: `${ordinal}${suffix} plenary meeting of ${cfg.committeeName}`,
             startDate,
             endDate,
             eventStatus:
@@ -213,9 +158,9 @@ export function computeRouteMeta(
     const headline = member?.name || parts[1]
     const desc = member?.bio
       ? stripHtml(firstParagraph(member.bio) || member.bio).slice(0, 160)
-      : `${headline} — expert contributing to ${name}.`
+      : `${headline} — expert contributing to ${cfg.committeeName}.`
     return {
-      title: `${headline} | Members | ${name}`,
+      title: `${headline} | Members | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       type: 'article',
@@ -242,23 +187,15 @@ export function computeRouteMeta(
       },
     }
   }
-  if (cleanRoute === '/members') {
-    return collectionPage(
-      '/members',
-      'Members',
-      `Experts from national bodies, liaisons, and the Committee Advisory Group of ${name}.`,
-      [{ name: 'Home', path: '/' }, { name: 'Members', path: '/members/' }],
-    )
-  }
 
   if (parts[0] === 'groups' && parts.length === 2) {
     const group = ctx.groups.find((g) => g.id === parts[1])
     const headline = group?.title || group?.name || parts[1]
     const desc = group?.scope
       ? stripHtml(group.scope).slice(0, 160)
-      : `${headline} — a working, advisory, or maintenance group of ${name}.`
+      : `${headline} — a working, advisory, or maintenance group of ${cfg.committeeName}.`
     return {
-      title: `${headline} | Groups | ${name}`,
+      title: `${headline} | Groups | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       breadcrumbs: [
@@ -279,23 +216,15 @@ export function computeRouteMeta(
       },
     }
   }
-  if (cleanRoute === '/groups') {
-    return collectionPage(
-      '/groups',
-      'Groups',
-      `Working Groups, Advisory Groups, and Maintenance Agencies of ${name}.`,
-      [{ name: 'Home', path: '/' }, { name: 'Groups', path: '/groups/' }],
-    )
-  }
 
   if (parts[0] === 'standards' && parts.length === 2) {
     const std = ctx.standards.find((s) => s.id === parts[1])
     const headline = std?.iso?.title || std?.iso?.name || parts[1]
     const desc = std?.iso?.scope
       ? stripHtml(std.iso.scope).slice(0, 160)
-      : `${headline} — an International Standard published by ${name}.`
+      : `${headline} — an International Standard published by ${cfg.committeeName}.`
     return {
-      title: `${headline} | Standards | ${name}`,
+      title: `${headline} | Standards | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       type: 'article',
@@ -318,23 +247,15 @@ export function computeRouteMeta(
       },
     }
   }
-  if (cleanRoute === '/standards') {
-    return collectionPage(
-      '/standards',
-      'Standards',
-      `International Standards published by ${name} — processes, data elements and documents in commerce, industry and administration.`,
-      [{ name: 'Home', path: '/' }, { name: 'Standards', path: '/standards/' }],
-    )
-  }
 
   if (parts[0] === 'liaisons' && parts.length === 2) {
     const lia = ctx.liaisons.find((l) => l.id === parts[1])
     const headline = lia?.name || parts[1]
     const desc = lia?.description
       ? stripHtml(lia.description).slice(0, 160)
-      : `${headline} — an organization in liaison with ${name}.`
+      : `${headline} — an organization in liaison with ${cfg.committeeName}.`
     return {
-      title: `${headline} | Liaisons | ${name}`,
+      title: `${headline} | Liaisons | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       breadcrumbs: [
@@ -351,23 +272,15 @@ export function computeRouteMeta(
       },
     }
   }
-  if (cleanRoute === '/liaisons') {
-    return collectionPage(
-      '/liaisons',
-      'Liaisons',
-      `External organizations in liaison with ${name}.`,
-      [{ name: 'Home', path: '/' }, { name: 'Liaisons', path: '/liaisons/' }],
-    )
-  }
 
   if (parts[0] === 'national-bodies' && parts.length === 2) {
     const nb = ctx.nationalBodies.find((x) => x.id === parts[1])
     const headline = nb?.name || parts[1]
     const desc = nb?.description
       ? stripHtml(nb.description).slice(0, 160)
-      : `${headline} — an ISO member body participating in ${name}.`
+      : `${headline} — an ISO member body participating in ${cfg.committeeName}.`
     return {
-      title: `${headline} | National Bodies | ${name}`,
+      title: `${headline} | National Bodies | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       breadcrumbs: [
@@ -388,21 +301,13 @@ export function computeRouteMeta(
       },
     }
   }
-  if (cleanRoute === '/national-bodies') {
-    return collectionPage(
-      '/national-bodies',
-      'National Bodies',
-      `National standards bodies participating in ${name}.`,
-      [{ name: 'Home', path: '/' }, { name: 'National Bodies', path: '/national-bodies/' }],
-    )
-  }
 
   if (parts[0] === 'projects' && parts.length === 2) {
     const project = ctx.projects.find((p) => p.id === parts[1])
     const headline = project?.title || parts[1]
-    const desc = `${headline} — a standard under development by ${name}.`
+    const desc = `${headline} — a standard under development by ${cfg.committeeName}.`
     return {
-      title: `${headline} | Projects | ${name}`,
+      title: `${headline} | Projects | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       breadcrumbs: [
@@ -423,23 +328,6 @@ export function computeRouteMeta(
       },
     }
   }
-  if (cleanRoute === '/projects') {
-    return collectionPage(
-      '/projects',
-      'Projects',
-      `Standards under development by ${name}.`,
-      [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects/' }],
-    )
-  }
-
-  if (cleanRoute === '/meetings') {
-    return collectionPage(
-      '/meetings',
-      'Plenary Meetings',
-      `Every plenary meeting of ${name}, hosted annually by national bodies — venues, dates, resolutions, briefings.`,
-      [{ name: 'Home', path: '/' }, { name: 'Meetings', path: '/meetings/' }],
-    )
-  }
 
   if (parts[0] === 'posts' && parts.length === 2) {
     const post = ctx.posts.find((p) => p.slug === parts[1])
@@ -447,10 +335,10 @@ export function computeRouteMeta(
     const desc = post?.frontmatter?.excerpt
       ? stripHtml(post.frontmatter.excerpt).slice(0, 160)
       : post?.html
-        ? firstParagraph(post.html).slice(0, 160) || `${headline} — announcement from ${name}.`
-        : `${headline} — announcement from ${name}.`
+        ? firstParagraph(post.html).slice(0, 160) || `${headline} — announcement from ${cfg.committeeName}.`
+        : `${headline} — announcement from ${cfg.committeeName}.`
     return {
-      title: `${headline} | News | ${name}`,
+      title: `${headline} | News | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       type: 'article',
@@ -472,97 +360,15 @@ export function computeRouteMeta(
       },
     }
   }
-  if (cleanRoute === '/posts') {
-    return collectionPage(
-      '/posts',
-      'News',
-      `Publications, announcements, and obituaries from ${name}.`,
-      [{ name: 'Home', path: '/' }, { name: 'News', path: '/posts/' }],
-    )
-  }
-
-  const staticPage = (
-    path: string,
-    label: string,
-    description: string,
-    type = 'WebPage' as string,
-  ): SeoMeta => ({
-    title: `${label} | ${name}`,
-    description,
-    canonicalPath: `${path}/`,
-    breadcrumbs: [{ name: 'Home', path: '/' }, { name: label, path: `${path}/` }],
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': type,
-      name: `${label} | ${name}`,
-      isPartOf: { '@id': `${cfg.siteUrl}/#website` },
-      about: { '@id': `${cfg.siteUrl}/#organization` },
-    },
-  })
-
-  if (cleanRoute === '/about') {
-    return staticPage('/about', 'About', `About ${name} — ${full.toLowerCase()}.`, 'AboutPage')
-  }
-  if (cleanRoute === '/business-plan') {
-    return staticPage(
-      '/business-plan',
-      'Business Plan',
-      `Strategy, work programme, and operating context for ${name} — processes, data elements and documents in commerce, industry and administration.`,
-    )
-  }
-  if (cleanRoute === '/history') {
-    return staticPage(
-      '/history',
-      'History',
-      `Five decades of milestones for ${name} — chairs and secretariats, plenary meetings, published standards, and structural changes since 1972.`,
-      'CollectionPage',
-    )
-  }
-  if (cleanRoute === '/faq') {
-    return {
-      title: `FAQ | ${name}`,
-      description: `Frequently asked questions about ${name} standards and procedures.`,
-      canonicalPath: '/faq/',
-      breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq/' }],
-      jsonLd: {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        isPartOf: { '@id': `${cfg.siteUrl}/#website` },
-      },
-    }
-  }
-  if (cleanRoute === '/procedures') {
-    return staticPage('/procedures', 'Procedures', `Operating procedures and submission processes of ${name}.`)
-  }
-  if (cleanRoute === '/contact') {
-    return {
-      title: `Contact | ${name}`,
-      description: `How to get in touch with ${name}.`,
-      canonicalPath: '/contact/',
-      breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact/' }],
-      jsonLd: {
-        '@context': 'https://schema.org',
-        '@type': 'ContactPage',
-        isPartOf: { '@id': `${cfg.siteUrl}/#website` },
-      },
-    }
-  }
-  if (cleanRoute === '/acknowledgments') {
-    return staticPage(
-      '/acknowledgments',
-      'Acknowledgments',
-      `Errata reports, feedback, and improvements contributed to ${name} standards.`,
-    )
-  }
 
   if (parts[0] === 'faq' && parts.length === 2) {
     const faqPage = ctx.pages.find((p) => p.slug === parts[1])
     const headline = faqPage?.frontmatter?.title || parts[1]
     const desc = faqPage?.html
       ? firstParagraph(faqPage.html).slice(0, 160)
-      : `${headline} — frequently asked question about ${name}.`
+      : `${headline} — frequently asked question about ${cfg.committeeName}.`
     return {
-      title: `${headline} | FAQ | ${name}`,
+      title: `${headline} | FAQ | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       breadcrumbs: [
@@ -584,9 +390,9 @@ export function computeRouteMeta(
     const headline = procPage?.frontmatter?.title || parts[1]
     const desc = procPage?.html
       ? firstParagraph(procPage.html).slice(0, 160)
-      : `${headline} — ${name} procedure.`
+      : `${headline} — ${cfg.committeeName} procedure.`
     return {
-      title: `${headline} | Procedures | ${name}`,
+      title: `${headline} | Procedures | ${cfg.committeeName}`,
       description: desc,
       canonicalPath: `${cleanRoute}/`,
       breadcrumbs: [
@@ -597,7 +403,7 @@ export function computeRouteMeta(
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        name: `${headline} | Procedures | ${name}`,
+        name: `${headline} | Procedures | ${cfg.committeeName}`,
         isPartOf: { '@id': `${cfg.siteUrl}/#website` },
       },
     }
@@ -613,8 +419,8 @@ export function computeRouteMeta(
     : undefined
 
   return {
-    title: genericHeadline ? `${genericHeadline} | ${name}` : titleParts(name) || name,
-    description: genericDesc || full,
+    title: genericHeadline ? `${genericHeadline} | ${cfg.committeeName}` : cfg.committeeName,
+    description: genericDesc || cfg.committeeFull,
     canonicalPath: `${cleanRoute}/`,
     breadcrumbs: genericHeadline
       ? [{ name: 'Home', path: '/' }, { name: genericHeadline, path: `${cleanRoute}/` }]
@@ -622,7 +428,7 @@ export function computeRouteMeta(
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: genericHeadline || name,
+      name: genericHeadline || cfg.committeeName,
       isPartOf: { '@id': `${cfg.siteUrl}/#website` },
     },
   }

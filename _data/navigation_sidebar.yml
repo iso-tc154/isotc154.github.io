@@ -95,12 +95,13 @@ sections:
     match: "/events/plenary-meeting-39"
     url_prefixes:
       - /events/plenary-meeting-39
+      - /meetings/39
       - /39th-plenary
     title: 39th Plenary
     items:
       - type: link
         label: Overview
-        url: /events/plenary-meeting-39/
+        url: /meetings/39/
       - type: link
         label: Transportation
         url: /39th-plenary/arrival/transportation/
@@ -118,10 +119,6 @@ sections:
     match: "/meetings"
     url_prefixes:
       - /meetings
-      - /events/plenary-meeting-45
-      - /events/plenary-meeting-44
-      - /events/plenary-meeting-43
-      - /events/plenary-meeting-42
     title: Meetings
     items:
       - type: link
@@ -129,16 +126,16 @@ sections:
         url: /meetings/
       - type: link
         label: "45th Plenary (2026)"
-        url: /events/plenary-meeting-45/
+        url: /meetings/45/
       - type: link
         label: "44th Plenary (2025)"
-        url: /events/plenary-meeting-44/
+        url: /meetings/44/
       - type: link
         label: "43rd Plenary (2024)"
-        url: /events/plenary-meeting-43/
+        url: /meetings/43/
       - type: link
         label: "42nd Plenary (2023)"
-        url: /events/plenary-meeting-42/
+        url: /meetings/42/
 
   - id: about
     match: "/about"
