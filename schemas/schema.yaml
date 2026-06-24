@@ -1,9 +1,9 @@
 $schema: "https://json-schema.org/draft-07/schema#"
 title: ISO TC 154 Data Schemas
-description: JSON Schema definitions for all Jekyll data types used by isotc154.org
+description: JSON Schema definitions for all vite-ssg data types used by isotc154.org
 $defs:
 
-  # ── Project (frontmatter in _projects/*.adoc) ─────────────────────────────
+  # ── Project frontmatter (_projects/*.adoc and _data/projects/*.yml) ────────
 
   project:
     type: object
@@ -40,6 +40,8 @@ $defs:
           - AWI
         description: "ISO 216 development stage code"
       excerpt:
+        type: string
+      scope:
         type: string
 
   # ── Group (_data/groups/*.yml) ───────────────────────────────────────────
@@ -139,6 +141,7 @@ $defs:
     properties:
       url: { type: string }
       title: { type: string }
+      label: { type: string }
 
   member_role:
     type: object
@@ -149,13 +152,19 @@ $defs:
         type: string
         enum:
           - chair
+          - co_chair
           - convenor
           - manager
           - member
           - committee_manager
           - technical_programme_manager
+          - technical-programme-manager
+          - editorial_programme_manager
+          - editorial-programme-manager
+          - project_leader
           - observer
           - partner
+          - secretary
       group:
         type: string
       from:
@@ -174,6 +183,8 @@ $defs:
         type: string
       active:
         type: boolean
+      deceased:
+        type: boolean
       affiliation:
         type: string
       picture:
@@ -189,6 +200,10 @@ $defs:
         items: { $ref: "#/$defs/member_role" }
 
   # ── Standard (_data/standards/*.yml) ─────────────────────────────────────
+  # tc154.group is optional: placeholder YAMLs produced by the ISO Open Data
+  # sync pipeline intentionally omit it until an editor processes the linked
+  # new-standard issue. The validator gates the group requirement on the
+  # presence of tc154.introduction.
 
   standard:
     type: object
@@ -209,15 +224,16 @@ $defs:
           ics: { type: [string, number] }
           scope: { type: string }
           publication_date: { type: [string] }
+          store_id: { type: [string, number] }
       tc154:
         type: object
-        required: [group]
+        required: []
         additionalProperties: true
         properties:
           group: { type: string }
           status:
             type: string
-            enum: [withdrawn, under_development, deleted]
+            enum: [withdrawn, under_development, published, deleted]
           introduction: { type: string }
           scope: { type: string }
           content: { type: string }
@@ -231,6 +247,10 @@ $defs:
           relevant_changes: { type: string }
 
   # ── Liaison (_data/liaisons.yml) ─────────────────────────────────────────
+
+  liaisons_file:
+    type: array
+    items: { $ref: "#/$defs/liaison" }
 
   liaison:
     type: object
@@ -249,11 +269,20 @@ $defs:
       logo_light: { type: string }
       logo_dark: { type: string }
 
-  # ── National Body (_data/national_bodies.yml) ─────────────────────────────
+  # ── National Body (_data/national_bodies.yml) ────────────────────────────
+  # `logo` is optional when both `logo_light` and `logo_dark` are provided
+  # (dark-mode-aware variants). The validator enforces "logo OR
+  # (logo_light AND logo_dark)" — JSON Schema can't express that cleanly
+  # without oneOf, so we keep all three properties optional here and rely on
+  # scripts/validate_yaml.rb for the cross-field check.
+
+  national_bodies_file:
+    type: array
+    items: { $ref: "#/$defs/national_body" }
 
   national_body:
     type: object
-    required: [id, name, short_name, iso_country_code, logo, description]
+    required: [id, name, short_name, iso_country_code, description]
     additionalProperties: true
     properties:
       id: { type: string }
@@ -263,11 +292,21 @@ $defs:
         oneOf:
           - { type: string, pattern: "^[A-Z]{2}$" }
           - { type: boolean, enum: [false] }
+      membership:
+        type: string
+        enum: [P-member, O-member, observer, participant]
+      country: { type: string }
       url: { type: [string, "null"] }
       logo: { type: string }
+      logo_light: { type: string }
+      logo_dark: { type: string }
       description: { type: string }
 
-  # ── Secretariat (_data/secretariat.yml) ───────────────────────────────────
+  # ── Secretariat (_data/secretariat.yml) ──────────────────────────────────
+
+  secretariat_file:
+    type: array
+    items: { $ref: "#/$defs/secretariat_entry" }
 
   secretariat_entry:
     type: object
@@ -280,3 +319,567 @@ $defs:
       member: { type: string }
       name: { type: string }
       organization: { type: string }
+      email: { type: string }
+      phone: { type: string }
+
+  # ── Plenary event (_data/events/plenary-meeting-*.yml) ───────────────────
+
+  role_period_optional:
+    type: object
+    additionalProperties: false
+    properties:
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      precision:
+        type: string
+        enum: [year, month, day]
+
+  event_time_range:
+    type: object
+    additionalProperties: false
+    properties:
+      from: { $ref: "#/$defs/role_period_optional" }
+      to: { $ref: "#/$defs/role_period_optional" }
+
+  event_venue:
+    type: object
+    required: [name]
+    additionalProperties: true
+    properties:
+      name: { type: string }
+      address: { type: string }
+      link: { type: string }
+      phone: { type: string }
+      note: { type: string }
+      lon: { type: number }
+      lat: { type: number }
+
+  event_host_ref:
+    type: object
+    required: [ref, type]
+    additionalProperties: true
+    properties:
+      ref: { type: string }
+      type:
+        type: string
+        enum: [national-body, liaison, associate]
+      role: { type: string }
+      contact:
+        type: object
+        additionalProperties: true
+        properties:
+          name: { type: string }
+          email: { type: string }
+          phone: { type: string }
+
+  event_schedule_item:
+    type: object
+    required: [date, event]
+    additionalProperties: true
+    properties:
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      time: { type: string }
+      event: { type: string }
+      description: { type: string }
+      room: { type: string }
+
+  event_deadline:
+    type: object
+    required: [date]
+    additionalProperties: true
+    properties:
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      description: { type: string }
+
+  event_accommodation:
+    type: object
+    required: [name]
+    additionalProperties: true
+    properties:
+      name: { type: string }
+      address: { type: string }
+      link: { type: string }
+      email: { type: string }
+      phone: { type: string }
+      code: { type: string }
+      distance: { type: string }
+      rates:
+        type: object
+        additionalProperties: { type: string }
+      breakfast: { type: string }
+
+  event_transport_group:
+    type: object
+    additionalProperties: true
+    properties:
+      label: { type: string }
+      options:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+          properties:
+            mode: { type: string }
+            cost: { type: string }
+            duration: { type: string }
+            detail: { type: string }
+      url: { type: string }
+
+  event_reference_document:
+    type: object
+    required: [id, description]
+    additionalProperties: true
+    properties:
+      id: { type: string }
+      description: { type: string }
+
+  event_practical_info:
+    type: object
+    additionalProperties: true
+    properties:
+      visa:
+        type: object
+        additionalProperties: true
+        properties:
+          eu_schengen: { type: boolean }
+          info_url: { type: string }
+          invitation_contact: { type: string }
+          invitation_email: { type: string }
+          invitation_deadline:
+            type: string
+            pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+          visa_portal: { type: string }
+          note: { type: string }
+          required_info:
+            type: array
+            items: { type: string }
+      access:
+        type: object
+        additionalProperties: true
+        properties:
+          badge_required: { type: boolean }
+          badge_info: { type: string }
+          wifi: { type: string }
+          smoking: { type: string }
+      venue_phone: { type: string }
+      venue_website: { type: string }
+      electrical: { type: string }
+      climate: { type: string }
+      currency: { type: string }
+      tipping: { type: string }
+      wifi: { type: string }
+      documents_note: { type: string }
+
+  event_lunch_recommendation:
+    type: object
+    required: [name]
+    additionalProperties: true
+    properties:
+      name: { type: string }
+      url: { type: string }
+
+  event_biergarten:
+    type: object
+    required: [name]
+    additionalProperties: true
+    properties:
+      name: { type: string }
+      address: { type: string }
+      url: { type: string }
+      walk_minutes: { type: [integer, string] }
+      style: { type: string }
+
+  event_tourist_info:
+    type: object
+    additionalProperties: true
+    properties:
+      url: { type: string }
+      museums_url: { type: string }
+      ifa_note: { type: string }
+      ifa_url: { type: string }
+
+  agenda_item:
+    type: object
+    additionalProperties: true
+    properties:
+      number: { type: [integer, string] }
+      title: { type: string }
+      speaker: { type: string }
+      n_doc: { type: string }
+      subitems:
+        type: array
+        items: { $ref: "#/$defs/agenda_item" }
+
+  agenda_session:
+    type: object
+    additionalProperties: true
+    properties:
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      items:
+        type: array
+        items: { $ref: "#/$defs/agenda_item" }
+
+  agenda:
+    type: object
+    additionalProperties: true
+    properties:
+      source_doc: { type: string }
+      structure: { type: string }
+      opening_session: { $ref: "#/$defs/agenda_session" }
+      closing_session: { $ref: "#/$defs/agenda_session" }
+      wg_meetings:
+        type: object
+        additionalProperties: true
+        properties:
+          dates:
+            type: array
+            items:
+              type: string
+              pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+          note: { type: string }
+
+  plenary_event:
+    type: object
+    required: [title, ordinal, status, year, time, general_area]
+    additionalProperties: true
+    properties:
+      title: { type: string }
+      ordinal: { type: integer }
+      status:
+        type: string
+        enum: [upcoming, completed, cancelled]
+      year: { type: integer }
+      landing_url: { type: string }
+      registration_url: { type: string }
+      time: { $ref: "#/$defs/event_time_range" }
+      general_area: { type: string }
+      country_code:
+        oneOf:
+          - type: string
+            pattern: "^[A-Z]{2}$"
+            description: "ISO 3166-1 alpha-2 country code"
+          - type: string
+            maxLength: 0
+            description: "Empty string for virtual meetings"
+      venues:
+        type: array
+        items: { $ref: "#/$defs/event_venue" }
+      host: { type: string }
+      hosts:
+        type: array
+        items: { $ref: "#/$defs/event_host_ref" }
+      associates:
+        type: array
+        items:
+          type: object
+          required: [ref]
+          additionalProperties: true
+          properties:
+            ref: { type: string }
+            role: { type: string }
+      secretariat:
+        type: object
+        additionalProperties: true
+        properties:
+          name: { type: string }
+          organization: { type: string }
+          email: { type: string }
+          phone: { type: string }
+      chair:
+        type: object
+        additionalProperties: true
+        properties:
+          name: { type: string }
+      local_contact:
+        type: object
+        additionalProperties: true
+        properties:
+          name: { type: string }
+          email: { type: string }
+          phone: { type: string }
+      reference_documents:
+        type: array
+        items: { $ref: "#/$defs/event_reference_document" }
+      agenda: { $ref: "#/$defs/agenda" }
+      schedule:
+        type: array
+        items: { $ref: "#/$defs/event_schedule_item" }
+      deadlines:
+        type: array
+        items: { $ref: "#/$defs/event_deadline" }
+      transport:
+        type: array
+        items: { $ref: "#/$defs/event_transport_group" }
+      accommodation_options:
+        type: array
+        items: { $ref: "#/$defs/event_accommodation" }
+      practical_info: { $ref: "#/$defs/event_practical_info" }
+      lunch_recommendations:
+        type: array
+        items: { $ref: "#/$defs/event_lunch_recommendation" }
+      biergartens:
+        type: array
+        items: { $ref: "#/$defs/event_biergarten" }
+      tourist_info: { $ref: "#/$defs/event_tourist_info" }
+      note: { type: string }
+
+  # ── History milestones (_data/history.yml) ───────────────────────────────
+
+  history_file:
+    type: array
+    items: { $ref: "#/$defs/history_entry" }
+
+  history_entry:
+    type: object
+    required: [date, date_precision, category, title, description]
+    additionalProperties: true
+    properties:
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      date_precision:
+        type: string
+        enum: [day, month, year]
+      category:
+        type: string
+        enum:
+          - founding
+          - leadership
+          - structure
+          - standard
+          - liaison
+          - meeting
+          - cooperation
+          - withdrawn
+      title: { type: string }
+      description: { type: string }
+      link: { type: string }
+      resolution: { type: string }
+      end_date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      tags:
+        type: array
+        items: { type: string }
+
+  # ── Acknowledgments (_data/acknowledgments.yml) ──────────────────────────
+
+  acknowledgments_file:
+    type: array
+    items: { $ref: "#/$defs/acknowledgment_entry" }
+
+  acknowledgment_entry:
+    type: object
+    required: [name, date, standard, contribution]
+    additionalProperties: true
+    properties:
+      name: { type: string }
+      affiliation: { type: string }
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      standard: { type: string }
+      contribution: { type: string }
+      url: { type: string }
+
+  # ── Associates (_data/associates.yml) ─────────────────────────────────────
+  # Organizations that help organize or sponsor plenary meetings but are not
+  # national bodies or official ISO liaisons.
+
+  associates_file:
+    type: array
+    items: { $ref: "#/$defs/associate" }
+
+  associate:
+    type: object
+    required: [id, name, short_name, description]
+    additionalProperties: true
+    properties:
+      id: { type: string }
+      name: { type: string }
+      short_name: { type: string }
+      aliases:
+        type: array
+        items: { type: string }
+      country: { type: string }
+      iso_country_code:
+        type: string
+        pattern: "^[A-Z]{2}$"
+      category:
+        type: string
+        enum:
+          - government-agency
+          - standards-body
+          - company
+          - non-profit
+          - academic
+      url: { type: string }
+      description: { type: string }
+
+  # ── Group lifecycle events (_data/group_events.yml) ───────────────────────
+
+  group_event:
+    type: object
+    required: [group_id, type, date, title]
+    additionalProperties: true
+    properties:
+      group_id: { type: string }
+      type:
+        type: string
+        enum:
+          - established
+          - dissolved
+          - convenor_appointed
+          - convenor_extended
+          - scope_change
+          - succession
+          - title_change
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      precision:
+        type: string
+        enum: [year, month, day]
+      title: { type: string }
+      description: { type: string }
+      resolution_ref: { type: [string, integer] }
+      resolution_meeting: { type: string }
+      person_name: { type: string }
+      person_member_id: { type: string }
+      term_until:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      predecessor: { type: string }
+      successor: { type: string }
+
+  group_event_override:
+    type: object
+    required: [group_id, field, date]
+    additionalProperties: true
+    properties:
+      group_id: { type: string }
+      field:
+        type: string
+        enum: [established, note]
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      precision:
+        type: string
+        enum: [year, month, day]
+      title: { type: string }
+      description: { type: string }
+
+  group_events_file:
+    type: object
+    additionalProperties: false
+    properties:
+      events:
+        type: array
+        items: { $ref: "#/$defs/group_event" }
+      overrides:
+        type: array
+        items: { $ref: "#/$defs/group_event_override" }
+
+  # ── Navigation (_data/navigation_main.yml, navigation_sidebar.yml) ────────
+
+  navigation_main_item:
+    type: object
+    required: [label, url]
+    additionalProperties: true
+    properties:
+      label: { type: string }
+      url: { type: string }
+      children:
+        type: array
+        items:
+          type: object
+          required: [label, url]
+          additionalProperties: true
+          properties:
+            label: { type: string }
+            url: { type: string }
+
+  navigation_main_config:
+    type: object
+    additionalProperties: false
+    properties:
+      items:
+        type: array
+        items: { $ref: "#/$defs/navigation_main_item" }
+
+  navigation_sidebar_link:
+    type: object
+    required: [label]
+    additionalProperties: true
+    properties:
+      type:
+        type: string
+        enum: [link, collection, collapsible, group, years, data_groups]
+      label: { type: string }
+      url: { type: string }
+      collection: { type: string }
+      filter_group: { type: string }
+      inactive: { type: boolean }
+      display_fields:
+        type: array
+        items: { type: string }
+      data_years: { type: string }
+      layout_filter: { type: string }
+
+  navigation_sidebar_section:
+    type: object
+    required: [id, title, items]
+    additionalProperties: true
+    properties:
+      id: { type: string }
+      match: { type: string }
+      url_prefixes:
+        type: array
+        items: { type: string }
+      title: { type: string }
+      items:
+        type: array
+        items: { $ref: "#/$defs/navigation_sidebar_link" }
+
+  navigation_sidebar_config:
+    type: object
+    additionalProperties: false
+    properties:
+      sections:
+        type: array
+        items: { $ref: "#/$defs/navigation_sidebar_section" }
+
+  # ── Stage labels (schemas/stage_labels.yml) ──────────────────────────────
+
+  stage_label_entry:
+    type: object
+    additionalProperties: true
+    properties:
+      label: { type: string }
+      description: { type: string }
+      order: { type: integer }
+
+  stage_labels_file:
+    type: object
+    additionalProperties: { $ref: "#/$defs/stage_label_entry" }
+
+  # ── WG labels (schemas/wg_labels.yml) ────────────────────────────────────
+
+  wg_label_entry:
+    type: object
+    additionalProperties: true
+    properties:
+      label: { type: string }
+      full_name: { type: string }
+
+  wg_labels_file:
+    type: object
+    additionalProperties: { $ref: "#/$defs/wg_label_entry" }
