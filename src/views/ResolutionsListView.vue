@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useResolutions } from '../composables/useResolutions'
 import { useResolutionMeetings } from '../composables/useResolutionMeetings'
+import { useFilteredCollection } from '../composables/useFilteredCollection'
 import { committee } from '../data/committee'
 import { useMeta } from '../composables/useMeta'
 import { useCountUp } from '../composables/useCountUp'
@@ -19,6 +20,7 @@ import {
   searchResolutions,
   type ResolutionSortOrder,
 } from '../domain/resolutionPresentation'
+import type { Resolution } from '../types/resolution'
 import PageHero from '../components/PageHero.vue'
 import FilterBar from '../components/FilterBar.vue'
 import FilterChip from '../components/FilterChip.vue'
@@ -33,16 +35,83 @@ const { resolutions, isLoaded, loadData, search } = useResolutions()
 const { meetings, loadData: loadMeetingsData } = useResolutionMeetings()
 const { meta, load: loadMeta } = useMeta()
 
-const searchQuery = ref((route.query.q as string) || '')
-const selectedYear = ref((route.query.year as string) || '')
 const sortOrder = ref<ResolutionSortOrder>(
   ((route.query.sort as string) as ResolutionSortOrder) || 'newest',
 )
-const selectedActionTypes = ref<Set<string>>(new Set())
-const selectedMeeting = ref((route.query.meeting as string) || '')
 const limit = ref(50)
 const searchInputRef = ref<HTMLInputElement | null>(null)
 const isLegendOpen = ref(false)
+
+const availableYears = computed(() => yearFacets(resolutions.value))
+const actionFacets = computed(() => actionTypeFacets(resolutions.value))
+
+// Memoized search-result set keyed on the lowercased query. The composable's
+// text.match closes over this, and match receives the query as a parameter —
+// so this function does not depend on the composable's searchQuery ref,
+// breaking what would otherwise be a type-inference cycle.
+const matchCache = ref<{ q: string; set: Set<string> | null }>({ q: '', set: null })
+function matchedSet(q: string): Set<string> | null {
+  const lower = q.trim().toLowerCase()
+  if (matchCache.value.q === lower) return matchCache.value.set
+  const set = lower === ''
+    ? null
+    : (() => {
+        const indexed = search(lower)
+        if (indexed.length > 0) return new Set(indexed.map(r => r.id))
+        return new Set(searchResolutions(resolutions.value, lower).map(r => r.id))
+      })()
+  matchCache.value = { q: lower, set }
+  return set
+}
+
+const {
+  searchQuery,
+  selection,
+  selectionSets,
+  filtered: filteredResolutions,
+  hasActiveFilters,
+  clearAll: clearAllBase,
+} = useFilteredCollection<Resolution>(resolutions, {
+  text: {
+    initialQuery: (route.query.q as string) || '',
+    match: (r, q) => matchedSet(q)?.has(r.id) ?? true,
+  },
+  facets: [
+    {
+      id: 'year',
+      values: availableYears,
+      test: (r, v) => r.year === v,
+      initialValue: (route.query.year as string) || '',
+    },
+    {
+      id: 'meeting',
+      values: computed(() => []),
+      test: (r, v) => {
+        const parsed = parseMeetingSourceParam(v)
+        if (!parsed) return false
+        const rs = meetingSourceFromParts(r.source_type, r.source_file)
+        return rs !== null && rs.kind === parsed.kind && rs.raw === parsed.raw
+      },
+      initialValue: (route.query.meeting as string) || '',
+    },
+    {
+      id: 'actionType',
+      values: computed(() => actionFacets.value.all),
+      test: (r, v) => uniqueActionTypes(r).includes(v),
+      multiple: true,
+    },
+  ],
+  sort: (a, b) => compareResolutions(sortOrder.value)(a, b),
+})
+
+const selectedYear = selection.year
+const selectedMeeting = selection.meeting
+const selectedActionTypes = selectionSets.actionType
+
+function clearAllFilters() {
+  clearAllBase()
+  sortOrder.value = 'newest'
+}
 
 const meetingFilter = computed(() => parseMeetingSourceParam(selectedMeeting.value))
 
@@ -62,16 +131,6 @@ const animStandards = useCountUp(committeeStandards, isLoaded, 1500)
 const animEstablished = useCountUp(committeeEst, isLoaded, 1500)
 
 const yearSpan = computed(() => resolutionYearRange(resolutions.value))
-
-const availableYears = computed(() => yearFacets(resolutions.value))
-const actionFacets = computed(() => actionTypeFacets(resolutions.value))
-
-const hasActiveFilters = computed(() =>
-  !!searchQuery.value ||
-  !!selectedYear.value ||
-  selectedActionTypes.value.size > 0 ||
-  !!selectedMeeting.value,
-)
 
 function formatNumber(n: number): string {
   return n.toLocaleString('en-US')
@@ -112,56 +171,11 @@ function scrollToResults() {
 }
 
 function toggleActionType(action: string) {
-  const newSet = new Set(selectedActionTypes.value)
-  if (newSet.has(action)) newSet.delete(action)
-  else newSet.add(action)
-  selectedActionTypes.value = newSet
+  const set = new Set(selectedActionTypes.value)
+  if (set.has(action)) set.delete(action)
+  else set.add(action)
+  selectedActionTypes.value = set
 }
-
-function clearAllFilters() {
-  searchQuery.value = ''
-  selectedYear.value = ''
-  selectedActionTypes.value = new Set()
-  sortOrder.value = 'newest'
-  selectedMeeting.value = ''
-}
-
-const filteredResolutions = computed(() => {
-  let list = resolutions.value
-
-  const mf = meetingFilter.value
-  if (mf) {
-    list = list.filter(r => {
-      const rs = meetingSourceFromParts(r.source_type, r.source_file)
-      return rs !== null && rs.kind === mf.kind && rs.raw === mf.raw
-    })
-  }
-
-  if (selectedYear.value) {
-    list = list.filter(r => r.year === selectedYear.value)
-  }
-
-  if (selectedActionTypes.value.size > 0) {
-    list = list.filter(r => {
-      const types = uniqueActionTypes(r)
-      return types.some(t => selectedActionTypes.value.has(t))
-    })
-  }
-
-  const q = searchQuery.value.trim()
-  if (q) {
-    const matched = search(q)
-    if (matched.length > 0) {
-      const matchedIds = new Set(matched.map(r => r.id))
-      list = list.filter(r => matchedIds.has(r.id))
-    } else {
-      const matchedIds = new Set(searchResolutions(resolutions.value, q).map(r => r.id))
-      list = list.filter(r => matchedIds.has(r.id))
-    }
-  }
-
-  return list.slice().sort(compareResolutions(sortOrder.value))
-})
 
 const paginatedResolutions = computed(() => filteredResolutions.value.slice(0, limit.value))
 const hasMore = computed(() => limit.value < filteredResolutions.value.length)
