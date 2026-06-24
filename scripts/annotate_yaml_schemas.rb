@@ -11,6 +11,7 @@ ROOT = Pathname.new(File.expand_path('..', __dir__))
 SCHEMA_REL = 'schemas/schema.yaml'
 
 # [path_glob_relative_to_root, relative_schema_path_from_file, $def_name]
+# External schemas use absolute URLs.
 MAPPING = [
   ['_data/groups/*.yml',               '../schemas/schema.yaml', 'group'],
   ['_data/members/*.yaml',             '../schemas/schema.yaml', 'member'],
@@ -28,6 +29,8 @@ MAPPING = [
   ['_data/navigation_sidebar.yml',     '../schemas/schema.yaml', 'navigation_sidebar_config'],
   ['schemas/stage_labels.yml',         'schema.yaml',            'stage_labels_file'],
   ['schemas/wg_labels.yml',            'schema.yaml',            'wg_labels_file'],
+  ['data/meetings.yml',                '../schemas/schema.yaml', 'canonical_meetings_file'],
+  ['.github/workflows/*.yml',          'https://json.schemastore.org/github-workflow.json', ''],
 ].freeze
 
 ANNOTATION_PREFIX = '# yaml-language-server: $schema='
@@ -47,7 +50,11 @@ MAPPING.each do |glob, schema_rel, def_name|
   files.each do |path|
     full = Pathname.new(path)
     content = full.read
-    desired = "#{ANNOTATION_PREFIX}#{schema_rel}#/$defs/#{def_name}"
+    desired = if def_name.empty?
+                "#{ANNOTATION_PREFIX}#{schema_rel}"
+              else
+                "#{ANNOTATION_PREFIX}#{schema_rel}#/$defs/#{def_name}"
+              end
 
     lines = content.lines
 

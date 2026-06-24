@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/canonical_meetings_file
 # Canonical list of ISO/TC 154 plenary meetings.
 # Source: ISO/CS meeting export (Meetings.xlsx).
 # Regenerate with: python3 scripts/import-meetings-xlsx.py <Meetings.xlsx>

@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: sync_iso_data
 
 # Weekly sync of TC 154 standards data against ISO Open Data.
