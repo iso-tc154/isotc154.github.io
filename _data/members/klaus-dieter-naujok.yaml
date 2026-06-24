@@ -18,6 +18,7 @@ roles:
     date: 2017-01-01
     precision: year
   group: jwg1
+  seat: ISO
 - id: convenor
   from:
     date: 2011-06-01

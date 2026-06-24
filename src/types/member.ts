@@ -1,3 +1,5 @@
+import { formatDatePrecision } from '../utils/format'
+
 export interface RoleDate {
   date?: string
   precision?: 'day' | 'month' | 'year'
@@ -52,14 +54,7 @@ export function flattenMemberRoles(member: Member): RoleRecord[] {
 }
 
 export function memberRoleSpan(role: RoleRecord): string {
-  const fmt = (d?: RoleDate): string => {
-    if (!d?.date) return ''
-    const dt = new Date(d.date)
-    if (isNaN(dt.getTime())) return ''
-    if (d.precision === 'year') return String(dt.getUTCFullYear())
-    if (d.precision === 'month') return dt.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
-    return dt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
-  }
+  const fmt = (d?: RoleDate): string => (d?.date ? formatDatePrecision(d.date, d.precision) : '')
   const start = fmt(role.from)
   const end = fmt(role.to) || 'present'
   return start ? `${start} – ${end}` : end

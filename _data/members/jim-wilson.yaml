@@ -5,6 +5,7 @@ name: James Wilson
 roles:
 - id: convenor
   group: jwg9
+  seat: ISO
   from:
     date: 2024-01-01
     precision: year

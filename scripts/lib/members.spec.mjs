@@ -151,7 +151,11 @@ describe('attachMembersToGroups', () => {
 })
 
 describe('enrichConvenorTerms', () => {
-  it('joins resolution_ref to terms via group_id|member_id key', () => {
+  // enrichConvenorTerms reads the lifecycle events that attachGroupLifecycle
+  // has already attached to group.history.events — it does not re-walk raw
+  // eventData. Fixtures embed events there directly.
+
+  it('joins resolution_ref to terms via member_id', () => {
     const groups = {
       wg5: makeGroup('wg5', {
         convenor_terms: [{
@@ -162,21 +166,19 @@ describe('enrichConvenorTerms', () => {
           current: true,
           role: 'convenor',
         }],
+        history: {
+          events: [
+            {
+              type: 'convenor_appointed',
+              date: '2013-10-28',
+              person_member_id: 'klaus-dieter-naujok',
+              resolution_ref: '004-2013',
+            },
+          ],
+        },
       }),
     }
-    const eventData = {
-      events: [
-        {
-          group_id: 'wg5',
-          type: 'convenor_appointed',
-          date: '2013-10-28',
-          person_member_id: 'klaus-dieter-naujok',
-          resolution_ref: '004-2013',
-        },
-      ],
-      overrides: [],
-    }
-    enrichConvenorTerms(groups, eventData)
+    enrichConvenorTerms(groups)
     expect(groups.wg5.convenor_terms[0].resolution_ref).toBe('004-2013')
   })
 
@@ -190,20 +192,19 @@ describe('enrichConvenorTerms', () => {
           current: true,
           resolution_ref: 'original',
         }],
+        history: {
+          events: [
+            {
+              type: 'convenor_appointed',
+              date: '2020-01-01',
+              person_member_id: 'a',
+              resolution_ref: 'replacement',
+            },
+          ],
+        },
       }),
     }
-    const eventData = {
-      events: [
-        {
-          group_id: 'wg5',
-          type: 'convenor_appointed',
-          date: '2020-01-01',
-          person_member_id: 'a',
-          resolution_ref: 'replacement',
-        },
-      ],
-    }
-    enrichConvenorTerms(groups, eventData)
+    enrichConvenorTerms(groups)
     expect(groups.wg5.convenor_terms[0].resolution_ref).toBe('original')
   })
 
@@ -217,29 +218,27 @@ describe('enrichConvenorTerms', () => {
           current: false,
           role: 'convenor',
         }],
+        history: {
+          events: [
+            {
+              type: 'convenor_appointed',
+              date: '2023-10-27',
+              person_member_id: 'jianfang-zhang',
+              resolution_ref: '2023-19',
+              term_until: '2026-12-31',
+            },
+            {
+              type: 'convenor_extended',
+              date: '2025-09-26',
+              person_member_id: 'jianfang-zhang',
+              resolution_ref: 'P-2025-10',
+              term_until: '2028-12-31',
+            },
+          ],
+        },
       }),
     }
-    const eventData = {
-      events: [
-        {
-          group_id: 'ag1',
-          type: 'convenor_appointed',
-          date: '2023-10-27',
-          person_member_id: 'jianfang-zhang',
-          resolution_ref: '2023-19',
-          term_until: '2026-12-31',
-        },
-        {
-          group_id: 'ag1',
-          type: 'convenor_extended',
-          date: '2025-09-26',
-          person_member_id: 'jianfang-zhang',
-          resolution_ref: 'P-2025-10',
-          term_until: '2028-12-31',
-        },
-      ],
-    }
-    enrichConvenorTerms(groups, eventData)
+    enrichConvenorTerms(groups)
     const term = groups.ag1.convenor_terms[0]
     expect(term.to).toBe('2028-12-31')
     expect(term.current).toBe(false)
@@ -256,20 +255,19 @@ describe('enrichConvenorTerms', () => {
           to: '2030-12-31',
           current: false,
         }],
+        history: {
+          events: [
+            {
+              type: 'convenor_appointed',
+              date: '2020-01-01',
+              person_member_id: 'a',
+              term_until: '2024-12-31',
+            },
+          ],
+        },
       }),
     }
-    const eventData = {
-      events: [
-        {
-          group_id: 'wg5',
-          type: 'convenor_appointed',
-          date: '2020-01-01',
-          person_member_id: 'a',
-          term_until: '2024-12-31',
-        },
-      ],
-    }
-    enrichConvenorTerms(groups, eventData)
+    enrichConvenorTerms(groups)
     expect(groups.wg5.convenor_terms[0].to).toBe('2030-12-31')
   })
 
@@ -282,36 +280,52 @@ describe('enrichConvenorTerms', () => {
           to: null,
           current: true,
         }],
+        history: {
+          events: [
+            {
+              type: 'convenor_appointed',
+              date: '2020-01-01',
+              resolution_ref: '999',
+            },
+          ],
+        },
       }),
     }
-    const eventData = {
-      events: [
-        {
-          group_id: 'wg5',
-          type: 'convenor_appointed',
-          date: '2020-01-01',
-          resolution_ref: '999',
-        },
-      ],
-    }
-    enrichConvenorTerms(groups, eventData)
+    enrichConvenorTerms(groups)
     expect(groups.wg5.convenor_terms[0].resolution_ref).toBeUndefined()
   })
 
   it('is a no-op for groups without convenor_terms', () => {
-    const groups = { wg5: makeGroup('wg5') }
-    delete groups.wg5.convenor_terms
-    const eventData = {
-      events: [
-        {
-          group_id: 'wg5',
-          type: 'convenor_appointed',
-          date: '2020-01-01',
-          person_member_id: 'a',
-          resolution_ref: '999',
+    const groups = {
+      wg5: makeGroup('wg5', {
+        history: {
+          events: [
+            {
+              type: 'convenor_appointed',
+              date: '2020-01-01',
+              person_member_id: 'a',
+              resolution_ref: '999',
+            },
+          ],
         },
-      ],
+      }),
     }
-    expect(() => enrichConvenorTerms(groups, eventData)).not.toThrow()
+    delete groups.wg5.convenor_terms
+    expect(() => enrichConvenorTerms(groups)).not.toThrow()
+  })
+
+  it('is a no-op for groups without history.events', () => {
+    const groups = {
+      wg5: makeGroup('wg5', {
+        convenor_terms: [{
+          member_id: 'a',
+          from: '2020-01-01',
+          to: null,
+          current: true,
+        }],
+      }),
+    }
+    expect(() => enrichConvenorTerms(groups)).not.toThrow()
+    expect(groups.wg5.convenor_terms[0].resolution_ref).toBeUndefined()
   })
 })
