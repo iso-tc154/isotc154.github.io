@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/standard
 ---
 iso:
   name: Withdrawn 9735-1/Cor 1

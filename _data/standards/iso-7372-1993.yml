@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/standard
 ---
 iso:
   name: ISO 7372:1993

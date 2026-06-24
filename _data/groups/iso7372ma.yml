@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/group
 ---
 id: iso7372ma
 _id: iso7372ma

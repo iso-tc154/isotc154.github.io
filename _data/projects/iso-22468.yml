@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/project
 ---
 id: iso-22468
 name: ISO/DIS 22468

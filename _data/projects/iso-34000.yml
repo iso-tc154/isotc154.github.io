@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/project
 ---
 id: iso-34000
 name: ISO/WD 34000

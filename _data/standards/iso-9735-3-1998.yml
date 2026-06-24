@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/standard
 ---
 iso:
   name: ISO 9735-3:1998

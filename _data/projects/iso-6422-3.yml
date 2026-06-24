@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/project
 ---
 id: iso-6422-3
 name: ISO/PWI TR 6422-3

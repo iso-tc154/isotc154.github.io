@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=schema.yaml#/$defs/wg_labels_file
 ag1: AG 1
 cag: CAG
 iso7372ma: ISO 7372/MA

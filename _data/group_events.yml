@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/group_events_file
 # Group lifecycle events curated from ISO/TC 154 plenary resolutions.
 #
 # Every event in this file is backed by text in a plenary resolution YAML.
