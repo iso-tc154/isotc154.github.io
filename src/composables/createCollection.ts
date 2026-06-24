@@ -14,6 +14,11 @@ export interface Collection<T> {
   loadData: () => Promise<void>
 }
 
+export interface ListCollection<E> extends Collection<E[]> {
+  all: () => E[]
+  get: (key: string) => E | undefined
+}
+
 export function createCollection<T>(opts: {
   url: string
   key?: string
@@ -58,4 +63,33 @@ export function createCollection<T>(opts: {
   }
 
   return { items, isLoaded, loadData }
+}
+
+export function createListCollection<E>(opts: {
+  url: string
+  key?: string
+  by: string | string[]
+  onLoad?: (data: E[]) => void
+}): ListCollection<E> {
+  const { by, onLoad: userOnLoad } = opts
+  const keys = Array.isArray(by) ? by : [by]
+
+  const onLoad = (data: E[]) => {
+    userOnLoad?.(data)
+  }
+
+  const base = createCollection<E[]>({
+    url: opts.url,
+    key: opts.key,
+    initial: [],
+    onLoad,
+  })
+
+  const all = () => base.items.value
+  const get = (lookup: string): E | undefined =>
+    base.items.value.find(item =>
+      keys.some(k => (item as Record<string, unknown>)[k] === lookup),
+    )
+
+  return { ...base, all, get }
 }

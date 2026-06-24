@@ -13,6 +13,8 @@ interface PeopleGroup {
 defineProps<{
   groups: PeopleGroup[]
   nameOf: (id: string) => string
+  pictureOf?: (id: string) => string | null | undefined
+  deceasedOf?: (id: string) => boolean
 }>()
 </script>
 
@@ -26,6 +28,8 @@ defineProps<{
         :id="id"
         :name="nameOf(id)"
         :variant="pg.variant"
+        :picture="pictureOf?.(id) || undefined"
+        :deceased="deceasedOf?.(id) || false"
         size="sm"
       />
     </div>

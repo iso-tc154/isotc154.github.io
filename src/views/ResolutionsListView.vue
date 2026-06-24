@@ -2,7 +2,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useResolutions } from '../composables/useResolutions'
-import { useResolutionMeetings } from "../composables/useResolutionMeetings"
+import { useResolutionMeetings } from '../composables/useResolutionMeetings'
 import { committee } from '../data/committee'
 import { useMeta } from '../composables/useMeta'
 import { useCountUp } from '../composables/useCountUp'
@@ -10,7 +10,21 @@ import { getActionColor } from '../data/actionTypes'
 import { formatDate } from '../utils/format'
 import { highlightText } from '../utils/highlight'
 import { parseMeetingSourceParam, meetingSourceFromParts, meetingSourceShortTitle } from '../domain/meetingSource'
+import {
+  uniqueActionTypes,
+  actionTypeFacets,
+  yearFacets,
+  yearRange as resolutionYearRange,
+  compareResolutions,
+  searchResolutions,
+  type ResolutionSortOrder,
+} from '../domain/resolutionPresentation'
 import PageHero from '../components/PageHero.vue'
+import FilterBar from '../components/FilterBar.vue'
+import FilterChip from '../components/FilterChip.vue'
+import FilterFacet from '../components/FilterFacet.vue'
+import EmptyState from '../components/EmptyState.vue'
+import ListCardSkeleton from '../components/ListCardSkeleton.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -21,7 +35,9 @@ const { meta, load: loadMeta } = useMeta()
 
 const searchQuery = ref((route.query.q as string) || '')
 const selectedYear = ref((route.query.year as string) || '')
-const sortOrder = ref((route.query.sort as string) || 'newest')
+const sortOrder = ref<ResolutionSortOrder>(
+  ((route.query.sort as string) as ResolutionSortOrder) || 'newest',
+)
 const selectedActionTypes = ref<Set<string>>(new Set())
 const selectedMeeting = ref((route.query.meeting as string) || '')
 const limit = ref(50)
@@ -45,12 +61,17 @@ const animMeetings = useCountUp(totalMeetings, isLoaded, 1500)
 const animStandards = useCountUp(committeeStandards, isLoaded, 1500)
 const animEstablished = useCountUp(committeeEst, isLoaded, 1500)
 
-const yearRange = computed(() => {
-  if (!resolutions.value.length) return { earliest: '', latest: '' }
-  const years = resolutions.value.map(r => parseInt(r.year)).filter(y => !isNaN(y))
-  if (!years.length) return { earliest: '', latest: '' }
-  return { earliest: String(Math.min(...years)), latest: String(Math.max(...years)) }
-})
+const yearSpan = computed(() => resolutionYearRange(resolutions.value))
+
+const availableYears = computed(() => yearFacets(resolutions.value))
+const actionFacets = computed(() => actionTypeFacets(resolutions.value))
+
+const hasActiveFilters = computed(() =>
+  !!searchQuery.value ||
+  !!selectedYear.value ||
+  selectedActionTypes.value.size > 0 ||
+  !!selectedMeeting.value,
+)
 
 function formatNumber(n: number): string {
   return n.toLocaleString('en-US')
@@ -90,43 +111,6 @@ function scrollToResults() {
   }
 }
 
-const availableYears = computed(() => {
-  const years = new Set<string>()
-  resolutions.value.forEach(r => {
-    if (r.year) years.add(r.year)
-  })
-  return Array.from(years).sort((a, b) => b.localeCompare(a))
-})
-
-const topActionTypes = computed(() => {
-  if (!resolutions.value.length) return []
-  const counts: Record<string, number> = {}
-  resolutions.value.forEach(r => {
-    if (r.actions) {
-      r.actions.forEach(a => {
-        if (a.type) counts[a.type] = (counts[a.type] || 0) + 1
-      })
-    }
-  })
-  return Object.entries(counts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
-    .map(e => e[0])
-})
-
-const allActionTypes = computed(() => {
-  if (!resolutions.value.length) return []
-  const types = new Set<string>()
-  resolutions.value.forEach(r => {
-    if (r.actions) {
-      r.actions.forEach(a => {
-        if (a.type) types.add(a.type)
-      })
-    }
-  })
-  return Array.from(types).sort()
-})
-
 function toggleActionType(action: string) {
   const newSet = new Set(selectedActionTypes.value)
   if (newSet.has(action)) newSet.delete(action)
@@ -140,15 +124,6 @@ function clearAllFilters() {
   selectedActionTypes.value = new Set()
   sortOrder.value = 'newest'
   selectedMeeting.value = ''
-}
-
-function getUniqueActions(res: any): string[] {
-  if (!res.actions) return []
-  const types = new Set<string>()
-  res.actions.forEach((a: any) => {
-    if (a.type) types.add(a.type)
-  })
-  return Array.from(types)
 }
 
 const filteredResolutions = computed(() => {
@@ -168,38 +143,24 @@ const filteredResolutions = computed(() => {
 
   if (selectedActionTypes.value.size > 0) {
     list = list.filter(r => {
-      const types = getUniqueActions(r)
+      const types = uniqueActionTypes(r)
       return types.some(t => selectedActionTypes.value.has(t))
     })
   }
 
-  if (searchQuery.value) {
-    const q = searchQuery.value.trim()
+  const q = searchQuery.value.trim()
+  if (q) {
     const matched = search(q)
     if (matched.length > 0) {
       const matchedIds = new Set(matched.map(r => r.id))
       list = list.filter(r => matchedIds.has(r.id))
     } else {
-      const qLower = q.toLowerCase()
-      list = list.filter(r =>
-        (r.title && r.title.toLowerCase().includes(qLower)) ||
-        (r.id && r.id.toLowerCase().includes(qLower)) ||
-        (r.subject && r.subject.toLowerCase().includes(qLower)) ||
-        (r.venue && r.venue.toLowerCase().includes(qLower)),
-      )
+      const matchedIds = new Set(searchResolutions(resolutions.value, q).map(r => r.id))
+      list = list.filter(r => matchedIds.has(r.id))
     }
   }
 
-  return list.slice().sort((a, b) => {
-    if (sortOrder.value === 'oldest') {
-      return (a.year || '').localeCompare(b.year || '') || a.id.localeCompare(b.id)
-    } else if (sortOrder.value === 'most_actions') {
-      const aCount = a.actions ? a.actions.length : 0
-      const bCount = b.actions ? b.actions.length : 0
-      return bCount - aCount || (b.year || '').localeCompare(a.year || '')
-    }
-    return (b.year || '').localeCompare(a.year || '') || b.id.localeCompare(a.id)
-  })
+  return list.slice().sort(compareResolutions(sortOrder.value))
 })
 
 const paginatedResolutions = computed(() => filteredResolutions.value.slice(0, limit.value))
@@ -229,7 +190,7 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
       title="Every decision the committee"
       accent="has ever made."
       :lead="isLoaded
-        ? `${formatNumber(totalResolutions)} resolutions from ${formatNumber(totalMeetings)} plenary meetings and committee ballots, spanning ${yearRange.earliest} to ${yearRange.latest}. ${committee.tagline}.`
+        ? `${formatNumber(totalResolutions)} resolutions from ${formatNumber(totalMeetings)} plenary meetings and committee ballots, spanning ${yearSpan.earliest} to ${yearSpan.latest}. ${committee.tagline}.`
         : 'Loading the archive…'"
     >
       <template #decoration>
@@ -259,182 +220,155 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
         </button>
       </div>
 
-      <div class="std-filter std-filter--elevated">
-        <div class="std-filter__search">
-          <svg class="std-filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            ref="searchInputRef"
-            type="search"
-            v-model="searchQuery"
-            class="std-filter__search-input"
-            placeholder="Search by topic, number, or keyword…"
-            autocomplete="off"
-            spellcheck="false"
-            aria-label="Search resolutions"
-          />
-        </div>
-        <div class="std-filter__controls">
-          <div class="std-filter__field">
-            <span class="std-filter__label">Filter by Year</span>
-            <div class="std-filter__chips">
-              <button class="std-chip" :class="{ 'is-active': selectedYear === '' }" @click="selectedYear = ''">All Years</button>
-              <button
-                v-for="year in availableYears"
-                :key="year"
-                class="std-chip"
-                :class="{ 'is-active': selectedYear === year }"
-                @click="selectedYear = year"
-              >{{ year }}</button>
-            </div>
-          </div>
+      <FilterBar
+        v-model="searchQuery"
+        elevated
+        search-placeholder="Search by topic, number, or keyword…"
+        search-label="Search resolutions"
+        :showing="filteredResolutions.length"
+        :total="totalResolutions"
+        total-label="resolutions"
+        :clearable="hasActiveFilters"
+        @clear="clearAllFilters"
+      >
+        <template #facets>
+          <FilterFacet label="Year">
+            <FilterChip :active="selectedYear === ''" @click="selectedYear = ''">All</FilterChip>
+            <FilterChip
+              v-for="year in availableYears"
+              :key="year"
+              :active="selectedYear === year"
+              @click="selectedYear = year"
+            >{{ year }}</FilterChip>
+          </FilterFacet>
 
-          <div class="std-filter__field" v-if="topActionTypes.length">
-            <span class="std-filter__label">Filter by Action</span>
-            <div class="std-filter__chips">
-              <button class="std-chip" :class="{ 'is-active': selectedActionTypes.size === 0 }" @click="selectedActionTypes.clear()">All Actions</button>
-              <button
-                v-for="action in topActionTypes"
-                :key="action"
-                class="std-chip"
-                :class="{ 'is-active': selectedActionTypes.has(action) }"
-                @click="toggleActionType(action)"
-              >
-                <span class="chip-color-dot" :style="{ '--dot-bg': getActionColor(action).bg }"></span>
-                {{ action }}
-              </button>
-            </div>
-          </div>
+          <FilterFacet v-if="actionFacets.top.length" label="Action">
+            <FilterChip
+              :active="selectedActionTypes.size === 0"
+              @click="selectedActionTypes.clear()"
+            >All</FilterChip>
+            <FilterChip
+              v-for="action in actionFacets.top"
+              :key="action"
+              :active="selectedActionTypes.has(action)"
+              :dot-color="getActionColor(action).bg"
+              @click="toggleActionType(action)"
+            >{{ action }}</FilterChip>
+          </FilterFacet>
 
-          <div class="std-filter__field std-filter__field--flex-end">
-            <div class="sort-dropdown-container">
-              <label for="sort-dropdown" class="sr-only">Sort By</label>
-              <select id="sort-dropdown" v-model="sortOrder" class="sort-dropdown">
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="most_actions">Most Actions</option>
-              </select>
-              <svg class="sort-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-          </div>
-        </div>
+          <FilterFacet label="Sort">
+            <select v-model="sortOrder" class="sort-select" aria-label="Sort resolutions">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="most_actions">Most actions</option>
+            </select>
+          </FilterFacet>
+        </template>
 
-        <div class="active-filters-bar" v-if="searchQuery || selectedYear || selectedActionTypes.size > 0">
-          <span class="active-filters-label">Active Filters:</span>
-          <div class="active-filter-chips">
-            <button v-if="searchQuery" class="active-filter-chip" @click="searchQuery = ''">
-              "{{ searchQuery }}" <span class="filter-remove">&times;</span>
-            </button>
-            <button v-if="selectedYear" class="active-filter-chip" @click="selectedYear = ''">
-              {{ selectedYear }} <span class="filter-remove">&times;</span>
-            </button>
-            <button v-for="act in Array.from(selectedActionTypes)" :key="act" class="active-filter-chip" @click="toggleActionType(act)">
-              {{ act }} <span class="filter-remove">&times;</span>
-            </button>
-            <button class="active-filter-clear" @click="clearAllFilters">Clear All</button>
-          </div>
-        </div>
+        <template #active-filters>
+          <FilterChip v-if="searchQuery" :active="true" @click="searchQuery = ''">
+            “{{ searchQuery }}”
+          </FilterChip>
+          <FilterChip v-if="selectedYear" :active="true" @click="selectedYear = ''">
+            {{ selectedYear }}
+          </FilterChip>
+          <FilterChip
+            v-for="act in Array.from(selectedActionTypes)"
+            :key="act"
+            :active="true"
+            @click="toggleActionType(act)"
+          >{{ act }}</FilterChip>
+        </template>
 
-        <div class="std-filter__meta">
-          <span>Showing {{ filteredResolutions.length }} of {{ totalResolutions }} resolutions</span>
+        <template #meta-extra>
           <button class="legend-toggle" @click="isLegendOpen = !isLegendOpen">
-            {{ isLegendOpen ? 'Hide Legend' : 'View Action Legend' }}
+            {{ isLegendOpen ? 'Hide legend' : 'Action legend' }}
           </button>
-        </div>
+        </template>
+      </FilterBar>
 
-        <div v-show="isLegendOpen" class="action-legend">
-          <div v-for="action in allActionTypes" :key="action" class="legend-item">
-            <span class="legend-color" :style="{ '--legend-bg': getActionColor(action).bg }"></span>
-            <span class="legend-label">{{ action }}</span>
-          </div>
+      <div v-show="isLegendOpen" class="action-legend">
+        <div v-for="action in actionFacets.all" :key="action" class="legend-item">
+          <span class="legend-color" :style="{ background: getActionColor(action).bg }"></span>
+          <span class="legend-label">{{ action }}</span>
         </div>
       </div>
 
-      <div class="std-results" v-if="isLoaded">
+      <ListCardSkeleton v-if="!isLoaded" :count="6" />
+
+      <div v-else-if="filteredResolutions.length === 0">
+        <EmptyState
+          title="Nothing in the archive matches"
+          message="Try a different keyword, or clear a filter to widen the search."
+        >
+          <template #suggestions>
+            <FilterChip @click="searchQuery = 'resolves'">resolves</FilterChip>
+            <FilterChip @click="searchQuery = 'approves'">approves</FilterChip>
+            <FilterChip @click="searchQuery = 'ISO 8601'">ISO 8601</FilterChip>
+            <FilterChip @click="searchQuery = 'EDIFACT'">EDIFACT</FilterChip>
+          </template>
+          <FilterChip @click="clearAllFilters">Clear all filters</FilterChip>
+        </EmptyState>
+      </div>
+
+      <div v-else class="res-results">
         <RouterLink
           v-for="(res, index) in paginatedResolutions"
           :key="res.source_type + '/' + res.source_file + '/' + res.id"
           :to="res.path"
-          class="std-results__card meeting-card animate-card"
-          :style="`--nth: ${index % limit}`"
+          class="res-card"
+          :style="{ '--nth': index % limit }"
         >
-          <div class="card-header-row">
-            <div class="std-results__name">
-              <span v-if="res.is_acclamation" class="std-results__type type-acclamation">Acclamation</span>
+          <div class="res-card__top">
+            <div class="res-card__id">
+              <span v-if="res.is_acclamation" class="res-card__acclamation">Acclamation</span>
               <template v-else>
                 <span>{{ res.id }}</span>
-                <span class="std-results__type">{{ res.source_type === 'plenary' ? 'Plenary' : res.source_type }}</span>
+                <span class="res-card__source">{{ res.source_type === 'plenary' ? 'Plenary' : res.source_type }}</span>
               </template>
             </div>
-            <span class="badge-year">{{ res.year }}</span>
+            <span class="res-card__year">{{ res.year }}</span>
           </div>
 
-          <div class="std-results__title meeting-card__title">
+          <h3 class="res-card__title">
             <span v-html="highlightText(res.is_acclamation ? 'Acclamation' : (res.title || 'Resolution ' + res.id), searchQuery)"></span>
-          </div>
+          </h3>
 
-          <div v-if="res.snippet" class="std-results__snippet snippet-text">
+          <p v-if="res.snippet" class="res-card__snippet">
             <span v-html="highlightText(res.snippet, searchQuery)"></span>
-          </div>
+          </p>
 
-          <div class="card-footer">
-            <div class="card-actions-chips" v-if="getUniqueActions(res).length">
+          <div class="res-card__footer">
+            <div class="res-card__actions" v-if="uniqueActionTypes(res).length">
               <span
-                v-for="actType in getUniqueActions(res).slice(0, 3)"
+                v-for="actType in uniqueActionTypes(res).slice(0, 3)"
                 :key="actType"
-                class="action-chip"
-                :style="{ '--chip-bg': getActionColor(actType).bg, '--chip-text': getActionColor(actType).text }"
+                class="res-card__action"
+                :style="{
+                  '--act-bg': getActionColor(actType).bg,
+                  '--act-text': getActionColor(actType).text,
+                }"
               >{{ actType }}</span>
-              <span v-if="getUniqueActions(res).length > 3" class="action-chip action-chip--more">+{{ getUniqueActions(res).length - 3 }} more</span>
+              <span
+                v-if="uniqueActionTypes(res).length > 3"
+                class="res-card__action res-card__action--more"
+              >+{{ uniqueActionTypes(res).length - 3 }}</span>
             </div>
 
-            <div class="card-meta-bottom">
-              <span v-if="res.meeting_date" class="std-results__badge badge-date">{{ formatDate(res.meeting_date) }}</span>
-              <span v-if="res.venue" class="std-results__badge badge-venue truncate-text">{{ res.venue }}</span>
+            <div class="res-card__meta">
+              <span v-if="res.meeting_date" class="res-card__badge">{{ formatDate(res.meeting_date) }}</span>
+              <span v-if="res.venue" class="res-card__badge res-card__badge--venue">{{ res.venue }}</span>
             </div>
-            <div class="card-hover-arrow">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </div>
+
+            <span class="res-card__arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
           </div>
         </RouterLink>
-
-        <div v-if="filteredResolutions.length === 0" class="empty-state">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="empty-state__icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <h3>No results found</h3>
-          <p>Try adjusting your search or filtering by a different criteria.</p>
-          <div class="empty-state__suggestions">
-            <p class="suggestions-label">Try searching for:</p>
-            <div class="suggestions-chips">
-              <button class="std-chip" @click="searchQuery = 'resolves'">resolves</button>
-              <button class="std-chip" @click="searchQuery = 'approves'">approves</button>
-              <button class="std-chip" @click="searchQuery = 'ISO 8601'">ISO 8601</button>
-              <button class="std-chip" @click="searchQuery = 'EDIFACT'">EDIFACT</button>
-            </div>
-          </div>
-          <button class="std-chip btn-mt" @click="clearAllFilters">Clear all filters</button>
-        </div>
-      </div>
-
-      <div v-else class="loading-container">
-        <div class="skeleton-grid">
-          <div v-for="n in 6" :key="n" class="skeleton-card">
-            <div class="skeleton-badge"></div>
-            <div class="skeleton-title"></div>
-            <div class="skeleton-title w-3-4"></div>
-            <div class="skeleton-text"></div>
-            <div class="skeleton-text"></div>
-            <div class="skeleton-footer">
-              <div class="skeleton-badge"></div>
-              <div class="skeleton-badge"></div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div v-if="hasMore" class="load-more-container">
-        <button @click="loadMore" class="std-chip load-more-btn">Load More</button>
+        <button @click="loadMore" class="load-more-btn">Load more</button>
       </div>
     </div>
   </div>
@@ -442,10 +376,6 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
 
 <style scoped>
 .res-page-wrap { display: flex; flex-direction: column; }
-
-/* Pull the results section up into the hero's shadow so the elevated
-   filter card overlaps the hero bottom, eliminating the dead strip
-   that the default .ph margin + res-page padding was creating. */
 .res-page-wrap :deep(.ph) {
   margin-bottom: 0;
   padding-bottom: 2rem;
@@ -454,7 +384,13 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
   margin-top: 2rem;
 }
 
-/* HERO buttons (slotted into PageHero #actions) */
+.res-page {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* Hero buttons (slotted into PageHero #actions) */
 .hero-btn {
   display: inline-flex;
   align-items: center;
@@ -472,12 +408,12 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
   background-color: var(--color-brand-fill);
   color: #fff;
   border: 1px solid transparent;
-  box-shadow: 0 4px 6px -1px rgb(185 28 28 / 0.3), 0 2px 4px -1px rgb(185 28 28 / 0.2);
+  box-shadow: 0 4px 6px -1px rgb(30 58 138 / 0.3), 0 2px 4px -1px rgb(30 58 138 / 0.2);
 }
 .hero-btn--primary:hover, .hero-btn--primary:focus-visible {
-  background-color: #7f1313;
+  background-color: var(--color-brand-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgb(185 28 28 / 0.4), 0 4px 6px -2px rgb(185 28 28 / 0.2);
+  box-shadow: 0 10px 15px -3px rgb(30 58 138 / 0.4), 0 4px 6px -2px rgb(30 58 138 / 0.2);
   outline: none;
 }
 .hero-btn--primary:active { transform: translateY(0); }
@@ -502,25 +438,7 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.animate-card {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--nth) * 0.03s);
-}
-
-.std-filter--elevated {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  margin-top: -2rem;
-  position: relative;
-  z-index: 20;
-}
-.dark .std-filter--elevated {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-  border-color: rgba(51, 65, 85, 0.8);
-}
-
+/* Meeting-filter banner (cross-linked from a meeting detail page) */
 .meeting-filter-banner {
   display: flex;
   align-items: center;
@@ -545,9 +463,9 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
 }
 .meeting-filter-banner__label {
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   color: var(--color-slate-500);
 }
 .dark .meeting-filter-banner__label { color: var(--color-slate-400); }
@@ -555,7 +473,7 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
   font-weight: 600;
   color: var(--color-brand);
 }
-.dark .meeting-filter-banner__name { color: #ff7d82; }
+.dark .meeting-filter-banner__name { color: #94b6e8; }
 .meeting-filter-banner__clear {
   display: inline-flex;
   align-items: center;
@@ -563,6 +481,7 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
   background: transparent;
   border: none;
   color: var(--color-slate-500);
+  font-family: inherit;
   font-size: 0.8125rem;
   font-weight: 500;
   cursor: pointer;
@@ -572,191 +491,52 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
 }
 .dark .meeting-filter-banner__clear { color: var(--color-slate-300); }
 .meeting-filter-banner__clear:hover {
-  color: var(--color-brand);
-  background: rgba(227, 0, 15, 0.06);
+  color: var(--color-blue-accent);
+  background: rgb(30 58 138 / 0.06);
 }
 .dark .meeting-filter-banner__clear:hover {
-  color: #ff7d82;
-  background: rgba(255, 94, 99, 0.08);
+  color: #94b6e8;
+  background: rgb(148 182 232 / 0.08);
 }
 
-.std-filter__search {
-  position: relative;
-  margin-bottom: 1.25rem;
-}
-.std-filter__search-icon {
-  position: absolute;
-  left: 0.875rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #a8a29e;
-  pointer-events: none;
-}
-.std-filter__search-input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  font-size: 0.9375rem;
-  font-family: inherit;
+/* Sort dropdown — kept small and inline inside the FilterBar sort slot */
+.sort-select {
+  appearance: none;
+  background: #fff;
   border: 1px solid #d6d3d1;
   border-radius: 0.5rem;
-  background: #fafaf9;
-  color: #1c1917;
-  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
-  -webkit-appearance: none;
-  appearance: textfield;
+  padding: 0.4375rem 2rem 0.4375rem 0.875rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #57534e;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.625rem center;
 }
-.std-filter__search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
-.std-filter__search-input:focus {
-  outline: none;
-  border-color: var(--color-blue-accent);
-  background: #fff;
-  box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
-}
-.dark .std-filter__search-input {
+.dark .sort-select {
   background: #292524;
   border-color: #57534e;
-  color: #fafaf9;
+  color: #d6d3d1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a8a29e' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
 }
-.dark .std-filter__search-input:focus {
-  border-color: #5379bf;
-  background: #1c1917;
-}
-.dark .std-filter__search-icon { color: #a8a29e; }
-
-.std-filter__controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-@media (min-width: 1024px) {
-  .std-filter__controls {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
-}
-.std-filter__field--flex-end {
-  margin-left: auto;
-  align-self: flex-start;
-}
-
-.chip-color-dot {
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background-color: var(--dot-bg);
-  margin-right: 0.375rem;
-}
-
-.sort-dropdown-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.sort-dropdown {
-  appearance: none;
-  background: white;
-  border: 1px solid var(--color-slate-200);
-  border-radius: 0.5rem;
-  padding: 0.5rem 2.5rem 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-slate-700);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.dark .sort-dropdown {
-  background: var(--color-slate-800);
-  border-color: var(--color-slate-700);
-  color: var(--color-slate-200);
-}
-.sort-dropdown:focus-visible {
+.sort-select:focus-visible {
   outline: none;
   border-color: var(--color-blue-accent);
-  box-shadow: 0 0 0 2px rgba(0, 97, 173, 0.2);
-}
-.sort-icon {
-  position: absolute;
-  right: 0.75rem;
-  pointer-events: none;
-  color: var(--color-slate-500);
+  box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
 }
 
-.active-filters-bar {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: 1px dashed var(--color-slate-200);
-  flex-wrap: wrap;
-}
-.dark .active-filters-bar { border-top-color: var(--color-slate-700); }
-.active-filters-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-slate-500);
-  text-transform: uppercase;
-}
-.active-filter-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.active-filter-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  background-color: var(--color-slate-100);
-  border: 1px solid var(--color-slate-200);
-  color: var(--color-slate-700);
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.625rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.dark .active-filter-chip {
-  background-color: var(--color-slate-800);
-  border-color: var(--color-slate-700);
-  color: var(--color-slate-200);
-}
-.active-filter-chip:hover { background-color: var(--color-slate-200); }
-.dark .active-filter-chip:hover { background-color: var(--color-slate-700); }
-.filter-remove { font-size: 1rem; line-height: 1; }
-.active-filter-clear {
-  background: none;
-  border: none;
-  color: var(--color-blue-accent);
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-}
-.active-filter-clear:hover { text-decoration: underline; }
-
-.std-filter__meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 0.75rem;
-  margin-top: 0.5rem;
-  border-top: 1px solid var(--color-slate-100);
-  flex-wrap: wrap;
-}
-.dark .std-filter__meta { border-top-color: var(--color-slate-800); }
-.std-filter__meta > span:first-child {
-  font-size: 0.8125rem;
-  color: var(--color-slate-600);
-  font-weight: 500;
-}
-.dark .std-filter__meta > span:first-child { color: var(--color-slate-400); }
+/* Legend toggle in FilterBar meta-extra slot */
 .legend-toggle {
-  background: var(--color-slate-100);
-  border: 1px solid var(--color-slate-200);
-  color: var(--color-slate-600);
+  background: transparent;
+  border: 1px solid #e7e5e4;
+  color: #78716c;
+  font-family: inherit;
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.25rem 0.625rem;
+  padding: 0.3125rem 0.75rem;
   border-radius: 9999px;
   cursor: pointer;
   transition: all 0.2s;
@@ -768,71 +548,246 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
   color: white;
 }
 .dark .legend-toggle {
-  background: var(--color-slate-800);
-  border-color: var(--color-slate-700);
-  color: var(--color-slate-300);
+  border-color: #44403c;
+  color: #a8a29e;
 }
 .dark .legend-toggle:hover {
-  background: var(--color-blue-accent);
-  border-color: var(--color-blue-accent);
-  color: white;
+  background: var(--color-brand-fill);
+  border-color: var(--color-brand-fill);
 }
 
+/* Action legend (expanded panel below the filter bar) */
 .action-legend {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: var(--color-slate-50);
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
   border-radius: 0.5rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1rem 1.25rem;
 }
-.dark .action-legend { background: var(--color-slate-800); }
+.dark .action-legend {
+  background: rgb(15 23 42 / 0.4);
+  border-color: #44403c;
+}
 .legend-item {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
+  gap: 0.5rem;
   font-size: 0.75rem;
-  color: var(--color-slate-700);
+  color: #57534e;
+  font-weight: 500;
 }
-.dark .legend-item { color: var(--color-slate-300); }
+.dark .legend-item { color: #a8a29e; }
 .legend-color {
   display: inline-block;
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 0.25rem;
-  background-color: var(--legend-bg);
+  flex-shrink: 0;
 }
 
-.card-header-row {
+/* Resolution card grid */
+.res-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 0.75rem;
+}
+
+.res-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.125rem 1.25rem;
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.625rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--nth) * 0.03s);
+}
+.dark .res-card {
+  background: rgb(15 23 42 / 0.4);
+  border-color: #44403c;
+}
+.res-card:hover, .res-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-color: var(--color-blue-accent);
+  outline: none;
+}
+.dark .res-card:hover, .dark .res-card:focus-visible {
+  box-shadow: 0 12px 20px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  border-color: #94b6e8;
+}
+
+.res-card__top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 0.5rem;
 }
-.badge-year {
+.res-card__id {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-blue-accent);
+}
+.dark .res-card__id { color: #94b6e8; }
+.res-card__source {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a8a29e;
+  background: #f5f5f4;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+.dark .res-card__source {
+  background: #292524;
+  color: #a8a29e;
+}
+.res-card__acclamation {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 0.1875rem 0.625rem;
+  border-radius: 0.25rem;
+}
+.dark .res-card__acclamation {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+.res-card__year {
   font-family: ui-monospace, SFMono-Regular, monospace;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-slate-500);
-  background: var(--color-slate-100);
+  color: #78716c;
+  background: #f5f5f4;
   padding: 0.125rem 0.375rem;
   border-radius: 0.25rem;
 }
-.dark .badge-year {
-  background: var(--color-slate-800);
-  color: var(--color-slate-400);
+.dark .res-card__year {
+  background: #292524;
+  color: #a8a29e;
 }
-.type-acclamation {
-  background: rgba(99, 102, 241, 0.1) !important;
-  color: #6366f1 !important;
-  border: 1px solid rgba(99, 102, 241, 0.2) !important;
-  font-size: 0.75rem !important;
+
+.res-card__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: #1c1917;
+  margin: 0 0 0.5rem;
+  transition: color 0.3s;
 }
-.dark .type-acclamation {
-  background: rgba(99, 102, 241, 0.2) !important;
-  color: #818cf8 !important;
+.dark .res-card__title { color: #fafaf9; }
+.res-card:hover .res-card__title { color: var(--color-blue-accent); }
+.dark .res-card:hover .res-card__title { color: #94b6e8; }
+
+.res-card__snippet {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #78716c;
+  margin: 0 0 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+.dark .res-card__snippet { color: #a8a29e; }
+
+.res-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: auto;
+  padding-top: 0.875rem;
+  position: relative;
+}
+.res-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+.res-card__action {
+  background: var(--act-bg);
+  color: var(--act-text);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.res-card__action--more {
+  background: #f5f5f4;
+  color: #78716c;
+  border: 1px solid #e7e5e4;
+}
+.dark .res-card__action--more {
+  background: #292524;
+  color: #a8a29e;
+  border-color: #44403c;
+}
+.res-card__meta {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.res-card__badge {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  background: #f5f5f4;
+  color: #57534e;
+}
+.dark .res-card__badge {
+  background: #292524;
+  color: #d6d3d1;
+}
+.res-card__badge--venue {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.res-card__arrow {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0;
+  color: var(--color-blue-accent);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dark .res-card__arrow { color: #94b6e8; }
+.res-card:hover .res-card__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 :deep(.search-highlight) {
   background-color: rgba(250, 204, 21, 0.4);
   color: inherit;
@@ -841,200 +796,43 @@ watch([searchQuery, selectedYear, sortOrder, selectedMeeting], () => {
 }
 .dark :deep(.search-highlight) { background-color: rgba(234, 179, 8, 0.3); }
 
-.snippet-text {
-  font-size: 0.875rem;
-  color: var(--color-slate-500);
-  margin-top: 0.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.5;
-}
-
-.card-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: auto;
-  padding-top: 1rem;
-  position: relative;
-}
-.card-actions-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
-.action-chip {
-  background-color: var(--chip-bg);
-  color: var(--chip-text);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  padding: 0.125rem 0.5rem;
-  border-radius: 9999px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.action-chip--more {
-  background-color: var(--color-slate-100);
-  color: var(--color-slate-600);
-  border: 1px solid var(--color-slate-200);
-}
-.dark .action-chip--more {
-  background-color: var(--color-slate-800);
-  color: var(--color-slate-300);
-  border-color: var(--color-slate-700);
-}
-.card-meta-bottom {
-  display: flex;
-  gap: 0.375rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.badge-venue { max-width: 150px; }
-.card-hover-arrow {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: var(--color-blue-accent);
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.meeting-card:hover .card-hover-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-.meeting-card {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
-}
-.meeting-card:hover, .meeting-card:focus-visible {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 20px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  border-color: var(--color-blue-accent);
-  outline: none;
-}
-.dark .meeting-card:hover, .dark .meeting-card:focus-visible {
-  box-shadow: 0 12px 20px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
-}
-.meeting-card__title {
-  transition: color 0.3s;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1.125rem !important;
-  color: var(--color-slate-900) !important;
-  line-height: 1.3;
-}
-.dark .meeting-card__title { color: white !important; }
-.meeting-card:hover .meeting-card__title { color: var(--color-blue-accent) !important; }
-.truncate-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.empty-state {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 5rem 2rem;
-  background: white;
-  border-radius: 1rem;
-  border: 1px dashed var(--color-slate-300);
-}
-.dark .empty-state {
-  background: var(--color-slate-900);
-  border-color: var(--color-slate-700);
-}
-.empty-state__icon {
-  width: 3.5rem;
-  height: 3.5rem;
-  margin: 0 auto 1.5rem;
-  color: var(--color-slate-400);
-}
-.dark .empty-state__icon { color: var(--color-slate-600); }
-.empty-state h3 {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  color: var(--color-slate-900);
-  margin-bottom: 0.75rem;
-}
-.dark .empty-state h3 { color: white; }
-.empty-state p { color: var(--color-slate-500); }
-.empty-state__suggestions {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-slate-100);
-}
-.dark .empty-state__suggestions { border-top-color: var(--color-slate-800); }
-.suggestions-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--color-slate-600) !important;
-}
-.suggestions-chips {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.btn-mt { margin-top: 2rem; }
-
+/* Load more */
 .load-more-container {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   text-align: center;
 }
 .load-more-btn {
-  font-size: 0.875rem;
+  display: inline-flex;
+  padding: 0.625rem 1.75rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
   font-weight: 600;
-  padding: 0.75rem 2rem;
-  background-color: white;
-  border: 1px solid var(--color-slate-200);
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  color: #57534e;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 .load-more-btn:hover {
-  background-color: var(--color-slate-50);
-  color: var(--color-blue-accent);
   border-color: var(--color-blue-accent);
+  color: var(--color-blue-accent);
 }
 .dark .load-more-btn {
-  background-color: var(--color-slate-800);
-  border-color: var(--color-slate-700);
+  background: rgb(15 23 42 / 0.5);
+  border-color: #44403c;
+  color: #d6d3d1;
 }
-.dark .load-more-btn:hover { background-color: var(--color-slate-700); }
+.dark .load-more-btn:hover {
+  border-color: #94b6e8;
+  color: #94b6e8;
+}
 
-.loading-container { padding: 2.5rem 0; width: 100%; }
-.skeleton-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-  gap: 0.75rem;
-}
-.skeleton-card {
-  padding: 1.25rem;
-  background: white;
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-slate-200);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.dark .skeleton-card {
-  background: rgb(15 23 42 / 0.4);
-  border-color: var(--color-slate-800);
-}
-.skeleton-badge {
-  height: 1rem;
-  width: 4rem;
-  border-radius: 9999px;
-}
-.skeleton-title {
-  height: 1.5rem;
-  width: 100%;
-}
-.w-3-4 { width: 75%; }
-.skeleton-text {
-  height: 1rem;
-  width: 100%;
-}
-.skeleton-footer {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: auto;
-  padding-top: 1rem;
+@media (prefers-reduced-motion: reduce) {
+  .res-card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 </style>
