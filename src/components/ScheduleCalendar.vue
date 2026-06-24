@@ -34,6 +34,11 @@ const props = defineProps<{
   schedule: EventScheduleItem[]
   venueName?: string
   generalArea?: string
+  clickableDates?: string[]
+}>()
+
+const emit = defineEmits<{
+  'event-click': [{ date: string; event: EventScheduleItem }]
 }>()
 
 const HOUR_HEIGHT = 56
@@ -102,6 +107,17 @@ function categorize(name?: string): EventCategory {
   if (lower.includes('nwip') || lower.includes('pwi')) return 'nwip'
   if (lower.includes('registration') || lower.includes('deadline')) return 'deadline'
   return 'other'
+}
+
+function isClickable(ev: ProcessedEvent): boolean {
+  if (!props.clickableDates || props.clickableDates.length === 0) return false
+  if (ev.category !== 'plenary' && ev.category !== 'opening') return false
+  return props.clickableDates.includes(normalizeDate(ev.date))
+}
+
+function handleClick(ev: ProcessedEvent): void {
+  if (!isClickable(ev)) return
+  emit('event-click', { date: normalizeDate(ev.date), event: ev })
 }
 
 const days = computed<DayGroup[]>(() => {
@@ -312,8 +328,13 @@ function shouldShowAsCalendar(): boolean {
                 v-for="(ev, idx) in day.events"
                 :key="idx"
                 class="cal__event"
-                :class="[`cal__event--${ev.category}`, { 'cal__event--all-day': ev.allDay }]"
+                :class="[`cal__event--${ev.category}`, { 'cal__event--all-day': ev.allDay, 'cal__event--clickable': isClickable(ev) }]"
                 :style="{ ...eventStyle(ev), '--bar': metaFor(ev.category).bar, '--bg': metaFor(ev.category).bg, '--bg-dark': metaFor(ev.category).bgDark, '--text': metaFor(ev.category).text, '--text-dark': metaFor(ev.category).textDark }"
+                :role="isClickable(ev) ? 'button' : undefined"
+                :tabindex="isClickable(ev) ? 0 : undefined"
+                :title="isClickable(ev) ? 'View session agenda' : undefined"
+                @click="handleClick(ev)"
+                @keydown.enter="handleClick(ev)"
               >
                 <p class="cal__event-time">
                   {{ formatTime(ev.startMin) }}–{{ formatTime(ev.endMin) }}
@@ -322,6 +343,7 @@ function shouldShowAsCalendar(): boolean {
                 <p v-if="ev.event" class="cal__event-name">{{ ev.event }}</p>
                 <p v-if="ev.description" class="cal__event-desc">{{ ev.description }}</p>
                 <p v-if="ev.tzNote" class="cal__event-tz">{{ ev.tzNote }}</p>
+                <p v-if="isClickable(ev)" class="cal__event-hint">Agenda →</p>
               </div>
             </div>
           </div>
@@ -340,8 +362,13 @@ function shouldShowAsCalendar(): boolean {
             v-for="(ev, idx) in day.events"
             :key="idx"
             class="cal__mobile-event"
-            :class="[`cal__event--${ev.category}`]"
+            :class="[`cal__event--${ev.category}`, { 'cal__event--clickable': isClickable(ev) }]"
             :style="{ '--bar': metaFor(ev.category).bar, '--bg': metaFor(ev.category).bg, '--bg-dark': metaFor(ev.category).bgDark, '--text': metaFor(ev.category).text, '--text-dark': metaFor(ev.category).textDark }"
+            :role="isClickable(ev) ? 'button' : undefined"
+            :tabindex="isClickable(ev) ? 0 : undefined"
+            :title="isClickable(ev) ? 'View session agenda' : undefined"
+            @click="handleClick(ev)"
+            @keydown.enter="handleClick(ev)"
           >
             <div class="cal__mobile-time">
               <span class="cal__mobile-clock">{{ formatTime(ev.startMin) }}–{{ formatTime(ev.endMin) }}</span>
@@ -350,6 +377,7 @@ function shouldShowAsCalendar(): boolean {
             <div class="cal__mobile-body">
               <p v-if="ev.event" class="cal__mobile-name">{{ ev.event }}</p>
               <p v-if="ev.description" class="cal__mobile-desc">{{ ev.description }}</p>
+              <p v-if="isClickable(ev)" class="cal__mobile-hint">Agenda →</p>
             </div>
           </div>
         </div>
@@ -500,6 +528,8 @@ function shouldShowAsCalendar(): boolean {
   color: var(--text);
   transition: transform 120ms ease, box-shadow 120ms ease;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
 }
 .cal__event:hover {
   transform: translateY(-1px);
@@ -555,6 +585,37 @@ function shouldShowAsCalendar(): boolean {
 .cal__event--plenary { border-left-width: 4px; }
 .cal__event--social { border-left-style: dotted; border-left-width: 4px; }
 .cal__event--deadline { border-left-style: dashed; }
+
+.cal__event--clickable { cursor: pointer; }
+.cal__event--clickable:focus-visible {
+  outline: 2px solid var(--color-blue-accent, #1e3a8a);
+  outline-offset: 2px;
+}
+.cal__event--clickable .cal__event-desc {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+.cal__event--clickable .cal__event-hint {
+  position: absolute;
+  bottom: 0.1875rem;
+  right: 0.375rem;
+  margin: 0;
+  padding-left: 0.625rem;
+  background: linear-gradient(to right, transparent, var(--bg) 0.5rem);
+  line-height: 1;
+}
+.dark .cal__event--clickable .cal__event-hint {
+  background: linear-gradient(to right, transparent, var(--bg-dark) 0.5rem);
+}
+.cal__event-hint {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0.1875rem 0 0;
+  opacity: 0.65;
+}
 
 .cal__mobile { display: none; }
 
@@ -702,5 +763,16 @@ function shouldShowAsCalendar(): boolean {
     opacity: 0.78;
   }
   .dark .cal__mobile-desc { color: var(--text-dark); }
+  .cal__mobile-hint {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0.25rem 0 0;
+    color: var(--text);
+    opacity: 0.7;
+  }
+  .dark .cal__mobile-hint { color: var(--text-dark); }
 }
 </style>
