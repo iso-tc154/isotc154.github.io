@@ -10,7 +10,8 @@
     "build-data": "node scripts/build-data.mjs",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "validate": "ruby scripts/validate_yaml.rb && ruby scripts/validate_member_status.rb"
   },
   "dependencies": {
     "@asciidoctor/core": "^3.0.4",

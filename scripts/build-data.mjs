@@ -129,6 +129,7 @@ function main() {
     counts: {
       groups: Object.keys(groups).length,
       activeGroups: Object.values(groups).filter((g) => !g.inactive).length,
+      activeWorkingGroups: Object.values(groups).filter((g) => !g.inactive && g.category === 'working').length,
       members: Object.keys(members.all).length,
       standards: standards.length,
       publishedStandards: publishedStandards.length,
