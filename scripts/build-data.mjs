@@ -20,7 +20,7 @@ import {
   latestPublication,
 } from './lib/standardsClassification.mjs'
 import { buildOrgIndex } from './lib/orgIndex.mjs'
-import { load as yamlLoad } from 'js-yaml'
+import { loadYamlFile } from './lib/yamlDir.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -41,9 +41,7 @@ function writeJson(name, data) {
 }
 
 function loadYaml(file) {
-  const full = path.join(DATA_DIR, file)
-  if (!fs.existsSync(full)) return null
-  return yamlLoad(fs.readFileSync(full, 'utf-8'))
+  return loadYamlFile(path.join(DATA_DIR, file))
 }
 
 function main() {

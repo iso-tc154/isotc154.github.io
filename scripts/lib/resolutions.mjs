@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import yaml from 'js-yaml'
+import { loadYamlFile } from './yamlDir.mjs'
 import {
   buildResolutionRecord,
   buildMeetingRecord,
@@ -24,7 +24,7 @@ export function loadResolutions(resolutionsRoot) {
       const fullPath = path.join(subdir, file)
       let parsed
       try {
-        parsed = yaml.load(fs.readFileSync(fullPath, 'utf8'))
+        parsed = loadYamlFile(fullPath)
       } catch (e) {
         console.error(`[resolutions] failed to parse ${fullPath}: ${e.message}`)
         continue
