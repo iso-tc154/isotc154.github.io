@@ -1,6 +1,4 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import yaml from 'js-yaml'
+import { loadYamlFile, loadYamlDir } from './yamlDir.mjs'
 import { meetingDetailPathFromParts } from '../../src/utils/urn.ts'
 
 /**
@@ -243,21 +241,23 @@ function resolveAssociates(rawAssociates, orgIndex) {
 }
 
 export function loadCanonicalMeetings(meetingsYmlPath, eventsDir, resolutionMeetings, orgIndex) {
-  if (!fs.existsSync(meetingsYmlPath)) {
-    console.warn(`[meetings] canonical list not found: ${meetingsYmlPath}`)
-    return []
+  const raw = loadYamlFile(meetingsYmlPath, { fallback: [] }) || []
+  if (!raw.length) {
+    console.warn(`[meetings] canonical list not found or empty: ${meetingsYmlPath}`)
   }
-
-  const raw = yaml.load(fs.readFileSync(meetingsYmlPath, 'utf8')) || []
 
   // Index rich event data by ordinal
   const richByOrdinal = new Map()
-  if (eventsDir && fs.existsSync(eventsDir)) {
-    for (const file of fs.readdirSync(eventsDir)) {
-      const m = file.match(/^plenary-meeting-(\d+)\.ya?ml$/)
-      if (!m) continue
-      const ordinal = parseInt(m[1], 10)
-      const data = yaml.load(fs.readFileSync(path.join(eventsDir, file), 'utf8'))
+  if (eventsDir) {
+    const PLENARY_RE = /^plenary-meeting-(\d+)\.ya?ml$/
+    const richEntries = loadYamlDir(eventsDir, {
+      predicate: (_data, file) => PLENARY_RE.test(file),
+      transform: (data, file) => {
+        const ordinal = parseInt(file.match(PLENARY_RE)[1], 10)
+        return [ordinal, data]
+      },
+    })
+    for (const [ordinal, data] of richEntries) {
       if (data) richByOrdinal.set(ordinal, data)
     }
   }

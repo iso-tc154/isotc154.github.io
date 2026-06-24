@@ -1,5 +1,4 @@
-import fs from 'node:fs'
-import yaml from 'js-yaml'
+import { loadYamlFile } from './yamlDir.mjs'
 import { toISODate } from './dates.mjs'
 
 const STATE_TYPES = new Set(['established', 'dissolved'])
@@ -30,10 +29,7 @@ function normalizeEvent(e) {
 }
 
 export function loadGroupEvents(filePath) {
-  if (!fs.existsSync(filePath)) {
-    return { events: [], overrides: [] }
-  }
-  const data = yaml.load(fs.readFileSync(filePath, 'utf8')) || {}
+  const data = loadYamlFile(filePath, { fallback: {} }) || {}
   return {
     events: Array.isArray(data.events) ? data.events : [],
     overrides: Array.isArray(data.overrides) ? data.overrides : [],

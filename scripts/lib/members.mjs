@@ -1,6 +1,4 @@
 import fs from 'node:fs'
-import path from 'node:path'
-import yaml from 'js-yaml'
 import { memberPath } from '../../src/utils/urn.ts'
 import { LEADERSHIP_ROLE_IDS } from '../../src/utils/roles.ts'
 import { toISODate, toNullableISODate } from './dates.mjs'
@@ -32,76 +30,78 @@ export function loadMembers(membersDir, chairMemberId) {
     return { all: {}, chair: null, current: [], past: [], leadership: [] }
   }
 
+  const records = loadYamlDir(membersDir, {
+    predicate: (data) => data && data['member-id'],
+    transform: (data) => buildMemberRecord(data, chairMemberId),
+  })
+
   const all = {}
   const current = []
   const past = []
   const leadership = []
   let chair = null
 
-  for (const file of fs.readdirSync(membersDir)) {
-    if (!/\.(ya?ml)$/.test(file)) continue
-    const fullPath = path.join(membersDir, file)
-    const data = yaml.load(fs.readFileSync(fullPath, 'utf8'))
-    if (!data) continue
-    const id = data['member-id']
-    if (!id) continue
-
-    const roleRecords = Array.isArray(data.roles) ? data.roles : []
-    const byRoleId = { _all: { in: { _all: [] } } }
-
-    const withGroup = new Set()
-    const withoutGroup = new Set()
-    for (const r of roleRecords) {
-      if (!r || !r.id) continue
-      if (r.group) withGroup.add(r.id)
-      else withoutGroup.add(r.id)
-    }
-    const dropIds = new Set([...withGroup].filter(x => withoutGroup.has(x)))
-
-    for (const role of roleRecords) {
-      if (!role || !role.id) continue
-      const groupId = role.group
-      if (!groupId && dropIds.has(role.id)) continue
-
-      byRoleId[role.id] ||= { in: { _all: [] } }
-      byRoleId[role.id].in._all.push(role)
-      byRoleId._all.in._all.push(role)
-
-      if (groupId) {
-        byRoleId[role.id].in[groupId] ||= []
-        byRoleId[role.id].in[groupId].push(role)
-        byRoleId._all.in[groupId] ||= []
-        byRoleId._all.in[groupId].push(role)
-      }
-    }
-
-    const allRoles = byRoleId._all.in._all
-    const isCurrent = data.active === true || allRoles.some(r => r && typeof r === 'object' && r.to == null)
-    const isTheChair = chairMemberId === id
-    const isInLeadership = allRoles.some(
-      r => r && typeof r === 'object' && LEADERSHIP_ROLE_IDS.has(r.id) && r.to == null,
-    )
-
-    const member = {
-      ...data,
-      url: memberPath(id),
-      roles: byRoleId,
-      is_current: isCurrent,
-      is_the_chair: isTheChair,
-      is_in_leadership: isInLeadership,
-    }
-    all[id] = member
-
-    if (isCurrent) {
-      if (!isTheChair && !isInLeadership) current.push(id)
-      if (isInLeadership) leadership.push(id)
-      if (isTheChair) chair = id
+  for (const rec of records) {
+    all[rec.id] = rec.member
+    if (rec.isCurrent) {
+      if (!rec.isTheChair && !rec.isInLeadership) current.push(rec.id)
+      if (rec.isInLeadership) leadership.push(rec.id)
+      if (rec.isTheChair) chair = rec.id
     } else {
-      past.push(id)
+      past.push(rec.id)
     }
   }
 
   return { all, chair, current, past, leadership }
+}
+
+function buildMemberRecord(data, chairMemberId) {
+  const id = data['member-id']
+  const roleRecords = Array.isArray(data.roles) ? data.roles : []
+  const byRoleId = { _all: { in: { _all: [] } } }
+
+  const withGroup = new Set()
+  const withoutGroup = new Set()
+  for (const r of roleRecords) {
+    if (!r || !r.id) continue
+    if (r.group) withGroup.add(r.id)
+    else withoutGroup.add(r.id)
+  }
+  const dropIds = new Set([...withGroup].filter(x => withoutGroup.has(x)))
+
+  for (const role of roleRecords) {
+    if (!role || !role.id) continue
+    const groupId = role.group
+    if (!groupId && dropIds.has(role.id)) continue
+
+    byRoleId[role.id] ||= { in: { _all: [] } }
+    byRoleId[role.id].in._all.push(role)
+    byRoleId._all.in._all.push(role)
+
+    if (groupId) {
+      byRoleId[role.id].in[groupId] ||= []
+      byRoleId[role.id].in[groupId].push(role)
+      byRoleId._all.in[groupId] ||= []
+      byRoleId._all.in[groupId].push(role)
+    }
+  }
+
+  const allRoles = byRoleId._all.in._all
+  const isCurrent = data.active === true || allRoles.some(r => r && typeof r === 'object' && r.to == null)
+  const isTheChair = chairMemberId === id
+  const isInLeadership = allRoles.some(
+    r => r && typeof r === 'object' && LEADERSHIP_ROLE_IDS.has(r.id) && r.to == null,
+  )
+
+  const member = {
+    ...data,
+    url: memberPath(id),
+    roles: byRoleId,
+    is_current: isCurrent,
+    is_the_chair: isTheChair,
+    is_in_leadership: isInLeadership,
+  }
+  return { id, member, isCurrent, isTheChair, isInLeadership }
 }
 
 const CONVENOR_ROLE_IDS = new Set(['convenor', 'co_chair'])
