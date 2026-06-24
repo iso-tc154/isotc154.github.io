@@ -35,11 +35,318 @@ secretariat:
   email: zhangjf@cnis.gov.cn
   phone: "+86-10-58811613"
 
+reference_documents:
+  - id: N1XXX
+    description: This draft agenda (dated 2026-06-23)
+  - id: N1379
+    description: ISO Code of Ethics and Conduct
+  - id: N1177
+    description: Strategic Business Plan (version of 2020)
+  - id: N1518
+    description: Terms of Reference (ToR) of the CAG
+  - id: N1624
+    description: Review of resolutions of the 44th plenary (P-2025-01 to P-2025-15)
+  - id: N1625
+    description: Result of voting on ISO/FDIS 14533-3
+  - id: N1637
+    description: Result of voting on ISO/CD 17369
+  - id: N1638
+    description: Result of voting on ISO/CD 22132
+  - id: N1643
+    description: Result of voting on ISO/FDIS 5909
+  - id: N1644
+    description: Result of voting on the second ISO/NP 16356.2
+  - id: N1645
+    description: Minutes of the 44th plenary meeting
+  - id: N1646
+    description: Review of action items from the 44th plenary meeting
+  - id: N1648
+    description: Logistical information for (J)WGs and 45th plenary
+  - id: N1649
+    description: Result of voting on the second ISO/NP 14533-5.2
+  - id: N1650
+    description: Initiate a DIS ballot for ISO 17369
+  - id: N1651
+    description: Result of voting on ISO/NP 25534-1
+  - id: N1655
+    description: Result of voting on the first ISO/DTR 20180
+  - id: N1658
+    description: Call for liaison representatives to JTC1/SC40, SC42, PC 245
+  - id: N1659
+    description: Result of voting on the second ISO/DTR 16320-1
+  - id: N1661
+    description: Result of voting on the first ISO/NP 26087
+  - id: N1663
+    description: Call for WG convener candidate(s)
+  - id: N1668
+    description: Draft Resolution V-2026-01
+  - id: N1669
+    description: Draft Resolution V-2026-02
+  - id: N1670
+    description: Draft Resolution V-2026-03
+  - id: N1672
+    description: Result of voting on ISO/CD TR 20194
+  - id: N1674
+    description: Meetings schedule for (J)WGs and 45th plenary
+
+agenda:
+  source_doc: N1XXX (draft of 2026-06-23)
+  structure: >
+    Three parts — opening session, (J)WG meetings, and closing session.
+    Per the draft agenda: items 1-10 are discussed on 31 Aug (opening);
+    (J)WG meetings convene 31 Aug to 3 Sep; items 11-24 plus approval
+    of resolutions and closure are discussed on 4 Sep (closing).
+  opening_session:
+    date: 2026-08-31
+    items:
+      - number: 1
+        title: Opening of the meeting
+        speaker: chair
+      - number: 2
+        title: Welcome from host
+        speaker: host
+      - number: 3
+        title: Roll call of delegates
+        speaker: chair
+      - number: 4
+        title: Work environment — presentation on the ISO Code of Ethics and Conduct
+        speaker: chair
+        n_doc: N1379
+      - number: 5
+        title: Adoption of the agenda
+        speaker: chair
+        n_doc: NXXXX
+      - number: 6
+        title: Appointment of the resolution drafting committee
+        speaker: chair
+      - number: 7
+        title: Approval of minutes from previous plenary meeting
+        speaker: chair
+        n_doc: N1645
+      - number: 8
+        title: Report from ISO/TC 154 management
+        speaker: chair
+        subitems:
+          - title: CM report — review of voting results since previous plenary
+            speaker: CM
+            n_doc: NXXXX
+            subitems:
+              - title: 8.1.1 CIB ballot
+                subitems:
+                  - title: 8.1.1.1 Initiate a DIS ballot for ISO 17369
+                    n_doc: N1650
+                  - title: 8.1.1.2 Call for liaison representatives to JTC1/SC40, SC42, PC 245
+                    n_doc: N1658
+                  - title: 8.1.1.3 Call for WG convener candidate(s)
+                    n_doc: N1663
+                  - title: 8.1.1.4 Draft Resolution V-2026-01
+                    n_doc: N1668
+                  - title: 8.1.1.5 Draft Resolution V-2026-02
+                    n_doc: N1669
+                  - title: 8.1.1.6 Draft Resolution V-2026-03
+                    n_doc: N1670
+                  - title: 8.1.1.7 Draft Resolution V-2026-04
+                    n_doc: NXXXX
+                  - title: 8.1.1.8 Draft Resolution V-2026-05
+                    n_doc: NXXXX
+              - title: 8.1.2 NP ballot
+                subitems:
+                  - title: 8.1.2.1 Result of voting on the second ISO/NP 16356.2
+                    n_doc: N1644
+                  - title: 8.1.2.2 Result of voting on the second ISO/NP 14533-5.2
+                    n_doc: N1649
+                  - title: 8.1.2.3 Result of voting on ISO/NP 25534-1
+                    n_doc: N1651
+                  - title: 8.1.2.4 Result of voting on the first ISO/NP 26087
+                    n_doc: N1661
+                  - title: 8.1.2.5 Result of voting on the second ISO/NP 26087.2
+                    n_doc: NXXXX
+              - title: 8.1.3 CD ballot/consultation
+                subitems:
+                  - title: 8.1.3.1 Result of voting on ISO/CD 17369
+                    n_doc: N1637
+                  - title: 8.1.3.2 Result of voting on ISO/CD 22132
+                    n_doc: N1638
+                  - title: 8.1.3.3 Result of voting on ISO/CD TR 20194
+                    n_doc: N1672
+              - title: 8.1.4 DIS ballot
+                subitems:
+                  - title: 8.1.4.1 Result of voting on ISO/DIS 17369
+                    n_doc: NXXXX
+                  - title: 8.1.4.2 Result of voting on ISO/DIS 22132
+                    n_doc: NXXXX
+              - title: 8.1.5 FDIS ballot
+                subitems:
+                  - title: 8.1.5.1 Result of voting on ISO/FDIS 14533-3
+                    n_doc: N1625
+                  - title: 8.1.5.2 Result of voting on ISO/FDIS 5909
+                    n_doc: N1643
+              - title: 8.1.6 DTR ballot
+                subitems:
+                  - title: 8.1.6.1 Result of voting on the second ISO/DTR 16320-1
+                    n_doc: N1659
+                  - title: 8.1.6.2 Result of voting on the first ISO/DTR 20180
+                    n_doc: N1655
+                  - title: 8.1.6.3 Result of voting on the second ISO/DTR 20180.2
+                    n_doc: NXXXX
+              - title: 8.1.7 SR results
+                subitems:
+                  - title: 8.1.7.1 Result of SR on ISO 15000-1:2021
+                    n_doc: NXXXX
+                  - title: 8.1.7.2 Result of SR on ISO 15000-2:2021
+                    n_doc: NXXXX
+                  - title: 8.1.7.3 Result of SR on ISO 15000-3:2021
+                    n_doc: NXXXX
+              - title: >
+                  8.1.8 Status of all items of the portfolio and actions to be
+                  taken — current work programme, update on target dates for
+                  work in progress, confirmation or withdrawal of PWIs
+          - title: AG report (CM report)
+            speaker: convener
+            n_doc: NXXXX
+      - number: 9
+        title: Review of resolutions of the previous plenary meeting (P-2025-01 to P-2025-15)
+        speaker: chair
+        n_doc: N1624
+      - number: 10
+        title: Review of action items from previous plenary meeting
+        speaker: chair
+        n_doc: N1646
+  wg_meetings:
+    dates: [2026-08-31, 2026-09-01, 2026-09-02, 2026-09-03]
+    note: >
+      All (J)WG meetings are held 31 Aug to 3 Sep. WG meeting agendas and
+      joining links are circulated separately by each (J)WG convener. See
+      N1648 (logistical information) and N1674 (schedule).
+  closing_session:
+    date: 2026-09-04
+    items:
+      - number: 11
+        title: CAG report
+        speaker: chair
+        n_doc: NXXXX
+      - number: 12
+        title: Certificates of ISO Excellence Award (ISO 14533-3:2025, ISO 8601-2:2019/Amd 1:2025)
+        speaker: chair
+      - number: 13
+        title: Other new possible PWI proposal report (cannot fall into the existing (J)WGs)
+        speaker: chair
+        subitems:
+          - title: 13.1 Proposal proposed during the plenary meeting
+            speaker: proposer
+            n_doc: NXXXX
+      - number: 14
+        title: ISO/IEC Directives update in 2026
+        speaker: TPM
+        n_doc: NXXXX
+      - number: 15
+        title: Working Groups reports
+        speaker: chair
+        subitems:
+          - title: 15.1 JWG 1 report
+            speaker: convener
+            n_doc: NXXXX
+          - title: 15.2 WG 2 report
+            speaker: convener
+            n_doc: NXXXX
+          - title: 15.3 SG 1 report
+            speaker: convener
+            n_doc: NXXXX
+          - title: 15.4 WG 5 report
+            speaker: convener
+            n_doc: NXXXX
+          - title: 15.5 WG 6 report
+            speaker: convener
+            n_doc: NXXXX
+          - title: 15.6 WG 7 report
+            speaker: convener
+            n_doc: NXXXX
+          - title: 15.7 JWG 9 report
+            speaker: convener
+            n_doc: NXXXX
+          - title: 15.8 Possible new WG report (if applicable)
+            speaker: convener
+            n_doc: NXXXX
+      - number: 16
+        title: TC-level project report (ISO/PWI 25320, ISO/PWI 26087, etc.)
+        speaker: chair
+        n_doc: NXXXX
+      - number: 17
+        title: Reappointment of (J)WG convenors
+        speaker: chair
+      - number: 18
+        title: Liaison reports
+        speaker: chair
+        subitems:
+          - title: 18.1 Internal liaisons
+            speaker: chair
+            subitems:
+              - title: >
+                  18.1.1 Liaison committees to ISO/TC 154 (20) —
+                  IEC/TC3/SC3D, JTC1/SC31, JTC1/SC32, TC8, TC37, TC46,
+                  TC46/SC11, TC104, TC184, TC184/SC4, TC204, PC245, TC295,
+                  TC298, TC307, TC321, TC323, TC344, TC347, ISO/TC350
+                speaker: liaison_officer
+                n_doc: NXXXX
+              - title: >
+                  18.1.2 Liaison committees from ISO/TC 154 (28) —
+                  IEC/TC3/SC3D, JTC1, JTC1/SC27, JTC1/SC29, JTC1/SC31,
+                  JTC1/SC32, JTC1/SC40, JTC1/SC41, JTC1/SC42, TC8, TC37,
+                  TC46, TC46/SC11, TC104, TC176, TC184, TC184/SC4,
+                  ISO/TC184/SC5, TC204, TC211, TC215, PC245, TC295, TC307,
+                  TC315, TC321, TC344, TC347
+                speaker: liaison_officer
+          - title: 18.2 External liaisons
+            speaker: chair
+            subitems:
+              - title: >
+                  18.2.1 A-liaisons (22) — AFACT, BIMCO, BIS/BRI, CalConnect,
+                  DCSA, EC, ETSI, FIATA, GS1, GSBN, IETF, IMO, IPCSA, ITU,
+                  OAGi, OASIS, ODCCN, UIC, UNCTAD, UNECE, UPU, SBS
+                speaker: liaison_officer
+                n_doc: NXXXX
+              - title: 18.2.2 B-liaisons (3) — UN, WCO, WIPO
+      - number: 19
+        title: Strategic issues — review of the Strategic Business Plan (N1177, version of 2020)
+        speaker: chair
+      - number: 20
+        title: Terms of Reference (ToR) of the CAG (N1518)
+        speaker: chair
+      - number: 21
+        title: Communication — committee website updates, press releases on publication, etc.
+        speaker: chair
+      - number: 22
+        title: National body report (if any)
+        speaker: chair
+        n_doc: NXXXX
+      - number: 23
+        title: Dates and locations for the next plenary meeting
+        speaker: chair
+      - number: 24
+        title: Any other business
+        speaker: chair
+      - title: Approval of resolutions
+        speaker: chair
+        n_doc: NXXXX
+      - title: Closure of the meeting
+        speaker: chair
+
 schedule:
   - date: 2026-08-31
     time: "9:00–10:30"
-    event: Plenary opening
-    description: Review of ISO/TC 154 work since last plenary meeting
+    event: Plenary opening session
+    description: >
+      Draft agenda items 1-10: opening, welcome from host, roll call,
+      Code of Ethics, adoption of agenda, appointment of resolution
+      drafting committee, approval of minutes, TC 154 management report
+      (CM report incl. ballot results), review of previous plenary
+      resolutions and action items.
+  - date: 2026-08-31
+    time: "11:00–17:00"
+    event: (J)WG meetings begin
+    description: >
+      (J)WG meetings run 31 Aug to 3 Sep. Agendas and joining links
+      circulated separately by each (J)WG convener.
   - date: 2026-09-01
     time: "9:00–17:00"
     event: Working Group meetings
@@ -52,11 +359,18 @@ schedule:
   - date: 2026-09-04
     time: "9:00–12:00"
     event: (J)WGs report to Plenary
-    description: (J)WG report and (J)WG recommendation to plenary
+    description: >
+      Draft agenda items 11-18: CAG report, ISO Excellence Awards,
+      PWI proposals, ISO/IEC Directives update, (J)WG reports
+      (JWG1, WG2, SG1, WG5, WG6, WG7, JWG9), TC-level project report,
+      reappointment of convenors, liaison reports.
   - date: 2026-09-04
     time: "14:30–17:00"
-    event: Plenary closing
-    description: Discussion of plenary resolution and other business
+    event: Plenary closing session
+    description: >
+      Draft agenda items 19-24 plus approval of resolutions and
+      closure: strategic issues / Business Plan, CAG ToR, communication,
+      national body report, next plenary dates, any other business.
 
 deadlines:
   - date: 2026-08-17
