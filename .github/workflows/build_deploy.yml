@@ -20,6 +20,24 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          cache-version: validate-v1
+
+      - name: Validate YAML schemas + P/O member status vs ISO Open Data
+        run: npm run validate
+
   build:
     runs-on: ubuntu-latest
     steps:

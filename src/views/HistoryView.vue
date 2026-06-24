@@ -3,6 +3,9 @@ import { computed, onMounted, ref } from 'vue'
 import { useHistory } from '../composables/useHistory'
 import type { HistoryCategory, HistoryMilestone } from '../types/history'
 import PageHero from '../components/PageHero.vue'
+import FilterChip from '../components/FilterChip.vue'
+import { renderProse } from '../utils/prose'
+import { formatDatePrecision } from '../utils/format'
 
 const { history, isLoaded, loadData } = useHistory()
 
@@ -71,14 +74,7 @@ const stats = computed(() => {
 })
 
 function formatDate(h: HistoryMilestone): string {
-  const d = h.date
-  if (!d) return ''
-  const [y, m, day] = d.split('-')
-  if (h.date_precision === 'year' || !m || m === '00') return y
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  const mi = parseInt(m, 10) - 1
-  if (h.date_precision === 'month' || !day || day === '00') return `${months[mi]} ${y}`
-  return `${months[mi]} ${parseInt(day, 10)}, ${y}`
+  return formatDatePrecision(h.date, h.date_precision)
 }
 
 function categoryColor(cat: HistoryCategory): string {
@@ -132,20 +128,21 @@ onMounted(() => {
     </PageHero>
 
     <div class="page page--wide">
-    <nav class="chips" aria-label="Filter history by category">
-      <button
-        v-for="chip in filterChips"
+    <nav class="hchips" aria-label="Filter history by category">
+      <FilterChip
+        :active="selected === 'all'"
+        :count="filterChips[0]?.count ?? 0"
+        @click="selected = 'all'"
+      >All milestones</FilterChip>
+      <FilterChip
+        v-for="chip in filterChips.filter(c => c.key !== 'all')"
         :key="chip.key"
-        class="chip"
-        :class="{ 'chip--active': selected === chip.key,
-                  'chip--cat': chip.key !== 'all' }"
-        :style="chip.key !== 'all' ? { '--cat-color': categoryColor(chip.key) } : {}"
+        :active="selected === chip.key"
+        :dot-color="categoryColor(chip.key as HistoryCategory)"
+        :tint="categoryColor(chip.key as HistoryCategory)"
+        :count="chip.count"
         @click="selected = chip.key"
-      >
-        <span class="chip__dot" v-if="chip.key !== 'all'"></span>
-        {{ chip.label }}
-        <span class="chip__count">{{ chip.count }}</span>
-      </button>
+      >{{ chip.label }}</FilterChip>
     </nav>
 
     <div v-if="!isLoaded" class="loading">Loading milestones…</div>
@@ -176,7 +173,7 @@ onMounted(() => {
                 <h3 class="event__title">{{ h.title }}</h3>
               </a>
               <h3 v-else class="event__title">{{ h.title }}</h3>
-              <p v-if="h.description" class="event__desc">{{ h.description }}</p>
+              <p v-if="h.description" class="event__desc" v-html="renderProse(h.description, 'inline')"></p>
               <footer class="event__foot" v-if="h.link || h.resolution">
                 <a v-if="h.link" :href="h.link" class="event__more">Explore →</a>
                 <a v-if="resolutionUrl(h)" :href="resolutionUrl(h)!" class="event__res">
@@ -251,8 +248,8 @@ onMounted(() => {
 .dark .hero__orbit { border-color: rgb(252 165 165 / 0.15); }
 .dark .hero__orbit--2 { border-color: rgb(148 182 232 / 0.15); }
 
-/* CHIPS */
-.chips {
+/* CHIPS — using shared FilterChip; this wrapper just provides layout + bottom rule */
+.hchips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -260,50 +257,7 @@ onMounted(() => {
   padding-bottom: 1.5rem;
   border-bottom: 1px dashed #e7e5e4;
 }
-.dark .chips { border-bottom-color: #44403c; }
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.875rem;
-  border: 1px solid #d6d3d1;
-  background: #fff;
-  color: #44403c;
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.chip:hover { border-color: var(--color-brand); color: var(--color-brand); }
-.dark .chip { background: #1c1917; border-color: #57534e; color: #d6d3d1; }
-.dark .chip:hover { border-color: var(--color-brand); color: var(--color-brand); }
-.chip--active { background: var(--color-brand-fill); border-color: var(--color-brand-fill); color: #fff; }
-.chip--active:hover { color: #fff; }
-.dark .chip--active { background: var(--color-brand-fill); border-color: var(--color-brand-fill); color: #fff; }
-
-.chip--cat.chip--active {
-  background: var(--cat-color, var(--color-brand-fill));
-  border-color: var(--cat-color, var(--color-brand-fill));
-}
-.chip__dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--cat-color, currentColor);
-  display: inline-block;
-}
-.chip--active .chip__dot { background: #fff; }
-.chip__count {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  background: rgb(0 0 0 / 0.06);
-  padding: 0.0625rem 0.375rem;
-  border-radius: 9999px;
-}
-.dark .chip__count { background: rgb(255 255 255 / 0.1); }
-.chip--active .chip__count { background: rgb(255 255 255 / 0.2); color: #fff; }
+.dark .hchips { border-bottom-color: #44403c; }
 
 /* TIMELINE */
 .loading { padding: 4rem 0; text-align: center; color: #78716c; }

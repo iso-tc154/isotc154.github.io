@@ -5,6 +5,21 @@
  * All formatting uses UTC to avoid off-by-one shifts on the parsed date.
  */
 
+export type DatePrecision = 'day' | 'month' | 'year'
+
+export function formatDatePrecision(dateStr: string, precision?: DatePrecision | string): string {
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr)
+    if (Number.isNaN(d.getTime())) return dateStr
+    if (precision === 'year') return String(d.getUTCFullYear())
+    if (precision === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
+  } catch {
+    return dateStr
+  }
+}
+
 export function formatDate(dateStr: string): string {
   if (!dateStr) return ''
   try {

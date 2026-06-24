@@ -30,6 +30,7 @@ const activeGroupsCount = useCountUp(
 const headlineStandards = [
   { num: 'ISO 8601', what: 'Date & time', used: 'Every timestamp on the internet', to: '/standards/iso-8601-1-2019/' },
   { num: 'ISO 9735', what: 'EDIFACT', used: 'Every electronic data interchange message', to: '/standards/iso-9735-1988/' },
+  { num: 'ISO 15000', what: 'ebXML', used: 'Every XML business message between enterprises', to: '/standards/iso-15000-1-2021/' },
   { num: 'ISO 7372', what: 'Trade Data Elements', used: 'Every data field in a customs declaration', to: '/standards/iso-7372-2005/' },
   { num: 'ISO 14533', what: 'Long-term signatures', used: 'Every verifiable electronic signature', to: '/standards/iso-14533-1-2022/' },
 ]
@@ -535,7 +536,7 @@ onMounted(() => {
 }
 .dark .hero__standards { border-top-color: #44403c; }
 @media (min-width: 640px) { .hero__standards { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1024px) { .hero__standards { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1024px) { .hero__standards { grid-template-columns: repeat(3, 1fr); } }
 
 .hero__standard {
   display: grid;
@@ -560,7 +561,8 @@ onMounted(() => {
 }
 @media (min-width: 1024px) {
   .hero__standards li:nth-child(2n) .hero__standard { border-right: 1px solid #e7e5e4; }
-  .hero__standards li:nth-child(4n) .hero__standard { border-right: none; }
+  .hero__standards li:nth-child(3n) .hero__standard { border-right: none; }
+  .hero__standards li:last-child .hero__standard { border-right: none; }
 }
 .dark .hero__standard { border-bottom-color: #44403c; border-right-color: #44403c; }
 .hero__standard::after {
@@ -848,7 +850,7 @@ onMounted(() => {
 .dark .current-card__meta { color: #a8a29e; }
 .current-card__cta {
   align-self: flex-start;
-  margin-top: 1rem;
+  margin-top: auto;
   padding: 0.5rem 1rem;
   background: var(--color-brand-fill);
   color: #fff;
