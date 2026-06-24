@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, watch, onMounted, onUnmounted } from 'vue'
-import type { AgendaSession, AgendaItem } from '../types/event'
+import type { AgendaSession } from '../types/event'
+import { flattenSession } from '../domain/agenda'
 
 const props = defineProps<{
   session: AgendaSession | null
@@ -13,49 +14,7 @@ const emit = defineEmits<{ close: [] }>()
 
 const isOpen = computed(() => props.session !== null)
 
-interface FlatRow {
-  seq: string
-  title: string
-  responsible: string
-  ref: string
-  depth: number
-}
-
-function parseLeadingSeq(title: string): { seq: string; title: string } {
-  const m = title.match(/^(\d+(?:\.\d+)*)\s+(.+)$/)
-  if (m) return { seq: m[1], title: m[2] }
-  return { seq: '', title }
-}
-
-function cleanResponsible(s?: string): string {
-  return s ? s.replace(/_/g, ' ') : ''
-}
-
-function flatten(items: AgendaItem[] | undefined, depth: number, out: FlatRow[]): void {
-  if (!items) return
-  for (const item of items) {
-    const parsed = parseLeadingSeq(item.title)
-    const seq = item.number != null ? String(item.number) : parsed.seq
-    const title = item.number != null ? item.title : parsed.title
-    out.push({
-      seq,
-      title,
-      responsible: cleanResponsible(item.speaker),
-      ref: item.n_doc ?? '',
-      depth,
-    })
-    if (item.subitems?.length) {
-      flatten(item.subitems, depth + 1, out)
-    }
-  }
-}
-
-const rows = computed(() => {
-  if (!props.session) return []
-  const out: FlatRow[] = []
-  flatten(props.session.items, 0, out)
-  return out
-})
+const rows = computed(() => flattenSession(props.session))
 
 function formatDate(value: unknown): string {
   if (!value) return ''
