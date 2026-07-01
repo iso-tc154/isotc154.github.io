@@ -29,11 +29,11 @@ export function loadResolutions(resolutionsRoot) {
         console.error(`[resolutions] failed to parse ${fullPath}: ${e.message}`)
         continue
       }
-      if (!parsed || !parsed.resolutions) continue
+      if (!parsed || !parsed.decisions) continue
 
       const metadata = parsed.metadata || {}
-      const records = parsed.resolutions.map((r) =>
-        buildResolutionRecord(r, sourceType, sourceFile, metadata),
+      const records = parsed.decisions.map((d) =>
+        buildResolutionRecord(d, sourceType, sourceFile, metadata),
       )
       resolutions.push(...records)
       meetingsBySource.set(`${sourceType}/${sourceFile}`, {

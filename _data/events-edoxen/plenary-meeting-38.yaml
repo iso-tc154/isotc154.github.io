@@ -1,0 +1,73 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '38'
+urn: urn:iso-tc154:meeting:plenary-38
+type: plenary
+status: completed
+ordinal: 38
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: XX
+title:
+- spelling: eng
+  value: 38th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: University of Luxembourg
+source_urls:
+- ref: https://committee.iso.org/meetings/60517
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 2019-01
+- prefix: ISO/TC 154
+  number: 2019-02
+- prefix: ISO/TC 154
+  number: 2019-03
+- prefix: ISO/TC 154
+  number: 2019-04
+- prefix: ISO/TC 154
+  number: 2019-05
+- prefix: ISO/TC 154
+  number: 2019-06
+- prefix: ISO/TC 154
+  number: 2019-07
+- prefix: ISO/TC 154
+  number: 2019-08
+- prefix: ISO/TC 154
+  number: 2019-09
+- prefix: ISO/TC 154
+  number: 2019-10
+- prefix: ISO/TC 154
+  number: 2019-11
+- prefix: ISO/TC 154
+  number: 2019-12
+- prefix: ISO/TC 154
+  number: 2019-13
+- prefix: ISO/TC 154
+  number: 2019-14
+- prefix: ISO/TC 154
+  number: 2019-15
+- prefix: ISO/TC 154
+  number: 2019-16
+- prefix: ISO/TC 154
+  number: 2019-17
+- prefix: ISO/TC 154
+  number: 2019-18
+- prefix: ISO/TC 154
+  number: 2019-19
+- prefix: ISO/TC 154
+  number: 2019-20
+- prefix: ISO/TC 154
+  number: 2019-21
+- prefix: ISO/TC 154
+  number: 2019-22
+scheduled_date_range:
+  start: '2019-10-14'
+  end: '2019-10-18'

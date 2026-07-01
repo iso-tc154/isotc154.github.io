@@ -1,0 +1,62 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '17'
+urn: urn:iso-tc154:meeting:plenary-17
+type: plenary
+status: completed
+ordinal: 17
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: CZ
+title:
+- spelling: eng
+  value: 17th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Prague
+  country_code: CZ
+source_urls:
+- ref: https://committee.iso.org/meetings/8276
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '172'
+- prefix: ISO/TC 154
+  number: '178'
+- prefix: ISO/TC 154
+  number: '180'
+- prefix: ISO/TC 154
+  number: '184'
+- prefix: ISO/TC 154
+  number: '185'
+- prefix: ISO/TC 154
+  number: '186'
+- prefix: ISO/TC 154
+  number: '187'
+- prefix: ISO/TC 154
+  number: '188'
+- prefix: ISO/TC 154
+  number: '189'
+- prefix: ISO/TC 154
+  number: '190'
+- prefix: ISO/TC 154
+  number: '191'
+- prefix: ISO/TC 154
+  number: '192'
+- prefix: ISO/TC 154
+  number: '193'
+- prefix: ISO/TC 154
+  number: '194'
+- prefix: ISO/TC 154
+  number: '195'
+- prefix: ISO/TC 154
+  number: '196'
+scheduled_date_range:
+  start: '2000-09-20'
+  end: '2000-09-21'

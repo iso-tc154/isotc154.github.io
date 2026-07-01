@@ -81,7 +81,7 @@ describe('loadEdoxenMeetingFile', () => {
     const m = loadEdoxenMeetingFile(SAMPLE).meetings[0]
     expect(m.hosts).toHaveLength(2)
     expect(m.hosts.find((h) => h.ref === 'calconnect').type).toBe('liaison')
-    expect(m.hosts.find((h) => h.ref === 'itchksar').type).toBe('national-body')
+    expect(m.hosts.find((h) => h.ref === 'itchksar').type).toBe('national_body')
     expect(m.secretary.name).toBe('Jianfang Zhang')
     expect(m.secretary.organization).toBe('SAC (CNIS)')
   })
@@ -122,7 +122,7 @@ describe('field mapping invariants', () => {
     const m = loadEdoxenMeetingFile(SAMPLE).meetings[0]
     expect(m.urn).toBeTruthy()
     expect(m.relations).toEqual([])
-    expect(m.resolution_refs).toEqual([])
+    expect(m.decisions).toEqual([])
     expect(m._edoxen).toBeTruthy()
     expect(m._edoxen.raw.identifier[0].prefix).toBe('ISO/TC 154')
     expect(m._edoxen.localization.language_code).toBe('eng')

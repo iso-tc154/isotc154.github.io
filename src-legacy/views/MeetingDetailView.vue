@@ -3,7 +3,7 @@ import { computed, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMeetings } from '../composables/useMeetings'
 import { useResolutions } from '../composables/useResolutions'
-import { useClipboard } from '../composables/useClipboard'
+import { useClipboard } from '@edoxen/vue'
 import { createNeighborNav } from '../composables/useNeighborNav'
 import { committee } from '../data/committee'
 import { countryCodeToFlag } from '../data/countryFlags'
@@ -101,9 +101,7 @@ type OrgCard = ResolvedHost
 const resolvedHosts = computed<OrgCard[]>(() => {
   const r = rich.value?.hosts
   if (Array.isArray(r) && r.length) return r
-  const legacy = rich.value?.host
-  if (!legacy) return []
-  return [{ name: legacy, kind: 'unknown' }]
+  return []
 })
 
 const resolvedAssociates = computed(() => rich.value?.associates ?? [])
@@ -236,10 +234,6 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
           <dt>Location</dt>
           <dd>{{ rich?.general_area || meeting.primary.country }}</dd>
         </div>
-        <div v-if="rich?.host" class="md-hero__stat">
-          <dt>Host</dt>
-          <dd>{{ rich.host }}</dd>
-        </div>
         <div class="md-hero__stat">
           <dt>Format</dt>
           <dd>{{ meeting.type_label }}</dd>
@@ -305,7 +299,7 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
         </p>
       </section>
 
-      <section v-if="resolvedHosts.length || rich?.host" class="block">
+      <section v-if="resolvedHosts.length" class="block">
         <h2 class="block__title">Hosted by</h2>
         <div class="host-grid">
           <component
@@ -344,7 +338,6 @@ const nextMeeting = computed(() => nextMeetingRaw.value ? meetingNavItem(nextMee
               </a>
             </div>
           </component>
-          <p v-if="!resolvedHosts.length && rich?.host" class="host-grid__plain">{{ rich.host }}</p>
         </div>
       </section>
 

@@ -1,0 +1,31 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '2'
+urn: urn:iso-tc154:meeting:plenary-2
+type: plenary
+status: completed
+ordinal: 2
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: GBLON
+country_code: GB
+title:
+- spelling: eng
+  value: 2th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: London
+  country_code: GB
+  unlocode: GBLON
+source_urls:
+- ref: https://committee.iso.org/meetings/35771
+  kind: landing_page
+scheduled_date_range:
+  start: '1974-12-09'
+  end: '1974-12-10'

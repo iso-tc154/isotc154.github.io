@@ -1,0 +1,9 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+minimumReleaseAgeExclude:
+  # First-party packages — every release is by definition trusted.
+  # Bare package name (no version) excludes all versions per
+  # https://pnpm.io/settings#minimumreleaseageexclude
+  - '@edoxen/browser'
+  - '@edoxen/edoxen'

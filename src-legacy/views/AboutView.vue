@@ -2,7 +2,7 @@
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { committee } from '../data/committee'
 import { useMeta } from '../composables/useMeta'
-import { useCountUp } from '../composables/useCountUp'
+import { useCountUp } from '@edoxen/vue'
 import PageHero from '../components/PageHero.vue'
 
 const { meta, load: loadMeta } = useMeta()
