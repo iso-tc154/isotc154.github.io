@@ -12,6 +12,7 @@ import {
 import { loadPosts, loadPages, buildSiteContext } from './lib/content.mjs'
 import { loadResolutions } from './lib/resolutions.mjs'
 import { loadCanonicalMeetings } from './lib/meetings.mjs'
+import { loadEdoxenMeetingsDir } from './lib/edoxenMeetings.mjs'
 import { loadGroupEvents } from './lib/groupHistory.mjs'
 import { toISODate } from './lib/dates.mjs'
 import {
@@ -74,12 +75,39 @@ function main() {
   // Unified meetings: canonical xlsx-derived list merged with rich per-meeting YAMLs
   // and resolution cross-references.
   const orgIndex = buildOrgIndex(nationalBodies, liaisons, associates)
+  // Load legacy-shape events (one YAML per ordinal) from _data/events/.
   const meetings = loadCanonicalMeetings(
     path.join(DATA_ROOT, 'meetings.yml'),
     path.join(DATA_DIR, 'events'),
     resolutionMeetings,
     orgIndex,
   )
+
+  // Additionally, load edoxen-shape events from _data/events-edoxen/ and
+  // merge them into the existing per-ordinal records by ordinal. The
+  // edoxen-shape files coexist with the legacy files during the
+  // migration window; per-ordinal fields prefer edoxen (it is the
+  // canonical target shape), with legacy providing fallback.
+  const edoxenDir = path.join(DATA_DIR, 'events-edoxen')
+  if (fs.existsSync(edoxenDir)) {
+    const edoxenMeetings = loadEdoxenMeetingsDir(edoxenDir).meetings
+    const edoxenByOrdinal = new Map()
+    for (const e of edoxenMeetings) {
+      if (Number.isFinite(e.ordinal)) edoxenByOrdinal.set(e.ordinal, e)
+    }
+    for (const m of meetings) {
+      const e = edoxenByOrdinal.get(m.ordinal)
+      if (!e) continue
+      // Prefer edoxen-shape fields where present; fall back to legacy.
+      m._edoxen = e
+      if (e.title) m.rich_title = e.title
+      if (e.schedule?.length) m.schedule = e.schedule
+      if (e.deadlines?.length) m.deadlines = e.deadlines
+      if (e.venues?.length) m.edoxen_venues = e.venues
+      if (e.urn) m.edoxen_urn = e.urn
+      if (e.identifier?.length) m.edoxen_identifier = e.identifier
+    }
+  }
 
   // Posts + Pages
   const siteContext = buildSiteContext(members, Object.values(groups))
