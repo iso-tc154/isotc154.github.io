@@ -32,39 +32,47 @@ export function isAcclamation(identifier) {
   return String(identifier).includes('-acclaim-')
 }
 
-export function deriveDisplayTitle(res, acclamation) {
-  if (res.title) return res.title
-  if (acclamation && res.actions && res.actions.length > 0) return 'Acclamation'
+// Extract the first (eng) Localization from a v2.1 Decision.
+function primaryLocalization(decision) {
+  if (!decision.localizations || decision.localizations.length === 0) return {}
+  return decision.localizations[0]
+}
+
+export function deriveDisplayTitle(loc, acclamation) {
+  if (loc.title) return loc.title
+  if (acclamation && loc.actions && loc.actions.length > 0) return 'Acclamation'
   return ''
 }
 
-export function buildResolutionRecord(res, sourceType, sourceFile, metadata) {
-  const identifier = String(res.identifier)
+export function buildResolutionRecord(decision, sourceType, sourceFile, metadata) {
+  const loc = primaryLocalization(decision)
+  const idList = decision.identifier || []
+  const identifier = idList.length > 0 ? String(idList[0].number) : ''
   const acclamation = isAcclamation(identifier)
-  const datesInfo = metadata.dates || []
-  const meetingDate = datesInfo.length > 0 ? datesInfo[0].start : ''
+
+  // v2.1 metadata.date is a single date string (not an array).
+  const meetingDate = metadata.date || ''
   const year = meetingDate ? meetingDate.substring(0, 4) : ''
-  const venue = metadata.venue || ''
   const sourceTitle = metadata.title || ''
 
   return {
     id: identifier,
     urn: resolutionUrn(identifier),
-    title: deriveDisplayTitle(res, acclamation),
-    subject: res.subject || '',
+    title: deriveDisplayTitle(loc, acclamation),
+    subject: loc.subject || '',
     year,
-    venue,
+    venue: '',
     source_type: sourceType,
     source_file: sourceFile,
     source_title: sourceTitle,
     meeting_date: meetingDate,
     is_acclamation: acclamation,
-    actions: res.actions || [],
-    considerations: res.considerations || [],
-    approvals: res.approvals || [],
-    categories: res.categories || [],
-    dates: res.dates || [],
-    snippet: normalizeSnippet(res.actions && res.actions.length > 0 ? res.actions[0].message : ''),
+    actions: loc.actions || [],
+    considerations: loc.considerations || [],
+    approvals: loc.approvals || [],
+    categories: decision.categories || [],
+    dates: decision.dates || [],
+    snippet: normalizeSnippet(loc.actions && loc.actions.length > 0 ? loc.actions[0].message : ''),
     meeting_urn: meetingUrnFromParts(sourceType, sourceFile),
     path: resolutionPath(sourceType, sourceFile, identifier),
   }
@@ -87,10 +95,9 @@ export function sortResolutions(a, b) {
 }
 
 export function buildMeetingRecord(sourceType, sourceFile, metadata, resolutionsForMeeting) {
-  const datesInfo = metadata.dates || []
-  const meetingDate = datesInfo.length > 0 ? datesInfo[0].start : ''
+  // v2.1 metadata.date is a single date string (not an array).
+  const meetingDate = metadata.date || ''
   const year = meetingDate ? meetingDate.substring(0, 4) : ''
-  const venue = metadata.venue || ''
   const sourceTitle = metadata.title || ''
   const resolutionCount = resolutionsForMeeting.length
   const acclamationCount = resolutionsForMeeting.filter(r => r.is_acclamation).length
@@ -99,7 +106,7 @@ export function buildMeetingRecord(sourceType, sourceFile, metadata, resolutions
     source_file: sourceFile,
     source_title: sourceTitle,
     meeting_date: meetingDate,
-    venue,
+    venue: '',
     year,
     resolution_count: resolutionCount,
     acclamation_count: acclamationCount,
