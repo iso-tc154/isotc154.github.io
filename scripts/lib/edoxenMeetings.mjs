@@ -1,17 +1,22 @@
 // SPDX-License-Identifier: MIT
 //
 // Edoxen Meeting format loader for isotc154. Loads YAML files produced
-// in the canonical Edoxen Meeting shape (one Meeting per file, or a
+// in the canonical Edoxen v2.1 Meeting shape (one Meeting per file, or a
 // MeetingCollection document). Detection: top-level `identifier: [{...}]`
-// is the signature; legacy files start with `title` and `ordinal`.
+// + `type:` is the signature; legacy files start with `title` and `ordinal`.
+//
+// v2.1 changes handled here (vs the prior v0.7.x loader):
+//   - chair/secretary → officers[] (role-discriminated)
+//   - venues[] flat Venue (kind, name, address, unlocode, url — not link)
+//   - year removed (derived from date_range.start)
+//   - resolution_refs → decisions (inline Decision refs, not bare strings)
+//   - agenda.opening_session/closing_session → components[] (MeetingComponent)
+//   - agenda.items[].resolution_ref → decision_ref
 //
 // The loader is a thin adapter — it does not own any normalization
 // logic. It produces a Meeting object whose fields match the
 // `lodash.set`-compatible dotted accessor convention used elsewhere in
 // isotc154 (e.g. meeting.title, meeting.venues[0].name).
-//
-// Reference: https://github.com/edoxen/edoxen-model/models/meeting.lutaml
-// Format:  https://github.com/edoxen/edoxen-schema/meeting.yaml
 
 import fs from 'node:fs'
 import path from 'node:path'
@@ -29,14 +34,6 @@ function isoDate(v) {
   if (v == null) return ''
   if (v instanceof Date) return v.toISOString().slice(0, 10)
   return String(v)
-}
-
-function coerceItem(row, fields) {
-  if (!row) return row
-  for (const f of fields) {
-    if (f in row) row[f] = isoDate(row[f])
-  }
-  return row
 }
 
 function pickLocalization(list) {
@@ -82,6 +79,22 @@ function presentPerson(p) {
   }
 }
 
+// v2.1: extract chair and secretary from officers[] (role-discriminated).
+// Falls back to legacy direct shortcuts for v0.7.x compat.
+function extractOfficer(raw, role) {
+  // v2.1: officers[]
+  if (Array.isArray(raw.officers)) {
+    const officer = raw.officers.find((o) => o.role === role)
+    if (officer?.person) return presentPerson(officer.person)
+  }
+  // v0.7.x fallback: direct shortcut (raw.chair / raw.secretary)
+  if (raw[role]) return presentPerson(raw[role])
+  return null
+}
+
+// v2.1: flat Venue — kind discriminates physical/virtual. Fields:
+// name, address, unlocode, country_code, url (not link), lat, lon.
+// Falls back to v0.7.x `link` field for compat.
 function mapVenues(rawVenues) {
   if (!Array.isArray(rawVenues)) return []
   return rawVenues
@@ -89,23 +102,13 @@ function mapVenues(rawVenues) {
     .map((v) => ({
       name: v.name,
       address: v.address || '',
-      link: v.link || '',
+      // v2.1 uses `url`; v0.7.x used `link`. Accept either.
+      link: v.url || v.link || '',
       phone: v.phone || '',
-      note: v.note || '',
+      note: v.note || v.access_notes || '',
       lat: typeof v.lat === 'number' ? v.lat : null,
       lon: typeof v.lon === 'number' ? v.lon : null,
     }))
-}
-
-function scheduleItemOrNull(s) {
-  if (!s) return null
-  return {
-    date: isoDate(s.date),
-    time: s.time || '',
-    event: s.event || '',
-    description: s.description || '',
-    room: s.room || '',
-  }
 }
 
 function mapSchedule(rows) {
@@ -127,13 +130,15 @@ function mapDeadlines(rows) {
   }))
 }
 
+// v2.1: agenda no longer has opening_session/closing_session (those are
+// MeetingComponents). Items use decision_ref (not resolution_ref).
 function mapAgenda(rawAgenda) {
   if (!rawAgenda) return null
   return {
     source_doc: rawAgenda.source_doc || null,
     structure: null,
-    opening_session: scheduleItemOrNull(rawAgenda.opening_session),
-    closing_session: scheduleItemOrNull(rawAgenda.closing_session),
+    opening_session: null,
+    closing_session: null,
     wg_meetings: { dates: [], note: null },
     items: Array.isArray(rawAgenda.items)
       ? rawAgenda.items.map((it) => ({
@@ -143,10 +148,27 @@ function mapAgenda(rawAgenda) {
           description: it.description || '',
           references: Array.isArray(it.references) ? it.references : [],
           outcome: it.outcome || null,
-          resolution_ref: it.resolution_ref || null,
+          // v2.1: decision_ref (was resolution_ref in v0.7.x)
+          decision_ref: it.decision_ref || it.resolution_ref || null,
         }))
       : [],
   }
+}
+
+// v2.1: components[] are flat sub-events (MeetingComponent). Project
+// opening/closing back into the legacy schedule shape so the site's
+// calendar component can render them.
+function componentsToSchedule(rawComponents) {
+  if (!Array.isArray(rawComponents)) return []
+  return rawComponents
+    .filter((c) => c && c.starts_at)
+    .map((c) => ({
+      date: isoDate(c.starts_at),
+      time: '',
+      event: c.title || c.kind || '',
+      description: c.description || '',
+      room: '',
+    }))
 }
 
 function normalizeMeeting(raw) {
@@ -164,11 +186,21 @@ function normalizeMeeting(raw) {
   const from = isoDate(raw.date_range?.start)
   const to = isoDate(raw.date_range?.end)
 
+  // v2.1: year is derived from date_range.start (field removed).
+  const year = Number(raw.year) || (from ? Number(from.slice(0, 4)) : null)
+
+  // v2.1: schedule can come from the site-specific `schedule:` array
+  // OR from v2.1 `components[]` (MeetingComponent). Prefer the
+  // site-specific schedule if present; fall back to components.
+  const scheduleRows = mapSchedule(raw.schedule)
+  const componentSchedule = componentsToSchedule(raw.components)
+  const schedule = scheduleRows.length > 0 ? scheduleRows : componentSchedule
+
   const out = {
     title: localization?.title || '',
     ordinal,
     status: mapStatus(raw.status),
-    year: Number(raw.year) || (from ? Number(from.slice(0, 4)) : null),
+    year,
     landing_url: raw.landing_url || '',
     registration_url: raw.registration_url || '',
     time: { from: { date: from }, to: { date: to } },
@@ -176,13 +208,15 @@ function normalizeMeeting(raw) {
     country_code: raw.country_code || '',
     hosts: mapHosts(raw.hosts, raw.host),
     associates: [],
-    secretary: presentPerson(raw.secretary),
-    chair: presentPerson(raw.chair),
+    // v2.1: read from officers[] (role-discriminated); fall back to
+    // legacy direct shortcuts for v0.7.x compat.
+    secretary: extractOfficer(raw, 'secretary'),
+    chair: extractOfficer(raw, 'chair'),
     local_contact: null,
     venues: mapVenues(raw.venues),
     reference_documents: [],
     agenda: mapAgenda(raw.agenda),
-    schedule: mapSchedule(raw.schedule),
+    schedule,
     deadlines: mapDeadlines(raw.deadlines),
     practical_info: localization?.practical_info || null,
     identifier: identifiers,
@@ -190,7 +224,8 @@ function normalizeMeeting(raw) {
     type: raw.type || null,
     committee: raw.committee || null,
     relations: raw.relations || [],
-    resolution_refs: raw.resolution_refs || [],
+    // v2.1: decisions (was resolution_refs in v0.7.x). Accept either.
+    resolution_refs: raw.decisions || raw.resolution_refs || [],
     _edoxen: { raw, localization },
   }
   return out

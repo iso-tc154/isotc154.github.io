@@ -1,21 +1,20 @@
 # yaml-language-server: $schema=../schemas/edoxen-meeting.yaml
 #
-# ISO/TC 154 42nd plenary meeting week — converted to the canonical
-# Edoxen Meeting model. Field semantics are preserved; structure is
-# flattened through `localizations[]` and routed through the official
-# Location/Person/HostRef/ScheduleItem types.
+# ISO/TC 154 42nd plenary meeting week — v2.1 Edoxen Meeting model.
+# Migrated from v0.7.x (chair/secretary shortcuts, year, venues[].link,
+# resolution_refs) to v2.1 (officers[], flat Venue, decisions, no year).
 #
-# This file coexists with the legacy _data/events/plenary-meeting-42.yml
-# during migration. The legacy shape is still consumed by the older
-# meetings.mjs code path; edoxen-shape is detected by the presence of
-# `identifier: [{...}]` at the top of the file.
+# The `schedule` and `deadlines` arrays are site-specific extensions
+# (not part of the Edoxen core model). They coexist with the Edoxen
+# fields because the site's calendar component reads them directly.
+
 identifier:
   - prefix: "ISO/TC 154"
     number: "42"
 urn: urn:iso-tc154:meeting:plenary-42
 type: plenary
 status: completed
-year: 2023
+visibility: public
 ordinal: 42
 landing_url: /events/plenary-meeting-42/
 
@@ -25,18 +24,19 @@ date_range:
 
 committee: "ISO/TC 154"
 
-general_area: "Hong Kong, China"
 city: HKHKG
 country_code: HK
 
 venues:
-  - name: Fairmont House (HKMA)
+  - kind: physical
+    name: Fairmont House (HKMA)
     address: |
       14/F, Fairmont House, 8 Cotton Tree Drive
       Central, Hong Kong, China
-    link: https://www.hkma.org.hk/room_rental/central-admiralty.asp
+    country_code: HK
+    unlocode: HKHKG
+    url: https://www.hkma.org.hk/room_rental/central-admiralty.asp
 
-host: CALCONNECT / ITCHKSAR
 hosts:
   - ref: calconnect
     type: liaison
@@ -45,49 +45,64 @@ hosts:
     type: national-body
     role: host
 
-secretary:
-  name: Jianfang Zhang
-  organization: SAC (CNIS)
-  email: zhangjf@cnis.gov.cn
-  phone: "+86-10-58811613"
+officers:
+  - role: chair
+    person:
+      name: Jianfang Zhang
+      affiliation: SAC (CNIS)
+  - role: secretary
+    person:
+      name: Jianfang Zhang
+      affiliation: SAC (CNIS)
+      email: zhangjf@cnis.gov.cn
+      phone: "+86-10-58811613"
 
-schedule:
-  - date: 2023-10-24
-    time: "9:00–10:30"
-    event: Plenary opening
-    description: Review of ISO/TC 154 work since last plenary meeting
-  - date: 2023-10-24
-    time: "11:00–12:30"
-    event: JWG1 meeting
-    description: Discussion of ISO 9735 Implementation Guide
-  - date: 2023-10-24
-    time: "14:30–16:00"
-    event: WG6 meeting
-    description: Discussion of ISO/AWI TR 19626-3, ISO 14533-3
-  - date: 2023-10-25
-    time: "9:00–10:30"
-    event: WG5 meeting
-    description: Discussion of ISO 8601-2:2019/CD Amd 1
-  - date: 2023-10-25
-    time: "11:00–12:00"
-    event: Ad-hoc group meeting
-    description: Review of report; discussion of necessity to establish JWG with TC 307. ISO/PWI 36100, ISO/PWI 36200 if possible.
-  - date: 2023-10-25
-    time: "14:00–17:30"
-    event: TC-level projects / new JWG
-    description: Discussion of ISO 7372 (UNTDED), ISO/DIS 20197-1, ISO/FDIS 23355, ISO/WD 5909, ISO/PWI 16356
-  - date: 2023-10-26
-    time: "9:00–17:00"
-    event: WG7 meeting
-    description: Other parts of ISO 5054, other parts of ISO 15000, ISO/PWI 16320-1, ISO/PWI 20195, ISO/PWI 20191, ISO/PWI 20180, ISO/PWI TR 20194
-  - date: 2023-10-27
-    time: "9:00–12:00"
-    event: WGs report to Plenary
-    description: WG report and WG recommendation to plenary
-  - date: 2023-10-27
-    time: "14:30–16:30"
-    event: Plenary closing
-    description: Discussion of plenary resolution and other business
+components:
+  - identifier: plenary-opening
+    kind: opening
+    title: Plenary opening
+    starts_at: 2023-10-24T09:00:00+08:00
+    ends_at: 2023-10-24T10:30:00+08:00
+  - identifier: jwg1-meeting
+    kind: working_group_session
+    title: JWG1 meeting
+    starts_at: 2023-10-24T11:00:00+08:00
+    ends_at: 2023-10-24T12:30:00+08:00
+  - identifier: wg6-meeting
+    kind: working_group_session
+    title: WG6 meeting
+    starts_at: 2023-10-24T14:30:00+08:00
+    ends_at: 2023-10-24T16:00:00+08:00
+  - identifier: wg5-meeting
+    kind: working_group_session
+    title: WG5 meeting
+    starts_at: 2023-10-25T09:00:00+08:00
+    ends_at: 2023-10-25T10:30:00+08:00
+  - identifier: adhoc-group
+    kind: breakout
+    title: Ad-hoc group meeting
+    starts_at: 2023-10-25T11:00:00+08:00
+    ends_at: 2023-10-25T12:00:00+08:00
+  - identifier: tc-level-projects
+    kind: session
+    title: TC-level projects / new JWG
+    starts_at: 2023-10-25T14:00:00+08:00
+    ends_at: 2023-10-25T17:30:00+08:00
+  - identifier: wg7-meeting
+    kind: working_group_session
+    title: WG7 meeting
+    starts_at: 2023-10-26T09:00:00+08:00
+    ends_at: 2023-10-26T17:00:00+08:00
+  - identifier: wg-report
+    kind: session
+    title: WGs report to Plenary
+    starts_at: 2023-10-27T09:00:00+08:00
+    ends_at: 2023-10-27T12:00:00+08:00
+  - identifier: plenary-closing
+    kind: closing
+    title: Plenary closing
+    starts_at: 2023-10-27T14:30:00+08:00
+    ends_at: 2023-10-27T16:30:00+08:00
 
 deadlines:
   - date: 2023-09-30
