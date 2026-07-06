@@ -1,12 +1,13 @@
-# yaml-language-server: $schema=../schemas/edoxen-meeting.yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/edoxen/edoxen/v2.1.1/schema/meeting.yaml
 #
-# ISO/TC 154 42nd plenary meeting week — v2.1 Edoxen Meeting model.
-# Migrated from v0.7.x (chair/secretary shortcuts, year, venues[].link,
-# resolution_refs) to v2.1 (officers[], flat Venue, decisions, no year).
+# ISO/TC 154 42nd plenary meeting week — v2.2 Edoxen Meeting model.
+# Updated from v2.1 (chair/secretary shortcuts, year, venues[].link,
+# resolution_refs, flat person.email/phone) to v2.2 (Contact family:
+# name is a Name object, email/phone live in contact_methods[]).
 #
-# The `schedule` and `deadlines` arrays are site-specific extensions
-# (not part of the Edoxen core model). They coexist with the Edoxen
-# fields because the site's calendar component reads them directly.
+# The `deadlines` array is part of the Edoxen core model. Site-specific
+# extensions (if any) should live under `extensions[]` per the
+# MeetingExtension profile mechanism.
 
 identifier:
   - prefix: "ISO/TC 154"
@@ -42,20 +43,38 @@ hosts:
     type: liaison
     role: co-host
   - ref: itchksar
-    type: national-body
+    type: national_body
     role: host
 
 officers:
   - role: chair
     person:
-      name: Jianfang Zhang
+      name:
+        formatted: Jianfang Zhang
+        family: Zhang
+        given: Jianfang
       affiliation: SAC (CNIS)
+      contact_methods:
+        - kind: email
+          value: zhangjf@cnis.gov.cn
+          primary: true
+        - kind: phone
+          value: "+86-10-58811613"
+          label: Office
   - role: secretary
     person:
-      name: Jianfang Zhang
+      name:
+        formatted: Jianfang Zhang
+        family: Zhang
+        given: Jianfang
       affiliation: SAC (CNIS)
-      email: zhangjf@cnis.gov.cn
-      phone: "+86-10-58811613"
+      contact_methods:
+        - kind: email
+          value: zhangjf@cnis.gov.cn
+          primary: true
+        - kind: phone
+          value: "+86-10-58811613"
+          label: Office
 
 components:
   - identifier: plenary-opening
