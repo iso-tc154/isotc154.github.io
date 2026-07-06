@@ -69,20 +69,41 @@ function mapHosts(rawHosts, legacyHost) {
   return out
 }
 
+// v2.2: Person inherits from Contact. `name` is a Name object
+// ({ formatted, family, given, ... }); email/phone live in
+// `contact_methods[]` (kind-discriminated). Falls back to v2.1
+// string-name and direct email/phone for back-compat with fixtures
+// that haven't migrated yet.
+function displayName(name) {
+  if (!name) return ''
+  if (typeof name === 'string') return name
+  if (name.formatted) return name.formatted
+  return [name.prefix, name.given, name.additional, name.family, name.suffix]
+    .filter((s) => s != null && String(s).trim() !== '')
+    .join(' ')
+}
+
+function primaryContactMethod(methods, kind) {
+  if (!Array.isArray(methods)) return ''
+  const primary = methods.find((m) => m && m.kind === kind && m.primary) ||
+                  methods.find((m) => m && m.kind === kind)
+  return primary?.value || ''
+}
+
 function presentPerson(p) {
   if (!p) return null
   return {
-    name: p.name || '',
+    name: displayName(p.name),
     organization: p.affiliation || p.organization || '',
-    email: p.email || '',
-    phone: p.phone || '',
+    email: primaryContactMethod(p.contact_methods, 'email') || p.email || '',
+    phone: primaryContactMethod(p.contact_methods, 'phone') || p.phone || '',
   }
 }
 
-// v2.1: extract chair and secretary from officers[] (role-discriminated).
+// v2.1+: extract chair and secretary from officers[] (role-discriminated).
 // Falls back to legacy direct shortcuts for v0.7.x compat.
 function extractOfficer(raw, role) {
-  // v2.1: officers[]
+  // v2.1+: officers[]
   if (Array.isArray(raw.officers)) {
     const officer = raw.officers.find((o) => o.role === role)
     if (officer?.person) return presentPerson(officer.person)
@@ -92,9 +113,10 @@ function extractOfficer(raw, role) {
   return null
 }
 
-// v2.1: flat Venue — kind discriminates physical/virtual. Fields:
+// v2.1+: flat Venue — kind discriminates physical/virtual. Fields:
 // name, address, unlocode, country_code, url (not link), lat, lon.
-// Falls back to v0.7.x `link` field for compat.
+// v2.2: phones moved to venue.contact_methods[].
+// Falls back to v0.7.x `link` / v2.1 `phone` fields for compat.
 function mapVenues(rawVenues) {
   if (!Array.isArray(rawVenues)) return []
   return rawVenues
@@ -104,7 +126,7 @@ function mapVenues(rawVenues) {
       address: v.address || '',
       // v2.1 uses `url`; v0.7.x used `link`. Accept either.
       link: v.url || v.link || '',
-      phone: v.phone || '',
+      phone: primaryContactMethod(v.contact_methods, 'phone') || v.phone || '',
       note: v.note || v.access_notes || '',
       lat: typeof v.lat === 'number' ? v.lat : null,
       lon: typeof v.lon === 'number' ? v.lon : null,
