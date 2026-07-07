@@ -1,21 +1,16 @@
 // SPDX-License-Identifier: MIT
 //
-// Edoxen Meeting format loader for isotc154. Loads YAML files produced
-// in the canonical Edoxen v2.1 Meeting shape (one Meeting per file, or a
-// MeetingCollection document). Detection: top-level `identifier: [{...}]`
-// + `type:` is the signature; legacy files start with `title` and `ordinal`.
+// Edoxen Meeting format loader for isotc154. Loads YAML files in the
+// canonical Edoxen v2.2 Meeting shape (one Meeting per file, or a
+// MeetingCollection document). Detection: top-level `identifier:
+// [{...}]` + `type:` is the signature.
 //
-// v2.1 changes handled here (vs the prior v0.7.x loader):
-//   - chair/secretary → officers[] (role-discriminated)
-//   - venues[] flat Venue (kind, name, address, unlocode, url — not link)
-//   - year removed (derived from date_range.start)
-//   - resolution_refs → decisions (inline Decision refs, not bare strings)
-//   - agenda.opening_session/closing_session → components[] (MeetingComponent)
-//   - agenda.items[].resolution_ref → decision_ref
+// No back-compat. Fixtures that don't conform to v2.2 are rejected by
+// `edoxen validate-meetings` at the data layer; this loader assumes
+// clean input.
 //
-// The loader is a thin adapter — it does not own any normalization
-// logic. It produces a Meeting object whose fields match the
-// `lodash.set`-compatible dotted accessor convention used elsewhere in
+// The loader is a thin adapter — it produces a Meeting object whose
+// fields match the dotted-accessor convention used elsewhere in
 // isotc154 (e.g. meeting.title, meeting.venues[0].name).
 
 import fs from 'node:fs'
@@ -26,7 +21,7 @@ import { loadYamlFile, loadYamlDir } from './yamlDir.mjs'
 const EDOXEN_SIGNATURE = ['identifier', 'type']
 
 export function isEdoxenMeetingShape(parsed) {
-  if (!parsed || typeof parsed !== 'object') return null
+  if (!parsed || typeof parsed !== 'object') return false
   return EDOXEN_SIGNATURE.every((k) => Object.prototype.hasOwnProperty.call(parsed, k))
 }
 
@@ -50,33 +45,10 @@ function mapStatus(s) {
   return t
 }
 
-function mapHosts(rawHosts, legacyHost) {
-  const out = []
-  if (Array.isArray(rawHosts)) {
-    for (const h of rawHosts) {
-      if (!h) continue
-      out.push({
-        ref: h.ref || null,
-        type: h.type || null,
-        role: h.role || null,
-        name: h.contact?.name || null,
-      })
-    }
-  }
-  if (out.length === 0 && typeof legacyHost === 'string' && legacyHost) {
-    out.push({ ref: null, type: null, role: null, name: legacyHost })
-  }
-  return out
-}
-
-// v2.2: Person inherits from Contact. `name` is a Name object
-// ({ formatted, family, given, ... }); email/phone live in
-// `contact_methods[]` (kind-discriminated). Falls back to v2.1
-// string-name and direct email/phone for back-compat with fixtures
-// that haven't migrated yet.
+// v2.2 Name: prefer `formatted`; otherwise build from structured
+// components. Returns '' for null/empty.
 function displayName(name) {
   if (!name) return ''
-  if (typeof name === 'string') return name
   if (name.formatted) return name.formatted
   return [name.prefix, name.given, name.additional, name.family, name.suffix]
     .filter((s) => s != null && String(s).trim() !== '')
@@ -90,33 +62,37 @@ function primaryContactMethod(methods, kind) {
   return primary?.value || ''
 }
 
-function presentPerson(p) {
-  if (!p) return null
+// v2.2 Contact: pulls email/phone from contact_methods[]. `name` is a
+// Name object. Used for both Person (officer) and Contact (meeting
+// local-contact, host-ref contact).
+function presentContact(c) {
+  if (!c) return null
   return {
-    name: displayName(p.name),
-    organization: p.affiliation || p.organization || '',
-    email: primaryContactMethod(p.contact_methods, 'email') || p.email || '',
-    phone: primaryContactMethod(p.contact_methods, 'phone') || p.phone || '',
+    name: displayName(c.name),
+    organization: c.affiliation || '',
+    email: primaryContactMethod(c.contact_methods, 'email'),
+    phone: primaryContactMethod(c.contact_methods, 'phone'),
   }
 }
 
-// v2.1+: extract chair and secretary from officers[] (role-discriminated).
-// Falls back to legacy direct shortcuts for v0.7.x compat.
+function mapHosts(rawHosts) {
+  if (!Array.isArray(rawHosts)) return []
+  return rawHosts
+    .filter((h) => h)
+    .map((h) => ({
+      ref: h.ref || null,
+      type: h.type || null,
+      role: h.role || null,
+      name: h.contact ? displayName(h.contact.name) : null,
+    }))
+}
+
 function extractOfficer(raw, role) {
-  // v2.1+: officers[]
-  if (Array.isArray(raw.officers)) {
-    const officer = raw.officers.find((o) => o.role === role)
-    if (officer?.person) return presentPerson(officer.person)
-  }
-  // v0.7.x fallback: direct shortcut (raw.chair / raw.secretary)
-  if (raw[role]) return presentPerson(raw[role])
-  return null
+  if (!Array.isArray(raw.officers)) return null
+  const officer = raw.officers.find((o) => o.role === role)
+  return officer?.person ? presentContact(officer.person) : null
 }
 
-// v2.1+: flat Venue — kind discriminates physical/virtual. Fields:
-// name, address, unlocode, country_code, url (not link), lat, lon.
-// v2.2: phones moved to venue.contact_methods[].
-// Falls back to v0.7.x `link` / v2.1 `phone` fields for compat.
 function mapVenues(rawVenues) {
   if (!Array.isArray(rawVenues)) return []
   return rawVenues
@@ -124,24 +100,12 @@ function mapVenues(rawVenues) {
     .map((v) => ({
       name: v.name,
       address: v.address || '',
-      // v2.1 uses `url`; v0.7.x used `link`. Accept either.
-      link: v.url || v.link || '',
-      phone: primaryContactMethod(v.contact_methods, 'phone') || v.phone || '',
-      note: v.note || v.access_notes || '',
+      link: v.url || '',
+      phone: primaryContactMethod(v.contact_methods, 'phone'),
+      note: v.access_notes || '',
       lat: typeof v.lat === 'number' ? v.lat : null,
       lon: typeof v.lon === 'number' ? v.lon : null,
     }))
-}
-
-function mapSchedule(rows) {
-  if (!Array.isArray(rows)) return []
-  return rows.map((r) => ({
-    date: isoDate(r.date),
-    time: r.time || '',
-    event: r.event || '',
-    description: r.description || '',
-    room: r.room || '',
-  }))
 }
 
 function mapDeadlines(rows) {
@@ -152,16 +116,10 @@ function mapDeadlines(rows) {
   }))
 }
 
-// v2.1: agenda no longer has opening_session/closing_session (those are
-// MeetingComponents). Items use decision_ref (not resolution_ref).
 function mapAgenda(rawAgenda) {
   if (!rawAgenda) return null
   return {
     source_doc: rawAgenda.source_doc || null,
-    structure: null,
-    opening_session: null,
-    closing_session: null,
-    wg_meetings: { dates: [], note: null },
     items: Array.isArray(rawAgenda.items)
       ? rawAgenda.items.map((it) => ({
           label: it.label || '',
@@ -170,16 +128,15 @@ function mapAgenda(rawAgenda) {
           description: it.description || '',
           references: Array.isArray(it.references) ? it.references : [],
           outcome: it.outcome || null,
-          // v2.1: decision_ref (was resolution_ref in v0.7.x)
-          decision_ref: it.decision_ref || it.resolution_ref || null,
+          decision_ref: it.decision_ref || null,
         }))
       : [],
   }
 }
 
-// v2.1: components[] are flat sub-events (MeetingComponent). Project
-// opening/closing back into the legacy schedule shape so the site's
-// calendar component can render them.
+// v2.2: components[] (MeetingComponent) is the SSOT for sub-events
+// (was the legacy `schedule:` array in v0.7.x). Project into the
+// site's schedule shape for the calendar component.
 function componentsToSchedule(rawComponents) {
   if (!Array.isArray(rawComponents)) return []
   return rawComponents
@@ -207,18 +164,9 @@ function normalizeMeeting(raw) {
 
   const from = isoDate(raw.date_range?.start)
   const to = isoDate(raw.date_range?.end)
+  const year = from ? Number(from.slice(0, 4)) : null
 
-  // v2.1: year is derived from date_range.start (field removed).
-  const year = Number(raw.year) || (from ? Number(from.slice(0, 4)) : null)
-
-  // v2.1: schedule can come from the site-specific `schedule:` array
-  // OR from v2.1 `components[]` (MeetingComponent). Prefer the
-  // site-specific schedule if present; fall back to components.
-  const scheduleRows = mapSchedule(raw.schedule)
-  const componentSchedule = componentsToSchedule(raw.components)
-  const schedule = scheduleRows.length > 0 ? scheduleRows : componentSchedule
-
-  const out = {
+  return {
     title: localization?.title || '',
     ordinal,
     status: mapStatus(raw.status),
@@ -228,17 +176,15 @@ function normalizeMeeting(raw) {
     time: { from: { date: from }, to: { date: to } },
     general_area: localization?.general_area || raw.general_area || '',
     country_code: raw.country_code || '',
-    hosts: mapHosts(raw.hosts, raw.host),
+    hosts: mapHosts(raw.hosts),
     associates: [],
-    // v2.1: read from officers[] (role-discriminated); fall back to
-    // legacy direct shortcuts for v0.7.x compat.
     secretary: extractOfficer(raw, 'secretary'),
     chair: extractOfficer(raw, 'chair'),
-    local_contact: null,
+    local_contact: raw.contact ? presentContact(raw.contact) : null,
     venues: mapVenues(raw.venues),
     reference_documents: [],
     agenda: mapAgenda(raw.agenda),
-    schedule,
+    schedule: componentsToSchedule(raw.components),
     deadlines: mapDeadlines(raw.deadlines),
     practical_info: localization?.practical_info || null,
     identifier: identifiers,
@@ -246,11 +192,9 @@ function normalizeMeeting(raw) {
     type: raw.type || null,
     committee: raw.committee || null,
     relations: raw.relations || [],
-    // v2.1: decisions (was resolution_refs in v0.7.x). Accept either.
-    resolution_refs: raw.decisions || raw.resolution_refs || [],
+    decisions: raw.decisions || [],
     _edoxen: { raw, localization },
   }
-  return out
 }
 
 export function loadEdoxenMeetingFile(filePath) {
