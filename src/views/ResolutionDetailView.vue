@@ -216,7 +216,7 @@ import { useResolutionMeetings } from "../composables/useResolutionMeetings"
 import { renderProse } from '../utils/prose'
 import { getActionColor } from '../data/actionTypes'
 import { formatDate } from '../utils/format'
-import { useClipboard } from '../composables/useClipboard'
+import { useClipboard } from '@edoxen/vue'
 import { createNeighborNav } from '../composables/useNeighborNav'
 import PageHero from '../components/PageHero.vue'
 import PrevNextNav from '../components/PrevNextNav.vue'
