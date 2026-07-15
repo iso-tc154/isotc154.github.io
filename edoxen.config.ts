@@ -8,7 +8,6 @@ export default defineConfig({
   },
   data: {
     decisions: '../resolutions-data/plenary',
-    meetings: '../resolutions-data/meetings',
   },
   theme: {
     primary: '#1e3a8a',
