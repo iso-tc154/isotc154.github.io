@@ -7,7 +7,7 @@ export default defineConfig({
     url: 'https://www.isotc154.org',
   },
   data: {
-    decisions: '../resolutions-data/plenary',
+    decisions: '_data/resolutions/plenary',
   },
   theme: {
     primary: '#1e3a8a',
