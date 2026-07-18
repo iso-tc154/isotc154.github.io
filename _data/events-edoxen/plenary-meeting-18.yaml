@@ -1,0 +1,68 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '18'
+urn: urn:iso-tc154:meeting:plenary-18
+type: plenary
+status: completed
+ordinal: 18
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: BE
+title:
+- spelling: eng
+  value: 18th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Brussels
+  country_code: BE
+source_urls:
+- ref: https://committee.iso.org/meetings/10546
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '197'
+- prefix: ISO/TC 154
+  number: '198'
+- prefix: ISO/TC 154
+  number: '199'
+- prefix: ISO/TC 154
+  number: '8'
+- prefix: ISO/TC 154
+  number: '200'
+- prefix: ISO/TC 154
+  number: '9'
+- prefix: ISO/TC 154
+  number: '201'
+- prefix: ISO/TC 154
+  number: '202'
+- prefix: ISO/TC 154
+  number: '203'
+- prefix: ISO/TC 154
+  number: '204'
+- prefix: ISO/TC 154
+  number: '205'
+- prefix: ISO/TC 154
+  number: '206'
+- prefix: ISO/TC 154
+  number: '10'
+- prefix: ISO/TC 154
+  number: '207'
+- prefix: ISO/TC 154
+  number: '11'
+- prefix: ISO/TC 154
+  number: '208'
+- prefix: ISO/TC 154
+  number: '209'
+- prefix: ISO/TC 154
+  number: '210'
+- prefix: ISO/TC 154
+  number: '211'
+scheduled_date_range:
+  start: '2001-09-05'
+  end: '2001-09-07'

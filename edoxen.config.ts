@@ -8,6 +8,7 @@ export default defineConfig({
   },
   data: {
     decisions: '_data/resolutions/plenary',
+    meetings: '_data/events-edoxen',
   },
   theme: {
     primary: '#1e3a8a',

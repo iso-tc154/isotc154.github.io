@@ -1,0 +1,58 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '33'
+urn: urn:iso-tc154:meeting:plenary-33
+type: plenary
+status: completed
+ordinal: 33
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: KR
+title:
+- spelling: eng
+  value: 33th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Incheon
+  country_code: KR
+source_urls:
+- ref: https://committee.iso.org/meetings/42221
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 01-2014
+- prefix: ISO/TC 154
+  number: 02-2014
+- prefix: ISO/TC 154
+  number: 03-2014
+- prefix: ISO/TC 154
+  number: 04-2014
+- prefix: ISO/TC 154
+  number: 05-2014
+- prefix: ISO/TC 154
+  number: 06-2014
+- prefix: ISO/TC 154
+  number: 07-2014
+- prefix: ISO/TC 154
+  number: '08-2014'
+- prefix: ISO/TC 154
+  number: '09-2014'
+- prefix: ISO/TC 154
+  number: 10-2014
+- prefix: ISO/TC 154
+  number: 11-2014
+- prefix: ISO/TC 154
+  number: 12-2014
+- prefix: ISO/TC 154
+  number: 13-2014
+- prefix: ISO/TC 154
+  number: 14-2014
+scheduled_date_range:
+  start: '2014-10-20'
+  end: '2014-10-24'

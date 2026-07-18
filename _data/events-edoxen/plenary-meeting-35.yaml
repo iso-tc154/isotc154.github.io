@@ -1,0 +1,62 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '35'
+urn: urn:iso-tc154:meeting:plenary-35
+type: plenary
+status: completed
+ordinal: 35
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: DE
+title:
+- spelling: eng
+  value: 35th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Berlin
+  country_code: DE
+source_urls:
+- ref: https://committee.iso.org/meetings/47260
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 2016-01
+- prefix: ISO/TC 154
+  number: 2016-02
+- prefix: ISO/TC 154
+  number: 2016-03
+- prefix: ISO/TC 154
+  number: 2016-04
+- prefix: ISO/TC 154
+  number: 2016-05
+- prefix: ISO/TC 154
+  number: 2016-06
+- prefix: ISO/TC 154
+  number: 2016-07
+- prefix: ISO/TC 154
+  number: 2016-08
+- prefix: ISO/TC 154
+  number: 2016-09
+- prefix: ISO/TC 154
+  number: 2016-10
+- prefix: ISO/TC 154
+  number: 2016-11
+- prefix: ISO/TC 154
+  number: 2016-12
+- prefix: ISO/TC 154
+  number: 2016-13
+- prefix: ISO/TC 154
+  number: 2016-14
+- prefix: ISO/TC 154
+  number: 2016-15
+- prefix: ISO/TC 154
+  number: 2016-16
+scheduled_date_range:
+  start: '2016-10-17'
+  end: '2016-10-21'
