@@ -3,10 +3,12 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "packageManager": "pnpm@11.12.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "validate": "edoxen-browser check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
