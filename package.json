@@ -14,5 +14,8 @@
     "@astrojs/sitemap": "^3.2.0",
     "@edoxen/browser": "^0.1.7",
     "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "@edoxen/edoxen": "0.2.4"
   }
 }
