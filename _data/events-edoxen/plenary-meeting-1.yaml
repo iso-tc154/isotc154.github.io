@@ -1,0 +1,31 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '1'
+urn: urn:iso-tc154:meeting:plenary-1
+type: plenary
+status: completed
+ordinal: 1
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: SESTO
+country_code: SE
+title:
+- spelling: eng
+  value: 1th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Stockholm
+  country_code: SE
+  unlocode: SESTO
+source_urls:
+- ref: https://committee.iso.org/meetings/35770
+  kind: landing_page
+scheduled_date_range:
+  start: '1973-02-13'
+  end: '1973-02-14'

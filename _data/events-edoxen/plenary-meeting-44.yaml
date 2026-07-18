@@ -1,0 +1,62 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '44'
+urn: urn:iso-tc154:meeting:plenary-44
+type: plenary
+status: completed
+ordinal: 44
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: USRAH
+country_code: US
+title:
+- spelling: eng
+  value: 44th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Sitti,  137 South Wilmington Street, Raleigh;
+  country_code: US
+  unlocode: USRAH
+source_urls:
+- ref: https://committee.iso.org/meetings/166950
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: P-2025-01
+- prefix: ISO/TC 154
+  number: P-2025-02
+- prefix: ISO/TC 154
+  number: P-2025-03
+- prefix: ISO/TC 154
+  number: P-2025-04
+- prefix: ISO/TC 154
+  number: P-2025-05
+- prefix: ISO/TC 154
+  number: P-2025-06
+- prefix: ISO/TC 154
+  number: P-2025-07
+- prefix: ISO/TC 154
+  number: P-2025-08
+- prefix: ISO/TC 154
+  number: P-2025-09
+- prefix: ISO/TC 154
+  number: P-2025-10
+- prefix: ISO/TC 154
+  number: P-2025-11
+- prefix: ISO/TC 154
+  number: P-2025-12
+- prefix: ISO/TC 154
+  number: P-2025-13
+- prefix: ISO/TC 154
+  number: P-2025-14
+- prefix: ISO/TC 154
+  number: P-2025-15
+scheduled_date_range:
+  start: '2025-09-22'
+  end: '2025-09-26'
