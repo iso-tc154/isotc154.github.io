@@ -3,4 +3,4 @@ allowBuilds:
   sharp: true
 minimumReleaseAgeExclude:
   - '@edoxen/browser@0.1.6 || 0.1.7'
-  - '@edoxen/edoxen@0.2.3'
+  - '@edoxen/edoxen@0.2.3 || 0.2.4'
