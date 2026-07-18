@@ -23,8 +23,11 @@ date_range:
   start: 2023-10-24
   end: 2023-10-27
 
-committee: "ISO/TC 154"
-
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
 city: HKHKG
 country_code: HK
 
