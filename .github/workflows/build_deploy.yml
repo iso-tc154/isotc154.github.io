@@ -76,13 +76,53 @@ jobs:
         with:
           path: dist
 
+  # Internal-link integrity. Re-builds the site (build is cheap, ~5s locally
+  # and roughly the same in CI) and runs lychee offline against the rendered
+  # HTML. Catches broken hrefs emitted by routes, typos in hard-coded paths,
+  # and missing detail pages — the kind of regression that would ship a
+  # 404 to a real user.
+  #
+  # External link rot is intentionally NOT in CI: third-party sites
+  # (committee.iso.org in particular) reject programmatic traffic with 400,
+  # producing noisy false failures. Run `pnpm run links:external` locally
+  # for an external audit on demand.
+  links:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build with astro
+        run: pnpm run build
+
+      - name: Run lychee (offline, internal links only)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml 'dist/**/*.html'
+          fail: true
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, links]
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

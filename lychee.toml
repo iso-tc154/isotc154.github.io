@@ -1,0 +1,38 @@
+# Lychee link-checker config.
+# Local:   pnpm run links:check         (offline, internal only — fast, deterministic)
+#          pnpm run links:external      (online; hits third-party sites)
+# CI:      .github/workflows/build_deploy.yml `links` job (offline only)
+#
+# Inputs (glob) are passed on the command line; this lychee version (0.24.x)
+# doesn't accept `inputs` in the config file.
+
+# Required so root-relative links like "/decisions/..." resolve against dist/.
+root_dir = "dist"
+
+# Offline = internal-link integrity only. This is the signal that catches
+# build-time regressions (broken href emitted by a route, typo in a hard-coded
+# path). External link rot is a separate, slower-moving concern and lives
+# behind `pnpm run links:external` for occasional audits.
+offline = true
+
+# Don't waste cycles on mail/app URI schemes.
+exclude = [
+  "^mailto:",
+  "^tel:",
+  "^sms:",
+  "^data:",
+  "^javascript:",
+]
+
+# Cached requests skip the network in CI for repeatability.
+cache = true
+
+# Reasonable concurrency; CI runner has bandwidth.
+max_concurrency = 16
+
+# Fail the run on any broken link. That's the point.
+max_redirects = 10
+method = "get"
+
+# Verbose summary so the CI log shows what was checked.
+no_progress = false
