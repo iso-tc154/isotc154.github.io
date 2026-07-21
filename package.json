@@ -8,12 +8,17 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "validate": "edoxen-browser check"
+    "validate": "edoxen-browser check",
+    "links:check": "lychee --config lychee.toml 'dist/**/*.html'",
+    "links:external": "lychee --config lychee.toml --offline=false --exclude='^https?://committee\\.iso\\.org/' --exclude='^https?://www\\.isotc154\\.org/404/?$' 'dist/**/*.html'"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.0",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vue": "^7.0.1",
     "@edoxen/browser": "^0.1.7",
-    "astro": "^5.0.0"
+    "ajv": "^8.17.1",
+    "astro": "^7.1.1",
+    "vue": "^3.5.24"
   },
   "devDependencies": {
     "@edoxen/edoxen": "0.2.4",
