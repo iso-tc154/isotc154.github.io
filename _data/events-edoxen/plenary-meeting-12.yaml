@@ -1,0 +1,58 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '12'
+urn: urn:iso-tc154:meeting:plenary-12
+type: plenary
+status: completed
+ordinal: 12
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: FRPAR
+country_code: FR
+title:
+- spelling: eng
+  value: 12th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Paris
+  country_code: FR
+  unlocode: FRPAR
+source_urls:
+- ref: https://committee.iso.org/meetings/13817
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '113'
+- prefix: ISO/TC 154
+  number: '114'
+- prefix: ISO/TC 154
+  number: '115'
+- prefix: ISO/TC 154
+  number: '116'
+- prefix: ISO/TC 154
+  number: '117'
+- prefix: ISO/TC 154
+  number: '118'
+- prefix: ISO/TC 154
+  number: '119'
+- prefix: ISO/TC 154
+  number: '120'
+- prefix: ISO/TC 154
+  number: '121'
+- prefix: ISO/TC 154
+  number: '122'
+- prefix: ISO/TC 154
+  number: '123'
+- prefix: ISO/TC 154
+  number: '124'
+- prefix: ISO/TC 154
+  number: '125'
+scheduled_date_range:
+  start: '1996-10-21'
+  end: '1996-10-22'

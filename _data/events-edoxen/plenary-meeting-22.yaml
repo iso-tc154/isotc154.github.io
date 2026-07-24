@@ -1,0 +1,42 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '22'
+urn: urn:iso-tc154:meeting:plenary-22
+type: plenary
+status: completed
+ordinal: 22
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: US
+title:
+- spelling: eng
+  value: 22th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: McLean, Virginia
+  country_code: US
+source_urls:
+- ref: https://committee.iso.org/meetings/8464
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '250'
+- prefix: ISO/TC 154
+  number: '251'
+- prefix: ISO/TC 154
+  number: '252'
+- prefix: ISO/TC 154
+  number: '253'
+- prefix: ISO/TC 154
+  number: '254'
+- prefix: ISO/TC 154
+  number: '255'
+scheduled_date_range:
+  start: '2004-09-10'
+  end: '2004-09-10'

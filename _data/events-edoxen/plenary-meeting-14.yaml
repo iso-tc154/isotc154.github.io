@@ -1,0 +1,64 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '14'
+urn: urn:iso-tc154:meeting:plenary-14
+type: plenary
+status: completed
+ordinal: 14
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: CHGVA
+country_code: CH
+title:
+- spelling: eng
+  value: 14th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Geneva
+  country_code: CH
+  unlocode: CHGVA
+source_urls:
+- ref: https://committee.iso.org/meetings/13842
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '138'
+- prefix: ISO/TC 154
+  number: '139'
+- prefix: ISO/TC 154
+  number: '140'
+- prefix: ISO/TC 154
+  number: '141'
+- prefix: ISO/TC 154
+  number: '142'
+- prefix: ISO/TC 154
+  number: '143'
+- prefix: ISO/TC 154
+  number: '144'
+- prefix: ISO/TC 154
+  number: '145'
+- prefix: ISO/TC 154
+  number: '146'
+- prefix: ISO/TC 154
+  number: '147'
+- prefix: ISO/TC 154
+  number: '148'
+- prefix: ISO/TC 154
+  number: '149'
+- prefix: ISO/TC 154
+  number: '150'
+- prefix: ISO/TC 154
+  number: '151'
+- prefix: ISO/TC 154
+  number: '152'
+- prefix: ISO/TC 154
+  number: '153'
+scheduled_date_range:
+  start: '1998-03-12'
+  end: '1998-03-13'

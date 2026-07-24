@@ -1,0 +1,68 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '19'
+urn: urn:iso-tc154:meeting:plenary-19
+type: plenary
+status: completed
+ordinal: 19
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: CHGVA
+country_code: CH
+title:
+- spelling: eng
+  value: 19th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Geneva
+  country_code: CH
+  unlocode: CHGVA
+source_urls:
+- ref: https://committee.iso.org/meetings/5462
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '212'
+- prefix: ISO/TC 154
+  number: '213'
+- prefix: ISO/TC 154
+  number: '214'
+- prefix: ISO/TC 154
+  number: '215'
+- prefix: ISO/TC 154
+  number: '216'
+- prefix: ISO/TC 154
+  number: '217'
+- prefix: ISO/TC 154
+  number: '218'
+- prefix: ISO/TC 154
+  number: '219'
+- prefix: ISO/TC 154
+  number: '12'
+- prefix: ISO/TC 154
+  number: '13'
+- prefix: ISO/TC 154
+  number: '220'
+- prefix: ISO/TC 154
+  number: '221'
+- prefix: ISO/TC 154
+  number: '14'
+- prefix: ISO/TC 154
+  number: '222'
+- prefix: ISO/TC 154
+  number: '223'
+- prefix: ISO/TC 154
+  number: '224'
+- prefix: ISO/TC 154
+  number: '225'
+- prefix: ISO/TC 154
+  number: '226'
+scheduled_date_range:
+  start: '2002-09-06'
+  end: '2002-09-06'

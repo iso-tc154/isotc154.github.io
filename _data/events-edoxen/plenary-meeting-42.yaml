@@ -1,0 +1,182 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/edoxen/edoxen/refs/heads/main/schema/meeting.yaml
+#
+# ISO/TC 154 42nd plenary meeting week — Edoxen 1.0 Meeting model.
+# Migrated from v2.2: date_range → scheduled_date_range, scalar
+# strings → per-field Localized arrays, localizations[] lifted to
+# per-field Localized (title/general_area) + note (practical_info),
+# date/time literals → ISO strings.
+#
+# The `deadlines` array is part of the Edoxen core model. Site-specific
+# extensions (if any) should live under `extensions[]` per the
+# MeetingExtension profile mechanism.
+
+identifier:
+  - prefix: "ISO/TC 154"
+    number: "42"
+urn: urn:iso-tc154:meeting:plenary-42
+type: plenary
+status: completed
+visibility: public
+ordinal: 42
+landing_url: /events/plenary-meeting-42/
+
+scheduled_date_range:
+  start: '2023-10-24'
+  end: '2023-10-27'
+
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: HKHKG
+country_code: HK
+
+title:
+- spelling: eng
+  value: "42nd plenary meeting week"
+general_area:
+- spelling: eng
+  value: "Hong Kong, China"
+
+venues:
+  - kind: physical
+    name:
+    - spelling: eng
+      value: Fairmont House (HKMA)
+    address:
+    - spelling: eng
+      value: |
+        14/F, Fairmont House, 8 Cotton Tree Drive
+        Central, Hong Kong, China
+    country_code: HK
+    unlocode: HKHKG
+    url: https://www.hkma.org.hk/room_rental/central-admiralty.asp
+
+hosts:
+  - ref: calconnect
+    type: liaison
+    role: co-host
+  - ref: itchksar
+    type: national_body
+    role: host
+
+officers:
+  - role: chair
+    person:
+      name:
+      - spelling: eng
+        value:
+          formatted: Jianfang Zhang
+          family: Zhang
+          given: Jianfang
+      affiliation:
+      - spelling: eng
+        value: SAC (CNIS)
+      contact_methods:
+        - kind: email
+          value: zhangjf@cnis.gov.cn
+          primary: true
+        - kind: phone
+          value: "+86-10-58811613"
+          label: Office
+  - role: secretary
+    person:
+      name:
+      - spelling: eng
+        value:
+          formatted: Jianfang Zhang
+          family: Zhang
+          given: Jianfang
+      affiliation:
+      - spelling: eng
+        value: SAC (CNIS)
+      contact_methods:
+        - kind: email
+          value: zhangjf@cnis.gov.cn
+          primary: true
+        - kind: phone
+          value: "+86-10-58811613"
+          label: Office
+
+components:
+  - identifier: plenary-opening
+    kind: opening
+    title:
+    - spelling: eng
+      value: Plenary opening
+    starts_at: '2023-10-24T09:00:00+08:00'
+    ends_at: '2023-10-24T10:30:00+08:00'
+  - identifier: jwg1-meeting
+    kind: working_group_session
+    title:
+    - spelling: eng
+      value: JWG1 meeting
+    starts_at: '2023-10-24T11:00:00+08:00'
+    ends_at: '2023-10-24T12:30:00+08:00'
+  - identifier: wg6-meeting
+    kind: working_group_session
+    title:
+    - spelling: eng
+      value: WG6 meeting
+    starts_at: '2023-10-24T14:30:00+08:00'
+    ends_at: '2023-10-24T16:00:00+08:00'
+  - identifier: wg5-meeting
+    kind: working_group_session
+    title:
+    - spelling: eng
+      value: WG5 meeting
+    starts_at: '2023-10-25T09:00:00+08:00'
+    ends_at: '2023-10-25T10:30:00+08:00'
+  - identifier: adhoc-group
+    kind: breakout
+    title:
+    - spelling: eng
+      value: Ad-hoc group meeting
+    starts_at: '2023-10-25T11:00:00+08:00'
+    ends_at: '2023-10-25T12:00:00+08:00'
+  - identifier: tc-level-projects
+    kind: session
+    title:
+    - spelling: eng
+      value: TC-level projects / new JWG
+    starts_at: '2023-10-25T14:00:00+08:00'
+    ends_at: '2023-10-25T17:30:00+08:00'
+  - identifier: wg7-meeting
+    kind: working_group_session
+    title:
+    - spelling: eng
+      value: WG7 meeting
+    starts_at: '2023-10-26T09:00:00+08:00'
+    ends_at: '2023-10-26T17:00:00+08:00'
+  - identifier: wg-report
+    kind: session
+    title:
+    - spelling: eng
+      value: WGs report to Plenary
+    starts_at: '2023-10-27T09:00:00+08:00'
+    ends_at: '2023-10-27T12:00:00+08:00'
+  - identifier: plenary-closing
+    kind: closing
+    title:
+    - spelling: eng
+      value: Plenary closing
+    starts_at: '2023-10-27T14:30:00+08:00'
+    ends_at: '2023-10-27T16:30:00+08:00'
+
+deadlines:
+  - date: '2023-09-30'
+    description:
+    - spelling: eng
+      value: Registration via ISO meeting platform
+  - date: '2023-09-30'
+    description:
+    - spelling: eng
+      value: Liaison and national body report submissions
+
+note:
+- spelling: eng
+  value: |
+    Accommodation options near the venue are listed separately on
+    the meeting landing page. Several hotels in the Central and
+    Wanchai districts were recommended by the host.

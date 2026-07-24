@@ -1,0 +1,54 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '10'
+urn: urn:iso-tc154:meeting:plenary-10
+type: plenary
+status: completed
+ordinal: 10
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: DE
+title:
+- spelling: eng
+  value: 10th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Cologne
+  country_code: DE
+source_urls:
+- ref: https://committee.iso.org/meetings/13833
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '88'
+- prefix: ISO/TC 154
+  number: '89'
+- prefix: ISO/TC 154
+  number: '90'
+- prefix: ISO/TC 154
+  number: '91'
+- prefix: ISO/TC 154
+  number: '92'
+- prefix: ISO/TC 154
+  number: '93'
+- prefix: ISO/TC 154
+  number: '94'
+- prefix: ISO/TC 154
+  number: '95'
+- prefix: ISO/TC 154
+  number: '96'
+- prefix: ISO/TC 154
+  number: '97'
+- prefix: ISO/TC 154
+  number: '98'
+- prefix: ISO/TC 154
+  number: '99'
+scheduled_date_range:
+  start: '1995-08-31'
+  end: '1995-09-10'

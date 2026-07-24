@@ -1,0 +1,54 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '23'
+urn: urn:iso-tc154:meeting:plenary-23
+type: plenary
+status: completed
+ordinal: 23
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: BE
+title:
+- spelling: eng
+  value: 23th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Brussels
+  country_code: BE
+source_urls:
+- ref: https://committee.iso.org/meetings/35219
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: action-21
+- prefix: ISO/TC 154
+  number: '256'
+- prefix: ISO/TC 154
+  number: '257'
+- prefix: ISO/TC 154
+  number: '258'
+- prefix: ISO/TC 154
+  number: '259'
+- prefix: ISO/TC 154
+  number: '260'
+- prefix: ISO/TC 154
+  number: '261'
+- prefix: ISO/TC 154
+  number: '262'
+- prefix: ISO/TC 154
+  number: action-22
+- prefix: ISO/TC 154
+  number: '263'
+- prefix: ISO/TC 154
+  number: '264'
+- prefix: ISO/TC 154
+  number: '265'
+scheduled_date_range:
+  start: '2005-09-23'
+  end: '2005-09-23'

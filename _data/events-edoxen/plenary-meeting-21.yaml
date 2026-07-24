@@ -1,0 +1,54 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '21'
+urn: urn:iso-tc154:meeting:plenary-21
+type: plenary
+status: completed
+ordinal: 21
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: KR
+title:
+- spelling: eng
+  value: 21th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Kyunggi-do
+  country_code: KR
+source_urls:
+- ref: https://committee.iso.org/meetings/7166
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '239'
+- prefix: ISO/TC 154
+  number: '240'
+- prefix: ISO/TC 154
+  number: '241'
+- prefix: ISO/TC 154
+  number: 242A
+- prefix: ISO/TC 154
+  number: 242B
+- prefix: ISO/TC 154
+  number: '243'
+- prefix: ISO/TC 154
+  number: '244'
+- prefix: ISO/TC 154
+  number: '245'
+- prefix: ISO/TC 154
+  number: '246'
+- prefix: ISO/TC 154
+  number: '247'
+- prefix: ISO/TC 154
+  number: '248'
+- prefix: ISO/TC 154
+  number: '248'
+scheduled_date_range:
+  start: '2003-09-12'
+  end: '2003-09-12'

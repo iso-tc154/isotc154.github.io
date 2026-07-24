@@ -1,0 +1,78 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '36'
+urn: urn:iso-tc154:meeting:plenary-36
+type: plenary
+status: completed
+ordinal: 36
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+title:
+- spelling: eng
+  value: 36th plenary meeting of ISO/TC 154
+venues:
+- kind: virtual
+  name:
+  - spelling: eng
+    value: ''
+source_urls:
+- ref: https://committee.iso.org/meetings/48312
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 2017-01
+- prefix: ISO/TC 154
+  number: 2017-02
+- prefix: ISO/TC 154
+  number: 2017-03
+- prefix: ISO/TC 154
+  number: 2017-04
+- prefix: ISO/TC 154
+  number: 2017-05
+- prefix: ISO/TC 154
+  number: 2017-06
+- prefix: ISO/TC 154
+  number: 2017-07
+- prefix: ISO/TC 154
+  number: 2017-08
+- prefix: ISO/TC 154
+  number: 2017-09
+- prefix: ISO/TC 154
+  number: 2017-10
+- prefix: ISO/TC 154
+  number: 2017-11
+- prefix: ISO/TC 154
+  number: 2017-12
+- prefix: ISO/TC 154
+  number: 2017-13
+- prefix: ISO/TC 154
+  number: 2017-14
+- prefix: ISO/TC 154
+  number: 2017-15
+- prefix: ISO/TC 154
+  number: 2017-16
+- prefix: ISO/TC 154
+  number: 2017-17
+- prefix: ISO/TC 154
+  number: 2017-18
+- prefix: ISO/TC 154
+  number: 2017-19
+- prefix: ISO/TC 154
+  number: 2017-20
+- prefix: ISO/TC 154
+  number: 2017-21
+- prefix: ISO/TC 154
+  number: 2017-22
+- prefix: ISO/TC 154
+  number: 2017-23
+- prefix: ISO/TC 154
+  number: 2017-24
+- prefix: ISO/TC 154
+  number: 2017-25
+scheduled_date_range:
+  start: '2017-10-27'
+  end: '2017-10-27'

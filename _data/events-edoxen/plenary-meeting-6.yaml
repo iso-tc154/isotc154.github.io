@@ -1,0 +1,31 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '6'
+urn: urn:iso-tc154:meeting:plenary-6
+type: plenary
+status: completed
+ordinal: 6
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: FRPAR
+country_code: FR
+title:
+- spelling: eng
+  value: 6th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Paris
+  country_code: FR
+  unlocode: FRPAR
+source_urls:
+- ref: https://committee.iso.org/meetings/13832
+  kind: landing_page
+scheduled_date_range:
+  start: '1983-04-29'
+  end: '1983-04-29'

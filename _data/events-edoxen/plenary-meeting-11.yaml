@@ -1,0 +1,58 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '11'
+urn: urn:iso-tc154:meeting:plenary-11
+type: plenary
+status: completed
+ordinal: 11
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: CHGVA
+country_code: CH
+title:
+- spelling: eng
+  value: 11th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Geneva
+  country_code: CH
+  unlocode: CHGVA
+source_urls:
+- ref: https://committee.iso.org/meetings/13843
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '100'
+- prefix: ISO/TC 154
+  number: '101'
+- prefix: ISO/TC 154
+  number: '102'
+- prefix: ISO/TC 154
+  number: '103'
+- prefix: ISO/TC 154
+  number: '104'
+- prefix: ISO/TC 154
+  number: '105'
+- prefix: ISO/TC 154
+  number: '106'
+- prefix: ISO/TC 154
+  number: '107'
+- prefix: ISO/TC 154
+  number: '108'
+- prefix: ISO/TC 154
+  number: '109'
+- prefix: ISO/TC 154
+  number: '110'
+- prefix: ISO/TC 154
+  number: '111'
+- prefix: ISO/TC 154
+  number: '112'
+scheduled_date_range:
+  start: '1996-03-14'
+  end: '1996-03-15'

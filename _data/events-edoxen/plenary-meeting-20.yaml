@@ -1,0 +1,60 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '20'
+urn: urn:iso-tc154:meeting:plenary-20
+type: plenary
+status: completed
+ordinal: 20
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: US
+title:
+- spelling: eng
+  value: 20th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: San Diego
+  country_code: US
+source_urls:
+- ref: https://committee.iso.org/meetings/9919
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '227'
+- prefix: ISO/TC 154
+  number: '228'
+- prefix: ISO/TC 154
+  number: '229'
+- prefix: ISO/TC 154
+  number: '230'
+- prefix: ISO/TC 154
+  number: '15'
+- prefix: ISO/TC 154
+  number: '231'
+- prefix: ISO/TC 154
+  number: '16'
+- prefix: ISO/TC 154
+  number: '232'
+- prefix: ISO/TC 154
+  number: '233'
+- prefix: ISO/TC 154
+  number: '234'
+- prefix: ISO/TC 154
+  number: '235'
+- prefix: ISO/TC 154
+  number: '17'
+- prefix: ISO/TC 154
+  number: '236'
+- prefix: ISO/TC 154
+  number: '237'
+- prefix: ISO/TC 154
+  number: '238'
+scheduled_date_range:
+  start: '2003-03-07'
+  end: '2003-03-07'

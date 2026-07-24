@@ -1,0 +1,56 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '40'
+urn: urn:iso-tc154:meeting:plenary-40
+type: plenary
+status: completed
+ordinal: 40
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+title:
+- spelling: eng
+  value: 40th plenary meeting of ISO/TC 154
+venues:
+- kind: virtual
+  name:
+  - spelling: eng
+    value: ''
+source_urls:
+- ref: https://committee.iso.org/meetings/79718
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 2021-01
+- prefix: ISO/TC 154
+  number: 2021-02
+- prefix: ISO/TC 154
+  number: 2021-03
+- prefix: ISO/TC 154
+  number: 2021-04
+- prefix: ISO/TC 154
+  number: 2021-05
+- prefix: ISO/TC 154
+  number: 2021-06
+- prefix: ISO/TC 154
+  number: 2021-07
+- prefix: ISO/TC 154
+  number: 2021-08
+- prefix: ISO/TC 154
+  number: 2021-09
+- prefix: ISO/TC 154
+  number: 2021-10
+- prefix: ISO/TC 154
+  number: 2021-11
+- prefix: ISO/TC 154
+  number: 2021-12
+- prefix: ISO/TC 154
+  number: 2021-13
+- prefix: ISO/TC 154
+  number: 2021-14
+scheduled_date_range:
+  start: '2021-09-02'
+  end: '2021-09-02'

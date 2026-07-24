@@ -1,0 +1,36 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '27'
+urn: urn:iso-tc154:meeting:plenary-27
+type: plenary
+status: cancelled
+ordinal: 27
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: TH
+title:
+- spelling: eng
+  value: 27th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Bangkok
+  country_code: TH
+source_urls:
+- ref: https://committee.iso.org/meetings/32590
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '302'
+- prefix: ISO/TC 154
+  number: '303'
+- prefix: ISO/TC 154
+  number: '304'
+scheduled_date_range:
+  start: '2010-05-04'
+  end: '2010-05-04'

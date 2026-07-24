@@ -1,0 +1,66 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '43'
+urn: urn:iso-tc154:meeting:plenary-43
+type: plenary
+status: completed
+ordinal: 43
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: KR
+title:
+- spelling: eng
+  value: 43th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Seongnam-city, Gyeonggi-do,
+  country_code: KR
+source_urls:
+- ref: https://committee.iso.org/meetings/140474
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: P-2024-01
+- prefix: ISO/TC 154
+  number: P-2024-02
+- prefix: ISO/TC 154
+  number: P-2024-03
+- prefix: ISO/TC 154
+  number: P-2024-04
+- prefix: ISO/TC 154
+  number: P-2024-05
+- prefix: ISO/TC 154
+  number: P-2024-06
+- prefix: ISO/TC 154
+  number: P-2024-07
+- prefix: ISO/TC 154
+  number: P-2024-08
+- prefix: ISO/TC 154
+  number: P-2024-09
+- prefix: ISO/TC 154
+  number: P-2024-10
+- prefix: ISO/TC 154
+  number: P-2024-11
+- prefix: ISO/TC 154
+  number: P-2024-12
+- prefix: ISO/TC 154
+  number: P-2024-13
+- prefix: ISO/TC 154
+  number: P-2024-14
+- prefix: ISO/TC 154
+  number: P-2024-15
+- prefix: ISO/TC 154
+  number: P-2024-16
+- prefix: ISO/TC 154
+  number: P-2024-17
+- prefix: ISO/TC 154
+  number: P-2024-18
+scheduled_date_range:
+  start: '2024-10-21'
+  end: '2024-10-25'

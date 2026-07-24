@@ -1,0 +1,29 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '8'
+urn: urn:iso-tc154:meeting:plenary-8
+type: plenary
+status: completed
+ordinal: 8
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: DE
+title:
+- spelling: eng
+  value: 8th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Berlin
+  country_code: DE
+source_urls:
+- ref: https://committee.iso.org/meetings/13838
+  kind: landing_page
+scheduled_date_range:
+  start: '1987-09-11'
+  end: '1987-09-11'

@@ -1,0 +1,78 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '41'
+urn: urn:iso-tc154:meeting:plenary-41
+type: plenary
+status: completed
+ordinal: 41
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: CHGVA
+country_code: CH
+title:
+- spelling: eng
+  value: 41th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: H-208 (Room),  Palais des Nations,  Geneva
+  country_code: CH
+  unlocode: CHGVA
+source_urls:
+- ref: https://committee.iso.org/meetings/113743
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 2022-01
+- prefix: ISO/TC 154
+  number: 2022-02
+- prefix: ISO/TC 154
+  number: 2022-03
+- prefix: ISO/TC 154
+  number: 2022-04
+- prefix: ISO/TC 154
+  number: 2022-05
+- prefix: ISO/TC 154
+  number: 2022-06
+- prefix: ISO/TC 154
+  number: 2022-07
+- prefix: ISO/TC 154
+  number: 2022-08
+- prefix: ISO/TC 154
+  number: 2022-09
+- prefix: ISO/TC 154
+  number: 2022-10
+- prefix: ISO/TC 154
+  number: 2022-11
+- prefix: ISO/TC 154
+  number: 2022-12
+- prefix: ISO/TC 154
+  number: 2022-13
+- prefix: ISO/TC 154
+  number: 2022-14
+- prefix: ISO/TC 154
+  number: 2022-15
+- prefix: ISO/TC 154
+  number: 2022-16
+- prefix: ISO/TC 154
+  number: 2022-17
+- prefix: ISO/TC 154
+  number: 2022-18
+- prefix: ISO/TC 154
+  number: 2022-19
+- prefix: ISO/TC 154
+  number: 2022-20
+- prefix: ISO/TC 154
+  number: 2022-21
+- prefix: ISO/TC 154
+  number: 2022-22
+- prefix: ISO/TC 154
+  number: 2022-23
+scheduled_date_range:
+  start: '2022-10-13'
+  end: '2022-10-14'

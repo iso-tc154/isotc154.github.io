@@ -1,0 +1,38 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '28'
+urn: urn:iso-tc154:meeting:plenary-28
+type: plenary
+status: completed
+ordinal: 28
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: CHGVA
+country_code: CH
+title:
+- spelling: eng
+  value: 28th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Geneva
+  country_code: CH
+  unlocode: CHGVA
+source_urls:
+- ref: https://committee.iso.org/meetings/33452
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '305'
+- prefix: ISO/TC 154
+  number: '306'
+- prefix: ISO/TC 154
+  number: '307'
+scheduled_date_range:
+  start: '2010-08-27'
+  end: '2010-08-27'
