@@ -12,8 +12,10 @@
     "build": "npm run build-data && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "build-data": "node scripts/build-data.mjs",
-    "validate": "ruby scripts/validate_yaml.rb && ruby scripts/validate_member_status.rb"
+    "build-data": "node scripts/build-data.mjs && node scripts/prepare-edoxen-data.mjs && node scripts/build-legacy-redirects.mjs",
+    "validate": "ruby scripts/validate_yaml.rb && ruby scripts/validate_member_status.rb",
+    "prepare-edoxen-data": "node scripts/prepare-edoxen-data.mjs",
+    "build-legacy-redirects": "node scripts/build-legacy-redirects.mjs"
   },
   "dependencies": {
     "@asciidoctor/core": "^3.0.4",
