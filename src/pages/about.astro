@@ -1,0 +1,8 @@
+---
+import AsciiDocLayout from '../layouts/AsciiDocLayout.astro'
+import { loadData } from '../lib/data'
+
+const page = loadData.page('/about/')
+if (!page) throw new Error('About page not found in pages.json')
+---
+<AsciiDocLayout page={page} decorationPattern="grid" />

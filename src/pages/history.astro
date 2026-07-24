@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData } from '../lib/data'
+import { committee } from '../data/committee'
+
+interface HistoryEntry {
+  date: string
+  date_precision: 'day' | 'month' | 'year'
+  category: string
+  title: string
+  description?: string
+}
+
+const entries = loadData.history() as HistoryEntry[]
+const grouped = new Map<string, HistoryEntry[]>()
+for (const e of entries) {
+  const year = new Date(e.date).getFullYear().toString()
+  if (!grouped.has(year)) grouped.set(year, [])
+  grouped.get(year)!.push(e)
+}
+const years = Array.from(grouped.keys()).sort((a, b) => Number(b) - Number(a))
+
+function formatDate(e: HistoryEntry): string {
+  const d = new Date(e.date)
+  if (e.date_precision === 'year') return d.getFullYear().toString()
+  if (e.date_precision === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+const meta = loadData.meta()
+---
+<BaseLayout title={`History — ${committee.name}`} description="Five decades of milestones in TC 154's work.">
+  <PageHero
+    variant="index"
+    bleed
+    eyebrow="Five decades"
+    title="History"
+    lead={`From 1972 to today — chairs, structural changes, publications, and the milestones that shaped ${committee.name}.`}
+  />
+  <div class="page page--wide">
+    <div class="history">
+      <div class="history__jump">
+        {years.map((y) => <a href={`#year-${y}`} class="history__jump-link">{y}</a>)}
+      </div>
+
+      {years.map((year) => (
+        <section class="history__year" id={`year-${year}`}>
+          <header class="history__year-head">
+            <h2 class="history__year-title">{year}</h2>
+            <span class="history__year-count">{grouped.get(year)!.length} {grouped.get(year)!.length === 1 ? 'entry' : 'entries'}</span>
+          </header>
+          <ul class="history__entries">
+            {grouped.get(year)!.map((e) => (
+              <li class="history__entry" data-category={e.category}>
+                <span class="history__entry-date">{formatDate(e)}</span>
+                <div class="history__entry-body">
+                  <h3 class="history__entry-title">{e.title}</h3>
+                  {e.description && <div class="history__entry-desc" set:html={e.description} />}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .history { max-width: 56rem; margin: 2rem auto; padding: 0 1.5rem; }
+  .history__jump {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    padding: 1rem 0; border-bottom: 1px solid #e7e5e4;
+    margin-bottom: 2rem;
+    position: sticky; top: var(--site-header-height);
+    background: var(--surface-bg);
+    z-index: 5;
+  }
+  :global(.dark) .history__jump { border-bottom-color: #44403c; background: var(--surface-bg-dark); }
+  .history__jump-link {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #57534e;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid transparent;
+  }
+  :global(.dark) .history__jump-link { color: #a8a29e; }
+  .history__jump-link:hover { color: var(--color-brand); border-color: currentColor; }
+
+  .history__year { margin-bottom: 3rem; }
+  .history__year-head {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-brand);
+    margin-bottom: 1.5rem;
+  }
+  .history__year-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-brand);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .history__year-count {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: #78716c;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  :global(.dark) .history__year-count { color: #a8a29e; }
+
+  .history__entries { list-style: none; padding: 0; margin: 0; }
+  .history__entry {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #e7e5e4;
+  }
+  :global(.dark) .history__entry { border-bottom-color: #44403c; }
+  @media (max-width: 640px) { .history__entry { grid-template-columns: 1fr; gap: 0.5rem; } }
+  .history__entry-date {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-brand);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .history__entry-title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+  }
+  :global(.dark) .history__entry-title { color: #fafaf9; }
+  .history__entry-desc {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: #57534e;
+  }
+  :global(.dark) .history__entry-desc { color: #d6d3d1; }
+  .history__entry-desc :global(em) { font-style: italic; }
+</style>

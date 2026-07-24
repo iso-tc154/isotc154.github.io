@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData } from '../lib/data'
+
+// /procedures/ is an index of procedure documents (no AsciiDoc source for the index itself)
+const procedurePages = loadData
+  .pages()
+  .filter((p) => p.url.startsWith('/procedures/') && p.url !== '/procedures/')
+  .sort((a, b) => (a.frontmatter.title || '').localeCompare(b.frontmatter.title || ''))
+---
+<BaseLayout title="Procedures — ISO/TC 154" description="Standing documents and procedures of ISO/TC 154.">
+  <PageHero
+    variant="index"
+    bleed
+    eyebrow="Standing documents"
+    title="Procedures"
+    lead="How the committee works — standing documents, submission procedures, and the consensus rules that govern TC 154's technical work."
+  />
+  <div class="page page--wide">
+    <ul class="proc-list">
+      {procedurePages.map((p) => (
+        <li>
+          <a href={p.url} class="proc-card">
+            <h2 class="proc-card__title">{p.frontmatter.title || p.url}</h2>
+            {p.frontmatter.description && (
+              <p class="proc-card__desc">{p.frontmatter.description}</p>
+            )}
+            <span class="proc-card__arrow">Read →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .proc-list { list-style: none; padding: 0; max-width: 48rem; margin: 2rem auto; }
+  .proc-card {
+    display: block;
+    padding: 1.5rem;
+    border: 1px solid #e7e5e4;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 1rem;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  :global(.dark) .proc-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .proc-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
+  .proc-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 0 0 0.5rem;
+  }
+  :global(.dark) .proc-card__title { color: #fafaf9; }
+  .proc-card__desc { font-size: 0.9375rem; color: #57534e; margin: 0 0 0.75rem; line-height: 1.5; }
+  :global(.dark) .proc-card__desc { color: #d6d3d1; }
+  .proc-card__arrow { font-size: 0.875rem; color: var(--color-brand); font-weight: 600; }
+</style>

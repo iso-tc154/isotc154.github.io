@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData } from '../lib/data'
+
+interface AckEntry {
+  name: string
+  affiliation?: string
+  date?: string
+  standard?: string
+  contribution?: string
+  url?: string
+}
+
+const acks = loadData.acknowledgments() as AckEntry[]
+const grouped = new Map<string, AckEntry[]>()
+for (const a of acks) {
+  const k = a.standard || 'General'
+  if (!grouped.has(k)) grouped.set(k, [])
+  grouped.get(k)!.push(a)
+}
+const sortedGroups = Array.from(grouped.entries()).sort((a, b) => a[0].localeCompare(b[0]))
+---
+<BaseLayout title="Acknowledgments — ISO/TC 154" description="Acknowledgments of contributions to ISO/TC 154 standards.">
+  <PageHero
+    variant="index"
+    bleed
+    eyebrow="Contributions"
+    title="Acknowledgments"
+    lead="Recognition of the experts whose contributions have shaped ISO/TC 154 standards over five decades."
+  />
+  <div class="page page--wide">
+    {acks.length === 0 ? (
+      <p class="ack-empty">Acknowledgment records will appear here once published.</p>
+    ) : (
+      <div class="ack-list">
+        {sortedGroups.map(([standard, items]) => (
+          <section class="ack-group">
+            <h2 class="ack-group__title">{standard}</h2>
+            <ul>
+              {items.map((a) => (
+                <li class="ack-item">
+                  <span class="ack-item__name">{a.name}</span>
+                  {a.affiliation && <span class="ack-item__aff"> · {a.affiliation}</span>}
+                  {a.contribution && <p class="ack-item__contrib">{a.contribution}</p>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .ack-list { max-width: 48rem; margin: 2rem auto; padding: 0 1.5rem; }
+  .ack-empty {
+    max-width: 48rem; margin: 4rem auto; padding: 0 1.5rem;
+    font-style: italic; color: #78716c;
+  }
+  :global(.dark) .ack-empty { color: #a8a29e; }
+  .ack-group { margin-bottom: 2.5rem; }
+  .ack-group__title {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--color-brand);
+    border-bottom: 1px solid #e7e5e4;
+    padding-bottom: 0.5rem;
+    margin: 0 0 1rem;
+  }
+  :global(.dark) .ack-group__title { border-bottom-color: #44403c; }
+  .ack-item { padding: 0.5rem 0; font-size: 0.9375rem; }
+  .ack-item__name { font-weight: 700; color: #1c1917; }
+  :global(.dark) .ack-item__name { color: #fafaf9; }
+  .ack-item__aff { color: #57534e; }
+  :global(.dark) .ack-item__aff { color: #a8a29e; }
+  .ack-item__contrib { color: #57534e; font-size: 0.875rem; margin: 0.25rem 0 0; }
+  :global(.dark) .ack-item__contrib { color: #d6d3d1; }
+</style>

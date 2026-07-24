@@ -1,0 +1,16 @@
+---
+import AsciiDocLayout from '../../layouts/AsciiDocLayout.astro'
+import { loadData } from '../../lib/data'
+
+export function getStaticPaths() {
+  return loadData.pages()
+    .filter((p) => p.url.startsWith('/procedures/') && p.url !== '/procedures/')
+    .map((p) => {
+      const doc = p.url.replace('/procedures/', '').replace(/\/$/, '')
+      return { params: { doc }, props: { page: p } }
+    })
+}
+
+const { page } = Astro.props
+---
+<AsciiDocLayout page={page} />
