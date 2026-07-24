@@ -30,7 +30,6 @@ for (const sub of SUBDIRS) {
       const oldPath = `/resolutions/${sub}/${sourceFile}/${id}`
       const newUrl = `/decisions/${d.urn}/`
       redirects[oldPath] = newUrl
-      redirects[oldPath + '/'] = newUrl
       decisionCount++
     }
   }
@@ -47,7 +46,6 @@ if (fs.existsSync(EVENTS)) {
     const oldPath = `/meetings/${ordinal}`
     const newUrl = `/meetings/${urn}/`
     redirects[oldPath] = newUrl
-    redirects[oldPath + '/'] = newUrl
     meetingCount++
   }
 }
