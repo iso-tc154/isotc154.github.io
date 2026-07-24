@@ -9,13 +9,11 @@ on:
   repository_dispatch:
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -29,42 +27,58 @@ jobs:
         with:
           submodules: true
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
           bundler-cache: true
-          cache-version: validate-v1
+          cache-version: validate-v2
 
-      - name: Validate YAML schemas + P/O member status vs ISO Open Data
-        run: npm run validate
+      - name: Validate YAML schemas + member status vs ISO Open Data
+        run: pnpm run validate
+
+      - name: Validate edoxen data fixtures
+        run: pnpm exec edoxen-browser check
 
   build:
     runs-on: ubuntu-latest
+    needs: validate
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
+          cache: 'pnpm'
 
-      - name: Install Node.js dependencies
-        run: npm ci
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
 
-      - name: Build with vite-ssg
-        run: npm run build
-        env:
-          JEKYLL_ENV: production
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - name: Build (build-data + astro build)
+        run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
