@@ -2,20 +2,16 @@
 import fs from 'node:fs'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
+import CountUp from '../islands/CountUp.vue'
+import HeroSearch from '../islands/HeroSearch.vue'
 import { committee } from '../data/committee'
 
-interface MetaOpenForComment { id: string; url: string; name: string; title: string; stage: string }
-interface MetaLatestPublication { id: string; url: string; name: string; title: string; publication_date: string | null }
-interface MetaNextPlenary { id: string; url: string; ordinal: number; general_area: string; from_date: string | null; to_date: string | null; registration_url?: string | null }
 interface SiteMeta {
-  counts: {
-    publishedStandards: number; totalMembers: number; activeGroups: number
-    [k: string]: number
-  }
+  counts: Record<string, number>
   current: {
-    latestPublication: MetaLatestPublication | null
-    nextPlenary: MetaNextPlenary | null
-    openForComment: MetaOpenForComment[]
+    latestPublication: { id: string; url: string; name: string; title: string; publication_date: string | null } | null
+    nextPlenary: { id: string; url: string; ordinal: number; general_area: string; from_date: string | null; to_date: string | null; registration_url?: string | null } | null
+    openForComment: { id: string; url: string; name: string; title: string; stage: string }[]
   }
 }
 
@@ -30,10 +26,10 @@ const headlineStandards = [
 ]
 
 const stats = [
-  { value: String(committee.established), label: 'Founded', caption: 'Five decades of continuous technical work.', to: '/history/' },
-  { value: String(meta.counts.publishedStandards), label: 'Published standards', caption: 'Deployed across global trade infrastructure.', to: '/standards/' },
-  { value: String(meta.counts.activeGroups), label: 'Active groups', caption: "Working groups driving today's programmes.", to: '/groups/' },
-  { value: String(meta.counts.totalMembers), label: 'Member bodies', caption: 'National bodies shaping every standard.', to: '/national-bodies/' },
+  { target: committee.established, label: 'Founded', caption: 'Five decades of continuous technical work.', to: '/history/' },
+  { target: meta.counts.publishedStandards, label: 'Published standards', caption: 'Deployed across global trade infrastructure.', to: '/standards/' },
+  { target: meta.counts.activeGroups, label: 'Active groups', caption: "Working groups driving today's programmes.", to: '/groups/' },
+  { target: meta.counts.totalMembers, label: 'Member bodies', caption: 'National bodies shaping every standard.', to: '/national-bodies/' },
 ]
 
 const sections = [
@@ -49,7 +45,7 @@ const nextPlenary = meta.current.nextPlenary
 const latestPublication = meta.current.latestPublication
 const openForComment = meta.current.openForComment
 
-function plenaryDates(np: MetaNextPlenary): string {
+function plenaryDates(np: NonNullable<typeof nextPlenary>): string {
   if (!np.from_date) return ''
   const from = new Date(np.from_date)
   if (!np.to_date) return from.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -75,6 +71,8 @@ function publicationDate(iso: string | null): string {
       <span slot="title" class="hero__title-line">We <em class="hero__title-verb">give</em></span>
       <span slot="title" class="hero__title-static">global commerce</span>
       <span slot="title" class="hero__title-line">a common language.</span>
+
+      <HeroSearch slot="default" client:load />
 
       <ul class="hero__standards" slot="default">
         {headlineStandards.map((s) => (
@@ -106,7 +104,9 @@ function publicationDate(iso: string | null): string {
         <div class="stats__inner">
           {stats.map((stat) => (
             <a href={stat.to} class="stats__cell">
-              <span class="stats__value">{stat.value}</span>
+              <span class="stats__value">
+                <CountUp target={stat.target} start={true} client:visible />
+              </span>
               <span class="stats__label">{stat.label}</span>
               <span class="stats__caption">{stat.caption}</span>
             </a>
@@ -197,382 +197,212 @@ function publicationDate(iso: string | null): string {
   .hero__title-line { display: block; }
   .hero__title-verb { font-style: italic; font-weight: 700; }
   .hero__title-static {
-    display: block;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--color-brand);
-    margin: 0.35em 0;
+    display: block; font-style: italic; font-weight: 400;
+    color: var(--color-brand); margin: 0.35em 0;
   }
-
   .hero__standards {
-    margin: 0 0 3rem;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    margin: 0 0 3rem; padding: 0; list-style: none;
+    display: grid; grid-template-columns: 1fr; gap: 0;
     border-top: 1px solid #e7e5e4;
   }
   :global(.dark) .hero__standards { border-top-color: #44403c; }
   @media (min-width: 640px) { .hero__standards { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1024px) { .hero__standards { grid-template-columns: repeat(3, 1fr); } }
-
   .hero__standard {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    padding: 1.25rem 1rem 1.25rem 0;
-    border-bottom: 1px solid #e7e5e4;
-    align-items: baseline;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.15s;
-    position: relative;
+    display: grid; grid-template-columns: auto 1fr; gap: 1rem;
+    padding: 1.25rem 1rem 1.25rem 0; border-bottom: 1px solid #e7e5e4;
+    align-items: baseline; text-decoration: none; color: inherit;
+    transition: background 0.15s; position: relative;
   }
   :global(.dark) .hero__standard { border-bottom-color: #44403c; }
   .hero__standard:hover { background: rgb(30 58 138 / 0.03); }
-  :global(.dark) .hero__standard:hover { background: rgb(148 182 232 / 0.05); }
-
   .hero__standard-num {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-brand);
-    white-space: nowrap;
+    font-family: var(--font-serif); font-size: 1rem; font-weight: 700;
+    color: var(--color-brand); white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
   .hero__standard-body { display: flex; flex-direction: column; gap: 0.125rem; }
   .hero__standard-what {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.9375rem;
-    color: #1c1917;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 0.9375rem; color: #1c1917;
   }
   :global(.dark) .hero__standard-what { color: #fafaf9; }
   .hero__standard-used {
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    color: #78716c;
+    font-family: var(--font-sans); font-size: 0.8125rem; color: #78716c;
   }
   :global(.dark) .hero__standard-used { color: #a8a29e; }
-
   .hero__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.625rem;
+    display: inline-flex; align-items: center; gap: 0.625rem;
     padding: 0.875rem 1.5rem;
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
+    font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
   }
   .hero__cta--primary {
-    background: var(--color-brand-fill);
-    color: #fff;
+    background: var(--color-brand-fill); color: #fff;
     border: 1px solid var(--color-brand-fill);
   }
   .hero__cta--primary:hover {
-    background: var(--color-brand-hover);
-    border-color: var(--color-brand-hover);
+    background: var(--color-brand-hover); border-color: var(--color-brand-hover);
     transform: translateY(-1px);
   }
   .hero__cta--secondary {
-    background: transparent;
-    color: #1c1917;
-    border: 1px solid #d6d3d1;
+    background: transparent; color: #1c1917; border: 1px solid #d6d3d1;
   }
-  :global(.dark) .hero__cta--secondary {
-    color: #fafaf9;
-    border-color: #44403c;
-  }
+  :global(.dark) .hero__cta--secondary { color: #fafaf9; border-color: #44403c; }
 
   /* STATS */
   .stats {
-    margin: 0 -1.5rem;
-    padding: 4rem 1.5rem;
-    background: #fafaf9;
-    border-bottom: 1px solid #e7e5e4;
+    margin: 0 -1.5rem; padding: 4rem 1.5rem;
+    background: #fafaf9; border-bottom: 1px solid #e7e5e4;
   }
-  :global(.dark) .stats {
-    background: #1a1a1a;
-    border-bottom-color: #292524;
-  }
+  :global(.dark) .stats { background: #1a1a1a; border-bottom-color: #292524; }
   .stats__inner {
-    max-width: 64rem;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
+    max-width: 64rem; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr;
   }
   @media (min-width: 640px) { .stats__inner { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) { .stats__inner { grid-template-columns: repeat(4, 1fr); } }
-
   .stats__cell {
-    display: flex;
-    flex-direction: column;
-    padding: 1.75rem 1.5rem;
-    border-bottom: 1px solid #e7e5e4;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.15s;
+    display: flex; flex-direction: column;
+    padding: 1.75rem 1.5rem; border-bottom: 1px solid #e7e5e4;
+    text-decoration: none; color: inherit; transition: background 0.15s;
   }
   :global(.dark) .stats__cell { border-bottom-color: #292524; }
   .stats__cell:hover { background: rgb(30 58 138 / 0.03); }
-
   .stats__value {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: var(--color-brand);
-    font-variant-numeric: tabular-nums;
+    font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700; line-height: 1; letter-spacing: -0.04em;
+    color: var(--color-brand); font-variant-numeric: tabular-nums;
   }
   .stats__label {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #1c1917;
+    font-family: var(--font-sans); font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em; color: #1c1917;
     margin-top: 0.875rem;
   }
   :global(.dark) .stats__label { color: #fafaf9; }
   .stats__caption {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.875rem;
-    color: #78716c;
-    margin-top: 0.5rem;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 0.875rem; color: #78716c; margin-top: 0.5rem;
   }
   :global(.dark) .stats__caption { color: #a8a29e; }
 
   /* CURRENT rail */
-  .current {
-    padding: 4rem 0 1rem;
-    max-width: 80rem;
-    margin: 0 auto;
-  }
+  .current { padding: 4rem 0 1rem; max-width: 80rem; margin: 0 auto; }
   .current__head { margin-bottom: 2rem; }
   .current__eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #78716c;
-    margin: 0 0 0.75rem;
+    font-family: var(--font-sans); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #78716c; margin: 0 0 0.75rem;
   }
   :global(.dark) .current__eyebrow { color: #a8a29e; }
   .current__title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 600;
-    line-height: 1.1;
-    color: #1c1917;
-    margin: 0;
+    font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 600; line-height: 1.1; color: #1c1917; margin: 0;
   }
   :global(.dark) .current__title { color: #fafaf9; }
-
-  .current__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+  .current__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
   @media (min-width: 768px) { .current__grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1100px) { .current__grid { grid-template-columns: repeat(3, 1fr); } }
-
   .current-card {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    border: 1px solid #e7e5e4;
-    background: #fff;
-    text-decoration: none;
-    color: inherit;
+    display: flex; flex-direction: column;
+    padding: 1.5rem; border: 1px solid #e7e5e4; background: #fff;
+    text-decoration: none; color: inherit;
     transition: border-color 0.15s, transform 0.15s;
   }
-  :global(.dark) .current-card {
-    border-color: #44403c;
-    background: rgb(15 23 42 / 0.5);
-  }
-  .current-card:hover {
-    border-color: var(--color-blue-accent);
-    transform: translateY(-2px);
-  }
+  :global(.dark) .current-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .current-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
   .current-card__tag {
-    font-family: var(--font-sans);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-brand);
+    font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-brand);
     margin-bottom: 0.75rem;
   }
   .current-card__heading {
-    font-family: var(--font-serif);
-    font-size: 1.375rem;
-    font-weight: 600;
-    line-height: 1.15;
-    color: #1c1917;
-    margin: 0 0 0.375rem;
+    font-family: var(--font-serif); font-size: 1.375rem; font-weight: 600;
+    line-height: 1.15; color: #1c1917; margin: 0 0 0.375rem;
   }
   :global(.dark) .current-card__heading { color: #fafaf9; }
   .current-card__title-line {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.9375rem;
-    color: #57534e;
-    margin: 0 0 0.5rem;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 0.9375rem; color: #57534e; margin: 0 0 0.5rem;
   }
   :global(.dark) .current-card__title-line { color: #d6d3d1; }
-  .current-card__meta {
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    color: #78716c;
-    margin: 0;
-  }
+  .current-card__meta { font-family: var(--font-sans); font-size: 0.8125rem; color: #78716c; margin: 0; }
   :global(.dark) .current-card__meta { color: #a8a29e; }
   .current-card__cta {
-    align-self: flex-start;
-    margin-top: auto;
-    padding: 0.5rem 1rem;
-    background: var(--color-brand-fill);
-    color: #fff;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    gap: 0.375rem;
+    align-self: flex-start; margin-top: auto; padding: 0.5rem 1rem;
+    background: var(--color-brand-fill); color: #fff;
+    font-size: 0.8125rem; font-weight: 600; text-decoration: none;
+    display: inline-flex; gap: 0.375rem;
   }
-  .current-card__intro {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    color: #57534e;
-    margin: 0 0 0.75rem;
-  }
+  .current-card__intro { font-family: var(--font-sans); font-size: 0.875rem; color: #57534e; margin: 0 0 0.75rem; }
   :global(.dark) .current-card__intro { color: #d6d3d1; }
   .current-card__list { list-style: none; margin: 0; padding: 0; }
   .current-card__item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.625rem 0;
-    border-bottom: 1px solid #e7e5e4;
-    text-decoration: none;
-    color: inherit;
+    display: flex; justify-content: space-between;
+    padding: 0.625rem 0; border-bottom: 1px solid #e7e5e4;
+    text-decoration: none; color: inherit;
   }
   :global(.dark) .current-card__item { border-bottom-color: #44403c; }
-  .current-card__item-name {
-    font-family: ui-monospace, monospace;
-    font-size: 0.875rem;
-    font-weight: 700;
-  }
-  .current-card__item-stage {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    color: #78716c;
-  }
+  .current-card__item-name { font-family: ui-monospace, monospace; font-size: 0.875rem; font-weight: 700; }
+  .current-card__item-stage { font-family: var(--font-sans); font-size: 0.75rem; color: #78716c; }
+  :global(.dark) .current-card__item-stage { color: #a8a29e; }
 
   /* SECTIONS */
   .sections { padding: 4rem 0 6rem; }
   .sections__inner { max-width: 80rem; margin: 0 auto; }
   .sections__head { margin-bottom: 3rem; max-width: 48rem; }
   .sections__eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #78716c;
-    margin: 0 0 1rem;
+    font-family: var(--font-sans); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #78716c; margin: 0 0 1rem;
   }
   :global(.dark) .sections__eyebrow { color: #a8a29e; }
   .sections__title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-    font-weight: 600;
-    line-height: 1.1;
-    color: #1c1917;
-    margin: 0;
+    font-family: var(--font-serif); font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 600; line-height: 1.1; color: #1c1917; margin: 0;
   }
   :global(.dark) .sections__title { color: #fafaf9; }
-  .sections__title-accent {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--color-brand);
-  }
-
+  .sections__title-accent { font-style: italic; font-weight: 400; color: var(--color-brand); }
   .sections__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr;
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: 1fr;
     border-top: 1px solid #e7e5e4;
   }
   :global(.dark) .sections__list { border-top-color: #44403c; }
   @media (min-width: 768px) { .sections__list { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1100px) { .sections__list { grid-template-columns: repeat(3, 1fr); } }
-
   .section-card {
-    display: grid;
-    grid-template-columns: 3rem 1fr auto;
-    gap: 1.5rem;
-    padding: 1.75rem 1.5rem;
-    text-decoration: none;
-    color: inherit;
-    border-right: 1px solid #e7e5e4;
-    border-bottom: 1px solid #e7e5e4;
-    position: relative;
-    transition: background 0.2s;
+    display: grid; grid-template-columns: 3rem 1fr auto; gap: 1.5rem;
+    padding: 1.75rem 1.5rem; text-decoration: none; color: inherit;
+    border-right: 1px solid #e7e5e4; border-bottom: 1px solid #e7e5e4;
+    position: relative; transition: background 0.2s;
   }
   :global(.dark) .section-card { border-right-color: #44403c; border-bottom-color: #44403c; }
   .section-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 0;
-    background: var(--color-brand);
-    transition: width 0.2s;
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 0; background: var(--color-brand); transition: width 0.2s;
   }
   .section-card:hover { background: rgb(30 58 138 / 0.03); }
   .section-card:hover::before { width: 3px; }
   :global(.dark) .section-card:hover { background: rgb(148 182 232 / 0.05); }
-
   .section-card__n {
-    font-family: var(--font-serif);
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--color-brand);
-    padding-top: 0.375rem;
+    font-family: var(--font-serif); font-size: 0.875rem; font-weight: 700;
+    letter-spacing: 0.05em; color: var(--color-brand); padding-top: 0.375rem;
   }
   .section-card__body { display: flex; flex-direction: column; gap: 0.5rem; }
   .section-card__heading {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1c1917;
-    margin: 0;
-    line-height: 1.1;
+    font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600;
+    color: #1c1917; margin: 0; line-height: 1.1;
   }
   :global(.dark) .section-card__heading { color: #fafaf9; }
   .section-card__blurb {
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    line-height: 1.55;
-    color: #57534e;
-    margin: 0;
+    font-family: var(--font-sans); font-size: 0.9375rem; line-height: 1.55;
+    color: #57534e; margin: 0;
   }
   :global(.dark) .section-card__blurb { color: #d6d3d1; }
   .section-card__arrow {
-    font-size: 1.25rem;
-    color: #78716c;
-    align-self: center;
+    font-size: 1.25rem; color: #78716c; align-self: center;
     transition: transform 0.2s, color 0.2s;
   }
-  .section-card:hover .section-card__arrow {
-    color: var(--color-brand);
-    transform: translateX(4px);
-  }
+  .section-card:hover .section-card__arrow { color: var(--color-brand); transform: translateX(4px); }
 </style>
