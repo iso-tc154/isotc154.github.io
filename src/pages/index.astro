@@ -1,0 +1,578 @@
+---
+import fs from 'node:fs'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { committee } from '../data/committee'
+
+interface MetaOpenForComment { id: string; url: string; name: string; title: string; stage: string }
+interface MetaLatestPublication { id: string; url: string; name: string; title: string; publication_date: string | null }
+interface MetaNextPlenary { id: string; url: string; ordinal: number; general_area: string; from_date: string | null; to_date: string | null; registration_url?: string | null }
+interface SiteMeta {
+  counts: {
+    publishedStandards: number; totalMembers: number; activeGroups: number
+    [k: string]: number
+  }
+  current: {
+    latestPublication: MetaLatestPublication | null
+    nextPlenary: MetaNextPlenary | null
+    openForComment: MetaOpenForComment[]
+  }
+}
+
+const meta: SiteMeta = JSON.parse(fs.readFileSync('public/data/meta.json', 'utf-8'))
+
+const headlineStandards = [
+  { num: 'ISO 8601', what: 'Date & time', used: 'Every timestamp on the internet', to: '/standards/iso-8601-1-2019/' },
+  { num: 'ISO 9735', what: 'EDIFACT', used: 'Every electronic data interchange message', to: '/standards/iso-9735-1988/' },
+  { num: 'ISO 15000', what: 'ebXML', used: 'Every XML business message between enterprises', to: '/standards/iso-15000-1-2021/' },
+  { num: 'ISO 7372', what: 'Trade Data Elements', used: 'Every data field in a customs declaration', to: '/standards/iso-7372-2005/' },
+  { num: 'ISO 14533', what: 'Long-term signatures', used: 'Every verifiable electronic signature', to: '/standards/iso-14533-1-2022/' },
+]
+
+const stats = [
+  { value: String(committee.established), label: 'Founded', caption: 'Five decades of continuous technical work.', to: '/history/' },
+  { value: String(meta.counts.publishedStandards), label: 'Published standards', caption: 'Deployed across global trade infrastructure.', to: '/standards/' },
+  { value: String(meta.counts.activeGroups), label: 'Active groups', caption: "Working groups driving today's programmes.", to: '/groups/' },
+  { value: String(meta.counts.totalMembers), label: 'Member bodies', caption: 'National bodies shaping every standard.', to: '/national-bodies/' },
+]
+
+const sections = [
+  { n: '01', label: 'Standards', to: '/standards/', blurb: 'ISO 8601, EDIFACT, ISO 7372 — the rules behind global trade.', accent: 'time' },
+  { n: '02', label: 'Resolutions', to: '/resolutions/', blurb: 'Every committee decision, searchable by number, topic, or meeting.', accent: 'resolve' },
+  { n: '03', label: 'Members', to: '/members/', blurb: 'Experts from 45 national bodies and liaison organisations.', accent: 'people' },
+  { n: '04', label: 'Meetings', to: '/meetings/', blurb: 'Plenary meetings since 1972 — hosts, agendas, and resolutions.', accent: 'meet' },
+  { n: '05', label: 'History', to: '/history/', blurb: 'Five decades of milestones — chairs, structural changes, publications.', accent: 'history' },
+  { n: '06', label: 'Procedures', to: '/procedures/', blurb: 'How the committee works — standing documents and consensus rules.', accent: 'process' },
+]
+
+const nextPlenary = meta.current.nextPlenary
+const latestPublication = meta.current.latestPublication
+const openForComment = meta.current.openForComment
+
+function plenaryDates(np: MetaNextPlenary): string {
+  if (!np.from_date) return ''
+  const from = new Date(np.from_date)
+  if (!np.to_date) return from.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  const to = new Date(np.to_date)
+  if (from.getMonth() === to.getMonth()) {
+    return `${from.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}–${to.getDate()}, ${to.getFullYear()}`
+  }
+  return `${from.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}–${to.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}, ${to.getFullYear()}`
+}
+function publicationDate(iso: string | null): string {
+  if (!iso) return ''
+  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+---
+<BaseLayout title={`${committee.name} — ${committee.tagline}`} description={committee.scope}>
+  <div class="home-page">
+    <PageHero
+      variant="landing"
+      bleed
+      eyebrow={`${committee.name} · since ${committee.established}`}
+      lead="Every timestamp in your logs. Every message in a customs declaration. Every signed contract that has to hold up in court twenty years from now. TC 154 publishes the standards these systems share — so they understand each other."
+    >
+      <span slot="title" class="hero__title-line">We <em class="hero__title-verb">give</em></span>
+      <span slot="title" class="hero__title-static">global commerce</span>
+      <span slot="title" class="hero__title-line">a common language.</span>
+
+      <ul class="hero__standards" slot="default">
+        {headlineStandards.map((s) => (
+          <li>
+            <a href={s.to} class="hero__standard">
+              <span class="hero__standard-num">{s.num}</span>
+              <span class="hero__standard-body">
+                <span class="hero__standard-what">{s.what}</span>
+                <span class="hero__standard-used">{s.used}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <Fragment slot="actions">
+        <a href="/standards/" class="hero__cta hero__cta--primary">
+          Browse the catalogue
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="/about/" class="hero__cta hero__cta--secondary">
+          About the committee
+        </a>
+      </Fragment>
+    </PageHero>
+
+    <div class="page page--wide">
+      <section id="stats" class="stats">
+        <div class="stats__inner">
+          {stats.map((stat) => (
+            <a href={stat.to} class="stats__cell">
+              <span class="stats__value">{stat.value}</span>
+              <span class="stats__label">{stat.label}</span>
+              <span class="stats__caption">{stat.caption}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {(nextPlenary || latestPublication || openForComment.length > 0) && (
+        <section class="current">
+          <header class="current__head">
+            <p class="current__eyebrow">— Current</p>
+            <h2 class="current__title">What's happening now.</h2>
+          </header>
+          <div class="current__grid">
+            {nextPlenary && (
+              <a href={nextPlenary.url} class="current-card current-card--plenary">
+                <span class="current-card__tag">Next plenary · #{nextPlenary.ordinal}</span>
+                <h3 class="current-card__heading">{nextPlenary.general_area}</h3>
+                <p class="current-card__meta">{plenaryDates(nextPlenary)}</p>
+                {nextPlenary.registration_url && (
+                  <a href={nextPlenary.registration_url} target="_blank" rel="noopener noreferrer" class="current-card__cta">
+                    Register <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </a>
+            )}
+
+            {latestPublication && (
+              <a href={latestPublication.url} class="current-card current-card--pub">
+                <span class="current-card__tag">Latest publication</span>
+                <h3 class="current-card__heading">{latestPublication.name}</h3>
+                <p class="current-card__title-line">{latestPublication.title}</p>
+                <p class="current-card__meta">{publicationDate(latestPublication.publication_date)}</p>
+              </a>
+            )}
+
+            {openForComment.length > 0 && (
+              <div class="current-card current-card--comment">
+                <span class="current-card__tag">Open for comment</span>
+                <p class="current-card__intro">Draft documents in DIS / DTR / DTS balloting — national bodies can submit comments.</p>
+                <ul class="current-card__list">
+                  {openForComment.map((doc) => (
+                    <li>
+                      <a href={doc.url} class="current-card__item">
+                        <span class="current-card__item-name">{doc.name}</span>
+                        <span class="current-card__item-stage">stage {doc.stage}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      <section class="sections">
+        <div class="sections__inner">
+          <header class="sections__head">
+            <p class="sections__eyebrow">— Explore</p>
+            <h2 class="sections__title">
+              Six ways into the work of
+              <span class="sections__title-accent">TC&nbsp;154</span>.
+            </h2>
+          </header>
+
+          <ul class="sections__list">
+            {sections.map((card) => (
+              <li>
+                <a href={card.to} class="section-card" data-accent={card.accent}>
+                  <span class="section-card__n">{card.n}</span>
+                  <div class="section-card__body">
+                    <h3 class="section-card__heading">{card.label}</h3>
+                    <p class="section-card__blurb">{card.blurb}</p>
+                  </div>
+                  <span class="section-card__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero__title-line { display: block; }
+  .hero__title-verb { font-style: italic; font-weight: 700; }
+  .hero__title-static {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-brand);
+    margin: 0.35em 0;
+  }
+
+  .hero__standards {
+    margin: 0 0 3rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid #e7e5e4;
+  }
+  :global(.dark) .hero__standards { border-top-color: #44403c; }
+  @media (min-width: 640px) { .hero__standards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .hero__standards { grid-template-columns: repeat(3, 1fr); } }
+
+  .hero__standard {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding: 1.25rem 1rem 1.25rem 0;
+    border-bottom: 1px solid #e7e5e4;
+    align-items: baseline;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    position: relative;
+  }
+  :global(.dark) .hero__standard { border-bottom-color: #44403c; }
+  .hero__standard:hover { background: rgb(30 58 138 / 0.03); }
+  :global(.dark) .hero__standard:hover { background: rgb(148 182 232 / 0.05); }
+
+  .hero__standard-num {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-brand);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero__standard-body { display: flex; flex-direction: column; gap: 0.125rem; }
+  .hero__standard-what {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9375rem;
+    color: #1c1917;
+  }
+  :global(.dark) .hero__standard-what { color: #fafaf9; }
+  .hero__standard-used {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: #78716c;
+  }
+  :global(.dark) .hero__standard-used { color: #a8a29e; }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero__cta--primary {
+    background: var(--color-brand-fill);
+    color: #fff;
+    border: 1px solid var(--color-brand-fill);
+  }
+  .hero__cta--primary:hover {
+    background: var(--color-brand-hover);
+    border-color: var(--color-brand-hover);
+    transform: translateY(-1px);
+  }
+  .hero__cta--secondary {
+    background: transparent;
+    color: #1c1917;
+    border: 1px solid #d6d3d1;
+  }
+  :global(.dark) .hero__cta--secondary {
+    color: #fafaf9;
+    border-color: #44403c;
+  }
+
+  /* STATS */
+  .stats {
+    margin: 0 -1.5rem;
+    padding: 4rem 1.5rem;
+    background: #fafaf9;
+    border-bottom: 1px solid #e7e5e4;
+  }
+  :global(.dark) .stats {
+    background: #1a1a1a;
+    border-bottom-color: #292524;
+  }
+  .stats__inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .stats__inner { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .stats__inner { grid-template-columns: repeat(4, 1fr); } }
+
+  .stats__cell {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 1.5rem;
+    border-bottom: 1px solid #e7e5e4;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+  :global(.dark) .stats__cell { border-bottom-color: #292524; }
+  .stats__cell:hover { background: rgb(30 58 138 / 0.03); }
+
+  .stats__value {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-brand);
+    font-variant-numeric: tabular-nums;
+  }
+  .stats__label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #1c1917;
+    margin-top: 0.875rem;
+  }
+  :global(.dark) .stats__label { color: #fafaf9; }
+  .stats__caption {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.875rem;
+    color: #78716c;
+    margin-top: 0.5rem;
+  }
+  :global(.dark) .stats__caption { color: #a8a29e; }
+
+  /* CURRENT rail */
+  .current {
+    padding: 4rem 0 1rem;
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+  .current__head { margin-bottom: 2rem; }
+  .current__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #78716c;
+    margin: 0 0 0.75rem;
+  }
+  :global(.dark) .current__eyebrow { color: #a8a29e; }
+  .current__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #1c1917;
+    margin: 0;
+  }
+  :global(.dark) .current__title { color: #fafaf9; }
+
+  .current__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) { .current__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .current__grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .current-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border: 1px solid #e7e5e4;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  :global(.dark) .current-card {
+    border-color: #44403c;
+    background: rgb(15 23 42 / 0.5);
+  }
+  .current-card:hover {
+    border-color: var(--color-blue-accent);
+    transform: translateY(-2px);
+  }
+  .current-card__tag {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-brand);
+    margin-bottom: 0.75rem;
+  }
+  .current-card__heading {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: #1c1917;
+    margin: 0 0 0.375rem;
+  }
+  :global(.dark) .current-card__heading { color: #fafaf9; }
+  .current-card__title-line {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9375rem;
+    color: #57534e;
+    margin: 0 0 0.5rem;
+  }
+  :global(.dark) .current-card__title-line { color: #d6d3d1; }
+  .current-card__meta {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: #78716c;
+    margin: 0;
+  }
+  :global(.dark) .current-card__meta { color: #a8a29e; }
+  .current-card__cta {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0.5rem 1rem;
+    background: var(--color-brand-fill);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    gap: 0.375rem;
+  }
+  .current-card__intro {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: #57534e;
+    margin: 0 0 0.75rem;
+  }
+  :global(.dark) .current-card__intro { color: #d6d3d1; }
+  .current-card__list { list-style: none; margin: 0; padding: 0; }
+  .current-card__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid #e7e5e4;
+    text-decoration: none;
+    color: inherit;
+  }
+  :global(.dark) .current-card__item { border-bottom-color: #44403c; }
+  .current-card__item-name {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .current-card__item-stage {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: #78716c;
+  }
+
+  /* SECTIONS */
+  .sections { padding: 4rem 0 6rem; }
+  .sections__inner { max-width: 80rem; margin: 0 auto; }
+  .sections__head { margin-bottom: 3rem; max-width: 48rem; }
+  .sections__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #78716c;
+    margin: 0 0 1rem;
+  }
+  :global(.dark) .sections__eyebrow { color: #a8a29e; }
+  .sections__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #1c1917;
+    margin: 0;
+  }
+  :global(.dark) .sections__title { color: #fafaf9; }
+  .sections__title-accent {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-brand);
+  }
+
+  .sections__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid #e7e5e4;
+  }
+  :global(.dark) .sections__list { border-top-color: #44403c; }
+  @media (min-width: 768px) { .sections__list { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .sections__list { grid-template-columns: repeat(3, 1fr); } }
+
+  .section-card {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 1.5rem;
+    padding: 1.75rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    border-right: 1px solid #e7e5e4;
+    border-bottom: 1px solid #e7e5e4;
+    position: relative;
+    transition: background 0.2s;
+  }
+  :global(.dark) .section-card { border-right-color: #44403c; border-bottom-color: #44403c; }
+  .section-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: var(--color-brand);
+    transition: width 0.2s;
+  }
+  .section-card:hover { background: rgb(30 58 138 / 0.03); }
+  .section-card:hover::before { width: 3px; }
+  :global(.dark) .section-card:hover { background: rgb(148 182 232 / 0.05); }
+
+  .section-card__n {
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-brand);
+    padding-top: 0.375rem;
+  }
+  .section-card__body { display: flex; flex-direction: column; gap: 0.5rem; }
+  .section-card__heading {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 0;
+    line-height: 1.1;
+  }
+  :global(.dark) .section-card__heading { color: #fafaf9; }
+  .section-card__blurb {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: #57534e;
+    margin: 0;
+  }
+  :global(.dark) .section-card__blurb { color: #d6d3d1; }
+  .section-card__arrow {
+    font-size: 1.25rem;
+    color: #78716c;
+    align-self: center;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .section-card:hover .section-card__arrow {
+    color: var(--color-brand);
+    transform: translateX(4px);
+  }
+</style>
