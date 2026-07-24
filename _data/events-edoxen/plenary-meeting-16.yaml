@@ -1,0 +1,58 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '16'
+urn: urn:iso-tc154:meeting:plenary-16
+type: plenary
+status: completed
+ordinal: 16
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: CHGVA
+country_code: CH
+title:
+- spelling: eng
+  value: 16th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Geneva
+  country_code: CH
+  unlocode: CHGVA
+source_urls:
+- ref: https://committee.iso.org/meetings/13840
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '171'
+- prefix: ISO/TC 154
+  number: '172'
+- prefix: ISO/TC 154
+  number: '173'
+- prefix: ISO/TC 154
+  number: '174'
+- prefix: ISO/TC 154
+  number: '175'
+- prefix: ISO/TC 154
+  number: '176'
+- prefix: ISO/TC 154
+  number: '177'
+- prefix: ISO/TC 154
+  number: '178'
+- prefix: ISO/TC 154
+  number: '179'
+- prefix: ISO/TC 154
+  number: '180'
+- prefix: ISO/TC 154
+  number: '181'
+- prefix: ISO/TC 154
+  number: '182'
+- prefix: ISO/TC 154
+  number: '183'
+scheduled_date_range:
+  start: '1999-12-07'
+  end: '1999-12-08'

@@ -1,0 +1,66 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '15'
+urn: urn:iso-tc154:meeting:plenary-15
+type: plenary
+status: completed
+ordinal: 15
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: FRPAR
+country_code: FR
+title:
+- spelling: eng
+  value: 15th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Paris
+  country_code: FR
+  unlocode: FRPAR
+source_urls:
+- ref: https://committee.iso.org/meetings/13816
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '154'
+- prefix: ISO/TC 154
+  number: '155'
+- prefix: ISO/TC 154
+  number: '156'
+- prefix: ISO/TC 154
+  number: '157'
+- prefix: ISO/TC 154
+  number: '158'
+- prefix: ISO/TC 154
+  number: '159'
+- prefix: ISO/TC 154
+  number: '160'
+- prefix: ISO/TC 154
+  number: '161'
+- prefix: ISO/TC 154
+  number: '162'
+- prefix: ISO/TC 154
+  number: '163'
+- prefix: ISO/TC 154
+  number: '164'
+- prefix: ISO/TC 154
+  number: '165'
+- prefix: ISO/TC 154
+  number: '166'
+- prefix: ISO/TC 154
+  number: '167'
+- prefix: ISO/TC 154
+  number: '168'
+- prefix: ISO/TC 154
+  number: '169'
+- prefix: ISO/TC 154
+  number: '168'
+scheduled_date_range:
+  start: '1998-10-22'
+  end: '1998-10-23'

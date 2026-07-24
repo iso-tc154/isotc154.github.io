@@ -1,0 +1,52 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '32'
+urn: urn:iso-tc154:meeting:plenary-32
+type: plenary
+status: completed
+ordinal: 32
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: DE
+title:
+- spelling: eng
+  value: 32th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Berlin
+  country_code: DE
+source_urls:
+- ref: https://committee.iso.org/meetings/39688
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 003-2013
+- prefix: ISO/TC 154
+  number: 004-2013
+- prefix: ISO/TC 154
+  number: 005-2013
+- prefix: ISO/TC 154
+  number: 006-2013
+- prefix: ISO/TC 154
+  number: 007-2013
+- prefix: ISO/TC 154
+  number: '008-2013'
+- prefix: ISO/TC 154
+  number: '009-2013'
+- prefix: ISO/TC 154
+  number: 010-2013
+- prefix: ISO/TC 154
+  number: 011-2013
+- prefix: ISO/TC 154
+  number: 012-2013
+- prefix: ISO/TC 154
+  number: 013-2013
+scheduled_date_range:
+  start: '2013-10-21'
+  end: '2013-10-25'
