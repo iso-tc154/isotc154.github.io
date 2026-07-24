@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHero from '../../components/PageHero.astro'
+import { loadData, type Project } from '../../lib/data'
+
+export function getStaticPaths() {
+  return loadData.projects().map((p) => ({ params: { id: p.id }, props: { project: p } }))
+}
+const { project } = Astro.props as { project: Project }
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+---
+<BaseLayout title={`${project.name} — ISO/TC 154`} description={project.title}>
+  <PageHero variant="detail" bleed eyebrow={[cap(project.status), project.stage].filter(Boolean).join(' · ')} title={project.name} lead={project.title} />
+  <div class="page page--wide">
+    <div class="prj-detail">
+      {project.scope && (
+        <section>
+          <h2>Scope</h2>
+          <div class="prose" set:html={project.scope} />
+        </section>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .prj-detail { max-width: 48rem; margin: 2rem auto; padding: 0 1.5rem; }
+  .prj-detail h2 {
+    font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600;
+    color: #1c1917; margin: 0 0 0.75rem;
+    padding-bottom: 0.375rem; border-bottom: 1px solid #e7e5e4;
+  }
+  :global(.dark) .prj-detail h2 { color: #fafaf9; border-bottom-color: #44403c; }
+  .prj-detail .prose { font-size: 0.9375rem; line-height: 1.7; color: #44403c; }
+  :global(.dark) .prj-detail .prose { color: #d6d3d1; }
+</style>

@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+---
+<BaseLayout title="404 — Not Found" description="Page not found." noIndex>
+  <PageHero variant="index" bleed eyebrow="404" title="Not found" lead="The page you're looking for doesn't exist. Try the navigation, or start from the home page." />
+  <div class="page page--wide" style="text-align: center; padding: 4rem 1.5rem;">
+    <a href="/" style="font-family: var(--font-sans); font-weight: 600; color: var(--color-brand); text-decoration: none; border: 1px solid var(--color-brand); padding: 0.75rem 1.5rem; display: inline-block;">
+      ← Back to home
+    </a>
+  </div>
+</BaseLayout>

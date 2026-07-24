@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHero from '../../components/PageHero.astro'
+import { loadData, type Post } from '../../lib/data'
+
+export function getStaticPaths() {
+  return loadData.posts().map((p) => ({ params: { slug: p.slug }, props: { post: p } }))
+}
+const { post } = Astro.props as { post: Post }
+const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : ''
+---
+<BaseLayout title={`${post.frontmatter.title || 'Post'} — ISO/TC 154`} description={post.frontmatter.excerpt || ''}>
+  <PageHero variant="article" bleed eyebrow={dateStr} title={post.frontmatter.title} />
+  <article class="page page--wide">
+    <div class="post prose" set:html={post.html} />
+    {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+      <ul class="post-tags">
+        {post.frontmatter.tags.map((t) => <li class="post-tag">{t}</li>)}
+      </ul>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .post { max-width: 48rem; margin: 2rem auto; font-size: 1.0625rem; line-height: 1.75; color: #44403c; }
+  :global(.dark) .post { color: #d6d3d1; }
+  .post :global(h2) { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: #1c1917; margin: 2rem 0 0.75rem; }
+  :global(.dark) .post :global(h2) { color: #fafaf9; }
+  .post :global(a) { color: var(--color-brand); }
+  .post :global(pre) { background: #1c1917; color: #fafaf9; padding: 1rem; overflow-x: auto; font-size: 0.875rem; }
+  .post :global(code) { font-family: ui-monospace, monospace; }
+  .post :global(blockquote) { border-left: 3px solid var(--color-brand); padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #57534e; }
+
+  .post-tags { list-style: none; padding: 0; margin: 2rem auto; max-width: 48rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .post-tag {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-brand);
+    color: var(--color-brand);
+  }
+</style>
