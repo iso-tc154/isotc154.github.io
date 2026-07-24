@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData, type Group } from '../lib/data'
+
+const groups = loadData.groups()
+  .filter((g) => g.id !== 'tc154')
+  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
+const categoryLabel: Record<string, string> = {
+  working_group: 'Working Groups',
+  advisory: 'Advisory Groups',
+  special_group: 'Special Groups',
+  subcommittee: 'Subcommittees',
+  temporary: 'Temporary Groups',
+}
+const byCategory = new Map<string, Group[]>()
+for (const g of groups) {
+  const cat = g.category || 'other'
+  if (!byCategory.has(cat)) byCategory.set(cat, [])
+  byCategory.get(cat)!.push(g)
+}
+---
+<BaseLayout title="Groups — ISO/TC 154" description="Working groups and structures of ISO/TC 154.">
+  <PageHero variant="index" bleed eyebrow="Committee structure" title="Groups" lead={`${groups.length} groups — working groups driving today's programmes, advisory bodies, and special structures carrying forward specific remits.`} />
+  <div class="page page--wide">
+    {Array.from(byCategory.entries()).map(([category, items]) => (
+      <section class="grp-section">
+        <header class="grp-section__head">
+          <h2>{categoryLabel[category] || category.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</h2>
+          <span class="count">{items.length}</span>
+        </header>
+        <ul class="grp-grid">
+          {items.map((g) => (
+            <li>
+              <a href={g.url ?? `/groups/${g.id}/`} class="grp-card">
+                <span class="grp-card__id">{g.name || g.id.toUpperCase()}</span>
+                <h3 class="grp-card__title">{g.title || g.name}</h3>
+                {g.intro && <p class="grp-card__intro">{g.intro.split('\n')[0].slice(0, 140)}</p>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .grp-section { max-width: 80rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
+  .grp-section__head {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4;
+    margin-bottom: 1.5rem;
+  }
+  :global(.dark) .grp-section__head { border-bottom-color: #44403c; }
+  .grp-section__head h2 {
+    font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600;
+    color: #1c1917; margin: 0;
+  }
+  :global(.dark) .grp-section__head h2 { color: #fafaf9; }
+  .count { font-family: var(--font-sans); font-size: 0.875rem; color: #78716c; }
+  :global(.dark) .count { color: #a8a29e; }
+
+  .grp-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) { .grp-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .grp-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .grp-card {
+    display: block; padding: 1.5rem;
+    border: 1px solid #e7e5e4; background: #fff;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  :global(.dark) .grp-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .grp-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
+  .grp-card__id {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+    margin-bottom: 0.5rem;
+  }
+  .grp-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem; font-weight: 600;
+    color: #1c1917; margin: 0 0 0.5rem; line-height: 1.2;
+  }
+  :global(.dark) .grp-card__title { color: #fafaf9; }
+  .grp-card__intro {
+    font-size: 0.875rem; line-height: 1.5;
+    color: #57534e; margin: 0;
+  }
+  :global(.dark) .grp-card__intro { color: #d6d3d1; }
+</style>

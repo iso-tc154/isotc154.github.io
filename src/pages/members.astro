@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData } from '../lib/data'
+
+const data = loadData.members()
+const current = data.current
+const sortedCurrent = [...current].sort((a, b) => (a.name || "").localeCompare(b.name || ""))
+const sortedPast = [...data.past].sort((a, b) => (a.name || "").localeCompare(b.name || ""))
+
+function initials(name: string): string {
+  if (!name) return "?"
+  return name.split(/\s+/).map((n) => n[0]).slice(0, 3).join('').toUpperCase()
+}
+---
+<BaseLayout title="Members — ISO/TC 154" description="The experts of ISO/TC 154.">
+  <PageHero variant="index" bleed eyebrow="The committee" title="Members" lead="Experts from 45 national bodies and liaison organisations shaping the standards that global commerce runs on." />
+  <div class="page page--wide">
+    <section class="members-section">
+      <header class="members-section__head">
+        <h2>Current members <span class="count">{sortedCurrent.length}</span></h2>
+      </header>
+      <ul class="member-grid">
+        {sortedCurrent.map((m) => (
+          <li>
+            <a href={m.url ?? `/members/${m['member-id']}/`} class="member-card" data-deceased={m.deceased ? 'true' : 'false'}>
+              <div class="member-card__avatar">
+                {m.picture
+                  ? <img src={`/assets/images/members/${m.picture}`} alt={m.name} loading="lazy" />
+                  : <span class="member-card__initials">{initials(m.name)}</span>}
+              </div>
+              <div class="member-card__body">
+                <h3 class="member-card__name">{m.name}</h3>
+                {m.affiliation && <p class="member-card__aff">{m.affiliation}</p>}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {sortedPast.length > 0 && (
+      <section class="members-section members-section--past">
+        <header class="members-section__head">
+          <h2>Past members <span class="count">{sortedPast.length}</span></h2>
+        </header>
+        <ul class="member-grid">
+          {sortedPast.map((m) => (
+            <li>
+              <a href={m.url ?? `/members/${m['member-id']}/`} class="member-card member-card--past">
+                <div class="member-card__avatar">
+                  {m.picture
+                    ? <img src={`/assets/images/members/${m.picture}`} alt={m.name} loading="lazy" />
+                    : <span class="member-card__initials">{initials(m.name)}</span>}
+                </div>
+                <div class="member-card__body">
+                  <h3 class="member-card__name">{m.name}</h3>
+                  {m.affiliation && <p class="member-card__aff">{m.affiliation}</p>}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .members-section { margin: 2rem auto 3rem; max-width: 80rem; padding: 0 1.5rem; }
+  .members-section__head { padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
+  :global(.dark) .members-section__head { border-bottom-color: #44403c; }
+  .members-section__head h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 0;
+  }
+  :global(.dark) .members-section__head h2 { color: #fafaf9; }
+  .count {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #78716c;
+    margin-left: 0.5rem;
+  }
+  :global(.dark) .count { color: #a8a29e; }
+
+  .member-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1rem;
+  }
+  .member-card {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0.875rem;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e7e5e4;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  :global(.dark) .member-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .member-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
+  .member-card--past { opacity: 0.75; }
+  .member-card[data-deceased='true'] .member-card__avatar img { filter: grayscale(100%); }
+  .member-card__avatar {
+    width: 3rem; height: 3rem;
+    display: flex; align-items: center; justify-content: center;
+    background: #f4f4f3;
+    overflow: hidden;
+    border-radius: 0;
+  }
+  :global(.dark) .member-card__avatar { background: rgb(255 255 255 / 0.05); }
+  .member-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .member-card__initials {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-brand);
+  }
+  .member-card__name {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 0;
+    line-height: 1.2;
+  }
+  :global(.dark) .member-card__name { color: #fafaf9; }
+  .member-card__aff {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: #78716c;
+    margin: 0.25rem 0 0;
+    line-height: 1.3;
+  }
+  :global(.dark) .member-card__aff { color: #a8a29e; }
+</style>
