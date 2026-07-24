@@ -41,3 +41,7 @@ scripts/.new-standards.json
 
 # Astro build cache
 .astro/
+
+# Stale npm lockfile backup (project uses pnpm now)
+package-lock.json.orig
+package-lock.json
