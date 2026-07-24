@@ -1,0 +1,8 @@
+---
+import AsciiDocLayout from '../layouts/AsciiDocLayout.astro'
+import { loadData } from '../lib/data'
+
+const page = loadData.page('/faq/')
+if (!page) throw new Error('FAQ page not found in pages.json')
+---
+<AsciiDocLayout page={page} />

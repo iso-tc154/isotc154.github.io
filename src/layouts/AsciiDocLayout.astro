@@ -1,0 +1,114 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData, type PageDoc } from '../lib/data'
+
+interface Props {
+  page: PageDoc
+  decorationPattern?: string
+}
+
+const { page, decorationPattern } = Astro.props
+const title = page.frontmatter.title ?? page.url
+const eyebrow = page.frontmatter.eyebrow ?? ''
+const lead = page.frontmatter.lead ?? page.frontmatter.description ?? ''
+---
+<BaseLayout title={`${title} — ISO/TC 154`} description={lead || title}>
+  <PageHero variant="index" bleed eyebrow={eyebrow} title={title} lead={lead}>
+    {decorationPattern && (
+      <Fragment slot="decoration">
+        <div class={`hero-pattern hero-pattern--${decorationPattern}`}></div>
+      </Fragment>
+    )}
+  </PageHero>
+  <article class="page page--wide">
+    <div class="prose" set:html={page.html} />
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .prose {
+    max-width: 48rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #44403c;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  .dark .prose { color: #d6d3d1; }
+  .prose h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.625rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 2.5rem 0 1rem;
+    color: #1c1917;
+  }
+  .dark .prose h1 { color: #fafaf9; }
+  .prose h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 2.5rem 0 1rem;
+    color: #1c1917;
+    letter-spacing: -0.01em;
+  }
+  .dark .prose h2 { color: #fafaf9; }
+  .prose h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: #1c1917;
+  }
+  .dark .prose h3 { color: #fafaf9; }
+  .prose h4 { font-family: var(--font-sans); font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: #1c1917; }
+  .dark .prose h4 { color: #fafaf9; }
+  .prose p { margin: 0 0 1.25rem; }
+  .prose a { color: var(--color-brand); text-decoration: underline; text-underline-offset: 2px; }
+  .prose a:hover { color: var(--color-brand-hover); }
+  .prose ul, .prose ol { margin: 0 0 1.25rem; padding-left: 1.5rem; }
+  .prose li { margin: 0.375rem 0; }
+  .prose code {
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    font-size: 0.875em;
+    background: rgb(30 58 138 / 0.06);
+    padding: 0.125rem 0.375rem;
+    border-radius: 2px;
+  }
+  .dark .prose code { background: rgb(148 182 232 / 0.1); }
+  .prose pre {
+    background: #1c1917;
+    color: #fafaf9;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin: 0 0 1.5rem;
+    font-size: 0.875rem;
+  }
+  .prose pre code { background: none; padding: 0; }
+  .prose blockquote {
+    border-left: 3px solid var(--color-brand);
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #57534e;
+  }
+  .dark .prose blockquote { color: #a8a29e; }
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9375rem;
+  }
+  .prose th, .prose td {
+    border: 1px solid #d6d3d1;
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+  }
+  .dark .prose th, .dark .prose td { border-color: #44403c; }
+  .prose th { background: #fafaf9; font-weight: 700; }
+  .dark .prose th { background: rgb(255 255 255 / 0.04); }
+  .prose hr { border: none; border-top: 1px solid #d6d3d1; margin: 2.5rem 0; }
+  .dark .prose hr { border-top-color: #44403c; }
+</style>

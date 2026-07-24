@@ -1,0 +1,16 @@
+---
+import AsciiDocLayout from '../../layouts/AsciiDocLayout.astro'
+import { loadData } from '../../lib/data'
+
+export function getStaticPaths() {
+  return loadData.pages()
+    .filter((p) => p.url.startsWith('/agenda/'))
+    .map((p) => {
+      const date = p.url.replace('/agenda/', '').replace(/\/$/, '')
+      return { params: { date }, props: { page: p } }
+    })
+}
+
+const { page } = Astro.props
+---
+<AsciiDocLayout page={page} />
