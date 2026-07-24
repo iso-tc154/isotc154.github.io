@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData, type NationalBody } from '../lib/data'
+
+const nbs = loadData.nationalBodies().sort((a, b) => (a.country || a.name).localeCompare(b.country || b.name))
+const pMembers = nbs.filter((n) => n.membership === 'P')
+const oMembers = nbs.filter((n) => n.membership === 'O')
+---
+<BaseLayout title="National Bodies — ISO/TC 154" description="National body members of ISO/TC 154.">
+  <PageHero variant="index" bleed eyebrow="Members" title="National Bodies" lead={`${pMembers.length} participating (P) and ${oMembers.length} observing (O) national bodies from around the world.`} />
+
+  <div class="page page--wide">
+    {pMembers.length > 0 && (
+      <section class="nb-section">
+        <header class="nb-section__head">
+          <h2>Participating (P-members) <span class="count">{pMembers.length}</span></h2>
+        </header>
+        <ul class="nb-grid">
+          {pMembers.map((n) => (
+            <li>
+              <a href={`/national-bodies/${n.id}/`} class="nb-card">
+                <div class="nb-card__logo">
+                  {n.logo && <img src={n.logo} alt={n.short_name || n.name} loading="lazy" />}
+                </div>
+                <div class="nb-card__body">
+                  <span class="nb-card__country">{n.country}</span>
+                  <h3 class="nb-card__name">{n.short_name || n.name}</h3>
+                  <p class="nb-card__full">{n.name}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+    {oMembers.length > 0 && (
+      <section class="nb-section">
+        <header class="nb-section__head">
+          <h2>Observing (O-members) <span class="count">{oMembers.length}</span></h2>
+        </header>
+        <ul class="nb-grid">
+          {oMembers.map((n) => (
+            <li>
+              <a href={`/national-bodies/${n.id}/`} class="nb-card">
+                <div class="nb-card__logo">
+                  {n.logo && <img src={n.logo} alt={n.short_name || n.name} loading="lazy" />}
+                </div>
+                <div class="nb-card__body">
+                  <span class="nb-card__country">{n.country}</span>
+                  <h3 class="nb-card__name">{n.short_name || n.name}</h3>
+                  <p class="nb-card__full">{n.name}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .nb-section { max-width: 80rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
+  .nb-section__head { padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
+  :global(.dark) .nb-section__head { border-bottom-color: #44403c; }
+  .nb-section__head h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: #1c1917; margin: 0; }
+  :global(.dark) .nb-section__head h2 { color: #fafaf9; }
+  .count { font-size: 0.875rem; color: #78716c; margin-left: 0.5rem; font-weight: 400; }
+  :global(.dark) .count { color: #a8a29e; }
+  .nb-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1rem; }
+  .nb-card {
+    display: grid; grid-template-columns: 4rem 1fr; gap: 1rem;
+    padding: 1rem; border: 1px solid #e7e5e4; background: #fff;
+    text-decoration: none; color: inherit; align-items: center;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  :global(.dark) .nb-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .nb-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
+  .nb-card__logo { width: 4rem; height: 4rem; display: flex; align-items: center; justify-content: center; padding: 0.25rem; }
+  .nb-card__logo img { max-width: 100%; max-height: 100%; }
+  .nb-card__country { font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-brand); }
+  .nb-card__name { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0.125rem 0; }
+  :global(.dark) .nb-card__name { color: #fafaf9; }
+  .nb-card__full { font-size: 0.75rem; color: #78716c; margin: 0; line-height: 1.3; }
+  :global(.dark) .nb-card__full { color: #a8a29e; }
+</style>

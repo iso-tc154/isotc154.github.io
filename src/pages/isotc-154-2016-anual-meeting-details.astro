@@ -1,0 +1,10 @@
+---
+import AsciiDocLayout from '../layouts/AsciiDocLayout.astro'
+import { loadData } from '../lib/data'
+
+// URL preserves the original "anual" typo for backward compatibility.
+// The AsciiDoc source file is correctly spelled (annual-meeting-details).
+const page = loadData.page('/isotc-154-2016-anual-meeting-details/')
+if (!page) throw new Error('isotc-154-2016-anual-meeting-details not in pages.json')
+---
+<AsciiDocLayout page={page} />

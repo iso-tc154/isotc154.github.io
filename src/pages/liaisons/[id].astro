@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHero from '../../components/PageHero.astro'
+import { loadData, type Liaison } from '../../lib/data'
+
+export function getStaticPaths() {
+  return loadData.liaisons().map((l) => ({ params: { id: l.id }, props: { liaison: l } }))
+}
+const { liaison } = Astro.props as { liaison: Liaison }
+const eyebrow = liaison.category ? `Category ${liaison.category}` : 'Liaison'
+---
+<BaseLayout title={`${liaison.short_name || liaison.name} — ISO/TC 154`} description={liaison.description || liaison.name}>
+  <PageHero variant="detail" bleed eyebrow={eyebrow} title={liaison.short_name || liaison.name} lead={liaison.name} />
+  <div class="page page--wide">
+    <div class="lia-detail">
+      {liaison.logo && (
+        <div class="lia-detail__logo">
+          <img src={liaison.logo} alt={liaison.short_name || liaison.name} />
+        </div>
+      )}
+      {liaison.description && (
+        <section>
+          <h2>About this liaison</h2>
+          <p>{liaison.description}</p>
+        </section>
+      )}
+      {liaison.url && liaison.url.startsWith('http') && (
+        <p class="lia-detail__ext">
+          <a href={liaison.url} target="_blank" rel="noopener noreferrer">
+            Visit {liaison.short_name || liaison.name} ↗
+          </a>
+        </p>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lia-detail { max-width: 48rem; margin: 2rem auto; padding: 0 1.5rem; }
+  .lia-detail__logo { width: 12rem; margin-bottom: 2rem; }
+  .lia-detail__logo img { max-width: 100%; max-height: 8rem; }
+  .lia-detail h2 {
+    font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600;
+    color: #1c1917; margin: 1.5rem 0 0.75rem;
+    padding-bottom: 0.375rem; border-bottom: 1px solid #e7e5e4;
+  }
+  :global(.dark) .lia-detail h2 { color: #fafaf9; border-bottom-color: #44403c; }
+  .lia-detail p { font-size: 1rem; line-height: 1.7; color: #44403c; }
+  :global(.dark) .lia-detail p { color: #d6d3d1; }
+  .lia-detail__ext { margin-top: 2rem; }
+  .lia-detail__ext a { color: var(--color-brand); font-weight: 600; }
+</style>

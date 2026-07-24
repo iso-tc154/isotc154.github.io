@@ -1,0 +1,54 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '13'
+urn: urn:iso-tc154:meeting:plenary-13
+type: plenary
+status: completed
+ordinal: 13
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: DE
+title:
+- spelling: eng
+  value: 13th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Berlin
+  country_code: DE
+source_urls:
+- ref: https://committee.iso.org/meetings/13834
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '126'
+- prefix: ISO/TC 154
+  number: '127'
+- prefix: ISO/TC 154
+  number: '128'
+- prefix: ISO/TC 154
+  number: '129'
+- prefix: ISO/TC 154
+  number: '130'
+- prefix: ISO/TC 154
+  number: '131'
+- prefix: ISO/TC 154
+  number: '132'
+- prefix: ISO/TC 154
+  number: '133'
+- prefix: ISO/TC 154
+  number: '134'
+- prefix: ISO/TC 154
+  number: '135'
+- prefix: ISO/TC 154
+  number: '136'
+- prefix: ISO/TC 154
+  number: '137'
+scheduled_date_range:
+  start: '1997-06-12'
+  end: '1997-06-22'

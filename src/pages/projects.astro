@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData } from '../lib/data'
+
+const projects = loadData.projects()
+const byStatus: Record<string, typeof projects> = {}
+for (const p of projects) {
+  const s = p.status || 'current'
+  if (!byStatus[s]) byStatus[s] = []
+  byStatus[s].push(p)
+}
+const statusOrder = ['current', 'withdrawn', 'deleted', 'lapsed']
+const sortedStatuses = Object.keys(byStatus).sort((a, b) => {
+  const ai = statusOrder.indexOf(a); const bi = statusOrder.indexOf(b)
+  return (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi)
+})
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+---
+<BaseLayout title="Projects — ISO/TC 154" description="Active and historical projects of ISO/TC 154.">
+  <PageHero variant="index" bleed eyebrow="In progress" title="Projects" lead={`${projects.length} new-work-item proposals (NWIP) and active projects moving through the ISO pipeline.`} />
+  <div class="page page--wide">
+    {sortedStatuses.map((status) => (
+      <section class="prj-section">
+        <header class="prj-section__head">
+          <h2>{cap(status)} <span class="count">{byStatus[status].length}</span></h2>
+        </header>
+        <ul class="prj-list">
+          {byStatus[status].map((p) => (
+            <li>
+              <a href={p.url} class="prj-card">
+                <span class="prj-card__num">{p.name}</span>
+                <div class="prj-card__body">
+                  <h3 class="prj-card__title">{p.title}</h3>
+                  <span class="prj-card__stage">stage {p.stage}</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .prj-section { max-width: 80rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
+  .prj-section__head { padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
+  :global(.dark) .prj-section__head { border-bottom-color: #44403c; }
+  .prj-section__head h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: #1c1917; margin: 0; }
+  :global(.dark) .prj-section__head h2 { color: #fafaf9; }
+  .count { font-size: 0.875rem; color: #78716c; margin-left: 0.5rem; font-weight: 400; }
+  :global(.dark) .count { color: #a8a29e; }
+
+  .prj-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+  @media (min-width: 768px) { .prj-list { grid-template-columns: repeat(2, 1fr); } }
+  .prj-card {
+    display: grid; grid-template-columns: 11rem 1fr; gap: 1rem;
+    padding: 1rem 1.25rem; border: 1px solid #e7e5e4; background: #fff;
+    text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s;
+    align-items: baseline;
+  }
+  :global(.dark) .prj-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .prj-card:hover { border-color: var(--color-blue-accent); transform: translateY(-1px); }
+  .prj-card__num {
+    font-family: var(--font-serif); font-size: 0.875rem; font-weight: 700;
+    color: var(--color-brand); font-variant-numeric: tabular-nums; line-height: 1.2;
+  }
+  .prj-card__title { font-size: 0.9375rem; font-weight: 500; color: #1c1917; margin: 0; line-height: 1.4; }
+  :global(.dark) .prj-card__title { color: #fafaf9; }
+  .prj-card__stage { font-size: 0.75rem; color: #78716c; margin-top: 0.25rem; display: block; }
+  :global(.dark) .prj-card__stage { color: #a8a29e; }
+</style>

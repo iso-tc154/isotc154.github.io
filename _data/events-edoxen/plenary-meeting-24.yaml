@@ -1,0 +1,48 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '24'
+urn: urn:iso-tc154:meeting:plenary-24
+type: plenary
+status: completed
+ordinal: 24
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: CA
+title:
+- spelling: eng
+  value: 24th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Vancouver
+  country_code: CA
+source_urls:
+- ref: https://committee.iso.org/meetings/3493
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '266'
+- prefix: ISO/TC 154
+  number: '267'
+- prefix: ISO/TC 154
+  number: '268'
+- prefix: ISO/TC 154
+  number: '269'
+- prefix: ISO/TC 154
+  number: '270'
+- prefix: ISO/TC 154
+  number: '271'
+- prefix: ISO/TC 154
+  number: '272'
+- prefix: ISO/TC 154
+  number: '273'
+- prefix: ISO/TC 154
+  number: '274'
+scheduled_date_range:
+  start: '2006-03-22'
+  end: '2006-03-22'

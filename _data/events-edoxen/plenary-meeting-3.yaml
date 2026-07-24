@@ -1,0 +1,29 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '3'
+urn: urn:iso-tc154:meeting:plenary-3
+type: plenary
+status: completed
+ordinal: 3
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: CA
+title:
+- spelling: eng
+  value: 3th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Ottawa
+  country_code: CA
+source_urls:
+- ref: https://committee.iso.org/meetings/35772
+  kind: landing_page
+scheduled_date_range:
+  start: '1976-10-21'
+  end: '1976-10-22'

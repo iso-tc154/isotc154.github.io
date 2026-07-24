@@ -1,0 +1,58 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '31'
+urn: urn:iso-tc154:meeting:plenary-31
+type: plenary
+status: completed
+ordinal: 31
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+country_code: US
+title:
+- spelling: eng
+  value: 31th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Concord, California
+  country_code: US
+source_urls:
+- ref: https://committee.iso.org/meetings/36559
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 006-2012
+- prefix: ISO/TC 154
+  number: 007-2012
+- prefix: ISO/TC 154
+  number: '008-2012'
+- prefix: ISO/TC 154
+  number: '009-2012'
+- prefix: ISO/TC 154
+  number: 010-2012
+- prefix: ISO/TC 154
+  number: 011-2012
+- prefix: ISO/TC 154
+  number: 012‐2012
+- prefix: ISO/TC 154
+  number: 013-2012
+- prefix: ISO/TC 154
+  number: 014-2012
+- prefix: ISO/TC 154
+  number: 015-2012
+- prefix: ISO/TC 154
+  number: 016-2012
+- prefix: ISO/TC 154
+  number: 017-2012
+- prefix: ISO/TC 154
+  number: '018-2012'
+- prefix: ISO/TC 154
+  number: '019-2012'
+scheduled_date_range:
+  start: '2012-10-08'
+  end: '2012-10-12'

@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData, type Liaison } from '../lib/data'
+
+const liaisons = loadData.liaisons().sort((a, b) => (a.short_name || a.name).localeCompare(b.short_name || b.name))
+const byCategory: Record<string, Liaison[]> = {}
+for (const l of liaisons) {
+  const c = l.category || 'Other'
+  if (!byCategory[c]) byCategory[c] = []
+  byCategory[c].push(l)
+}
+const catLabel: Record<string, string> = {
+  A: 'Category A — Organizations making an effective contribution',
+  B: 'Category B — Organizations with a technical interest',
+  C: 'Category C — Organizations with a regional interest',
+  D: 'Category D — Organizations with a development interest',
+  'Liaison-Technical': 'Liaison-Technical',
+  'Liaison-Strategic': 'Liaison-Strategic',
+}
+const categories = Object.keys(byCategory).sort()
+---
+<BaseLayout title="Liaisons — ISO/TC 154" description="Liaison organisations of ISO/TC 154.">
+  <PageHero variant="index" bleed eyebrow="External relationships" title="Liaisons" lead={`${liaisons.length} international and regional organisations in technical liaison with ISO/TC 154.`} />
+  <div class="page page--wide">
+    {categories.map((cat) => (
+      <section class="lia-section">
+        <header class="lia-section__head">
+          <h2>{catLabel[cat] || cat}</h2>
+          <span class="count">{byCategory[cat].length}</span>
+        </header>
+        <ul class="lia-grid">
+          {byCategory[cat].map((l) => (
+            <li>
+              <a href={`/liaisons/${l.id}/`} class="lia-card">
+                <div class="lia-card__logo">
+                  {l.logo && <img src={l.logo} alt={l.short_name || l.name} loading="lazy" />}
+                </div>
+                <div class="lia-card__body">
+                  <h3 class="lia-card__name">{l.short_name || l.name}</h3>
+                  {l.short_name && <p class="lia-card__full">{l.name}</p>}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .lia-section { max-width: 80rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
+  .lia-section__head { display: flex; align-items: baseline; gap: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
+  :global(.dark) .lia-section__head { border-bottom-color: #44403c; }
+  .lia-section__head h2 { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; color: #1c1917; margin: 0; }
+  :global(.dark) .lia-section__head h2 { color: #fafaf9; }
+  .count { font-size: 0.875rem; color: #78716c; }
+  :global(.dark) .count { color: #a8a29e; }
+
+  .lia-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1rem; }
+  .lia-card {
+    display: grid; grid-template-columns: 4rem 1fr; gap: 1rem;
+    padding: 1rem; border: 1px solid #e7e5e4; background: #fff;
+    text-decoration: none; color: inherit; align-items: center;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  :global(.dark) .lia-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .lia-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
+  .lia-card__logo {
+    width: 4rem; height: 4rem;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0.25rem;
+  }
+  .lia-card__logo img { max-width: 100%; max-height: 100%; }
+  .lia-card__name { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0; }
+  :global(.dark) .lia-card__name { color: #fafaf9; }
+  .lia-card__full { font-size: 0.75rem; color: #78716c; margin: 0.25rem 0 0; line-height: 1.3; }
+  :global(.dark) .lia-card__full { color: #a8a29e; }
+</style>

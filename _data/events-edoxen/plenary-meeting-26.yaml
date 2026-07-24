@@ -1,0 +1,56 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '26'
+urn: urn:iso-tc154:meeting:plenary-26
+type: plenary
+status: completed
+ordinal: 26
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: JPTYO
+country_code: JP
+title:
+- spelling: eng
+  value: 26th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: Tokyo
+  country_code: JP
+  unlocode: JPTYO
+source_urls:
+- ref: https://committee.iso.org/meetings/32311
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: '291'
+- prefix: ISO/TC 154
+  number: '292'
+- prefix: ISO/TC 154
+  number: '293'
+- prefix: ISO/TC 154
+  number: '294'
+- prefix: ISO/TC 154
+  number: '295'
+- prefix: ISO/TC 154
+  number: '296'
+- prefix: ISO/TC 154
+  number: '297'
+- prefix: ISO/TC 154
+  number: '298'
+- prefix: ISO/TC 154
+  number: '299'
+- prefix: ISO/TC 154
+  number: '300'
+- prefix: ISO/TC 154
+  number: '301'
+- prefix: ISO/TC 154
+  number: '302'
+scheduled_date_range:
+  start: '2009-09-25'
+  end: '2009-09-25'

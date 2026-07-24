@@ -1,0 +1,153 @@
+---
+interface Props {
+  variant?: 'landing' | 'index' | 'detail' | 'article'
+  eyebrow?: string
+  title?: string
+  accent?: string
+  lead?: string
+  href?: string
+  align?: 'start' | 'center'
+  bleed?: boolean
+  class?: string
+}
+
+const {
+  variant = 'index',
+  eyebrow,
+  title,
+  accent,
+  lead,
+  href,
+  align = 'start',
+  bleed = false,
+  class: className = '',
+} = Astro.props
+---
+<header class:list={["ph", `ph--${variant}`, `ph--${align}`, { 'ph--bleed': bleed }, className]}>
+  <div class="ph__decoration" aria-hidden="true"><slot name="decoration" /></div>
+
+  <div class="ph__inner">
+    <slot name="breadcrumb" />
+
+    {eyebrow && (
+      <p class="ph__eyebrow">
+        <span class="ph__eyebrow-rule" aria-hidden="true"></span>
+        <slot name="eyebrow">{eyebrow}</slot>
+      </p>
+    )}
+
+    <h1 class="ph__title">
+      {href ? (
+        <a href={href} class="ph__title-link">
+          <slot name="title">{title}{accent && <span>&nbsp;</span>}{accent && <span class="ph__accent">{accent}</span>}</slot>
+        </a>
+      ) : (
+        <slot name="title">{title}{accent && <span>&nbsp;</span>}{accent && <span class="ph__accent">{accent}</span>}</slot>
+      )}
+    </h1>
+
+    {(lead || Astro.slots.has('lead')) && (
+      <p class="ph__lead"><slot name="lead">{lead}</slot></p>
+    )}
+
+    {(Astro.slots.has('default') || Astro.slots.has('stats')) && (
+      <div class="ph__extra">
+        <slot name="stats" />
+        <slot />
+      </div>
+    )}
+
+    {Astro.slots.has('actions') && (
+      <div class="ph__actions">
+        <slot name="actions" />
+      </div>
+    )}
+  </div>
+</header>
+
+<style>
+  .ph {
+    position: relative;
+    margin: 0 0 2.5rem;
+    padding: 2rem 0 0;
+    max-width: 48rem;
+    overflow: hidden;
+  }
+  .ph--center { text-align: center; margin-left: auto; margin-right: auto; }
+  .ph--bleed { max-width: none; padding-inline: 1.5rem; }
+
+  .ph__decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .ph__inner { position: relative; z-index: 1; }
+  .ph--center .ph__inner { display: flex; flex-direction: column; align-items: center; }
+
+  .ph__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    margin: 0 0 1rem;
+  }
+  .ph__eyebrow-rule {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .ph__title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: #1c1917;
+    margin: 0 0 1rem;
+    font-variation-settings: 'opsz' 60;
+  }
+  :global(.dark) .ph__title { color: #fafaf9; }
+  .ph__title-link { color: inherit; text-decoration: none; }
+  .ph__accent {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-brand);
+    font-variation-settings: 'opsz' 60;
+  }
+
+  .ph__lead {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: #44403c;
+    margin: 0 0 1.5rem;
+    max-width: 42rem;
+  }
+  :global(.dark) .ph__lead { color: #d6d3d1; }
+
+  .ph__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 0 1.5rem;
+  }
+  .ph__extra { margin-top: 0.5rem; }
+
+  .ph--landing { max-width: 64rem; padding-top: 5rem; padding-bottom: 4rem; }
+  .ph--landing .ph__inner { max-width: 56rem; }
+  .ph--landing .ph__title {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+  }
+  .ph--landing .ph__lead {
+    font-size: 1.0625rem;
+    max-width: 36rem;
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '39'
+urn: urn:iso-tc154:meeting:plenary-39
+type: plenary
+status: cancelled
+ordinal: 39
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+title:
+- spelling: eng
+  value: 39th plenary meeting of ISO/TC 154
+venues:
+- kind: virtual
+  name:
+  - spelling: eng
+    value: ''
+source_urls:
+- ref: https://committee.iso.org/meetings/67789
+  kind: landing_page
+decisions:
+- prefix: ISO/TC 154
+  number: 2020-01
+- prefix: ISO/TC 154
+  number: 2020-02
+- prefix: ISO/TC 154
+  number: 2020-0
+- prefix: ISO/TC 154
+  number: 2020-04
+- prefix: ISO/TC 154
+  number: 2020-05
+- prefix: ISO/TC 154
+  number: 2020-06
+- prefix: ISO/TC 154
+  number: 2020-07
+- prefix: ISO/TC 154
+  number: 2020-08
+- prefix: ISO/TC 154
+  number: 2020-09
+- prefix: ISO/TC 154
+  number: 2020-10
+- prefix: ISO/TC 154
+  number: 2020-11
+- prefix: ISO/TC 154
+  number: 2020-12
+- prefix: ISO/TC 154
+  number: 2020-13
+- prefix: ISO/TC 154
+  number: 2020-14
+- prefix: ISO/TC 154
+  number: 2020-15
+- prefix: ISO/TC 154
+  number: 2020-16
+- prefix: ISO/TC 154
+  number: 2020-17
+- prefix: ISO/TC 154
+  number: 2020-18
+- prefix: ISO/TC 154
+  number: 2020-19
+- prefix: ISO/TC 154
+  number: 2020-20
+- prefix: ISO/TC 154
+  number: 2020-21
+- prefix: ISO/TC 154
+  number: 2020-22
+- prefix: ISO/TC 154
+  number: 2020-23
+- prefix: ISO/TC 154
+  number: 2020-24
+- prefix: ISO/TC 154
+  number: 2020-25
+- prefix: ISO/TC 154
+  number: 2020-25
+scheduled_date_range:
+  start: '2020-08-04'
+  end: '2020-08-07'

@@ -1,0 +1,31 @@
+---
+identifier:
+- prefix: ISO/TC 154
+  number: '9'
+urn: urn:iso-tc154:meeting:plenary-9
+type: plenary
+status: completed
+ordinal: 9
+committee:
+  code: "ISO/TC 154"
+  name:
+  - spelling: eng
+    value: "ISO/TC 154"
+city: GBLON
+country_code: GB
+title:
+- spelling: eng
+  value: 9th plenary meeting of ISO/TC 154
+venues:
+- kind: physical
+  name:
+  - spelling: eng
+    value: London
+  country_code: GB
+  unlocode: GBLON
+source_urls:
+- ref: https://committee.iso.org/meetings/13814
+  kind: landing_page
+scheduled_date_range:
+  start: '1989-09-14'
+  end: '1989-09-15'

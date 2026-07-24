@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHero from '../../components/PageHero.astro'
+import { loadData, type NationalBody } from '../../lib/data'
+
+export function getStaticPaths() {
+  return loadData.nationalBodies().map((n) => ({ params: { id: n.id }, props: { nb: n } }))
+}
+const { nb } = Astro.props as { nb: NationalBody }
+const eyebrow = [nb.membership ? `${nb.membership}-member` : '', nb.country].filter(Boolean).join(' · ')
+---
+<BaseLayout title={`${nb.short_name || nb.name} — ISO/TC 154`} description={nb.description || nb.name}>
+  <PageHero variant="detail" bleed eyebrow={eyebrow} title={nb.short_name || nb.name} lead={nb.name} />
+  <div class="page page--wide">
+    <div class="nb-detail">
+      {nb.logo && (
+        <div class="nb-detail__logo">
+          <img src={nb.logo} alt={nb.short_name || nb.name} />
+        </div>
+      )}
+      {nb.description && (
+        <section>
+          <h2>About</h2>
+          <p>{nb.description}</p>
+        </section>
+      )}
+      {nb.url && nb.url.startsWith('http') && (
+        <p class="nb-detail__ext">
+          <a href={nb.url} target="_blank" rel="noopener noreferrer">
+            Visit {nb.short_name || nb.name} ↗
+          </a>
+        </p>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .nb-detail { max-width: 48rem; margin: 2rem auto; padding: 0 1.5rem; }
+  .nb-detail__logo { width: 12rem; margin-bottom: 2rem; }
+  .nb-detail__logo img { max-width: 100%; max-height: 8rem; }
+  .nb-detail h2 {
+    font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600;
+    color: #1c1917; margin: 1.5rem 0 0.75rem;
+    padding-bottom: 0.375rem; border-bottom: 1px solid #e7e5e4;
+  }
+  :global(.dark) .nb-detail h2 { color: #fafaf9; border-bottom-color: #44403c; }
+  .nb-detail p { font-size: 1rem; line-height: 1.7; color: #44403c; }
+  :global(.dark) .nb-detail p { color: #d6d3d1; }
+  .nb-detail__ext { margin-top: 2rem; }
+  .nb-detail__ext a { color: var(--color-brand); font-weight: 600; }
+</style>

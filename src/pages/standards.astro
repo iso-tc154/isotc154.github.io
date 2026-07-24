@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHero from '../components/PageHero.astro'
+import { loadData, type Standard } from '../lib/data'
+
+const all = loadData.standards()
+const byStatus: Record<string, Standard[]> = { published: [], under_development: [], withdrawn: [] }
+for (const s of all) {
+  const status = s.tc154?.status || 'published'
+  if (!byStatus[status]) byStatus[status] = []
+  byStatus[status].push(s)
+}
+function sortByName(list: Standard[]) {
+  return [...list].sort((a, b) => (a.iso.name || '').localeCompare(b.iso.name || ''))
+}
+const published = sortByName(byStatus.published || [])
+const underDev = sortByName(byStatus.under_development || [])
+const withdrawn = sortByName(byStatus.withdrawn || [])
+const publishedCount = published.length
+const underDevCount = underDev.length
+const withdrawnCount = withdrawn.length
+---
+<BaseLayout title="Standards — ISO/TC 154" description="The standards catalogue of ISO/TC 154.">
+  <PageHero variant="index" bleed eyebrow="Our work" title="Standards" lead={`${publishedCount} published · ${underDevCount} under development · ${withdrawnCount} withdrawn. The catalogue TC 154 maintains for global commerce, industry, and administration.`} />
+
+  <div class="page page--wide">
+    <section class="std-section">
+      <header class="std-section__head">
+        <h2>Published <span class="count">{publishedCount}</span></h2>
+      </header>
+      <ul class="std-list">
+        {published.map((s) => (
+          <li>
+            <a href={s.url} class="std-card">
+              <span class="std-card__num">{s.iso.name}</span>
+              <div class="std-card__body">
+                <h3 class="std-card__title">{s.iso.title}</h3>
+                <div class="std-card__meta">
+                  {s.iso.publication_date && <span>{new Date(s.iso.publication_date).getFullYear()}</span>}
+                  {s.iso.ics && <span class="std-card__ics">ICS {s.iso.ics}</span>}
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {underDev.length > 0 && (
+      <section class="std-section">
+        <header class="std-section__head">
+          <h2>Under development <span class="count">{underDevCount}</span></h2>
+        </header>
+        <ul class="std-list">
+          {underDev.map((s) => (
+            <li>
+              <a href={s.url} class="std-card std-card--dev">
+                <span class="std-card__num">{s.iso.name}</span>
+                <div class="std-card__body">
+                  <h3 class="std-card__title">{s.iso.title}</h3>
+                  <div class="std-card__meta">
+                    {s.iso.stage && <span>stage {s.iso.stage}</span>}
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {withdrawn.length > 0 && (
+      <section class="std-section">
+        <header class="std-section__head">
+          <h2>Withdrawn <span class="count">{withdrawnCount}</span></h2>
+        </header>
+        <ul class="std-list">
+          {withdrawn.map((s) => (
+            <li>
+              <a href={s.url} class="std-card std-card--withdrawn">
+                <span class="std-card__num">{s.iso.name}</span>
+                <div class="std-card__body">
+                  <h3 class="std-card__title">{s.iso.title}</h3>
+                  <div class="std-card__meta">
+                    {s.iso.publication_date && <span>{new Date(s.iso.publication_date).getFullYear()}</span>}
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .std-section { max-width: 80rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
+  .std-section__head { padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
+  :global(.dark) .std-section__head { border-bottom-color: #44403c; }
+  .std-section__head h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 0;
+  }
+  :global(.dark) .std-section__head h2 { color: #fafaf9; }
+  .count { font-size: 0.875rem; color: #78716c; margin-left: 0.5rem; font-weight: 400; }
+  :global(.dark) .count { color: #a8a29e; }
+
+  .std-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+  @media (min-width: 768px) { .std-list { grid-template-columns: repeat(2, 1fr); } }
+
+  .std-card {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e7e5e4;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s;
+    align-items: baseline;
+  }
+  :global(.dark) .std-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
+  .std-card:hover { border-color: var(--color-blue-accent); transform: translateY(-1px); }
+  .std-card--withdrawn { opacity: 0.65; }
+  .std-card--dev { border-left: 3px solid var(--color-amber-warm); }
+  .std-card__num {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-brand);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+  .std-card__title {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #1c1917;
+    margin: 0;
+    line-height: 1.4;
+  }
+  :global(.dark) .std-card__title { color: #fafaf9; }
+  .std-card__meta {
+    margin-top: 0.375rem;
+    display: flex; gap: 0.875rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: #78716c;
+  }
+  :global(.dark) .std-card__meta { color: #a8a29e; }
+  .std-card__ics { font-family: ui-monospace, monospace; }
+</style>

@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHero from '../../components/PageHero.astro'
+import { loadData, type Member, type RoleRecord } from '../../lib/data'
+
+export function getStaticPaths() {
+  return Object.values(loadData.members().all).map((m) => ({
+    params: { id: m['member-id'] },
+    props: { member: m },
+  }))
+}
+
+const { member } = Astro.props as { member: Member }
+
+function initials(name: string): string {
+  if (!name) return "?"
+  return name.split(/\s+/).map((n) => n[0]).slice(0, 3).join('').toUpperCase()
+}
+
+function formatDate(r: RoleRecord): string {
+  const from = r.from?.date
+  const to = r.to?.date
+  if (!from && !to) return ''
+  const fmt = (s: string | undefined, p: 'day' | 'month' | 'year' | undefined) => {
+    if (!s) return ''
+    const d = new Date(s)
+    if (p === 'year') return d.getFullYear().toString()
+    if (p === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  }
+  if (!to) return `${fmt(from, r.from?.precision)} → present`
+  return `${fmt(from, r.from?.precision)} → ${fmt(to, r.to?.precision)}`
+}
+
+function flattenRoles(roles?: Member['roles']): { role: string; group: string; record: RoleRecord }[] {
+  if (!roles) return []
+  const out: { role: string; group: string; record: RoleRecord }[] = []
+  for (const [roleId, byRole] of Object.entries(roles)) {
+    for (const [groupId, records] of Object.entries(byRole.in)) {
+      for (const rec of records) {
+        out.push({ role: roleId, group: groupId === '_all' ? 'committee' : groupId, record: rec })
+      }
+    }
+  }
+  return out.sort((a, b) => (a.record.from?.date || '').localeCompare(b.record.from?.date || ''))
+}
+
+const roles = flattenRoles(member.roles)
+const eyebrow = member.is_the_chair
+  ? 'Chair'
+  : member.is_in_leadership
+    ? 'Leadership'
+    : member.active ? 'Member' : 'Past member'
+---
+<BaseLayout title={`${member.name} — ISO/TC 154`} description={member.affiliation || `${member.name} — ISO/TC 154.`}>
+  <PageHero variant="detail" bleed eyebrow={eyebrow} title={member.name} lead={member.affiliation} />
+
+  <div class="page page--wide">
+    <div class="member-detail">
+      <aside class="member-detail__aside">
+        <div class="member-detail__avatar">
+          {member.picture
+            ? <img src={`/assets/images/members/${member.picture}`} alt={member.name} />
+            : <span>{initials(member.name)}</span>}
+        </div>
+        {member.deceased && <p class="member-detail__memorial">In memoriam</p>}
+        {member.affiliation && <p class="member-detail__aff">{member.affiliation}</p>}
+        {member.links && member.links.length > 0 && (
+          <ul class="member-detail__links">
+            {member.links.map((l) => <li><a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></li>)}
+          </ul>
+        )}
+      </aside>
+
+      <div class="member-detail__main">
+        {member.bio && <div class="member-detail__bio prose" set:html={member.bio} />}
+
+        {roles.length > 0 && (
+          <section class="member-detail__roles">
+            <h2>Roles in TC 154</h2>
+            <ul class="role-list">
+              {roles.map(({ role, group, record }) => (
+                <li class="role-list__item">
+                  <span class="role-list__role">{role}</span>
+                  <span class="role-list__group">{group}</span>
+                  <span class="role-list__dates">{formatDate(record)}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .member-detail { max-width: 56rem; margin: 2rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+  @media (min-width: 768px) { .member-detail { grid-template-columns: 16rem 1fr; } }
+  .member-detail__aside { display: flex; flex-direction: column; align-items: flex-start; }
+  .member-detail__avatar {
+    width: 12rem; height: 12rem;
+    background: #f4f4f3;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  :global(.dark) .member-detail__avatar { background: rgb(255 255 255 / 0.05); }
+  .member-detail__avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .member-detail__avatar span { font-family: var(--font-serif); font-size: 3rem; font-weight: 700; color: var(--color-brand); }
+  .member-detail__memorial {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: #78716c;
+    margin: 0 0 0.5rem;
+  }
+  :global(.dark) .member-detail__memorial { color: #a8a29e; }
+  .member-detail__aff { font-size: 0.875rem; color: #57534e; margin: 0 0 1rem; }
+  :global(.dark) .member-detail__aff { color: #d6d3d1; }
+  .member-detail__links { list-style: none; padding: 0; margin: 0; }
+  .member-detail__links li { margin: 0.25rem 0; }
+  .member-detail__links a { color: var(--color-brand); font-size: 0.875rem; }
+
+  .member-detail__bio { font-size: 1rem; line-height: 1.7; color: #44403c; }
+  :global(.dark) .member-detail__bio { color: #d6d3d1; }
+  .member-detail__bio p { margin: 0 0 1rem; }
+  .member-detail__bio :global(a) { color: var(--color-brand); }
+
+  .member-detail__roles h2 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 2rem 0 0.75rem;
+  }
+  :global(.dark) .member-detail__roles h2 { color: #fafaf9; }
+  .role-list { list-style: none; padding: 0; margin: 0; }
+  .role-list__item {
+    display: grid;
+    grid-template-columns: 8rem 8rem 1fr;
+    gap: 1rem;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid #e7e5e4;
+    font-size: 0.875rem;
+  }
+  :global(.dark) .role-list__item { border-bottom-color: #44403c; }
+  .role-list__role { font-weight: 700; text-transform: capitalize; color: var(--color-brand); }
+  .role-list__group { text-transform: capitalize; color: #57534e; }
+  :global(.dark) .role-list__group { color: #d6d3d1; }
+  .role-list__dates { color: #78716c; font-variant-numeric: tabular-nums; }
+  :global(.dark) .role-list__dates { color: #a8a29e; }
+</style>
