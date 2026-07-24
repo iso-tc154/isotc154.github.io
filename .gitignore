@@ -45,3 +45,6 @@ scripts/.new-standards.json
 # Stale npm lockfile backup (project uses pnpm now)
 package-lock.json.orig
 package-lock.json
+
+# Build-time staging for edoxen (flat hard-links to _data/resolutions subdirs)
+_data/resolutions-edoxen/
