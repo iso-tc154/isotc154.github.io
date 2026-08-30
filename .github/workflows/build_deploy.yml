@@ -49,6 +49,9 @@ jobs:
       - name: Validate YAML schemas + member status vs ISO Open Data
         run: pnpm run validate
 
+      - name: Stage edoxen data (build-time, gitignored)
+        run: node scripts/prepare-edoxen-data.mjs
+
       - name: Validate edoxen data fixtures
         run: pnpm exec edoxen-browser check
 
