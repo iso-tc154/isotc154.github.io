@@ -7,6 +7,35 @@ import {
   sortResolutions,
 } from './transforms.mjs'
 
+// Edoxen-schema YAMLs express text as localized arrays:
+//   title: [{ spelling: eng, value: "..." }]
+// The view layer (transforms.mjs) predates that and expects plain strings.
+// Flatten localized fields once, here, so every downstream consumer sees
+// the legacy shape regardless of which schema a file uses.
+function localized(value) {
+  if (Array.isArray(value) && value.length > 0 && value[0] && typeof value[0] === 'object' && 'value' in value[0]) {
+    return value[0].value ?? ''
+  }
+  return value
+}
+
+function normalizeDecision(res) {
+  const identifier = Array.isArray(res.identifier)
+    ? (res.identifier[0]?.number ?? String(res.identifier))
+    : res.identifier
+  const normalizeActions = (actions) =>
+    (actions || []).map((a) => ({ ...a, message: localized(a.message) }))
+  return {
+    ...res,
+    identifier,
+    title: localized(res.title),
+    subject: localized(res.subject),
+    actions: normalizeActions(res.actions),
+    considerations: normalizeActions(res.considerations),
+    approvals: (res.approvals || []).map((a) => ({ ...a, message: localized(a.message) })),
+  }
+}
+
 export function loadResolutions(resolutionsRoot) {
   if (!fs.existsSync(resolutionsRoot)) {
     return { resolutions: [], meetings: [] }
@@ -29,12 +58,13 @@ export function loadResolutions(resolutionsRoot) {
         console.error(`[resolutions] failed to parse ${fullPath}: ${e.message}`)
         continue
       }
-      if (!parsed || !parsed.resolutions) continue
+      // The resolution YAMLs use `decisions:` (edoxen schema); older local
+      // checkouts used `resolutions:`. Accept both.
+      const decisionList = parsed?.decisions ?? parsed?.resolutions
+      if (!parsed || !decisionList) continue
 
       const metadata = parsed.metadata || {}
-      const records = parsed.resolutions.map((r) =>
-        buildResolutionRecord(r, sourceType, sourceFile, metadata),
-      )
+      const records = decisionList.map((raw) => buildResolutionRecord(normalizeDecision(raw), sourceType, sourceFile, metadata))
       resolutions.push(...records)
       meetingsBySource.set(`${sourceType}/${sourceFile}`, {
         sourceType,
