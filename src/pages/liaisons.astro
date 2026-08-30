@@ -2,21 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import OrgLogo from '../components/OrgLogo.astro'
-import { loadData } from '../lib/data'
+import { loadData, type Liaison } from '../lib/data'
+import { liaisonCategoryLabel } from '../lib/presentation'
 
-interface Liaison {
-  id: string
-  name: string
-  short_name?: string
-  description?: string
-  category?: string
-  logo?: string
-  logo_light?: string
-  logo_dark?: string
-  url?: string
-}
-
-const liaisons = (loadData.liaisons() as unknown as Liaison[])
+const liaisons = loadData.liaisons()
   .sort((a, b) => (a.short_name ?? a.name).localeCompare(b.short_name ?? b.name))
 
 const categories = Array.from(new Set(liaisons.filter((l) => l.category).map((l) => l.category!))).sort()
@@ -27,13 +16,6 @@ const stats = {
   catB: liaisons.filter((l) => l.category === 'B').length,
 }
 
-function categoryLabel(cat: string): string {
-  if (cat === 'A') return 'Category A'
-  if (cat === 'B') return 'Category B'
-  if (cat === 'C') return 'Category C'
-  if (cat === 'D') return 'Category D'
-  return cat
-}
 function liaisonUrl(l: Liaison): string {
   return l.url ?? `/liaisons/${l.id}/`
 }
@@ -81,7 +63,7 @@ function cardHaystack(l: Liaison): string {
             <div class="filter__chips" data-facet="category">
               <button type="button" class="chip chip--active" data-value="">All</button>
               {categories.map((c) => (
-                <button type="button" class="chip" data-value={c}>{categoryLabel(c)}</button>
+                <button type="button" class="chip" data-value={c}>{liaisonCategoryLabel(c)}</button>
               ))}
             </div>
           </div>
@@ -113,7 +95,7 @@ function cardHaystack(l: Liaison): string {
               <div class="card__body">
                 <h3 class="card__name">{l.short_name ?? l.name}</h3>
                 {l.short_name && <p class="card__full-name">{l.name}</p>}
-                <span class="card__category">{categoryLabel(l.category ?? '?')}</span>
+                <span class="card__category">{liaisonCategoryLabel(l.category ?? '?')}</span>
               </div>
             </a>
           </li>

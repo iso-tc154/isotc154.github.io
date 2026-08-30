@@ -1,39 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
-import { loadData } from '../lib/data'
+import { loadData, type HistoryMilestone } from '../lib/data'
+import { historyCategoryLabel, historyCategoryColor, historyCategoryKeys, formatDatePrecision } from '../lib/presentation'
+import { renderProseInline } from '../lib/prose'
 
-interface HistoryMilestone {
-  date: string
-  date_precision?: 'day' | 'month' | 'year'
-  category: string
-  title: string
-  description?: string
-  link?: string
-  resolution?: string
-}
-
-const history = loadData.history() as HistoryMilestone[]
-
-const CATEGORY_META: Record<string, { label: string; color: string }> = {
-  founding:    { label: 'Founding',        color: '#b91c1c' },
-  leadership:  { label: 'Leadership',      color: '#1e3a8a' },
-  meeting:     { label: 'Plenary meetings', color: '#b45309' },
-  standard:    { label: 'Standards',       color: '#047857' },
-  structure:   { label: 'Structure',       color: '#6d28d9' },
-  liaison:     { label: 'Liaisons',        color: '#0f766e' },
-  cooperation: { label: 'Cooperation',     color: '#9a3412' },
-  withdrawn:   { label: 'Withdrawn',       color: '#78716c' },
-}
+const history = loadData.history()
 
 const counts = new Map<string, number>()
 for (const h of history) counts.set(h.category, (counts.get(h.category) ?? 0) + 1)
 const filterChips: { key: string; label: string; count: number }[] = [
   { key: 'all', label: 'All milestones', count: history.length },
 ]
-for (const [cat, meta] of Object.entries(CATEGORY_META)) {
+for (const cat of historyCategoryKeys()) {
   const c = counts.get(cat) ?? 0
-  if (c > 0) filterChips.push({ key: cat, label: meta.label, count: c })
+  if (c > 0) filterChips.push({ key: cat, label: historyCategoryLabel(cat), count: c })
 }
 
 const sorted = [...history].sort((a, b) => b.date.localeCompare(a.date))
@@ -55,34 +36,9 @@ const years = new Set(history.map((h) => h.date.slice(0, 4))).size
 const meetings = history.filter((h) => h.category === 'meeting').length
 const standards = history.filter((h) => h.category === 'standard').length
 
-function categoryColor(cat: string): string {
-  return CATEGORY_META[cat]?.color ?? '#78716c'
-}
-function categoryLabel(cat: string): string {
-  return CATEGORY_META[cat]?.label ?? cat
-}
-function formatDate(h: HistoryMilestone): string {
-  if (!h.date) return ''
-  try {
-    const d = new Date(h.date)
-    if (Number.isNaN(d.getTime())) return h.date
-    if (h.date_precision === 'year') return String(d.getUTCFullYear())
-    if (h.date_precision === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
-  } catch {
-    return h.date
-  }
-}
+const formatDate = (h: HistoryMilestone) => formatDatePrecision(h.date, h.date_precision)
 function resolutionUrl(h: HistoryMilestone): string | null {
   return h.resolution ? `/resolutions/?q=${encodeURIComponent(h.resolution)}` : null
-}
-function renderProseInline(text: string): string {
-  return text
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
 }
 ---
 <BaseLayout title="History — ISO/TC 154" description="Five decades of ISO/TC 154 milestones — chairs, structural changes, publications.">
@@ -115,9 +71,9 @@ function renderProseInline(text: string): string {
             class:list={["lvchip", { 'lvchip--active': chip.key === 'all' }]}
             data-label={chip.label}
             data-value={chip.key}
-            data-tint={chip.key === 'all' ? undefined : categoryColor(chip.key)}
+            data-tint={chip.key === 'all' ? undefined : historyCategoryColor(chip.key)}
           >
-            {chip.key !== 'all' && <span class="lvchip__dot" style={`background: ${categoryColor(chip.key)}`}></span>}
+            {chip.key !== 'all' && <span class="lvchip__dot" style={`background: ${historyCategoryColor(chip.key)}`}></span>}
             {chip.label}
             <span class="lvchip__count">{chip.count}</span>
           </button>
@@ -133,7 +89,7 @@ function renderProseInline(text: string): string {
             </div>
             <ol class="decade__events" role="list">
               {group.items.map((h) => (
-                <li class="event" style={`--cat-color: ${categoryColor(h.category)}`} data-category={h.category}>
+                <li class="event" style={`--cat-color: ${historyCategoryColor(h.category)}`} data-category={h.category}>
                   <div class="event__rail" aria-hidden="true">
                     <span class="event__node"></span>
                     <span class="event__stem"></span>
@@ -141,7 +97,7 @@ function renderProseInline(text: string): string {
                   <article class="event__card">
                     <header class="event__head">
                       <time datetime={h.date} class="event__date">{formatDate(h)}</time>
-                      <span class="event__cat">{categoryLabel(h.category)}</span>
+                      <span class="event__cat">{historyCategoryLabel(h.category)}</span>
                     </header>
                     {h.link ? (
                       <a href={h.link} class="event__title-link">

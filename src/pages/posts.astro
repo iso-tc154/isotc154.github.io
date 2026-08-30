@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import { loadData, type Post } from '../lib/data'
-import { postCategories, postExcerpt, postTitle } from '../lib/presentation'
+import { postCategories, postExcerpt, postTitle, formatDate } from '../lib/presentation'
 
 const posts = loadData.posts().sort((a, b) => (b.date || '').localeCompare(a.date || ''))
 const grouped = new Map<string, Post[]>()
@@ -12,12 +12,6 @@ for (const p of posts) {
   grouped.get(y)!.push(p)
 }
 const yearGroups = Array.from(grouped.entries()).sort((a, b) => Number(b[0]) - Number(a[0]))
-
-function formatDate(date: string): string {
-  const d = new Date(date)
-  if (Number.isNaN(d.getTime())) return date
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-}
 
 ---
 <BaseLayout title="News — ISO/TC 154" description="News and publications of ISO/TC 154.">

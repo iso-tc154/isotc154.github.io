@@ -1,65 +1,21 @@
 ---
-import Asciidoctor from '@asciidoctor/core'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
-import { loadData, type Group } from '../../lib/data'
-
-const asciidoctor = Asciidoctor()
-
-function renderProse(text?: string | null): string {
-  if (!text) return ''
-  return String(asciidoctor.convert(text, {
-    standalone: false,
-    safe: 'safe',
-    attributes: { showtitle: false },
-  }))
-}
-
-interface GroupDoc {
-  id: string
-  name?: string
-  title?: string
-  category?: string
-  intro?: string
-  scope?: string
-  standards?: string[]
-  members?: string[]
-  past_members?: string[]
-  convenors?: string[]
-  co_chairs?: string[]
-  managers?: string[]
-  inactive?: boolean
-  history?: { story?: string; dissolved?: { date?: string } | boolean; established?: { date?: string } }
-  predecessor?: { name?: string }
-  successor?: { name?: string }
-  url?: string
-}
+import { loadData, type Group, type Member } from '../../lib/data'
+import { renderProse } from '../../lib/prose'
+import { groupCategoryLabel, initials } from '../../lib/presentation'
 
 export function getStaticPaths() {
-  return (loadData.groups() as unknown as GroupDoc[]).map((g) => ({
+  return loadData.groups().map((g) => ({
     params: { id: g.id },
     props: { group: g },
   }))
 }
 
-const { group } = Astro.props as { group: GroupDoc }
+const { group } = Astro.props as { group: Group }
 
-const membersIndex = loadData.members().all as Record<string, { name: string; affiliation?: string; picture?: string; deceased?: boolean }>
+const membersIndex = loadData.members().all
 const standards = loadData.standards()
-
-function groupCategoryLabel(category?: string): string {
-  if (!category) return ''
-  switch (category) {
-    case 'working': return 'Working Group'
-    case 'advisory': return 'Advisory Group'
-    case 'cag': return "Chairman's Advisory Group"
-    case 'joint': return 'Joint Working Group'
-    case 'ahwg': return 'Ad Hoc Working Group'
-    case 'sg': return 'Study Group'
-    case 'rtc': return 'Resolution Drafting Group'
-    default: return category.charAt(0).toUpperCase() + category.slice(1)
-  }
-}
 
 const introHtml = renderProse(group.intro)
 const scopeHtml = renderProse(group.scope)
@@ -97,11 +53,6 @@ function pictureOf(id: string): string | undefined {
 }
 function deceasedOf(id: string): boolean {
   return Boolean(membersIndex[id]?.deceased)
-}
-function initials(name: string): string {
-  const parts = name.trim().split(/\s+/)
-  if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
-  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
 }
 
 const dissolved = Boolean(group.history?.dissolved)

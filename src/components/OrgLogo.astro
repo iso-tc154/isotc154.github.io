@@ -1,4 +1,5 @@
 ---
+import { orgInitials } from '../lib/presentation'
 interface Props {
   logo?: string | null
   logo_light?: string | null
@@ -23,12 +24,6 @@ const {
   alt = '',
 } = Astro.props
 
-function initials(text: string): string {
-  if (!text) return '?'
-  const parts = text.trim().split(/\s+/)
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
-  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
-}
 
 const hasThemeVariants = Boolean(logo_light || logo_dark)
 // Prefer the theme variants; order is corrected client-side for dark mode.
@@ -57,7 +52,7 @@ const forceLightBg = !hasThemeVariants && Boolean(logoUrl)
   {logoUrl ? (
     <img src={logoUrl} alt={alt} class="org-logo__img" loading="lazy" data-theme-logo />
   ) : fallback === 'monogram' ? (
-    <span class="org-logo__monogram" aria-hidden="true">{initials(fallbackText)}</span>
+    <span class="org-logo__monogram" aria-hidden="true">{orgInitials(fallbackText)}</span>
   ) : fallback === 'flag' ? (
     <span class="org-logo__flag" aria-hidden="true">{fallbackText}</span>
   ) : null}

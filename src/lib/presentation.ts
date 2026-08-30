@@ -74,7 +74,7 @@ export function initials(name: string): string {
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-export function formatDate(dateStr: string): string {
+export function formatDate(dateStr?: string | null): string {
   if (!dateStr) return ''
   try {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -121,4 +121,79 @@ export function flagEmoji(countryCode?: string | null): string {
   const trimmed = countryCode.trim().toUpperCase()
   if (!/^[A-Z]{2}$/.test(trimmed)) return ''
   return trimmed.replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)))
+}
+
+// Org monograms take the first two letters of a single word ("DIN" → "DI");
+// person initials (above) take first + last letter.
+export function orgInitials(text: string): string {
+  if (!text) return '?'
+  const parts = text.trim().split(/\s+/)
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
+  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
+}
+
+export function groupCategoryLabel(category?: string): string {
+  if (!category) return ''
+  switch (category) {
+    case 'working': return 'Working Group'
+    case 'advisory': return 'Advisory Group'
+    case 'cag': return "Chairman's Advisory Group"
+    case 'joint': return 'Joint Working Group'
+    case 'ahwg': return 'Ad Hoc Working Group'
+    case 'sg': return 'Study Group'
+    case 'rtc': return 'Resolution Drafting Group'
+    default: return category.charAt(0).toUpperCase() + category.slice(1)
+  }
+}
+
+export function membershipLabel(m?: string): { short: string; long: string } {
+  if (m === 'P') return { short: 'P', long: 'Participating member' }
+  if (m === 'O') return { short: 'O', long: 'Observer member' }
+  return { short: m || '', long: m || '' }
+}
+
+export function liaisonCategoryLabel(cat?: string, form: 'short' | 'long' = 'short'): string {
+  if (!cat) return ''
+  if (form === 'long') {
+    if (cat === 'A') return 'Category A — Active cooperation'
+    if (cat === 'B') return 'Category B — Kept informed'
+    return `Category ${cat}`
+  }
+  return `Category ${cat}`
+}
+
+const HISTORY_CATEGORY_META: Record<string, { label: string; color: string }> = {
+  founding:    { label: 'Founding',         color: '#b91c1c' },
+  leadership:  { label: 'Leadership',       color: '#1e3a8a' },
+  meeting:     { label: 'Plenary meetings', color: '#b45309' },
+  standard:    { label: 'Standards',        color: '#047857' },
+  structure:   { label: 'Structure',        color: '#6d28d9' },
+  liaison:     { label: 'Liaisons',         color: '#0f766e' },
+  cooperation: { label: 'Cooperation',      color: '#9a3412' },
+  withdrawn:   { label: 'Withdrawn',        color: '#78716c' },
+}
+
+export function historyCategoryKeys(): string[] {
+  return Object.keys(HISTORY_CATEGORY_META)
+}
+
+export function historyCategoryLabel(cat: string): string {
+  return HISTORY_CATEGORY_META[cat]?.label ?? cat
+}
+
+export function historyCategoryColor(cat: string): string {
+  return HISTORY_CATEGORY_META[cat]?.color ?? '#78716c'
+}
+
+export function formatDatePrecision(dateStr: string, precision?: 'day' | 'month' | 'year'): string {
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr)
+    if (Number.isNaN(d.getTime())) return dateStr
+    if (precision === 'year') return String(d.getUTCFullYear())
+    if (precision === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
+  } catch {
+    return dateStr
+  }
 }

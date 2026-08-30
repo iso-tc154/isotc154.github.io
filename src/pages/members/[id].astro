@@ -1,69 +1,23 @@
 ---
-import Asciidoctor from '@asciidoctor/core'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
 import { loadData, type Member, type RoleRecord, type Group } from '../../lib/data'
-
-const asciidoctor = Asciidoctor()
-
-function renderProse(text?: string | null): string {
-  if (!text) return ''
-  return String(asciidoctor.convert(text, {
-    standalone: false,
-    safe: 'safe',
-    attributes: { showtitle: false },
-  }))
-}
-
-interface MemberDoc extends Member {
-  bio?: string
-  picture?: string
-  deceased?: boolean
-  is_current?: boolean
-  is_the_chair?: boolean
-  is_in_leadership?: boolean
-  affiliation?: string
-  links?: { label?: string; title?: string; url: string }[]
-}
+import { roleLabel, initials, formatDatePrecision } from '../../lib/presentation'
+import { renderProse } from '../../lib/prose'
 
 export function getStaticPaths() {
-  return Object.values(loadData.members().all as Record<string, MemberDoc>).map((m) => ({
+  return Object.values(loadData.members().all).map((m) => ({
     params: { id: m['member-id'] },
     props: { member: m },
   }))
 }
 
-const { member } = Astro.props as { member: MemberDoc }
+const { member } = Astro.props as { member: Member }
 const groups = loadData.groups()
 
-interface RoleDate { date?: string; precision?: 'day' | 'month' | 'year' }
-interface FullRoleRecord extends RoleRecord { id?: string; group?: string; from?: RoleDate; to?: RoleDate }
-
-const roles = (member.roles?._all?.in?._all ?? []) as unknown as FullRoleRecord[]
+const roles: RoleRecord[] = member.roles?._all?.in?._all ?? []
 const bioHtml = renderProse(member.bio)
 const pictureUrl = member.picture ? `/assets/images/members/${member.picture}` : null
-
-const ROLE_LABELS: Record<string, string> = {
-  chair: 'Chair',
-  co_chair: 'Co-chair',
-  committee_manager: 'Committee Manager',
-  convenor: 'Convenor',
-  editorial_programme_manager: 'Editorial Programme Manager',
-  'editorial-programme-manager': 'Editorial Programme Manager',
-  manager: 'Manager',
-  member: 'Member',
-  observer: 'Observer',
-  partner: 'Partner',
-  project_leader: 'Project Leader',
-  'project-leader': 'Project Leader',
-  secretary: 'Secretary',
-  technical_programme_manager: 'Technical Programme Manager',
-  'technical-programme-manager': 'Technical Programme Manager',
-}
-function roleLabel(roleId?: string): string {
-  if (!roleId) return ''
-  return ROLE_LABELS[roleId] ?? roleId
-}
 function groupDoc(groupId?: string): Group | undefined {
   if (!groupId) return undefined
   return groups.find((g: Group) => g.id === groupId)
@@ -79,20 +33,9 @@ function groupTitle(groupId?: string): string {
 function groupUrl(groupId?: string): string | null {
   return groupId ? `/groups/${groupId}/` : null
 }
-function memberInitials(name: string): string {
-  const parts = name.trim().split(/\s+/)
-  if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
-  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
-}
-function fmtDate(d?: RoleDate): string {
-  if (!d?.date) return ''
-  const dt = new Date(d.date)
-  if (Number.isNaN(dt.getTime())) return d.date
-  if (d.precision === 'year') return String(dt.getUTCFullYear())
-  if (d.precision === 'month') return dt.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
-  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
-}
-function memberRoleSpan(r: FullRoleRecord): string {
+const fmtDate = (d?: { date?: string; precision?: 'day' | 'month' | 'year' }) =>
+  d?.date ? formatDatePrecision(d.date, d.precision) : ''
+function memberRoleSpan(r: RoleRecord): string {
   const start = fmtDate(r.from)
   const end = fmtDate(r.to) || 'present'
   return start ? `${start} – ${end}` : end
@@ -131,7 +74,7 @@ const eyebrow = member.is_the_chair
         {pictureUrl ? (
           <img src={pictureUrl} alt={member.name} />
         ) : (
-          <span>{memberInitials(member.name)}</span>
+          <span>{initials(member.name)}</span>
         )}
       </div>
       {member.deceased && <p class="in-memoriam">In Memoriam</p>}
