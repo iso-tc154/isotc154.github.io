@@ -52,6 +52,21 @@ if (fs.existsSync(EVENTS)) {
   }
 }
 
+// 3. Post redirects: /posts/{title}/ → /posts/{date}-{title}/
+// Post slugs gained their yyyy-mm-dd filename prefix; the undated URLs
+// from before the change keep working.
+let postCount = 0
+const POSTS = path.join(ROOT, 'content/posts')
+if (fs.existsSync(POSTS)) {
+  const postRe = /^(\d{4}-\d{2}-\d{2})-(.+)\.(?:adoc|md|asciidoc)$/i
+  for (const f of fs.readdirSync(POSTS)) {
+    const m = f.match(postRe)
+    if (!m) continue
+    redirects[`/posts/${m[2]}`] = `/posts/${m[1]}-${m[2]}/`
+    postCount++
+  }
+}
+
 fs.mkdirSync(path.dirname(OUT), { recursive: true })
 fs.writeFileSync(OUT, JSON.stringify(redirects, null, 2))
-console.log(`[build-legacy-redirects] ${decisionCount} decisions, ${meetingCount} meetings → ${path.relative(ROOT, OUT)} (${Object.keys(redirects).length} entries)`)
+console.log(`[build-legacy-redirects] ${decisionCount} decisions, ${meetingCount} meetings, ${postCount} posts → ${path.relative(ROOT, OUT)} (${Object.keys(redirects).length} entries)`)
