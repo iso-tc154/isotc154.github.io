@@ -4,3 +4,5 @@ allowBuilds:
 onlyBuiltDependencies:
   - esbuild
   - sharp
+shamefullyHoist: false
+strictPeerDependencies: false
