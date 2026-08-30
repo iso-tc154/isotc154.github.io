@@ -604,10 +604,13 @@ biergartens:
     style: Self-service, German food and pizza
 
 tourist_info:
-  url: https://www.visitberlin.de/en
-  museums_url: https://www.museumsportal-berlin.de/en/planen-organisieren/berlins-museums/
-  ifa_note: "The Internationale Funkausstellung (IFA), a large consumer and tech fair established in 1924, runs 4–8 September 2026. Early hotel booking is recommended."
-  ifa_url: https://www.ifa-berlin.com/
+  - name: visitBerlin — official city tourism portal
+    link: https://www.visitberlin.de/en
+  - name: Museumsportal Berlin
+    link: https://www.museumsportal-berlin.de/en/planen-organisieren/berlins-museums/
+  - name: IFA Berlin — trade fair
+    link: https://www.ifa-berlin.com/
+    notes: "The Internationale Funkausstellung (IFA), a large consumer and tech fair established in 1924, runs 4–8 September 2026 — expect busy hotels; early booking is recommended."
 
 local_contact:
   name: Gregor Roschkowski
