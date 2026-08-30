@@ -107,7 +107,7 @@ const sortedFormer = sortBodies(formerBodies)
           <div class="filter__field">
             <span class="filter__label">Status</span>
             <div class="filter__chips" data-facet="status">
-              <button type="button" class="chip chip--active" data-value="all">All</button>
+              <button type="button" class="chip chip--active" data-value="">All</button>
               <button type="button" class="chip" data-value="current">Current</button>
               <button type="button" class="chip chip--former" data-value="former">Former</button>
             </div>
@@ -139,7 +139,7 @@ const sortedFormer = sortBodies(formerBodies)
                   class="card"
                   data-haystack={bodyHaystack(nb)}
                   data-membership={nb.membership ?? ''}
-                  data-former=""
+                  data-status="current"
                 >
                   <OrgLogo
                     logo={nb.logo}
@@ -188,7 +188,7 @@ const sortedFormer = sortBodies(formerBodies)
                   class="card card--former"
                   data-haystack={bodyHaystack(nb)}
                   data-membership={nb.membership ?? ''}
-                  data-former="1"
+                  data-status="former"
                 >
                   <OrgLogo
                     logo={nb.logo}
@@ -228,63 +228,16 @@ const sortedFormer = sortBodies(formerBodies)
 </BaseLayout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('#nb-current-section .card, #nb-former-section .card'))
-  const currentSection = document.getElementById('nb-current-section')
-  const formerSection = document.getElementById('nb-former-section')
-  const empty = document.getElementById('nb-empty')
-  const count = document.getElementById('nb-count')
-  const search = document.getElementById('nb-search') as HTMLInputElement | null
-  const total = cards.length
-  const state: Record<string, string> = { membership: '', status: 'all' }
-
-  function apply() {
-    const q = (search?.value ?? '').trim().toLowerCase()
-    let visibleCurrent = 0
-    let visibleFormer = 0
-    cards.forEach((card) => {
-      const okText = !q || (card.dataset.haystack || '').includes(q)
-      const okMembership = !state.membership || card.dataset.membership === state.membership
-      const okStatus =
-        state.status === 'all' ? true :
-        state.status === 'current' ? card.dataset.former !== '1' :
-        card.dataset.former === '1'
-      const ok = okText && okMembership && okStatus
-      const li = card.parentElement as HTMLElement
-      li.style.display = ok ? '' : 'none'
-      if (ok) {
-        if (card.dataset.former === '1') visibleFormer++
-        else visibleCurrent++
-      }
-    })
-    if (currentSection) currentSection.hidden = visibleCurrent === 0
-    if (formerSection) formerSection.hidden = visibleFormer === 0
-    const visible = visibleCurrent + visibleFormer
-    if (count) count.textContent = `${visible} of ${total} bodies`
-    if (empty) empty.hidden = visible !== 0
-  }
-
-  document.querySelectorAll<HTMLElement>('.filter__chips[data-facet]').forEach((wrap) => {
-    const facet = wrap.dataset.facet ?? ''
-    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
-        chip.classList.add('chip--active')
-        state[facet] = chip.dataset.value ?? ''
-        apply()
-      })
-    })
-  })
-
-  search?.addEventListener('input', apply)
-  document.getElementById('nb-clear')?.addEventListener('click', () => {
-    if (search) search.value = ''
-    state.membership = ''
-    state.status = 'all'
-    document.querySelectorAll('.filter__chips .chip').forEach((c) => {
-      const def = c.closest('[data-facet]')?.getAttribute('data-facet') === 'status' ? 'all' : ''
-      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === def)
-    })
-    apply()
+  import { mountListFilter } from '../lib/list-filter'
+  mountListFilter({
+    searchInput: '#nb-search',
+    items: '.bodies .card',
+    facetWrappers: '.filter__chips[data-facet]',
+    count: '#nb-count',
+    countLabel: 'bodies',
+    empty: '#nb-empty',
+    clear: '#nb-clear',
+    sections: '.bodies__section',
   })
 </script>
 

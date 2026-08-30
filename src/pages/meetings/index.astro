@@ -162,7 +162,7 @@ const groups: { decade: number; label: string; meetings: Meeting[]; resolutionCo
 
           <ol class="upcoming__list">
             {upcomingMeetings.map((m) => (
-              <li class:list={["ucard", { 'ucard--rich': !!m.rich, 'ucard--cancelled': m.status_label === 'Cancelled' }]} data-upcoming="1" data-haystack={haystack(m)} data-types={m.sessions.map((s) => s.type ?? '').filter(Boolean).join('|')} data-cancelled={m.status_label === 'Cancelled' ? '1' : ''}>
+              <li class:list={["ucard", { 'ucard--rich': !!m.rich, 'ucard--cancelled': m.status_label === 'Cancelled' }]} data-upcoming="1" data-haystack={haystack(m)} data-types={m.sessions.map((s) => s.type ?? '').filter(Boolean).join('|')} data-cancelled={m.status_label === 'Cancelled' ? '1' : ''} data-status={m.status_label === 'Cancelled' ? 'cancelled' : 'upcoming'}>
                 <a class="ucard__link" href={m.url}></a>
                 <div class="ucard__rail" aria-hidden="true"></div>
                 <div class="ucard__main">
@@ -223,7 +223,7 @@ const groups: { decade: number; label: string; meetings: Meeting[]; resolutionCo
           )}
 
           {groups.map((group) => (
-            <div class="decade" data-decade={group.decade}>
+            <div class="decade" data-decade={group.decade} id={`decade-${group.decade}`}>
               <header class="decade__header">
                 <h3 class="decade__label">{group.label}</h3>
                 <p class="decade__meta">
@@ -235,7 +235,7 @@ const groups: { decade: number; label: string; meetings: Meeting[]; resolutionCo
 
               <ol class="decade__list">
                 {group.meetings.map((m) => (
-                  <li class:list={["entry", { 'entry--cancelled': m.status_label === 'Cancelled', 'entry--rich': !!m.rich }]} data-decade={group.decade} data-haystack={haystack(m)} data-types={m.sessions.map((s) => s.type ?? '').filter(Boolean).join('|')} data-cancelled={m.status_label === 'Cancelled' ? '1' : ''}>
+                  <li class:list={["entry", { 'entry--cancelled': m.status_label === 'Cancelled', 'entry--rich': !!m.rich }]} data-decade={group.decade} data-haystack={haystack(m)} data-types={m.sessions.map((s) => s.type ?? '').filter(Boolean).join('|')} data-cancelled={m.status_label === 'Cancelled' ? '1' : ''} data-status={m.status_label === 'Cancelled' ? 'cancelled' : 'concluded'}>
                     <a class="entry__link" href={m.url} aria-label={`Plenary ${m.ordinal}`}></a>
                     <div class="entry__year">
                       <span class="entry__year-num">{m.year ?? '—'}</span>
@@ -286,86 +286,35 @@ const groups: { decade: number; label: string; meetings: Meeting[]; resolutionCo
           <button type="button" class="chip" id="mtg-clear">Clear filters</button>
         </div>
       </section>
+
+      <aside class="eras" aria-label="Jump to decade">
+        <h4 class="eras__title">Decades</h4>
+        <ul>
+          {groups.map((group) => (
+            <li>
+              <a href={`#decade-${group.decade}`} class="eras__link">
+                <span class="eras__year">{group.label}</span>
+                <span class="eras__count">{group.meetings.length}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
     </div>
   </div>
 </BaseLayout>
 
 <script>
-  const upcomingWrap = document.getElementById('mtg-upcoming')
-  const pastWrap = document.getElementById('mtg-past')
-  const empty = document.getElementById('mtg-empty')
-  const count = document.getElementById('mtg-count')
-  const search = document.getElementById('mtg-search') as HTMLInputElement | null
-  const decades = Array.from(document.querySelectorAll<HTMLElement>('#mtg-index .decade'))
-  const upcomingCards = Array.from(document.querySelectorAll<HTMLElement>('#mtg-upcoming .ucard'))
-  const total = upcomingCards.length + decades.reduce((acc, d) => acc + d.querySelectorAll('.entry').length, 0)
-  const state: Record<string, string> = { decade: '', type: '', status: '' }
-
-  function matches(el: HTMLElement): boolean {
-    const q = (search?.value ?? '').trim().toLowerCase()
-    if (q && !(el.dataset.haystack || '').includes(q)) return false
-    if (state.decade && el.dataset.decade !== state.decade) return false
-    if (state.type && !(el.dataset.types || '').split('|').includes(state.type)) return false
-    if (state.status) {
-      const upcoming = el.dataset.upcoming === '1'
-      if (state.status === 'upcoming' && !upcoming) return false
-      if (state.status === 'concluded' && (upcoming || el.dataset.cancelled === '1')) return false
-      if (state.status === 'cancelled' && el.dataset.cancelled !== '1') return false
-    }
-    return true
-  }
-
-  function apply() {
-    let visibleUpcoming = 0
-    upcomingCards.forEach((card) => {
-      const ok = matches(card)
-      card.style.display = ok ? '' : 'none'
-      if (ok) visibleUpcoming++
-    })
-    if (upcomingWrap) {
-      if (state.status === 'concluded' || state.status === 'cancelled') {
-        upcomingWrap.style.display = 'none'
-        visibleUpcoming = 0
-      } else {
-        upcomingWrap.style.display = visibleUpcoming === 0 ? 'none' : ''
-      }
-    }
-    let visiblePast = 0
-    decades.forEach((decadeEl) => {
-      let anyVisible = false
-      decadeEl.querySelectorAll<HTMLElement>('.entry').forEach((entry) => {
-        const ok = matches(entry) && state.status !== 'upcoming'
-        entry.style.display = ok ? '' : 'none'
-        if (ok) { anyVisible = true; visiblePast++ }
-      })
-      decadeEl.style.display = anyVisible ? '' : 'none'
-    })
-    if (pastWrap) pastWrap.style.display = state.status === 'upcoming' ? 'none' : (visiblePast === 0 ? 'none' : '')
-    const visible = visibleUpcoming + visiblePast
-    if (count) count.textContent = `${visible} of ${total} plenaries`
-    if (empty) empty.hidden = visible !== 0
-  }
-
-  document.querySelectorAll<HTMLElement>('#mtg-filter .filter-chips[data-facet]').forEach((wrap) => {
-    const facet = wrap.dataset.facet ?? ''
-    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
-        chip.classList.add('chip--active')
-        state[facet] = chip.dataset.value ?? ''
-        apply()
-      })
-    })
-  })
-
-  search?.addEventListener('input', apply)
-  document.getElementById('mtg-clear')?.addEventListener('click', () => {
-    if (search) search.value = ''
-    state.decade = state.type = state.status = ''
-    document.querySelectorAll('#mtg-filter .filter-chips .chip').forEach((c) => {
-      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === '')
-    })
-    apply()
+  import { mountListFilter } from '../../lib/list-filter'
+  mountListFilter({
+    searchInput: '#mtg-search',
+    items: '#mtg-index .ucard, #mtg-index .entry',
+    facetWrappers: '#mtg-filter .filter-chips',
+    count: '#mtg-count',
+    countLabel: 'plenaries',
+    empty: '#mtg-empty',
+    clear: '#mtg-clear',
+    sections: '#mtg-index .decade, #mtg-upcoming',
   })
 </script>
 
@@ -791,6 +740,42 @@ const groups: { decade: number; label: string; meetings: Meeting[]; resolutionCo
   }
   .mtg-empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
   :global(.dark) .mtg-empty h3 { color: #fafaf9; }
+
+  .eras {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 6rem;
+    background: #fff;
+    border: 1px solid #e7e5e4;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.875rem;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.06);
+    font-size: 0.75rem;
+    z-index: 50;
+    display: none;
+  }
+  :global(.dark) .eras { background: #1c1917; border-color: #44403c; }
+  @media (min-width: 1024px) { .eras { display: block; } }
+  .eras__title {
+    font-family: var(--font-sans);
+    font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: #78716c; margin: 0 0 0.5rem;
+  }
+  :global(.dark) .eras__title { color: #a8a29e; }
+  .eras ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.125rem; }
+  .eras__link {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+    padding: 0.25rem 0; text-decoration: none; color: #1c1917;
+    font-family: var(--font-serif); font-weight: 600; font-size: 0.875rem;
+    border-bottom: 1px solid transparent; transition: border-color 0.15s;
+  }
+  .eras__link:hover { border-bottom-color: var(--color-brand); color: var(--color-brand); }
+  :global(.dark) .eras__link { color: #fafaf9; }
+  .eras__count {
+    font-family: var(--font-sans); font-size: 0.625rem; color: #a8a29e; font-weight: 700;
+    background: #f5f5f4; padding: 0.0625rem 0.3125rem; border-radius: 9999px;
+  }
+  :global(.dark) .eras__count { background: #292524; }
 
   @media (max-width: 768px) {
     .ucard {

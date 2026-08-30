@@ -114,6 +114,7 @@ function renderProseInline(text: string): string {
             type="button"
             class:list={["lvchip", { 'lvchip--active': chip.key === 'all' }]}
             data-label={chip.label}
+            data-value={chip.key}
             data-tint={chip.key === 'all' ? undefined : categoryColor(chip.key)}
           >
             {chip.key !== 'all' && <span class="lvchip__dot" style={`background: ${categoryColor(chip.key)}`}></span>}
@@ -132,7 +133,7 @@ function renderProseInline(text: string): string {
             </div>
             <ol class="decade__events" role="list">
               {group.items.map((h) => (
-                <li class="event" style={`--cat-color: ${categoryColor(h.category)}`}>
+                <li class="event" style={`--cat-color: ${categoryColor(h.category)}`} data-category={h.category}>
                   <div class="event__rail" aria-hidden="true">
                     <span class="event__node"></span>
                     <span class="event__stem"></span>
@@ -188,50 +189,13 @@ function renderProseInline(text: string): string {
 </BaseLayout>
 
 <script>
-  const chips = document.querySelectorAll<HTMLButtonElement>('#hchips .lvchip')
-  const decades = document.querySelectorAll<HTMLElement>('#timeline .decade')
-
-  chips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      chips.forEach((c) => {
-        c.classList.remove('lvchip--active')
-        c.removeAttribute('style')
-        const dot = c.querySelector<HTMLElement>('.lvchip__dot')
-        if (dot && c.dataset.tint) dot.style.background = c.dataset.tint
-      })
-      chip.classList.add('lvchip--active')
-      const tint = chip.dataset.tint
-      if (tint) {
-        chip.style.background = tint
-        chip.style.borderColor = tint
-        chip.style.color = '#fff'
-        const dot = chip.querySelector<HTMLElement>('.lvchip__dot')
-        if (dot) dot.style.background = '#fff'
-      }
-      const label = chip.dataset.label ?? ''
-      const showAll = label === 'All milestones'
-      decades.forEach((decade) => {
-        let anyVisible = false
-        decade.querySelectorAll<HTMLElement>('.event').forEach((ev) => {
-          const cat = (ev.querySelector('.event__cat')?.textContent || '').trim()
-          const visible = showAll || cat === label
-          ev.style.display = visible ? '' : 'none'
-          if (visible) anyVisible = true
-        })
-        decade.style.display = anyVisible ? '' : 'none'
-      })
-    })
+  import { mountListFilter } from '../lib/list-filter'
+  mountListFilter({
+    items: '#timeline .event',
+    facetWrappers: '#hchips',
+    count: undefined,
+    sections: '#timeline .decade',
   })
-
-  const bar = document.getElementById('progress__bar')
-  function onScroll() {
-    const el = document.scrollingElement ?? document.documentElement
-    const max = el.scrollHeight - el.clientHeight
-    const p = max > 0 ? Math.min(1, el.scrollTop / max) : 0
-    if (bar) bar.style.setProperty('--p', (p * 100).toFixed(1) + '%')
-  }
-  window.addEventListener('scroll', onScroll, { passive: true })
-  onScroll()
 </script>
 
 <style>

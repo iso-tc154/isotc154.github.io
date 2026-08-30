@@ -109,7 +109,7 @@ function cardHaystack(g: Group): string {
           </div>
           <div class="filter-bar__field filter-bar__field--sm">
             <span class="filter-label">Category</span>
-            <div class="filter-chips">
+            <div class="filter-chips" data-facet="category">
               <button type="button" class="chip chip--active" data-value="">All</button>
               {categories.map((cat) => (
                 <button type="button" class="chip" data-value={cat}>{groupCategoryLabel(cat)}</button>
@@ -118,7 +118,7 @@ function cardHaystack(g: Group): string {
           </div>
           <div class="filter-bar__field filter-bar__field--sm">
             <span class="filter-label">Status</span>
-            <div class="filter-chips" data-status>
+            <div class="filter-chips" data-facet="status">
               <button type="button" class="chip chip--active" data-value="">All</button>
               <button type="button" class="chip" data-value="active">Active only</button>
             </div>
@@ -190,53 +190,15 @@ function cardHaystack(g: Group): string {
 </BaseLayout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('#grp-grid > li > a'))
-  const empty = document.getElementById('grp-empty')
-  const count = document.getElementById('grp-count')
-  const search = document.getElementById('grp-search') as HTMLInputElement | null
-  const total = cards.length
-  let category = ''
-  let activeOnly = false
-
-  function apply() {
-    const q = (search?.value ?? '').trim().toLowerCase()
-    let visible = 0
-    cards.forEach((card) => {
-      const okText = !q || (card.dataset.haystack || '').includes(q)
-      const okCat = !category || card.dataset.category === category
-      const okActive = !activeOnly || card.dataset.status === 'active'
-      const ok = okText && okCat && okActive
-      const li = card.parentElement as HTMLElement
-      li.style.display = ok ? '' : 'none'
-      if (ok) visible++
-    })
-    if (count) count.textContent = `${visible} of ${total} groups`
-    if (empty) empty.hidden = visible !== 0
-  }
-
-  document.querySelectorAll<HTMLElement>('.filter-chips').forEach((wrap) => {
-    const isStatus = wrap.hasAttribute('data-status')
-    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
-        chip.classList.add('chip--active')
-        if (isStatus) activeOnly = chip.dataset.value === 'active'
-        else category = chip.dataset.value ?? ''
-        apply()
-      })
-    })
-  })
-
-  search?.addEventListener('input', apply)
-  document.getElementById('grp-clear')?.addEventListener('click', () => {
-    if (search) search.value = ''
-    category = ''
-    activeOnly = false
-    document.querySelectorAll('.filter-chips .chip').forEach((c) => {
-      const wrap = c.closest('.filter-chips') as HTMLElement
-      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === '' && !wrap.hasAttribute('data-status') ? true : (c as HTMLElement).dataset.value === '')
-    })
-    apply()
+  import { mountListFilter } from '../lib/list-filter'
+  mountListFilter({
+    searchInput: '#grp-search',
+    items: '#grp-grid > li',
+    facetWrappers: '.filter-chips',
+    count: '#grp-count',
+    countLabel: 'groups',
+    empty: '#grp-empty',
+    clear: '#grp-clear',
   })
 </script>
 

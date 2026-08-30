@@ -1,0 +1,55 @@
+# Committee register for @edoxen/browser: drives the site-style footer
+# (brand, facts, explore, links) on the /decisions/ pages.
+# Series-doc shape: flat document with identifier + meeting_refs (see
+# loadMeetings/z() in @edoxen/edoxen - "identifier" without "type"/"date_range"
+# marks a series).
+identifier:
+  - prefix: ISO/TC 154
+    number: '154'
+meeting_refs: []
+urn: urn:iso:tc154:series:plenary
+name:
+  - spelling: eng
+    value: ISO/TC 154
+description:
+  - spelling: eng
+    value: >-
+      Standardization of processes, data elements and documents used in
+      commerce, industry and administration, including the relevant
+      regulatory, technical and supporting aspects.
+extensions:
+  - attributes:
+      - key: tagline
+        type: string
+        value: Standards for commerce, industry and administration
+      - key: established_year
+        type: integer
+        intValue: 1972
+      - key: published_standards
+        type: integer
+        intValue: 43
+      - key: participating_members
+        type: integer
+        intValue: 19
+      - key: observing_members
+        type: integer
+        intValue: 26
+      - key: iso
+        type: string
+        value: https://www.iso.org
+      - key: iso_committee
+        type: string
+        value: https://www.iso.org/committee/45876.html
+      - key: linkedin
+        type: string
+        value: https://www.linkedin.com/company/iso-tc154/
+      - key: github
+        type: string
+        value: https://github.com/ISO-TC154
+hosts:
+  - role: secretariat
+    ref: sac
+contact:
+  name:
+    - spelling: eng
+      value: Ms. Pan Wei
