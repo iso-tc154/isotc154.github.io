@@ -119,6 +119,17 @@ body::before {
   max-width: 80rem;
 }
 
+/* Reading-progress: restyle to the site's scroll-progress — blue gradient
+   fill over the red brand bar (edoxen default paints an accent bar that
+   hides the brand bar at the same 3px strip). */
+reading-progress {
+  z-index: 100;
+  background: transparent;
+}
+.edoxen-reading-progress__fill {
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+}
+
 /* ── Print: chrome drops out like the site ── */
 @media print {
   .edoxen-header,
