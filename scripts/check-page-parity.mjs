@@ -27,6 +27,8 @@ const MAPPING = {
   'AcknowledgmentsView.vue': 'acknowledgments.astro',
   'ContactView.vue': 'contact.astro',
   'GroupsListView.vue': 'groups.astro',
+  'MeetingsListView.vue': 'meetings/index.astro',
+  'MeetingDetailView.vue': 'meetings/[id].astro',
   'GroupDetailView.vue': 'groups/[id].astro',
   'HistoryView.vue': 'history.astro',
   'LiaisonsListView.vue': 'liaisons.astro',
@@ -48,11 +50,18 @@ const MAPPING = {
 }
 
 // Rendered by @edoxen/browser (edoxen-host integration), not ported here.
+// MeetingsTimelineView was /resolutions/meetings/ in the legacy router —
+// folded into the native /meetings/ list (decade grouping + filters).
+// Selectors intentionally not ported, with reasons. Loading skeletons
+// (.stat-skeleton, ListCardSkeleton) existed for client-side data fetches;
+// static Astro renders data at build time so there is no loading state.
+const ALLOWED_MISSING = {
+  'meetings/index.astro': ['.stat-skeleton', '.dark .stat-skeleton'],
+}
+
 const SKIPPED = new Set([
   'EventDetailView.vue',
-  'MeetingDetailView.vue',
   'MeetingsLandingView.vue',
-  'MeetingsListView.vue',
   'MeetingsTimelineView.vue',
   'ResolutionDetailView.vue',
   'ResolutionsListView.vue',
@@ -126,9 +135,11 @@ for (const v of views) {
     continue
   }
   const astroCss = norm(astro)
+  const allowed = ALLOWED_MISSING[mapped] ?? []
   const missing = [...selectors(css)]
     .map((s) => s.replace(/ ?:deep\(([^)]+)\)/g, ' $1'))
     .filter((s) => {
+      if (allowed.includes(s)) return false
       const variants = [s, s.replace(':global(.dark)', '.dark')]
       return !variants.some((x) => astroCss.includes(x) || sharedText.includes(x))
     })

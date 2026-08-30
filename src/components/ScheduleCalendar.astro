@@ -1,0 +1,724 @@
+---
+// Daily-schedule calendar, ported 1:1 from src-legacy/src/components/ScheduleCalendar.vue.
+// Two render modes (build-time decision): mini list when a day has a single
+// event, positioned time-grid otherwise. Events on dates that have a session
+// agenda carry data-agenda-date and open the agenda drawer (page script).
+export interface ScheduleItem {
+  date?: string
+  time?: string
+  event?: string
+  description?: string
+}
+
+interface Props {
+  schedule: ScheduleItem[]
+  venueName?: string
+  generalArea?: string
+  agendaDates?: string[]
+}
+
+type Category = 'plenary' | 'wg' | 'jwg' | 'pt' | 'social' | 'deadline' | 'ma' | 'nwip' | 'opening' | 'other'
+
+const { schedule, venueName, generalArea, agendaDates = [] } = Astro.props
+
+const HOUR_HEIGHT = 56
+
+const CATEGORY_META: Record<Category, { label: string; bar: string; bg: string; bgDark: string; text: string; textDark: string }> = {
+  plenary:  { label: 'Plenary',            bar: '#b91c1c', bg: '#fef2f3', bgDark: '#3b0a10', text: '#7a0008', textDark: '#ffb8be' },
+  wg:       { label: 'Working Group',      bar: '#1e3a8a', bg: '#eef6fd', bgDark: '#0c2438', text: '#003c6a', textDark: '#9ec9ed' },
+  jwg:      { label: 'Joint WG',           bar: '#0d9488', bg: '#effbf7', bgDark: '#0a2e2a', text: '#0a5e57', textDark: '#8fd6c9' },
+  pt:       { label: 'Project Team',       bar: '#6366f1', bg: '#f0f1fe', bgDark: '#1b1e4a', text: '#3c3f9e', textDark: '#bcbfed' },
+  social:   { label: 'Social',             bar: '#f59e0b', bg: '#fef6e7', bgDark: '#3b2a08', text: '#92590a', textDark: '#fbd583' },
+  deadline: { label: 'Deadline',           bar: '#78716c', bg: '#f5f5f4', bgDark: '#292524', text: '#44403c', textDark: '#d6d3d1' },
+  ma:       { label: 'Maintenance Agency', bar: '#16a34a', bg: '#edfdf2', bgDark: '#0c3a1c', text: '#0c6b2b', textDark: '#8fe6af' },
+  nwip:     { label: 'NWIP / PWI',         bar: '#db2777', bg: '#fdf0f6', bgDark: '#3b0e25', text: '#9d1a58', textDark: '#fbb1d0' },
+  opening:  { label: 'Opening',            bar: '#b91c1c', bg: '#fef2f3', bgDark: '#3b0a10', text: '#7a0008', textDark: '#ffb8be' },
+  other:    { label: 'Other',              bar: '#57534e', bg: '#fafaf9', bgDark: '#292524', text: '#44403c', textDark: '#d6d3d1' },
+}
+
+function normalizeDate(raw: unknown): string {
+  if (!raw) return ''
+  const s = String(raw)
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  return m ? `${m[1]}-${m[2]}-${m[3]}` : s
+}
+
+function parseTime(raw?: string): { startMin: number; endMin: number; allDay: boolean; tzNote?: string } {
+  if (!raw || !raw.trim()) return { startMin: 9 * 60, endMin: 17 * 60, allDay: true }
+  const lower = raw.toLowerCase()
+  if (lower.includes('all day') || lower === 'tbd' || lower === 'tba' || lower.includes('tbc')) {
+    return { startMin: 9 * 60, endMin: 17 * 60, allDay: true }
+  }
+  let tzNote: string | undefined
+  const tzParen = raw.match(/\(([^)]+)\)/)
+  if (tzParen) tzNote = tzParen[1]
+  else if (/utc\s*[+-]\s*\d+/i.test(raw)) tzNote = raw.match(/utc\s*[+-]\s*\d+/i)?.[0]
+  const range = raw.match(/(\d{1,2}):(\d{2})\s*[–\-]\s*(\d{1,2}):(\d{2})/)
+  if (range) {
+    const startMin = parseInt(range[1]) * 60 + parseInt(range[2])
+    let endMin = parseInt(range[3]) * 60 + parseInt(range[4])
+    if (endMin <= startMin) endMin += 24 * 60
+    return { startMin, endMin, allDay: false, tzNote }
+  }
+  const single = raw.match(/(\d{1,2}):(\d{2})/)
+  if (single) {
+    const startMin = parseInt(single[1]) * 60 + parseInt(single[2])
+    return { startMin, endMin: startMin + 60, allDay: false, tzNote }
+  }
+  return { startMin: 9 * 60, endMin: 17 * 60, allDay: true, tzNote }
+}
+
+function categorize(name?: string): Category {
+  if (!name) return 'other'
+  const lower = name.toLowerCase()
+  if (lower.includes('opening')) return 'opening'
+  if (lower.includes('plenary') || lower.includes('closing')) return 'plenary'
+  if (lower.includes('social') || lower.includes('reception') || lower.includes('dinner')) return 'social'
+  if (lower.match(/\bjwg\s*\d/)) return 'jwg'
+  if (lower.match(/\bpt\s*\d/)) return 'pt'
+  if (lower.match(/\bwg\s*\d/) || lower.includes('working group')) return 'wg'
+  if (lower.includes('untbed') || lower.includes('tded') || lower.match(/\bjma\b/)) return 'ma'
+  if (lower.match(/\bma\b/) && !lower.match(/\bmanager\b/)) return 'ma'
+  if (lower.includes('nwip') || lower.includes('pwi')) return 'nwip'
+  if (lower.includes('registration') || lower.includes('deadline')) return 'deadline'
+  return 'other'
+}
+
+interface Processed {
+  date: string
+  time?: string
+  event?: string
+  description?: string
+  startMin: number
+  endMin: number
+  allDay: boolean
+  tzNote?: string
+  category: Category
+  lane: number
+  laneCount: number
+  clickable: boolean
+}
+
+const days: { date: string; events: Processed[]; laneCount: number }[] = []
+{
+  const byDate = new Map<string, ScheduleItem[]>()
+  for (const item of schedule) {
+    const d = normalizeDate(item.date)
+    if (!d) continue
+    if (!byDate.has(d)) byDate.set(d, [])
+    byDate.get(d)!.push(item)
+  }
+  for (const [date, items] of byDate) {
+    const parsed: Processed[] = items.map((item) => {
+      const t = parseTime(item.time)
+      const category = categorize(item.event)
+      const clickable =
+        (category === 'plenary' || category === 'opening') && agendaDates.includes(date)
+      return {
+        ...item,
+        date,
+        startMin: t.startMin,
+        endMin: t.endMin,
+        allDay: t.allDay,
+        tzNote: t.tzNote,
+        category,
+        lane: 0,
+        laneCount: 1,
+        clickable,
+      }
+    })
+    parsed.sort((a, b) => a.startMin - b.startMin || a.endMin - b.endMin)
+    const laneEnds: number[] = []
+    for (const ev of parsed) {
+      let laneIdx = laneEnds.findIndex((end) => end <= ev.startMin)
+      if (laneIdx === -1) {
+        laneIdx = laneEnds.length
+        laneEnds.push(ev.endMin)
+      } else {
+        laneEnds[laneIdx] = ev.endMin
+      }
+      ev.lane = laneIdx
+    }
+    const laneCount = Math.max(laneEnds.length, 1)
+    for (const ev of parsed) ev.laneCount = laneCount
+    days.push({ date, events: parsed, laneCount })
+  }
+  days.sort((a, b) => a.date.localeCompare(b.date))
+}
+
+const totalEvents = days.reduce((acc, d) => acc + d.events.length, 0)
+const showAsCalendar = totalEvents >= 2
+
+const legendCategories = Array.from(new Set(days.flatMap((d) => d.events.map((e) => e.category))))
+
+const gridBounds = (() => {
+  let minMin: number | null = null
+  let maxMin: number | null = null
+  for (const day of days) {
+    for (const ev of day.events) {
+      if (ev.startMin < (minMin ?? Infinity)) minMin = ev.startMin
+      if (ev.endMin > (maxMin ?? -Infinity)) maxMin = ev.endMin
+    }
+  }
+  if (minMin == null || maxMin == null) { minMin = 9 * 60; maxMin = 17 * 60 }
+  const startHour = Math.min(Math.floor(minMin / 60), 23)
+  const rawEnd = maxMin % 60 === 0 ? maxMin / 60 : Math.ceil(maxMin / 60)
+  const endHour = Math.max(Math.max(rawEnd, startHour + 1), 1)
+  return { startHour, endHour }
+})()
+const gridHeightPx = (gridBounds.endHour - gridBounds.startHour) * HOUR_HEIGHT
+const gridHours: number[] = []
+for (let h = gridBounds.startHour; h <= gridBounds.endHour; h++) gridHours.push(h)
+
+const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+function dayLabel(rawDate: string): { weekday: string; date: string } {
+  const norm = normalizeDate(rawDate)
+  if (!norm) return { weekday: '', date: '' }
+  const d = new Date(norm + 'T00:00:00')
+  if (Number.isNaN(d.getTime())) return { weekday: '', date: norm }
+  return { weekday: dayNames[d.getDay()], date: `${monthNames[d.getMonth()]} ${d.getDate()}` }
+}
+function formatTime(min: number): string {
+  const h = Math.floor(min / 60) % 24
+  const m = min % 60
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
+}
+function formatDuration(min: number): string {
+  const h = Math.floor(min / 60)
+  const m = min % 60
+  if (h === 0) return `${m}m`
+  if (m === 0) return `${h}h`
+  return `${h}h${m}m`
+}
+function eventStyle(ev: Processed): Record<string, string> {
+  const startMin = gridBounds.startHour * 60
+  const top = ((ev.startMin - startMin) / 60) * HOUR_HEIGHT
+  const height = Math.max(((ev.endMin - ev.startMin) / 60) * HOUR_HEIGHT - 4, 32)
+  const widthPct = 100 / ev.laneCount
+  const leftPct = ev.lane * widthPct
+  return {
+    top: `${top}px`,
+    height: `${height}px`,
+    left: `calc(${leftPct}% + 2px)`,
+    width: `calc(${widthPct}% - 4px)`,
+  }
+}
+function hourLineTop(hour: number): string {
+  return `${(hour - gridBounds.startHour) * HOUR_HEIGHT}px`
+}
+const metaFor = (category: Category) => CATEGORY_META[category]
+function catVars(ev: Processed): string {
+  const m = metaFor(ev.category)
+  return `--bar:${m.bar};--bg:${m.bg};--bg-dark:${m.bgDark};--text:${m.text};--text-dark:${m.textDark}`
+}
+---
+
+{!showAsCalendar ? (
+  <div class="mini-schedule">
+    {days.map((day) => (
+      <div class="mini-day">
+        <p class="mini-day__label">
+          <span class="mini-day__weekday">{dayLabel(day.date).weekday}</span>
+          <span class="mini-day__date">{dayLabel(day.date).date}</span>
+        </p>
+        <div class="mini-day__events">
+          {day.events.map((ev) => (
+            <div class="mini-event" style={`--bar:${metaFor(ev.category).bar}`}>
+              {ev.time && <p class="mini-event__time">{ev.time}</p>}
+              {ev.event && <p class="mini-event__name">{ev.event}</p>}
+              {ev.description && <p class="mini-event__desc">{ev.description}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+) : (
+  <div class="cal">
+    {(venueName || generalArea) && (
+      <div class="cal__context">
+        {venueName && <span class="cal__venue">{venueName}</span>}
+        {venueName && generalArea && <span class="cal__sep">·</span>}
+        {generalArea && <span class="cal__area">{generalArea}</span>}
+      </div>
+    )}
+
+    <div class="cal__legend">
+      {legendCategories.map((cat) => (
+        <span class="cal__legend-item" style={`--bar:${metaFor(cat).bar}`}>{metaFor(cat).label}</span>
+      ))}
+    </div>
+
+    <div class="cal__desktop">
+      <div class="cal__grid">
+        <div class="cal__time-axis">
+          {gridHours.map((h) => (
+            <div class="cal__time-tick" style={`top:${hourLineTop(h)}px`}>
+              {h < gridBounds.endHour && <span class="cal__time-label">{String(h).padStart(2, '0')}:00</span>}
+            </div>
+          ))}
+        </div>
+
+        <div class="cal__days">
+          {days.map((day) => (
+            <div class="cal__day">
+              <div class="cal__day-header">
+                <span class="cal__day-weekday">{dayLabel(day.date).weekday}</span>
+                <span class="cal__day-date">{dayLabel(day.date).date}</span>
+              </div>
+              <div class="cal__day-body" style={`height:${gridHeightPx}px`}>
+                {gridHours.slice(0, -1).map((h) => (
+                  <div class="cal__hour-line" style={`top:${hourLineTop(h + 1)}px`} />
+                ))}
+                {day.events.map((ev) => (
+                  <div
+                    class:list={[`cal__event cal__event--${ev.category}`, { 'cal__event--all-day': ev.allDay, 'cal__event--clickable': ev.clickable }]}
+                    style={`${catVars(ev)};${Object.entries(eventStyle(ev)).map(([k, v]) => `${k}:${v}`).join(';')}`}
+                    role={ev.clickable ? 'button' : undefined}
+                    tabindex={ev.clickable ? 0 : undefined}
+                    title={ev.clickable ? 'View session agenda' : undefined}
+                    data-agenda-date={ev.clickable ? ev.date : undefined}
+                  >
+                    <p class="cal__event-time">
+                      {formatTime(ev.startMin)}–{formatTime(ev.endMin)}
+                      <span class="cal__event-dur">{formatDuration(ev.endMin - ev.startMin)}</span>
+                    </p>
+                    {ev.event && <p class="cal__event-name">{ev.event}</p>}
+                    {ev.description && <p class="cal__event-desc">{ev.description}</p>}
+                    {ev.tzNote && <p class="cal__event-tz">{ev.tzNote}</p>}
+                    {ev.clickable && <p class="cal__event-hint">Agenda →</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="cal__mobile">
+      {days.map((day) => (
+        <div class="cal__mobile-day">
+          <div class="cal__mobile-header">
+            <span class="cal__mobile-weekday">{dayLabel(day.date).weekday}</span>
+            <span class="cal__mobile-date">{dayLabel(day.date).date}</span>
+          </div>
+          <div class="cal__mobile-events">
+            {day.events.map((ev) => (
+              <div
+                class:list={[`cal__mobile-event cal__event--${ev.category}`, { 'cal__event--clickable': ev.clickable }]}
+                style={catVars(ev)}
+                role={ev.clickable ? 'button' : undefined}
+                tabindex={ev.clickable ? 0 : undefined}
+                title={ev.clickable ? 'View session agenda' : undefined}
+                data-agenda-date={ev.clickable ? ev.date : undefined}
+              >
+                <div class="cal__mobile-time">
+                  <span class="cal__mobile-clock">{formatTime(ev.startMin)}–{formatTime(ev.endMin)}</span>
+                  {ev.tzNote && <span class="cal__mobile-tz">{ev.tzNote}</span>}
+                </div>
+                <div class="cal__mobile-body">
+                  {ev.event && <p class="cal__mobile-name">{ev.event}</p>}
+                  {ev.description && <p class="cal__mobile-desc">{ev.description}</p>}
+                  {ev.clickable && <p class="cal__mobile-hint">Agenda →</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+.cal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cal__context {
+  font-size: 0.875rem;
+  color: #78716c;
+  font-family: ui-monospace, monospace;
+}
+:global(.dark) .cal__context { color: #a8a29e; }
+.cal__venue { color: var(--color-brand); font-weight: 600; }
+.cal__sep { margin: 0 0.5rem; opacity: 0.5; }
+
+.cal__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.875rem;
+  font-size: 0.75rem;
+  color: #57534e;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed #e7e5e4;
+}
+:global(.dark) .cal__legend { color: #d6d3d1; border-bottom-color: #292524; }
+.cal__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.cal__legend-item::before {
+  content: '';
+  width: 0.625rem; height: 0.625rem;
+  border-radius: 0.125rem;
+  background: var(--bar);
+  display: inline-block;
+}
+
+.cal__desktop { display: block; }
+.cal__mobile { display: none; }
+
+.cal__grid {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0;
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.625rem;
+  overflow: hidden;
+}
+:global(.dark) .cal__grid { background: #1c1917; border-color: #292524; }
+
+.cal__time-axis {
+  position: relative;
+  border-right: 1px solid #e7e5e4;
+  background: #fafaf9;
+}
+:global(.dark) .cal__time-axis { background: #292524; border-right-color: #44403c; }
+
+.cal__time-tick {
+  position: absolute;
+  left: 0; right: 0;
+  height: 0;
+}
+.cal__time-label {
+  position: absolute;
+  top: -0.5rem;
+  right: 0.5rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.6875rem;
+  color: #a8a29e;
+  letter-spacing: 0.02em;
+}
+:global(.dark) .cal__time-label { color: #78716c; }
+
+.cal__days {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+}
+
+.cal__day {
+  border-right: 1px solid #e7e5e4;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.cal__day:last-child { border-right: none; }
+:global(.dark) .cal__day { border-right-color: #292524; }
+
+.cal__day-header {
+  padding: 0.625rem 0.75rem;
+  background: #fafaf9;
+  border-bottom: 1px solid #e7e5e4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+}
+:global(.dark) .cal__day-header { background: #292524; border-bottom-color: #44403c; }
+.cal__day-weekday {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-brand);
+}
+.cal__day-date {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1c1917;
+  letter-spacing: -0.01em;
+}
+:global(.dark) .cal__day-date { color: #fafaf9; }
+
+.cal__day-body {
+  position: relative;
+  overflow: hidden;
+}
+
+.cal__hour-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 0;
+  border-top: 1px dashed #e7e5e4;
+  pointer-events: none;
+}
+:global(.dark) .cal__hour-line { border-top-color: #292524; }
+
+.cal__event {
+  position: absolute;
+  background: var(--bg);
+  border-left: 3px solid var(--bar);
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  overflow: hidden;
+  cursor: default;
+  color: var(--text);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+.cal__event:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  z-index: 2;
+}
+:global(.dark) .cal__event { background: var(--bg-dark); color: var(--text-dark); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
+:global(.dark) .cal__event:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); }
+
+.cal__event-time {
+  font-family: ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+  color: var(--text);
+  opacity: 0.85;
+}
+:global(.dark) .cal__event-time { color: var(--text-dark); }
+.cal__event-dur {
+  font-size: 0.625rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+.cal__event-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  margin: 0.125rem 0 0;
+  letter-spacing: -0.01em;
+}
+.cal__event-desc {
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  margin: 0.1875rem 0 0;
+  opacity: 0.78;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cal__event-tz {
+  font-size: 0.625rem;
+  margin: 0.125rem 0 0;
+  font-family: ui-monospace, monospace;
+  opacity: 0.65;
+}
+
+.cal__event--plenary { border-left-width: 4px; }
+.cal__event--social { border-left-style: dotted; border-left-width: 4px; }
+.cal__event--deadline { border-left-style: dashed; }
+
+.cal__event--clickable { cursor: pointer; }
+.cal__event--clickable:focus-visible {
+  outline: 2px solid var(--color-blue-accent, #1e3a8a);
+  outline-offset: 2px;
+}
+.cal__event--clickable .cal__event-desc {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+.cal__event--clickable .cal__event-hint {
+  position: absolute;
+  bottom: 0.1875rem;
+  right: 0.375rem;
+  margin: 0;
+  padding-left: 0.625rem;
+  background: linear-gradient(to right, transparent, var(--bg) 0.5rem);
+  line-height: 1;
+}
+:global(.dark) .cal__event--clickable .cal__event-hint {
+  background: linear-gradient(to right, transparent, var(--bg-dark) 0.5rem);
+}
+.cal__event-hint {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0.1875rem 0 0;
+  opacity: 0.65;
+}
+
+.cal__mobile { display: none; }
+
+.mini-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.mini-day {
+  background: #fafaf9;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  border-left: 3px solid var(--color-brand);
+}
+:global(.dark) .mini-day { background: #292524; }
+.mini-day__label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  margin: 0 0 0.5rem;
+}
+.mini-day__weekday {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-brand);
+}
+.mini-day__date {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #1c1917;
+}
+:global(.dark) .mini-day__date { color: #fafaf9; }
+.mini-day__events { display: flex; flex-direction: column; gap: 0.5rem; }
+.mini-event {
+  padding: 0.5rem 0.75rem;
+  background: #ffffff;
+  border-radius: 0.375rem;
+  border-left: 3px solid var(--bar, #57534e);
+}
+:global(.dark) .mini-event { background: #1c1917; }
+.mini-event__time {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: #78716c;
+  margin: 0 0 0.125rem;
+}
+:global(.dark) .mini-event__time { color: #a8a29e; }
+.mini-event__name {
+  font-weight: 600;
+  margin: 0;
+  font-family: var(--font-serif);
+  color: #1c1917;
+}
+:global(.dark) .mini-event__name { color: #fafaf9; }
+.mini-event__desc {
+  font-size: 0.8125rem;
+  color: #57534e;
+  margin: 0.125rem 0 0;
+}
+:global(.dark) .mini-event__desc { color: #d6d3d1; }
+
+@media (max-width: 880px) {
+  .cal__desktop { display: none; }
+  .cal__mobile { display: flex; flex-direction: column; gap: 0.875rem; }
+
+  .cal__mobile-day {
+    background: #ffffff;
+    border: 1px solid #e7e5e4;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  :global(.dark) .cal__mobile-day { background: #1c1917; border-color: #292524; }
+
+  .cal__mobile-header {
+    padding: 0.625rem 0.875rem;
+    background: #fafaf9;
+    border-bottom: 1px solid #e7e5e4;
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+  }
+  :global(.dark) .cal__mobile-header { background: #292524; border-bottom-color: #44403c; }
+  .cal__mobile-weekday {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-brand);
+  }
+  .cal__mobile-date {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #1c1917;
+  }
+  :global(.dark) .cal__mobile-date { color: #fafaf9; }
+
+  .cal__mobile-events { display: flex; flex-direction: column; }
+  .cal__mobile-event {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0.625rem;
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid #e7e5e4;
+    background: var(--bg);
+    border-left: 3px solid var(--bar);
+  }
+  .cal__mobile-event:last-child { border-bottom: none; }
+  :global(.dark) .cal__mobile-event { background: var(--bg-dark); border-bottom-color: #292524; }
+
+  .cal__mobile-time { display: flex; flex-direction: column; gap: 0.125rem; }
+  .cal__mobile-clock {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  :global(.dark) .cal__mobile-clock { color: var(--text-dark); }
+  .cal__mobile-tz {
+    font-family: ui-monospace, monospace;
+    font-size: 0.625rem;
+    color: var(--text);
+    opacity: 0.7;
+  }
+  :global(.dark) .cal__mobile-tz { color: var(--text-dark); }
+
+  .cal__mobile-body { min-width: 0; }
+  .cal__mobile-name {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--text);
+  }
+  :global(.dark) .cal__mobile-name { color: var(--text-dark); }
+  .cal__mobile-desc {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin: 0.125rem 0 0;
+    color: var(--text);
+    opacity: 0.78;
+  }
+  :global(.dark) .cal__mobile-desc { color: var(--text-dark); }
+  .cal__mobile-hint {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0.25rem 0 0;
+    color: var(--text);
+    opacity: 0.7;
+  }
+  :global(.dark) .cal__mobile-hint { color: var(--text-dark); }
+}
+</style>

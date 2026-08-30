@@ -1,0 +1,2179 @@
+---
+import fs from 'node:fs'
+import yaml from 'js-yaml'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHero from '../../components/PageHero.astro'
+import OrgLogo from '../../components/OrgLogo.astro'
+import ScheduleCalendar from '../../components/ScheduleCalendar.astro'
+import { loadData } from '../../lib/data'
+import { committee } from '../../data/committee'
+
+interface Session {
+  type?: string
+  country?: string
+  city?: string
+  virtual_address?: string
+  iso_meeting_id?: string | number
+  iso_meeting_url?: string
+  start_date?: string
+  end_date?: string
+}
+interface Host {
+  name: string
+  short_name?: string
+  kind?: string
+  url?: string
+  path?: string
+  logo?: string
+  logo_light?: string
+  logo_dark?: string
+  country?: string
+  contact?: { name?: string; title?: string }
+}
+interface Associate extends Host { role?: string }
+interface Rich {
+  general_area?: string
+  country_code?: string
+  registration_url?: string
+  host?: string
+  hosts?: Host[]
+  associates?: Associate[]
+  venues?: { name?: string; address?: string; note?: string; link?: string; lat?: number; lon?: number }[]
+  secretariat?: { name?: string; organization?: string; email?: string; phone?: string }
+  schedule?: { date?: string; time?: string; event?: string; description?: string }[]
+  deadlines?: { date?: string; label?: string; description?: string }[]
+  accommodation_options?: { name: string; address?: string; link?: string; email?: string; distance?: string; code?: string; rates?: Record<string, string>; price?: string; breakfast?: string; notes?: string }[]
+  practical_info?: Record<string, unknown>
+  lunch_recommendations?: { name: string; address?: string; link?: string; url?: string; notes?: string }[]
+  biergartens?: { name: string; address?: string; link?: string; url?: string; walk_minutes?: number; style?: string; notes?: string }[]
+  tourist_info?: unknown
+  agenda?: {
+    source_doc?: string
+    structure?: string
+    opening_session?: AgendaSession
+    closing_session?: AgendaSession
+    wg_meetings?: { dates?: string; note?: string }
+  }
+}
+interface AgendaItem { number?: number; title: string; speaker?: string; n_doc?: string; subitems?: AgendaItem[] }
+interface AgendaSession { date?: string; note?: string; items?: AgendaItem[] }
+
+interface MeetingDoc {
+  ordinal: number
+  year?: number
+  url: string
+  sessions: Session[]
+  primary: Session & {
+    country?: string
+    city?: string
+    reschedule_note?: string
+    reschedule_timeframe?: string
+    cancellation_comment?: string
+    iso_meeting_url?: string
+  }
+  status_label?: string
+  type_label?: string
+  location_label?: string
+  date_label?: string
+  participant_total?: number
+  resolution_count?: number
+  rich?: Rich
+}
+
+export function getStaticPaths() {
+  const allMeetings = loadData.meetings() as unknown as MeetingDoc[]
+  return allMeetings.map((m) => ({ params: { id: String(m.ordinal) }, props: { ordinal: m.ordinal } }))
+}
+
+const allMeetings = loadData.meetings() as unknown as MeetingDoc[]
+
+const { ordinal } = Astro.props as { ordinal: number }
+const meeting = allMeetings.find((m) => m.ordinal === ordinal) as MeetingDoc | undefined
+if (!meeting) throw new Error(`Meeting ${ordinal} not found`)
+
+const rich = meeting.rich
+const upcoming = meeting.status_label !== 'Concluded' && meeting.status_label !== 'Cancelled'
+
+function ordinalSuffix(n: number): string {
+  if (n >= 11 && n <= 13) return 'th'
+  switch (n % 10) {
+    case 1: return 'st'
+    case 2: return 'nd'
+    case 3: return 'rd'
+    default: return 'th'
+  }
+}
+const ordinalText = (n: number) => `${n}${ordinalSuffix(n)}`
+
+function countryCodeToFlag(code?: string | null): string {
+  if (!code) return ''
+  const trimmed = code.trim().toUpperCase()
+  if (!/^[A-Z]{2}$/.test(trimmed)) return ''
+  return trimmed.replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)))
+}
+const venueFlag = countryCodeToFlag(rich?.country_code)
+
+function venueMapUrl(): string | null {
+  const v = rich?.venues?.[0]
+  if (!v || v.lat == null || v.lon == null) return null
+  return `https://www.openstreetmap.org/?mlat=${v.lat}&mlon=${v.lon}#map=16/${v.lat}/${v.lon}`
+}
+function venueEmbedSrc(v: { lat?: number; lon?: number } | undefined): string | null {
+  if (!v || v.lat == null || v.lon == null) return null
+  const d = 0.008
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${(v.lon - d).toFixed(6)}%2C${(v.lat - d).toFixed(6)}%2C${(v.lon + d).toFixed(6)}%2C${(v.lat + d).toFixed(6)}&layer=mapnik&marker=${v.lat}%2C${v.lon}`
+}
+
+const resolvedHosts: Host[] = Array.isArray(rich?.hosts) && rich.hosts.length
+  ? rich.hosts
+  : rich?.host
+    ? [{ name: rich.host, kind: 'unknown' }]
+    : []
+const resolvedAssociates = rich?.associates ?? []
+
+function rateLabel(key: string): string {
+  return key.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
+const LABEL_OVERRIDES: Record<string, string> = {
+  eu_schengen: 'EU Schengen',
+  info_url: 'Information URL',
+  invitation_contact: 'Invitation Contact',
+  invitation_email: 'Invitation email',
+  required_info: 'Required information',
+  badge_required: 'Badge required',
+  badge_info: 'Badge',
+  wifi: 'Wi-Fi',
+  smoking: 'Smoking',
+  electrical: 'Electrical',
+  url: 'URL',
+  museums_url: 'Museums URL',
+  ifa_note: 'IFA note',
+  ifa_url: 'IFA URL',
+}
+function practicalLabel(key: string): string {
+  if (LABEL_OVERRIDES[key]) return LABEL_OVERRIDES[key]
+  return key.replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+type PV = string | string[] | Record<string, unknown> | boolean
+const isSection = (v: PV): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v)
+const isStringList = (v: PV): v is string[] => Array.isArray(v)
+const isUrl = (v: unknown): v is string => typeof v === 'string' && /^https?:\/\//.test(v)
+const isEmail = (v: unknown): v is string => typeof v === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+function practicalEntries(info: Record<string, unknown> | undefined): [string, PV][] {
+  if (!info) return []
+  return Object.entries(info).filter(([, v]) => v != null && v !== '' && !(Array.isArray(v) && v.length === 0)) as [string, PV][]
+}
+function sectionEntries(section: Record<string, unknown>): [string, PV][] {
+  return Object.entries(section).filter(([, v]) => v != null && v !== '' && !(Array.isArray(v) && v.length === 0) && !(typeof v === 'boolean' && v === false)) as [string, PV][]
+}
+function touristInfoAsSection(value: unknown): Record<string, unknown> {
+  if (Array.isArray(value)) {
+    const section: Record<string, unknown> = {}
+    value.forEach((item: { name?: string; link?: string; notes?: string }, i: number) => {
+      section[item.name ?? `Item ${i + 1}`] = { link: item.link, notes: item.notes }
+    })
+    return section
+  }
+  return (value ?? {}) as Record<string, unknown>
+}
+
+function formatDateCompact(dateStr: string): string {
+  const s = String(dateStr)
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  if (!m) return s
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const monthIdx = parseInt(m[2], 10) - 1
+  return `${parseInt(m[3], 10)} ${months[monthIdx]} ${m[1]}`
+}
+function formatDateLong(value: unknown): string {
+  if (!value) return ''
+  const iso = String(value)
+  const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  if (!m) return iso
+  const d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]))
+  return d.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+}
+function formatSessionDate(raw: string): string {
+  const m = raw.match(/^(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})(?:\s+(\d{1,2}:\d{2})(?:\s+([A-Z]+))?)?$/)
+  if (!m) return raw
+  return `${m[1]} ${m[2]} ${m[3]}${m[4] ? ` ${m[4]}` : ''}${m[5] && m[5] !== 'UTC' ? ` ${m[5]}` : ''}`
+}
+function sessionLabel(s: Session): string {
+  const parts: string[] = []
+  if (s.start_date) parts.push(formatSessionDate(s.start_date))
+  if (s.end_date && s.end_date !== s.start_date) parts.push(formatSessionDate(s.end_date))
+  return parts.join(' – ')
+}
+function sessionLocation(s: Session): string {
+  const parts: string[] = []
+  if (s.city) parts.push(s.city.replace(/[,;]\s*$/, ''))
+  if (s.country && s.country !== s.city) parts.push(s.country)
+  return parts.join(' · ')
+}
+function sessionVirtual(s: Session): string | null {
+  if (!s.virtual_address) return null
+  const v = s.virtual_address.toLowerCase()
+  if (v === 'zoom' || v === 'teams' || v === 'online') return null
+  return s.virtual_address
+}
+const ASSOC_ROLE_LABELS: Record<string, string> = {
+  'co-organizer': 'Co-organizer',
+  'cohost': 'Co-host',
+  'co-host': 'Co-host',
+}
+function associateRoleLabel(role?: string): string {
+  if (!role) return ''
+  return ASSOC_ROLE_LABELS[role.toLowerCase()] || role.replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
+// ── Agenda flattening (port of src-legacy/src/domain/agenda.ts) ──
+interface FlatRow { seq: string; title: string; responsible: string; ref: string; depth: number }
+function parseLeadingSeq(title: string): { seq: string; title: string } {
+  const m = title.match(/^(\d+(?:\.\d+)*)\s+(.+)$/)
+  return m ? { seq: m[1], title: m[2] } : { seq: '', title }
+}
+const cleanResponsible = (s?: string) => (s ? s.replace(/_/g, ' ') : '')
+function flattenAgenda(items: AgendaItem[] | undefined, depth = 0): FlatRow[] {
+  const out: FlatRow[] = []
+  if (!items) return out
+  for (const item of items) {
+    const parsed = parseLeadingSeq(item.title)
+    const seq = item.number != null ? String(item.number) : parsed.seq
+    const title = item.number != null ? item.title : parsed.title
+    out.push({ seq, title, responsible: cleanResponsible(item.speaker), ref: item.n_doc ?? '', depth })
+    if (item.subitems?.length) out.push(...flattenAgenda(item.subitems, depth + 1))
+  }
+  return out
+}
+function normalizeAgendaDate(raw: unknown): string {
+  if (!raw) return ''
+  const s = String(raw)
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  return m ? `${m[1]}-${m[2]}-${m[3]}` : s
+}
+
+const agendaSessions: { key: string; label: string; date: string; note?: string; rows: FlatRow[] }[] = []
+if (rich?.agenda?.opening_session) {
+  const s = rich.agenda.opening_session
+  agendaSessions.push({ key: 'opening', label: 'Opening session', date: normalizeAgendaDate(s.date), note: s.note, rows: flattenAgenda(s.items) })
+}
+if (rich?.agenda?.closing_session) {
+  const s = rich.agenda.closing_session
+  agendaSessions.push({ key: 'closing', label: 'Closing session', date: normalizeAgendaDate(s.date), note: s.note, rows: flattenAgenda(s.items) })
+}
+const agendaClickableDates = agendaSessions.map((s) => s.date).filter(Boolean)
+const agendaSourceDoc = rich?.agenda?.source_doc ?? ''
+const agendaDraftDate = (() => {
+  const m = (agendaSourceDoc.match(/\d{4}-\d{2}-\d{2}/) || [])[0]
+  return m ?? null
+})()
+
+// ── Resolutions: read the staged edoxen YAML for this plenary ──
+interface ResCard { id: string; urn: string; title: string; subject: string; kind: string; isAcclamation: boolean }
+let meetingResolutions: ResCard[] = []
+try {
+  const yamlPath = `_data/resolutions-edoxen/plenary-${ordinal}.yaml`
+  if (fs.existsSync(yamlPath)) {
+    const doc = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
+      decisions?: {
+        urn: string
+        kind?: string
+        status?: string
+        title?: { value?: string }[]
+        subject?: { value?: string }[]
+        actions?: { message?: { value?: string }[] }[]
+      }[]
+    }
+    meetingResolutions = (doc.decisions ?? []).map((d) => ({
+      id: (d.urn.split(':').pop() ?? d.urn),
+      urn: d.urn,
+      title: d.title?.[0]?.value ?? '',
+      subject: d.subject?.[0]?.value ?? '',
+      kind: d.kind ?? 'resolution',
+      isAcclamation: d.kind === 'acclamation' || d.status === 'acclaimed',
+    }))
+  }
+} catch { /* resolutions are optional */ }
+
+// ── Prev/next by ordinal ──
+const sorted = [...allMeetings].sort((a, b) => a.ordinal - b.ordinal)
+const idx = sorted.findIndex((m) => m.ordinal === ordinal)
+const prevMeeting = idx > 0 ? sorted[idx - 1] : null
+const nextMeeting = idx >= 0 && idx < sorted.length - 1 ? sorted[idx + 1] : null
+function navCaption(m: MeetingDoc): string {
+  return [m.rich?.general_area || m.location_label || '', m.year ? String(m.year) : ''].filter(Boolean).join(' · ')
+}
+
+const registrationUrl = rich?.registration_url ?? null
+const mapUrl = venueMapUrl()
+---
+
+<BaseLayout title={`${ordinalText(ordinal)} Plenary Meeting — ISO/TC 154`} description={rich?.general_area || meeting.location_label || `The ${ordinalText(ordinal)} plenary meeting of ISO/TC 154.`}>
+  <article class="md">
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow={`${ordinalText(meeting.ordinal)} plenary · ${meeting.year ?? '—'}${venueFlag ? ' ' + venueFlag : ''}`}
+      title="Plenary Meeting"
+      lead={rich?.general_area || meeting.location_label || `A plenary of ${committee.name}.`}
+    >
+      <div class="md-hero" slot="decoration" aria-hidden="true"></div>
+      <div class="md-hero md-hero--grid" slot="decoration" aria-hidden="true"></div>
+      <a href="/meetings/" slot="breadcrumb">Plenary Index</a>
+
+      <dl class="md-hero__stats" slot="default">
+        {meeting.date_label && (
+          <div class="md-hero__stat">
+            <dt>Dates</dt>
+            <dd>{meeting.date_label}</dd>
+          </div>
+        )}
+        {(rich?.general_area || meeting.primary.country) && (
+          <div class="md-hero__stat">
+            <dt>Location</dt>
+            <dd>{rich?.general_area || meeting.primary.country}</dd>
+          </div>
+        )}
+        {rich?.host && (
+          <div class="md-hero__stat">
+            <dt>Host</dt>
+            <dd>{rich.host}</dd>
+          </div>
+        )}
+        <div class="md-hero__stat">
+          <dt>Format</dt>
+          <dd>{meeting.type_label}</dd>
+        </div>
+      </dl>
+
+      {(!registrationUrl || meeting.participant_total || (meeting.resolution_count ?? 0) > 0 || meetingResolutions.length > 0) && (
+        <div class="md-hero__badges" slot="default">
+          {meeting.status_label === 'Cancelled' ? (
+            <span class="pill pill--cancelled">Cancelled</span>
+          ) : upcoming && !registrationUrl ? (
+            <span class="pill pill--upcoming">Upcoming</span>
+          ) : !upcoming && (
+            <span class="pill pill--concluded">Concluded</span>
+          )}
+          {meeting.participant_total && <span class="pill pill--meta">{meeting.participant_total} participants</span>}
+          {(meetingResolutions.length > 0) && (
+            <span class="pill pill--res">{meetingResolutions.length} resolution{meetingResolutions.length === 1 ? '' : 's'}</span>
+          )}
+        </div>
+      )}
+
+      {registrationUrl && upcoming && (
+        <a href={registrationUrl} target="_blank" rel="noopener noreferrer" class="reg-cta" slot="actions">
+          <span class="reg-cta__status">
+            <span class="reg-cta__pulse" aria-hidden="true"></span>
+            Registration open
+          </span>
+          <span class="reg-cta__action">
+            <span class="reg-cta__verb">Register</span>
+            <span class="reg-cta__arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+      )}
+    </PageHero>
+
+    <div class="md__nav">
+      <nav class="pnn pnn--center" aria-label="Pagination">
+        <div class="pnn__rail">
+          <span class="pnn__rail-rule" aria-hidden="true"></span>
+          <span class="pnn__rail-label">Other plenary meetings</span>
+        </div>
+        <div class="pnn__grid">
+          {prevMeeting ? (
+            <a href={`/meetings/${prevMeeting.ordinal}/`} class="pnn__cell pnn__cell--prev" rel="prev">
+              <span class="pnn__arrow pnn__arrow--prev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5" /><path d="M12 5l-7 7 7 7" /></svg>
+              </span>
+              <span class="pnn__body">
+                <span class="pnn__hint">Previous</span>
+                <span class="pnn__numeral">{prevMeeting.ordinal}</span>
+                <span class="pnn__label">{ordinalText(prevMeeting.ordinal)}</span>
+                <span class="pnn__caption">{navCaption(prevMeeting)}</span>
+              </span>
+            </a>
+          ) : (
+            <span class="pnn__cell pnn__cell--muted" aria-hidden="true">
+              <span class="pnn__arrow pnn__arrow--prev pnn__arrow--silent" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5" /><path d="M12 5l-7 7 7 7" /></svg>
+              </span>
+              <span class="pnn__body"><span class="pnn__hint pnn__hint--silent">Beginning</span></span>
+            </span>
+          )}
+          <span class="pnn__divider" aria-hidden="true"></span>
+          {nextMeeting ? (
+            <a href={`/meetings/${nextMeeting.ordinal}/`} class="pnn__cell pnn__cell--next" rel="next">
+              <span class="pnn__body">
+                <span class="pnn__hint">Next</span>
+                <span class="pnn__numeral">{nextMeeting.ordinal}</span>
+                <span class="pnn__label">{ordinalText(nextMeeting.ordinal)}</span>
+                <span class="pnn__caption">{navCaption(nextMeeting)}</span>
+              </span>
+              <span class="pnn__arrow pnn__arrow--next" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
+              </span>
+            </a>
+          ) : (
+            <span class="pnn__cell pnn__cell--muted" aria-hidden="true">
+              <span class="pnn__body"><span class="pnn__hint pnn__hint--silent">Latest</span></span>
+              <span class="pnn__arrow pnn__arrow--next pnn__arrow--silent" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
+              </span>
+            </span>
+          )}
+        </div>
+      </nav>
+    </div>
+
+    <div class="md__body">
+      <nav class="md__quick-links" aria-label="Meeting actions">
+        {meeting.primary.iso_meeting_url && (
+          <a href={meeting.primary.iso_meeting_url} target="_blank" rel="noopener noreferrer" class="quick-link">
+            ISO committee meeting <span aria-hidden="true">↗</span>
+          </a>
+        )}
+        {meetingResolutions.length > 0 && (
+          <div class="urn-bar">
+            <span class="urn-bar__label">{meetingResolutions.length} resolution{meetingResolutions.length === 1 ? '' : 's'}</span>
+          </div>
+        )}
+      </nav>
+
+      {meeting.primary.cancellation_comment && (
+        <section class="alert alert--cancelled">
+          <h3 class="alert__title">This meeting was cancelled</h3>
+          <p class="alert__body">{meeting.primary.cancellation_comment}</p>
+        </section>
+      )}
+
+      {meeting.primary.reschedule_note && (
+        <section class="alert alert--reschedule">
+          <h3 class="alert__title">Rescheduled</h3>
+          <p class="alert__body">
+            {meeting.primary.reschedule_note}
+            {meeting.primary.reschedule_timeframe && <> ({meeting.primary.reschedule_timeframe})</>}
+          </p>
+        </section>
+      )}
+
+      {rich?.venues?.length ? (
+        <section class="block">
+          <h2 class="block__title">Venue</h2>
+          {rich.venues.map((v) => (
+            <div class="venue-layout">
+              <div class="venue-card venue-card--stacked">
+                <div class="venue-card__main">
+                  {v.name && <p class="venue-card__name">{v.name}</p>}
+                  {v.address && <pre class="venue-card__address">{v.address}</pre>}
+                  {v.note && <p class="venue-card__note">{v.note}</p>}
+                  <div class="venue-card__links">
+                    {v.link && <a href={v.link} target="_blank" rel="noopener noreferrer">Venue website →</a>}
+                    {mapUrl && <a href={mapUrl} target="_blank" rel="noopener noreferrer">OpenStreetMap →</a>}
+                  </div>
+                </div>
+              </div>
+              {venueEmbedSrc(v) && (
+                <div class="venue-map">
+                  <iframe
+                    src={venueEmbedSrc(v)!}
+                    title={`Map showing ${v.name ?? 'meeting venue'}`}
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                  <small class="venue-map__credit">
+                    Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors
+                  </small>
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+      ) : (rich?.general_area || meeting.location_label) && (
+        <section class="block">
+          <h2 class="block__title">Location</h2>
+          <p class="block__scalar">{rich?.general_area || meeting.location_label}</p>
+        </section>
+      )}
+
+      {(resolvedHosts.length > 0 || rich?.host) && (
+        <section class="block">
+          <h2 class="block__title">Hosted by</h2>
+          <div class="host-grid">
+            {resolvedHosts.map((h) => (
+              <a class:list={["host-card", { 'host-card--linkable': !!h.path }]} href={h.path || undefined}>
+                {(h.logo || h.logo_light || h.logo_dark) ? (
+                  <OrgLogo logo={h.logo} logo_light={h.logo_light} logo_dark={h.logo_dark} size="md" radius="0.375rem" fallbackText={h.short_name ?? h.name} alt={h.name} />
+                ) : (
+                  <div class="host-card__monogram" aria-hidden="true">{(h.name || '?').slice(0, 2).toUpperCase()}</div>
+                )}
+                <div class="host-card__meta">
+                  <p class="host-card__name">{h.name}</p>
+                  {h.kind === 'liaison' && <p class="host-card__kind">Liaison organization</p>}
+                  {h.kind === 'national-body' && <p class="host-card__kind">National body</p>}
+                  {h.contact?.name && (
+                    <p class="host-card__contact">
+                      <span class="host-card__contact-name">{h.contact.name}</span>
+                      {h.contact.title && <span class="host-card__contact-title">{h.contact.title}</span>}
+                    </p>
+                  )}
+                  {h.path && <p class="host-card__link">View profile <span aria-hidden="true">→</span></p>}
+                  {!h.path && h.url && (
+                    <a href={h.url} target="_blank" rel="noopener noreferrer" class="host-card__link">
+                      Visit website <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
+              </a>
+            ))}
+            {resolvedHosts.length === 0 && rich?.host && <p class="host-grid__plain">{rich.host}</p>}
+          </div>
+        </section>
+      )}
+
+      {resolvedAssociates.length > 0 && (
+        <section class="block">
+          <h2 class="block__title">In association with</h2>
+          <ul class="assoc-list">
+            {resolvedAssociates.map((a) => (
+              <li class:list={[`assoc assoc--${a.kind}`, { 'assoc--linkable': !!(a.path || a.url) }]}>
+                <a class="assoc__main" href={a.path || a.url || undefined} target={a.url && !a.path ? '_blank' : undefined} rel={a.url && !a.path ? 'noopener noreferrer' : undefined}>
+                  {(a.logo || a.logo_light || a.logo_dark) ? (
+                    <OrgLogo logo={a.logo} logo_light={a.logo_light} logo_dark={a.logo_dark} size="sm" radius="0.3125rem" fallbackText={a.short_name ?? a.name} alt={a.name} />
+                  ) : (
+                    <div class="assoc__monogram" aria-hidden="true">{(a.name || '?').slice(0, 2).toUpperCase()}</div>
+                  )}
+                  <div class="assoc__text">
+                    <div class="assoc__name-row">
+                      <span class="assoc__name">{a.name}</span>
+                      {a.role && <span class="assoc__role">{associateRoleLabel(a.role)}</span>}
+                    </div>
+                    {a.kind === 'liaison' && <p class="assoc__kind">Liaison organization</p>}
+                    {a.kind === 'national-body' && <p class="assoc__kind">National body</p>}
+                    {a.kind !== 'liaison' && a.kind !== 'national-body' && a.country && <p class="assoc__kind">{a.country}</p>}
+                    {a.contact?.name && (
+                      <p class="assoc__contact">
+                        <span class="assoc__contact-name">{a.contact.name}</span>
+                        {a.contact.title && <span class="assoc__contact-title"> · {a.contact.title}</span>}
+                      </p>
+                    )}
+                    {a.path && <p class="assoc__link">View profile <span aria-hidden="true">→</span></p>}
+                    {!a.path && a.url && <p class="assoc__link">Visit website <span aria-hidden="true">↗</span></p>}
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {rich?.secretariat && (rich.secretariat.name || rich.secretariat.organization || rich.secretariat.email) && (
+        <section class="block">
+          <h2 class="block__title">Secretariat</h2>
+          <div class="secretary-card">
+            {rich.secretariat.name && <p class="secretary-card__name">{rich.secretariat.name}</p>}
+            {rich.secretariat.organization && <p class="secretary-card__org">{rich.secretariat.organization}</p>}
+            {rich.secretariat.email && (
+              <p class="secretary-card__contact"><a href={`mailto:${rich.secretariat.email}`}>{rich.secretariat.email}</a></p>
+            )}
+            {rich.secretariat.phone && <p class="secretary-card__contact">{rich.secretariat.phone}</p>}
+          </div>
+        </section>
+      )}
+
+      {(rich?.schedule?.length ?? 0) > 0 && (
+        <section class="block">
+          <h2 class="block__title">Daily schedule</h2>
+          <ScheduleCalendar
+            schedule={rich!.schedule}
+            venueName={rich?.venues?.[0]?.name}
+            generalArea={rich?.general_area}
+            agendaDates={agendaClickableDates}
+          />
+        </section>
+      )}
+
+      {rich?.accommodation_options?.length ? (
+        <section class="block">
+          <h2 class="block__title">Accommodation</h2>
+          <ul class="list-card">
+            {rich.accommodation_options.map((a) => (
+              <li class="list-card__item list-card__item--rich">
+                <div class="list-card__head">
+                  {a.link ? (
+                    <a href={a.link} target="_blank" rel="noopener noreferrer" class="list-card__name">{a.name}</a>
+                  ) : (
+                    <span class="list-card__name">{a.name}</span>
+                  )}
+                  {a.distance && <span class="list-card__chip">{a.distance}</span>}
+                  {a.code && <span class="list-card__chip list-card__chip--code">Booking code: {a.code}</span>}
+                </div>
+                {a.address && <p class="list-card__meta">{a.address}</p>}
+                {a.email && <p class="list-card__meta"><a href={`mailto:${a.email}`}>{a.email}</a></p>}
+                {a.rates && Object.keys(a.rates).length > 0 ? (
+                  <dl class="list-card__rates">
+                    {Object.entries(a.rates).map(([k, v]) => (
+                      <><dt>{rateLabel(k)}</dt><dd>{v}</dd></>
+                    ))}
+                  </dl>
+                ) : a.price && <p class="list-card__meta">{a.price}</p>}
+                {a.breakfast && <p class="list-card__meta list-card__meta--soft">Breakfast: {a.breakfast}</p>}
+                {a.notes && <p class="list-card__notes">{a.notes}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {rich?.practical_info && practicalEntries(rich.practical_info).length > 0 && (
+        <section class="block">
+          <h2 class="block__title">Practical information</h2>
+          <div class="practical">
+            {practicalEntries(rich.practical_info).map(([key, value]) => (
+              <div class="practical__entry">
+                <p class="practical__label">{practicalLabel(key)}</p>
+                {isSection(value) ? (
+                  <div class="practical__section">
+                    <dl class="practical__dl">
+                      {sectionEntries(value).map(([subKey, subVal]) => (
+                        <>
+                          <dt class="practical__dt">{practicalLabel(subKey)}</dt>
+                          <dd class="practical__dd">
+                            {typeof subVal === 'boolean' ? (subVal ? 'Yes' : 'No') : (
+                              isUrl(subVal) ? <a href={subVal} target="_blank" rel="noopener noreferrer">{subVal}</a>
+                              : isEmail(subVal) ? <a href={`mailto:${subVal}`}>{subVal}</a>
+                              : isStringList(subVal) ? (
+                                <ul class="practical__list">
+                                  {subVal.map((item) => <li>{item}</li>)}
+                                </ul>
+                              ) : <span>{String(subVal)}</span>
+                            )}
+                          </dd>
+                        </>
+                      ))}
+                    </dl>
+                  </div>
+                ) : isStringList(value) ? (
+                  <ul class="practical__list practical__list--top">
+                    {value.map((item) => <li>{item}</li>)}
+                  </ul>
+                ) : (
+                  <p class="practical__scalar">
+                    {isUrl(value) ? <a href={value} target="_blank" rel="noopener noreferrer">{value}</a> : <span>{String(value)}</span>}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {rich?.lunch_recommendations?.length ? (
+        <section class="block">
+          <h2 class="block__title">Lunch recommendations</h2>
+          <ul class="list-card">
+            {rich.lunch_recommendations.map((l) => (
+              <li class="list-card__item">
+                {(l.link || l.url) ? (
+                  <a href={l.link || l.url} target="_blank" rel="noopener noreferrer" class="list-card__name">{l.name}</a>
+                ) : (
+                  <span class="list-card__name">{l.name}</span>
+                )}
+                {l.address && <p class="list-card__meta">{l.address}</p>}
+                {l.notes && <p class="list-card__notes">{l.notes}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {rich?.biergartens?.length ? (
+        <section class="block">
+          <h2 class="block__title">Biergartens &amp; evenings</h2>
+          <ul class="list-card">
+            {rich.biergartens.map((b) => (
+              <li class="list-card__item list-card__item--rich">
+                <div class="list-card__head">
+                  {(b.link || b.url) ? (
+                    <a href={b.link || b.url} target="_blank" rel="noopener noreferrer" class="list-card__name">{b.name}</a>
+                  ) : (
+                    <span class="list-card__name">{b.name}</span>
+                  )}
+                  {b.walk_minutes && <span class="list-card__chip">{b.walk_minutes} min walk</span>}
+                </div>
+                {b.address && <p class="list-card__meta">{b.address}</p>}
+                {b.style && <p class="list-card__meta list-card__meta--soft">{b.style}</p>}
+                {b.notes && <p class="list-card__notes">{b.notes}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {rich?.tourist_info && practicalEntries(touristInfoAsSection(rich.tourist_info)).length > 0 && (
+        <section class="block">
+          <h2 class="block__title">Things to see</h2>
+          <div class="practical">
+            {practicalEntries(touristInfoAsSection(rich.tourist_info)).map(([key, value]) => (
+              <div class="practical__entry">
+                <p class="practical__label">{key}</p>
+                <p class="practical__scalar">
+                  {typeof value === 'string' && isUrl(value) ? (
+                    <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>
+                  ) : (
+                    <span>{String(value)}</span>
+                  )}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {rich?.deadlines?.length ? (
+        <section class="block">
+          <h2 class="block__title">Key dates &amp; deadlines</h2>
+          <ul class="deadlines">
+            {rich.deadlines.map((d) => (
+              <li class="deadlines__item">
+                {d.date && <span class="deadlines__date">{formatDateCompact(d.date)}</span>}
+                <div>
+                  {d.label && <p class="deadlines__label">{d.label}</p>}
+                  {d.description && <p class="deadlines__desc">{d.description}</p>}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {meeting.sessions.length > 1 && (
+        <section class="block">
+          <h2 class="block__title">All sessions ({meeting.sessions.length})</h2>
+          <ul class="sessions">
+            {meeting.sessions.map((s) => (
+              <li class="sessions__item">
+                <div class="sessions__meta">
+                  <span class="sessions__type">{s.type === 'hybrid' ? 'Hybrid' : s.type === 'virtual' ? 'Virtual' : 'In person'}</span>
+                  {s.iso_meeting_url ? (
+                    <a href={s.iso_meeting_url} target="_blank" rel="noopener noreferrer" class="sessions__link">ISO #{s.iso_meeting_id} ↗</a>
+                  ) : s.iso_meeting_id ? (
+                    <span class="sessions__link sessions__link--plain">ISO #{s.iso_meeting_id}</span>
+                  ) : null}
+                </div>
+                {sessionLabel(s) && <p class="sessions__date">{sessionLabel(s)}</p>}
+                {sessionLocation(s) && <p class="sessions__loc">{sessionLocation(s)}</p>}
+                {sessionVirtual(s) && <p class="sessions__virtual">Online · {sessionVirtual(s)}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {meetingResolutions.length > 0 && (
+        <section class="block">
+          <h2 class="block__title">
+            {meetingResolutions.length} resolution{meetingResolutions.length === 1 ? '' : 's'} adopted
+          </h2>
+          <p class="block__lead">
+            Adopted at the {ordinalText(meeting.ordinal)} plenary of {committee.name}.
+          </p>
+          <ul class="res-list">
+            {meetingResolutions.map((res) => (
+              <li>
+                <a href={`/decisions/${res.urn}/`} class="res-card">
+                  <div class="res-card__head">
+                    {res.isAcclamation ? (
+                      <span class="res-card__kind res-card__kind--acclamation">Acclamation</span>
+                    ) : (
+                      <>
+                        <span class="res-card__id">{res.id}</span>
+                        <span class="res-card__kind">{res.kind === 'resolution' ? 'Plenary' : res.kind}</span>
+                      </>
+                    )}
+                  </div>
+                  <p class="res-card__title">{res.isAcclamation ? 'Acclamation' : (res.title || `Resolution ${res.id}`)}</p>
+                  {res.subject && <span class="res-card__subject">{res.subject}</span>}
+                  <span class="res-card__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+
+    {agendaSessions.map((s) => (
+      <div class="ad" data-agenda={s.key} hidden>
+        <div class="ad__backdrop" data-close-agenda></div>
+        <aside class="ad__panel" role="dialog" aria-label={`${s.label} agenda`} aria-modal="true">
+          <header class="ad__header">
+            <div class="ad__title-block">
+              <p class="ad__eyebrow">{s.label}</p>
+              <h3 class="ad__date">{formatDateLong(s.date)}</h3>
+              {agendaDraftDate && <p class="ad__draft">Draft of {agendaDraftDate}</p>}
+            </div>
+            <button class="ad__close" data-close-agenda aria-label="Close agenda">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </header>
+          {s.note && <p class="ad__note">{s.note}</p>}
+          <div class="ad__body">
+            <div class="ad__table-wrap">
+              <table class="ad__table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="ad__th ad__th--seq">Seq</th>
+                    <th scope="col" class="ad__th ad__th--title">Title</th>
+                    <th scope="col" class="ad__th ad__th--resp">Responsible</th>
+                    <th scope="col" class="ad__th ad__th--ref">Ref.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {s.rows.map((row) => (
+                    <tr class:list={{ 'ad__tr--sub': row.depth > 0 }}>
+                      <td class="ad__td ad__td--seq">{row.seq}</td>
+                      <td class="ad__td ad__td--title" style={`padding-left:${0.5 + row.depth * 1.125}rem`}>{row.title}</td>
+                      <td class="ad__td ad__td--resp">{row.responsible}</td>
+                      <td class="ad__td ad__td--ref">{row.ref}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {agendaSourceDoc && <footer class="ad__footer">Source: {agendaSourceDoc}</footer>}
+        </aside>
+      </div>
+    ))}
+    <script is:inline type="application/json" id="agenda-dates" set:html={JSON.stringify(Object.fromEntries(agendaSessions.map((s) => [s.key, s.date])))} />
+  </article>
+</BaseLayout>
+
+<script>
+  // Agenda drawer: clicking a clickable calendar event opens the drawer whose
+  // session date matches; Escape/backdrop/button close it.
+  const drawers = Array.from(document.querySelectorAll<HTMLElement>('[data-agenda]'))
+  const dateToKey = new Map<string, string>()
+  const KEY_DATES: Record<string, string> = JSON.parse(document.getElementById('agenda-dates')?.textContent || '{}')
+  for (const [key, date] of Object.entries(KEY_DATES)) dateToKey.set(date, key)
+
+  function open(key: string) {
+    drawers.forEach((d) => { d.hidden = d.dataset.agenda !== key })
+    document.body.style.overflow = 'hidden'
+  }
+  function close() {
+    drawers.forEach((d) => { d.hidden = true })
+    document.body.style.overflow = ''
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-agenda-date]').forEach((el) => {
+    const handler = (e: Event) => {
+      e.preventDefault()
+      const key = dateToKey.get(el.dataset.agendaDate || '')
+      if (key) open(key)
+    }
+    el.addEventListener('click', handler)
+    el.addEventListener('keydown', (e) => { if (e.key === 'Enter') handler(e) })
+  })
+  document.querySelectorAll('[data-close-agenda]').forEach((el) => el.addEventListener('click', close))
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close() })
+</script>
+
+<style>
+.page { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+.loading { padding: 4rem 1rem; text-align: center; color: #78716c; }
+:global(.dark) .loading { color: #a8a29e; }
+.back { display: inline-block; color: var(--color-blue-accent); text-decoration: none; font-weight: 500; font-size: 0.875rem; }
+.back:hover { text-decoration: underline; }
+
+/* HERO (PageHero overrides for gradient + grid + white text) */
+.md-hero :global(.ph) { margin-bottom: 0; }
+.md-hero :global(.ph__inner) {
+  max-width: 48rem;
+  position: relative;
+  z-index: 1;
+}
+.md-hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top right, rgb(185 28 28 / 0.35), transparent 60%),
+    linear-gradient(135deg, #2a1012 0%, #5a1818 50%, #1e3a8a 130%);
+  z-index: 0;
+}
+.md-hero--upcoming .md-hero__bg {
+  background:
+    radial-gradient(ellipse at top right, rgb(30 58 138 / 0.45), transparent 60%),
+    linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 60%, #3b82f6 140%);
+}
+.md-hero--cancelled .md-hero__bg {
+  background: linear-gradient(135deg, #44403c 0%, #1c1917 100%);
+}
+.md-hero__grid {
+  position: absolute;
+  inset: -2rem;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at top right, black, transparent 70%);
+  z-index: 0;
+}
+.md-hero :global(.ph__eyebrow),
+.md-hero :global(.ph__eyebrow-rule) {
+  color: rgba(255, 255, 255, 0.9);
+}
+.md-hero :global(.ph__eyebrow-rule) {
+  background: rgba(255, 255, 255, 0.9);
+}
+.md-hero :global(.ph__title) { color: #fff; }
+.md-hero :global(.ph__lead) { color: rgba(255, 255, 255, 0.92); }
+.md-hero :global(.ph__extra) { margin-top: 1.25rem; }
+.md-hero :global(.ph__actions) {
+  margin-top: 1.75rem;
+  align-items: center;
+}
+
+/* Breadcrumb sits on the dark gradient hero — needs light treatment
+   regardless of theme. */
+.md-hero :global(.ph__breadcrumb) {
+  color: rgba(255, 255, 255, 0.78);
+}
+.md-hero :global(.ph__breadcrumb a) {
+  color: rgba(255, 255, 255, 0.78);
+}
+.md-hero :global(.ph__breadcrumb a:hover) {
+  color: #fff;
+}
+
+/* Registration CTA — a "live status" card that absorbs the upcoming state.
+   The pulse dot signals registration is currently open; the serif "Register"
+   verb gives the action weight against the editorial hero typography.
+   Sits on the dark gradient hero, so the card is always white. */
+.reg-cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 0.75rem 1.25rem 0.875rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow:
+    0 4px 16px rgb(0 0 0 / 0.22),
+    0 0 0 1px rgb(255 255 255 / 0.6) inset;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.reg-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgb(16 185 129 / 0.06), transparent 60%);
+  pointer-events: none;
+}
+.reg-cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 28px rgb(0 0 0 / 0.3),
+    0 0 0 1px rgb(255 255 255 / 0.8) inset;
+}
+.reg-cta__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #047857;
+  position: relative;
+}
+.reg-cta__pulse {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #10b981;
+  position: relative;
+  flex-shrink: 0;
+}
+.reg-cta__pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #10b981;
+  animation: reg-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes reg-pulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(2.6); opacity: 0;   }
+  100% { transform: scale(2.6); opacity: 0;   }
+}
+.reg-cta__action {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  position: relative;
+}
+.reg-cta__verb {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--color-blue-accent);
+}
+.reg-cta__arrow {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-blue-accent);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reg-cta:hover .reg-cta__arrow { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .reg-cta__pulse::after { animation: none; }
+  .reg-cta:hover { transform: none; }
+  .reg-cta:hover .reg-cta__arrow { transform: none; }
+}
+
+.md-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.125rem;
+  margin: 0 0 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+@media (min-width: 768px) {
+  .md-hero__stats { grid-template-columns: repeat(4, 1fr); }
+}
+.md-hero__stat {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+.md-hero__stat:first-child { border-left: 0; }
+.md-hero__stat dt {
+  font-size: 0.625rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 0.25rem;
+}
+.md-hero__stat dd {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.md-hero__badges { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.pill {
+  display: inline-flex; align-items: center;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem; font-weight: 600;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+.pill--cancelled { background: rgba(0, 0, 0, 0.4); }
+.pill--upcoming { background: #fff; color: var(--color-brand); }
+.pill--concluded { background: rgba(255, 255, 255, 0.15); }
+.pill--meta, .pill--res { background: rgba(255, 255, 255, 0.12); }
+
+/* BODY */
+.md__nav {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.md__nav :global(.pnn) {
+  margin-top: 0;
+}
+
+.md__body {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.md__quick-links {
+  display: flex; flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed #e7e5e4;
+}
+:global(.dark) .md__quick-links { border-bottom-color: #292524; }
+.quick-link {
+  display: inline-flex; align-items: center; gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.375rem;
+  font-size: 0.875rem; font-weight: 600;
+  color: var(--color-blue-accent);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+:global(.dark) .quick-link { background: #292524; border-color: #44403c; }
+.quick-link:hover { border-color: var(--color-blue-accent); box-shadow: 0 1px 4px rgb(30 58 138 / 0.1); }
+
+.urn-bar {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.375rem 0.5rem 0.375rem 0.75rem;
+  border: 1px dashed #d6d3d1;
+  border-radius: 0.375rem;
+  background: #fafaf9;
+  font-size: 0.8125rem;
+}
+:global(.dark) .urn-bar { background: #1c1917; border-color: #57534e; }
+.urn-bar__label {
+  font-size: 0.625rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: #a8a29e;
+}
+.urn-bar__value {
+  font-family: ui-monospace, monospace;
+  color: #57534e;
+  font-size: 0.8125rem;
+}
+:global(.dark) .urn-bar__value { color: #d6d3d1; }
+.urn-bar__copy {
+  background: none; border: 0; padding: 0.25rem;
+  cursor: pointer; color: #78716c;
+  border-radius: 0.25rem;
+  display: inline-flex;
+}
+.urn-bar__copy:hover { color: var(--color-brand); background: rgb(185 28 28 / 0.08); }
+
+/* ALERTS */
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  border-left: 3px solid;
+}
+.alert--cancelled {
+  background: #fef2f2;
+  border-left-color: var(--color-iso-red);
+}
+:global(.dark) .alert--cancelled { background: rgb(185 28 28 / 0.08); }
+.alert--reschedule {
+  background: #fffbeb;
+  border-left-color: #d97706;
+}
+:global(.dark) .alert--reschedule { background: rgb(217 119 6 / 0.1); }
+.alert__title {
+  font-size: 0.875rem; font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: #1c1917;
+}
+:global(.dark) .alert__title { color: #fafaf9; }
+.alert__body {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #57534e;
+}
+:global(.dark) .alert__body { color: #d6d3d1; }
+
+/* BLOCKS */
+.block { margin-bottom: 2.5rem; }
+.block__title {
+  font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; color: #78716c;
+  margin: 0 0 1rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+:global(.dark) .block__title { color: #a8a29e; border-bottom-color: #292524; }
+.block__lead { margin: 0 0 1rem; color: #57534e; font-size: 0.9375rem; }
+:global(.dark) .block__lead { color: #d6d3d1; }
+.block__scalar { margin: 0; font-size: 1.0625rem; color: #1c1917; font-weight: 500; }
+:global(.dark) .block__scalar { color: #fafaf9; }
+
+/* VENUE / SECRETARY */
+.venue-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+@media (min-width: 720px) {
+  .venue-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+}
+
+.venue-card {
+  background: #fafaf9;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--color-blue-accent);
+}
+.venue-card--stacked { display: flex; flex-direction: column; }
+:global(.dark) .venue-card { background: #292524; border-left-color: #5379bf; }
+.venue-card__main { display: flex; flex-direction: column; gap: 0.5rem; }
+.venue-card__name { font-weight: 700; margin: 0; color: #1c1917; font-size: 1.0625rem; }
+:global(.dark) .venue-card__name { color: #fafaf9; }
+.venue-card__address {
+  font-family: ui-monospace, monospace;
+  font-size: 0.8125rem;
+  white-space: pre-wrap;
+  margin: 0;
+  color: #57534e;
+  line-height: 1.5;
+}
+:global(.dark) .venue-card__address { color: #d6d3d1; }
+.venue-card__note {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #78716c;
+  line-height: 1.5;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #e7e5e4;
+}
+:global(.dark) .venue-card__note { color: #a8a29e; border-top-color: #44403c; }
+.venue-card__links { display: flex; flex-wrap: wrap; gap: 0.875rem; margin-top: auto; padding-top: 0.5rem; }
+.venue-card__links a {
+  font-size: 0.8125rem;
+  color: var(--color-blue-accent);
+  text-decoration: none;
+}
+.venue-card__links a:hover { text-decoration: underline; }
+
+.venue-map {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: #e7e5e4;
+  min-height: 14rem;
+  position: relative;
+}
+:global(.dark) .venue-map { background: #1c1917; }
+.venue-map iframe {
+  width: 100%;
+  flex: 1;
+  border: 0;
+  min-height: 12rem;
+  display: block;
+}
+.venue-map__credit {
+  padding: 0.375rem 0.625rem;
+  font-size: 0.625rem;
+  color: #78716c;
+  background: rgba(255, 255, 255, 0.7);
+  text-align: right;
+}
+:global(.dark) .venue-map__credit { background: rgba(0, 0, 0, 0.4); color: #a8a29e; }
+.venue-map__credit a { color: inherit; text-decoration: underline; }
+
+/* HOST CARDS */
+.host-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  gap: 0.75rem;
+}
+.host-grid__plain { margin: 0; color: #57534e; font-size: 1rem; }
+:global(.dark) .host-grid__plain { color: #d6d3d1; }
+.host-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.5rem;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+.host-card--linkable { cursor: pointer; }
+.host-card--linkable:hover {
+  border-color: var(--color-amber-warm, #b45309);
+  box-shadow: 0 4px 12px rgb(180 83 9 / 0.1);
+  transform: translateY(-1px);
+}
+:global(.dark) .host-card { background: #292524; border-color: #44403c; }
+.host-card__logo {
+  border: 1px solid #e7e5e4;
+}
+:global(.dark) .host-card__logo { border-color: #44403c; }
+.host-card__monogram {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.375rem;
+  background: linear-gradient(135deg, var(--color-brand), var(--color-amber-warm, #b45309));
+  color: #fff;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.host-card__meta { min-width: 0; }
+.host-card__name { margin: 0; font-weight: 600; font-size: 0.9375rem; color: #1c1917; }
+:global(.dark) .host-card__name { color: #fafaf9; }
+.host-card__kind { margin: 0.125rem 0 0; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: #78716c; font-weight: 600; }
+:global(.dark) .host-card__kind { color: #a8a29e; }
+.host-card__link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.25rem; font-size: 0.8125rem; color: var(--color-blue-accent); text-decoration: none; }
+.host-card__link:hover { text-decoration: underline; }
+
+.host-card__contact {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: #57534e;
+  line-height: 1.4;
+}
+:global(.dark) .host-card__contact { color: #a8a29e; }
+.host-card__contact-name { font-weight: 600; color: #1c1917; }
+:global(.dark) .host-card__contact-name { color: #fafaf9; }
+.host-card__contact-title { color: #78716c; margin-left: 0.25rem; }
+:global(.dark) .host-card__contact-title { color: #a8a29e; }
+
+/* ASSOCIATES (co-organizers, sponsors, partners) */
+.assoc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  gap: 0.5rem;
+}
+.assoc {
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.5rem;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+:global(.dark) .assoc { background: rgb(28 25 23 / 0.6); border-color: #44403c; }
+.assoc--linkable:hover {
+  border-color: var(--color-amber-warm, #b45309);
+  box-shadow: 0 4px 10px rgb(180 83 9 / 0.08);
+  transform: translateY(-1px);
+}
+.assoc__main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0.875rem;
+  text-decoration: none;
+  color: inherit;
+}
+.assoc__logo {
+  border: 1px solid #e7e5e4;
+}
+:global(.dark) .assoc__logo { border-color: #44403c; }
+.assoc__monogram {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.3125rem;
+  background: linear-gradient(135deg, #78716c, #57534e);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.assoc__text { min-width: 0; flex: 1; }
+.assoc__name-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 0.125rem;
+}
+.assoc__name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #1c1917;
+  line-height: 1.25;
+}
+:global(.dark) .assoc__name { color: #fafaf9; }
+.assoc__role {
+  display: inline-block;
+  padding: 0.0625rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.1875rem;
+  background: rgb(180 83 9 / 0.12);
+  color: var(--color-amber-warm, #b45309);
+}
+:global(.dark) .assoc__role {
+  background: rgb(180 83 9 / 0.22);
+  color: #fbbf24;
+}
+.assoc__kind {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #78716c;
+}
+:global(.dark) .assoc__kind { color: #a8a29e; }
+.assoc__contact {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: #57534e;
+}
+:global(.dark) .assoc__contact { color: #d6d3d1; }
+.assoc__contact-name { font-weight: 600; color: #1c1917; }
+:global(.dark) .assoc__contact-name { color: #fafaf9; }
+.assoc__contact-title { color: #78716c; }
+:global(.dark) .assoc__contact-title { color: #a8a29e; }
+.assoc__link {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: var(--color-blue-accent);
+}
+
+.secretary-card {
+  background: #fafaf9;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid var(--color-brand);
+}
+:global(.dark) .secretary-card { background: #292524; }
+.secretary-card__name { font-weight: 700; margin: 0 0 0.125rem; color: #1c1917; }
+:global(.dark) .secretary-card__name { color: #fafaf9; }
+.secretary-card__org { font-size: 0.9375rem; color: #57534e; margin: 0 0 0.5rem; }
+:global(.dark) .secretary-card__org { color: #d6d3d1; }
+.secretary-card__contact { font-size: 0.875rem; margin: 0.125rem 0; color: #57534e; }
+:global(.dark) .secretary-card__contact { color: #d6d3d1; }
+.secretary-card__contact a { color: var(--color-blue-accent); }
+
+/* SCHEDULE */
+.schedule { display: flex; flex-direction: column; gap: 1.5rem; }
+.schedule__date {
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--color-brand);
+  margin: 0 0 0.5rem;
+}
+.schedule__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.schedule__item {
+  display: grid; grid-template-columns: 7rem 1fr;
+  gap: 1rem;
+  padding: 0.625rem 0.875rem;
+  background: #fafaf9;
+  border-radius: 0.375rem;
+}
+:global(.dark) .schedule__item { background: #292524; }
+.schedule__time { font-family: ui-monospace, monospace; font-size: 0.8125rem; color: #78716c; }
+:global(.dark) .schedule__time { color: #a8a29e; }
+.schedule__event { font-weight: 600; margin: 0; color: #1c1917; }
+:global(.dark) .schedule__event { color: #fafaf9; }
+.schedule__desc { font-size: 0.875rem; color: #57534e; margin: 0.125rem 0 0; }
+:global(.dark) .schedule__desc { color: #d6d3d1; }
+
+/* LISTS */
+.list-card {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: 0.625rem;
+}
+.list-card__item {
+  background: #fafaf9;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+}
+.list-card__item--rich { padding: 0.875rem 1.125rem; }
+:global(.dark) .list-card__item { background: #292524; }
+.list-card__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; margin-bottom: 0.25rem; }
+.list-card__chip {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  background: rgb(30 58 138 / 0.08);
+  color: var(--color-blue-accent);
+}
+:global(.dark) .list-card__chip { background: rgb(148 182 232 / 0.12); }
+.list-card__chip--code { background: rgb(180 83 9 / 0.08); color: var(--color-amber-warm, #b45309); }
+:global(.dark) .list-card__chip--code { background: rgb(180 83 9 / 0.16); color: #fbbf24; }
+.list-card__rates {
+  margin: 0.375rem 0 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.125rem 0.625rem;
+  font-size: 0.8125rem;
+}
+.list-card__rates dt { color: #78716c; text-transform: capitalize; }
+:global(.dark) .list-card__rates dt { color: #a8a29e; }
+.list-card__rates dd { margin: 0; color: #1c1917; font-weight: 600; font-family: ui-monospace, monospace; }
+:global(.dark) .list-card__rates dd { color: #fafaf9; }
+.list-card__name { font-weight: 600; color: var(--color-blue-accent); }
+.list-card__name a { color: inherit; text-decoration: none; }
+.list-card__name a:hover { text-decoration: underline; }
+.list-card__meta { font-size: 0.8125rem; color: #78716c; margin: 0.25rem 0 0; }
+:global(.dark) .list-card__meta { color: #a8a29e; }
+.list-card__meta--soft { font-style: italic; }
+.list-card__meta a { color: inherit; text-decoration: underline; }
+.list-card__notes { font-size: 0.875rem; color: #57534e; margin: 0.25rem 0 0; }
+:global(.dark) .list-card__notes { color: #d6d3d1; }
+
+/* PRACTICAL */
+.practical {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: 0.625rem;
+}
+.practical__entry {
+  background: #fafaf9;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+}
+:global(.dark) .practical__entry { background: #292524; }
+.practical__label {
+  font-size: 0.6875rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #78716c;
+  margin: 0 0 0.375rem;
+}
+:global(.dark) .practical__label { color: #a8a29e; }
+.practical__scalar { margin: 0; color: #57534e; font-size: 0.875rem; word-break: break-word; }
+:global(.dark) .practical__scalar { color: #d6d3d1; }
+.practical__scalar a { color: var(--color-blue-accent); }
+.practical__dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.625rem; }
+.practical__dt { font-size: 0.75rem; color: #78716c; font-weight: 500; }
+:global(.dark) .practical__dt { color: #a8a29e; }
+.practical__dd { margin: 0; font-size: 0.875rem; color: #57534e; word-break: break-word; }
+:global(.dark) .practical__dd { color: #d6d3d1; }
+.practical__dd a { color: var(--color-blue-accent); }
+.practical__list { margin: 0; padding-left: 1.125rem; }
+.practical__list--top { font-size: 0.875rem; color: #57534e; }
+:global(.dark) .practical__list--top { color: #d6d3d1; }
+
+/* DEADLINES */
+.deadlines { list-style: none; margin: 0; padding: 0; }
+.deadlines__item {
+  display: grid; grid-template-columns: 12rem 1fr;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px dashed #e7e5e4;
+}
+:global(.dark) .deadlines__item { border-bottom-color: #292524; }
+.deadlines__item:last-child { border-bottom: 0; }
+.deadlines__date {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-brand);
+  letter-spacing: -0.01em;
+}
+.deadlines__label { font-weight: 600; margin: 0; color: #1c1917; }
+:global(.dark) .deadlines__label { color: #fafaf9; }
+.deadlines__desc { font-size: 0.875rem; color: #57534e; margin: 0.125rem 0 0; }
+:global(.dark) .deadlines__desc { color: #d6d3d1; }
+
+/* SESSIONS */
+.sessions { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.625rem; }
+.sessions__item {
+  background: #fafaf9;
+  padding: 0.875rem 1rem;
+  border-radius: 0.375rem;
+  border-left: 3px solid #d6d3d1;
+}
+:global(.dark) .sessions__item { background: #292524; border-left-color: #57534e; }
+.sessions__meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.375rem; gap: 0.625rem; }
+.sessions__type {
+  font-size: 0.6875rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #57534e;
+}
+:global(.dark) .sessions__type { color: #a8a29e; }
+.sessions__link { font-size: 0.8125rem; color: var(--color-blue-accent); text-decoration: none; }
+.sessions__link:hover { text-decoration: underline; }
+.sessions__link--plain { color: #a8a29e; }
+.sessions__date { margin: 0; font-weight: 600; color: #1c1917; font-size: 0.9375rem; }
+:global(.dark) .sessions__date { color: #fafaf9; }
+.sessions__loc { margin: 0.125rem 0 0; font-size: 0.875rem; color: #57534e; }
+:global(.dark) .sessions__loc { color: #d6d3d1; }
+.sessions__virtual { margin: 0.125rem 0 0; font-size: 0.8125rem; color: #78716c; }
+:global(.dark) .sessions__virtual { color: #a8a29e; }
+
+/* RESOLUTIONS */
+.res-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.res-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem 1rem;
+  padding: 0.875rem 1rem;
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+:global(.dark) .res-card { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+.res-card:hover {
+  border-color: var(--color-brand);
+  box-shadow: 0 4px 12px rgb(185 28 28 / 0.08);
+  transform: translateY(-1px);
+}
+:global(.dark) .res-card:hover { box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
+.res-card__head { display: flex; align-items: baseline; gap: 0.5rem; }
+.res-card__id { font-family: ui-monospace, monospace; font-size: 0.8125rem; font-weight: 700; color: var(--color-brand); }
+.res-card__kind {
+  font-size: 0.6875rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: #78716c;
+}
+:global(.dark) .res-card__kind { color: #a8a29e; }
+.res-card__kind--acclamation {
+  background: #6366f1; color: #fff;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+.res-card__title {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #1c1917;
+  line-height: 1.4;
+}
+:global(.dark) .res-card__title { color: #fafaf9; }
+.res-card:hover .res-card__title { color: var(--color-brand); }
+.res-card__snippet {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 0.875rem;
+  color: #57534e;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+:global(.dark) .res-card__snippet { color: #d6d3d1; }
+.res-card__subject {
+  font-size: 0.6875rem; font-weight: 600;
+  color: #78716c;
+  background: #f5f5f4;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 18rem;
+}
+:global(.dark) .res-card__subject { background: #292524; color: #d6d3d1; }
+.res-card__arrow {
+  font-size: 1.125rem;
+  color: #d6d3d1;
+  align-self: center;
+  transition: transform 0.15s, color 0.15s;
+}
+.res-card:hover .res-card__arrow { color: var(--color-brand); transform: translateX(2px); }
+
+@media (max-width: 640px) {
+  .md-hero__stats { grid-template-columns: 1fr 1fr; }
+  .schedule__item { grid-template-columns: 1fr; gap: 0.25rem; }
+  .deadlines__item { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+</style>
+<style scoped>
+.ad {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.ad__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.ad__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(34rem, 92vw);
+  background: #ffffff;
+  box-shadow: -8px 0 32px rgb(0 0 0 / 0.18);
+  display: flex;
+  flex-direction: column;
+}
+:global(.dark) .ad__panel {
+  background: #1c1917;
+  box-shadow: -8px 0 32px rgb(0 0 0 / 0.5);
+}
+
+.ad__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid #e7e5e4;
+  flex-shrink: 0;
+}
+:global(.dark) .ad__header { border-bottom-color: #292524; }
+
+.ad__title-block { min-width: 0; }
+
+.ad__eyebrow {
+  margin: 0 0 0.25rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-iso-red, #b91c1c);
+}
+.ad__date {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1c1917;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+:global(.dark) .ad__date { color: #fafaf9; }
+.ad__draft {
+  margin: 0.25rem 0 0;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #78716c;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+:global(.dark) .ad__draft { color: #a8a29e; }
+
+.ad__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: #78716c;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+.ad__close:hover {
+  background: #f5f5f4;
+  color: #1c1917;
+}
+:global(.dark) .ad__close { color: #a8a29e; }
+:global(.dark) .ad__close:hover {
+  background: #292524;
+  color: #fafaf9;
+}
+
+.ad__note {
+  margin: 0;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #57534e;
+  background: #fafaf9;
+  border-bottom: 1px solid #e7e5e4;
+  flex-shrink: 0;
+}
+:global(.dark) .ad__note {
+  color: #d6d3d1;
+  background: #292524;
+  border-bottom-color: #44403c;
+}
+
+.ad__body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.ad__table-wrap {
+  border-top: 1px solid #e7e5e4;
+  border-bottom: 1px solid #e7e5e4;
+}
+:global(.dark) .ad__table-wrap {
+  border-top-color: #44403c;
+  border-bottom-color: #44403c;
+}
+
+.ad__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ad__th {
+  padding: 0.5rem 0.625rem;
+  text-align: left;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #78716c;
+  border-bottom: 1px solid #d6d3d1;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+:global(.dark) .ad__th {
+  color: #a8a29e;
+  border-bottom-color: #57534e;
+}
+.ad__th--seq { width: 3rem; text-align: right; padding-right: 0.75rem; }
+.ad__th--title { width: auto; }
+.ad__th--resp { width: 7.5rem; }
+.ad__th--ref { width: 5.5rem; }
+
+.ad__td {
+  padding: 0.5625rem 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  vertical-align: top;
+  border-bottom: 1px solid #e7e5e4;
+}
+:global(.dark) .ad__td { border-bottom-color: #292524; }
+tr:last-child .ad__td { border-bottom: 0; }
+
+.ad__td--seq {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-iso-red, #b91c1c);
+  text-align: right;
+  padding-right: 0.75rem;
+  white-space: nowrap;
+  font-feature-settings: 'lnum', 'tnum';
+}
+.ad__td--title {
+  color: #1c1917;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+:global(.dark) .ad__td--title { color: #fafaf9; }
+.ad__td--resp {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: #57534e;
+}
+:global(.dark) .ad__td--resp { color: #d6d3d1; }
+.ad__td--ref {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-blue-accent, #1e3a8a);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+:global(.dark) .ad__td--ref { color: var(--color-brand-soft, #94b6e8); }
+
+.ad__tr--sub .ad__td--seq {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #78716c;
+}
+:global(.dark) .ad__tr--sub .ad__td--seq { color: #a8a29e; }
+.ad__tr--sub .ad__td--title {
+  color: #44403c;
+  font-weight: 400;
+}
+:global(.dark) .ad__tr--sub .ad__td--title { color: #d6d3d1; }
+
+.ad__footer {
+  flex-shrink: 0;
+  padding: 0.625rem 1.5rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.6875rem;
+  color: #a8a29e;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-top: 1px solid #e7e5e4;
+}
+:global(.dark) .ad__footer {
+  color: #78716c;
+  border-top-color: #292524;
+}
+
+.ad-enter-active,
+.ad-leave-active {
+  transition: opacity 200ms ease;
+}
+.ad-enter-active .ad__panel,
+.ad-leave-active .ad__panel {
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ad-enter-from,
+.ad-leave-to {
+  opacity: 0;
+}
+.ad-enter-from .ad__panel,
+.ad-leave-to .ad__panel {
+  transform: translateX(100%);
+}
+
+@media (max-width: 720px) {
+  .ad__th, .ad__td { padding-left: 0.375rem; padding-right: 0.375rem; }
+  .ad__th--seq, .ad__td--seq { width: 2.5rem; padding-right: 0.5rem; }
+  .ad__th--resp, .ad__td--resp { width: 5.5rem; }
+  .ad__th--ref, .ad__td--ref { width: 4rem; }
+  .ad__td { font-size: 0.75rem; }
+  .ad__td--resp { font-size: 0.6875rem; }
+  .ad__td--ref { font-size: 0.625rem; }
+  .ad__td--seq { font-size: 0.8125rem; }
+  .ad__header { padding: 1rem 1.125rem 0.875rem; }
+  .ad__date { font-size: 1.0625rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ad-enter-active,
+  .ad-leave-active,
+  .ad-enter-active .ad__panel,
+  .ad-leave-active .ad__panel {
+    transition: none;
+  }
+}
+</style>
+<style scoped>
+.pnn {
+  display: block;
+  margin-top: 2.5rem;
+  font-family: var(--font-sans);
+}
+
+.pnn__rail {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.75rem;
+}
+.pnn__rail-rule {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--color-brand);
+  flex-shrink: 0;
+}
+.pnn__rail-label {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-brand);
+}
+
+.pnn__grid {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: stretch;
+  border-top: 1px solid #e7e5e4;
+  border-bottom: 1px solid #e7e5e4;
+}
+:global(.dark) .pnn__grid {
+  border-color: #44403c;
+}
+
+.pnn__divider {
+  display: block;
+  background: #e7e5e4;
+}
+:global(.dark) .pnn__divider {
+  background: #44403c;
+}
+
+.pnn__cell {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 0.875rem;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: background 220ms ease;
+}
+.pnn__cell--prev {
+  padding-right: 0.875rem;
+  text-align: left;
+}
+.pnn__cell--next {
+  padding-left: 0.875rem;
+  text-align: right;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+.pnn__cell--muted {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+a.pnn__cell:hover {
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.06), transparent);
+}
+a.pnn__cell--next:hover {
+  background: linear-gradient(270deg, rgba(251, 191, 36, 0.06), transparent);
+}
+
+.pnn__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  color: #57534e;
+  transition: color 220ms ease, transform 220ms ease;
+}
+:global(.dark) .pnn__arrow { color: #a8a29e; }
+.pnn__arrow svg { width: 100%; height: 100%; }
+
+.pnn__arrow--silent {
+  color: #a8a29e;
+}
+:global(.dark) .pnn__arrow--silent { color: #57534e; }
+
+a.pnn__cell:hover .pnn__arrow {
+  color: var(--color-brand);
+}
+a.pnn__cell--prev:hover .pnn__arrow--prev {
+  transform: translateX(-3px);
+}
+a.pnn__cell--next:hover .pnn__arrow--next {
+  transform: translateX(3px);
+}
+
+.pnn__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+.pnn__cell--next .pnn__body {
+  align-items: flex-end;
+}
+
+.pnn__hint {
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-brand);
+  opacity: 0.7;
+  transition: opacity 220ms ease;
+}
+.pnn__hint--silent {
+  color: #a8a29e;
+  opacity: 1;
+}
+:global(.dark) .pnn__hint--silent { color: #78716c; }
+
+a.pnn__cell:hover .pnn__hint {
+  opacity: 1;
+}
+
+.pnn__numeral {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #1c1917;
+  font-style: italic;
+  transition: color 220ms ease;
+  margin: 0.0625rem 0;
+}
+:global(.dark) .pnn__numeral { color: #fafaf9; }
+a.pnn__cell:hover .pnn__numeral {
+  color: var(--color-brand);
+}
+
+.pnn__label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #292524;
+  line-height: 1.3;
+  transition: color 220ms ease;
+}
+:global(.dark) .pnn__label { color: #e7e5e4; }
+a.pnn__cell:hover .pnn__label {
+  color: var(--color-brand);
+}
+
+.pnn__caption {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-style: italic;
+  color: #78716c;
+  line-height: 1.4;
+}
+:global(.dark) .pnn__caption { color: #a8a29e; }
+
+/* Stack variant: tighter, single column on narrow screens is handled by media query */
+.pnn--stack .pnn__grid {
+  grid-template-columns: 1fr 1px 1fr;
+}
+
+@media (max-width: 640px) {
+  .pnn__grid {
+    grid-template-columns: 1fr;
+    border-top: 1px solid #e7e5e4;
+  }
+  .pnn__divider {
+    display: none;
+  }
+  .pnn__cell {
+    padding: 0.625rem 0;
+    border-bottom: 1px solid #e7e5e4;
+  }
+  :global(.dark) .pnn__cell {
+    border-bottom-color: #44403c;
+  }
+  .pnn__cell--next {
+    padding-left: 0;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .pnn__cell--next .pnn__body {
+    align-items: flex-start;
+  }
+  .pnn__cell--muted:last-child {
+    border-bottom: none;
+  }
+  .pnn__numeral {
+    font-size: 1.375rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pnn__cell,
+  .pnn__arrow,
+  .pnn__hint,
+  .pnn__numeral,
+  .pnn__label {
+    transition: none;
+  }
+}
+</style>
