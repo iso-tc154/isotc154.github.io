@@ -2,43 +2,16 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
 import OrgLogo from '../../components/OrgLogo.astro'
-import { loadData } from '../../lib/data'
-
-interface NationalBodyDoc {
-  id: string
-  name: string
-  short_name?: string
-  description?: string
-  country?: string
-  iso_country_code?: string
-  membership?: string
-  url?: string
-  logo?: string
-  logo_light?: string
-  logo_dark?: string
-  former?: boolean
-  former_until?: string | number
-}
+import { loadData, type NationalBody } from '../../lib/data'
+import { flagEmoji, membershipLabel } from '../../lib/presentation'
 
 export function getStaticPaths() {
-  return (loadData.nationalBodies() as unknown as NationalBodyDoc[]).map((n) => ({
+  return loadData.nationalBodies().map((n) => ({
     params: { id: n.id },
     props: { nb: n },
   }))
 }
-const { nb } = Astro.props as { nb: NationalBodyDoc }
-
-function flagEmoji(countryCode?: string): string {
-  if (!countryCode || countryCode.length !== 2) return ''
-  const codePoints = countryCode.toUpperCase().split('').map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)
-  return String.fromCodePoint(...codePoints)
-}
-
-function membershipLabel(m?: string): { short: string; long: string } {
-  if (m === 'P') return { short: 'P', long: 'Participating member' }
-  if (m === 'O') return { short: 'O', long: 'Observer member' }
-  return { short: m || '', long: m || '' }
-}
+const { nb } = Astro.props as { nb: NationalBody }
 
 const eyebrow = `${flagEmoji(nb.iso_country_code)} ${nb.country ?? ''} · ${nb.former ? 'Former member' : membershipLabel(nb.membership).long}`
 ---

@@ -5,270 +5,45 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
 import OrgLogo from '../../components/OrgLogo.astro'
 import ScheduleCalendar from '../../components/ScheduleCalendar.astro'
-import { loadData } from '../../lib/data'
+import { loadData, type Meeting, type MeetingHost } from '../../lib/data'
+import {
+  practicalLabel, touristItems,
+  isSection, isStringList, isUrl, isEmail, practicalEntries, sectionEntries, rateLabel,
+  sessionLabel, sessionLocation, sessionVirtual,
+  associateRoleLabel, venueMapUrl, venueEmbedSrc, agendaDrawers,
+} from '../../lib/meeting'
+import { ordinalText, flagEmoji, formatDateCompact, formatDateLong } from '../../lib/presentation'
 import { committee } from '../../data/committee'
 
-interface Session {
-  type?: string
-  country?: string
-  city?: string
-  virtual_address?: string
-  iso_meeting_id?: string | number
-  iso_meeting_url?: string
-  start_date?: string
-  end_date?: string
-}
-interface Host {
-  name: string
-  short_name?: string
-  kind?: string
-  url?: string
-  path?: string
-  logo?: string
-  logo_light?: string
-  logo_dark?: string
-  country?: string
-  contact?: { name?: string; title?: string }
-}
-interface Associate extends Host { role?: string }
-interface Rich {
-  general_area?: string
-  country_code?: string
-  registration_url?: string
-  host?: string
-  hosts?: Host[]
-  associates?: Associate[]
-  venues?: { name?: string; address?: string; note?: string; link?: string; lat?: number; lon?: number }[]
-  secretariat?: { name?: string; organization?: string; email?: string; phone?: string }
-  schedule?: { date?: string; time?: string; event?: string; description?: string }[]
-  deadlines?: { date?: string; label?: string; description?: string }[]
-  accommodation_options?: { name: string; address?: string; link?: string; email?: string; distance?: string; code?: string; rates?: Record<string, string>; price?: string; breakfast?: string; notes?: string }[]
-  practical_info?: Record<string, unknown>
-  lunch_recommendations?: { name: string; address?: string; link?: string; url?: string; notes?: string }[]
-  biergartens?: { name: string; address?: string; link?: string; url?: string; walk_minutes?: number; style?: string; notes?: string }[]
-  tourist_info?: unknown
-  agenda?: {
-    source_doc?: string
-    structure?: string
-    opening_session?: AgendaSession
-    closing_session?: AgendaSession
-    wg_meetings?: { dates?: string; note?: string }
-  }
-}
-interface AgendaItem { number?: number; title: string; speaker?: string; n_doc?: string; subitems?: AgendaItem[] }
-interface AgendaSession { date?: string; note?: string; items?: AgendaItem[] }
-
-interface MeetingDoc {
-  ordinal: number
-  year?: number
-  url: string
-  sessions: Session[]
-  primary: Session & {
-    country?: string
-    city?: string
-    reschedule_note?: string
-    reschedule_timeframe?: string
-    cancellation_comment?: string
-    iso_meeting_url?: string
-  }
-  status_label?: string
-  type_label?: string
-  location_label?: string
-  date_label?: string
-  participant_total?: number
-  resolution_count?: number
-  rich?: Rich
-}
-
 export function getStaticPaths() {
-  const allMeetings = loadData.meetings() as unknown as MeetingDoc[]
-  return allMeetings.map((m) => ({ params: { id: String(m.ordinal) }, props: { ordinal: m.ordinal } }))
+  return loadData.meetings().map((m) => ({ params: { id: String(m.ordinal) }, props: { ordinal: m.ordinal } }))
 }
 
-const allMeetings = loadData.meetings() as unknown as MeetingDoc[]
+const allMeetings = loadData.meetings()
 
 const { ordinal } = Astro.props as { ordinal: number }
-const meeting = allMeetings.find((m) => m.ordinal === ordinal) as MeetingDoc | undefined
+const meeting = allMeetings.find((m) => m.ordinal === ordinal)
 if (!meeting) throw new Error(`Meeting ${ordinal} not found`)
 
 const rich = meeting.rich
 const upcoming = meeting.status_label !== 'Concluded' && meeting.status_label !== 'Cancelled'
 
-function ordinalSuffix(n: number): string {
-  if (n >= 11 && n <= 13) return 'th'
-  switch (n % 10) {
-    case 1: return 'st'
-    case 2: return 'nd'
-    case 3: return 'rd'
-    default: return 'th'
-  }
-}
-const ordinalText = (n: number) => `${n}${ordinalSuffix(n)}`
+const venueFlag = flagEmoji(rich?.country_code)
 
-function countryCodeToFlag(code?: string | null): string {
-  if (!code) return ''
-  const trimmed = code.trim().toUpperCase()
-  if (!/^[A-Z]{2}$/.test(trimmed)) return ''
-  return trimmed.replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)))
-}
-const venueFlag = countryCodeToFlag(rich?.country_code)
-
-function venueMapUrl(): string | null {
-  const v = rich?.venues?.[0]
-  if (!v || v.lat == null || v.lon == null) return null
-  return `https://www.openstreetmap.org/?mlat=${v.lat}&mlon=${v.lon}#map=16/${v.lat}/${v.lon}`
-}
-function venueEmbedSrc(v: { lat?: number; lon?: number } | undefined): string | null {
-  if (!v || v.lat == null || v.lon == null) return null
-  const d = 0.008
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${(v.lon - d).toFixed(6)}%2C${(v.lat - d).toFixed(6)}%2C${(v.lon + d).toFixed(6)}%2C${(v.lat + d).toFixed(6)}&layer=mapnik&marker=${v.lat}%2C${v.lon}`
-}
-
-const resolvedHosts: Host[] = Array.isArray(rich?.hosts) && rich.hosts.length
+const resolvedHosts: MeetingHost[] = Array.isArray(rich?.hosts) && rich.hosts.length
   ? rich.hosts
   : rich?.host
     ? [{ name: rich.host, kind: 'unknown' }]
     : []
 const resolvedAssociates = rich?.associates ?? []
 
-function rateLabel(key: string): string {
-  return key.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
-}
-
-const LABEL_OVERRIDES: Record<string, string> = {
-  eu_schengen: 'EU Schengen',
-  info_url: 'Information URL',
-  invitation_contact: 'Invitation Contact',
-  invitation_email: 'Invitation email',
-  required_info: 'Required information',
-  badge_required: 'Badge required',
-  badge_info: 'Badge',
-  wifi: 'Wi-Fi',
-  smoking: 'Smoking',
-  electrical: 'Electrical',
-  url: 'URL',
-  museums_url: 'Museums URL',
-  ifa_note: 'IFA note',
-  ifa_url: 'IFA URL',
-}
-function practicalLabel(key: string): string {
-  if (LABEL_OVERRIDES[key]) return LABEL_OVERRIDES[key]
-  return key.replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
-}
-type PV = string | string[] | Record<string, unknown> | boolean
-const isSection = (v: PV): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v)
-const isStringList = (v: PV): v is string[] => Array.isArray(v)
-const isUrl = (v: unknown): v is string => typeof v === 'string' && /^https?:\/\//.test(v)
-const isEmail = (v: unknown): v is string => typeof v === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
-function practicalEntries(info: Record<string, unknown> | undefined): [string, PV][] {
-  if (!info) return []
-  return Object.entries(info).filter(([, v]) => v != null && v !== '' && !(Array.isArray(v) && v.length === 0)) as [string, PV][]
-}
-function sectionEntries(section: Record<string, unknown>): [string, PV][] {
-  return Object.entries(section).filter(([, v]) => v != null && v !== '' && !(Array.isArray(v) && v.length === 0) && !(typeof v === 'boolean' && v === false)) as [string, PV][]
-}
-function touristInfoAsSection(value: unknown): Record<string, unknown> {
-  if (Array.isArray(value)) {
-    const section: Record<string, unknown> = {}
-    value.forEach((item: { name?: string; link?: string; notes?: string }, i: number) => {
-      section[item.name ?? `Item ${i + 1}`] = { link: item.link, notes: item.notes }
-    })
-    return section
-  }
-  return (value ?? {}) as Record<string, unknown>
-}
-
-function formatDateCompact(dateStr: string): string {
-  const s = String(dateStr)
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  if (!m) return s
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  const monthIdx = parseInt(m[2], 10) - 1
-  return `${parseInt(m[3], 10)} ${months[monthIdx]} ${m[1]}`
-}
-function formatDateLong(value: unknown): string {
-  if (!value) return ''
-  const iso = String(value)
-  const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  if (!m) return iso
-  const d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]))
-  return d.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
-}
-function formatSessionDate(raw: string): string {
-  const m = raw.match(/^(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})(?:\s+(\d{1,2}:\d{2})(?:\s+([A-Z]+))?)?$/)
-  if (!m) return raw
-  return `${m[1]} ${m[2]} ${m[3]}${m[4] ? ` ${m[4]}` : ''}${m[5] && m[5] !== 'UTC' ? ` ${m[5]}` : ''}`
-}
-function sessionLabel(s: Session): string {
-  const parts: string[] = []
-  if (s.start_date) parts.push(formatSessionDate(s.start_date))
-  if (s.end_date && s.end_date !== s.start_date) parts.push(formatSessionDate(s.end_date))
-  return parts.join(' – ')
-}
-function sessionLocation(s: Session): string {
-  const parts: string[] = []
-  if (s.city) parts.push(s.city.replace(/[,;]\s*$/, ''))
-  if (s.country && s.country !== s.city) parts.push(s.country)
-  return parts.join(' · ')
-}
-function sessionVirtual(s: Session): string | null {
-  if (!s.virtual_address) return null
-  const v = s.virtual_address.toLowerCase()
-  if (v === 'zoom' || v === 'teams' || v === 'online') return null
-  return s.virtual_address
-}
-const ASSOC_ROLE_LABELS: Record<string, string> = {
-  'co-organizer': 'Co-organizer',
-  'cohost': 'Co-host',
-  'co-host': 'Co-host',
-}
-function associateRoleLabel(role?: string): string {
-  if (!role) return ''
-  return ASSOC_ROLE_LABELS[role.toLowerCase()] || role.replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
-}
-
-// ── Agenda flattening (port of src-legacy/src/domain/agenda.ts) ──
-interface FlatRow { seq: string; title: string; responsible: string; ref: string; depth: number }
-function parseLeadingSeq(title: string): { seq: string; title: string } {
-  const m = title.match(/^(\d+(?:\.\d+)*)\s+(.+)$/)
-  return m ? { seq: m[1], title: m[2] } : { seq: '', title }
-}
-const cleanResponsible = (s?: string) => (s ? s.replace(/_/g, ' ') : '')
-function flattenAgenda(items: AgendaItem[] | undefined, depth = 0): FlatRow[] {
-  const out: FlatRow[] = []
-  if (!items) return out
-  for (const item of items) {
-    const parsed = parseLeadingSeq(item.title)
-    const seq = item.number != null ? String(item.number) : parsed.seq
-    const title = item.number != null ? item.title : parsed.title
-    out.push({ seq, title, responsible: cleanResponsible(item.speaker), ref: item.n_doc ?? '', depth })
-    if (item.subitems?.length) out.push(...flattenAgenda(item.subitems, depth + 1))
-  }
-  return out
-}
-function normalizeAgendaDate(raw: unknown): string {
-  if (!raw) return ''
-  const s = String(raw)
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  return m ? `${m[1]}-${m[2]}-${m[3]}` : s
-}
-
-const agendaSessions: { key: string; label: string; date: string; note?: string; rows: FlatRow[] }[] = []
-if (rich?.agenda?.opening_session) {
-  const s = rich.agenda.opening_session
-  agendaSessions.push({ key: 'opening', label: 'Opening session', date: normalizeAgendaDate(s.date), note: s.note, rows: flattenAgenda(s.items) })
-}
-if (rich?.agenda?.closing_session) {
-  const s = rich.agenda.closing_session
-  agendaSessions.push({ key: 'closing', label: 'Closing session', date: normalizeAgendaDate(s.date), note: s.note, rows: flattenAgenda(s.items) })
-}
+const agendaSessions = agendaDrawers(rich?.agenda)
 const agendaClickableDates = agendaSessions.map((s) => s.date).filter(Boolean)
 const agendaSourceDoc = rich?.agenda?.source_doc ?? ''
 const agendaDraftDate = (() => {
   const m = (agendaSourceDoc.match(/\d{4}-\d{2}-\d{2}/) || [])[0]
   return m ?? null
 })()
-
 // ── Resolutions: read the staged edoxen YAML for this plenary ──
 interface ResCard { id: string; urn: string; title: string; subject: string; kind: string; isAcclamation: boolean }
 let meetingResolutions: ResCard[] = []
@@ -295,18 +70,18 @@ try {
     }))
   }
 } catch { /* resolutions are optional */ }
-
 // ── Prev/next by ordinal ──
-const sorted = [...allMeetings].sort((a, b) => a.ordinal - b.ordinal)
+const sorted = [...allMeetings].sort((a, b) => (a.ordinal ?? 0) - (b.ordinal ?? 0))
 const idx = sorted.findIndex((m) => m.ordinal === ordinal)
 const prevMeeting = idx > 0 ? sorted[idx - 1] : null
 const nextMeeting = idx >= 0 && idx < sorted.length - 1 ? sorted[idx + 1] : null
-function navCaption(m: MeetingDoc): string {
+function navCaption(m: Meeting): string {
   return [m.rich?.general_area || m.location_label || '', m.year ? String(m.year) : ''].filter(Boolean).join(' · ')
 }
 
 const registrationUrl = rich?.registration_url ?? null
-const mapUrl = venueMapUrl()
+const mapUrl = venueMapUrl(rich?.venues?.[0])
+
 ---
 
 <BaseLayout title={`${ordinalText(ordinal)} Plenary Meeting — ISO/TC 154`} description={rich?.general_area || meeting.location_label || `The ${ordinalText(ordinal)} plenary meeting of ISO/TC 154.`}>
@@ -713,20 +488,18 @@ const mapUrl = venueMapUrl()
         </section>
       ) : null}
 
-      {rich?.tourist_info && practicalEntries(touristInfoAsSection(rich.tourist_info)).length > 0 && (
+      {touristItems(rich?.tourist_info).length > 0 && (
         <section class="block">
           <h2 class="block__title">Things to see</h2>
           <div class="practical">
-            {practicalEntries(touristInfoAsSection(rich.tourist_info)).map(([key, value]) => (
-              <div class="practical__entry">
-                <p class="practical__label">{key}</p>
-                <p class="practical__scalar">
-                  {typeof value === 'string' && isUrl(value) ? (
-                    <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>
-                  ) : (
-                    <span>{String(value)}</span>
-                  )}
-                </p>
+            {touristItems(rich.tourist_info).map((t) => (
+              <div class="practical__entry tourist__entry">
+                {t.link ? (
+                  <a href={t.link} target="_blank" rel="noopener noreferrer" class="tourist__name">{t.name} <span aria-hidden="true">↗</span></a>
+                ) : (
+                  <p class="tourist__name tourist__name--plain">{t.name}</p>
+                )}
+                {t.notes && <p class="tourist__notes">{t.notes}</p>}
               </div>
             ))}
           </div>
@@ -1551,6 +1324,12 @@ const mapUrl = venueMapUrl()
 .practical__scalar { margin: 0; color: #57534e; font-size: 0.875rem; word-break: break-word; }
 :global(.dark) .practical__scalar { color: #d6d3d1; }
 .practical__scalar a { color: var(--color-blue-accent); }
+.tourist__name { margin: 0; font-size: 0.9375rem; font-weight: 600; color: var(--color-blue-accent); text-decoration: none; }
+.tourist__name:hover { text-decoration: underline; }
+.tourist__name--plain { color: #1c1917; }
+:global(.dark) .tourist__name--plain { color: #fafaf9; }
+.tourist__notes { margin: 0.375rem 0 0; font-size: 0.8125rem; line-height: 1.5; color: #78716c; }
+:global(.dark) .tourist__notes { color: #a8a29e; }
 .practical__dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.625rem; }
 .practical__dt { font-size: 0.75rem; color: #78716c; font-weight: 500; }
 :global(.dark) .practical__dt { color: #a8a29e; }

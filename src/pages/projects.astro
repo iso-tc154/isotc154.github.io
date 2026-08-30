@@ -1,19 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
-import { loadData } from '../lib/data'
+import { loadData, type Project } from '../lib/data'
 import { projectStatusLabel } from '../lib/presentation'
 
-interface Project {
-  id: string
-  name: string
-  title?: string
-  status?: string
-  stage?: string
-  url?: string
-}
-
-const projects = loadData.projects() as unknown as Project[]
+const projects = loadData.projects()
 const sorted = [...projects].sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }))
 
 const statuses = Array.from(new Set(projects.filter((p) => p.status).map((p) => p.status!))).sort()

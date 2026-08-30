@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
+import { formatDate } from '../../lib/presentation'
 import { loadData, type Post } from '../../lib/data'
 
 export function getStaticPaths() {
@@ -11,15 +12,6 @@ const { post } = Astro.props as { post: Post }
 const title = post.frontmatter.title
   || post.slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 
-function formatDate(dateStr: string): string {
-  if (!dateStr) return ''
-  try {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
-  } catch {
-    return dateStr
-  }
-}
 ---
 <BaseLayout title={`${title} — ISO/TC 154`} description={post.frontmatter.excerpt || title}>
   <div>

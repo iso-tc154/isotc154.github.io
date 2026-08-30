@@ -1,41 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
-import { loadData } from '../lib/data'
+import { loadData, type Group } from '../lib/data'
+import { groupCategoryLabel } from '../lib/presentation'
 
-interface GroupRef { name?: string }
-interface Group {
-  id: string
-  name?: string
-  title?: string
-  category?: string
-  order?: number
-  intro?: string
-  standards?: string[]
-  members?: unknown[]
-  convenors?: string[]
-  predecessor?: GroupRef
-  successor?: GroupRef
-  inactive?: boolean
-  history?: { established?: { date?: string }; dissolved?: { date?: string } | boolean }
-  url?: string
-}
+const groups = loadData.groups()
 
-const groups = loadData.groups() as Group[]
-
-function groupCategoryLabel(category?: string): string {
-  if (!category) return ''
-  switch (category) {
-    case 'working': return 'Working Group'
-    case 'advisory': return 'Advisory Group'
-    case 'cag': return "Chairman's Advisory Group"
-    case 'joint': return 'Joint Working Group'
-    case 'ahwg': return 'Ad Hoc Working Group'
-    case 'sg': return 'Study Group'
-    case 'rtc': return 'Resolution Drafting Group'
-    default: return category.charAt(0).toUpperCase() + category.slice(1)
-  }
-}
 type Lifecycle = 'active' | 'inactive' | 'dissolved'
 function lifecycleStatus(g: Group): Lifecycle {
   if (g.history?.dissolved) return 'dissolved'

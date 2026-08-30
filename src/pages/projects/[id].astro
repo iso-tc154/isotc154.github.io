@@ -1,55 +1,25 @@
 ---
-import Asciidoctor from '@asciidoctor/core'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
-import { loadData, type Group } from '../../lib/data'
+import { loadData, type Project } from '../../lib/data'
 import { committee } from '../../data/committee'
-import { projectStatusLabel } from '../../lib/presentation'
-
-const asciidoctor = Asciidoctor()
-
-function renderProse(text?: string | null): string {
-  if (!text) return ''
-  return String(asciidoctor.convert(text, {
-    standalone: false,
-    safe: 'safe',
-    attributes: { showtitle: false },
-  }))
-}
-
-interface ProjectDoc {
-  id: string
-  name: string
-  title?: string
-  status?: string
-  stage?: string
-  scope?: string
-  leaders?: string[]
-  editors?: string[]
-}
-
-interface MemberDoc {
-  'member-id'?: string
-  name: string
-  affiliation?: string
-  picture?: string
-  deceased?: boolean
-}
+import { projectStatusLabel, initials } from '../../lib/presentation'
+import { renderProse } from '../../lib/prose'
 
 export function getStaticPaths() {
-  return (loadData.projects() as unknown as ProjectDoc[]).map((p) => ({
+  return loadData.projects().map((p) => ({
     params: { id: p.id },
     props: { project: p },
   }))
 }
 
-const { project } = Astro.props as { project: ProjectDoc }
+const { project } = Astro.props as { project: Project }
 const groups = loadData.groups()
-const membersIndex = loadData.members().all as Record<string, MemberDoc>
+const membersIndex = loadData.members().all
 
 
 const scopeHtml = renderProse(project.scope)
-const owningGroups = (groups as Group[]).filter((g) => (g.active_projects ?? []).includes(project.id))
+const owningGroups = groups.filter((g) => (g.active_projects ?? []).includes(project.id))
 
 interface ResolvedPerson {
   id: string
@@ -70,11 +40,6 @@ function resolvePeople(ids?: string[]): ResolvedPerson[] {
 const leaders = resolvePeople(project.leaders)
 const editors = resolvePeople(project.editors)
 
-function initials(name: string): string {
-  const parts = name.trim().split(/\s+/)
-  if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
-  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
-}
 ---
 <BaseLayout title={`${project.name} — ISO/TC 154`} description={project.title || project.name}>
   <article class="detail">

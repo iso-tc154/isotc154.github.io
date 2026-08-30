@@ -2,35 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
 import OrgLogo from '../../components/OrgLogo.astro'
-import { loadData } from '../../lib/data'
-
-interface LiaisonDoc {
-  id: string
-  name: string
-  short_name?: string
-  description?: string
-  category?: string
-  url?: string
-  logo?: string
-  logo_light?: string
-  logo_dark?: string
-}
+import { loadData, type Liaison } from '../../lib/data'
+import { liaisonCategoryLabel } from '../../lib/presentation'
 
 export function getStaticPaths() {
-  return (loadData.liaisons() as unknown as LiaisonDoc[]).map((l) => ({
+  return loadData.liaisons().map((l) => ({
     params: { id: l.id },
     props: { liaison: l },
   }))
 }
-const { liaison } = Astro.props as { liaison: LiaisonDoc }
+const { liaison } = Astro.props as { liaison: Liaison }
 
-function categoryLabel(cat?: string): string {
-  if (cat === 'A') return 'Category A — Active cooperation'
-  if (cat === 'B') return 'Category B — Kept informed'
-  if (cat === 'C') return 'Category C'
-  if (cat === 'D') return 'Category D'
-  return cat ?? ''
-}
+const categoryLabel = (cat?: string) => liaisonCategoryLabel(cat, 'long')
 ---
 <BaseLayout title={`${liaison.short_name ?? liaison.name} — ISO/TC 154`} description={liaison.description || liaison.name}>
   <article class="detail">
