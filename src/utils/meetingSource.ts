@@ -1,4 +1,4 @@
-import { ordinalText } from '../utils/ordinal.ts'
+import { ordinalText } from './ordinal.ts'
 
 export type MeetingSourceKind = 'plenary' | 'ballots'
 

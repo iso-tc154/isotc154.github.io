@@ -87,6 +87,25 @@ export function rateLabel(key: string): string {
   return key.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
+// ── Meeting list facets ──
+export function isUpcoming(m: { status_label?: string }): boolean {
+  return m.status_label !== 'Concluded' && m.status_label !== 'Cancelled'
+}
+
+export function decadeOf(year?: number): number | null {
+  if (year == null) return null
+  const y = Number(year)
+  if (Number.isNaN(y)) return null
+  return Math.floor(y / 10) * 10
+}
+
+export function typeInitials(m: { type_label?: string }): string {
+  if (m.type_label === 'Hybrid') return 'HYB'
+  if (m.type_label === 'Virtual') return 'VRT'
+  if (m.type_label === 'In person') return 'F2F'
+  return (m.type_label ?? '').slice(0, 3).toUpperCase()
+}
+
 // ── Sessions ──
 export function formatSessionDate(raw: string): string {
   const m = raw.match(/^(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})(?:\s+(\d{1,2}:\d{2})(?:\s+([A-Z]+))?)?$/)

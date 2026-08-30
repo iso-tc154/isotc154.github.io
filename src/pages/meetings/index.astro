@@ -3,25 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
 import { loadData, type Meeting } from '../../lib/data'
 import { ordinalSuffix } from '../../lib/presentation'
+import { isUpcoming, decadeOf, typeInitials } from '../../lib/meeting'
 import { committee } from '../../data/committee'
 
 const meetings = loadData.meetings()
 
-function isUpcoming(m: Meeting): boolean {
-  return m.status_label !== 'Concluded' && m.status_label !== 'Cancelled'
-}
-function decadeOf(year?: number): number | null {
-  if (year == null) return null
-  const y = Number(year)
-  if (Number.isNaN(y)) return null
-  return Math.floor(y / 10) * 10
-}
-function typeInitials(m: Meeting): string {
-  if (m.type_label === 'Hybrid') return 'HYB'
-  if (m.type_label === 'Virtual') return 'VRT'
-  if (m.type_label === 'In person') return 'F2F'
-  return (m.type_label ?? '').slice(0, 3).toUpperCase()
-}
 function haystack(m: Meeting): string {
   return [
     String(m.ordinal),

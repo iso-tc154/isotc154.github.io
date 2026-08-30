@@ -1,4 +1,4 @@
-import { meetingSourceFromParts } from '../domain/meetingSource'
+import { meetingSourceFromParts } from './meetingSource.ts'
 import { URN_BASE, meetingUrn, meetingDetailPath } from '../utils/urn'
 import type { MeetingSummary } from '../types/resolution'
 

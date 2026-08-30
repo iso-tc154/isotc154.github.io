@@ -53,7 +53,8 @@ export function roleLabel(roleId?: string): string {
 }
 
 export function ordinalSuffix(n: number): string {
-  if (n >= 11 && n <= 13) return 'th'
+  const mod100 = n % 100
+  if (mod100 >= 11 && mod100 <= 13) return 'th'
   switch (n % 10) {
     case 1: return 'st'
     case 2: return 'nd'
