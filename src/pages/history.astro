@@ -2,152 +2,596 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import { loadData } from '../lib/data'
-import { committee } from '../data/committee'
 
-interface HistoryEntry {
+interface HistoryMilestone {
   date: string
-  date_precision: 'day' | 'month' | 'year'
+  date_precision?: 'day' | 'month' | 'year'
   category: string
   title: string
   description?: string
+  link?: string
+  resolution?: string
 }
 
-const entries = loadData.history() as HistoryEntry[]
-const grouped = new Map<string, HistoryEntry[]>()
-for (const e of entries) {
-  const year = new Date(e.date).getFullYear().toString()
-  if (!grouped.has(year)) grouped.set(year, [])
-  grouped.get(year)!.push(e)
-}
-const years = Array.from(grouped.keys()).sort((a, b) => Number(b) - Number(a))
+const history = loadData.history() as HistoryMilestone[]
 
-function formatDate(e: HistoryEntry): string {
-  const d = new Date(e.date)
-  if (e.date_precision === 'year') return d.getFullYear().toString()
-  if (e.date_precision === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+const CATEGORY_META: Record<string, { label: string; color: string }> = {
+  founding:    { label: 'Founding',        color: '#b91c1c' },
+  leadership:  { label: 'Leadership',      color: '#1e3a8a' },
+  meeting:     { label: 'Plenary meetings', color: '#b45309' },
+  standard:    { label: 'Standards',       color: '#047857' },
+  structure:   { label: 'Structure',       color: '#6d28d9' },
+  liaison:     { label: 'Liaisons',        color: '#0f766e' },
+  cooperation: { label: 'Cooperation',     color: '#9a3412' },
+  withdrawn:   { label: 'Withdrawn',       color: '#78716c' },
 }
 
-const meta = loadData.meta()
+const counts = new Map<string, number>()
+for (const h of history) counts.set(h.category, (counts.get(h.category) ?? 0) + 1)
+const filterChips: { key: string; label: string; count: number }[] = [
+  { key: 'all', label: 'All milestones', count: history.length },
+]
+for (const [cat, meta] of Object.entries(CATEGORY_META)) {
+  const c = counts.get(cat) ?? 0
+  if (c > 0) filterChips.push({ key: cat, label: meta.label, count: c })
+}
+
+const sorted = [...history].sort((a, b) => b.date.localeCompare(a.date))
+
+const decades: { decade: string; items: HistoryMilestone[] }[] = []
+{
+  const groups = new Map<string, HistoryMilestone[]>()
+  for (const h of sorted) {
+    const yr = parseInt(h.date.slice(0, 4), 10)
+    const decade = Math.floor(yr / 10) * 10
+    const key = `${decade}s`
+    if (!groups.has(key)) groups.set(key, [])
+    groups.get(key)!.push(h)
+  }
+  for (const [decade, items] of groups) decades.push({ decade, items })
+}
+
+const years = new Set(history.map((h) => h.date.slice(0, 4))).size
+const meetings = history.filter((h) => h.category === 'meeting').length
+const standards = history.filter((h) => h.category === 'standard').length
+
+function categoryColor(cat: string): string {
+  return CATEGORY_META[cat]?.color ?? '#78716c'
+}
+function categoryLabel(cat: string): string {
+  return CATEGORY_META[cat]?.label ?? cat
+}
+function formatDate(h: HistoryMilestone): string {
+  if (!h.date) return ''
+  try {
+    const d = new Date(h.date)
+    if (Number.isNaN(d.getTime())) return h.date
+    if (h.date_precision === 'year') return String(d.getUTCFullYear())
+    if (h.date_precision === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
+  } catch {
+    return h.date
+  }
+}
+function resolutionUrl(h: HistoryMilestone): string | null {
+  return h.resolution ? `/resolutions/?q=${encodeURIComponent(h.resolution)}` : null
+}
+function renderProseInline(text: string): string {
+  return text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+}
 ---
-<BaseLayout title={`History — ${committee.name}`} description="Five decades of milestones in TC 154's work.">
-  <PageHero
-    variant="index"
-    bleed
-    eyebrow="Five decades"
-    title="History"
-    lead={`From 1972 to today — chairs, structural changes, publications, and the milestones that shaped ${committee.name}.`}
-  />
-  <div class="page page--wide">
-    <div class="history">
-      <div class="history__jump">
-        {years.map((y) => <a href={`#year-${y}`} class="history__jump-link">{y}</a>)}
-      </div>
+<BaseLayout title="History — ISO/TC 154" description="Five decades of ISO/TC 154 milestones — chairs, structural changes, publications.">
+  <div>
+    <div class="progress" aria-hidden="true"><div class="progress__bar" id="progress__bar"></div></div>
 
-      {years.map((year) => (
-        <section class="history__year" id={`year-${year}`}>
-          <header class="history__year-head">
-            <h2 class="history__year-title">{year}</h2>
-            <span class="history__year-count">{grouped.get(year)!.length} {grouped.get(year)!.length === 1 ? 'entry' : 'entries'}</span>
-          </header>
-          <ul class="history__entries">
-            {grouped.get(year)!.map((e) => (
-              <li class="history__entry" data-category={e.category}>
-                <span class="history__entry-date">{formatDate(e)}</span>
-                <div class="history__entry-body">
-                  <h3 class="history__entry-title">{e.title}</h3>
-                  {e.description && <div class="history__entry-desc" set:html={e.description} />}
-                </div>
+    <PageHero
+      variant="landing"
+      bleed
+      eyebrow="Committee history · since 1972"
+      title="Five decades of"
+      accent="standardising trade data"
+      lead="A curated record of the committee's milestones — from the most recent decisions back through the EDIFACT era and the ISO 8601 split, to its 1972 founding."
+    >
+      <div slot="decoration" class="hero__orbit" aria-hidden="true"></div>
+      <div slot="decoration" class="hero__orbit hero__orbit--2" aria-hidden="true"></div>
+      <dl class="page__stats" slot="stats">
+        <div><dt>{years}</dt><dd>distinct years</dd></div>
+        <div><dt>{history.length}</dt><dd>curated milestones</dd></div>
+        <div><dt>{meetings}</dt><dd>plenary meetings</dd></div>
+        <div><dt>{standards}</dt><dd>standards milestones</dd></div>
+      </dl>
+    </PageHero>
+
+    <div class="page page--wide">
+      <nav class="hchips" aria-label="Filter history by category" id="hchips">
+        {filterChips.map((chip) => (
+          <button
+            type="button"
+            class:list={["lvchip", { 'lvchip--active': chip.key === 'all' }]}
+            data-label={chip.label}
+            data-tint={chip.key === 'all' ? undefined : categoryColor(chip.key)}
+          >
+            {chip.key !== 'all' && <span class="lvchip__dot" style={`background: ${categoryColor(chip.key)}`}></span>}
+            {chip.label}
+            <span class="lvchip__count">{chip.count}</span>
+          </button>
+        ))}
+      </nav>
+
+      <ol class="timeline" role="list" id="timeline">
+        {decades.map((group) => (
+          <li class="decade">
+            <div class="decade__marker" id={`decade-${group.decade}`}>
+              <span class="decade__numeral">{group.decade.slice(0, -1)}</span>
+              <span class="decade__suffix">s</span>
+            </div>
+            <ol class="decade__events" role="list">
+              {group.items.map((h) => (
+                <li class="event" style={`--cat-color: ${categoryColor(h.category)}`}>
+                  <div class="event__rail" aria-hidden="true">
+                    <span class="event__node"></span>
+                    <span class="event__stem"></span>
+                  </div>
+                  <article class="event__card">
+                    <header class="event__head">
+                      <time datetime={h.date} class="event__date">{formatDate(h)}</time>
+                      <span class="event__cat">{categoryLabel(h.category)}</span>
+                    </header>
+                    {h.link ? (
+                      <a href={h.link} class="event__title-link">
+                        <h3 class="event__title">{h.title}</h3>
+                      </a>
+                    ) : (
+                      <h3 class="event__title">{h.title}</h3>
+                    )}
+                    {h.description && <p class="event__desc" set:html={renderProseInline(h.description)} />}
+                    {(h.link || h.resolution) && (
+                      <footer class="event__foot">
+                        {h.link && <a href={h.link} class="event__more">Explore →</a>}
+                        {resolutionUrl(h) && (
+                          <a href={resolutionUrl(h)} class="event__res">
+                            Resolution {h.resolution}
+                          </a>
+                        )}
+                      </footer>
+                    )}
+                  </article>
+                </li>
+              ))}
+            </ol>
+          </li>
+        ))}
+      </ol>
+
+      {decades.length > 0 && (
+        <aside class="eras" aria-label="Jump to decade">
+          <h4 class="eras__title">Eras</h4>
+          <ul>
+            {decades.map((group) => (
+              <li>
+                <a href={`#decade-${group.decade}`} class="eras__link">
+                  <span class="eras__year">{group.decade}</span>
+                  <span class="eras__count">{group.items.length}</span>
+                </a>
               </li>
             ))}
           </ul>
-        </section>
-      ))}
+        </aside>
+      )}
     </div>
   </div>
 </BaseLayout>
 
-<style>
-  .history { max-width: 56rem; margin: 2rem auto; padding: 0 1.5rem; }
-  .history__jump {
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-    padding: 1rem 0; border-bottom: 1px solid #e7e5e4;
-    margin-bottom: 2rem;
-    position: sticky; top: var(--site-header-height);
-    background: var(--surface-bg);
-    z-index: 5;
-  }
-  :global(.dark) .history__jump { border-bottom-color: #44403c; background: var(--surface-bg-dark); }
-  .history__jump-link {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #57534e;
-    text-decoration: none;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid transparent;
-  }
-  :global(.dark) .history__jump-link { color: #a8a29e; }
-  .history__jump-link:hover { color: var(--color-brand); border-color: currentColor; }
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('#hchips .lvchip')
+  const decades = document.querySelectorAll<HTMLElement>('#timeline .decade')
 
-  .history__year { margin-bottom: 3rem; }
-  .history__year-head {
-    display: flex; align-items: baseline; gap: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--color-brand);
-    margin-bottom: 1.5rem;
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => {
+        c.classList.remove('lvchip--active')
+        c.removeAttribute('style')
+        const dot = c.querySelector<HTMLElement>('.lvchip__dot')
+        if (dot && c.dataset.tint) dot.style.background = c.dataset.tint
+      })
+      chip.classList.add('lvchip--active')
+      const tint = chip.dataset.tint
+      if (tint) {
+        chip.style.background = tint
+        chip.style.borderColor = tint
+        chip.style.color = '#fff'
+        const dot = chip.querySelector<HTMLElement>('.lvchip__dot')
+        if (dot) dot.style.background = '#fff'
+      }
+      const label = chip.dataset.label ?? ''
+      const showAll = label === 'All milestones'
+      decades.forEach((decade) => {
+        let anyVisible = false
+        decade.querySelectorAll<HTMLElement>('.event').forEach((ev) => {
+          const cat = (ev.querySelector('.event__cat')?.textContent || '').trim()
+          const visible = showAll || cat === label
+          ev.style.display = visible ? '' : 'none'
+          if (visible) anyVisible = true
+        })
+        decade.style.display = anyVisible ? '' : 'none'
+      })
+    })
+  })
+
+  const bar = document.getElementById('progress__bar')
+  function onScroll() {
+    const el = document.scrollingElement ?? document.documentElement
+    const max = el.scrollHeight - el.clientHeight
+    const p = max > 0 ? Math.min(1, el.scrollTop / max) : 0
+    if (bar) bar.style.setProperty('--p', (p * 100).toFixed(1) + '%')
   }
-  .history__year-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3rem);
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+</script>
+
+<style>
+  .page { position: relative; }
+
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 60;
+    background: transparent;
+    pointer-events: none;
+  }
+  .progress__bar {
+    height: 100%;
+    width: var(--p, 0%);
+    background: linear-gradient(90deg, var(--color-brand), #3b82f6);
+    transition: width 0.1s linear;
+  }
+
+  /* Decorative orbits live behind the hero via PageHero's decoration slot */
+  .hero__orbit, .hero__orbit--2 {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgb(185 28 28 / 0.12);
+    filter: blur(0.5px);
+  }
+  .hero__orbit {
+    width: 30rem;
+    height: 30rem;
+    right: -8rem;
+    top: -10rem;
+    border-color: rgb(185 28 28 / 0.18);
+  }
+  .hero__orbit--2 {
+    width: 22rem;
+    height: 22rem;
+    right: -4rem;
+    top: -6rem;
+    border-color: rgb(30 58 138 / 0.15);
+    border-style: dashed;
+  }
+  :global(.dark) .hero__orbit { border-color: rgb(252 165 165 / 0.15); }
+  :global(.dark) .hero__orbit--2 { border-color: rgb(148 182 232 / 0.15); }
+
+  /* CHIPS */
+  .hchips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed #e7e5e4;
+  }
+  :global(.dark) .hchips { border-bottom-color: #44403c; }
+
+  .lvchip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    border: 1px solid #d6d3d1;
+    background: #fff;
+    color: #57534e;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+  .lvchip:hover {
+    border-color: var(--color-blue-accent);
+    color: var(--color-blue-accent);
+  }
+  .lvchip--active {
+    background: var(--color-blue-accent);
+    border-color: var(--color-blue-accent);
+    color: #fff;
+  }
+  .lvchip--active:hover {
+    color: #fff;
+    opacity: 0.92;
+  }
+  :global(.dark) .lvchip {
+    background: #292524;
+    border-color: #44403c;
+    color: #d6d3d1;
+  }
+  :global(.dark) .lvchip:hover {
+    border-color: #5379bf;
+    color: #94b6e8;
+  }
+  .lvchip__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .lvchip__count {
+    font-size: 0.6875rem;
     font-weight: 700;
-    color: var(--color-brand);
-    margin: 0;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.02em;
+    color: #a8a29e;
+    background: rgb(0 0 0 / 0.04);
+    padding: 0 0.375rem;
+    border-radius: 9999px;
   }
-  .history__year-count {
+  :global(.dark) .lvchip__count { background: rgb(255 255 255 / 0.08); }
+
+  /* TIMELINE */
+  .loading { padding: 4rem 0; text-align: center; color: #78716c; }
+  :global(.dark) .loading { color: #a8a29e; }
+
+  .timeline { list-style: none; margin: 0; padding: 0; }
+
+  .decade {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 640px) {
+    .decade { grid-template-columns: 6rem 1fr; gap: 1rem 2rem; }
+  }
+  @media (min-width: 768px) {
+    .decade { grid-template-columns: 9rem 1fr; gap: 1rem 3rem; }
+  }
+
+  .decade__marker {
+    align-self: start;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: #d6d3d1;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    display: flex;
+    align-items: flex-start;
+    user-select: none;
+    padding: 0.5rem 0 0.25rem;
+    border-bottom: 1px solid #e7e5e4;
+    margin-bottom: 0.25rem;
+  }
+  :global(.dark) .decade__marker { color: #44403c; border-bottom-color: #292524; }
+  @media (min-width: 640px) {
+    .decade__marker {
+      position: sticky;
+      top: 6rem;
+      padding-top: 0.5rem;
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
+  .decade__numeral {
+    font-size: clamp(2.25rem, 12vw, 3rem);
+    display: inline-block;
+  }
+  @media (min-width: 640px) {
+    .decade__numeral { font-size: clamp(3rem, 6vw, 5rem); }
+  }
+  .decade__suffix {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    font-style: italic;
+    color: var(--color-brand);
+    margin-top: 0.375rem;
+  }
+  @media (min-width: 640px) {
+    .decade__suffix { font-size: clamp(1.25rem, 2.4vw, 2rem); margin-top: 0.5rem; }
+  }
+
+  .decade__events {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #e7e5e4;
+    position: relative;
+  }
+  :global(.dark) .decade__events { border-left-color: #44403c; }
+
+  .event {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0 0 1.75rem 1.5rem;
+  }
+
+  .event__rail {
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+  .event__node {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    background: var(--cat-color, var(--color-brand));
+    border: 3px solid #fafaf9;
+    margin-left: -0.5rem;
+    margin-top: 0.375rem;
+    box-shadow: 0 0 0 2px var(--cat-color, var(--color-brand));
+    z-index: 2;
+    position: relative;
+  }
+  :global(.dark) .event__node { border-color: #1c1917; }
+  .event__stem {
+    position: absolute;
+    left: -0.5rem;
+    top: 1.25rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--cat-color, var(--color-brand)), transparent);
+    opacity: 0.3;
+  }
+
+  .event__card {
+    background: #fff;
+    border: 1px solid #e7e5e4;
+    border-left: 3px solid var(--cat-color, var(--color-brand));
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  }
+  :global(.dark) .event__card {
+    background: rgb(15 23 42 / 0.45);
+    border-color: #44403c;
+    border-left-color: var(--cat-color, var(--color-brand));
+  }
+  .event__card:hover {
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.07);
+    transform: translateX(2px);
+  }
+
+  .event__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .event__date {
     font-family: var(--font-sans);
     font-size: 0.75rem;
-    color: #78716c;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cat-color, var(--color-brand));
+  }
+  .event__cat {
+    font-size: 0.625rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    color: #78716c;
+    background: #f5f5f4;
+    padding: 0.1875rem 0.5rem;
+    border-radius: 0.1875rem;
   }
-  :global(.dark) .history__year-count { color: #a8a29e; }
+  :global(.dark) .event__cat { color: #a8a29e; background: #292524; }
 
-  .history__entries { list-style: none; padding: 0; margin: 0; }
-  .history__entry {
-    display: grid;
-    grid-template-columns: 9rem 1fr;
-    gap: 1.5rem;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid #e7e5e4;
-  }
-  :global(.dark) .history__entry { border-bottom-color: #44403c; }
-  @media (max-width: 640px) { .history__entry { grid-template-columns: 1fr; gap: 0.5rem; } }
-  .history__entry-date {
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--color-brand);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding-top: 0.125rem;
-  }
-  .history__entry-title {
+  .event__title-link { text-decoration: none; color: inherit; }
+  .event__title {
     font-family: var(--font-serif);
     font-size: 1.125rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #1c1917;
     margin: 0 0 0.5rem;
     line-height: 1.3;
+    letter-spacing: -0.012em;
   }
-  :global(.dark) .history__entry-title { color: #fafaf9; }
-  .history__entry-desc {
+  :global(.dark) .event__title { color: #fafaf9; }
+  .event__title-link:hover .event__title { color: var(--cat-color, var(--color-brand)); }
+
+  .event__desc {
     font-size: 0.9375rem;
-    line-height: 1.55;
+    line-height: 1.6;
+    color: #44403c;
+    margin: 0;
+    white-space: pre-wrap;
+  }
+  :global(.dark) .event__desc { color: #d6d3d1; }
+
+  .event__foot {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+  }
+  .event__more, .event__res {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--cat-color, var(--color-brand));
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .event__more:hover, .event__res:hover { border-bottom-color: currentColor; }
+  .event__res {
     color: #57534e;
   }
-  :global(.dark) .history__entry-desc { color: #d6d3d1; }
-  .history__entry-desc :global(em) { font-style: italic; }
+  :global(.dark) .event__res { color: #a8a29e; }
+
+  /* ERAS (right-rail nav) */
+  .eras {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 6rem;
+    background: #fff;
+    border: 1px solid #e7e5e4;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.875rem;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.06);
+    font-size: 0.75rem;
+    z-index: 50;
+    display: none;
+  }
+  :global(.dark) .eras { background: #1c1917; border-color: #44403c; }
+  @media (min-width: 1024px) { .eras { display: block; } }
+  .eras__title {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #78716c;
+    margin: 0 0 0.5rem;
+  }
+  :global(.dark) .eras__title { color: #a8a29e; }
+  .eras ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.125rem; }
+  .eras__link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+    text-decoration: none;
+    color: #1c1917;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .eras__link:hover { border-bottom-color: var(--color-brand); color: var(--color-brand); }
+  :global(.dark) .eras__link { color: #fafaf9; }
+  .eras__count {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    color: #a8a29e;
+    font-weight: 700;
+    background: #f5f5f4;
+    padding: 0.0625rem 0.3125rem;
+    border-radius: 9999px;
+  }
+  :global(.dark) .eras__count { background: #292524; }
 </style>

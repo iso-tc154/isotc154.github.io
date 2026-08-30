@@ -1,12 +1,126 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import PageHero from '../components/PageHero.astro'
+
+const suggestions = [
+  { to: '/resolutions/', label: 'Resolutions', desc: 'Search adopted resolutions' },
+  { to: '/standards/', label: 'Standards', desc: 'Published International Standards' },
+  { to: '/members/', label: 'Members', desc: 'Committee experts' },
+  { to: '/meetings/', label: 'Meetings', desc: 'Plenary meetings past and upcoming' },
+  { to: '/posts/', label: 'News', desc: 'Announcements and publications' },
+  { to: '/about/', label: 'About', desc: 'About ISO/TC 154' },
+]
 ---
 <BaseLayout title="404 — Not Found" description="Page not found." noIndex>
-  <PageHero variant="index" bleed eyebrow="404" title="Not found" lead="The page you're looking for doesn't exist. Try the navigation, or start from the home page." />
-  <div class="page page--wide" style="text-align: center; padding: 4rem 1.5rem;">
-    <a href="/" style="font-family: var(--font-sans); font-weight: 600; color: var(--color-brand); text-decoration: none; border: 1px solid var(--color-brand); padding: 0.75rem 1.5rem; display: inline-block;">
-      ← Back to home
-    </a>
-  </div>
+  <section class="not-found">
+    <p class="not-found__eyebrow">ISO/TC 154</p>
+    <h1 class="not-found__code">404</h1>
+    <p class="not-found__title">Page not found</p>
+    <p class="not-found__lead">
+      The page you're looking for may have moved, been renamed, or never existed.
+      Try one of these sections instead.
+    </p>
+
+    <ul class="not-found__suggestions">
+      {suggestions.map((s) => (
+        <li>
+          <a href={s.to} class="suggestion">
+            <span class="suggestion__label">{s.label}</span>
+            <span class="suggestion__desc">{s.desc}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="/" class="not-found__home">&larr; Back to home</a>
+  </section>
 </BaseLayout>
+
+<style>
+  .not-found {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+    text-align: center;
+  }
+  .not-found__eyebrow {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--color-blue-accent);
+    margin: 0 0 1rem;
+  }
+  .not-found__code {
+    font-family: var(--font-serif);
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    color: var(--color-brand);
+    letter-spacing: -0.04em;
+  }
+  .not-found__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #1c1917;
+    margin: 1rem 0 0.75rem;
+  }
+  :global(.dark) .not-found__title { color: #fafaf9; }
+  .not-found__lead {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #57534e;
+    max-width: 32rem;
+    margin: 0 auto 2.5rem;
+  }
+  :global(.dark) .not-found__lead { color: #d6d3d1; }
+
+  .not-found__suggestions {
+    list-style: none;
+    margin: 0 0 2.5rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+    gap: 0.75rem;
+    text-align: left;
+  }
+  .suggestion {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e7e5e4;
+    border-radius: 0.5rem;
+    background: #fff;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  :global(.dark) .suggestion {
+    background: #1c1917;
+    border-color: #292524;
+  }
+  .suggestion:hover {
+    border-color: var(--color-blue-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px -8px rgba(0, 97, 173, 0.25);
+  }
+  .suggestion__label {
+    display: block;
+    font-weight: 700;
+    color: #1c1917;
+    margin-bottom: 0.125rem;
+  }
+  :global(.dark) .suggestion__label { color: #fafaf9; }
+  .suggestion__desc {
+    display: block;
+    font-size: 0.875rem;
+    color: #78716c;
+  }
+  :global(.dark) .suggestion__desc { color: #a8a29e; }
+
+  .not-found__home {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--color-blue-accent);
+    text-decoration: none;
+    padding: 0.5rem 0;
+  }
+  .not-found__home:hover { text-decoration: underline; }
+</style>

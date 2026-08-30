@@ -1,80 +1,218 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
-import { loadData, type Liaison } from '../lib/data'
+import OrgLogo from '../components/OrgLogo.astro'
+import { loadData } from '../lib/data'
 
-const liaisons = loadData.liaisons().sort((a, b) => (a.short_name || a.name).localeCompare(b.short_name || b.name))
-const byCategory: Record<string, Liaison[]> = {}
-for (const l of liaisons) {
-  const c = l.category || 'Other'
-  if (!byCategory[c]) byCategory[c] = []
-  byCategory[c].push(l)
+interface Liaison {
+  id: string
+  name: string
+  short_name?: string
+  description?: string
+  category?: string
+  logo?: string
+  logo_light?: string
+  logo_dark?: string
+  url?: string
 }
-const catLabel: Record<string, string> = {
-  A: 'Category A — Organizations making an effective contribution',
-  B: 'Category B — Organizations with a technical interest',
-  C: 'Category C — Organizations with a regional interest',
-  D: 'Category D — Organizations with a development interest',
-  'Liaison-Technical': 'Liaison-Technical',
-  'Liaison-Strategic': 'Liaison-Strategic',
+
+const liaisons = (loadData.liaisons() as unknown as Liaison[])
+  .sort((a, b) => (a.short_name ?? a.name).localeCompare(b.short_name ?? b.name))
+
+const categories = Array.from(new Set(liaisons.filter((l) => l.category).map((l) => l.category!))).sort()
+
+const stats = {
+  total: liaisons.length,
+  catA: liaisons.filter((l) => l.category === 'A').length,
+  catB: liaisons.filter((l) => l.category === 'B').length,
 }
-const categories = Object.keys(byCategory).sort()
+
+function categoryLabel(cat: string): string {
+  if (cat === 'A') return 'Category A'
+  if (cat === 'B') return 'Category B'
+  if (cat === 'C') return 'Category C'
+  if (cat === 'D') return 'Category D'
+  return cat
+}
+function liaisonUrl(l: Liaison): string {
+  return l.url ?? `/liaisons/${l.id}/`
+}
+function cardHaystack(l: Liaison): string {
+  return `${l.name} ${l.short_name ?? ''} ${l.description ?? ''}`.toLowerCase()
+}
 ---
 <BaseLayout title="Liaisons — ISO/TC 154" description="Liaison organisations of ISO/TC 154.">
-  <PageHero variant="index" bleed eyebrow="External relationships" title="Liaisons" lead={`${liaisons.length} international and regional organisations in technical liaison with ISO/TC 154.`} />
-  <div class="page page--wide">
-    {categories.map((cat) => (
-      <section class="lia-section">
-        <header class="lia-section__head">
-          <h2>{catLabel[cat] || cat}</h2>
-          <span class="count">{byCategory[cat].length}</span>
-        </header>
-        <ul class="lia-grid">
-          {byCategory[cat].map((l) => (
-            <li>
-              <a href={`/liaisons/${l.id}/`} class="lia-card">
-                <div class="lia-card__logo">
-                  {l.logo && <img src={l.logo} alt={l.short_name || l.name} loading="lazy" />}
-                </div>
-                <div class="lia-card__body">
-                  <h3 class="lia-card__name">{l.short_name || l.name}</h3>
-                  {l.short_name && <p class="lia-card__full">{l.name}</p>}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))}
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="External liaisons"
+      title="Liaisons"
+      lead="Organizations in liaison with ISO/TC 154 — Category A (active cooperation), Category B (kept informed), and other external partners."
+    >
+      <div slot="decoration" class="hero-pattern hero-pattern--nodes"></div>
+      <dl class="page__stats" slot="stats">
+        <div><dt>{stats.total}</dt><dd>total</dd></div>
+        <div><dt>{stats.catA}</dt><dd>category A</dd></div>
+        <div><dt>{stats.catB}</dt><dd>category B</dd></div>
+      </dl>
+    </PageHero>
+
+    <div class="page page--wide">
+      <div class="filter">
+        <div class="filter__search-wrap">
+          <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            type="search"
+            class="filter__search"
+            id="liaison-search"
+            placeholder="Search liaisons…"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Search liaisons"
+          />
+        </div>
+        <div class="filter__controls">
+          <div class="filter__field">
+            <span class="filter__label">Category</span>
+            <div class="filter__chips" data-facet="category">
+              <button type="button" class="chip chip--active" data-value="">All</button>
+              {categories.map((c) => (
+                <button type="button" class="chip" data-value={c}>{categoryLabel(c)}</button>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="filter__meta">
+          <span id="liaison-count">{liaisons.length} of {liaisons.length} liaisons</span>
+        </div>
+      </div>
+
+      <ul class="grid" id="liaison-grid">
+        {liaisons.map((l) => (
+          <li>
+            <a
+              href={liaisonUrl(l)}
+              class="card"
+              data-haystack={cardHaystack(l)}
+              data-category={l.category ?? ''}
+            >
+              <OrgLogo
+                logo={l.logo}
+                logo_light={l.logo_light}
+                logo_dark={l.logo_dark}
+                assetPrefix="/assets/images/liaisons/"
+                size="xl"
+                radius="0.5rem"
+                fallbackText={l.short_name ?? l.name}
+                alt={l.short_name ?? l.name}
+              />
+              <div class="card__body">
+                <h3 class="card__name">{l.short_name ?? l.name}</h3>
+                {l.short_name && <p class="card__full-name">{l.name}</p>}
+                <span class="card__category">{categoryLabel(l.category ?? '?')}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="empty" id="liaison-empty" hidden>
+        <h3>No liaisons match your filters</h3>
+        <button type="button" class="chip" id="liaison-clear">Clear filters</button>
+      </div>
+    </div>
   </div>
 </BaseLayout>
 
-<style>
-  .lia-section { max-width: 80rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
-  .lia-section__head { display: flex; align-items: baseline; gap: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
-  :global(.dark) .lia-section__head { border-bottom-color: #44403c; }
-  .lia-section__head h2 { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; color: #1c1917; margin: 0; }
-  :global(.dark) .lia-section__head h2 { color: #fafaf9; }
-  .count { font-size: 0.875rem; color: #78716c; }
-  :global(.dark) .count { color: #a8a29e; }
+<script>
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('#liaison-grid > li > a'))
+  const empty = document.getElementById('liaison-empty')
+  const count = document.getElementById('liaison-count')
+  const search = document.getElementById('liaison-search') as HTMLInputElement | null
+  const total = cards.length
+  let category = ''
 
-  .lia-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1rem; }
-  .lia-card {
-    display: grid; grid-template-columns: 4rem 1fr; gap: 1rem;
-    padding: 1rem; border: 1px solid #e7e5e4; background: #fff;
-    text-decoration: none; color: inherit; align-items: center;
-    transition: border-color 0.15s, transform 0.15s;
+  function apply() {
+    const q = (search?.value ?? '').trim().toLowerCase()
+    let visible = 0
+    cards.forEach((card) => {
+      const okText = !q || (card.dataset.haystack || '').includes(q)
+      const okCat = !category || card.dataset.category === category
+      const ok = okText && okCat
+      const li = card.parentElement as HTMLElement
+      li.style.display = ok ? '' : 'none'
+      if (ok) visible++
+    })
+    if (count) count.textContent = `${visible} of ${total} liaisons`
+    if (empty) empty.hidden = visible !== 0
   }
-  :global(.dark) .lia-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
-  .lia-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
-  .lia-card__logo {
-    width: 4rem; height: 4rem;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0.25rem;
-  }
-  .lia-card__logo img { max-width: 100%; max-height: 100%; }
-  .lia-card__name { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0; }
-  :global(.dark) .lia-card__name { color: #fafaf9; }
-  .lia-card__full { font-size: 0.75rem; color: #78716c; margin: 0.25rem 0 0; line-height: 1.3; }
-  :global(.dark) .lia-card__full { color: #a8a29e; }
+
+  document.querySelectorAll<HTMLElement>('[data-facet="category"] .chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('[data-facet="category"] .chip').forEach((c) => c.classList.remove('chip--active'))
+      chip.classList.add('chip--active')
+      category = (chip as HTMLElement).dataset.value ?? ''
+      apply()
+    })
+  })
+
+  search?.addEventListener('input', apply)
+  document.getElementById('liaison-clear')?.addEventListener('click', () => {
+    if (search) search.value = ''
+    category = ''
+    document.querySelectorAll('[data-facet="category"] .chip').forEach((c) => {
+      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === '')
+    })
+    apply()
+  })
+</script>
+
+<style>
+  .filter { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
+  :global(.dark) .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  .filter__search-wrap { position: relative; margin-bottom: 1rem; }
+  .filter__search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: #a8a29e; pointer-events: none; }
+  .filter__search { width: 100%; padding: 0.625rem 0.875rem 0.625rem 2.25rem; border-radius: 0.5rem; border: 1px solid #d6d3d1; background: #fafaf9; color: #1c1917; font-size: 0.9375rem; font-family: inherit; }
+  .filter__search:focus { outline: none; border-color: var(--color-blue-accent); background: #fff; box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15); }
+  :global(.dark) .filter__search { background: #292524; border-color: #57534e; color: #fafaf9; }
+  :global(.dark) .filter__search:focus { border-color: #5379bf; background: #1c1917; }
+  .filter__controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; }
+  .filter__field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .filter__label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #78716c; }
+  :global(.dark) .filter__label { color: #a8a29e; }
+  .filter__chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+  .chip { display: inline-flex; align-items: center; padding: 0.375rem 0.75rem; border-radius: 9999px; border: 1px solid #d6d3d1; background: #fff; color: #57534e; font-size: 0.8125rem; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.15s; }
+  .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
+  .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
+  :global(.dark) .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
+  :global(.dark) .chip:hover { border-color: #5379bf; }
+  :global(.dark) .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
+  .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
+  :global(.dark) .filter__meta { color: #a8a29e; }
+
+  .loading, .empty { padding: 3rem 1rem; text-align: center; color: #78716c; }
+  .empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
+  :global(.dark) .empty h3 { color: #fafaf9; }
+  :global(.dark) .loading, :global(.dark) .empty { color: #a8a29e; }
+
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(1, 1fr); gap: 0.75rem; }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .card { display: flex; gap: 1rem; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e7e5e4; background: #fff; text-decoration: none; color: inherit; transition: all 0.2s; height: 100%; }
+  :global(.dark) .card { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  .card:hover { border-color: var(--color-blue-accent); box-shadow: 0 4px 12px rgb(30 58 138 / 0.08); transform: translateY(-2px); }
+  :global(.dark) .card:hover { border-color: #5379bf; box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
+
+  .card__body { flex: 1; min-width: 0; }
+  .card__name { font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0 0 0.125rem; }
+  :global(.dark) .card__name { color: #fafaf9; }
+  .card__full-name { font-size: 0.8125rem; color: #78716c; margin: 0 0 0.5rem; line-height: 1.4; }
+  :global(.dark) .card__full-name { color: #a8a29e; }
+  .card__category { display: inline-block; padding: 0.125rem 0.5rem; background: #e0e7ff; color: var(--color-blue-accent); border-radius: 0.25rem; font-size: 0.6875rem; font-weight: 600; }
+  :global(.dark) .card__category { background: rgb(51 133 214 / 0.2); }
 </style>

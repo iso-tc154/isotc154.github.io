@@ -1,97 +1,476 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
-import { loadData, type Group } from '../lib/data'
+import { loadData } from '../lib/data'
 
-const groups = loadData.groups()
-  .filter((g) => g.id !== 'tc154')
-  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
-const categoryLabel: Record<string, string> = {
-  working_group: 'Working Groups',
-  advisory: 'Advisory Groups',
-  special_group: 'Special Groups',
-  subcommittee: 'Subcommittees',
-  temporary: 'Temporary Groups',
+interface GroupRef { name?: string }
+interface Group {
+  id: string
+  name?: string
+  title?: string
+  category?: string
+  order?: number
+  intro?: string
+  standards?: string[]
+  members?: unknown[]
+  convenors?: string[]
+  predecessor?: GroupRef
+  successor?: GroupRef
+  inactive?: boolean
+  history?: { established?: { date?: string }; dissolved?: { date?: string } | boolean }
+  url?: string
 }
-const byCategory = new Map<string, Group[]>()
-for (const g of groups) {
-  const cat = g.category || 'other'
-  if (!byCategory.has(cat)) byCategory.set(cat, [])
-  byCategory.get(cat)!.push(g)
+
+const groups = loadData.groups() as Group[]
+
+function groupCategoryLabel(category?: string): string {
+  if (!category) return ''
+  switch (category) {
+    case 'working': return 'Working Group'
+    case 'advisory': return 'Advisory Group'
+    case 'cag': return "Chairman's Advisory Group"
+    case 'joint': return 'Joint Working Group'
+    case 'ahwg': return 'Ad Hoc Working Group'
+    case 'sg': return 'Study Group'
+    case 'rtc': return 'Resolution Drafting Group'
+    default: return category.charAt(0).toUpperCase() + category.slice(1)
+  }
+}
+type Lifecycle = 'active' | 'inactive' | 'dissolved'
+function lifecycleStatus(g: Group): Lifecycle {
+  if (g.history?.dissolved) return 'dissolved'
+  if (g.inactive) return 'inactive'
+  return 'active'
+}
+function lifecycleStatusLabel(s: Lifecycle): string {
+  return s === 'active' ? 'Active' : s === 'inactive' ? 'Inactive' : 'Dissolved'
+}
+function establishedYear(g: Group): string | null {
+  const d = g.history?.established?.date
+  return d ? String(d).slice(0, 4) : null
+}
+function statusRank(g: Group): number {
+  const s = lifecycleStatus(g)
+  return s === 'active' ? 0 : s === 'inactive' ? 1 : 2
+}
+function convenorNames(g: Group): string {
+  return (g.convenors ?? []).join(', ')
+}
+function memberCount(g: Group): number {
+  return (g.members ?? []).length
+}
+
+const categories = Array.from(new Set(groups.filter((g) => g.category).map((g) => g.category!))).sort()
+
+const stats = {
+  total: groups.length,
+  active: groups.filter((g) => lifecycleStatus(g) === 'active').length,
+  categories: categories.length,
+  withStandards: groups.filter((g) => g.standards?.length).length,
+}
+const historical = stats.total - stats.active
+
+const sorted = [...groups].sort((a, b) => statusRank(a) - statusRank(b) || (a.order ?? 0) - (b.order ?? 0))
+
+function groupUrl(g: Group) {
+  return g.url ?? `/groups/${g.id}/`
+}
+function lineageHaystack(g: Group): string {
+  return [g.predecessor?.name, g.successor?.name].filter(Boolean).join(' ').toLowerCase()
+}
+function cardHaystack(g: Group): string {
+  return [g.name, g.title, g.intro ?? '', lineageHaystack(g)].join(' ').toLowerCase()
 }
 ---
 <BaseLayout title="Groups — ISO/TC 154" description="Working groups and structures of ISO/TC 154.">
-  <PageHero variant="index" bleed eyebrow="Committee structure" title="Groups" lead={`${groups.length} groups — working groups driving today's programmes, advisory bodies, and special structures carrying forward specific remits.`} />
-  <div class="page page--wide">
-    {Array.from(byCategory.entries()).map(([category, items]) => (
-      <section class="grp-section">
-        <header class="grp-section__head">
-          <h2>{categoryLabel[category] || category.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</h2>
-          <span class="count">{items.length}</span>
-        </header>
-        <ul class="grp-grid">
-          {items.map((g) => (
-            <li>
-              <a href={g.url ?? `/groups/${g.id}/`} class="grp-card">
-                <span class="grp-card__id">{g.name || g.id.toUpperCase()}</span>
-                <h3 class="grp-card__title">{g.title || g.name}</h3>
-                {g.intro && <p class="grp-card__intro">{g.intro.split('\n')[0].slice(0, 140)}</p>}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))}
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Working groups & structure"
+      title="Groups"
+      lead="Working Groups, Advisory Groups, Maintenance Agencies and the Co-ordination Advisory Group that carry out the technical work of ISO/TC 154."
+    >
+      <div slot="decoration" class="hero-pattern hero-pattern--rings"></div>
+      <dl class="page__stats" slot="stats">
+        <div><dt>{stats.active}</dt><dd>active</dd></div>
+        <div><dt>{historical}</dt><dd>historical</dd></div>
+        <div><dt>{stats.categories}</dt><dd>categories</dd></div>
+        <div><dt>{stats.withStandards}</dt><dd>maintain standards</dd></div>
+      </dl>
+    </PageHero>
+
+    <div class="page page--wide">
+      <div class="filter-bar" id="grp-filter">
+        <div class="filter-bar__controls">
+          <div class="filter-bar__field">
+            <label class="filter-label" for="grp-search">Search groups</label>
+            <input type="search" class="filter-input" id="grp-search" placeholder="Search by name, title or intro…" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="filter-bar__field filter-bar__field--sm">
+            <span class="filter-label">Category</span>
+            <div class="filter-chips">
+              <button type="button" class="chip chip--active" data-value="">All</button>
+              {categories.map((cat) => (
+                <button type="button" class="chip" data-value={cat}>{groupCategoryLabel(cat)}</button>
+              ))}
+            </div>
+          </div>
+          <div class="filter-bar__field filter-bar__field--sm">
+            <span class="filter-label">Status</span>
+            <div class="filter-chips" data-status>
+              <button type="button" class="chip chip--active" data-value="">All</button>
+              <button type="button" class="chip" data-value="active">Active only</button>
+            </div>
+          </div>
+        </div>
+        <div class="filter-meta"><span id="grp-count">{groups.length} of {groups.length} groups</span></div>
+      </div>
+
+      <ul class="grid" id="grp-grid">
+        {sorted.map((g) => (
+          <li>
+            <a
+              href={groupUrl(g)}
+              class:list={["card", `card--${lifecycleStatus(g)}`]}
+              data-haystack={cardHaystack(g)}
+              data-category={g.category ?? ''}
+              data-status={lifecycleStatus(g)}
+            >
+              <div class="card__top">
+                <div class="card__top-left">
+                  <span class:list={["card__status", `card__status--${lifecycleStatus(g)}`]}>
+                    <span class="card__status-dot" aria-hidden="true"></span>
+                    <span class="card__status-text">{lifecycleStatusLabel(lifecycleStatus(g))}</span>
+                  </span>
+                  <span class="card__category">{groupCategoryLabel(g.category)}</span>
+                </div>
+                {memberCount(g) > 0 && <span class="card__count">{memberCount(g)} members</span>}
+              </div>
+              <h3 class="card__name">{g.name}</h3>
+              <div class="card__meta">
+                {establishedYear(g) && <span class="card__est">Est. {establishedYear(g)}</span>}
+              </div>
+              <p class="card__title">{g.title}</p>
+              {g.intro && <p class="card__intro">{g.intro}</p>}
+              {g.predecessor ? (
+                <p class="card__lineage">
+                  <span class="card__lineage-arrow">↳</span> Succeeded {g.predecessor.name}
+                </p>
+              ) : g.successor && (
+                <p class="card__lineage card__lineage--succ">
+                  <span class="card__lineage-arrow">↳</span> Succeeded by {g.successor.name}
+                </p>
+              )}
+              {convenorNames(g) && (
+                <p class="card__convenor">
+                  <span class="card__convenor-label">Convenor:</span> {convenorNames(g)}
+                </p>
+              )}
+              {g.standards && g.standards.length > 0 && (
+                <div class="card__standards">
+                  {g.standards.slice(0, 4).map((s) => (
+                    <span class="card__pill">{s}</span>
+                  ))}
+                  {g.standards.length > 4 && <span class="card__pill card__pill--more">+{g.standards.length - 4}</span>}
+                </div>
+              )}
+              <span class="card__arrow">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="empty" id="grp-empty" hidden>
+        <h3>No groups match your filters</h3>
+        <button type="button" class="chip chip--text" id="grp-clear">Clear filters</button>
+      </div>
+    </div>
   </div>
 </BaseLayout>
 
+<script>
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('#grp-grid > li > a'))
+  const empty = document.getElementById('grp-empty')
+  const count = document.getElementById('grp-count')
+  const search = document.getElementById('grp-search') as HTMLInputElement | null
+  const total = cards.length
+  let category = ''
+  let activeOnly = false
+
+  function apply() {
+    const q = (search?.value ?? '').trim().toLowerCase()
+    let visible = 0
+    cards.forEach((card) => {
+      const okText = !q || (card.dataset.haystack || '').includes(q)
+      const okCat = !category || card.dataset.category === category
+      const okActive = !activeOnly || card.dataset.status === 'active'
+      const ok = okText && okCat && okActive
+      const li = card.parentElement as HTMLElement
+      li.style.display = ok ? '' : 'none'
+      if (ok) visible++
+    })
+    if (count) count.textContent = `${visible} of ${total} groups`
+    if (empty) empty.hidden = visible !== 0
+  }
+
+  document.querySelectorAll<HTMLElement>('.filter-chips').forEach((wrap) => {
+    const isStatus = wrap.hasAttribute('data-status')
+    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
+        chip.classList.add('chip--active')
+        if (isStatus) activeOnly = chip.dataset.value === 'active'
+        else category = chip.dataset.value ?? ''
+        apply()
+      })
+    })
+  })
+
+  search?.addEventListener('input', apply)
+  document.getElementById('grp-clear')?.addEventListener('click', () => {
+    if (search) search.value = ''
+    category = ''
+    activeOnly = false
+    document.querySelectorAll('.filter-chips .chip').forEach((c) => {
+      const wrap = c.closest('.filter-chips') as HTMLElement
+      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === '' && !wrap.hasAttribute('data-status') ? true : (c as HTMLElement).dataset.value === '')
+    })
+    apply()
+  })
+</script>
+
 <style>
-  .grp-section { max-width: 80rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
-  .grp-section__head {
-    display: flex; align-items: baseline; gap: 1rem;
-    padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4;
-    margin-bottom: 1.5rem;
+  .chip--text {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid #d6d3d1;
+    background: #fff;
+    color: var(--color-blue-accent);
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
   }
-  :global(.dark) .grp-section__head { border-bottom-color: #44403c; }
-  .grp-section__head h2 {
-    font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600;
-    color: #1c1917; margin: 0;
-  }
-  :global(.dark) .grp-section__head h2 { color: #fafaf9; }
-  .count { font-family: var(--font-sans); font-size: 0.875rem; color: #78716c; }
-  :global(.dark) .count { color: #a8a29e; }
+  .chip--text:hover { background: var(--color-blue-accent); color: #fff; border-color: var(--color-blue-accent); }
 
-  .grp-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
-  @media (min-width: 768px) { .grp-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1100px) { .grp-grid { grid-template-columns: repeat(3, 1fr); } }
-
-  .grp-card {
-    display: block; padding: 1.5rem;
-    border: 1px solid #e7e5e4; background: #fff;
-    text-decoration: none; color: inherit;
-    transition: border-color 0.15s, transform 0.15s;
+  .filter-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; align-items: center; }
+  .chip {
+    display: inline-flex; align-items: center;
+    padding: 0.375rem 0.75rem; border-radius: 9999px;
+    border: 1px solid #d6d3d1; background: #fff; color: #57534e;
+    font-size: 0.8125rem; font-weight: 500; font-family: inherit;
+    cursor: pointer; transition: all 0.15s;
   }
-  :global(.dark) .grp-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
-  .grp-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
-  .grp-card__id {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-brand);
+  .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
+  .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
+  :global(.dark) .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
+  :global(.dark) .chip:hover { border-color: #5379bf; }
+  :global(.dark) .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
+  .filter-meta { margin-top: 0.75rem; font-size: 0.875rem; color: #78716c; }
+  :global(.dark) .filter-meta { color: #a8a29e; }
+
+  .loading, .empty {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: #78716c;
+  }
+  .empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
+  :global(.dark) .empty h3 { color: #fafaf9; }
+  :global(.dark) .loading, :global(.dark) .empty { color: #a8a29e; }
+
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .card {
+    position: relative;
+    display: block;
+    height: 100%;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e7e5e4;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+  :global(.dark) .card {
+    background: rgb(15 23 42 / 0.5);
+    border-color: #44403c;
+  }
+  .card:hover {
+    border-color: var(--color-blue-accent);
+    box-shadow: 0 4px 12px rgb(30 58 138 / 0.08);
+    transform: translateY(-2px);
+  }
+  :global(.dark) .card:hover {
+    border-color: #5379bf;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.25);
+  }
+  .card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 0.5rem;
   }
-  .grp-card__title {
+  .card__top-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3125rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .card__status-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+  .card__status--active { color: var(--color-brand); }
+  .card__status--inactive { color: var(--color-amber-warm); }
+  .card__status--inactive .card__status-dot {
+    background: transparent;
+    border: 1.5px solid currentColor;
+    width: 0.4375rem;
+    height: 0.4375rem;
+  }
+  .card__status--dissolved { color: var(--color-slate-500); }
+  .card__status--dissolved .card__status-dot {
+    background: transparent;
+    border: 1.5px solid currentColor;
+    width: 0.4375rem;
+    height: 0.4375rem;
+  }
+  :global(.dark) .card__status--dissolved { color: var(--color-slate-400); }
+
+  .card--dissolved .card__name {
+    color: var(--color-slate-500);
+  }
+  :global(.dark) .card--dissolved .card__name {
+    color: var(--color-slate-400);
+  }
+  .card--dissolved {
+    opacity: 0.9;
+  }
+  .card--dissolved:hover { opacity: 1; }
+
+  .card__category {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-blue-accent);
+  }
+  .card__count {
+    font-size: 0.75rem;
+    color: #78716c;
+  }
+  :global(.dark) .card__count { color: #a8a29e; }
+  .card__name {
     font-family: var(--font-serif);
-    font-size: 1.125rem; font-weight: 600;
-    color: #1c1917; margin: 0 0 0.5rem; line-height: 1.2;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1c1917;
+    margin: 0 0 0.125rem;
   }
-  :global(.dark) .grp-card__title { color: #fafaf9; }
-  .grp-card__intro {
-    font-size: 0.875rem; line-height: 1.5;
-    color: #57534e; margin: 0;
+  :global(.dark) .card__name { color: #fafaf9; }
+  .card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-slate-500);
   }
-  :global(.dark) .grp-card__intro { color: #d6d3d1; }
+  :global(.dark) .card__meta { color: var(--color-slate-400); }
+  .card__est {
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+  .card__lineage {
+    font-size: 0.75rem;
+    color: var(--color-slate-600);
+    margin: 0 0 0.5rem;
+    font-style: italic;
+  }
+  :global(.dark) .card__lineage { color: var(--color-slate-400); }
+  .card__lineage-arrow {
+    font-family: var(--font-serif);
+    font-style: normal;
+    margin-right: 0.25rem;
+  }
+  .card__lineage--succ { color: var(--color-brand); }
+  :global(.dark) .card__lineage--succ { color: var(--color-blue-accent); }
+  .card__title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #44403c;
+    margin: 0 0 0.5rem;
+  }
+  :global(.dark) .card__title { color: #d6d3d1; }
+  .card__intro {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #78716c;
+    margin: 0 0 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  :global(.dark) .card__intro { color: #a8a29e; }
+  .card__convenor {
+    font-size: 0.8125rem;
+    color: #57534e;
+    margin: 0 0 0.75rem;
+  }
+  :global(.dark) .card__convenor { color: #d6d3d1; }
+  .card__convenor-label { font-weight: 600; }
+  .card__standards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .card__pill {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    background: #f5f5f4;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #57534e;
+    font-family: ui-monospace, monospace;
+  }
+  :global(.dark) .card__pill { background: #292524; color: #d6d3d1; }
+  .card__pill--more { background: #e0e7ff; color: var(--color-blue-accent); }
+  :global(.dark) .card__pill--more { background: rgb(51 133 214 / 0.2); }
+  .card__arrow {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1.125rem;
+    color: var(--color-blue-accent);
+  }
+  .card:hover .card__arrow { transform: translateX(4px); }
+  .card__arrow { transition: transform 0.2s; }
 </style>

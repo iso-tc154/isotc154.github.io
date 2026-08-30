@@ -20,62 +20,132 @@ for (const a of acks) {
   grouped.get(k)!.push(a)
 }
 const sortedGroups = Array.from(grouped.entries()).sort((a, b) => a[0].localeCompare(b[0]))
+
+const memberSlugs = new Set(Object.keys(loadData.members().all as Record<string, unknown>))
+
+function memberUrl(name: string): string | null {
+  const slug = name.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  return memberSlugs.has(slug) ? `/members/${slug}/` : null
+}
+
+function formatDate(date: string): string {
+  const d = new Date(date)
+  if (Number.isNaN(d.getTime())) return date
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+}
 ---
 <BaseLayout title="Acknowledgments — ISO/TC 154" description="Acknowledgments of contributions to ISO/TC 154 standards.">
-  <PageHero
-    variant="index"
-    bleed
-    eyebrow="Contributions"
-    title="Acknowledgments"
-    lead="Recognition of the experts whose contributions have shaped ISO/TC 154 standards over five decades."
-  />
-  <div class="page page--wide">
-    {acks.length === 0 ? (
-      <p class="ack-empty">Acknowledgment records will appear here once published.</p>
-    ) : (
-      <div class="ack-list">
-        {sortedGroups.map(([standard, items]) => (
-          <section class="ack-group">
-            <h2 class="ack-group__title">{standard}</h2>
-            <ul>
-              {items.map((a) => (
-                <li class="ack-item">
-                  <span class="ack-item__name">{a.name}</span>
-                  {a.affiliation && <span class="ack-item__aff"> · {a.affiliation}</span>}
-                  {a.contribution && <p class="ack-item__contrib">{a.contribution}</p>}
-                </li>
-              ))}
-            </ul>
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Errata & contributions"
+      title="Acknowledgments"
+      lead="ISO/TC 154 gratefully acknowledges the following individuals and organizations who have contributed errata reports, feedback, and improvements to our standards."
+    >
+      <div slot="decoration" class="hero-pattern hero-pattern--dots hero-pattern--subtle"></div>
+      {acks.length > 0 && (
+        <dl class="page__stats" slot="stats">
+          <div><dt>{acks.length}</dt><dd>contributions</dd></div>
+          <div><dt>{sortedGroups.length}</dt><dd>standards</dd></div>
+        </dl>
+      )}
+    </PageHero>
+
+    <div class="page page--wide">
+      <div class="acks-shell">
+        {sortedGroups.length > 0 ? (
+          <section class="acks">
+            {sortedGroups.map(([standard, entries]) => (
+              <section class="acks__group">
+                <h2 class="acks__standard">{standard}</h2>
+                <ul class="acks__list">
+                  {entries.map((ack) => (
+                    <li class="acks__item">
+                      <p class="acks__name">
+                        {ack.url ? (
+                          <a href={ack.url} target="_blank" rel="noopener noreferrer">{ack.name}</a>
+                        ) : memberUrl(ack.name) ? (
+                          <a href={memberUrl(ack.name)}>{ack.name}</a>
+                        ) : (
+                          <span>{ack.name}</span>
+                        )}
+                        {ack.affiliation && <span class="acks__aff"> · {ack.affiliation}</span>}
+                      </p>
+                      {ack.date && <p class="acks__date">{formatDate(ack.date)}</p>}
+                      {ack.contribution && <p class="acks__contribution">{ack.contribution}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </section>
-        ))}
+        ) : (
+          <div class="empty">
+            <p>
+              No errata reports or feedback acknowledgments yet. Contributions will
+              be recognized here as they are received.
+            </p>
+          </div>
+        )}
       </div>
-    )}
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .ack-list { max-width: 48rem; margin: 2rem auto; padding: 0 1.5rem; }
-  .ack-empty {
-    max-width: 48rem; margin: 4rem auto; padding: 0 1.5rem;
-    font-style: italic; color: #78716c;
-  }
-  :global(.dark) .ack-empty { color: #a8a29e; }
-  .ack-group { margin-bottom: 2.5rem; }
-  .ack-group__title {
+  .acks-shell { max-width: 48rem; }
+
+  .acks { display: flex; flex-direction: column; gap: 2rem; }
+  .acks__standard {
     font-family: var(--font-serif);
-    font-size: 1.375rem;
-    font-weight: 600;
+    font-size: 1.25rem; font-weight: 700;
     color: var(--color-brand);
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.375rem;
     border-bottom: 1px solid #e7e5e4;
-    padding-bottom: 0.5rem;
-    margin: 0 0 1rem;
   }
-  :global(.dark) .ack-group__title { border-bottom-color: #44403c; }
-  .ack-item { padding: 0.5rem 0; font-size: 0.9375rem; }
-  .ack-item__name { font-weight: 700; color: #1c1917; }
-  :global(.dark) .ack-item__name { color: #fafaf9; }
-  .ack-item__aff { color: #57534e; }
-  :global(.dark) .ack-item__aff { color: #a8a29e; }
-  .ack-item__contrib { color: #57534e; font-size: 0.875rem; margin: 0.25rem 0 0; }
-  :global(.dark) .ack-item__contrib { color: #d6d3d1; }
+  :global(.dark) .acks__standard { border-bottom-color: #44403c; }
+  .acks__list { list-style: none; margin: 0; padding: 0; }
+  .acks__item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f5f5f4;
+  }
+  :global(.dark) .acks__item { border-bottom-color: #292524; }
+  .acks__name {
+    font-weight: 600;
+    margin: 0 0 0.125rem;
+    color: #1c1917;
+  }
+  :global(.dark) .acks__name { color: #fafaf9; }
+  .acks__name a {
+    color: var(--color-blue-accent);
+    text-decoration: none;
+  }
+  .acks__name a:hover { text-decoration: underline; }
+  .acks__aff { font-weight: 400; color: #78716c; }
+  :global(.dark) .acks__aff { color: #a8a29e; }
+  .acks__date {
+    font-size: 0.75rem;
+    font-family: ui-monospace, monospace;
+    color: #a8a29e;
+    margin: 0 0 0.25rem;
+  }
+  .acks__contribution {
+    font-size: 0.9375rem;
+    color: #57534e;
+    margin: 0;
+  }
+  :global(.dark) .acks__contribution { color: #d6d3d1; }
+
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #78716c;
+    background: #fafaf9;
+    border-radius: 0.5rem;
+  }
+  :global(.dark) .empty { background: #292524; color: #a8a29e; }
 </style>

@@ -29,11 +29,8 @@ const lead = page.frontmatter.lead ?? page.frontmatter.description ?? ''
 <style is:global>
   .prose {
     max-width: 48rem;
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 1rem; line-height: 1.7;
     color: #44403c;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
   }
   .dark .prose { color: #d6d3d1; }
   .prose h1 {
@@ -41,74 +38,119 @@ const lead = page.frontmatter.lead ?? page.frontmatter.description ?? ''
     font-size: clamp(1.625rem, 3vw, 2.5rem);
     font-weight: 600;
     line-height: 1.1;
-    margin: 2.5rem 0 1rem;
+    letter-spacing: -0.025em;
     color: #1c1917;
+    margin: 2.5rem 0 1rem;
   }
   .dark .prose h1 { color: #fafaf9; }
   .prose h2 {
     font-family: var(--font-serif);
-    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
     font-weight: 600;
     line-height: 1.15;
-    margin: 2.5rem 0 1rem;
+    letter-spacing: -0.02em;
     color: #1c1917;
-    letter-spacing: -0.01em;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e7e5e4;
   }
-  .dark .prose h2 { color: #fafaf9; }
+  .dark .prose h2 { color: #fafaf9; border-bottom-color: #44403c; }
   .prose h3 {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     font-weight: 600;
-    margin: 2rem 0 0.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
     color: #1c1917;
+    margin: 2rem 0 0.75rem;
   }
   .dark .prose h3 { color: #fafaf9; }
-  .prose h4 { font-family: var(--font-sans); font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: #1c1917; }
-  .dark .prose h4 { color: #fafaf9; }
-  .prose p { margin: 0 0 1.25rem; }
-  .prose a { color: var(--color-brand); text-decoration: underline; text-underline-offset: 2px; }
-  .prose a:hover { color: var(--color-brand-hover); }
-  .prose ul, .prose ol { margin: 0 0 1.25rem; padding-left: 1.5rem; }
-  .prose li { margin: 0.375rem 0; }
-  .prose code {
-    font-family: ui-monospace, 'JetBrains Mono', monospace;
-    font-size: 0.875em;
-    background: rgb(30 58 138 / 0.06);
-    padding: 0.125rem 0.375rem;
-    border-radius: 2px;
-  }
-  .dark .prose code { background: rgb(148 182 232 / 0.1); }
-  .prose pre {
-    background: #1c1917;
-    color: #fafaf9;
-    padding: 1rem 1.25rem;
-    overflow-x: auto;
-    margin: 0 0 1.5rem;
+  .prose h4 {
+    font-family: var(--font-sans);
     font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1c1917;
+    margin: 1.5rem 0 0.5rem;
   }
-  .prose pre code { background: none; padding: 0; }
+  .dark .prose h4 { color: #fafaf9; }
+  .prose p { margin: 0 0 1rem; }
+  .prose a { color: var(--color-brand); text-decoration: underline; }
+  .prose ul, .prose ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+  .prose li { margin-bottom: 0.375rem; }
+  .prose code {
+    font-family: ui-monospace, monospace;
+    background: #f5f5f4;
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+  .dark .prose code { background: #44403c; }
   .prose blockquote {
     border-left: 3px solid var(--color-brand);
-    padding: 0.5rem 0 0.5rem 1.25rem;
+    padding: 0.5rem 1rem;
     margin: 1.5rem 0;
-    font-style: italic;
+    background: #fafaf9;
     color: #57534e;
   }
-  .dark .prose blockquote { color: #a8a29e; }
+  .dark .prose blockquote {
+    background: #292524;
+    color: #d6d3d1;
+    border-left-color: #5379bf;
+  }
   .prose table {
+    display: block;
+    overflow-x: auto;
     width: 100%;
+    max-width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-size: 0.9375rem;
+    -webkit-overflow-scrolling: touch;
   }
   .prose th, .prose td {
-    border: 1px solid #d6d3d1;
-    padding: 0.625rem 0.875rem;
+    border: 1px solid #e7e5e4;
+    padding: 0.5rem 0.75rem;
     text-align: left;
   }
   .dark .prose th, .dark .prose td { border-color: #44403c; }
   .prose th { background: #fafaf9; font-weight: 700; }
-  .dark .prose th { background: rgb(255 255 255 / 0.04); }
-  .prose hr { border: none; border-top: 1px solid #d6d3d1; margin: 2.5rem 0; }
+  .dark .prose th { background: #292524; }
+  .prose hr {
+    border: 0;
+    border-top: 1px solid #e7e5e4;
+    margin: 2rem 0;
+  }
   .dark .prose hr { border-top-color: #44403c; }
+
+  .prose .business-plan-cta {
+    margin: 1.25rem 0 1.75rem;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--color-brand);
+    background: linear-gradient(135deg, rgb(30 58 138 / 0.05) 0%, #fff 100%);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .dark .prose .business-plan-cta {
+    background: linear-gradient(135deg, rgb(51 133 214 / 0.08) 0%, rgb(15 23 42 / 0.5) 100%);
+    border-left-color: var(--color-brand);
+  }
+  .prose .business-plan-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-brand);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .prose .business-plan-cta a::before {
+    content: '⬇';
+    display: inline-block;
+    font-size: 0.875rem;
+  }
+  .prose .business-plan-cta a:hover { text-decoration: underline; }
+
+  .loading { color: #78716c; padding: 4rem 0; text-align: center; }
 </style>
