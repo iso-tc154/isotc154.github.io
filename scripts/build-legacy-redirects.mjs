@@ -35,7 +35,11 @@ for (const sub of SUBDIRS) {
   }
 }
 
-// 2. Meeting redirects: /meetings/{ordinal} → /meetings/urn:iso-tc154:meeting:plenary-{ordinal}/
+// 2. Meeting redirects: /meetings/urn:iso-tc154:meeting:plenary-{n}/ → /meetings/{n}/
+// The urn: URLs were introduced during the edoxen-hosted era; meeting detail
+// pages are native again at /meetings/{ordinal}/, so the urn form redirects
+// to it. The legacy /meetings/{ordinal} URLs need no redirect — they are
+// live routes again.
 let meetingCount = 0
 if (fs.existsSync(EVENTS)) {
   for (const f of fs.readdirSync(EVENTS).filter((f) => f.endsWith('.yaml'))) {
@@ -43,9 +47,7 @@ if (fs.existsSync(EVENTS)) {
     const ordinal = doc?.ordinal
     const urn = doc?.urn
     if (ordinal == null || !urn) continue
-    const oldPath = `/meetings/${ordinal}`
-    const newUrl = `/meetings/${urn}/`
-    redirects[oldPath] = newUrl
+    redirects[`/meetings/${urn}`] = `/meetings/${ordinal}/`
     meetingCount++
   }
 }

@@ -8,11 +8,12 @@ const require = createRequire(import.meta.url)
 const edoxenRoot = dirname(require.resolve('@edoxen/browser/package.json'))
 const pagesRootDir = resolve(edoxenRoot, 'src/astro/pages')
 
+// Edoxen owns /decisions/ only. Meetings returned to native Astro pages
+// (src/pages/meetings/) — the edoxen meeting UI dropped the legacy
+// schedule/agenda/venue briefing, so it was retired for meetings.
 const routes: Array<[string, string]> = [
   ['/decisions', 'decisions/index.astro'],
   ['/decisions/[urn]', 'decisions/[urn].astro'],
-  ['/meetings', 'meetings/index.astro'],
-  ['/meetings/[urn]', 'meetings/[urn].astro'],
 ]
 
 // Theme bridge: the site toggles `.dark` on <html> with localStorage key

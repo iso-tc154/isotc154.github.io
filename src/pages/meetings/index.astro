@@ -1,0 +1,839 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHero from '../../components/PageHero.astro'
+import { loadData } from '../../lib/data'
+import { committee } from '../../data/committee'
+
+interface Session { type?: string; country?: string; city?: string; virtual_address?: string }
+interface Meeting {
+  ordinal: number
+  year?: number
+  url: string
+  sessions: Session[]
+  status_label?: string
+  type_label?: string
+  location_label?: string
+  date_label?: string
+  participant_total?: number
+  resolution_count?: number
+  rich?: unknown
+}
+
+const meetings = loadData.meetings() as unknown as Meeting[]
+
+function isUpcoming(m: Meeting): boolean {
+  return m.status_label !== 'Concluded' && m.status_label !== 'Cancelled'
+}
+function decadeOf(year?: number): number | null {
+  if (year == null) return null
+  const y = Number(year)
+  if (Number.isNaN(y)) return null
+  return Math.floor(y / 10) * 10
+}
+function typeInitials(m: Meeting): string {
+  if (m.type_label === 'Hybrid') return 'HYB'
+  if (m.type_label === 'Virtual') return 'VRT'
+  if (m.type_label === 'In person') return 'F2F'
+  return (m.type_label ?? '').slice(0, 3).toUpperCase()
+}
+function ordinalSuffix(n: number): string {
+  if (n >= 11 && n <= 13) return 'th'
+  switch (n % 10) {
+    case 1: return 'st'
+    case 2: return 'nd'
+    case 3: return 'rd'
+    default: return 'th'
+  }
+}
+function haystack(m: Meeting): string {
+  return [
+    String(m.ordinal),
+    m.year ? String(m.year) : '',
+    m.location_label,
+    ...m.sessions.map((s) => [s.country, s.city, s.virtual_address].filter(Boolean).join(' ')),
+  ].join(' ').toLowerCase()
+}
+function hasType(m: Meeting, t: string): boolean {
+  return m.sessions.some((s) => s.type === t)
+}
+
+const totalMeetings = meetings.length
+const totalResolutions = meetings.reduce((acc, m) => acc + (m.resolution_count || 0), 0)
+const totalCountries = new Set(meetings.flatMap((m) => m.sessions.filter((s) => s.country).map((s) => s.country!))).size
+const firstYear = Math.min(...meetings.map((m) => m.year ?? 9999))
+
+const decades = Array.from(new Set(meetings.map((m) => decadeOf(m.year)).filter((d): d is number => d !== null))).sort((a, b) => b - a)
+
+const upcomingMeetings = meetings
+  .filter((m) => isUpcoming(m))
+  .sort((a, b) => (a.year ?? 0) - (b.year ?? 0))
+
+const pastMeetings = meetings.filter((m) => !isUpcoming(m))
+const groups: { decade: number; label: string; meetings: Meeting[]; resolutionCount: number }[] = []
+{
+  const map = new Map<number, Meeting[]>()
+  for (const m of pastMeetings) {
+    const d = decadeOf(m.year)
+    if (d === null) continue
+    if (!map.has(d)) map.set(d, [])
+    map.get(d)!.push(m)
+  }
+  for (const [decade, ms] of Array.from(map.entries()).sort((a, b) => b[0] - a[0])) {
+    groups.push({
+      decade,
+      label: `${decade}s`,
+      meetings: [...ms].sort((a, b) => b.ordinal - a.ordinal),
+      resolutionCount: ms.reduce((acc, m) => acc + (m.resolution_count || 0), 0),
+    })
+  }
+}
+---
+<BaseLayout title="Meetings — ISO/TC 154" description="Every plenary meeting of ISO/TC 154 since 1972 — hosts, agendas, and resolutions.">
+  <div class="meetings-page">
+    <PageHero
+      variant="landing"
+      bleed
+      eyebrow={`Annual plenaries since ${committee.established}`}
+      title="Plenary Meetings"
+      lead="Every plenary of ISO/TC 154 since the committee's founding — the annual focal point where technical decisions are made, resolutions adopted, and the work programme shaped."
+    >
+      <div slot="decoration" class="hero-pattern hero-pattern--flow"></div>
+      <dl class="page__stats" slot="stats">
+        <div><dt>{totalMeetings}</dt><dd>Total plenaries</dd></div>
+        <div><dt>{totalResolutions}</dt><dd>Resolutions adopted</dd></div>
+        <div><dt>{totalCountries}</dt><dd>Countries hosted</dd></div>
+        <div><dt>{firstYear}</dt><dd>First plenary</dd></div>
+      </dl>
+    </PageHero>
+
+    <div class="meetings-content">
+      <div class="filter-bar" id="mtg-filter">
+        <div class="filter-bar__controls">
+          <div class="filter-bar__field">
+            <label class="filter-label" for="mtg-search">Search meetings</label>
+            <input type="search" class="filter-input" id="mtg-search" placeholder="Search by city, country, year, or plenary number…" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="filter-bar__field filter-bar__field--sm">
+            <span class="filter-label">Decade</span>
+            <div class="filter-chips" data-facet="decade">
+              <button type="button" class="chip chip--active" data-value="">All</button>
+              {decades.map((d) => (
+                <button type="button" class="chip" data-value={String(d)}>{`${d}s`}</button>
+              ))}
+            </div>
+          </div>
+          <div class="filter-bar__field filter-bar__field--sm">
+            <span class="filter-label">Format</span>
+            <div class="filter-chips" data-facet="type">
+              <button type="button" class="chip chip--active" data-value="">All</button>
+              <button type="button" class="chip" data-value="face-to-face">In person</button>
+              <button type="button" class="chip" data-value="hybrid">Hybrid</button>
+              <button type="button" class="chip" data-value="virtual">Virtual</button>
+            </div>
+          </div>
+          <div class="filter-bar__field filter-bar__field--sm">
+            <span class="filter-label">Status</span>
+            <div class="filter-chips" data-facet="status">
+              <button type="button" class="chip chip--active" data-value="">All</button>
+              <button type="button" class="chip" data-value="upcoming">Upcoming</button>
+              <button type="button" class="chip" data-value="concluded">Concluded</button>
+              <button type="button" class="chip" data-value="cancelled">Cancelled</button>
+            </div>
+          </div>
+        </div>
+        <div class="filter-meta"><span id="mtg-count">{totalMeetings} of {totalMeetings} plenaries</span></div>
+      </div>
+
+      <section class="index" id="mtg-index">
+        <div class="upcoming" id="mtg-upcoming" hidden={upcomingMeetings.length === 0}>
+          <header class="upcoming__header">
+            <div class="upcoming__header-text">
+              <p class="upcoming__eyebrow">
+                <span class="upcoming__pulse" aria-hidden="true"></span>
+                <span>Upcoming</span>
+                <span class="upcoming__eyebrow-meta">{upcomingMeetings.length === 1 ? 'Next plenary' : `${upcomingMeetings.length} plenaries scheduled`}</span>
+              </p>
+              <h2 class="upcoming__title">In the calendar</h2>
+              <p class="upcoming__lead">
+                Plenary weeks still to come — book travel, register, and prepare contributions.
+              </p>
+            </div>
+          </header>
+
+          <ol class="upcoming__list">
+            {upcomingMeetings.map((m) => (
+              <li class:list={["ucard", { 'ucard--rich': !!m.rich, 'ucard--cancelled': m.status_label === 'Cancelled' }]} data-upcoming="1" data-haystack={haystack(m)} data-types={m.sessions.map((s) => s.type ?? '').filter(Boolean).join('|')} data-cancelled={m.status_label === 'Cancelled' ? '1' : ''}>
+                <a class="ucard__link" href={m.url}></a>
+                <div class="ucard__rail" aria-hidden="true"></div>
+                <div class="ucard__main">
+                  <div class="ucard__ordinal-row">
+                    <span class="ucard__ordinal">
+                      {m.ordinal}<sup>{ordinalSuffix(m.ordinal)}</sup>
+                    </span>
+                    <span class="ucard__ordinal-label">Plenary</span>
+                    <span class="ucard__year">{m.year ?? '—'}</span>
+                  </div>
+
+                  {m.date_label ? (
+                    <h3 class="ucard__date">{m.date_label}</h3>
+                  ) : (
+                    <h3 class="ucard__date ucard__date--empty">Date to be confirmed</h3>
+                  )}
+
+                  {m.location_label ? (
+                    <p class="ucard__location">{m.location_label}</p>
+                  ) : (
+                    <p class="ucard__location ucard__location--empty">Location to be confirmed</p>
+                  )}
+
+                  <div class="ucard__chips">
+                    {m.status_label === 'Cancelled' ? (
+                      <span class="chip-status chip-status--cancelled">Cancelled</span>
+                    ) : m.status_label === 'Registration open' ? (
+                      <span class="chip-status chip-status--open">Registration open</span>
+                    ) : m.status_label === 'Confirmed' ? (
+                      <span class="chip-status chip-status--confirmed">Confirmed</span>
+                    ) : m.status_label === 'Scheduled' ? (
+                      <span class="chip-status chip-status--scheduled">Scheduled</span>
+                    ) : m.status_label === 'Tentative' ? (
+                      <span class="chip-status chip-status--tentative">Tentative</span>
+                    ) : m.status_label && (
+                      <span class="chip-status">{m.status_label}</span>
+                    )}
+                    {m.type_label && <span class="chip-meta">{m.type_label}</span>}
+                    {m.rich && <span class="chip-meta chip-meta--outline">Briefing available</span>}
+                  </div>
+                </div>
+
+                <div class="ucard__arrow" aria-hidden="true">
+                  <span>Open</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div id="mtg-past" hidden={groups.length === 0}>
+          {upcomingMeetings.length > 0 && (
+            <h2 class="past-section-label">
+              <span>Past plenaries</span>
+              <span class="past-section-rule" aria-hidden="true"></span>
+            </h2>
+          )}
+
+          {groups.map((group) => (
+            <div class="decade" data-decade={group.decade}>
+              <header class="decade__header">
+                <h3 class="decade__label">{group.label}</h3>
+                <p class="decade__meta">
+                  {group.meetings.length} plenar{group.meetings.length === 1 ? 'y' : 'ies'}
+                  {group.resolutionCount > 0 && <> · {group.resolutionCount} resolutions</>}
+                </p>
+                <span class="decade__rule" aria-hidden="true"></span>
+              </header>
+
+              <ol class="decade__list">
+                {group.meetings.map((m) => (
+                  <li class:list={["entry", { 'entry--cancelled': m.status_label === 'Cancelled', 'entry--rich': !!m.rich }]} data-decade={group.decade} data-haystack={haystack(m)} data-types={m.sessions.map((s) => s.type ?? '').filter(Boolean).join('|')} data-cancelled={m.status_label === 'Cancelled' ? '1' : ''}>
+                    <a class="entry__link" href={m.url} aria-label={`Plenary ${m.ordinal}`}></a>
+                    <div class="entry__year">
+                      <span class="entry__year-num">{m.year ?? '—'}</span>
+                      <span class="entry__year-tag">{typeInitials(m)}</span>
+                    </div>
+
+                    <div class="entry__ordinal">
+                      <span class="entry__ordinal-num">{m.ordinal}<sup>{ordinalSuffix(m.ordinal)}</sup></span>
+                      <span class="entry__ordinal-label">Plenary</span>
+                    </div>
+
+                    <div class="entry__body">
+                      <p class="entry__date">{m.date_label || 'Date TBC'}</p>
+                      {m.location_label ? (
+                        <p class="entry__location">{m.location_label}</p>
+                      ) : (
+                        <p class="entry__location entry__location--empty">Location TBC</p>
+                      )}
+
+                      <div class="entry__chips">
+                        {m.status_label === 'Cancelled' ? (
+                          <span class="badge badge--cancelled">Cancelled</span>
+                        ) : (
+                          <span class="badge badge--concluded">Concluded</span>
+                        )}
+                        {m.type_label && <span class="badge badge--type">{m.type_label}</span>}
+                        {m.participant_total && <span class="badge badge--meta">{m.participant_total} attended</span>}
+                        {m.resolution_count > 0 && (
+                          <span class="badge badge--res">
+                            {m.resolution_count} resolution{m.resolution_count === 1 ? '' : 's'}
+                          </span>
+                        )}
+                        {m.rich && <span class="badge badge--rich">Briefing available</span>}
+                      </div>
+                    </div>
+
+                    <div class="entry__arrow" aria-hidden="true">→</div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
+
+        <div class="mtg-empty" id="mtg-empty" hidden>
+          <h3>No plenaries match</h3>
+          <p>Try a different decade, format, or search term — or clear the filters and start over.</p>
+          <button type="button" class="chip" id="mtg-clear">Clear filters</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const upcomingWrap = document.getElementById('mtg-upcoming')
+  const pastWrap = document.getElementById('mtg-past')
+  const empty = document.getElementById('mtg-empty')
+  const count = document.getElementById('mtg-count')
+  const search = document.getElementById('mtg-search') as HTMLInputElement | null
+  const decades = Array.from(document.querySelectorAll<HTMLElement>('#mtg-index .decade'))
+  const upcomingCards = Array.from(document.querySelectorAll<HTMLElement>('#mtg-upcoming .ucard'))
+  const total = upcomingCards.length + decades.reduce((acc, d) => acc + d.querySelectorAll('.entry').length, 0)
+  const state: Record<string, string> = { decade: '', type: '', status: '' }
+
+  function matches(el: HTMLElement): boolean {
+    const q = (search?.value ?? '').trim().toLowerCase()
+    if (q && !(el.dataset.haystack || '').includes(q)) return false
+    if (state.decade && el.dataset.decade !== state.decade) return false
+    if (state.type && !(el.dataset.types || '').split('|').includes(state.type)) return false
+    if (state.status) {
+      const upcoming = el.dataset.upcoming === '1'
+      if (state.status === 'upcoming' && !upcoming) return false
+      if (state.status === 'concluded' && (upcoming || el.dataset.cancelled === '1')) return false
+      if (state.status === 'cancelled' && el.dataset.cancelled !== '1') return false
+    }
+    return true
+  }
+
+  function apply() {
+    let visibleUpcoming = 0
+    upcomingCards.forEach((card) => {
+      const ok = matches(card)
+      card.style.display = ok ? '' : 'none'
+      if (ok) visibleUpcoming++
+    })
+    if (upcomingWrap) {
+      if (state.status === 'concluded' || state.status === 'cancelled') {
+        upcomingWrap.style.display = 'none'
+        visibleUpcoming = 0
+      } else {
+        upcomingWrap.style.display = visibleUpcoming === 0 ? 'none' : ''
+      }
+    }
+    let visiblePast = 0
+    decades.forEach((decadeEl) => {
+      let anyVisible = false
+      decadeEl.querySelectorAll<HTMLElement>('.entry').forEach((entry) => {
+        const ok = matches(entry) && state.status !== 'upcoming'
+        entry.style.display = ok ? '' : 'none'
+        if (ok) { anyVisible = true; visiblePast++ }
+      })
+      decadeEl.style.display = anyVisible ? '' : 'none'
+    })
+    if (pastWrap) pastWrap.style.display = state.status === 'upcoming' ? 'none' : (visiblePast === 0 ? 'none' : '')
+    const visible = visibleUpcoming + visiblePast
+    if (count) count.textContent = `${visible} of ${total} plenaries`
+    if (empty) empty.hidden = visible !== 0
+  }
+
+  document.querySelectorAll<HTMLElement>('#mtg-filter .filter-chips[data-facet]').forEach((wrap) => {
+    const facet = wrap.dataset.facet ?? ''
+    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
+        chip.classList.add('chip--active')
+        state[facet] = chip.dataset.value ?? ''
+        apply()
+      })
+    })
+  })
+
+  search?.addEventListener('input', apply)
+  document.getElementById('mtg-clear')?.addEventListener('click', () => {
+    if (search) search.value = ''
+    state.decade = state.type = state.status = ''
+    document.querySelectorAll('#mtg-filter .filter-chips .chip').forEach((c) => {
+      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === '')
+    })
+    apply()
+  })
+</script>
+
+<style>
+  .meetings-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  /* INDEX */
+  .index { display: flex; flex-direction: column; gap: 3rem; margin-top: 2.5rem; }
+  .decade__header {
+    position: relative;
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #1c1917;
+  }
+  :global(.dark) .decade__header { border-bottom-color: #fafaf9; }
+  .decade__label {
+    font-family: var(--font-serif);
+    font-size: clamp(1.875rem, 3vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1c1917;
+    margin: 0;
+    line-height: 1;
+  }
+  :global(.dark) .decade__label { color: #fafaf9; }
+  .decade__meta {
+    font-size: 0.8125rem;
+    color: #78716c;
+    margin: 0;
+  }
+  :global(.dark) .decade__meta { color: #a8a29e; }
+
+  .decade__list {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+
+  .entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: 5rem 5rem 1fr 1.5rem;
+    align-items: start;
+    gap: 1.25rem;
+    padding: 1.125rem 0.5rem 1.125rem 0;
+    border-bottom: 1px solid #e7e5e4;
+    cursor: pointer;
+    transition: background 0.15s, padding 0.15s;
+    outline: none;
+  }
+  .entry:hover, .entry:focus-visible {
+    background: rgb(30 58 138 / 0.025);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  :global(.dark) .entry { border-bottom-color: #292524; }
+  :global(.dark) .entry:hover, :global(.dark) .entry:focus-visible { background: rgb(148 182 232 / 0.05); }
+  .entry:focus-visible { box-shadow: inset 3px 0 0 var(--color-blue-accent); }
+  .entry:last-child { border-bottom: 0; }
+
+  .entry--cancelled { opacity: 0.65; }
+
+  /* Stretched link: card is clickable without nesting anchors */
+  .entry__link, .ucard__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .entry__year {
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  .entry__year-num {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-blue-accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  :global(.dark) .entry__year-num { color: #94b6e8; }
+  .entry__year-tag {
+    font-family: ui-monospace, monospace;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #a8a29e;
+    letter-spacing: 0.05em;
+  }
+
+  .entry__ordinal {
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+    border-left: 1px solid #e7e5e4;
+    padding-left: 1rem;
+  }
+  :global(.dark) .entry__ordinal { border-left-color: #44403c; }
+  .entry__ordinal-num {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1c1917;
+    line-height: 1;
+  }
+  :global(.dark) .entry__ordinal-num { color: #fafaf9; }
+  .entry__ordinal-num sup {
+    font-size: 0.625em;
+    font-weight: 600;
+    vertical-align: super;
+    margin-left: 0.0625em;
+  }
+  .entry__ordinal-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a8a29e;
+    margin-top: 0.25rem;
+  }
+
+  .entry__body { min-width: 0; }
+  .entry__date {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1c1917;
+    margin: 0 0 0.25rem;
+  }
+  :global(.dark) .entry__date { color: #fafaf9; }
+  .entry__location {
+    font-size: 0.875rem;
+    color: #57534e;
+    margin: 0 0 0.5rem;
+  }
+  :global(.dark) .entry__location { color: #d6d3d1; }
+  .entry__location--empty { color: #a8a29e; font-style: italic; }
+
+  .entry__chips {
+    display: flex; flex-wrap: wrap; gap: 0.25rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.0625rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    background: #f5f5f4;
+    color: #57534e;
+    line-height: 1.4;
+  }
+  :global(.dark) .badge { background: #292524; color: #d6d3d1; }
+  .badge--concluded { background: #f5f5f4; color: #78716c; }
+  .badge--upcoming { background: var(--color-blue-accent); color: #fff; }
+  :global(.dark) .badge--upcoming { background: var(--color-brand-fill); }
+  .badge--cancelled { background: #fee2e2; color: #991b1b; }
+  :global(.dark) .badge--cancelled { background: rgb(185 28 28 / 0.2); color: #fca5a5; }
+  .badge--type {
+    background: #e0e7ff; color: #3730a3;
+  }
+  :global(.dark) .badge--type { background: rgb(99 102 241 / 0.2); color: #c7d2fe; }
+  .badge--meta { background: #fef3c7; color: #92400e; }
+  :global(.dark) .badge--meta { background: rgb(245 158 11 / 0.2); color: #fcd34d; }
+  .badge--res {
+    background: #dcfce7; color: #166534;
+  }
+  :global(.dark) .badge--res { background: rgb(34 197 94 / 0.2); color: #86efac; }
+  .badge--rich {
+    background: #fff; border: 1px solid var(--color-blue-accent);
+    color: var(--color-blue-accent);
+  }
+  :global(.dark) .badge--rich {
+    background: rgb(15 23 42 / 0.5);
+    border-color: #94b6e8;
+    color: #94b6e8;
+  }
+
+  .entry__arrow {
+    align-self: center;
+    font-size: 1.25rem;
+    color: #d6d3d1;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .entry:hover .entry__arrow {
+    color: var(--color-blue-accent);
+    transform: translateX(4px);
+  }
+  :global(.dark) .entry:hover .entry__arrow { color: #94b6e8; }
+
+  /* UPCOMING section */
+  .upcoming {
+    margin-bottom: 4rem;
+    padding: 1.75rem;
+    border-radius: 1rem;
+    background:
+      radial-gradient(ellipse at top right, rgb(30 58 138 / 0.08), transparent 60%),
+      linear-gradient(180deg, #fff 0%, rgb(219 234 254 / 0.4) 100%);
+    border: 1px solid rgb(30 58 138 / 0.2);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.05), 0 12px 28px -12px rgb(30 58 138 / 0.18);
+  }
+  :global(.dark) .upcoming {
+    background:
+      radial-gradient(ellipse at top right, rgb(148 182 232 / 0.16), transparent 60%),
+      linear-gradient(180deg, rgb(28 25 23 / 0.6) 0%, rgb(15 23 42 / 0.5) 100%);
+    border-color: rgb(148 182 232 / 0.35);
+  }
+  .upcoming__header {
+    margin-bottom: 1.25rem;
+  }
+  .upcoming__eyebrow {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--color-blue-accent);
+    margin: 0 0 0.5rem;
+  }
+  :global(.dark) .upcoming__eyebrow { color: #94b6e8; }
+  .upcoming__pulse {
+    width: 0.5rem; height: 0.5rem; border-radius: 50%;
+    background: var(--color-blue-accent);
+    box-shadow: 0 0 0 0 rgb(30 58 138 / 0.6);
+    animation: upcoming-pulse 2s infinite;
+  }
+  :global(.dark) .upcoming__pulse {
+    background: #94b6e8;
+    box-shadow: 0 0 0 0 rgb(148 182 232 / 0.6);
+  }
+  @keyframes upcoming-pulse {
+    0% { box-shadow: 0 0 0 0 rgb(30 58 138 / 0.55); }
+    70% { box-shadow: 0 0 0 0.625rem rgb(30 58 138 / 0); }
+    100% { box-shadow: 0 0 0 0 rgb(30 58 138 / 0); }
+  }
+  .upcoming__eyebrow-meta {
+    color: #a8a29e;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  :global(.dark) .upcoming__eyebrow-meta { color: #d6d3d1; }
+  .upcoming__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1c1917;
+    margin: 0 0 0.5rem;
+    line-height: 1.05;
+  }
+  :global(.dark) .upcoming__title { color: #fafaf9; }
+  .upcoming__lead {
+    font-size: 0.9375rem;
+    color: #57534e;
+    margin: 0;
+    max-width: 38rem;
+  }
+  :global(.dark) .upcoming__lead { color: #d6d3d1; }
+
+  .upcoming__list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+    gap: 0.75rem;
+  }
+  .ucard {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4px 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border: 1px solid rgb(30 58 138 / 0.25);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  :global(.dark) .ucard {
+    background: rgb(28 25 23 / 0.85);
+    border-color: rgb(148 182 232 / 0.4);
+  }
+  .ucard:hover, .ucard:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--color-blue-accent);
+    box-shadow: 0 12px 24px -12px rgb(30 58 138 / 0.3);
+  }
+  :global(.dark) .ucard:hover, :global(.dark) .ucard:focus-visible {
+    border-color: #94b6e8;
+    box-shadow: 0 12px 24px -12px rgb(148 182 232 / 0.25);
+  }
+  .ucard:focus-visible { box-shadow: 0 0 0 3px rgb(30 58 138 / 0.25); }
+  .ucard--cancelled { opacity: 0.7; }
+
+  .ucard__rail {
+    width: 4px;
+    align-self: stretch;
+    background: var(--color-blue-accent);
+    border-radius: 2px;
+  }
+  :global(.dark) .ucard__rail { background: #94b6e8; }
+
+  .ucard__main { min-width: 0; }
+  .ucard__ordinal-row {
+    display: flex; align-items: baseline; gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .ucard__ordinal {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-blue-accent);
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  :global(.dark) .ucard__ordinal { color: #94b6e8; }
+  .ucard__ordinal sup {
+    font-size: 0.5em;
+    vertical-align: super;
+  }
+  .ucard__ordinal-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #78716c;
+  }
+  :global(.dark) .ucard__ordinal-label { color: #a8a29e; }
+  .ucard__year {
+    margin-left: auto;
+    font-family: ui-monospace, monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #78716c;
+  }
+  :global(.dark) .ucard__year { color: #d6d3d1; }
+
+  .ucard__date {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1c1917;
+    margin: 0 0 0.25rem;
+    line-height: 1.25;
+  }
+  :global(.dark) .ucard__date { color: #fafaf9; }
+  .ucard__date--empty { color: #a8a29e; font-style: italic; font-weight: 600; }
+
+  .ucard__location {
+    font-size: 0.9375rem;
+    color: #57534e;
+    margin: 0 0 0.625rem;
+  }
+  :global(.dark) .ucard__location { color: #d6d3d1; }
+  .ucard__location--empty { color: #a8a29e; font-style: italic; }
+
+  .ucard__chips {
+    display: flex; flex-wrap: wrap; gap: 0.375rem;
+  }
+  .chip-status {
+    display: inline-flex; align-items: center;
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.75rem; font-weight: 700;
+    border-radius: 9999px;
+    background: var(--color-blue-accent);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  :global(.dark) .chip-status { background: var(--color-brand-fill); }
+  .chip-status--open { background: #16a34a; }
+  .chip-status--confirmed { background: var(--color-blue-accent); }
+  .chip-status--scheduled { background: #0369a1; }
+  .chip-status--tentative { background: #b45309; }
+  .chip-status--cancelled { background: #57534e; }
+  .chip-meta {
+    display: inline-flex; align-items: center;
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.75rem; font-weight: 600;
+    border-radius: 9999px;
+    background: #f5f5f4;
+    color: #57534e;
+  }
+  :global(.dark) .chip-meta { background: #292524; color: #d6d3d1; }
+  .chip-meta--outline {
+    background: transparent;
+    border: 1px solid rgb(30 58 138 / 0.4);
+    color: var(--color-blue-accent);
+  }
+  :global(.dark) .chip-meta--outline { border-color: rgb(148 182 232 / 0.5); color: #94b6e8; }
+
+  .ucard__arrow {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--color-blue-accent);
+    white-space: nowrap;
+  }
+  :global(.dark) .ucard__arrow { color: #94b6e8; }
+
+  /* PAST section header (after upcoming) */
+  .past-section-label {
+    display: flex; align-items: center; gap: 1rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #78716c;
+    margin: 0 0 1.5rem;
+  }
+  :global(.dark) .past-section-label { color: #a8a29e; }
+  .past-section-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #d6d3d1, transparent);
+  }
+  :global(.dark) .past-section-rule { background: linear-gradient(90deg, #44403c, transparent); }
+
+  .mtg-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #78716c;
+  }
+  .mtg-empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
+  :global(.dark) .mtg-empty h3 { color: #fafaf9; }
+
+  @media (max-width: 768px) {
+    .ucard {
+      grid-template-columns: 4px 1fr;
+      grid-template-rows: auto auto;
+      padding: 1rem;
+      gap: 0.875rem;
+    }
+    .ucard__arrow {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: end;
+    }
+    .ucard__ordinal { font-size: 1.5rem; }
+    .ucard__date { font-size: 1.0625rem; }
+    .upcoming { padding: 1.25rem; }
+    .entry {
+      grid-template-columns: 4rem 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.5rem 1rem;
+    }
+    .entry__ordinal {
+      grid-column: 1;
+      grid-row: 2;
+      border-left: 0;
+      padding-left: 0;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .entry__ordinal-label { margin-top: 0; }
+    .entry__year {
+      grid-column: 2;
+      grid-row: 1;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+    .entry__body {
+      grid-column: 1 / -1;
+      grid-row: 3;
+    }
+    .entry__arrow { display: none; }
+  }
+</style>
