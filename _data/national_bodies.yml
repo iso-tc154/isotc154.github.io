@@ -237,6 +237,8 @@
   iso_country_code: AU
   country: Australia
   membership: O
+  former: true
+  former_until: 2026
   url: https://www.standards.org.au/
   logo: "/assets/images/national-bodies/logo-sa.png"
   description: Standards Australia is the national standards body of Australia.
