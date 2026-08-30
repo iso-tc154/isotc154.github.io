@@ -10,79 +10,158 @@ for (const p of posts) {
   if (!grouped.has(y)) grouped.set(y, [])
   grouped.get(y)!.push(p)
 }
-const years = Array.from(grouped.keys()).sort((a, b) => Number(b) - Number(a))
+const yearGroups = Array.from(grouped.entries()).sort((a, b) => Number(b[0]) - Number(a[0]))
+
+function formatDate(date: string): string {
+  const d = new Date(date)
+  if (Number.isNaN(d.getTime())) return date
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+}
+
+function excerpt(html: string): string {
+  const text = html
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return text.length > 200 ? text.slice(0, 200).trim() + '…' : text
+}
+
+function postTitle(post: Post): string {
+  if (post.frontmatter.title) return post.frontmatter.title
+  return post.slug
+    .split('-')
+    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ')
+}
+
+function postCategories(post: Post): string[] {
+  const c = post.frontmatter.categories
+  if (!c) return []
+  if (Array.isArray(c)) return c
+  return String(c).split(/[,\s]+/).filter(Boolean)
+}
 ---
 <BaseLayout title="News — ISO/TC 154" description="News and publications of ISO/TC 154.">
-  <PageHero variant="index" bleed eyebrow="Latest" title="News" lead={`${posts.length} posts covering new publications, draft stages, committee milestones, and standardisation developments.`} />
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="Announcements"
+      title="News & announcements"
+      lead="Publications of new and revised ISO/TC 154 standards, committee announcements, and obituaries of esteemed colleagues."
+    >
+      <div slot="decoration" class="hero-pattern hero-pattern--rules"></div>
+      {posts.length > 0 && (
+        <dl class="page__stats" slot="stats">
+          <div><dt>{posts.length}</dt><dd>posts</dd></div>
+          <div><dt>{yearGroups.length}</dt><dd>years</dd></div>
+          <div><dt>{yearGroups[0]?.[0] ?? '—'}</dt><dd>latest</dd></div>
+        </dl>
+      )}
+    </PageHero>
 
-  <div class="page page--wide">
-    {years.map((year) => (
-      <section class="posts-section">
-        <header class="posts-section__head">
-          <h2>{year} <span class="count">{grouped.get(year)!.length}</span></h2>
-        </header>
-        <ul class="posts-list">
-          {grouped.get(year)!.map((p) => (
-            <li>
-              <a href={p.url} class="post-card">
-                <span class="post-card__date">
-                  {p.date && new Date(p.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                </span>
-                <div class="post-card__body">
-                  <h3 class="post-card__title">{p.frontmatter.title}</h3>
-                  {p.frontmatter.excerpt && <p class="post-card__excerpt">{p.frontmatter.excerpt}</p>}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))}
+    <div class="page page--wide news-list">
+      <div class="news-shell">
+        {yearGroups.map(([year, items]) => (
+          <section class="year-section">
+            <h2 class="year-section__heading">{year}</h2>
+            <ul class="post-list">
+              {items.map((post) => (
+                <li class="post-card">
+                  <a href={`/posts/${post.slug}/`} class="post-card__link">
+                    <p class="post-card__date">{formatDate(post.date)}</p>
+                    <h3 class="post-card__title">{postTitle(post)}</h3>
+                    {excerpt(post.html) && <p class="post-card__excerpt">{excerpt(post.html)}</p>}
+                    {postCategories(post).length > 0 && (
+                      <div class="post-card__tags">
+                        {postCategories(post).map((c) => (
+                          <span class="post-card__tag">{c}</span>
+                        ))}
+                      </div>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+
+        {posts.length === 0 && (
+          <div class="empty">
+            <p>No posts published yet.</p>
+          </div>
+        )}
+      </div>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .posts-section { max-width: 48rem; margin: 2rem auto 3rem; padding: 0 1.5rem; }
-  .posts-section__head { padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
-  :global(.dark) .posts-section__head { border-bottom-color: #44403c; }
-  .posts-section__head h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: var(--color-brand); margin: 0; }
-  .count { font-size: 0.875rem; color: #78716c; margin-left: 0.5rem; font-weight: 400; }
-  :global(.dark) .count { color: #a8a29e; }
+  .news-shell { max-width: 48rem; }
 
-  .posts-list { list-style: none; padding: 0; margin: 0; }
-  .post-card {
-    display: grid; grid-template-columns: 4rem 1fr; gap: 1.25rem;
-    padding: 1.25rem 0; border-bottom: 1px solid #e7e5e4;
-    text-decoration: none; color: inherit; transition: background 0.15s;
-  }
-  :global(.dark) .post-card { border-bottom-color: #44403c; }
-  .post-card:hover { background: rgb(30 58 138 / 0.03); }
-  :global(.dark) .post-card:hover { background: rgb(148 182 232 / 0.05); }
-  .post-card__date {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #78716c;
-    padding-top: 0.25rem;
-  }
-  :global(.dark) .post-card__date { color: #a8a29e; }
-  .post-card__title {
+  .year-section { margin-bottom: 2.5rem; }
+  .year-section__heading {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #1c1917;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--color-brand);
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e7e5e4;
+  }
+  :global(.dark) .year-section__heading { border-bottom-color: #292524; }
+
+  .post-list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 0.875rem;
+  }
+  .post-card {
+    border: 1px solid #e7e5e4;
+    border-radius: 0.5rem;
+    background: #fff;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  :global(.dark) .post-card {
+    background: #292524;
+    border-color: #44403c;
+  }
+  .post-card:hover {
+    border-color: var(--color-blue-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -4px rgba(0, 97, 173, 0.15);
+  }
+  .post-card__link {
+    display: block;
+    padding: 1rem 1.25rem;
+    text-decoration: none; color: inherit;
+  }
+  .post-card__date {
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--color-brand);
     margin: 0 0 0.375rem;
+  }
+  .post-card__title {
+    font-size: 1.125rem; font-weight: 700;
+    color: #1c1917;
+    margin: 0 0 0.5rem;
     line-height: 1.3;
   }
   :global(.dark) .post-card__title { color: #fafaf9; }
   .post-card__excerpt {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    color: #57534e;
-    margin: 0;
-    line-height: 1.5;
+    font-size: 0.9375rem; color: #57534e;
+    line-height: 1.55; margin: 0 0 0.625rem;
   }
   :global(.dark) .post-card__excerpt { color: #d6d3d1; }
+  .post-card__tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+  .post-card__tag {
+    font-size: 0.6875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: #78716c;
+    background: #f5f5f4;
+    padding: 0.2rem 0.5rem;
+    border-radius: 9999px;
+  }
+  :global(.dark) .post-card__tag { color: #a8a29e; background: #44403c; }
+
+  .loading, .empty { color: #78716c; padding: 3rem 0; text-align: center; }
 </style>

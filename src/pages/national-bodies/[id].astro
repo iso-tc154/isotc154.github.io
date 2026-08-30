@@ -1,52 +1,144 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
-import { loadData, type NationalBody } from '../../lib/data'
+import OrgLogo from '../../components/OrgLogo.astro'
+import { loadData } from '../../lib/data'
+
+interface NationalBodyDoc {
+  id: string
+  name: string
+  short_name?: string
+  description?: string
+  country?: string
+  iso_country_code?: string
+  membership?: string
+  url?: string
+  logo?: string
+  logo_light?: string
+  logo_dark?: string
+  former?: boolean
+  former_until?: string | number
+}
 
 export function getStaticPaths() {
-  return loadData.nationalBodies().map((n) => ({ params: { id: n.id }, props: { nb: n } }))
+  return (loadData.nationalBodies() as unknown as NationalBodyDoc[]).map((n) => ({
+    params: { id: n.id },
+    props: { nb: n },
+  }))
 }
-const { nb } = Astro.props as { nb: NationalBody }
-const eyebrow = [nb.membership ? `${nb.membership}-member` : '', nb.country].filter(Boolean).join(' · ')
+const { nb } = Astro.props as { nb: NationalBodyDoc }
+
+function flagEmoji(countryCode?: string): string {
+  if (!countryCode || countryCode.length !== 2) return ''
+  const codePoints = countryCode.toUpperCase().split('').map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)
+  return String.fromCodePoint(...codePoints)
+}
+
+function membershipLabel(m?: string): { short: string; long: string } {
+  if (m === 'P') return { short: 'P', long: 'Participating member' }
+  if (m === 'O') return { short: 'O', long: 'Observer member' }
+  return { short: m || '', long: m || '' }
+}
+
+const eyebrow = `${flagEmoji(nb.iso_country_code)} ${nb.country ?? ''} · ${nb.former ? 'Former member' : membershipLabel(nb.membership).long}`
 ---
-<BaseLayout title={`${nb.short_name || nb.name} — ISO/TC 154`} description={nb.description || nb.name}>
-  <PageHero variant="detail" bleed eyebrow={eyebrow} title={nb.short_name || nb.name} lead={nb.name} />
-  <div class="page page--wide">
-    <div class="nb-detail">
-      {nb.logo && (
-        <div class="nb-detail__logo">
-          <img src={nb.logo} alt={nb.short_name || nb.name} />
-        </div>
-      )}
-      {nb.description && (
-        <section>
-          <h2>About</h2>
-          <p>{nb.description}</p>
-        </section>
-      )}
-      {nb.url && nb.url.startsWith('http') && (
-        <p class="nb-detail__ext">
-          <a href={nb.url} target="_blank" rel="noopener noreferrer">
-            Visit {nb.short_name || nb.name} ↗
-          </a>
-        </p>
-      )}
-    </div>
-  </div>
+<BaseLayout title={`${nb.short_name ?? nb.name} — ISO/TC 154`} description={nb.description || nb.name}>
+  <article class="detail">
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow={eyebrow}
+      title={nb.short_name ?? nb.name}
+      lead={nb.short_name ? nb.name : ''}
+    >
+      <a href="/national-bodies/" slot="breadcrumb">
+        National bodies
+      </a>
+    </PageHero>
+
+    {(nb.logo || nb.logo_light || nb.logo_dark) && (
+      <div class="detail__logo-row">
+        <OrgLogo
+          logo={nb.logo}
+          logo_light={nb.logo_light}
+          logo_dark={nb.logo_dark}
+          assetPrefix="/assets/images/national-bodies/"
+          size="lg"
+          radius="0.625rem"
+          alt={nb.short_name ?? nb.name}
+          fallbackText={nb.short_name ?? nb.name}
+        />
+        {nb.former && (
+          <div class="detail__former">
+            <span class="detail__former-pill">Former</span>
+            {nb.former_until && (
+              <p class="detail__former-note">
+                Withdrew from ISO/TC 154 in {nb.former_until}.
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+    )}
+
+    {nb.description && (
+      <section class="detail__section">
+        <h2 class="detail__section-title">About</h2>
+        <p class="prose">{nb.description}</p>
+      </section>
+    )}
+
+    {nb.url && (
+      <section class="detail__section">
+        <h2 class="detail__section-title">Website</h2>
+        <a href={nb.url} target="_blank" rel="noopener noreferrer" class="external">
+          {nb.url}
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </a>
+      </section>
+    )}
+  </article>
 </BaseLayout>
 
 <style>
-  .nb-detail { max-width: 48rem; margin: 2rem auto; padding: 0 1.5rem; }
-  .nb-detail__logo { width: 12rem; margin-bottom: 2rem; }
-  .nb-detail__logo img { max-width: 100%; max-height: 8rem; }
-  .nb-detail h2 {
-    font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600;
-    color: #1c1917; margin: 1.5rem 0 0.75rem;
-    padding-bottom: 0.375rem; border-bottom: 1px solid #e7e5e4;
+  .detail { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  .detail__loading { color: #78716c; padding: 4rem 0; text-align: center; }
+  .detail__body { padding-top: 1.5rem; }
+  .detail__back { display: inline-block; font-size: 0.875rem; font-weight: 500; color: var(--color-blue-accent); text-decoration: none; }
+  .detail__back:hover { text-decoration: underline; }
+  .detail__logo-row { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin: -1rem 0 2rem; }
+
+  .detail__former { display: flex; flex-direction: column; gap: 0.5rem; }
+  .detail__former-pill {
+    display: inline-block;
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0.1875rem;
+    background: #fee2e2;
+    color: #991b1b;
+    align-self: flex-start;
   }
-  :global(.dark) .nb-detail h2 { color: #fafaf9; border-bottom-color: #44403c; }
-  .nb-detail p { font-size: 1rem; line-height: 1.7; color: #44403c; }
-  :global(.dark) .nb-detail p { color: #d6d3d1; }
-  .nb-detail__ext { margin-top: 2rem; }
-  .nb-detail__ext a { color: var(--color-brand); font-weight: 600; }
+  :global(.dark) .detail__former-pill { background: rgb(185 28 28 / 0.22); color: #fca5a5; }
+  .detail__former-note {
+    font-size: 0.875rem;
+    color: #78716c;
+    font-style: italic;
+    margin: 0;
+  }
+  :global(.dark) .detail__former-note { color: #a8a29e; }
+
+  .detail__section { margin-bottom: 2rem; }
+  .detail__section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #78716c; margin: 0 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e7e5e4; }
+  :global(.dark) .detail__section-title { color: #a8a29e; border-bottom-color: #292524; }
+
+  .prose { font-size: 0.9375rem; line-height: 1.7; color: #44403c; margin: 0; }
+  :global(.dark) .prose { color: #d6d3d1; }
+
+  .external { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem; background: #fafaf9; border-radius: 0.375rem; font-size: 0.875rem; color: var(--color-blue-accent); text-decoration: none; word-break: break-all; }
+  .external:hover { background: #e0e7ff; }
+  :global(.dark) .external { background: #292524; }
+  :global(.dark) .external:hover { background: #44403c; }
 </style>

@@ -1,151 +1,323 @@
 ---
+import Asciidoctor from '@asciidoctor/core'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
-import { loadData, type Member, type RoleRecord } from '../../lib/data'
+import { loadData, type Member, type RoleRecord, type Group } from '../../lib/data'
+
+const asciidoctor = Asciidoctor()
+
+function renderProse(text?: string | null): string {
+  if (!text) return ''
+  return String(asciidoctor.convert(text, {
+    standalone: false,
+    safe: 'safe',
+    attributes: { showtitle: false },
+  }))
+}
+
+interface MemberDoc extends Member {
+  bio?: string
+  picture?: string
+  deceased?: boolean
+  is_current?: boolean
+  is_the_chair?: boolean
+  is_in_leadership?: boolean
+  affiliation?: string
+  links?: { label?: string; title?: string; url: string }[]
+}
 
 export function getStaticPaths() {
-  return Object.values(loadData.members().all).map((m) => ({
+  return Object.values(loadData.members().all as Record<string, MemberDoc>).map((m) => ({
     params: { id: m['member-id'] },
     props: { member: m },
   }))
 }
 
-const { member } = Astro.props as { member: Member }
+const { member } = Astro.props as { member: MemberDoc }
+const groups = loadData.groups()
 
-function initials(name: string): string {
-  if (!name) return "?"
-  return name.split(/\s+/).map((n) => n[0]).slice(0, 3).join('').toUpperCase()
+interface RoleDate { date?: string; precision?: 'day' | 'month' | 'year' }
+interface FullRoleRecord extends RoleRecord { id?: string; group?: string; from?: RoleDate; to?: RoleDate }
+
+const roles = (member.roles?._all?.in?._all ?? []) as unknown as FullRoleRecord[]
+const bioHtml = renderProse(member.bio)
+const pictureUrl = member.picture ? `/assets/images/members/${member.picture}` : null
+
+const ROLE_LABELS: Record<string, string> = {
+  chair: 'Chair',
+  co_chair: 'Co-chair',
+  committee_manager: 'Committee Manager',
+  convenor: 'Convenor',
+  editorial_programme_manager: 'Editorial Programme Manager',
+  'editorial-programme-manager': 'Editorial Programme Manager',
+  manager: 'Manager',
+  member: 'Member',
+  observer: 'Observer',
+  partner: 'Partner',
+  project_leader: 'Project Leader',
+  'project-leader': 'Project Leader',
+  secretary: 'Secretary',
+  technical_programme_manager: 'Technical Programme Manager',
+  'technical-programme-manager': 'Technical Programme Manager',
 }
-
-function formatDate(r: RoleRecord): string {
-  const from = r.from?.date
-  const to = r.to?.date
-  if (!from && !to) return ''
-  const fmt = (s: string | undefined, p: 'day' | 'month' | 'year' | undefined) => {
-    if (!s) return ''
-    const d = new Date(s)
-    if (p === 'year') return d.getFullYear().toString()
-    if (p === 'month') return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-  }
-  if (!to) return `${fmt(from, r.from?.precision)} → present`
-  return `${fmt(from, r.from?.precision)} → ${fmt(to, r.to?.precision)}`
+function roleLabel(roleId?: string): string {
+  if (!roleId) return ''
+  return ROLE_LABELS[roleId] ?? roleId
 }
-
-function flattenRoles(roles?: Member['roles']): { role: string; group: string; record: RoleRecord }[] {
-  if (!roles) return []
-  const out: { role: string; group: string; record: RoleRecord }[] = []
-  for (const [roleId, byRole] of Object.entries(roles)) {
-    for (const [groupId, records] of Object.entries(byRole.in)) {
-      for (const rec of records) {
-        out.push({ role: roleId, group: groupId === '_all' ? 'committee' : groupId, record: rec })
-      }
-    }
-  }
-  return out.sort((a, b) => (a.record.from?.date || '').localeCompare(b.record.from?.date || ''))
+function groupDoc(groupId?: string): Group | undefined {
+  if (!groupId) return undefined
+  return groups.find((g: Group) => g.id === groupId)
 }
+function groupName(groupId?: string): string {
+  if (!groupId) return ''
+  return groupDoc(groupId)?.name ?? groupId
+}
+function groupTitle(groupId?: string): string {
+  if (!groupId) return ''
+  return groupDoc(groupId)?.title ?? ''
+}
+function groupUrl(groupId?: string): string | null {
+  return groupId ? `/groups/${groupId}/` : null
+}
+function memberInitials(name: string): string {
+  const parts = name.trim().split(/\s+/)
+  if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
+  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
+}
+function fmtDate(d?: RoleDate): string {
+  if (!d?.date) return ''
+  const dt = new Date(d.date)
+  if (Number.isNaN(dt.getTime())) return d.date
+  if (d.precision === 'year') return String(dt.getUTCFullYear())
+  if (d.precision === 'month') return dt.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+}
+function memberRoleSpan(r: FullRoleRecord): string {
+  const start = fmtDate(r.from)
+  const end = fmtDate(r.to) || 'present'
+  return start ? `${start} – ${end}` : end
+}
+const sortedRoles = [...roles].sort((a, b) => {
+  const ag = a.group ?? '~'
+  const bg = b.group ?? '~'
+  if (ag !== bg) return ag.localeCompare(bg)
+  return (a.from?.date ?? '').localeCompare(b.from?.date ?? '')
+})
 
-const roles = flattenRoles(member.roles)
 const eyebrow = member.is_the_chair
-  ? 'Chair'
+  ? 'Chair of ISO/TC 154'
   : member.is_in_leadership
     ? 'Leadership'
-    : member.active ? 'Member' : 'Past member'
+    : member.is_current
+      ? 'Current member'
+      : 'Past member'
 ---
-<BaseLayout title={`${member.name} — ISO/TC 154`} description={member.affiliation || `${member.name} — ISO/TC 154.`}>
-  <PageHero variant="detail" bleed eyebrow={eyebrow} title={member.name} lead={member.affiliation} />
+<BaseLayout title={`${member.name} — ISO/TC 154`} description={member.affiliation || member.name}>
+  <article class="detail">
+    <PageHero
+      variant="detail"
+      bleed
+      eyebrow={eyebrow}
+      title={member.name}
+      lead={member.affiliation}
+    >
+      <a href="/members/" slot="breadcrumb">
+        Members
+      </a>
+    </PageHero>
 
-  <div class="page page--wide">
-    <div class="member-detail">
-      <aside class="member-detail__aside">
-        <div class="member-detail__avatar">
-          {member.picture
-            ? <img src={`/assets/images/members/${member.picture}`} alt={member.name} />
-            : <span>{initials(member.name)}</span>}
-        </div>
-        {member.deceased && <p class="member-detail__memorial">In memoriam</p>}
-        {member.affiliation && <p class="member-detail__aff">{member.affiliation}</p>}
-        {member.links && member.links.length > 0 && (
-          <ul class="member-detail__links">
-            {member.links.map((l) => <li><a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></li>)}
-          </ul>
-        )}
-      </aside>
-
-      <div class="member-detail__main">
-        {member.bio && <div class="member-detail__bio prose" set:html={member.bio} />}
-
-        {roles.length > 0 && (
-          <section class="member-detail__roles">
-            <h2>Roles in TC 154</h2>
-            <ul class="role-list">
-              {roles.map(({ role, group, record }) => (
-                <li class="role-list__item">
-                  <span class="role-list__role">{role}</span>
-                  <span class="role-list__group">{group}</span>
-                  <span class="role-list__dates">{formatDate(record)}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+    <div class="member-head">
+      <div class:list={["detail__avatar", { 'detail__avatar--deceased': member.deceased }]}>
+        {pictureUrl ? (
+          <img src={pictureUrl} alt={member.name} />
+        ) : (
+          <span>{memberInitials(member.name)}</span>
         )}
       </div>
+      {member.deceased && <p class="in-memoriam">In Memoriam</p>}
     </div>
-  </div>
+
+    <div class="detail__body">
+      {bioHtml && (
+        <section class="detail__section">
+          <h2 class="detail__section-title">Biography</h2>
+          <div class="prose" set:html={bioHtml} />
+        </section>
+      )}
+
+      {roles.length > 0 && (
+        <section class="detail__section">
+          <h2 class="detail__section-title">Roles in ISO/TC 154</h2>
+          <ul class="roles">
+            {sortedRoles.map((r) => (
+              <li class="role">
+                <div class="role__head">
+                  <span class="role__title">{roleLabel(r.id)}</span>
+                  {groupUrl(r.group) ? (
+                    <a href={groupUrl(r.group)} class="role__group">
+                      <span class="role__group-name">{groupName(r.group)}</span>
+                      {groupTitle(r.group) && <span class="role__group-title">· {groupTitle(r.group)}</span>}
+                    </a>
+                  ) : r.group ? (
+                    <span class="role__group role__group--plain">
+                      <span class="role__group-name">{groupName(r.group)}</span>
+                      {groupTitle(r.group) && <span class="role__group-title">· {groupTitle(r.group)}</span>}
+                    </span>
+                  ) : (
+                    <span class="role__group role__group--plain">Committee-wide</span>
+                  )}
+                </div>
+                <span class="role__span">{memberRoleSpan(r)}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {member.links?.length && (
+        <section class="detail__section">
+          <h2 class="detail__section-title">Links</h2>
+          <ul class="links">
+            {member.links.map((l) => (
+              <li>
+                <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label ?? l.title ?? l.url}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  </article>
 </BaseLayout>
 
 <style>
-  .member-detail { max-width: 56rem; margin: 2rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
-  @media (min-width: 768px) { .member-detail { grid-template-columns: 16rem 1fr; } }
-  .member-detail__aside { display: flex; flex-direction: column; align-items: flex-start; }
-  .member-detail__avatar {
-    width: 12rem; height: 12rem;
-    background: #f4f4f3;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1rem;
+  .detail {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
   }
-  :global(.dark) .member-detail__avatar { background: rgb(255 255 255 / 0.05); }
-  .member-detail__avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .member-detail__avatar span { font-family: var(--font-serif); font-size: 3rem; font-weight: 700; color: var(--color-brand); }
-  .member-detail__memorial {
+  .detail__loading { color: #78716c; padding: 4rem 0; text-align: center; }
+  .detail__back {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-blue-accent);
+    text-decoration: none;
+  }
+  .detail__back:hover { text-decoration: underline; }
+
+  .member-head {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: -1rem 0 1.5rem;
+    flex-wrap: wrap;
+  }
+  .detail__avatar {
+    width: 6rem; height: 6rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--color-blue-accent), #5379bf);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.75rem;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .detail__avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .detail__avatar--deceased img { filter: grayscale(1); }
+  .in-memoriam {
     font-family: var(--font-serif);
     font-style: italic;
+    font-size: 1rem;
     color: #78716c;
-    margin: 0 0 0.5rem;
+    margin: 0;
   }
-  :global(.dark) .member-detail__memorial { color: #a8a29e; }
-  .member-detail__aff { font-size: 0.875rem; color: #57534e; margin: 0 0 1rem; }
-  :global(.dark) .member-detail__aff { color: #d6d3d1; }
-  .member-detail__links { list-style: none; padding: 0; margin: 0; }
-  .member-detail__links li { margin: 0.25rem 0; }
-  .member-detail__links a { color: var(--color-brand); font-size: 0.875rem; }
+  :global(.dark) .in-memoriam { color: #a8a29e; }
 
-  .member-detail__bio { font-size: 1rem; line-height: 1.7; color: #44403c; }
-  :global(.dark) .member-detail__bio { color: #d6d3d1; }
-  .member-detail__bio p { margin: 0 0 1rem; }
-  .member-detail__bio :global(a) { color: var(--color-brand); }
-
-  .member-detail__roles h2 {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1c1917;
-    margin: 2rem 0 0.75rem;
-  }
-  :global(.dark) .member-detail__roles h2 { color: #fafaf9; }
-  .role-list { list-style: none; padding: 0; margin: 0; }
-  .role-list__item {
-    display: grid;
-    grid-template-columns: 8rem 8rem 1fr;
-    gap: 1rem;
-    padding: 0.625rem 0;
+  .detail__body { margin-top: 0; }
+  .detail__section { margin-bottom: 2.5rem; }
+  .detail__section-title {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: #78716c;
+    margin: 0 0 0.875rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid #e7e5e4;
-    font-size: 0.875rem;
   }
-  :global(.dark) .role-list__item { border-bottom-color: #44403c; }
-  .role-list__role { font-weight: 700; text-transform: capitalize; color: var(--color-brand); }
-  .role-list__group { text-transform: capitalize; color: #57534e; }
-  :global(.dark) .role-list__group { color: #d6d3d1; }
-  .role-list__dates { color: #78716c; font-variant-numeric: tabular-nums; }
-  :global(.dark) .role-list__dates { color: #a8a29e; }
+  :global(.dark) .detail__section-title { color: #a8a29e; border-bottom-color: #292524; }
+
+  .prose {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #44403c;
+  }
+  :global(.dark) .prose { color: #d6d3d1; }
+  .prose :global(p) { margin: 0 0 0.875rem; }
+  .prose :global(p:last-child) { margin-bottom: 0; }
+  .prose :global(a) { color: var(--color-blue-accent); text-decoration: underline; }
+
+  .roles {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+    gap: 0.5rem;
+  }
+  .role {
+    display: flex; flex-direction: column;
+    padding: 0.625rem 0.875rem;
+    background: #fafaf9;
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--color-blue-accent);
+  }
+  :global(.dark) .role { background: #292524; border-left-color: #5379bf; }
+  .role__head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .role__title {
+    font-size: 0.9375rem; font-weight: 600; color: #1c1917;
+  }
+  :global(.dark) .role__title { color: #fafaf9; }
+  .role__group {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 0.875rem; color: var(--color-blue-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .role__group:hover { text-decoration: underline; }
+  .role__group-name { font-weight: 600; }
+  .role__group-title {
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  .role__group--plain { color: #78716c; }
+  :global(.dark) .role__group--plain { color: #a8a29e; }
+  .role__span {
+    font-size: 0.8125rem; color: #78716c;
+    font-family: ui-monospace, monospace;
+    margin-top: 0.125rem;
+  }
+  :global(.dark) .role__span { color: #a8a29e; }
+
+  .links {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+    gap: 0.375rem;
+  }
+  .links a {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    background: #fafaf9;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--color-blue-accent);
+    text-decoration: none;
+  }
+  .links a:hover { background: #e0e7ff; }
+  :global(.dark) .links a { background: #292524; }
+  :global(.dark) .links a:hover { background: #44403c; }
 </style>

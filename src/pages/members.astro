@@ -1,146 +1,437 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
-import { loadData } from '../lib/data'
+import { loadData, type Group } from '../lib/data'
+
+interface RoleRecord { id?: string; group?: string; to?: unknown }
+interface Member {
+  'member-id': string
+  name: string
+  affiliation?: string
+  picture?: string
+  deceased?: boolean
+  url?: string
+  is_current?: boolean
+  is_the_chair?: boolean
+  is_in_leadership?: boolean
+  roles?: Record<string, { in?: Record<string, RoleRecord[]> }>
+}
 
 const data = loadData.members()
-const current = data.current
-const sortedCurrent = [...current].sort((a, b) => (a.name || "").localeCompare(b.name || ""))
-const sortedPast = [...data.past].sort((a, b) => (a.name || "").localeCompare(b.name || ""))
+const groups = loadData.groups()
+const allMembers = Object.values(data.all as Record<string, Member>)
+const sorted = [...allMembers].sort((a, b) => a.name.localeCompare(b.name))
 
-function initials(name: string): string {
-  if (!name) return "?"
-  return name.split(/\s+/).map((n) => n[0]).slice(0, 3).join('').toUpperCase()
+const stats = {
+  total: allMembers.length,
+  current: allMembers.filter((m) => m.is_current).length,
+  leadership: allMembers.filter((m) => m.is_in_leadership).length,
+  past: allMembers.filter((m) => !m.is_current).length,
+}
+
+const ROLE_LABELS: Record<string, string> = {
+  chair: 'Chair',
+  co_chair: 'Co-chair',
+  committee_manager: 'Committee Manager',
+  convenor: 'Convenor',
+  editorial_programme_manager: 'Editorial Programme Manager',
+  'editorial-programme-manager': 'Editorial Programme Manager',
+  manager: 'Manager',
+  member: 'Member',
+  observer: 'Observer',
+  partner: 'Partner',
+  project_leader: 'Project Leader',
+  'project-leader': 'Project Leader',
+  secretary: 'Secretary',
+  technical_programme_manager: 'Technical Programme Manager',
+  'technical-programme-manager': 'Technical Programme Manager',
+}
+function roleLabel(r: string): string {
+  return ROLE_LABELS[r] ?? r
+}
+function groupLabel(gid: string): string {
+  const g = groups.find((x: Group) => x.id === gid)
+  return g?.name ?? gid
+}
+
+const availableGroups = Array.from(new Set(
+  allMembers.flatMap((m) => Object.keys(m.roles?._all?.in ?? {}).filter((g) => g !== '_all'))
+)).sort()
+const availableRoles = Array.from(new Set(
+  allMembers.flatMap((m) => Object.keys(m.roles ?? {}).filter((k) => k !== '_all'))
+)).sort()
+
+function memberUrl(m: Member): string {
+  return m.url ?? `/members/${m['member-id']}/`
+}
+function memberInitials(name: string): string {
+  const parts = name.trim().split(/\s+/)
+  if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
+  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
+}
+function pictureUrl(m: Member): string | null {
+  return m.picture ? `/assets/images/members/${m.picture}` : null
+}
+function primaryRoleLabel(m: Member): string {
+  if (m.is_the_chair) return 'Chair'
+  const ids = Object.keys(m.roles ?? {}).filter((k) => k !== '_all')
+  if (ids.includes('convenor')) return 'Convenor'
+  if (ids.includes('manager')) return 'Manager'
+  if (ids.includes('chair')) return 'Chair'
+  if (ids.includes('member')) return 'Member'
+  return ids[0] ? roleLabel(ids[0]) : ''
+}
+function memberGroups(m: Member): string {
+  return Object.keys(m.roles?._all?.in ?? {}).filter((g) => g !== '_all').join('|')
+}
+function memberRoles(m: Member): string {
+  return Object.keys(m.roles ?? {}).filter((k) => k !== '_all').join('|')
+}
+function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boolean {
+  if (!records) return false
+  return past ? records.some((r) => r?.to != null) : records.some((r) => r?.to == null)
 }
 ---
-<BaseLayout title="Members — ISO/TC 154" description="The experts of ISO/TC 154.">
-  <PageHero variant="index" bleed eyebrow="The committee" title="Members" lead="Experts from 45 national bodies and liaison organisations shaping the standards that global commerce runs on." />
-  <div class="page page--wide">
-    <section class="members-section">
-      <header class="members-section__head">
-        <h2>Current members <span class="count">{sortedCurrent.length}</span></h2>
-      </header>
-      <ul class="member-grid">
-        {sortedCurrent.map((m) => (
-          <li>
-            <a href={m.url ?? `/members/${m['member-id']}/`} class="member-card" data-deceased={m.deceased ? 'true' : 'false'}>
-              <div class="member-card__avatar">
-                {m.picture
-                  ? <img src={`/assets/images/members/${m.picture}`} alt={m.name} loading="lazy" />
-                  : <span class="member-card__initials">{initials(m.name)}</span>}
+<BaseLayout title="Members — ISO/TC 154" description="The experts of ISO/TC 154 — current and past.">
+  <div>
+    <PageHero
+      variant="index"
+      bleed
+      eyebrow="People of TC 154"
+      title="Members"
+      lead="Experts from national bodies, liaisons, and the Committee Advisory Group who carry out TC 154's technical work — current and past."
+    >
+      <div slot="decoration" class="hero-pattern hero-pattern--nodes"></div>
+      <dl class="page__stats" slot="stats">
+        <div><dt>{stats.total}</dt><dd>total</dd></div>
+        <div><dt>{stats.current}</dt><dd>current</dd></div>
+        <div><dt>{stats.leadership}</dt><dd>in leadership</dd></div>
+        <div><dt>{stats.past}</dt><dd>past</dd></div>
+      </dl>
+    </PageHero>
+
+    <div class="page page--wide">
+      <div class="filter">
+        <div class="filter__search-wrap">
+          <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            type="search"
+            class="filter__search"
+            id="member-search"
+            placeholder="Search by name or affiliation…"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Search members"
+          />
+        </div>
+        <div class="filter__controls">
+          <div class="filter__field">
+            <span class="filter__label">Status</span>
+            <div class="filter__chips" data-facet="status">
+              <button type="button" class="chip chip--active" data-value="current">Current</button>
+              <button type="button" class="chip" data-value="past">Past</button>
+              <button type="button" class="chip" data-value="leadership">Leadership</button>
+              <button type="button" class="chip" data-value="all">All</button>
+            </div>
+          </div>
+          {availableRoles.length > 0 && (
+            <div class="filter__field">
+              <span class="filter__label">Role</span>
+              <div class="filter__chips" data-facet="role">
+                <button type="button" class="chip chip--active" data-value="">Any</button>
+                {availableRoles.map((r) => (
+                  <button type="button" class="chip" data-value={r}>{roleLabel(r)}</button>
+                ))}
               </div>
-              <div class="member-card__body">
-                <h3 class="member-card__name">{m.name}</h3>
-                {m.affiliation && <p class="member-card__aff">{m.affiliation}</p>}
+            </div>
+          )}
+          {availableGroups.length > 0 && (
+            <div class="filter__field">
+              <span class="filter__label">Group</span>
+              <div class="filter__chips" data-facet="group">
+                <button type="button" class="chip chip--active" data-value="">Any</button>
+                {availableGroups.map((g) => (
+                  <button type="button" class="chip" data-value={g}>{groupLabel(g)}</button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        <div class="filter__meta">
+          <span id="member-count">{stats.current} of {stats.total} members</span>
+        </div>
+      </div>
+
+      <ul class="grid" id="member-grid">
+        {sorted.map((m) => (
+          <li>
+            <a
+              href={memberUrl(m)}
+              class:list={["card", { 'card--deceased': m.deceased, 'card--chair': m.is_the_chair }]}
+              data-name={(m.name + ' ' + (m.affiliation ?? '')).toLowerCase()}
+              data-current={m.is_current ? '1' : ''}
+              data-leadership={m.is_in_leadership ? '1' : ''}
+              data-roles={memberRoles(m)}
+              data-groups={memberGroups(m)}
+            >
+              <div class="card__avatar">
+                {pictureUrl(m) ? (
+                  <img src={pictureUrl(m)} alt={m.name} loading="lazy" />
+                ) : (
+                  <span>{memberInitials(m.name)}</span>
+                )}
+              </div>
+              <div class="card__body">
+                <h3 class="card__name">{m.name}</h3>
+                {m.affiliation && <p class="card__affiliation">{m.affiliation}</p>}
+                <div class="card__tags">
+                  {m.is_the_chair ? (
+                    <span class="tag tag--chair">Chair</span>
+                  ) : m.is_in_leadership && (
+                    <span class="tag tag--leadership">Leadership</span>
+                  )}
+                  {m.deceased ? (
+                    <span class="tag tag--deceased">In Memoriam</span>
+                  ) : !m.is_current && (
+                    <span class="tag tag--past">Past</span>
+                  )}
+                  {primaryRoleLabel(m) && <span class="tag">{primaryRoleLabel(m)}</span>}
+                </div>
               </div>
             </a>
           </li>
         ))}
       </ul>
-    </section>
 
-    {sortedPast.length > 0 && (
-      <section class="members-section members-section--past">
-        <header class="members-section__head">
-          <h2>Past members <span class="count">{sortedPast.length}</span></h2>
-        </header>
-        <ul class="member-grid">
-          {sortedPast.map((m) => (
-            <li>
-              <a href={m.url ?? `/members/${m['member-id']}/`} class="member-card member-card--past">
-                <div class="member-card__avatar">
-                  {m.picture
-                    ? <img src={`/assets/images/members/${m.picture}`} alt={m.name} loading="lazy" />
-                    : <span class="member-card__initials">{initials(m.name)}</span>}
-                </div>
-                <div class="member-card__body">
-                  <h3 class="member-card__name">{m.name}</h3>
-                  {m.affiliation && <p class="member-card__aff">{m.affiliation}</p>}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )}
+      <div class="empty" id="member-empty" hidden>
+        <h3>No members match your filters</h3>
+        <button type="button" class="chip" id="member-clear">Clear filters</button>
+      </div>
+    </div>
   </div>
 </BaseLayout>
 
-<style>
-  .members-section { margin: 2rem auto 3rem; max-width: 80rem; padding: 0 1.5rem; }
-  .members-section__head { padding-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; margin-bottom: 1.5rem; }
-  :global(.dark) .members-section__head { border-bottom-color: #44403c; }
-  .members-section__head h2 {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1c1917;
-    margin: 0;
-  }
-  :global(.dark) .members-section__head h2 { color: #fafaf9; }
-  .count {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: #78716c;
-    margin-left: 0.5rem;
-  }
-  :global(.dark) .count { color: #a8a29e; }
+<script>
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('#member-grid > li > a'))
+  const empty = document.getElementById('member-empty')
+  const count = document.getElementById('member-count')
+  const search = document.getElementById('member-search') as HTMLInputElement | null
+  const total = cards.length
+  const state: Record<string, string> = { status: 'current', role: '', group: '' }
 
-  .member-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-    gap: 1rem;
+  function matchesRoleAndGroup(card: HTMLElement, past: boolean): boolean {
+    const roles = (card.dataset.roles || '').split('|').filter(Boolean)
+    const groupsAttr = (card.dataset.groups || '').split('|').filter(Boolean)
+    if (state.role) {
+      const inGroup = roles.includes(state.role)
+      if (!inGroup) return false
+    }
+    if (state.group && !groupsAttr.includes(state.group)) return false
+    return true
   }
-  .member-card {
+
+  function apply() {
+    const q = (search?.value ?? '').trim().toLowerCase()
+    let visible = 0
+    cards.forEach((card) => {
+      const okText = !q || (card.dataset.name || '').includes(q)
+      const status = state.status
+      const okStatus =
+        status === 'all' ? true :
+        status === 'current' ? card.dataset.current === '1' :
+        status === 'past' ? card.dataset.current !== '1' :
+        card.dataset.leadership === '1'
+      const ok = okText && okStatus && matchesRoleAndGroup(card, status === 'past')
+      const li = card.parentElement as HTMLElement
+      li.style.display = ok ? '' : 'none'
+      if (ok) visible++
+    })
+    if (count) count.textContent = `${visible} of ${total} members`
+    if (empty) empty.hidden = visible !== 0
+  }
+
+  document.querySelectorAll<HTMLElement>('.filter__chips').forEach((wrap) => {
+    const facet = wrap.dataset.facet ?? ''
+    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
+        chip.classList.add('chip--active')
+        state[facet] = chip.dataset.value ?? ''
+        apply()
+      })
+    })
+  })
+
+  search?.addEventListener('input', apply)
+  document.getElementById('member-clear')?.addEventListener('click', () => {
+    if (search) search.value = ''
+    state.status = 'current'; state.role = ''; state.group = ''
+    document.querySelectorAll('.filter__chips').forEach((wrap) => {
+      const facet = wrap.dataset.facet ?? ''
+      const def = facet === 'status' ? 'current' : ''
+      wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => {
+        c.classList.toggle('chip--active', (c.dataset.value ?? '') === def)
+      })
+    })
+    apply()
+  })
+
+  const params = new URLSearchParams(window.location.search)
+  const q = params.get('q')
+  if (q && search) {
+    search.value = q
+    apply()
+  } else {
+    apply()
+  }
+</script>
+
+<style>
+  .filter {
+    background: #fff;
+    border: 1px solid #e7e5e4;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  :global(.dark) .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  .filter__search-wrap { position: relative; margin-bottom: 1rem; }
+  .filter__search-icon {
+    position: absolute; left: 0.75rem; top: 50%;
+    transform: translateY(-50%);
+    color: #a8a29e;
+    pointer-events: none;
+  }
+  .filter__search {
+    width: 100%;
+    padding: 0.625rem 0.875rem 0.625rem 2.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d6d3d1;
+    background: #fafaf9;
+    color: #1c1917;
+    font-size: 0.9375rem;
+    font-family: inherit;
+  }
+  .filter__search:focus {
+    outline: none;
+    border-color: var(--color-blue-accent);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
+  }
+  :global(.dark) .filter__search { background: #292524; border-color: #57534e; color: #fafaf9; }
+  :global(.dark) .filter__search:focus { border-color: #5379bf; background: #1c1917; }
+  .filter__controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; }
+  .filter__field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .filter__label {
+    font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #78716c;
+  }
+  :global(.dark) .filter__label { color: #a8a29e; }
+  .filter__chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+  .chip {
+    display: inline-flex; align-items: center;
+    padding: 0.375rem 0.75rem; border-radius: 9999px;
+    border: 1px solid #d6d3d1; background: #fff; color: #57534e;
+    font-size: 0.8125rem; font-weight: 500; font-family: inherit;
+    cursor: pointer; transition: all 0.15s; text-transform: capitalize;
+  }
+  .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
+  .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
+  :global(.dark) .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
+  :global(.dark) .chip:hover { border-color: #5379bf; }
+  :global(.dark) .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
+  .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
+  :global(.dark) .filter__meta { color: #a8a29e; }
+
+  .loading, .empty {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: #78716c;
+  }
+  .empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
+  :global(.dark) .empty h3 { color: #fafaf9; }
+  :global(.dark) .loading, :global(.dark) .empty { color: #a8a29e; }
+
+  .grid {
+    list-style: none; margin: 0; padding: 0;
     display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: 0.875rem;
-    align-items: center;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .card {
+    display: flex; gap: 1rem;
     padding: 1rem;
+    border-radius: 0.75rem;
     border: 1px solid #e7e5e4;
     background: #fff;
     text-decoration: none;
     color: inherit;
-    transition: border-color 0.15s, transform 0.15s;
+    transition: all 0.2s;
+    height: 100%;
   }
-  :global(.dark) .member-card { border-color: #44403c; background: rgb(15 23 42 / 0.5); }
-  .member-card:hover { border-color: var(--color-blue-accent); transform: translateY(-2px); }
-  .member-card--past { opacity: 0.75; }
-  .member-card[data-deceased='true'] .member-card__avatar img { filter: grayscale(100%); }
-  .member-card__avatar {
-    width: 3rem; height: 3rem;
+  :global(.dark) .card { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  .card:hover {
+    border-color: var(--color-blue-accent);
+    box-shadow: 0 4px 12px rgb(30 58 138 / 0.08);
+    transform: translateY(-2px);
+  }
+  :global(.dark) .card:hover { border-color: #5379bf; box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
+  .card--chair {
+    border-color: var(--color-brand);
+  }
+  :global(.dark) .card--chair { border-color: var(--color-brand); }
+  .card--deceased { opacity: 0.85; }
+
+  .card__avatar {
+    width: 3.5rem; height: 3.5rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--color-blue-accent), #5379bf);
+    color: #fff;
     display: flex; align-items: center; justify-content: center;
-    background: #f4f4f3;
+    font-weight: 700; font-size: 1rem;
     overflow: hidden;
-    border-radius: 0;
+    flex-shrink: 0;
   }
-  :global(.dark) .member-card__avatar { background: rgb(255 255 255 / 0.05); }
-  .member-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .member-card__initials {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-brand);
+  .card__avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
   }
-  .member-card__name {
-    font-family: var(--font-serif);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #1c1917;
-    margin: 0;
-    line-height: 1.2;
+  .card--deceased .card__avatar img { filter: grayscale(1); }
+  .card__body { flex: 1; min-width: 0; }
+  .card__name {
+    font-size: 1rem; font-weight: 600; color: #1c1917;
+    margin: 0 0 0.125rem;
   }
-  :global(.dark) .member-card__name { color: #fafaf9; }
-  .member-card__aff {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    color: #78716c;
-    margin: 0.25rem 0 0;
-    line-height: 1.3;
+  :global(.dark) .card__name { color: #fafaf9; }
+  .card__affiliation {
+    font-size: 0.8125rem; color: #78716c;
+    margin: 0 0 0.5rem;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
-  :global(.dark) .member-card__aff { color: #a8a29e; }
+  :global(.dark) .card__affiliation { color: #a8a29e; }
+  .card__tags {
+    display: flex; flex-wrap: wrap; gap: 0.25rem;
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.0625rem 0.5rem;
+    font-size: 0.6875rem; font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 0.25rem;
+    background: #f5f5f4; color: #57534e;
+  }
+  :global(.dark) .tag { background: #292524; color: #d6d3d1; }
+  .tag--chair { background: var(--color-brand-fill); color: #fff; }
+  .tag--leadership { background: #fef3c7; color: #92400e; }
+  :global(.dark) .tag--leadership { background: rgb(245 158 11 / 0.2); color: #fcd34d; }
+  .tag--deceased { background: #e7e5e4; color: #57534e; font-style: italic; text-transform: none; }
+  :global(.dark) .tag--deceased { background: #44403c; color: #a8a29e; }
+  .tag--past { background: #f5f5f4; color: #a8a29e; text-transform: capitalize; }
+  :global(.dark) .tag--past { background: #292524; color: #78716c; }
 </style>
