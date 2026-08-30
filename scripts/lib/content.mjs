@@ -24,7 +24,9 @@ export function loadPosts(postsDir, siteContext = null) {
     const match = file.match(POST_FILENAME_RE)
     if (!match) continue
     const date = match[1]
-    const slug = match[2]
+    // Slug includes the date prefix so URLs mirror the filenames
+    // (/posts/2026-08-30-45th-plenary-berlin/).
+    const slug = `${date}-${match[2]}`
     const fullPath = path.join(postsDir, file)
     const raw = fs.readFileSync(fullPath, 'utf8')
     const { frontmatter, html } = parseAndRender(raw, {}, siteContext)

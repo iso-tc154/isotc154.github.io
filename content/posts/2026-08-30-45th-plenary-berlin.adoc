@@ -10,7 +10,7 @@ Tomorrow, Monday 31 August 2026, ISO/TC 154 convenes its 45th plenary week
 in Berlin, Germany, hosted by DIN at Am DIN-Platz, Burggrafenstraße 6.
 The week runs through Friday 4 September 2026.
 
-image::/assets/og-default.png[ISO/TC 154]
+image::/assets/og/iso-tc-154-card.png["ISO/TC 154 convenes its 45th plenary week in Berlin"]
 
 == A full week of work
 
