@@ -2,6 +2,7 @@
 import fs from 'node:fs'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
+import NextPlenaryBanner from '../components/NextPlenaryBanner.astro'
 import CountUp from '../islands/CountUp.vue'
 import HeroSearch from '../islands/HeroSearch.vue'
 import { committee } from '../data/committee'
@@ -83,6 +84,8 @@ function publicationDate(iso: string | null): string {
         <span class="hero__title-accent">every cross-border handshake</span>
       </span>
       <span slot="title" class="hero__title-line">a common language.</span>
+
+      <NextPlenaryBanner slot="default" />
 
       <HeroSearch slot="default" client:load />
 

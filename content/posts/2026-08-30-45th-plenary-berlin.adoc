@@ -1,0 +1,61 @@
+---
+layout: post
+title: "Willkommen in Berlin: the 45th plenary week of ISO/TC 154"
+date: 2026-08-30 00:00:00 +0200
+categories: plenary
+---
+:page-liquid:
+
+Tomorrow, Monday 31 August 2026, ISO/TC 154 convenes its 45th plenary week
+in Berlin, Germany, hosted by DIN at Am DIN-Platz, Burggrafenstraße 6.
+The week runs through Friday 4 September 2026.
+
+image::/assets/og-default.png[ISO/TC 154]
+
+== A full week of work
+
+The updated meetings schedule (N 1709) brings all working groups together
+around the plenary:
+
+* **31 Aug** — Plenary opening session (9:00–10:30), followed by JWG 1,
+  WG 2 and SG 1 in the afternoon
+* **1 Sep** — JWG 9 (UNTDED work) and WG 6 (trusted communications)
+* **2 Sep** — WG 7 day session (digital business), plus the social
+  programme in the evening
+* **3 Sep** — TC-level projects meeting (including the path forward for
+  ISO/PWI 26087 after the first NP ballot) and WG 5 (date and time)
+* **4 Sep** — (J)WG reports to the plenary in the morning, closing
+  session from 14:30
+
+The plenary itself is hybrid — delegates can join via Zoom (meeting ID
+850 446 6562).
+
+== The agenda
+
+The updated draft agenda (N 1711) discusses items 1–11 on 31 August —
+from the management report with a full round of ballot results through
+to a new item 11: a presentation of the research project
+"https://www.iso.org[Rising Standards Powers in Global Technical
+Standard-Setting]" by Professor Sarah Eaton and Mr Nicolas Huppenbauer.
+
+Items 12–23 follow on 4 September: working group reports, liaison
+reports, strategic review of the Business Plan, and the approval of
+resolutions.
+
+== Social programme
+
+On Wednesday evening (2 September), the committee is invited to an
+exclusive evening tour of Zoo Berlin — just across the street from the
+DIN building. Meet at 18:30 at DIN; the tour starts at 19:00.
+Afterwards, everyone interested can continue to the nearby Biergarten
+"Café am Neuen See".
+
+Registration for the social event is via the
+https://sd.iso.org/meetings/182492[ISO meeting platform].
+
+== Follow the week
+
+The full meeting briefing — daily schedule, venue, accommodation and
+practical information for Berlin — is on the
+link:/meetings/45/[45th plenary meeting page]. Resolutions will be
+recorded in the link:/decisions/[decision registry] as they are adopted.
