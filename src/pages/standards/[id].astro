@@ -3,6 +3,7 @@ import Asciidoctor from '@asciidoctor/core'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
 import { loadData, type Standard, type Group } from '../../lib/data'
+import { standardStatusLabel } from '../../lib/presentation'
 
 const asciidoctor = Asciidoctor()
 
@@ -27,20 +28,6 @@ const iso = standard.iso
 const tc154 = standard.tc154
 const groups = loadData.groups()
 
-function statusLabel(status?: string): string {
-  if (!status) return ''
-  switch (status.toLowerCase()) {
-    case 'published': return 'Published'
-    case 'withdrawn': return 'Withdrawn'
-    case 'current': return 'Current'
-    case 'under-development':
-    case 'under_development': return 'Under development'
-    case 'under-review':
-    case 'under_review': return 'Under review'
-    case 'deleted': return 'Deleted'
-    default: return status.charAt(0).toUpperCase() + status.slice(1)
-  }
-}
 
 const scopeHtml = renderProse(tc154?.scope || iso.scope)
 const introductionHtml = renderProse(tc154?.introduction)
@@ -79,7 +66,7 @@ const icsList = iso.ics ? iso.ics.split(',').map((s) => s.trim()).filter(Boolean
       title={iso.title}
     >
       <div class="detail__badges" slot="default">
-        <span class:list={["detail__status", `detail__status--${tc154?.status ?? 'published'}`]}>{statusLabel(tc154?.status ?? 'published')}</span>
+        <span class:list={["detail__status", `detail__status--${tc154?.status ?? 'published'}`]}>{standardStatusLabel(tc154?.status ?? 'published')}</span>
         {iso.type && iso.type !== 'international' && <span class="detail__type">{iso.type}</span>}
         {iso.stage && <span class="detail__stage">Stage {iso.stage}</span>}
       </div>

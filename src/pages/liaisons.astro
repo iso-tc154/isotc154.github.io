@@ -129,45 +129,15 @@ function cardHaystack(l: Liaison): string {
 </BaseLayout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('#liaison-grid > li > a'))
-  const empty = document.getElementById('liaison-empty')
-  const count = document.getElementById('liaison-count')
-  const search = document.getElementById('liaison-search') as HTMLInputElement | null
-  const total = cards.length
-  let category = ''
-
-  function apply() {
-    const q = (search?.value ?? '').trim().toLowerCase()
-    let visible = 0
-    cards.forEach((card) => {
-      const okText = !q || (card.dataset.haystack || '').includes(q)
-      const okCat = !category || card.dataset.category === category
-      const ok = okText && okCat
-      const li = card.parentElement as HTMLElement
-      li.style.display = ok ? '' : 'none'
-      if (ok) visible++
-    })
-    if (count) count.textContent = `${visible} of ${total} liaisons`
-    if (empty) empty.hidden = visible !== 0
-  }
-
-  document.querySelectorAll<HTMLElement>('[data-facet="category"] .chip').forEach((chip) => {
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('[data-facet="category"] .chip').forEach((c) => c.classList.remove('chip--active'))
-      chip.classList.add('chip--active')
-      category = (chip as HTMLElement).dataset.value ?? ''
-      apply()
-    })
-  })
-
-  search?.addEventListener('input', apply)
-  document.getElementById('liaison-clear')?.addEventListener('click', () => {
-    if (search) search.value = ''
-    category = ''
-    document.querySelectorAll('[data-facet="category"] .chip').forEach((c) => {
-      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === '')
-    })
-    apply()
+  import { mountListFilter } from '../lib/list-filter'
+  mountListFilter({
+    searchInput: '#liaison-search',
+    items: '#liaison-grid > li',
+    facetWrappers: '[data-facet="category"]',
+    count: '#liaison-count',
+    countLabel: 'liaisons',
+    empty: '#liaison-empty',
+    clear: '#liaison-clear',
   })
 </script>
 

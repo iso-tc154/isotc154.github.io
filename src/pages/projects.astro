@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import { loadData } from '../lib/data'
+import { projectStatusLabel } from '../lib/presentation'
 
 interface Project {
   id: string
@@ -23,18 +24,6 @@ const stats = {
   stages: statuses.length,
 }
 
-function projectStatusLabel(status?: string): string {
-  if (!status) return ''
-  switch (status.toLowerCase()) {
-    case 'current': return 'Current'
-    case 'deleted': return 'Deleted'
-    case 'withdrawn': return 'Withdrawn'
-    case 'new': return 'New'
-    case 'under-development':
-    case 'under_development': return 'Under development'
-    default: return status.charAt(0).toUpperCase() + status.slice(1)
-  }
-}
 function projectUrl(p: Project): string {
   return p.url ?? `/projects/${p.id}/`
 }
@@ -122,45 +111,16 @@ function projectUrl(p: Project): string {
 </BaseLayout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('#prj-grid > li > a'))
-  const empty = document.getElementById('prj-empty')
-  const count = document.getElementById('prj-count')
-  const search = document.getElementById('prj-search') as HTMLInputElement | null
-  const total = cards.length
-  let status = ''
-
-  function apply() {
-    const q = (search?.value ?? '').trim().toLowerCase()
-    let visible = 0
-    cards.forEach((card) => {
-      const okText = !q || (card.dataset.haystack || '').includes(q)
-      const okStatus = !status || card.dataset.status === status
-      const ok = okText && okStatus
-      const li = card.parentElement as HTMLElement
-      li.style.display = ok ? '' : 'none'
-      if (ok) visible++
-    })
-    if (count) count.textContent = `${visible} of ${total} projects`
-    if (empty) empty.hidden = visible !== 0
-  }
-
-  document.querySelectorAll<HTMLElement>('[data-facet="status"] .chip').forEach((chip) => {
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('[data-facet="status"] .chip').forEach((c) => c.classList.remove('chip--active'))
-      chip.classList.add('chip--active')
-      status = (chip as HTMLElement).dataset.value ?? ''
-      apply()
-    })
-  })
-
-  search?.addEventListener('input', apply)
-  document.getElementById('prj-clear')?.addEventListener('click', () => {
-    if (search) search.value = ''
-    status = ''
-    document.querySelectorAll('[data-facet="status"] .chip').forEach((c) => {
-      c.classList.toggle('chip--active', (c as HTMLElement).dataset.value === '')
-    })
-    apply()
+  import { mountListFilter } from '../lib/list-filter'
+  mountListFilter({
+    searchInput: '#prj-search',
+    items: '#prj-grid > li',
+    facetWrappers: '.filter__chips[data-facet]',
+    count: '#prj-count',
+    countLabel: 'projects',
+    empty: '#prj-empty',
+    clear: '#prj-clear',
+    initialFromUrl: true,
   })
 </script>
 

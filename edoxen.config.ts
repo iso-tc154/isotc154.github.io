@@ -22,6 +22,7 @@ export default defineConfig({
     url: 'https://www.isotc154.org/',
   },
   data: {
+    committee: '_data/committee-edoxen',
     decisions: '_data/resolutions-edoxen',
     meetings: '_data/events-edoxen',
   },

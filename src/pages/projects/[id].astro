@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageHero from '../../components/PageHero.astro'
 import { loadData, type Group } from '../../lib/data'
 import { committee } from '../../data/committee'
+import { projectStatusLabel } from '../../lib/presentation'
 
 const asciidoctor = Asciidoctor()
 
@@ -46,18 +47,6 @@ const { project } = Astro.props as { project: ProjectDoc }
 const groups = loadData.groups()
 const membersIndex = loadData.members().all as Record<string, MemberDoc>
 
-function projectStatusLabel(status?: string): string {
-  if (!status) return ''
-  switch (status.toLowerCase()) {
-    case 'current': return 'Current'
-    case 'deleted': return 'Deleted'
-    case 'withdrawn': return 'Withdrawn'
-    case 'new': return 'New'
-    case 'under-development':
-    case 'under_development': return 'Under development'
-    default: return status.charAt(0).toUpperCase() + status.slice(1)
-  }
-}
 
 const scopeHtml = renderProse(project.scope)
 const owningGroups = (groups as Group[]).filter((g) => (g.active_projects ?? []).includes(project.id))

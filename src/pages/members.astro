@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import { loadData, type Group } from '../lib/data'
+import { roleLabel, initials } from '../lib/presentation'
 
 interface RoleRecord { id?: string; group?: string; to?: unknown }
 interface Member {
@@ -29,26 +30,6 @@ const stats = {
   past: allMembers.filter((m) => !m.is_current).length,
 }
 
-const ROLE_LABELS: Record<string, string> = {
-  chair: 'Chair',
-  co_chair: 'Co-chair',
-  committee_manager: 'Committee Manager',
-  convenor: 'Convenor',
-  editorial_programme_manager: 'Editorial Programme Manager',
-  'editorial-programme-manager': 'Editorial Programme Manager',
-  manager: 'Manager',
-  member: 'Member',
-  observer: 'Observer',
-  partner: 'Partner',
-  project_leader: 'Project Leader',
-  'project-leader': 'Project Leader',
-  secretary: 'Secretary',
-  technical_programme_manager: 'Technical Programme Manager',
-  'technical-programme-manager': 'Technical Programme Manager',
-}
-function roleLabel(r: string): string {
-  return ROLE_LABELS[r] ?? r
-}
 function groupLabel(gid: string): string {
   const g = groups.find((x: Group) => x.id === gid)
   return g?.name ?? gid
@@ -63,11 +44,6 @@ const availableRoles = Array.from(new Set(
 
 function memberUrl(m: Member): string {
   return m.url ?? `/members/${m['member-id']}/`
-}
-function memberInitials(name: string): string {
-  const parts = name.trim().split(/\s+/)
-  if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
-  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase()
 }
 function pictureUrl(m: Member): string | null {
   return m.picture ? `/assets/images/members/${m.picture}` : null
@@ -131,7 +107,8 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
           <div class="filter__field">
             <span class="filter__label">Status</span>
             <div class="filter__chips" data-facet="status">
-              <button type="button" class="chip chip--active" data-value="current">Current</button>
+              <button type="button" class="chip" data-value="">All</button>
+              <button type="button" class="chip" data-value="current">Current</button>
               <button type="button" class="chip" data-value="past">Past</button>
               <button type="button" class="chip" data-value="leadership">Leadership</button>
               <button type="button" class="chip" data-value="all">All</button>
@@ -174,6 +151,7 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
               data-name={(m.name + ' ' + (m.affiliation ?? '')).toLowerCase()}
               data-current={m.is_current ? '1' : ''}
               data-leadership={m.is_in_leadership ? '1' : ''}
+              data-status={[m.is_current ? 'current' : 'past', m.is_in_leadership && 'leadership'].filter(Boolean).join(' ')}
               data-roles={memberRoles(m)}
               data-groups={memberGroups(m)}
             >
@@ -181,7 +159,7 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
                 {pictureUrl(m) ? (
                   <img src={pictureUrl(m)} alt={m.name} loading="lazy" />
                 ) : (
-                  <span>{memberInitials(m.name)}</span>
+                  <span>{initials(m.name)}</span>
                 )}
               </div>
               <div class="card__body">
@@ -215,78 +193,17 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
 </BaseLayout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('#member-grid > li > a'))
-  const empty = document.getElementById('member-empty')
-  const count = document.getElementById('member-count')
-  const search = document.getElementById('member-search') as HTMLInputElement | null
-  const total = cards.length
-  const state: Record<string, string> = { status: 'current', role: '', group: '' }
-
-  function matchesRoleAndGroup(card: HTMLElement, past: boolean): boolean {
-    const roles = (card.dataset.roles || '').split('|').filter(Boolean)
-    const groupsAttr = (card.dataset.groups || '').split('|').filter(Boolean)
-    if (state.role) {
-      const inGroup = roles.includes(state.role)
-      if (!inGroup) return false
-    }
-    if (state.group && !groupsAttr.includes(state.group)) return false
-    return true
-  }
-
-  function apply() {
-    const q = (search?.value ?? '').trim().toLowerCase()
-    let visible = 0
-    cards.forEach((card) => {
-      const okText = !q || (card.dataset.name || '').includes(q)
-      const status = state.status
-      const okStatus =
-        status === 'all' ? true :
-        status === 'current' ? card.dataset.current === '1' :
-        status === 'past' ? card.dataset.current !== '1' :
-        card.dataset.leadership === '1'
-      const ok = okText && okStatus && matchesRoleAndGroup(card, status === 'past')
-      const li = card.parentElement as HTMLElement
-      li.style.display = ok ? '' : 'none'
-      if (ok) visible++
-    })
-    if (count) count.textContent = `${visible} of ${total} members`
-    if (empty) empty.hidden = visible !== 0
-  }
-
-  document.querySelectorAll<HTMLElement>('.filter__chips').forEach((wrap) => {
-    const facet = wrap.dataset.facet ?? ''
-    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
-        chip.classList.add('chip--active')
-        state[facet] = chip.dataset.value ?? ''
-        apply()
-      })
-    })
+  import { mountListFilter } from '../lib/list-filter'
+  mountListFilter({
+    searchInput: '#member-search',
+    items: '#member-grid > li',
+    facetWrappers: '.filter__chips[data-facet]',
+    count: '#member-count',
+    countLabel: 'members',
+    empty: '#member-empty',
+    clear: '#member-clear',
+    initialFromUrl: true,
   })
-
-  search?.addEventListener('input', apply)
-  document.getElementById('member-clear')?.addEventListener('click', () => {
-    if (search) search.value = ''
-    state.status = 'current'; state.role = ''; state.group = ''
-    document.querySelectorAll('.filter__chips').forEach((wrap) => {
-      const facet = wrap.dataset.facet ?? ''
-      const def = facet === 'status' ? 'current' : ''
-      wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => {
-        c.classList.toggle('chip--active', (c.dataset.value ?? '') === def)
-      })
-    })
-    apply()
-  })
-
-  const params = new URLSearchParams(window.location.search)
-  const q = params.get('q')
-  if (q && search) {
-    search.value = q
-    apply()
-  } else {
-    apply()
-  }
 </script>
 
 <style>

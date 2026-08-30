@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import { loadData, type Standard, type Group } from '../lib/data'
+import { standardStatusLabel } from '../lib/presentation'
 
 const standards = loadData.standards()
 const groups = loadData.groups()
@@ -27,20 +28,6 @@ const statuses = Array.from(new Set(standards.map((s) => s.tc154?.status ?? 'pub
 const groupIds = Array.from(new Set(standards.filter((s) => s.tc154?.group).map((s) => s.tc154!.group))).sort()
 const types = Array.from(new Set(standards.filter((s) => s.iso?.type).map((s) => s.iso!.type))).sort()
 
-function statusLabel(status?: string): string {
-  if (!status) return ''
-  switch (status.toLowerCase()) {
-    case 'published': return 'Published'
-    case 'withdrawn': return 'Withdrawn'
-    case 'current': return 'Current'
-    case 'under-development':
-    case 'under_development': return 'Under development'
-    case 'under-review':
-    case 'under_review': return 'Under review'
-    case 'deleted': return 'Deleted'
-    default: return status.charAt(0).toUpperCase() + status.slice(1)
-  }
-}
 function groupLabel(g?: string): string {
   if (!g) return ''
   const grp = groups.find((x: Group) => x.id === g)
@@ -94,7 +81,7 @@ function publicationYear(s: Standard): string {
             <div class="filter__chips" data-facet="status">
               <button type="button" class="chip chip--active" data-value="">All</button>
               {statuses.map((s) => (
-                <button type="button" class="chip" data-value={s}>{statusLabel(s)}</button>
+                <button type="button" class="chip" data-value={s}>{standardStatusLabel(s)}</button>
               ))}
             </div>
           </div>
@@ -145,7 +132,7 @@ function publicationYear(s: Standard): string {
               </div>
               <p class="card__title">{s.iso?.title}</p>
               <div class="card__bottom">
-                <span class="card__status">{statusLabel(s.tc154?.status ?? 'published')}</span>
+                <span class="card__status">{standardStatusLabel(s.tc154?.status ?? 'published')}</span>
                 {s.tc154?.group && <span class="card__group">{groupLabel(s.tc154.group)}</span>}
                 {s.iso?.type && s.iso.type !== 'international' && <span class="card__type">{s.iso.type}</span>}
               </div>
@@ -163,62 +150,17 @@ function publicationYear(s: Standard): string {
 </BaseLayout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('#std-grid > li > a'))
-  const empty = document.getElementById('std-empty')
-  const count = document.getElementById('filter-count')
-  const search = document.getElementById('filter-search') as HTMLInputElement | null
-  const facets: Record<string, string> = { status: '', group: '', type: '' }
-
-  function apply() {
-    const q = (search?.value ?? '').trim().toLowerCase()
-    let visible = 0
-    cards.forEach((card) => {
-      const hay = `${card.dataset.name} ${card.dataset.title} ${card.dataset.ics}`
-      const okText = !q || hay.includes(q)
-      const okStatus = !facets.status || card.dataset.status === facets.status
-      const okGroup = !facets.group || card.dataset.group === facets.group
-      const okType = !facets.type || card.dataset.type === facets.type
-      const pass = okText && okStatus && okGroup && okType
-      const li = card.parentElement as HTMLElement
-      li.style.display = pass ? '' : 'none'
-      if (pass) visible++
-    })
-    if (count) count.textContent = `${visible} of ${cards.length} standards`
-    if (empty) empty.hidden = visible !== 0
-  }
-
-  document.querySelectorAll<HTMLElement>('.filter__chips').forEach((wrap) => {
-    const facet = wrap.dataset.facet ?? ''
-    wrap.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
-        chip.classList.add('chip--active')
-        facets[facet] = chip.dataset.value ?? ''
-        apply()
-      })
-    })
+  import { mountListFilter } from '../lib/list-filter'
+  mountListFilter({
+    searchInput: '#filter-search',
+    items: '#std-grid > li',
+    facetWrappers: '.filter__chips[data-facet]',
+    count: '#filter-count',
+    countLabel: 'standards',
+    empty: '#std-empty',
+    clear: '#std-clear',
+    initialFromUrl: true,
   })
-
-  search?.addEventListener('input', apply)
-  document.getElementById('std-clear')?.addEventListener('click', () => {
-    if (search) search.value = ''
-    facets.status = facets.group = facets.type = ''
-    document.querySelectorAll('.filter__chips .chip').forEach((c, i, all) => {
-      void all
-      if ((c as HTMLElement).dataset.value === '') {
-        c.parentElement?.querySelectorAll('.chip').forEach((x) => x.classList.remove('chip--active'))
-        c.classList.add('chip--active')
-      }
-    })
-    apply()
-  })
-
-  const params = new URLSearchParams(window.location.search)
-  const q = params.get('q')
-  if (q && search) {
-    search.value = q
-    apply()
-  }
 </script>
 
 <style>

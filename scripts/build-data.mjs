@@ -205,6 +205,18 @@ function main() {
   writeJson('acknowledgments.json', acks)
   writeJson('history.json', history)
 
+// Site-wide search index for the ⌘K omnibar (BaseLayout).
+{
+  const index = []
+  for (const s of standards) index.push({ t: s.iso?.name ?? s.id, s: s.iso?.title ?? '', u: s.url ?? `/standards/${s.id}/`, k: 'Standard' })
+  for (const m of Object.values(members.all ?? {})) index.push({ t: m.name, s: m.affiliation ?? '', u: m.url ?? `/members/${m['member-id']}/`, k: 'Member' })
+  for (const m of meetings) index.push({ t: `${m.ordinal} plenary`, s: `${m.location_label ?? ''} ${m.year ?? ''}`.trim(), u: m.url, k: 'Meeting' })
+  for (const p of posts) index.push({ t: p.frontmatter?.title ?? p.slug, s: '', u: `/posts/${p.slug}/`, k: 'News' })
+  for (const r of resolutions) index.push({ t: r.id, s: r.title ?? '', u: `/decisions/${r.urn}/`, k: 'Resolution' })
+  writeJson('search-index.json', index)
+  console.log(`[build-data] search-index.json ${JSON.stringify(index).length} bytes, ${index.length} entries`)
+}
+
   console.log('[build-data] done')
 }
 

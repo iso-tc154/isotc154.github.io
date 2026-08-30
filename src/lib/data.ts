@@ -3,8 +3,13 @@ import path from 'node:path'
 
 const DATA_DIR = path.resolve('./public/data')
 
+const jsonCache = new Map<string, unknown>()
+
 function readJson<T>(name: string): T {
-  return JSON.parse(fs.readFileSync(path.join(DATA_DIR, name), 'utf-8')) as T
+  if (!jsonCache.has(name)) {
+    jsonCache.set(name, JSON.parse(fs.readFileSync(path.join(DATA_DIR, name), 'utf-8')))
+  }
+  return jsonCache.get(name) as T
 }
 
 export interface PageDoc {
