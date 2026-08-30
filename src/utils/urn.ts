@@ -1,4 +1,4 @@
-import { meetingSourceFromParts, type MeetingSource } from '../domain/meetingSource.ts'
+import { meetingSourceFromParts, type MeetingSource } from './meetingSource.ts'
 
 export const URN_BASE = 'urn:iso:tc:154'
 

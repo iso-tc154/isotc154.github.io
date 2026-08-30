@@ -12,6 +12,7 @@
     "build": "node scripts/build-data.mjs && node scripts/prepare-edoxen-data.mjs && node scripts/build-legacy-redirects.mjs && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "test": "vitest run",
     "build-data": "node scripts/build-data.mjs && node scripts/prepare-edoxen-data.mjs && node scripts/build-legacy-redirects.mjs",
     "validate": "ruby scripts/validate_yaml.rb && ruby scripts/validate_member_status.rb",
     "prepare-edoxen-data": "node scripts/prepare-edoxen-data.mjs",
@@ -34,7 +35,9 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.0.0",
+    "happy-dom": "^20.12.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
   }
 }
