@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 
+defineOptions({ inheritAttrs: false })
+
 const props = defineProps<{
   target: number
   duration?: number

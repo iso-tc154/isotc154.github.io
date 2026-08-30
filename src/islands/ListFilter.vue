@@ -82,9 +82,6 @@ onMounted(() => applyFilter())
   border: 1px solid #d6d3d1; background: #fff;
   color: #1c1917; outline: none;
 }
-:global(.dark) .list-filter__search, :global(.dark) .list-filter__select {
-  border-color: #44403c; background: rgb(15 23 42 / 0.6); color: #fafaf9;
-}
 .list-filter__search { flex: 1; min-width: 16rem; }
 .list-filter__search:focus, .list-filter__select:focus {
   border-color: var(--color-blue-accent);
@@ -94,10 +91,17 @@ onMounted(() => applyFilter())
   color: #78716c; background: none; border: none; cursor: pointer;
   text-decoration: underline; padding: 0.5rem;
 }
-:global(.dark) .list-filter__clear { color: #a8a29e; }
 .list-filter__count {
   font-family: var(--font-sans); font-size: 0.75rem;
   color: #78716c; margin: 0.625rem 0 0;
 }
-:global(.dark) .list-filter__count { color: #a8a29e; }
+</style>
+
+<style>
+.dark .list-filter__search,
+.dark .list-filter__select {
+  border-color: #44403c; background: rgb(15 23 42 / 0.6); color: #fafaf9;
+}
+.dark .list-filter__clear { color: #a8a29e; }
+.dark .list-filter__count { color: #a8a29e; }
 </style>
