@@ -8,8 +8,8 @@
     "node": ">=22.18"
   },
   "scripts": {
-    "dev": "npm run build-data && astro dev",
-    "build": "npm run build-data && astro build",
+    "dev": "node scripts/build-data.mjs && node scripts/prepare-edoxen-data.mjs && node scripts/build-legacy-redirects.mjs && astro dev",
+    "build": "node scripts/build-data.mjs && node scripts/prepare-edoxen-data.mjs && node scripts/build-legacy-redirects.mjs && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "build-data": "node scripts/build-data.mjs && node scripts/prepare-edoxen-data.mjs && node scripts/build-legacy-redirects.mjs",
@@ -20,12 +20,12 @@
   "dependencies": {
     "@asciidoctor/core": "^3.0.4",
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/vue": "^7.0.1",
+    "@astrojs/vue": "^7.0.2",
     "@edoxen/browser": "^0.12.0",
     "ajv": "^8.17.1",
-    "astro": "^7.1.1",
+    "astro": "^7.2.9",
     "js-yaml": "^4.1.0",
-    "vue": "^3.5.24"
+    "vue": "^3.5.42"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
