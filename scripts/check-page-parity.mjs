@@ -59,6 +59,22 @@ const ALLOWED_MISSING = {
   'meetings/index.astro': ['.stat-skeleton', '.dark .stat-skeleton'],
 }
 
+// Intentional renames: the selector's role survives in the Astro page under
+// a new name (the page evolved past the legacy design on purpose). The
+// renamed selector must still exist, otherwise the check fails.
+const RENAMES = {
+  'index.astro': {
+    // The legacy "What's happening now" rail became the "Latest" zone
+    // (editorial news list + status cards); the section head kept its
+    // role and styling under .latest__* names.
+    '.current__head': '.latest__head',
+    '.current__eyebrow': '.latest__eyebrow',
+    '.dark .current__eyebrow': '.dark .latest__eyebrow',
+    '.current__title': '.latest__title',
+    '.dark .current__title': '.dark .latest__title',
+  },
+}
+
 const SKIPPED = new Set([
   'EventDetailView.vue',
   'MeetingsLandingView.vue',
@@ -136,19 +152,26 @@ for (const v of views) {
   }
   const astroCss = norm(astro)
   const allowed = ALLOWED_MISSING[mapped] ?? []
-  const missing = [...selectors(css)]
-    .map((s) => s.replace(/ ?:deep\(([^)]+)\)/g, ' $1'))
-    .filter((s) => {
-      if (allowed.includes(s)) return false
-      const variants = [s, s.replace(':global(.dark)', '.dark')]
-      return !variants.some((x) => astroCss.includes(x) || sharedText.includes(x))
-    })
+  const renames = RENAMES[mapped] ?? {}
+  const missing = []
+  let renamed = 0
+  for (const raw of selectors(css)) {
+    const s = raw.replace(/ ?:deep\(([^)]+)\)/g, ' $1')
+    if (allowed.includes(s)) continue
+    const to = renames[s]
+    const variants = [s, s.replace(':global(.dark)', '.dark')]
+    const present = variants.some((x) => astroCss.includes(x) || sharedText.includes(x))
+    const renamedPresent = to && norm(to) && (astroCss.includes(to) || sharedText.includes(to))
+    if (renamedPresent) { renamed += 1; continue }
+    if (!present) missing.push(s)
+  }
   if (missing.length) {
     console.log(`FAIL ${mapped}: ${missing.length} missing selector(s)`)
     missing.forEach((s) => console.log(`     ${s}`))
     totalMissing += missing.length
   } else {
-    console.log(`OK   ${mapped}`)
+    if (renamed) console.log(`OK   ${mapped} (${renamed} renamed selector(s))`)
+    else console.log(`OK   ${mapped}`)
     pagesOk += 1
   }
 }

@@ -100,6 +100,22 @@ export function formatDateLong(value: unknown): string {
   })
 }
 
+export function postExcerpt(html: string, max = 200): string {
+  const text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+  return text.length > max ? text.slice(0, max).trim() + '…' : text
+}
+
+export function postTitle(slug: string, title?: string): string {
+  if (title) return title
+  return slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+}
+
+export function postCategories(categories: unknown): string[] {
+  if (!categories) return []
+  if (Array.isArray(categories)) return categories.map(String)
+  return String(categories).split(/[,\s]+/).filter(Boolean)
+}
+
 export function flagEmoji(countryCode?: string | null): string {
   if (!countryCode) return ''
   const trimmed = countryCode.trim().toUpperCase()
