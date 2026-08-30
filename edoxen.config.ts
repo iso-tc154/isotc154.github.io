@@ -1,4 +1,6 @@
 import { defineConfig } from '@edoxen/browser/config'
+import { committee } from './src/data/committee'
+import { mainNav } from './src/data/navigation'
 
 // Scoped integration: @edoxen/browser owns /meetings/ and /decisions/ only.
 // All other routes are served by the Astro-native site.
@@ -16,8 +18,8 @@ import { defineConfig } from '@edoxen/browser/config'
 // after its own base.css.
 export default defineConfig({
   site: {
-    title: 'ISO/TC 154',
-    subtitle: 'Standards for commerce, industry and administration',
+    title: committee.name,
+    subtitle: committee.tagline,
     description: 'Plenary meetings and resolutions of ISO/TC 154.',
     url: 'https://www.isotc154.org/',
   },
@@ -61,27 +63,13 @@ export default defineConfig({
       'font-mono': "ui-monospace, SFMono-Regular, Menlo, monospace",
     },
   },
-  // Mirror the site's top-level navigation (src/data/navigation.ts).
-  // Edoxen nav is flat — dropdowns collapse to their parent entry.
-  nav: [
-    { label: 'About', href: '/about/' },
-    { label: 'Our Work', href: '/standards/' },
-    { label: 'Meetings', href: '/meetings' },
-    { label: 'Members', href: '/members/' },
-    { label: 'News', href: '/posts/' },
-    { label: 'Resources', href: '/procedures/' },
-  ],
+  // Generated from the site's single nav/social source (src/data/) so the
+  // edoxen-hosted pages cannot drift from the main site. Edoxen nav is
+  // flat — dropdowns collapse to their parent entry.
+  nav: mainNav.map(({ label, to }) => ({ label, href: to })),
   social: [
-    {
-      label: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/iso-tc154/',
-      icon: 'linkedin',
-    },
-    {
-      label: 'GitHub',
-      href: 'https://github.com/ISO-TC154',
-      icon: 'github',
-    },
+    { label: 'LinkedIn', href: committee.links.linkedin, icon: 'linkedin' },
+    { label: 'GitHub', href: committee.links.github, icon: 'github' },
   ],
   footer: {
     message: 'Meetings and resolutions of ISO/TC 154.',
