@@ -1,0 +1,227 @@
+---
+import fs from 'node:fs'
+
+// Live plenary banner for the home hero. Reads site meta at build time and
+// renders only while the next plenary is close (from 3 days before its start
+// through its last day) — no manual removal needed once the week is over.
+interface Plenary {
+  url: string
+  ordinal: number
+  general_area: string
+  from_date: string | null
+  to_date: string | null
+  registration_url?: string | null
+}
+
+const meta = JSON.parse(fs.readFileSync('public/data/meta.json', 'utf-8')) as {
+  current: { nextPlenary: Plenary | null }
+}
+const np = meta.current.nextPlenary
+
+const dayMs = 86_400_000
+const today = new Date()
+today.setHours(0, 0, 0, 0)
+const start = np?.from_date ? new Date(np.from_date + 'T00:00:00') : null
+const end = np?.to_date ? new Date(np.to_date + 'T00:00:00') : null
+
+const LEAD_DAYS = 3
+const active =
+  !!np && !!start && !!end &&
+  today.getTime() >= start.getTime() - LEAD_DAYS * dayMs &&
+  today.getTime() <= end.getTime()
+
+function daysUntil(target: Date): number {
+  return Math.round((target.getTime() - today.getTime()) / dayMs)
+}
+
+let statusLine = ''
+if (active && start && end) {
+  const untilStart = daysUntil(start)
+  if (untilStart > 1) statusLine = `begins in ${untilStart} days`
+  else if (untilStart === 1) statusLine = 'begins tomorrow'
+  else if (daysUntil(end) >= 0) statusLine = `underway now — day ${daysUntil(start) * -1 + 1}`
+}
+
+const area = np?.general_area ?? ''
+
+function fmtRange(from: string | null, to: string | null): string {
+  const f = from ? new Date(from + 'T00:00:00') : null
+  const t = to ? new Date(to + 'T00:00:00') : null
+  if (!f || !t) return ''
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const fStr = `${months[f.getMonth()]} ${f.getDate()}`
+  const tStr = f.getMonth() === t.getMonth() ? `${t.getDate()}` : `${months[t.getMonth()]} ${t.getDate()}`
+  return `${fStr}–${tStr}, ${t.getFullYear()}`
+}
+const range = fmtRange(np?.from_date ?? null, np?.to_date ?? null)
+const showRegister = active && !!np?.registration_url && (start ? daysUntil(start) >= -0 : false)
+---
+
+{active && np && (
+  <aside class="plenary-banner" aria-label="Upcoming plenary">
+    <div class="plenary-banner__flag" aria-hidden="true">🇩🇪</div>
+    <div class="plenary-banner__main">
+      <p class="plenary-banner__eyebrow">
+        <span class="plenary-banner__pulse" aria-hidden="true"></span>
+        {statusLine}
+      </p>
+      <h2 class="plenary-banner__title">Willkommen in Berlin <span class="plenary-banner__amp">·</span> {area.split(',')[0]}</h2>
+      <p class="plenary-banner__meta">
+        {range && <span>{range}</span>}
+        {range && <span aria-hidden="true">—</span>}
+        <span>The {np.ordinal}<sup>th</sup> plenary week of ISO/TC 154</span>
+      </p>
+    </div>
+    <div class="plenary-banner__actions">
+      {showRegister && np.registration_url && (
+        <a href={np.registration_url} target="_blank" rel="noopener noreferrer" class="plenary-banner__cta plenary-banner__cta--primary">
+          Register
+        </a>
+      )}
+      <a href={np.url} class="plenary-banner__cta">
+        Meeting briefing <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </aside>
+)}
+
+<style>
+  .plenary-banner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin: 0 0 2.5rem;
+    padding: 1.125rem 1.5rem;
+    border-radius: 0.875rem;
+    background:
+      radial-gradient(ellipse at top right, rgb(30 58 138 / 0.5), transparent 65%),
+      linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 55%, #2a4a9c 100%);
+    border: 1px solid rgb(148 182 232 / 0.4);
+    box-shadow: 0 12px 32px -12px rgb(30 58 138 / 0.45);
+    position: relative;
+    overflow: hidden;
+  }
+  .plenary-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-iso-red);
+  }
+  :global(.dark) .plenary-banner {
+    background:
+      radial-gradient(ellipse at top right, rgb(148 182 232 / 0.25), transparent 65%),
+      linear-gradient(135deg, #101b30 0%, #16294d 60%, #1d3660 100%);
+  }
+
+  .plenary-banner__flag {
+    font-size: 2rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgb(0 0 0 / 0.3));
+  }
+
+  .plenary-banner__main { flex: 1 1 16rem; min-width: 0; }
+
+  .plenary-banner__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.375rem;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #a8c4ee;
+  }
+  .plenary-banner__pulse {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #7dd3a8;
+    box-shadow: 0 0 0 0 rgb(125 211 168 / 0.6);
+    animation: plenary-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes plenary-pulse {
+    0% { box-shadow: 0 0 0 0 rgb(125 211 168 / 0.6); }
+    70% { box-shadow: 0 0 0 0.5rem rgb(125 211 168 / 0); }
+    100% { box-shadow: 0 0 0 0 rgb(125 211 168 / 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .plenary-banner__pulse { animation: none; }
+  }
+
+  .plenary-banner__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.125rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #fff;
+    margin: 0 0 0.375rem;
+  }
+  .plenary-banner__amp {
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.55;
+  }
+
+  .plenary-banner__meta {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: rgb(255 255 255 / 0.82);
+  }
+  .plenary-banner__meta sup { font-size: 0.6em; }
+
+  .plenary-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+  }
+  .plenary-banner__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1.125rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgb(255 255 255 / 0.35);
+    background: rgb(255 255 255 / 0.08);
+    backdrop-filter: blur(6px);
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .plenary-banner__cta:hover {
+    background: rgb(255 255 255 / 0.16);
+    border-color: rgb(255 255 255 / 0.6);
+    transform: translateY(-1px);
+  }
+  .plenary-banner__cta--primary {
+    background: #fff;
+    color: #1e3a8a;
+    border-color: #fff;
+  }
+  .plenary-banner__cta--primary:hover {
+    background: #e7edf8;
+    border-color: #e7edf8;
+  }
+
+  @media (max-width: 640px) {
+    .plenary-banner { padding: 1rem 1.125rem; }
+    .plenary-banner__actions { width: 100%; }
+    .plenary-banner__cta { flex: 1; justify-content: center; }
+  }
+</style>
