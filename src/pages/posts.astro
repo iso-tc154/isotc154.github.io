@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import { loadData, type Post } from '../lib/data'
+import { postCategories, postExcerpt, postTitle } from '../lib/presentation'
 
 const posts = loadData.posts().sort((a, b) => (b.date || '').localeCompare(a.date || ''))
 const grouped = new Map<string, Post[]>()
@@ -18,28 +19,6 @@ function formatDate(date: string): string {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
-function excerpt(html: string): string {
-  const text = html
-    .replace(/<[^>]*>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-  return text.length > 200 ? text.slice(0, 200).trim() + '…' : text
-}
-
-function postTitle(post: Post): string {
-  if (post.frontmatter.title) return post.frontmatter.title
-  return post.slug
-    .split('-')
-    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ')
-}
-
-function postCategories(post: Post): string[] {
-  const c = post.frontmatter.categories
-  if (!c) return []
-  if (Array.isArray(c)) return c
-  return String(c).split(/[,\s]+/).filter(Boolean)
-}
 ---
 <BaseLayout title="News — ISO/TC 154" description="News and publications of ISO/TC 154.">
   <div>
@@ -70,11 +49,11 @@ function postCategories(post: Post): string[] {
                 <li class="post-card">
                   <a href={`/posts/${post.slug}/`} class="post-card__link">
                     <p class="post-card__date">{formatDate(post.date)}</p>
-                    <h3 class="post-card__title">{postTitle(post)}</h3>
-                    {excerpt(post.html) && <p class="post-card__excerpt">{excerpt(post.html)}</p>}
-                    {postCategories(post).length > 0 && (
+                    <h3 class="post-card__title">{postTitle(post.slug, post.frontmatter.title)}</h3>
+                    {postExcerpt(post.html) && <p class="post-card__excerpt">{postExcerpt(post.html)}</p>}
+                    {postCategories(post.frontmatter.categories).length > 0 && (
                       <div class="post-card__tags">
-                        {postCategories(post).map((c) => (
+                        {postCategories(post.frontmatter.categories).map((c) => (
                           <span class="post-card__tag">{c}</span>
                         ))}
                       </div>
