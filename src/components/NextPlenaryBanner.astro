@@ -1,80 +1,50 @@
 ---
-import fs from 'node:fs'
+import { loadData } from '../lib/data'
+import { plenaryStatus } from '../lib/plenary-status'
+import { flagEmoji, ordinalText } from '../lib/presentation'
 
-// Live plenary banner for the home hero. Reads site meta at build time and
-// renders only while the next plenary is close (from 3 days before its start
-// through its last day) — no manual removal needed once the week is over.
-interface Plenary {
-  url: string
-  ordinal: number
-  general_area: string
-  from_date: string | null
-  to_date: string | null
-  registration_url?: string | null
-}
+// Live plenary banner for the home hero. Everything visible (flag, venue,
+// ordinal, status) derives from meta.current.nextPlenary — nothing is
+// hardcoded per meeting. The status line and banner visibility are
+// recomputed at runtime against the viewer's UTC clock (script below), so
+// the banner stays correct between rebuilds; the build-time value below is
+// the no-JS fallback.
+const np = loadData.meta().current.nextPlenary
+const fallback = plenaryStatus(new Date(), np?.from_date, np?.to_date)
 
-const meta = JSON.parse(fs.readFileSync('public/data/meta.json', 'utf-8')) as {
-  current: { nextPlenary: Plenary | null }
-}
-const np = meta.current.nextPlenary
+const flag = flagEmoji(np?.country_code)
+const area = np?.general_area ?? 'Plenary meeting'
 
-const dayMs = 86_400_000
-const today = new Date()
-today.setHours(0, 0, 0, 0)
-const start = np?.from_date ? new Date(np.from_date + 'T00:00:00') : null
-const end = np?.to_date ? new Date(np.to_date + 'T00:00:00') : null
-
-const LEAD_DAYS = 3
-const active =
-  !!np && !!start && !!end &&
-  today.getTime() >= start.getTime() - LEAD_DAYS * dayMs &&
-  today.getTime() <= end.getTime()
-
-function daysUntil(target: Date): number {
-  return Math.round((target.getTime() - today.getTime()) / dayMs)
-}
-
-let statusLine = ''
-if (active && start && end) {
-  const untilStart = daysUntil(start)
-  if (untilStart > 1) statusLine = `begins in ${untilStart} days`
-  else if (untilStart === 1) statusLine = 'begins tomorrow'
-  else if (daysUntil(end) >= 0) statusLine = `underway now — day ${daysUntil(start) * -1 + 1}`
-}
-
-const area = np?.general_area ?? ''
-
-function fmtRange(from: string | null, to: string | null): string {
-  const f = from ? new Date(from + 'T00:00:00') : null
-  const t = to ? new Date(to + 'T00:00:00') : null
-  if (!f || !t) return ''
+function fmtRange(from: string | null | undefined, to: string | null | undefined): string {
+  if (!from || !to) return ''
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  const fStr = `${months[f.getMonth()]} ${f.getDate()}`
-  const tStr = f.getMonth() === t.getMonth() ? `${t.getDate()}` : `${months[t.getMonth()]} ${t.getDate()}`
-  return `${fStr}–${tStr}, ${t.getFullYear()}`
+  const f = new Date(from + 'T00:00:00Z')
+  const t = new Date(to + 'T00:00:00Z')
+  const fStr = `${months[f.getUTCMonth()]} ${f.getUTCDate()}`
+  const tStr = f.getUTCMonth() === t.getUTCMonth() ? `${t.getUTCDate()}` : `${months[t.getUTCMonth()]} ${t.getUTCDate()}`
+  return `${fStr}–${tStr}, ${t.getUTCFullYear()}`
 }
-const range = fmtRange(np?.from_date ?? null, np?.to_date ?? null)
-const showRegister = active && !!np?.registration_url && (start ? daysUntil(start) >= -0 : false)
+const range = fmtRange(np?.from_date, np?.to_date)
 ---
 
-{active && np && (
-  <aside class="plenary-banner" aria-label="Upcoming plenary">
-    <div class="plenary-banner__flag" aria-hidden="true">🇩🇪</div>
+{np && np.from_date && (
+  <aside class="plenary-banner" aria-label="Plenary meeting banner" data-plenary-from={np.from_date} data-plenary-to={np.to_date} hidden={!fallback.active}>
+    {flag && <div class="plenary-banner__flag" aria-hidden="true">{flag}</div>}
     <div class="plenary-banner__main">
       <p class="plenary-banner__eyebrow">
         <span class="plenary-banner__pulse" aria-hidden="true"></span>
-        {statusLine}
+        <span data-plenary-status>{fallback.line}</span>
       </p>
-      <h2 class="plenary-banner__title">Willkommen in Berlin <span class="plenary-banner__amp">·</span> {area.split(',')[0]}</h2>
+      <h2 class="plenary-banner__title">{area}</h2>
       <p class="plenary-banner__meta">
         {range && <span>{range}</span>}
         {range && <span aria-hidden="true">—</span>}
-        <span>The {np.ordinal}<sup>th</sup> plenary week of ISO/TC 154</span>
+        <span>The {ordinalText(np.ordinal)} plenary week of ISO/TC 154</span>
       </p>
     </div>
     <div class="plenary-banner__actions">
-      {showRegister && np.registration_url && (
-        <a href={np.registration_url} target="_blank" rel="noopener noreferrer" class="plenary-banner__cta plenary-banner__cta--primary">
+      {np.registration_url && (
+        <a href={np.registration_url} target="_blank" rel="noopener noreferrer" class="plenary-banner__cta plenary-banner__cta--primary" data-plenary-register hidden={fallback.daysUntilStart < 1}>
           Register
         </a>
       )}
@@ -85,7 +55,26 @@ const showRegister = active && !!np?.registration_url && (start ? daysUntil(star
   </aside>
 )}
 
+<script>
+  import { plenaryStatus } from '../lib/plenary-status'
+
+  function updatePlenaryBanner(): void {
+    const el = document.querySelector<HTMLElement>('.plenary-banner[data-plenary-from]')
+    if (!el) return
+    const s = plenaryStatus(new Date(), el.dataset.plenaryFrom, el.dataset.plenaryTo)
+    const line = el.querySelector('[data-plenary-status]')
+    if (line) line.textContent = s.line
+    el.hidden = !s.active
+    const register = el.querySelector<HTMLElement>('[data-plenary-register]')
+    if (register) register.hidden = s.daysUntilStart < 1
+  }
+
+  updatePlenaryBanner()
+  setInterval(updatePlenaryBanner, 60_000)
+</script>
+
 <style>
+  .plenary-banner[hidden] { display: none; }
   .plenary-banner {
     display: flex;
     align-items: center;

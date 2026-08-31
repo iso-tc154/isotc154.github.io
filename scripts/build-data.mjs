@@ -181,6 +181,7 @@ function main() {
             url: upcomingPlenary.url,
             ordinal: upcomingPlenary.ordinal,
             general_area: upcomingPlenary.general_area,
+            country_code: upcomingPlenary.country_code ?? null,
             from_date: toDateStr(upcomingPlenary.time?.from?.date),
             to_date: toDateStr(upcomingPlenary.time?.to?.date),
             registration_url: upcomingPlenary.registration_url,
