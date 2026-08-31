@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import yaml from "js-yaml"; const parseYaml = yaml.load;
+import { decisionRedirects } from '../src/lib/edoxen-doc.ts';
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const SRC = path.join(ROOT, '_data/resolutions')
@@ -23,12 +24,8 @@ for (const sub of SUBDIRS) {
   for (const f of fs.readdirSync(srcDir).filter((f) => f.endsWith('.yaml'))) {
     const doc = parseYaml(fs.readFileSync(path.join(srcDir, f), 'utf8'))
     const sourceFile = f.replace(/\.yaml$/, '')
-    for (const d of doc?.decisions ?? []) {
-      if (!d.urn) continue
-      const id = d.identifier?.[0]?.number
-      if (id == null) continue
-      const oldPath = `/resolutions/${sub}/${sourceFile}/${id}`
-      const newUrl = `/decisions/${d.urn}/`
+    const entries = decisionRedirects(doc ?? {}, sub, sourceFile)
+    for (const [oldPath, newUrl] of Object.entries(entries)) {
       redirects[oldPath] = newUrl
       decisionCount++
     }

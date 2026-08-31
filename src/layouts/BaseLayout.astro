@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs'
 import '../styles/main.css'
+import SiteSearch from '../components/SiteSearch.astro'
 import { committee } from '../data/committee'
 import { mainNav } from '../data/navigation'
 
@@ -212,18 +213,6 @@ function sectionContains(item: { to: string; children?: { to: string }[] }): boo
       </div>
     </footer>
 
-    <dialog id="site-search" class="omnibar">
-      <div class="omnibar__box">
-        <div class="omnibar__row">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input id="omnibar-input" type="search" placeholder="Search standards, members, meetings, resolutions…" autocomplete="off" spellcheck="false" aria-label="Search the site" />
-          <kbd>Esc</kbd>
-        </div>
-        <ul id="omnibar-results" role="listbox" aria-label="Search results"></ul>
-        <p class="omnibar__hint">984 entries · standards, members, meetings, resolutions, news</p>
-      </div>
-    </dialog>
-
     <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="18 15 12 9 6 15"></polyline>
@@ -286,74 +275,8 @@ function sectionContains(item: { to: string; children?: { to: string }[] }): boo
       window.addEventListener('scroll', handleScroll, { passive: true })
       toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
       handleScroll()
-
-      // ⌘K omnibar
-      const dialog = document.getElementById('site-search') as HTMLDialogElement | null
-      const input = document.getElementById('omnibar-input') as HTMLInputElement | null
-      const list = document.getElementById('omnibar-results')
-      const openBtn = document.getElementById('site-search-open')
-      let entries: { t: string; s?: string; u: string; k?: string }[] | null = null
-      let activeIdx = -1
-
-      async function ensureIndex() {
-        if (entries) return
-        entries = await fetch('/data/search-index.json').then((r) => r.json())
-      }
-
-      function render(q: string) {
-        if (!list || !entries) return
-        const needle = q.trim().toLowerCase()
-        const hits = needle
-          ? entries.filter((e) => (e.t + ' ' + (e.s ?? '')).toLowerCase().includes(needle)).slice(0, 10)
-          : entries.slice(0, 6)
-        activeIdx = -1
-        list.innerHTML = ''
-        for (const e of hits) {
-          const li = document.createElement('li')
-          const a = document.createElement('a')
-          a.href = e.u
-          a.innerHTML = `<span class="omnibar__kind">${e.k ?? ''}</span><span class="omnibar__title"></span><span class="omnibar__sub"></span>`
-          a.querySelector('.omnibar__title')!.textContent = e.t
-          a.querySelector('.omnibar__sub')!.textContent = e.s ?? ''
-          li.appendChild(a)
-          list.appendChild(li)
-        }
-        if (!hits.length) {
-          const li = document.createElement('li')
-          li.className = 'omnibar__none'
-          li.textContent = 'No matches.'
-          list.appendChild(li)
-        }
-      }
-
-      function setActive(i: number) {
-        if (!list) return
-        const items = list.querySelectorAll('a')
-        items.forEach((a, j) => (a as HTMLElement).classList.toggle('omnibar__active', j === i))
-        items[i]?.scrollIntoView({ block: 'nearest' })
-      }
-
-      openBtn?.addEventListener('click', async () => {
-        dialog?.showModal()
-        await ensureIndex()
-        render('')
-        input?.focus()
-      })
-      window.addEventListener('keydown', (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-          e.preventDefault()
-          openBtn?.click()
-        }
-      })
-      input?.addEventListener('input', () => render(input.value))
-      input?.addEventListener('keydown', (e) => {
-        if (!list) return
-        const links = Array.from(list.querySelectorAll('a'))
-        if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, links.length - 1); setActive(activeIdx) }
-        if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); setActive(activeIdx) }
-        if (e.key === 'Enter' && activeIdx >= 0) { e.preventDefault(); links[activeIdx]?.click() }
-      })
     </script>
+  <SiteSearch />
   </body>
 </html>
 
@@ -398,72 +321,6 @@ function sectionContains(item: { to: string; children?: { to: string }[] }): boo
     transform: translateY(-4px);
   }
   .scroll-to-top svg { width: 1.5rem; height: 1.5rem; }
-
-  /* Omnibar (⌘K search) */
-  .omnibar {
-    border: none;
-    padding: 0;
-    background: transparent;
-    max-width: 40rem;
-    width: calc(100vw - 2rem);
-    margin: 12vh auto auto;
-  }
-  .omnibar::backdrop { background: rgb(15 23 42 / 0.5); backdrop-filter: blur(4px); }
-  .omnibar__box {
-    background: #fff;
-    border: 1px solid #e7e5e4;
-    border-radius: 0.875rem;
-    box-shadow: 0 24px 48px -12px rgb(15 23 42 / 0.25);
-    overflow: hidden;
-  }
-  .dark .omnibar__box { background: #232320; border-color: #2e2e2a; }
-  .omnibar__row {
-    display: flex; align-items: center; gap: 0.75rem;
-    padding: 0.875rem 1.125rem;
-    border-bottom: 1px solid #e7e5e4;
-    color: #78716c;
-  }
-  .dark .omnibar__row { border-bottom-color: #2e2e2a; }
-  .omnibar__row input {
-    flex: 1; border: none; outline: none; background: none;
-    font-family: var(--font-sans); font-size: 1rem; color: #1c1917;
-  }
-  .dark .omnibar__row input { color: #e8e6e1; }
-  .omnibar__row kbd {
-    font-family: ui-monospace, monospace; font-size: 0.6875rem;
-    border: 1px solid #d6d3d1; border-radius: 0.3125rem; padding: 0.0625rem 0.375rem; color: #a8a29e;
-  }
-  .omnibar__results, #omnibar-results {
-    list-style: none; margin: 0; padding: 0.375rem;
-    max-height: 24rem; overflow-y: auto;
-  }
-  #omnibar-results a {
-    display: grid; grid-template-columns: 5.5rem 1fr; grid-template-rows: auto auto;
-    column-gap: 0.75rem; align-items: baseline;
-    padding: 0.5rem 0.625rem; border-radius: 0.5rem; text-decoration: none;
-  }
-  #omnibar-results a:hover, .omnibar__active { background: #f5f5f4; }
-  .dark #omnibar-results a:hover, .dark .omnibar__active { background: #2e2e2a; }
-  .omnibar__kind {
-    grid-row: 1 / 3;
-    font-family: var(--font-sans); font-size: 0.625rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-blue-accent);
-  }
-  .omnibar__title { font-family: var(--font-serif); font-size: 0.9375rem; font-weight: 600; color: #1c1917; }
-  .dark .omnibar__title { color: #fafaf9; }
-  .omnibar__sub { font-family: var(--font-sans); font-size: 0.75rem; color: #78716c; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .omnibar__none { padding: 1rem; text-align: center; color: #78716c; font-size: 0.875rem; }
-  .omnibar__hint {
-    padding: 0.5rem 1.125rem; margin: 0;
-    border-top: 1px solid #e7e5e4;
-    font-family: var(--font-sans); font-size: 0.6875rem; color: #a8a29e;
-  }
-  .dark .omnibar__hint { border-top-color: #2e2e2a; }
-  @media (max-width: 640px) {
-    .omnibar { margin-top: 6vh; }
-    #omnibar-results a { grid-template-columns: 1fr; }
-    .omnibar__kind { grid-row: auto; }
-  }
 
   /* Theme + mobile-menu icon visibility */
   html:not(.dark) .icon-moon { display: none; }
