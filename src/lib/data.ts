@@ -281,6 +281,7 @@ export interface SiteMeta {
     }[]
     nextPlenary: {
       id: string; url: string; ordinal: number; general_area: string
+      country_code?: string | null
       from_date: string | null; to_date: string | null; registration_url?: string | null
     } | null
   }
