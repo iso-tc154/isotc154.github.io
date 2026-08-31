@@ -2,224 +2,70 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Build Commands
+## What this is
+
+The ISO/TC 154 committee website — an **Astro 7 static site** (Vue islands, Tailwind CSS 4 via `@tailwindcss/vite`), deployed to GitHub Pages at https://www.isotc154.org/ from `main` on every merge. `@edoxen/browser` renders the `/decisions/` registry only; every other route is native Astro.
+
+## Commands
 
 ```sh
-# Build the Jekyll site (runs Vite automatically via jekyll-vite plugin)
-bundle exec jekyll build
-
-# Development server (Jekyll + Vite hot reload)
-bundle exec jekyll serve --watch
-
-# Frontend-only (Vite dev server, no Jekyll)
-npm run dev
-
-# Production frontend build
-npm run build
+pnpm build      # full pipeline: build-data → prepare-edoxen-data → build-legacy-redirects → astro build (1,113 pages)
+pnpm test       # vitest (152 tests; happy-dom for the list-filter DOM specs)
+pnpm dev        # dev server (runs the data pipeline first)
+pnpm validate   # Ruby validators: YAML schemas + member status vs live ISO Open Data
+pnpm preview    # serve dist/
 ```
 
-The `jekyll-vite` plugin runs Vite automatically during `jekyll build` — no separate build step needed for assets.
+CI (`.github/workflows/build_deploy.yml`): validate (Ruby validators + `edoxen-browser check` + `pnpm test`) → build → deploy to Pages on `main`. Node is pinned to **22.18+** — the build scripts import TypeScript from `.mjs` via Node's native type-stripping.
 
 ## Architecture
 
-### Stack
-- **Jekyll 4** — static site generator, content in AsciiDoc (`.adoc`) and Markdown (`.md`)
-- **Vite 7** — frontend build tool, integrated via `jekyll-vite` Ruby gem
-- **Vue 3** — lightweight SPA components (MobileNav, ThemeToggle) mounted via `#vue-app`
-- **Tailwind CSS v4** — utility-first CSS (uses `@import "tailwindcss"` not v3 `@tailwind` directives)
-- **Liquid 4** — templating with constraints (see Liquid Gotchas below)
-
-### Directory Structure
 ```
-_plugins/          # Jekyll generators (members.rb, resolutions.rb, organization_pages.rb, etc.)
-_data/             # YAML data files (national_bodies.yml, events/, members/, resolutions/)
-  events/          # Plenary meeting data (plenary-meeting-{n}.yml)
-  members/         # Member role records (one file per member)
-_layouts/          # HTML layouts (base.html, default.html with sidebar, specialized layouts)
-_includes/         # Liquid template includes
-_pages/            # Jekyll pages and AsciiDoc content
-_frontend/         # Frontend source (Vue components, CSS, JS entrypoints)
-  entrypoints/     # application.js/css (Vite entry points)
-  css/             # Component CSS files (imported by application.js)
-  components/      # Vue 3 components
-  js/              # Vanilla JS (theme, navigation, filters)
-assets/            # Static assets (images, fonts)
+src/pages/       Astro routes (list pages + [id] detail pages; meetings/[id] is the largest)
+src/layouts/     BaseLayout (chrome, SEO, theme) + AsciiDocLayout
+src/components/  PageHero, ScheduleCalendar, SiteSearch (⌘K omnibar), AgendaDrawers,
+                 NextPlenaryBanner (UTC-clock state machine), OrgLogo
+src/lib/         The deep modules — display language, data seam, tests live beside them:
+                 presentation.ts  labels, ordinals, dates, initials, post helpers
+                 meeting.ts       practical labels, sessions, agenda flattening, facets
+                 prose.ts         renderProse (one shared Asciidoctor instance)
+                 data.ts          loadData + the pipeline's true output types (no casts)
+                 plenary-status.ts  banner state machine (UTC calendar days)
+                 edoxen-doc.ts    the edoxen DecisionCollection shape (shared with scripts)
+                 list-filter.ts   mountListFilter — the one controller behind every filterable list
+src/styles/      main.css (@theme tokens — single palette source), filter.css (shared
+                 filter-bar family), override.css (edoxen-page chrome; carries its own
+                 --ov-* palette mirror because /decisions/ never loads main.css)
+src/islands/     Vue islands (HeroSearch, CountUp)
+src/data/        navigation.ts, committee.ts (single sources, also consumed by edoxen.config.ts)
 ```
 
-### Jekyll Plugins
+### Data pipeline (build-time)
 
-| Plugin | Purpose |
-|--------|---------|
-| `members.rb` | Pre-processes `site.data.members` with role indexes. Adds `roles['_all']['in']['_all']`, convenience booleans (`is_current`, `is_in_leadership`), group convenor/manager/member lists |
-| `resolutions.rb` | Reads YAML from `_data/resolutions/` submodule, populates `site.data.resolutions_all`, `site.data.resolutions_by_year`, `site.data.resolutions_years`. Generates year-index and detail pages |
-| `organization_pages.rb` | Generates detail pages for liaisons and national bodies from `liaisons.yml` / `national_bodies.yml` data |
-| `jekyll-vite` | Runs Vite build automatically during Jekyll build |
+`scripts/build-data.mjs` reads `_data/**` + `content/**` and writes `public/data/*.json` (members, meetings, standards, groups, projects, liaisons, national-bodies, posts, history, meta, search-index). Pages read these through `src/lib/data.ts` — **the only** data accessor.
 
-### Data Model
+- `scripts/prepare-edoxen-data.mjs` stages the resolutions submodule into `_data/resolutions-edoxen/` (gitignored) — CI runs this before `edoxen-browser check`.
+- `scripts/build-legacy-redirects.mjs` emits `src/data/legacy-redirects.json` (639 entries) → astro.config `redirects`.
+- Scripts may import from `src/lib` and `src/utils` (type-stripping). `src/utils/{urn,roles,labelTable,ordinal,meetingSource}.ts` are live (pipeline-only); everything else that era produced lives in `attic/`.
 
-**Members** — stored in `_data/members/{id}.yml`. Pre-processed by `members.rb` into `site.data.members`:
-```yaml
-# site.data.members.all[id].roles structure
-roles:
-  '_all': { 'in': { '_all': [role_record, ...], 'wg5': [...] } }
-  'convenor': { 'in': { '_all': [...], 'wg5': [...] } }
-  'manager': { 'in': { '_all': [...] } }
-```
+### Resolutions data = a submodule
 
-**National bodies / Liaisons** — stored in `_data/national_bodies.yml` / `_data/liaisons.yml`. Detail pages generated by `organization_pages.rb`.
+`_data/resolutions` → `iso-tc154/resolutions-data` (Edoxen Model 1.0 YAML; its own CLAUDE.md documents the schema and `edoxen` CLI). Change flow:
 
-**Events** — stored in `_data/events/plenary-meeting-{n}.yml`. Accessed via `site.data.events["plenary-meeting-42"]` (key = filename without `.yml`).
+1. In the submodule: branch → edit → `bundle exec edoxen normalize <file> --inplace` → `bundle exec edoxen validate "{plenary,ballots,7372ma}/*.yaml"` → commit → push branch → PR → rebase-merge.
+2. In this repo: commit the new submodule pointer, rebuild (redirects regenerate automatically), PR, merge.
 
-**Standards** — stored in `_data/standards/{slug}.yml`. Source of truth for the standards catalogue. Each file has an `iso:` block (name, type, title, stage, publication_date, ics, store_id, scope) and a `tc154:` block (status, group, introduction, scope, editorial fields). See "Standards Data Pipeline" below for how these files stay in sync with ISO Open Data.
+Transcribe-from-PDF originals into `reference-docs/` and never delete them. Watch for lookalike Unicode in transcriptions (U+2010 hyphens broke URNs once).
 
-### Standards Data Pipeline
+## Conventions & gotchas
 
-`_data/standards/*.yml` is kept in sync with [ISO Open Data](https://www.iso.org/open-data.html) via a single Ruby script and a single GitHub Actions workflow. The script does both jobs in one pass after a single download of the JSONL dataset:
+- **Posts**: `content/posts/yyyy-mm-dd-slug.adoc`; slugs keep the date prefix (`/posts/2026-08-30-…/`), redirects for undated URLs are automatic. AsciiDoc image alt text must not contain unquoted commas (they become positional width/height attrs).
+- **Astro whitespace**: keep text and inline elements on one line — JSX-like trimming eats the spaces otherwise.
+- **Vue islands**: `defineOptions({ inheritAttrs: false })` or Astro's `data-astro-cid-*` boolean prop breaks hydration.
+- **Colors**: use the `@theme` tokens (`var(--color-slate-…)` etc.), never hex literals, in style blocks. Per-category color palettes (calendar, history) are display data, not theme.
+- **`astro check` OOMs** — verify with `pnpm build`. Audit a built site with the link-crawl pattern (see git history) before shipping.
+- `attic/` holds the retired Jekyll and Vue trees (moved with `git mv`, history intact). Nothing in the build may reference it; keep it that way.
 
-| Component | Purpose |
-|-----------|---------|
-| `scripts/sync_iso_open_data.rb` | **Phase 1 (sync)**: for each local YAML, fill in missing `iso.store_id`, `iso.stage`, `iso.ics`, `iso.publication_date` from the matching TC 154 deliverable. Never overwrites existing values. **Phase 2 (discover)**: for each TC 154 deliverable with no matching local YAML, append to `scripts/.new-standards.json` manifest and generate a placeholder YAML file if one doesn't yet exist. |
-| `.github/workflows/sync_iso_data.yml` | Weekly Mon 02:00 UTC. Runs the script, ensures the `new-standard` label exists, creates one GitHub issue per discovered deliverable (idempotent), opens/updates a rolling PR on `chore/sync-iso-data` containing both metadata updates and placeholders. |
+## Standards sync (unchanged from before)
 
-**Idempotency** — safe to run repeatedly:
-- **Issues**: `gh issue list --label new-standard --state all` is fetched once per run and filtered by ISO reference in the title (via `jq`). Any existing issue (open or closed) for the same reference prevents duplicate creation.
-- **PR**: `peter-evans/create-pull-request@v7` on branch `chore/sync-iso-data` creates the PR on first run and pushes additional commits on subsequent runs. Never opens a second PR for the same branch. `delete-branch: true` recreates the branch cleanly after merge or close.
-- **Placeholders**: the script skips YAML generation if a file with the derived slug already exists. Matching against existing YAMLs uses `iso.name` plus two normalizations: Amd/Cor dash (`ISO …/Amd-1:…` ↔ `ISO …/Amd 1:…`) and D-stage iteration suffix (`ISO/DTR 20180.2` ↔ `ISO/DTR 20180`, where `.N` is the Nth circulation of a DIS/DTR/DTS/FDIS/FDTR/FDTS/PRF draft). Non-D-stage suffixes (e.g. `ISO/PWI 16356.2`) are left intact — they are not iteration counters.
-- **Metadata**: `iso_field_missing?` only writes a field when it's nil or empty — existing editorial values are never overwritten.
-
-**Placeholder YAML shape** (minimal — no editorial content):
-```yaml
----
-iso:
-  name: ISO/AWI TR 24980        # reference from ISO Open Data
-  type: TR                       # derived: TS, TR, or international
-  title: Application of data…    # English title extracted from { en:, fr: }
-  stage: '10.99'                 # formatted from integer code
-  publication_date: '2026-04-29' # only if present
-  ics: 35.240.63                 # only if present
-  store_id: 90785                # ISO Store numeric ID
-tc154:
-  status: under_development      # derived from stage (<60.00 under_development, <95.99 published, else withdrawn)
-  # group, introduction, scope pending — see linked new-standard issue
----
-```
-
-**Editor workflow when a `new-standard` issue lands**:
-1. Confirm responsible working group → set `tc154.group`.
-2. Draft introduction → set `tc154.introduction`.
-3. Confirm scope → set `iso.scope` (or `tc154.scope` if it differs).
-4. Add to publication history if applicable.
-5. Close the issue. The placeholder stays on `main`; future sync runs will keep its metadata current.
-
-**Local validation** — the script is safe to run directly; it will create real placeholder files in `_data/standards/` and a manifest at `scripts/.new-standards.json`. **Placeholder YAMLs are real catalogue entries and MUST NOT be deleted.** They represent TC 154 deliverables that ISO has registered; deleting them silently drops standards from the site and re-creating them on the next run loses any local edits.
-```sh
-ruby scripts/sync_iso_open_data.rb
-# To review what changed:
-git status _data/standards/
-git diff _data/standards/      # metadata updates on existing YAMLs
-git status --short _data/standards/ | grep '^??'   # new placeholder YAMLs
-# Then commit the placeholders + metadata updates — do NOT delete them.
-```
-
-The manifest at `scripts/.new-standards.json` is a transient artifact (consumed by the GHA workflow to open issues) and is safe to leave untracked or remove; it is regenerated on every run.
-
-### Frontend Pipeline
-
-1. `vite.config.ts` — Vite config with RubyPlugin (reads `config/vite.json` for Jekyll asset paths)
-2. `application.js` — imports all CSS files in correct order, then JS modules
-3. `application.css` — `@import "tailwindcss"` + `@plugin "@tailwindcss/typography"` + `@theme` for custom tokens
-4. **CSS import order**: All component CSS imports must come **before** `@import "tailwindcss"` in `application.css`. Component CSS is imported from `application.js`, so the import order is: `typography.css` (first) → all component CSS → `tailwindcss` (last)
-
-### Navigation
-
-- **Main nav** (`_data/navigation_main.yml`) — header dropdown items
-- **Sidebar** (`_data/navigation_sidebar.yml`) — declarative section matching using `match` (exact contains) or `url_prefixes` (array of URL prefixes, first-match-wins). Sections with `type: group` close the current `</ul>` and open a new one, creating orphaned empty `<ul>` — avoid `type: group`, flatten to `type: link` items
-
-### Logo / Image Paths
-- National body logos: `/assets/images/national-bodies/logo-{id}.{ext}`
-- Dark/light variants: use `logo_light` / `logo_dark` YAML fields with `class="dark:hidden"` / `class="hidden dark:block"`
-
----
-
-## Working with Member Profiles
-
-### Adding a Member
-
-1. Create `_data/members/{id}.yaml` with fields:
-   - `member-id` (required, matches filename)
-   - `name` (required)
-   - `active` (required, `true` or `false`)
-   - `picture` (optional, filename in `/assets/images/members/`)
-   - `affiliation` (optional, organization name)
-   - `bio` (optional, multi-line YAML string)
-   - `roles` (optional, list of role records with `id`, `group`, `from`/`to` dates)
-   - `deceased` (optional, `true` for deceased members)
-   - `links` (optional, list of `{label, url}` social/external links)
-
-2. Role record format:
-   ```yaml
-   roles:
-   - id: member          # chair, convenor, manager, member, observer, partner, etc.
-     group: cag           # optional: wg5, jwg1, cag, etc.
-     from:
-       date: 2024-01-01
-       precision: year    # day, month, or year
-     to:                  # omit for current roles
-       date: 2025-06-01
-       precision: month
-   ```
-
-3. The `members.rb` plugin processes all YAML files at build time. No plugin changes needed for new fields — they propagate automatically via `clone`.
-
-4. Member detail pages are generated by `members.rb` at `/members/{member-id}/`.
-
-### Marking a Member as Deceased
-
-1. Set `active: false` and add `deceased: true` to their YAML file
-2. Ensure all roles have `to` dates (plugin marks `is_current` true if any role has `to == nil`)
-3. Templates automatically apply: "In Memoriam" label (gray), grayscale photo
-4. For an obituary blog post, create `_posts/{date}-{name}-obituary.adoc` using `layout: post` and `:page-liquid:` to link to the member page
-
-### Modifying a Member
-
-Edit `_data/members/{id}.yaml` directly. The `members.rb` plugin clones all fields, so custom YAML fields are accessible as `member.field_name` in Liquid templates without plugin changes.
-
-### Removing a Member
-
-Delete `_data/members/{id}.yaml`. The member will no longer appear in any lists or generated pages after rebuild.
-
-### Member Photos
-
-- Store in `/assets/images/members/{member-id}.jpg` (or .png)
-- Set `picture` field in YAML to the filename (e.g., `picture: john-doe.jpg`)
-- Members without photos show initials automatically
-
----
-
-## Liquid Gotchas (Liquid 4.0.4)
-
-### Include parameter bracket notation
-Jekyll's Liquid parser rejects bracket notation in `include` params:
-```liquid
-{% include plenary_detail.html event=site.data.events[page.event_id] %}  <!-- FAILS -->
-```
-Use `assign` first:
-```liquid
-{%- assign event = site.data.events[page.event_id] -%}
-{% include plenary_detail.html event=event %}
-```
-
-### `{% elsif %}` inside `{% for %}`
-`{% elsif %}` cannot appear inside `{% for %}` loops — use `{% case %}`/`{% when %}` instead.
-
-### `{% comment %}` blocks still parse tags
-Include tag syntax inside `{% comment %}` blocks is still validated and will error. Remove example syntax from comment blocks.
-
-### `| default` filter
-The `default` filter only checks for nil/empty, not key existence in hashes.
-
-### `doc.layout` vs `doc.data['layout']`
-For Jekyll `Page` objects, `doc.layout` works where `doc.data['layout']` may fail depending on the Liquid drop implementation. Prefer `doc.layout` when available.
-
-### `for x in string` iterates characters
-`{% for x in string %}` iterates over each **character**, not comma-separated values. Use `split` first.
+`scripts/sync_iso_open_data.rb` + `.github/workflows/sync_iso_data.yml` keep `_data/standards/*.yml` aligned with ISO Open Data; placeholder YAMLs are real catalogue entries and **must not be deleted**. `validate_member_status.rb` compares national-body membership against the live ISO dataset — a failure means ISO's data moved (e.g. SA lapsed in 2026) and the YAML needs `former: true`.
