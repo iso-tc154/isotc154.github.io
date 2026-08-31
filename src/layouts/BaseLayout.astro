@@ -286,7 +286,7 @@ function sectionContains(item: { to: string; children?: { to: string }[] }): boo
     top: 0; left: 0;
     width: 0;
     height: 3px;
-    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+    background: linear-gradient(90deg, var(--color-brand), var(--color-brand-soft));
     z-index: 100;
     transition: width 0.1s linear;
   }
@@ -317,7 +317,7 @@ function sectionContains(item: { to: string; children?: { to: string }[] }): boo
     transform: translateY(0);
   }
   .scroll-to-top:hover {
-    background-color: #172554;
+    background-color: var(--color-brand-hover);
     transform: translateY(-4px);
   }
   .scroll-to-top svg { width: 1.5rem; height: 1.5rem; }
