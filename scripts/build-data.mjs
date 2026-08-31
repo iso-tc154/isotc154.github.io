@@ -193,7 +193,6 @@ function main() {
   writeJson('members.json', members)
   writeJson('standards.json', standards)
   writeJson('projects.json', projects)
-  writeJson('events.json', events)
   writeJson('liaisons.json', liaisons)
   writeJson('national-bodies.json', nationalBodies)
   writeJson('associates.json', associates)
