@@ -1,7 +1,7 @@
 = ISO/TC 154 Resources site: www.isotc154.org
 
-image:https://github.com/isotc154/www.isotc154.org/workflows/build/badge.svg["Build Status", link="https://github.com/isotc154/www.isotc154.org/actions?workflow=build"]
-image:https://github.com/isotc154/www.isotc154.org/workflows/deploy/badge.svg["Build Status", link="https://github.com/isotc154/www.isotc154.org/actions?workflow=deploy"]
+image:https://github.com/isotc154/www.isotc154.org/workflows/build_deploy/badge.svg["Build Status", link="https://github.com/isotc154/www.isotc154.org/actions?workflow=build_deploy"]
+image:https://github.com/isotc154/www.isotc154.org/workflows/build_deploy/badge.svg["Build Status", link="https://github.com/isotc154/www.isotc154.org/actions?workflow=build_deploy"]
 
 
 == Introduction
