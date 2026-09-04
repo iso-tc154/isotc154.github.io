@@ -1,0 +1,49 @@
+---
+title: "Business Plan 2001 public review — ISO/TC 154"
+permalink: /business-plan/2001/
+description: The 2001 Business Plan (N 367) of ISO/TC 154 and its public review announcement — the earliest published record in this archive.
+layout: page
+eyebrow: Committee strategy · 2001 public review
+---
+
+= Business Plan 2001 — public review
+
+[.business-plan-cta]
+****
+link:/assets/docs/iso-tc-154-bp-2001-public-review-announcement-154-117.htm[Download the preserved announcement (HTML, TC 154 document 154/117, 2001-08-02)]
+
+link:/business-plan/2018/[→ Next edition (2018)]
+****
+
+[NOTE]
+====
+This is the earliest published Business Plan record in this archive. The
+2001 Business Plan — document N 367 — was circulated for public review by
+the then chair, Mr François Vuilleumier, on 2 August 2001, with comments
+due to Mr Jean Kubler by 2001-10-19. The original plan files were hosted
+on the UN/UNECE FTP service, which no longer exists; the announcement
+below is preserved verbatim. The plan text itself is not in this archive.
+====
+
+== The announcement (verbatim, 2 August 2001)
+
+____
+hello TC154,
+
+our Business Plan is now open for public review and comments.
+
+deadline for sending comments back to Jean Kubler: 2001-10-19
+
+the text of this BP is available at:
+
+(1)
+ftp://ftp.unicc.org/unece/cefact/iso_tc154/154-18_latest/ —
+`154n367r_bp.doc` (98 Kb, Winword) and `154n367r_bp.pdf` (69 Kb, Acrobat)
+
+(2) http://www.iso.ch/bp (but in pdf only)
+
+Thanks for your help ;-) François
+____
+
+François Vuilleumier, ISO/TC 154 chair — c/o DGD, Monbijoustrasse 40,
+CH-3003 Berne

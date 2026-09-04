@@ -1,26 +1,29 @@
 ---
-title: "Business Plan 2020 — ISO/TC 154"
-permalink: /business-plan/2020/
-description: The current (2020) edition of the ISO/TC 154 Strategic Business Plan (N 226) — strategy, work programme, and operating context.
+title: "Business Plan 2019 — ISO/TC 154"
+permalink: /business-plan/2019/
+description: The 2019 revision of the ISO/TC 154 Business Plan (N 1106), approved at the 38th plenary meeting in Luxembourg.
 layout: page
-eyebrow: Committee strategy · 2020 edition (current)
+eyebrow: Committee strategy · 2019 edition
 ---
 
-= Business Plan 2020
+= Business Plan 2019
 
 [.business-plan-cta]
 ****
-link:/assets/docs/iso-tc-154-sbp-2020-n226.docx[Download the official Strategic Business Plan (DOCX, N 226, 2020-08-26)]
+link:/assets/docs/iso-tc-154-sbp-2019-n1106.pdf[Download the official 2019 Business Plan (PDF, N 1106, 2019-10-18)]
 
-link:/business-plan/2019/[← Previous edition (2019)]
+link:/business-plan/2020/[→ Current edition (2020)] · link:/business-plan/2018/[← Previous edition (2018)]
 ****
 
-This is the *2020 edition* of the ISO/TC 154 Strategic Business Plan — the
-current edition. The plan was updated in 2020 — WG 5 updated its scope and
-WG 4 was established — and was approved at the 39th (virtual) plenary
-meeting in 2020. The committee record is document N 226, dated 2020-08-26;
-the DOCX linked above remains the authoritative copy for citation and
-distribution.
+[NOTE]
+====
+This is the *2019 revision* of the ISO/TC 154 Business Plan, superseded by
+the link:/business-plan/2020/[2020 edition]. The plan was updated with the
+information of the potential WG 4 and the member numbers, and was approved
+at the 38th plenary meeting in Luxembourg. The committee record is
+document N 1106, dated 2019-10-18; the PDF linked above remains the
+authoritative copy of this edition for citation and distribution.
+====
 
 == Executive summary
 
@@ -192,7 +195,7 @@ https://www.iso.org/committee/53186.html[iso.org/committee/53186]
 
 === 4.2 Analysis of the participation
 
-Currently 17 P- and 24 O-members, and 20 internal (ISO and JTC1) and 18
+Currently 18 P- and 23 O-members, and 19 internal (ISO and JTC1) and 18
 external (e.g. UNECE, FIATA and WCO) liaison members from all areas of the
 world participate in ISO/TC 154. Many high-ranking international organizations
 are being kept informed of the work done by the committee through the
@@ -291,19 +294,19 @@ It was established by ISO/TC 154 in collaboration with UNECE through
 UN/CEFACT. The scope of JWG 1 also includes the maintenance, update and
 extension of ISO 9735.
 
-WG 4 — e-document;;
+WG 4 (potential) — e-document;;
+At the time of this edition WG 4 was prospective. Scope statement:
 Standardization of e-document concepts and semantics to support people,
 systems and processes involved in developing, publishing and using of
 e-documents.
 
 WG 5 — Representation of date and time;;
-The scope of WG 5 is to provide a standardization platform for all date and
-time stakeholders, for enabling a unified way of interoperating with date and
-time across populations and systems. This includes standardizing concepts and
-semantics related to date and time, systems and processes that use or measure
-date and time, interoperability of information systems that utilize date and
-time, and facilitating alignment of date and time standards with other
-organizations and efforts.
+The scope of WG 5 is to provide a common platform for all date and time
+stakeholders, to enable a unified, interoperable representation of date and
+time across populations and systems. Specifically, the work involves the
+standardization of concepts and semantics related to date and time, systems
+and processes that use or measure date and time, and the interoperability of
+information systems that utilize date and time.
 
 WG 6 — Trusted eCommunications;;
 The scope of WG 6 relates to business transactions of TC 154 scope such as
