@@ -25,8 +25,24 @@ N 226 (2020-08-26). WG 5 scope revision and the establishment of WG 4.
 link:/assets/docs/iso-tc-154-sbp-2020-n226.docx[Official document (DOCX)] · link:/business-plan/2020/[Read the web edition]
 
 [.edition-list]
+=== link:/business-plan/2019/[Business Plan 2019]
+
+Approved at the 38th plenary meeting, Luxembourg; committee record
+N 1106 (2019-10-18). Introduced the prospective WG 4 (e-document).
+
+link:/assets/docs/iso-tc-154-sbp-2019-n1106.pdf[Official document (PDF)] · link:/business-plan/2019/[Read the web edition]
+
+[.edition-list]
 === link:/business-plan/2018/[Business Plan 2018]
 
 Approved by ballot in N 993; published record N 1001 (2018-11-18).
 
 link:/assets/pdf/iso-tc-154-business-plan.pdf[Official document (PDF)] · link:/business-plan/2018/[Read the web edition]
+
+[.edition-list]
+=== link:/business-plan/2001/[Business Plan 2001 — public review]
+
+The earliest record in this archive: Business Plan N 367 circulated for
+public review on 2001-08-02 (announcement 154/117 preserved verbatim).
+
+link:/assets/docs/iso-tc-154-bp-2001-public-review-announcement-154-117.htm[Preserved announcement (HTML)] · link:/business-plan/2001/[Read the record]
