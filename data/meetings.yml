@@ -19,7 +19,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/182492
+  iso_meeting_url: https://sd.iso.org/meetings/182492
 - ordinal: 44
   iso_meeting_id: 166950
   type: hybrid
@@ -35,7 +35,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/166950
+  iso_meeting_url: https://sd.iso.org/meetings/166950
 - ordinal: 43
   iso_meeting_id: 140474
   type: face-to-face
@@ -51,7 +51,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/140474
+  iso_meeting_url: https://sd.iso.org/meetings/140474
 - ordinal: 42
   iso_meeting_id: 127742
   type: hybrid
@@ -67,7 +67,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/127742
+  iso_meeting_url: https://sd.iso.org/meetings/127742
 - ordinal: 41
   iso_meeting_id: 113743
   type: hybrid
@@ -83,7 +83,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/113743
+  iso_meeting_url: https://sd.iso.org/meetings/113743
 - ordinal: 41
   iso_meeting_id: 112750
   type: virtual
@@ -99,7 +99,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/112750
+  iso_meeting_url: https://sd.iso.org/meetings/112750
 - ordinal: 41
   iso_meeting_id: 125207
   type: virtual
@@ -115,7 +115,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/125207
+  iso_meeting_url: https://sd.iso.org/meetings/125207
 - ordinal: 40
   iso_meeting_id: 79718
   type: virtual
@@ -131,7 +131,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/79718
+  iso_meeting_url: https://sd.iso.org/meetings/79718
 - ordinal: 40
   iso_meeting_id: 79719
   type: virtual
@@ -147,7 +147,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/79719
+  iso_meeting_url: https://sd.iso.org/meetings/79719
 - ordinal: 40
   iso_meeting_id: 79720
   type: virtual
@@ -163,7 +163,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/79720
+  iso_meeting_url: https://sd.iso.org/meetings/79720
 - ordinal: 39
   iso_meeting_id: 67789
   type: virtual
@@ -180,7 +180,7 @@
   reschedule_timeframe: Within 3 months
   cancellation_comment: The physical meeting is cancelled for the reason of COVID-19, and several WG virtual
     meetings and virtual plenary meetings will be held in different months and days.
-  iso_meeting_url: https://committee.iso.org/meetings/67789
+  iso_meeting_url: https://sd.iso.org/meetings/67789
 - ordinal: 39
   iso_meeting_id: 70304
   type: virtual
@@ -196,7 +196,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/70304
+  iso_meeting_url: https://sd.iso.org/meetings/70304
 - ordinal: 39
   iso_meeting_id: 70311
   type: virtual
@@ -212,7 +212,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/70311
+  iso_meeting_url: https://sd.iso.org/meetings/70311
 - ordinal: 39
   iso_meeting_id: 70441
   type: virtual
@@ -228,7 +228,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/70441
+  iso_meeting_url: https://sd.iso.org/meetings/70441
 - ordinal: 38
   iso_meeting_id: 60517
   type: hybrid
@@ -244,7 +244,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/60517
+  iso_meeting_url: https://sd.iso.org/meetings/60517
 - ordinal: 37
   iso_meeting_id: 56995
   type: hybrid
@@ -260,7 +260,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/56995
+  iso_meeting_url: https://sd.iso.org/meetings/56995
 - ordinal: 36
   iso_meeting_id: 48312
   type: virtual
@@ -276,7 +276,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/48312
+  iso_meeting_url: https://sd.iso.org/meetings/48312
 - ordinal: 35
   iso_meeting_id: 47260
   type: face-to-face
@@ -292,7 +292,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/47260
+  iso_meeting_url: https://sd.iso.org/meetings/47260
 - ordinal: 34
   iso_meeting_id: 43426
   type: virtual
@@ -308,7 +308,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/43426
+  iso_meeting_url: https://sd.iso.org/meetings/43426
 - ordinal: 33
   iso_meeting_id: 42221
   type: face-to-face
@@ -324,7 +324,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/42221
+  iso_meeting_url: https://sd.iso.org/meetings/42221
 - ordinal: 32
   iso_meeting_id: 39688
   type: face-to-face
@@ -340,7 +340,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/39688
+  iso_meeting_url: https://sd.iso.org/meetings/39688
 - ordinal: 31
   iso_meeting_id: 36559
   type: face-to-face
@@ -356,7 +356,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/36559
+  iso_meeting_url: https://sd.iso.org/meetings/36559
 - ordinal: 30
   iso_meeting_id: 35116
   type: face-to-face
@@ -372,7 +372,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/35116
+  iso_meeting_url: https://sd.iso.org/meetings/35116
 - ordinal: 29
   iso_meeting_id: 33750
   type: face-to-face
@@ -388,7 +388,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/33750
+  iso_meeting_url: https://sd.iso.org/meetings/33750
 - ordinal: 28
   iso_meeting_id: 33452
   type: face-to-face
@@ -404,7 +404,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/33452
+  iso_meeting_url: https://sd.iso.org/meetings/33452
 - ordinal: 27
   iso_meeting_id: 32590
   type: face-to-face
@@ -420,7 +420,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/32590
+  iso_meeting_url: https://sd.iso.org/meetings/32590
 - ordinal: 26
   iso_meeting_id: 32311
   type: face-to-face
@@ -436,7 +436,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/32311
+  iso_meeting_url: https://sd.iso.org/meetings/32311
 - ordinal: 25
   iso_meeting_id: 1694
   type: face-to-face
@@ -452,7 +452,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/1694
+  iso_meeting_url: https://sd.iso.org/meetings/1694
 - ordinal: 24
   iso_meeting_id: 3493
   type: face-to-face
@@ -468,7 +468,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/3493
+  iso_meeting_url: https://sd.iso.org/meetings/3493
 - ordinal: 23
   iso_meeting_id: 35219
   type: face-to-face
@@ -484,7 +484,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/35219
+  iso_meeting_url: https://sd.iso.org/meetings/35219
 - ordinal: 22
   iso_meeting_id: 8464
   type: face-to-face
@@ -500,7 +500,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/8464
+  iso_meeting_url: https://sd.iso.org/meetings/8464
 - ordinal: 21
   iso_meeting_id: 7166
   type: face-to-face
@@ -516,7 +516,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/7166
+  iso_meeting_url: https://sd.iso.org/meetings/7166
 - ordinal: 20
   iso_meeting_id: 9919
   type: face-to-face
@@ -532,7 +532,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/9919
+  iso_meeting_url: https://sd.iso.org/meetings/9919
 - ordinal: 19
   iso_meeting_id: 5462
   type: face-to-face
@@ -548,7 +548,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/5462
+  iso_meeting_url: https://sd.iso.org/meetings/5462
 - ordinal: 18
   iso_meeting_id: 10546
   type: face-to-face
@@ -564,7 +564,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/10546
+  iso_meeting_url: https://sd.iso.org/meetings/10546
 - ordinal: 17
   iso_meeting_id: 8276
   type: face-to-face
@@ -580,7 +580,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/8276
+  iso_meeting_url: https://sd.iso.org/meetings/8276
 - ordinal: 16
   iso_meeting_id: 13840
   type: face-to-face
@@ -596,7 +596,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13840
+  iso_meeting_url: https://sd.iso.org/meetings/13840
 - ordinal: 15
   iso_meeting_id: 13816
   type: face-to-face
@@ -612,7 +612,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13816
+  iso_meeting_url: https://sd.iso.org/meetings/13816
 - ordinal: 14
   iso_meeting_id: 13842
   type: face-to-face
@@ -628,7 +628,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13842
+  iso_meeting_url: https://sd.iso.org/meetings/13842
 - ordinal: 13
   iso_meeting_id: 13834
   type: face-to-face
@@ -644,7 +644,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13834
+  iso_meeting_url: https://sd.iso.org/meetings/13834
 - ordinal: 12
   iso_meeting_id: 13817
   type: face-to-face
@@ -660,7 +660,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13817
+  iso_meeting_url: https://sd.iso.org/meetings/13817
 - ordinal: 11
   iso_meeting_id: 13843
   type: face-to-face
@@ -676,7 +676,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13843
+  iso_meeting_url: https://sd.iso.org/meetings/13843
 - ordinal: 10
   iso_meeting_id: 13833
   type: face-to-face
@@ -692,7 +692,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13833
+  iso_meeting_url: https://sd.iso.org/meetings/13833
 - ordinal: 9
   iso_meeting_id: 13814
   type: face-to-face
@@ -708,7 +708,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13814
+  iso_meeting_url: https://sd.iso.org/meetings/13814
 - ordinal: 8
   iso_meeting_id: 13838
   type: face-to-face
@@ -724,7 +724,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13838
+  iso_meeting_url: https://sd.iso.org/meetings/13838
 - ordinal: 7
   iso_meeting_id: 13810
   type: face-to-face
@@ -740,7 +740,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13810
+  iso_meeting_url: https://sd.iso.org/meetings/13810
 - ordinal: 6
   iso_meeting_id: 13832
   type: face-to-face
@@ -756,7 +756,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/13832
+  iso_meeting_url: https://sd.iso.org/meetings/13832
 - ordinal: 5
   iso_meeting_id: 35774
   type: face-to-face
@@ -772,7 +772,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/35774
+  iso_meeting_url: https://sd.iso.org/meetings/35774
 - ordinal: 4
   iso_meeting_id: 35773
   type: face-to-face
@@ -788,7 +788,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/35773
+  iso_meeting_url: https://sd.iso.org/meetings/35773
 - ordinal: 3
   iso_meeting_id: 35772
   type: face-to-face
@@ -804,7 +804,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/35772
+  iso_meeting_url: https://sd.iso.org/meetings/35772
 - ordinal: 2
   iso_meeting_id: 35771
   type: face-to-face
@@ -820,7 +820,7 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/35771
+  iso_meeting_url: https://sd.iso.org/meetings/35771
 - ordinal: 1
   iso_meeting_id: 35770
   type: face-to-face
@@ -836,4 +836,4 @@
   reschedule_note: null
   reschedule_timeframe: null
   cancellation_comment: null
-  iso_meeting_url: https://committee.iso.org/meetings/35770
+  iso_meeting_url: https://sd.iso.org/meetings/35770

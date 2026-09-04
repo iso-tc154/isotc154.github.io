@@ -22,7 +22,7 @@ venues:
     value: Kyunggi-do
   country_code: KR
 source_urls:
-- ref: https://committee.iso.org/meetings/7166
+- ref: https://sd.iso.org/meetings/7166
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

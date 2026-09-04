@@ -22,7 +22,7 @@ venues:
     value: Gaithersburg
   country_code: US
 source_urls:
-- ref: https://committee.iso.org/meetings/13810
+- ref: https://sd.iso.org/meetings/13810
   kind: landing_page
 scheduled_date_range:
   start: '1985-05-02'

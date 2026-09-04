@@ -22,7 +22,7 @@ venues:
     value: Incheon
   country_code: KR
 source_urls:
-- ref: https://committee.iso.org/meetings/42221
+- ref: https://sd.iso.org/meetings/42221
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

@@ -89,7 +89,7 @@ def parse_local_datetime(raw):
 def iso_meeting_url(meeting_id):
     if not meeting_id:
         return None
-    return f"https://committee.iso.org/meetings/{int(meeting_id)}"
+    return f"https://sd.iso.org/meetings/{int(meeting_id)}"
 
 
 def main():

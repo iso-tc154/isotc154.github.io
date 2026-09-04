@@ -22,7 +22,7 @@ venues:
     value: Concord, California
   country_code: US
 source_urls:
-- ref: https://committee.iso.org/meetings/36559
+- ref: https://sd.iso.org/meetings/36559
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

@@ -22,7 +22,7 @@ venues:
     value: Ottawa
   country_code: CA
 source_urls:
-- ref: https://committee.iso.org/meetings/35772
+- ref: https://sd.iso.org/meetings/35772
   kind: landing_page
 scheduled_date_range:
   start: '1976-10-21'

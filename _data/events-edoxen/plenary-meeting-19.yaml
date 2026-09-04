@@ -24,7 +24,7 @@ venues:
   country_code: CH
   unlocode: CHGVA
 source_urls:
-- ref: https://committee.iso.org/meetings/5462
+- ref: https://sd.iso.org/meetings/5462
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

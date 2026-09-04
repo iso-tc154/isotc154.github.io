@@ -24,7 +24,7 @@ venues:
   country_code: DE
   unlocode: DEBER
 source_urls:
-- ref: https://committee.iso.org/meetings/182492
+- ref: https://sd.iso.org/meetings/182492
   kind: landing_page
 scheduled_date_range:
   start: '2026-08-31'

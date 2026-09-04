@@ -12,7 +12,6 @@ export const committee = {
   links: {
     iso: 'https://www.iso.org',
     isoCommittee: 'https://www.iso.org/committee/45876.html',
-    committeeSite: 'https://committee.iso.org/home/tc154',
     linkedin: 'https://www.linkedin.com/company/iso-tc154/',
     github: 'https://github.com/ISO-TC154',
   },

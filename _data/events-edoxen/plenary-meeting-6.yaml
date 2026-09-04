@@ -24,7 +24,7 @@ venues:
   country_code: FR
   unlocode: FRPAR
 source_urls:
-- ref: https://committee.iso.org/meetings/13832
+- ref: https://sd.iso.org/meetings/13832
   kind: landing_page
 scheduled_date_range:
   start: '1983-04-29'

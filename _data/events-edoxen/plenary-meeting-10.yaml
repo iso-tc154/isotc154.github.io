@@ -22,7 +22,7 @@ venues:
     value: Cologne
   country_code: DE
 source_urls:
-- ref: https://committee.iso.org/meetings/13833
+- ref: https://sd.iso.org/meetings/13833
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

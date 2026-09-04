@@ -24,7 +24,7 @@ venues:
   country_code: FR
   unlocode: FRPAR
 source_urls:
-- ref: https://committee.iso.org/meetings/13817
+- ref: https://sd.iso.org/meetings/13817
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

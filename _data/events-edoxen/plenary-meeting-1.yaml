@@ -24,7 +24,7 @@ venues:
   country_code: SE
   unlocode: SESTO
 source_urls:
-- ref: https://committee.iso.org/meetings/35770
+- ref: https://sd.iso.org/meetings/35770
   kind: landing_page
 scheduled_date_range:
   start: '1973-02-13'

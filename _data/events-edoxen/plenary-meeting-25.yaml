@@ -22,7 +22,7 @@ venues:
     value: Brussels
   country_code: BE
 source_urls:
-- ref: https://committee.iso.org/meetings/1694
+- ref: https://sd.iso.org/meetings/1694
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154
