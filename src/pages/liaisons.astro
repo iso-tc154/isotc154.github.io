@@ -75,12 +75,13 @@ function cardHaystack(l: Liaison): string {
 
       <ul class="grid" id="liaison-grid">
         {liaisons.map((l) => (
-          <li>
+          <li
+            data-haystack={cardHaystack(l)}
+            data-category={l.category ?? ''}
+          >
             <a
               href={liaisonUrl(l)}
               class="card"
-              data-haystack={cardHaystack(l)}
-              data-category={l.category ?? ''}
             >
               <OrgLogo
                 logo={l.logo}

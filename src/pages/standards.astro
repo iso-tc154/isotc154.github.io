@@ -115,16 +115,15 @@ function publicationYear(s: Standard): string {
 
       <ul class="grid" id="std-grid">
         {sorted.map((s) => (
-          <li>
+          <li
+            data-haystack={[(s.iso?.name ?? ''), s.iso?.title ?? '', s.iso?.ics ?? ''].join(' ').toLowerCase()}
+            data-status={s.tc154?.status ?? 'published'}
+            data-group={s.tc154?.group ?? ''}
+            data-type={s.iso?.type ?? ''}
+          >
             <a
               href={s.url}
               class:list={["card", `card--${s.tc154?.status ?? 'published'}`]}
-              data-name={(s.iso?.name ?? '').toLowerCase()}
-              data-title={(s.iso?.title ?? '').toLowerCase()}
-              data-ics={(s.iso?.ics ?? '').toLowerCase()}
-              data-status={s.tc154?.status ?? 'published'}
-              data-group={s.tc154?.group ?? ''}
-              data-type={s.iso?.type ?? ''}
             >
               <div class="card__top">
                 <span class="card__name">{s.iso?.name}</span>

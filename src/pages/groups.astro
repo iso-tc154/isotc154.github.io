@@ -99,13 +99,14 @@ function cardHaystack(g: Group): string {
 
       <ul class="grid" id="grp-grid">
         {sorted.map((g) => (
-          <li>
+          <li
+            data-haystack={cardHaystack(g)}
+            data-category={g.category ?? ''}
+            data-status={lifecycleStatus(g)}
+          >
             <a
               href={groupUrl(g)}
               class:list={["card", `card--${lifecycleStatus(g)}`]}
-              data-haystack={cardHaystack(g)}
-              data-category={g.category ?? ''}
-              data-status={lifecycleStatus(g)}
             >
               <div class="card__top">
                 <div class="card__top-left">

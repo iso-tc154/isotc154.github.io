@@ -144,16 +144,15 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
 
       <ul class="grid" id="member-grid">
         {sorted.map((m) => (
-          <li>
+          <li
+            data-haystack={(m.name + ' ' + (m.affiliation ?? '')).toLowerCase()}
+            data-status={[m.is_current ? 'current' : 'past', m.is_in_leadership && 'leadership'].filter(Boolean).join(' ')}
+            data-role={memberRoles(m)}
+            data-group={memberGroups(m)}
+          >
             <a
               href={memberUrl(m)}
               class:list={["card", { 'card--deceased': m.deceased, 'card--chair': m.is_the_chair }]}
-              data-name={(m.name + ' ' + (m.affiliation ?? '')).toLowerCase()}
-              data-current={m.is_current ? '1' : ''}
-              data-leadership={m.is_in_leadership ? '1' : ''}
-              data-status={[m.is_current ? 'current' : 'past', m.is_in_leadership && 'leadership'].filter(Boolean).join(' ')}
-              data-roles={memberRoles(m)}
-              data-groups={memberGroups(m)}
             >
               <div class="card__avatar">
                 {pictureUrl(m) ? (
