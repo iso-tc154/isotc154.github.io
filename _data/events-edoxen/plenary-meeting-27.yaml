@@ -22,7 +22,7 @@ venues:
     value: Bangkok
   country_code: TH
 source_urls:
-- ref: https://committee.iso.org/meetings/32590
+- ref: https://sd.iso.org/meetings/32590
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

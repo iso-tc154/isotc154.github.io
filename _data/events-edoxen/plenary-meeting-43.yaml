@@ -22,7 +22,7 @@ venues:
     value: Seongnam-city, Gyeonggi-do,
   country_code: KR
 source_urls:
-- ref: https://committee.iso.org/meetings/140474
+- ref: https://sd.iso.org/meetings/140474
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

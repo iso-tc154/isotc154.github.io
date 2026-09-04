@@ -22,7 +22,7 @@ venues:
     value: Berlin
   country_code: DE
 source_urls:
-- ref: https://committee.iso.org/meetings/13838
+- ref: https://sd.iso.org/meetings/13838
   kind: landing_page
 scheduled_date_range:
   start: '1987-09-11'

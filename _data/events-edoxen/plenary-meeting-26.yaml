@@ -24,7 +24,7 @@ venues:
   country_code: JP
   unlocode: JPTYO
 source_urls:
-- ref: https://committee.iso.org/meetings/32311
+- ref: https://sd.iso.org/meetings/32311
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

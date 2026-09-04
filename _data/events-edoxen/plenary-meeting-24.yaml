@@ -22,7 +22,7 @@ venues:
     value: Vancouver
   country_code: CA
 source_urls:
-- ref: https://committee.iso.org/meetings/3493
+- ref: https://sd.iso.org/meetings/3493
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

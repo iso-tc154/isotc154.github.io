@@ -24,7 +24,7 @@ venues:
   country_code: GB
   unlocode: GBLON
 source_urls:
-- ref: https://committee.iso.org/meetings/13814
+- ref: https://sd.iso.org/meetings/13814
   kind: landing_page
 scheduled_date_range:
   start: '1989-09-14'

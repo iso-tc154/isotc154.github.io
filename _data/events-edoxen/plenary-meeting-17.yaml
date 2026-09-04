@@ -22,7 +22,7 @@ venues:
     value: Prague
   country_code: CZ
 source_urls:
-- ref: https://committee.iso.org/meetings/8276
+- ref: https://sd.iso.org/meetings/8276
   kind: landing_page
 decisions:
 - prefix: ISO/TC 154

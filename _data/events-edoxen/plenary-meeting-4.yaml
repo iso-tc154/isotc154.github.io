@@ -24,7 +24,7 @@ venues:
   country_code: CH
   unlocode: CHGVA
 source_urls:
-- ref: https://committee.iso.org/meetings/35773
+- ref: https://sd.iso.org/meetings/35773
   kind: landing_page
 scheduled_date_range:
   start: '1979-10-04'
