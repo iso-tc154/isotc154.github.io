@@ -1,0 +1,13 @@
+---
+import AsciiDocLayout from '../../layouts/AsciiDocLayout.astro'
+import { loadData } from '../../lib/data'
+
+export function getStaticPaths() {
+  return loadData.pages()
+    .filter((p) => /^\/business-plan\/\d{4}\/$/.test(p.frontmatter.permalink ?? ''))
+    .map((p) => ({ params: { year: p.frontmatter.permalink!.split('/')[2] }, props: { page: p } }))
+}
+
+const { page } = Astro.props
+---
+<AsciiDocLayout page={page} decorationPattern="grid" />
