@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import { loadData, type Group } from '../lib/data'
-import { roleLabel, initials } from '../lib/presentation'
+import { roleLabel, initials, formatDatePrecision } from '../lib/presentation'
 
 interface RoleRecord { id?: string; group?: string; to?: unknown }
 interface Member {
@@ -35,9 +35,18 @@ function groupLabel(gid: string): string {
   return g?.name ?? gid
 }
 
+const groupLifecycle = new Map(groups.map((g) => {
+  const historical = Boolean(g.inactive || g.dissolved)
+  const when = g.dissolved?.date ? formatDatePrecision(g.dissolved.date, g.dissolved.precision as 'day' | 'month' | 'year') : ''
+  return [g.id, { historical, title: g.dissolved?.date ? `Dissolved ${when}` : g.inactive ? 'Inactive group' : '' }]
+}))
 const availableGroups = Array.from(new Set(
   allMembers.flatMap((m) => Object.keys(m.roles?._all?.in ?? {}).filter((g) => g !== '_all'))
-)).sort()
+)).sort((a, b) => {
+  const ha = groupLifecycle.get(a)?.historical ? 1 : 0
+  const hb = groupLifecycle.get(b)?.historical ? 1 : 0
+  return ha - hb || a.localeCompare(b)
+})
 const availableRoles = Array.from(new Set(
   allMembers.flatMap((m) => Object.keys(m.roles ?? {}).filter((k) => k !== '_all'))
 )).sort()
@@ -127,11 +136,18 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
           {availableGroups.length > 0 && (
             <div class="filter__field">
               <span class="filter__label">Group</span>
+              <span class="filter__hint"><span class="chip__gdot" aria-hidden="true"></span> current <span class="chip__gdot chip__gdot--off" aria-hidden="true"></span> historical</span>
               <div class="filter__chips" data-facet="group">
                 <button type="button" class="chip chip--active" data-value="">Any</button>
-                {availableGroups.map((g) => (
-                  <button type="button" class="chip" data-value={g}>{groupLabel(g)}</button>
-                ))}
+                {availableGroups.map((g) => {
+                  const lc = groupLifecycle.get(g)
+                  return (
+                    <button type="button" class:list={['chip', { 'chip--historical': lc?.historical }]} data-value={g} title={lc?.title || undefined}>
+                      <span class:list={['chip__gdot', { 'chip__gdot--off': lc?.historical }]} aria-hidden="true"></span>
+                      {groupLabel(g)}
+                    </button>
+                  )
+                })}
               </div>
             </div>
           )}
@@ -258,6 +274,47 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
   :global(.dark) .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
   :global(.dark) .chip:hover { border-color: #5379bf; }
   :global(.dark) .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
+
+  /* Group chips carry a lifecycle dot: filled = current group,
+     hollow = inactive/dissolved. Historical chips recede (dashed
+     border, muted text) so the current groups read first. */
+  .chip__gdot {
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 50%;
+    background: var(--color-brand);
+    flex-shrink: 0;
+  }
+  :global(.dark) .chip__gdot { background: var(--color-blue-accent); }
+  .chip__gdot--off {
+    background: transparent;
+    border: 1.5px solid var(--color-slate-400);
+  }
+  :global(.dark) .chip__gdot--off { border-color: var(--color-slate-400); }
+
+  .chip--historical {
+    border-style: dashed;
+    border-color: var(--color-slate-300);
+    color: var(--color-slate-500);
+  }
+  .chip--historical:hover {
+    border-color: var(--color-blue-accent);
+    color: var(--color-blue-accent);
+  }
+  :global(.dark) .chip--historical {
+    border-color: var(--color-slate-700);
+    color: var(--color-slate-400);
+  }
+
+  .filter__hint {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+    font-size: 0.6875rem;
+    color: var(--color-slate-500);
+    margin: 0.125rem 0 0.375rem;
+  }
+  :global(.dark) .filter__hint { color: var(--color-slate-400); }
   .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
   :global(.dark) .filter__meta { color: #a8a29e; }
 
