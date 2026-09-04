@@ -96,6 +96,7 @@ export interface Group {
   co_chairs?: string[]
   managers?: string[]
   inactive?: boolean
+  dissolved?: { date?: string; precision?: string; successor?: string } | null
   history?: { story?: string; dissolved?: { date?: string } | boolean; established?: { date?: string } }
   predecessor?: { name?: string }
   successor?: { name?: string }
