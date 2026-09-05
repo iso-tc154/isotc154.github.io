@@ -222,49 +222,49 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
 
 <style>
   .filter {
-    background: #fff;
-    border: 1px solid #e7e5e4;
+    background: var(--color-white);
+    border: 1px solid var(--color-slate-200);
     border-radius: 0.75rem;
     padding: 1.25rem;
     margin-bottom: 2rem;
   }
-  :global(.dark) .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  :global(.dark) .filter { background: rgb(15 23 42 / 0.5); border-color: var(--color-slate-700); }
   .filter__search-wrap { position: relative; margin-bottom: 1rem; }
   .filter__search-icon {
     position: absolute; left: 0.75rem; top: 50%;
     transform: translateY(-50%);
-    color: #a8a29e;
+    color: var(--color-slate-400);
     pointer-events: none;
   }
   .filter__search {
     width: 100%;
     padding: 0.625rem 0.875rem 0.625rem 2.25rem;
     border-radius: 0.5rem;
-    border: 1px solid #d6d3d1;
-    background: #fafaf9;
-    color: #1c1917;
+    border: 1px solid var(--color-slate-300);
+    background: var(--color-slate-50);
+    color: var(--color-slate-900);
     font-size: 0.9375rem;
     font-family: inherit;
   }
   .filter__search:focus {
     outline: none;
     border-color: var(--color-blue-accent);
-    background: #fff;
+    background: var(--color-white);
     box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
   }
-  :global(.dark) .filter__search { background: #292524; border-color: #57534e; color: #fafaf9; }
-  :global(.dark) .filter__search:focus { border-color: #5379bf; background: #1c1917; }
+  :global(.dark) .filter__search { background: var(--color-slate-800); border-color: var(--color-slate-600); color: var(--color-slate-50); }
+  :global(.dark) .filter__search:focus { border-color: var(--color-blue-steel); background: var(--color-slate-900); }
   .filter__controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; }
   .filter__field { display: flex; flex-direction: column; gap: 0.5rem; }
   .filter__label {
     font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em; color: #78716c;
+    letter-spacing: 0.08em; color: var(--color-slate-500);
   }
-  :global(.dark) .filter__label { color: #a8a29e; }
+  :global(.dark) .filter__label { color: var(--color-slate-400); }
   .chip {
     display: inline-flex; align-items: center;
     padding: 0.375rem 0.75rem; border-radius: 9999px;
-    border: 1px solid #d6d3d1; background: #fff; color: #57534e;
+    border: 1px solid var(--color-slate-300); background: var(--color-white); color: var(--color-slate-600);
     font-size: 0.8125rem; font-weight: 500; font-family: inherit;
     cursor: pointer; transition: all 0.15s; text-transform: capitalize;
   }
@@ -309,17 +309,17 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
     margin: 0.125rem 0 0.375rem;
   }
   :global(.dark) .filter__hint { color: var(--color-slate-400); }
-  .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
-  :global(.dark) .filter__meta { color: #a8a29e; }
+  .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: var(--color-slate-500); }
+  :global(.dark) .filter__meta { color: var(--color-slate-400); }
 
   .loading, .empty {
     padding: 3rem 1rem;
     text-align: center;
-    color: #78716c;
+    color: var(--color-slate-500);
   }
-  .empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
-  :global(.dark) .empty h3 { color: #fafaf9; }
-  :global(.dark) .loading, :global(.dark) .empty { color: #a8a29e; }
+  .empty h3 { color: var(--color-slate-900); margin: 0 0 0.75rem; }
+  :global(.dark) .empty h3 { color: var(--color-slate-50); }
+  :global(.dark) .loading, :global(.dark) .empty { color: var(--color-slate-400); }
 
   .grid {
     list-style: none; margin: 0; padding: 0;
@@ -334,20 +334,20 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
     display: flex; gap: 1rem;
     padding: 1rem;
     border-radius: 0.75rem;
-    border: 1px solid #e7e5e4;
-    background: #fff;
+    border: 1px solid var(--color-slate-200);
+    background: var(--color-white);
     text-decoration: none;
     color: inherit;
     transition: all 0.2s;
     height: 100%;
   }
-  :global(.dark) .card { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  :global(.dark) .card { background: rgb(15 23 42 / 0.5); border-color: var(--color-slate-700); }
   .card:hover {
     border-color: var(--color-blue-accent);
     box-shadow: 0 4px 12px rgb(30 58 138 / 0.08);
     transform: translateY(-2px);
   }
-  :global(.dark) .card:hover { border-color: #5379bf; box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
+  :global(.dark) .card:hover { border-color: var(--color-blue-steel); box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
   .card--chair {
     border-color: var(--color-brand);
   }
@@ -357,8 +357,8 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
   .card__avatar {
     width: 3.5rem; height: 3.5rem;
     border-radius: 9999px;
-    background: linear-gradient(135deg, var(--color-blue-accent), #5379bf);
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-blue-accent), var(--color-blue-steel));
+    color: var(--color-white);
     display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: 1rem;
     overflow: hidden;
@@ -371,16 +371,16 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
   .card--deceased .card__avatar img { filter: grayscale(1); }
   .card__body { flex: 1; min-width: 0; }
   .card__name {
-    font-size: 1rem; font-weight: 600; color: #1c1917;
+    font-size: 1rem; font-weight: 600; color: var(--color-slate-900);
     margin: 0 0 0.125rem;
   }
-  :global(.dark) .card__name { color: #fafaf9; }
+  :global(.dark) .card__name { color: var(--color-slate-50); }
   .card__affiliation {
-    font-size: 0.8125rem; color: #78716c;
+    font-size: 0.8125rem; color: var(--color-slate-500);
     margin: 0 0 0.5rem;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
-  :global(.dark) .card__affiliation { color: #a8a29e; }
+  :global(.dark) .card__affiliation { color: var(--color-slate-400); }
   .card__tags {
     display: flex; flex-wrap: wrap; gap: 0.25rem;
   }
@@ -390,14 +390,14 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
     font-size: 0.6875rem; font-weight: 600;
     text-transform: capitalize;
     border-radius: 0.25rem;
-    background: #f5f5f4; color: #57534e;
+    background: var(--color-wash); color: var(--color-slate-600);
   }
-  :global(.dark) .tag { background: #292524; color: #d6d3d1; }
-  .tag--chair { background: var(--color-brand-fill); color: #fff; }
-  .tag--leadership { background: #fef3c7; color: #92400e; }
-  :global(.dark) .tag--leadership { background: rgb(245 158 11 / 0.2); color: #fcd34d; }
-  .tag--deceased { background: #e7e5e4; color: #57534e; font-style: italic; text-transform: none; }
-  :global(.dark) .tag--deceased { background: #44403c; color: #a8a29e; }
-  .tag--past { background: #f5f5f4; color: #a8a29e; text-transform: capitalize; }
-  :global(.dark) .tag--past { background: #292524; color: #78716c; }
+  :global(.dark) .tag { background: var(--color-slate-800); color: var(--color-slate-300); }
+  .tag--chair { background: var(--color-brand-fill); color: var(--color-white); }
+  .tag--leadership { background: var(--color-status-warn-bg); color: var(--color-status-warn-text); }
+  :global(.dark) .tag--leadership { background: rgb(245 158 11 / 0.2); color: var(--color-status-warn-line); }
+  .tag--deceased { background: var(--color-slate-200); color: var(--color-slate-600); font-style: italic; text-transform: none; }
+  :global(.dark) .tag--deceased { background: var(--color-slate-700); color: var(--color-slate-400); }
+  .tag--past { background: var(--color-wash); color: var(--color-slate-400); text-transform: capitalize; }
+  :global(.dark) .tag--past { background: var(--color-slate-800); color: var(--color-slate-500); }
 </style>

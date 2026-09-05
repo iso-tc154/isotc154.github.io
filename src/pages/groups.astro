@@ -179,8 +179,8 @@ function cardHaystack(g: Group): string {
     align-items: center;
     padding: 0.5rem 1rem;
     border-radius: 9999px;
-    border: 1px solid #d6d3d1;
-    background: #fff;
+    border: 1px solid var(--color-slate-300);
+    background: var(--color-white);
     color: var(--color-blue-accent);
     font-family: inherit;
     font-size: 0.8125rem;
@@ -188,19 +188,19 @@ function cardHaystack(g: Group): string {
     cursor: pointer;
     transition: all 0.15s;
   }
-  .chip--text:hover { background: var(--color-blue-accent); color: #fff; border-color: var(--color-blue-accent); }
+  .chip--text:hover { background: var(--color-blue-accent); color: var(--color-white); border-color: var(--color-blue-accent); }
 
-  .filter-meta { margin-top: 0.75rem; font-size: 0.875rem; color: #78716c; }
-  :global(.dark) .filter-meta { color: #a8a29e; }
+  .filter-meta { margin-top: 0.75rem; font-size: 0.875rem; color: var(--color-slate-500); }
+  :global(.dark) .filter-meta { color: var(--color-slate-400); }
 
   .loading, .empty {
     padding: 3rem 1rem;
     text-align: center;
-    color: #78716c;
+    color: var(--color-slate-500);
   }
-  .empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
-  :global(.dark) .empty h3 { color: #fafaf9; }
-  :global(.dark) .loading, :global(.dark) .empty { color: #a8a29e; }
+  .empty h3 { color: var(--color-slate-900); margin: 0 0 0.75rem; }
+  :global(.dark) .empty h3 { color: var(--color-slate-50); }
+  :global(.dark) .loading, :global(.dark) .empty { color: var(--color-slate-400); }
 
   .grid {
     list-style: none;
@@ -219,15 +219,15 @@ function cardHaystack(g: Group): string {
     height: 100%;
     padding: 1.25rem;
     border-radius: 0.75rem;
-    border: 1px solid #e7e5e4;
-    background: #fff;
+    border: 1px solid var(--color-slate-200);
+    background: var(--color-white);
     text-decoration: none;
     color: inherit;
     transition: all 0.2s;
   }
   :global(.dark) .card {
     background: rgb(15 23 42 / 0.5);
-    border-color: #44403c;
+    border-color: var(--color-slate-700);
   }
   .card:hover {
     border-color: var(--color-blue-accent);
@@ -235,7 +235,7 @@ function cardHaystack(g: Group): string {
     transform: translateY(-2px);
   }
   :global(.dark) .card:hover {
-    border-color: #5379bf;
+    border-color: var(--color-blue-steel);
     box-shadow: 0 4px 12px rgb(0 0 0 / 0.25);
   }
   .card__top {
@@ -303,17 +303,17 @@ function cardHaystack(g: Group): string {
   }
   .card__count {
     font-size: 0.75rem;
-    color: #78716c;
+    color: var(--color-slate-500);
   }
-  :global(.dark) .card__count { color: #a8a29e; }
+  :global(.dark) .card__count { color: var(--color-slate-400); }
   .card__name {
     font-family: var(--font-serif);
     font-size: 1.25rem;
     font-weight: 700;
-    color: #1c1917;
+    color: var(--color-slate-900);
     margin: 0 0 0.125rem;
   }
-  :global(.dark) .card__name { color: #fafaf9; }
+  :global(.dark) .card__name { color: var(--color-slate-50); }
   .card__meta {
     display: flex;
     align-items: center;
@@ -344,27 +344,27 @@ function cardHaystack(g: Group): string {
   .card__title {
     font-size: 0.9375rem;
     font-weight: 600;
-    color: #44403c;
+    color: var(--color-slate-700);
     margin: 0 0 0.5rem;
   }
-  :global(.dark) .card__title { color: #d6d3d1; }
+  :global(.dark) .card__title { color: var(--color-slate-300); }
   .card__intro {
     font-size: 0.875rem;
     line-height: 1.5;
-    color: #78716c;
+    color: var(--color-slate-500);
     margin: 0 0 0.75rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  :global(.dark) .card__intro { color: #a8a29e; }
+  :global(.dark) .card__intro { color: var(--color-slate-400); }
   .card__convenor {
     font-size: 0.8125rem;
-    color: #57534e;
+    color: var(--color-slate-600);
     margin: 0 0 0.75rem;
   }
-  :global(.dark) .card__convenor { color: #d6d3d1; }
+  :global(.dark) .card__convenor { color: var(--color-slate-300); }
   .card__convenor-label { font-weight: 600; }
   .card__standards {
     display: flex;
@@ -375,14 +375,14 @@ function cardHaystack(g: Group): string {
     display: inline-block;
     padding: 0.125rem 0.5rem;
     border-radius: 0.25rem;
-    background: #f5f5f4;
+    background: var(--color-wash);
     font-size: 0.6875rem;
     font-weight: 600;
-    color: #57534e;
+    color: var(--color-slate-600);
     font-family: ui-monospace, monospace;
   }
-  :global(.dark) .card__pill { background: #292524; color: #d6d3d1; }
-  .card__pill--more { background: #e0e7ff; color: var(--color-blue-accent); }
+  :global(.dark) .card__pill { background: var(--color-slate-800); color: var(--color-slate-300); }
+  .card__pill--more { background: var(--color-status-info-bg); color: var(--color-blue-accent); }
   :global(.dark) .card__pill--more { background: rgb(51 133 214 / 0.2); }
   .card__arrow {
     position: absolute;

@@ -80,6 +80,9 @@
   --color-status-info-text: #3730a3;
   --color-status-info-line: #c7d2fe;
   --color-info-soft: #93c5fd;
+  --color-status-info-accent: #6366f1;
+  --color-status-error-accent: #f87171;
+  --color-status-warn-bright: #f59e0b;
   --color-draft-bg: #f3f4f6;
   --color-draft-text: #6b7280;
   --color-draft-line: #9ca3af;

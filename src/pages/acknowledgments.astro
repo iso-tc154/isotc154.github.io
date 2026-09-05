@@ -92,47 +92,47 @@ function memberUrl(name: string): string | null {
     color: var(--color-brand);
     margin: 0 0 0.75rem;
     padding-bottom: 0.375rem;
-    border-bottom: 1px solid #e7e5e4;
+    border-bottom: 1px solid var(--color-slate-200);
   }
-  :global(.dark) .acks__standard { border-bottom-color: #44403c; }
+  :global(.dark) .acks__standard { border-bottom-color: var(--color-slate-700); }
   .acks__list { list-style: none; margin: 0; padding: 0; }
   .acks__item {
     padding: 0.75rem 0;
-    border-bottom: 1px solid #f5f5f4;
+    border-bottom: 1px solid var(--color-wash);
   }
-  :global(.dark) .acks__item { border-bottom-color: #292524; }
+  :global(.dark) .acks__item { border-bottom-color: var(--color-slate-800); }
   .acks__name {
     font-weight: 600;
     margin: 0 0 0.125rem;
-    color: #1c1917;
+    color: var(--color-slate-900);
   }
-  :global(.dark) .acks__name { color: #fafaf9; }
+  :global(.dark) .acks__name { color: var(--color-slate-50); }
   .acks__name a {
     color: var(--color-blue-accent);
     text-decoration: none;
   }
   .acks__name a:hover { text-decoration: underline; }
-  .acks__aff { font-weight: 400; color: #78716c; }
-  :global(.dark) .acks__aff { color: #a8a29e; }
+  .acks__aff { font-weight: 400; color: var(--color-slate-500); }
+  :global(.dark) .acks__aff { color: var(--color-slate-400); }
   .acks__date {
     font-size: 0.75rem;
     font-family: ui-monospace, monospace;
-    color: #a8a29e;
+    color: var(--color-slate-400);
     margin: 0 0 0.25rem;
   }
   .acks__contribution {
     font-size: 0.9375rem;
-    color: #57534e;
+    color: var(--color-slate-600);
     margin: 0;
   }
-  :global(.dark) .acks__contribution { color: #d6d3d1; }
+  :global(.dark) .acks__contribution { color: var(--color-slate-300); }
 
   .empty {
     text-align: center;
     padding: 3rem 1rem;
-    color: #78716c;
-    background: #fafaf9;
+    color: var(--color-slate-500);
+    background: var(--color-slate-50);
     border-radius: 0.5rem;
   }
-  :global(.dark) .empty { background: #292524; color: #a8a29e; }
+  :global(.dark) .empty { background: var(--color-slate-800); color: var(--color-slate-400); }
 </style>
