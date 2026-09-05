@@ -2,9 +2,26 @@
 ---
 member-id: rudolf-borges
 name: Rudolf Borges
-active: true
+active: false
+deceased: true
 roles:
 - id: member
 - id: member
   group: wg5
 affiliation: DIN, Germany
+epitaph: |-
+  It is with deep sadness that ISO/TC 154 learnt of the passing of
+  Dr. Rudolf Borges (DIN, Germany).
+
+  Dr. Borges heavily contributed to WG 5, in numerous editions of
+  ISO 8601, ISO 8601-1, ISO 8601-2, ISO 8601-1:2019/Amd 1:2025,
+  ISO 8601-2:2019/Amd 1:2025, and ISO 34000.
+
+  The committee recorded its appreciation in resolution P-2026-13
+  of the 45th plenary meeting (Berlin, 2026).
+
+  Members of ISO/TC 154
+links:
+- label: In memoriam
+  title: Appreciation of the late Dr. Borges Rudolf — 45th plenary resolution P-2026-13
+  url: /decisions/urn:iso:tc154:resolution:plenary-45:P-2026-13/
