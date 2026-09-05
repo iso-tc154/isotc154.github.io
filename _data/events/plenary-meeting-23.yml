@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-23/
 
 time:
   from:
-    date: 2005-09-23
+    date: '2005-09-23'
   to:
-    date: 2005-09-23
+    date: '2005-09-23'
 
 general_area: "Brussels, Belgium"
 country_code: BE

@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-36/
 
 time:
   from:
-    date: 2017-10-27
+    date: '2017-10-27'
   to:
-    date: 2017-10-27
+    date: '2017-10-27'
 
 general_area: "Virtual (WebEx)"
 country_code: ""

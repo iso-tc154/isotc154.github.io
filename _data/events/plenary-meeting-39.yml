@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-39/
 
 time:
   from:
-    date: 2020-08-04
+    date: '2020-08-04'
   to:
-    date: 2020-08-07
+    date: '2020-08-07'
 
 general_area: "Costa Mesa, California, USA"
 country_code: US

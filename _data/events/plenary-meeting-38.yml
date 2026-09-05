@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-38/
 
 time:
   from:
-    date: 2019-10-14
+    date: '2019-10-14'
   to:
-    date: 2019-10-18
+    date: '2019-10-18'
 
 general_area: "Luxembourg City, Luxembourg"
 country_code: LU

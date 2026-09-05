@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-22/
 
 time:
   from:
-    date: 2004-09-10
+    date: '2004-09-10'
   to:
-    date: 2004-09-10
+    date: '2004-09-10'
 
 general_area: "McLean, Virginia, USA (Washington, D.C. metro area)"
 country_code: US

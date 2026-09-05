@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-29/
 
 time:
   from:
-    date: 2011-02-17
+    date: '2011-02-17'
   to:
-    date: 2011-02-18
+    date: '2011-02-18'
 
 general_area: "McLean, Virginia, USA"
 country_code: US

@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-37/
 
 time:
   from:
-    date: 2018-10-08
+    date: '2018-10-08'
   to:
-    date: 2018-10-12
+    date: '2018-10-12'
 
 general_area: "Hangzhou, China"
 country_code: CN

@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-21/
 
 time:
   from:
-    date: 2003-09-12
+    date: '2003-09-12'
   to:
-    date: 2003-09-12
+    date: '2003-09-12'
 
 general_area: "Gyeonggi-do (Kyunggi-do), Republic of Korea"
 country_code: KR

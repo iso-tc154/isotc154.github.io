@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-35/
 
 time:
   from:
-    date: 2016-10-17
+    date: '2016-10-17'
   to:
-    date: 2016-10-21
+    date: '2016-10-21'
 
 general_area: "Berlin, Germany"
 country_code: DE

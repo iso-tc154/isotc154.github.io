@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-24/
 
 time:
   from:
-    date: 2006-03-22
+    date: '2006-03-22'
   to:
-    date: 2006-03-22
+    date: '2006-03-22'
 
 general_area: "Vancouver, BC, Canada"
 country_code: CA

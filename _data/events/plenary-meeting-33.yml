@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-33/
 
 time:
   from:
-    date: 2014-10-20
+    date: '2014-10-20'
   to:
-    date: 2014-10-24
+    date: '2014-10-24'
 
 general_area: "Incheon, South Korea"
 country_code: KR

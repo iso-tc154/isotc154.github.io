@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-26/
 
 time:
   from:
-    date: 2009-09-24
+    date: '2009-09-24'
   to:
-    date: 2009-09-25
+    date: '2009-09-25'
 
 general_area: "Tokyo, Japan"
 country_code: JP
