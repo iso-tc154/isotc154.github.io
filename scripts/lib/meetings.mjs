@@ -32,7 +32,7 @@ function labelOf(map, value) {
  * into { year, monthName, day, time, tzAbbrev, sortable }.
  * Returns null when unparseable. Does NOT convert timezones.
  */
-function parseLocalDateTime(s) {
+export function parseLocalDateTime(s) {
   if (!s) return null
   const m = s.match(/^(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})\s+(\d{1,2}:\d{2})(?:\s+([A-Z]+))?$/)
   if (!m) return null
@@ -75,7 +75,7 @@ function longDate(parsed) {
   return `${monthFull} ${parsed.day}, ${parsed.year}`
 }
 
-function meetingDateRange(session) {
+export function meetingDateRange(session) {
   const from = parseLocalDateTime(session.start_date)
   const to = parseLocalDateTime(session.end_date)
   if (!from && !to) return ''
@@ -95,7 +95,7 @@ function meetingDateRange(session) {
   return longDate(to)
 }
 
-function meetingLocation(session) {
+export function meetingLocation(session) {
   const parts = []
   // The export's "City" column often contains a venue/address fragment,
   // so treat it as the place label, not just a city name.
@@ -109,7 +109,7 @@ function meetingLocation(session) {
   return parts.filter(Boolean).join(' · ')
 }
 
-function statusLabelFor(sessions) {
+export function statusLabelFor(sessions) {
   // The most informative status across sessions.
   if (!sessions.length) return ''
   // cancelled dominates
@@ -121,7 +121,7 @@ function statusLabelFor(sessions) {
   return labelOf(STATUS_LABELS, sessions[0].status)
 }
 
-function typeLabelFor(sessions) {
+export function typeLabelFor(sessions) {
   // If any session is hybrid, the meeting is hybrid. Otherwise primary's type.
   if (sessions.some(s => s.type === 'hybrid')) return 'Hybrid'
   if (sessions.every(s => s.type === 'virtual')) return 'Virtual'

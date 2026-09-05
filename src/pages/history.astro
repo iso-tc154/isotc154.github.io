@@ -64,13 +64,13 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     </PageHero>
 
     <div class="page page--wide">
-      <nav class="hchips" aria-label="Filter history by category" id="hchips">
+      <nav class="hchips" data-facet="category" aria-label="Filter history by category" id="hchips">
         {filterChips.map((chip) => (
           <button
             type="button"
             class:list={["lvchip", { 'lvchip--active': chip.key === 'all' }]}
             data-label={chip.label}
-            data-value={chip.key}
+            data-value={chip.key === 'all' ? '' : chip.key}
             data-tint={chip.key === 'all' ? undefined : historyCategoryColor(chip.key)}
           >
             {chip.key !== 'all' && <span class="lvchip__dot" style={`background: ${historyCategoryColor(chip.key)}`}></span>}
@@ -149,8 +149,9 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   mountListFilter({
     items: '#timeline .event',
     facetWrappers: '#hchips',
-    count: undefined,
     sections: '#timeline .decade',
+    chipSelector: '.lvchip',
+    activeClass: 'lvchip--active',
   })
 </script>
 

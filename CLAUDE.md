@@ -9,14 +9,14 @@ The ISO/TC 154 committee website — an **Astro 7 static site** (Vue islands, Ta
 ## Commands
 
 ```sh
-pnpm build      # full pipeline: build-data → prepare-edoxen-data → build-legacy-redirects → astro build (1,113 pages)
-pnpm test       # vitest (152 tests; happy-dom for the list-filter DOM specs)
+pnpm build      # full pipeline: build-data → prepare-edoxen-data → generate-edoxen-events → build-legacy-redirects → astro build (1,113 pages)
+pnpm test       # vitest (178 tests; happy-dom DOM specs + dist-based page-contract specs)
 pnpm dev        # dev server (runs the data pipeline first)
 pnpm validate   # Ruby validators: YAML schemas + member status vs live ISO Open Data
 pnpm preview    # serve dist/
 ```
 
-CI (`.github/workflows/build_deploy.yml`): validate (Ruby validators + `edoxen-browser check` + `pnpm test`) → build → deploy to Pages on `main`. Node is pinned to **22.18+** — the build scripts import TypeScript from `.mjs` via Node's native type-stripping.
+CI (`.github/workflows/build_deploy.yml`): validate (Ruby validators + `edoxen-browser check` + `pnpm test`) → build (+ `pnpm test` again — the dist-based page-contract specs skip in validate because dist/ doesn't exist yet) → deploy to Pages on `main`. `astro check` crashes even with an 8 GB heap — don't add it. Node is pinned to **22.18+** — the build scripts import TypeScript from `.mjs` via Node's native type-stripping.
 
 ## Architecture
 
@@ -45,6 +45,7 @@ src/data/        navigation.ts, committee.ts (single sources, also consumed by e
 `scripts/build-data.mjs` reads `_data/**` + `content/**` and writes `public/data/*.json` (members, meetings, standards, groups, projects, liaisons, national-bodies, posts, history, meta, search-index). Pages read these through `src/lib/data.ts` — **the only** data accessor.
 
 - `scripts/prepare-edoxen-data.mjs` stages the resolutions submodule into `_data/resolutions-edoxen/` (gitignored) — CI runs this before `edoxen-browser check`.
+- `scripts/generate-edoxen-events.mjs` derives `_data/events-edoxen/*.yaml` (gitignored) from `data/meetings.yml` + `_data/events/` + `scripts/data/edoxen-meeting-seed.yml` (venue facts and hand-doc-only extras for plenaries without rich event files). Never hand-edit `_data/events-edoxen/` — it is generated.
 - `scripts/build-legacy-redirects.mjs` emits `src/data/legacy-redirects.json` (639 entries) → astro.config `redirects`.
 - Scripts may import from `src/lib` and `src/utils` (type-stripping). `src/utils/{urn,roles,labelTable,ordinal,meetingSource}.ts` are live (pipeline-only); everything else that era produced lives in `attic/`.
 

@@ -24,6 +24,10 @@ export interface ListFilterConfig {
   /** Wrappers hidden when all their items are hidden */
   sections?: string
   initialFromUrl?: boolean
+  /** Chip element selector inside facet wrappers (default '.chip') */
+  chipSelector?: string
+  /** Class toggled on the active chip (default 'chip--active') */
+  activeClass?: string
 }
 
 export function mountListFilter(cfg: ListFilterConfig): void {
@@ -70,12 +74,15 @@ export function mountListFilter(cfg: ListFilterConfig): void {
     if (empty) empty.hidden = visible !== 0
   }
 
+  const chipSel = cfg.chipSelector ?? '.chip'
+  const activeClass = cfg.activeClass ?? 'chip--active'
+
   function resetChips(): void {
     for (const wrap of wrappers) {
       const facet = wrap.dataset.facet ?? ''
       active[facet] = ''
-      wrap.querySelectorAll<HTMLElement>('.chip').forEach((chip) => {
-        chip.classList.toggle('chip--active', (chip.dataset.value ?? '') === '')
+      wrap.querySelectorAll<HTMLElement>(chipSel).forEach((chip) => {
+        chip.classList.toggle(activeClass, (chip.dataset.value ?? '') === '')
       })
     }
   }
@@ -83,11 +90,11 @@ export function mountListFilter(cfg: ListFilterConfig): void {
   for (const wrap of wrappers) {
     const facet = wrap.dataset.facet ?? ''
     active[facet] = ''
-    wrap.querySelectorAll<HTMLElement>('.chip').forEach((chip) => {
-      if ((chip.dataset.value ?? '') === '') chip.classList.add('chip--active')
+    wrap.querySelectorAll<HTMLElement>(chipSel).forEach((chip) => {
+      if ((chip.dataset.value ?? '') === '') chip.classList.add(activeClass)
       chip.addEventListener('click', () => {
-        wrap.querySelectorAll('.chip').forEach((c) => c.classList.remove('chip--active'))
-        chip.classList.add('chip--active')
+        wrap.querySelectorAll(chipSel).forEach((c) => c.classList.remove(activeClass))
+        chip.classList.add(activeClass)
         active[facet] = chip.dataset.value ?? ''
         apply()
       })

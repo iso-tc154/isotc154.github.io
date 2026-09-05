@@ -52,6 +52,9 @@ jobs:
       - name: Stage edoxen data (build-time, gitignored)
         run: node scripts/prepare-edoxen-data.mjs
 
+      - name: Generate edoxen event docs (build-time, gitignored)
+        run: node scripts/generate-edoxen-events.mjs
+
       - name: Validate edoxen data fixtures
         run: pnpm exec edoxen-browser check
 
@@ -85,6 +88,10 @@ jobs:
 
       - name: Build (build-data + astro build)
         run: pnpm run build
+
+      - name: Unit + page-contract tests (dist/ now exists, so the
+          dist-based specs run instead of skipping)
+        run: pnpm test
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

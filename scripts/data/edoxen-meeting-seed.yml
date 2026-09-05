@@ -1,0 +1,351 @@
+# Venue facts per plenary ordinal, extracted once from the retired
+# hand-maintained edoxen event docs. The generator merges this seed with
+# data/meetings.yml + _data/events/ (seed venue wins: the curated short
+# names and virtual/physical kinds lived only in the hand docs).
+# extras carries fields that existed only in the hand docs (plenary 42
+# components/officers/landing_url etc.) and is passed through verbatim.
+'1':
+  country_code: SE
+  unlocode: SESTO
+  venue_kind: physical
+  venue_name: Stockholm
+'10':
+  country_code: DE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Cologne
+'11':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: Geneva
+'12':
+  country_code: FR
+  unlocode: FRPAR
+  venue_kind: physical
+  venue_name: Paris
+'13':
+  country_code: DE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Berlin
+'14':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: Geneva
+'15':
+  country_code: FR
+  unlocode: FRPAR
+  venue_kind: physical
+  venue_name: Paris
+'16':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: Geneva
+'17':
+  country_code: CZ
+  unlocode: null
+  venue_kind: physical
+  venue_name: Prague
+'18':
+  country_code: BE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Brussels
+'19':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: Geneva
+'2':
+  country_code: GB
+  unlocode: GBLON
+  venue_kind: physical
+  venue_name: London
+'20':
+  country_code: US
+  unlocode: null
+  venue_kind: physical
+  venue_name: San Diego
+'21':
+  country_code: KR
+  unlocode: null
+  venue_kind: physical
+  venue_name: Kyunggi-do
+'22':
+  country_code: US
+  unlocode: null
+  venue_kind: physical
+  venue_name: McLean, Virginia
+'23':
+  country_code: BE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Brussels
+'24':
+  country_code: CA
+  unlocode: null
+  venue_kind: physical
+  venue_name: Vancouver
+'25':
+  country_code: BE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Brussels
+'26':
+  country_code: JP
+  unlocode: JPTYO
+  venue_kind: physical
+  venue_name: Tokyo
+'27':
+  country_code: TH
+  unlocode: null
+  venue_kind: physical
+  venue_name: Bangkok
+'28':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: Geneva
+'29':
+  country_code: US
+  unlocode: null
+  venue_kind: physical
+  venue_name: McLean, Virginia
+'3':
+  country_code: CA
+  unlocode: null
+  venue_kind: physical
+  venue_name: Ottawa
+'30':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: Geneva
+'31':
+  country_code: US
+  unlocode: null
+  venue_kind: physical
+  venue_name: Concord, California
+'32':
+  country_code: DE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Berlin
+'33':
+  country_code: KR
+  unlocode: null
+  venue_kind: physical
+  venue_name: Incheon
+'34':
+  country_code: null
+  unlocode: null
+  venue_kind: virtual
+  venue_name: ''
+'35':
+  country_code: DE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Berlin
+'36':
+  country_code: null
+  unlocode: null
+  venue_kind: virtual
+  venue_name: ''
+'37':
+  country_code: CN
+  unlocode: null
+  venue_kind: physical
+  venue_name: Hangzhou XinQiao Hohel
+'38':
+  country_code: null
+  unlocode: null
+  venue_kind: physical
+  venue_name: University of Luxembourg
+'39':
+  country_code: null
+  unlocode: null
+  venue_kind: virtual
+  venue_name: ''
+'4':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: Geneva
+'40':
+  country_code: null
+  unlocode: null
+  venue_kind: virtual
+  venue_name: ''
+'41':
+  country_code: CH
+  unlocode: CHGVA
+  venue_kind: physical
+  venue_name: H-208 (Room),  Palais des Nations,  Geneva
+'42':
+  country_code: HK
+  extras:
+    components:
+    - ends_at: '2023-10-24T10:30:00+08:00'
+      identifier: plenary-opening
+      kind: opening
+      starts_at: '2023-10-24T09:00:00+08:00'
+      title:
+      - spelling: eng
+        value: Plenary opening
+    - ends_at: '2023-10-24T12:30:00+08:00'
+      identifier: jwg1-meeting
+      kind: working_group_session
+      starts_at: '2023-10-24T11:00:00+08:00'
+      title:
+      - spelling: eng
+        value: JWG1 meeting
+    - ends_at: '2023-10-24T16:00:00+08:00'
+      identifier: wg6-meeting
+      kind: working_group_session
+      starts_at: '2023-10-24T14:30:00+08:00'
+      title:
+      - spelling: eng
+        value: WG6 meeting
+    - ends_at: '2023-10-25T10:30:00+08:00'
+      identifier: wg5-meeting
+      kind: working_group_session
+      starts_at: '2023-10-25T09:00:00+08:00'
+      title:
+      - spelling: eng
+        value: WG5 meeting
+    - ends_at: '2023-10-25T12:00:00+08:00'
+      identifier: adhoc-group
+      kind: breakout
+      starts_at: '2023-10-25T11:00:00+08:00'
+      title:
+      - spelling: eng
+        value: Ad-hoc group meeting
+    - ends_at: '2023-10-25T17:30:00+08:00'
+      identifier: tc-level-projects
+      kind: session
+      starts_at: '2023-10-25T14:00:00+08:00'
+      title:
+      - spelling: eng
+        value: TC-level projects / new JWG
+    - ends_at: '2023-10-26T17:00:00+08:00'
+      identifier: wg7-meeting
+      kind: working_group_session
+      starts_at: '2023-10-26T09:00:00+08:00'
+      title:
+      - spelling: eng
+        value: WG7 meeting
+    - ends_at: '2023-10-27T12:00:00+08:00'
+      identifier: wg-report
+      kind: session
+      starts_at: '2023-10-27T09:00:00+08:00'
+      title:
+      - spelling: eng
+        value: WGs report to Plenary
+    - ends_at: '2023-10-27T16:30:00+08:00'
+      identifier: plenary-closing
+      kind: closing
+      starts_at: '2023-10-27T14:30:00+08:00'
+      title:
+      - spelling: eng
+        value: Plenary closing
+    hosts:
+    - ref: calconnect
+      role: co-host
+      type: liaison
+    - ref: itchksar
+      role: host
+      type: national_body
+    landing_url: /events/plenary-meeting-42/
+    note:
+    - spelling: eng
+      value: 'Accommodation options near the venue are listed separately on
+
+        the meeting landing page. Several hotels in the Central and
+
+        Wanchai districts were recommended by the host.
+
+        '
+    officers:
+    - person:
+        affiliation:
+        - spelling: eng
+          value: SAC (CNIS)
+        contact_methods:
+        - kind: email
+          primary: true
+          value: zhangjf@cnis.gov.cn
+        - kind: phone
+          label: Office
+          value: +86-10-58811613
+        name:
+        - spelling: eng
+          value:
+            family: Zhang
+            formatted: Jianfang Zhang
+            given: Jianfang
+      role: chair
+    - person:
+        affiliation:
+        - spelling: eng
+          value: SAC (CNIS)
+        contact_methods:
+        - kind: email
+          primary: true
+          value: zhangjf@cnis.gov.cn
+        - kind: phone
+          label: Office
+          value: +86-10-58811613
+        name:
+        - spelling: eng
+          value:
+            family: Zhang
+            formatted: Jianfang Zhang
+            given: Jianfang
+      role: secretary
+    visibility: public
+  unlocode: HKHKG
+  venue_kind: physical
+  venue_name: Fairmont House (HKMA)
+'43':
+  country_code: KR
+  unlocode: null
+  venue_kind: physical
+  venue_name: Seongnam-city, Gyeonggi-do,
+'44':
+  country_code: US
+  unlocode: USRAH
+  venue_kind: physical
+  venue_name: Sitti,  137 South Wilmington Street, Raleigh;
+'45':
+  country_code: DE
+  unlocode: DEBER
+  venue_kind: physical
+  venue_name: DIN, Berlin
+'5':
+  country_code: SE
+  unlocode: SESTO
+  venue_kind: physical
+  venue_name: Stockholm
+'6':
+  country_code: FR
+  unlocode: FRPAR
+  venue_kind: physical
+  venue_name: Paris
+'7':
+  country_code: US
+  unlocode: null
+  venue_kind: physical
+  venue_name: Gaithersburg
+'8':
+  country_code: DE
+  unlocode: null
+  venue_kind: physical
+  venue_name: Berlin
+'9':
+  country_code: GB
+  unlocode: GBLON
+  venue_kind: physical
+  venue_name: London
