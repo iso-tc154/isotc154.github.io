@@ -261,7 +261,6 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
     letter-spacing: 0.08em; color: #78716c;
   }
   :global(.dark) .filter__label { color: #a8a29e; }
-  .filter__chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
   .chip {
     display: inline-flex; align-items: center;
     padding: 0.375rem 0.75rem; border-radius: 9999px;
@@ -269,11 +268,6 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
     font-size: 0.8125rem; font-weight: 500; font-family: inherit;
     cursor: pointer; transition: all 0.15s; text-transform: capitalize;
   }
-  .chip:hover { border-color: var(--color-blue-accent); color: var(--color-blue-accent); }
-  .chip--active { background: var(--color-blue-accent); border-color: var(--color-blue-accent); color: #fff; }
-  :global(.dark) .chip { background: #292524; border-color: #57534e; color: #d6d3d1; }
-  :global(.dark) .chip:hover { border-color: #5379bf; }
-  :global(.dark) .chip--active { background: #5379bf; border-color: #5379bf; color: #fff; }
 
   /* Group chips carry a lifecycle dot: filled = current group,
      hollow = inactive/dissolved. Historical chips recede (dashed

@@ -69,6 +69,23 @@ def clean(s):
     return s if s else None
 
 
+def clean_city(s):
+    """
+    The export's City column often carries the venue and street address
+    (e.g. "Sitti,  137 South Wilmington Street, Raleigh;"). Keep the venue
+    and the trailing city; drop middle street segments and stray
+    punctuation.
+    """
+    s = clean(s)
+    if s is None:
+        return None
+    parts = [p.strip(" ;") for p in s.split(",")]
+    parts = [p for p in parts if p]
+    if len(parts) >= 3:
+        return ", ".join([parts[0], parts[-1]])
+    return ", ".join(parts)
+
+
 def parse_local_datetime(raw):
     """
     Preserve the local date+time WITH the original timezone abbreviation.
@@ -134,7 +151,7 @@ def main():
             "start_date": parse_local_datetime(row[col["Start date"]]),
             "end_date": parse_local_datetime(row[col["End date"]]),
             "country": clean(row[col["Country"]]) if "Country" in col else None,
-            "city": clean(row[col["City"]]) if "City" in col else None,
+            "city": clean_city(row[col["City"]]) if "City" in col else None,
             "address": clean(row[col["Address"]]) if "Address" in col else None,
             "virtual_address": clean(row[col["Virtual address"]]) if "Virtual address" in col else None,
             "participants": int(row[col["Attended participant"]]) if "Attended participant" in col and row[col["Attended participant"]] else None,

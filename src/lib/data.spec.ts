@@ -41,6 +41,23 @@ describe.skipIf(!dataReady())('loadData pipeline invariants', () => {
     }
   })
 
+  it('meetings.json: ordinals are contiguous and URLs are on the live platform', () => {
+    const meetings = loadData.meetings()
+    const ordinals = meetings.map((m) => m.ordinal).filter((n): n is number => n != null).sort((a, b) => a - b)
+    expect(ordinals.length).toBeGreaterThan(40)
+    for (let i = 1; i < ordinals.length; i++) {
+      expect(ordinals[i] - ordinals[i - 1], `ordinal gap ${ordinals[i - 1]}→${ordinals[i]}`).toBe(1)
+    }
+    for (const m of meetings) {
+      if (m.primary.iso_meeting_url) {
+        expect(m.primary.iso_meeting_url, m.id).toMatch(/^https:\/\/sd\.iso\.org\/meetings\/\d+$/)
+      }
+      for (const s of m.sessions) {
+        expect(s.start_date === undefined || /^\d{1,2} [A-Za-z]{3} \d{4}/.test(s.start_date), m.id).toBe(true)
+      }
+    }
+  })
+
   it('meta exposes the footer stats and current-meeting pointers', () => {
     const meta = loadData.meta()
     expect(meta.counts.publishedStandards).toBeGreaterThan(0)

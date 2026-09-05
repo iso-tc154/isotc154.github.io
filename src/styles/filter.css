@@ -73,7 +73,10 @@
   }
   .dark .filter-meta { color: #a8a29e; }
 
-  .filter-chips {
+  /* Two spellings exist across pages (filter-chips / filter__chips);
+     both are the same family. */
+  .filter-chips,
+  .filter__chips {
     display: flex;
     flex-wrap: wrap;
     gap: 0.375rem;
