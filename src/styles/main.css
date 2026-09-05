@@ -32,6 +32,79 @@
   --color-slate-800: #292524;
   --color-slate-900: #1c1917;
   --color-slate-950: #0f0e0d;
+
+  /* Brand accents that must NOT flip in dark mode (unlike --color-brand /
+     --color-blue-accent above, which carry .dark overrides). */
+  --color-brand-strong: #1e3a8a;
+  --color-blue-soft: #94b6e8;
+  --color-blue-steel: #5379bf;
+  --color-link-wash: #e6f0fa;
+
+  /* ISO red family (logo, buy CTAs). */
+  --color-iso-red-deep: #b50000;
+  --color-iso-red-bright: #e30613;
+  --color-iso-red-hover: #c50512;
+
+  /* Prose & documentation. */
+  --color-prose-heading: #222222;
+  --color-admonition-important: #6d28d9;
+
+  /* Surfaces & hairlines. */
+  --color-wash: #f5f5f4;
+  --color-footer-ink: #0c0a09;
+  --color-hairline: #e5e7eb;
+  --color-hairline-strong: #d1d5db;
+
+  /* Status families: meeting chips, pills, callouts, badges. */
+  --color-status-error-bg: #fee2e2;
+  --color-status-error-text: #991b1b;
+  --color-status-error-line: #fca5a5;
+  --color-status-error-wash: #fef2f2;
+  --color-status-ok-bg: #dcfce7;
+  --color-status-ok-text: #166534;
+  --color-status-ok-line: #86efac;
+  --color-status-ok-line-soft: #bbf7d0;
+  --color-status-ok-accent: #16a34a;
+  --color-status-ok-deep: #047857;
+  --color-status-ok-bright: #10b981;
+  --color-status-ok-soft: #6ee7b7;
+  --color-status-ok-wash: #f0fdf4;
+  --color-status-warn-bg: #fef3c7;
+  --color-status-warn-text: #92400e;
+  --color-status-warn-line: #fcd34d;
+  --color-status-warn-accent: #d97706;
+  --color-status-warn-glow: #fbbf24;
+  --color-status-warn-wash: #fffbeb;
+  --color-status-warn-soft: #fde68a;
+  --color-status-info-bg: #e0e7ff;
+  --color-status-info-text: #3730a3;
+  --color-status-info-line: #c7d2fe;
+  --color-info-soft: #93c5fd;
+  --color-draft-bg: #f3f4f6;
+  --color-draft-text: #6b7280;
+  --color-draft-line: #9ca3af;
+
+  /* Document link blues (detail pages, SBP/prose). */
+  --color-link-deep: #0369a1;
+  --color-link-strong: #1e40af;
+  --color-link-dim: #2a6fae;
+
+  /* Resolution cards (/decisions/ chrome). */
+  --color-resolution-line: #99c2eb;
+  --color-resolution-accent: #a5b4fc;
+  --color-resolution-wash: #f0f7ff;
+
+  /* Hero gradient stops (meeting page, next-plenary banner) — display art. */
+  --color-hero-deep: #0f1e3a;
+  --color-hero-night: #101b30;
+  --color-hero-navy: #16294d;
+  --color-hero-steel: #1d3660;
+  --color-hero-azure: #2a4a9c;
+  --color-hero-mist: #a8c4ee;
+  --color-hero-mint: #7dd3a8;
+  --color-hero-panel: #e7edf8;
+  --color-hero-ember: #2a1012;
+  --color-hero-flame: #5a1818;
 }
 
 :root {

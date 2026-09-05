@@ -5,12 +5,13 @@ import OrgLogo from '../../components/OrgLogo.astro'
 import ScheduleCalendar from '../../components/ScheduleCalendar.astro'
 import AgendaDrawers from '../../components/AgendaDrawers.astro'
 import MeetingSections from '../../components/MeetingSections.astro'
-import { loadData, type Meeting, type MeetingHost } from '../../lib/data'
+import { loadData, type MeetingHost } from '../../lib/data'
 import {
   practicalLabel, touristItems,
   isSection, isStringList, isUrl, isEmail, practicalEntries, sectionEntries, rateLabel,
   sessionLabel, sessionLocation, sessionVirtual,
   associateRoleLabel, venueMapUrl, venueEmbedSrc, agendaDrawers,
+  agendaDraftDate, meetingNeighbors, navCaption,
 } from '../../lib/meeting'
 import { loadPlenaryDecisions } from '../../lib/edoxen-doc'
 import { ordinalText, flagEmoji, formatDateCompact, formatDateLong } from '../../lib/presentation'
@@ -41,20 +42,11 @@ const resolvedAssociates = rich?.associates ?? []
 const agendaSessions = agendaDrawers(rich?.agenda)
 const agendaClickableDates = agendaSessions.map((s) => s.date).filter(Boolean)
 const agendaSourceDoc = rich?.agenda?.source_doc ?? ''
-const agendaDraftDate = (() => {
-  const m = (agendaSourceDoc.match(/\d{4}-\d{2}-\d{2}/) || [])[0]
-  return m ?? null
-})()
+const agendaDate = agendaDraftDate(agendaSourceDoc)
 // ── Resolutions: read the staged edoxen YAML for this plenary ──
 const meetingResolutions = loadPlenaryDecisions(ordinal)
 // ── Prev/next by ordinal ──
-const sorted = [...allMeetings].sort((a, b) => (a.ordinal ?? 0) - (b.ordinal ?? 0))
-const idx = sorted.findIndex((m) => m.ordinal === ordinal)
-const prevMeeting = idx > 0 ? sorted[idx - 1] : null
-const nextMeeting = idx >= 0 && idx < sorted.length - 1 ? sorted[idx + 1] : null
-function navCaption(m: Meeting): string {
-  return [m.rich?.general_area || m.location_label || '', m.year ? String(m.year) : ''].filter(Boolean).join(' · ')
-}
+const { prev: prevMeeting, next: nextMeeting } = meetingNeighbors(allMeetings, ordinal)
 
 const registrationUrl = rich?.registration_url ?? null
 const mapUrl = venueMapUrl(rich?.venues?.[0])
@@ -383,7 +375,7 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
       )}
     </div>
 
-    <AgendaDrawers sessions={agendaSessions} sourceDoc={agendaSourceDoc} draftDate={agendaDraftDate} />
+    <AgendaDrawers sessions={agendaSessions} sourceDoc={agendaSourceDoc} draftDate={agendaDate} />
   </article>
 </BaseLayout>
 
@@ -402,16 +394,16 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   inset: 0;
   background:
     radial-gradient(ellipse at top right, rgb(185 28 28 / 0.35), transparent 60%),
-    linear-gradient(135deg, #2a1012 0%, #5a1818 50%, #1e3a8a 130%);
+    linear-gradient(135deg, var(--color-hero-ember) 0%, var(--color-hero-flame) 50%, var(--color-brand-strong) 130%);
   z-index: 0;
 }
 .md-hero--upcoming .md-hero__bg {
   background:
     radial-gradient(ellipse at top right, rgb(30 58 138 / 0.45), transparent 60%),
-    linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 60%, #3b82f6 140%);
+    linear-gradient(135deg, var(--color-hero-deep) 0%, var(--color-brand-strong) 60%, var(--color-brand-soft) 140%);
 }
 .md-hero--cancelled .md-hero__bg {
-  background: linear-gradient(135deg, #44403c 0%, #1c1917 100%);
+  background: linear-gradient(135deg, var(--color-slate-700) 0%, var(--color-slate-900) 100%);
 }
 .md-hero__grid {
   position: absolute;
@@ -431,7 +423,7 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
 .md-hero :global(.ph__eyebrow-rule) {
   background: rgba(255, 255, 255, 0.9);
 }
-.md-hero :global(.ph__title) { color: #fff; }
+.md-hero :global(.ph__title) { color: var(--color-white); }
 .md-hero :global(.ph__lead) { color: rgba(255, 255, 255, 0.92); }
 .md-hero :global(.ph__extra) { margin-top: 1.25rem; }
 .md-hero :global(.ph__actions) {
@@ -448,7 +440,7 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   color: rgba(255, 255, 255, 0.78);
 }
 .md-hero :global(.ph__breadcrumb a:hover) {
-  color: #fff;
+  color: var(--color-white);
 }
 
 /* Registration CTA — a "live status" card that absorbs the upcoming state.
@@ -461,7 +453,7 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   align-items: flex-start;
   gap: 0.25rem;
   padding: 0.75rem 1.25rem 0.875rem;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 0.5rem;
   text-decoration: none;
   color: inherit;
@@ -494,14 +486,14 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #047857;
+  color: var(--color-status-ok-deep);
   position: relative;
 }
 .reg-cta__pulse {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: #10b981;
+  background: var(--color-status-ok-bright);
   position: relative;
   flex-shrink: 0;
 }
@@ -510,7 +502,7 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #10b981;
+  background: var(--color-status-ok-bright);
   animation: reg-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 @keyframes reg-pulse {
@@ -574,7 +566,7 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.3;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .md-hero__badges { display: flex; flex-wrap: wrap; gap: 0.375rem; }
@@ -584,11 +576,11 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   border-radius: 9999px;
   font-size: 0.75rem; font-weight: 600;
   background: rgba(255, 255, 255, 0.18);
-  color: #fff;
+  color: var(--color-white);
   backdrop-filter: blur(6px);
 }
 .pill--cancelled { background: rgba(0, 0, 0, 0.4); }
-.pill--upcoming { background: #fff; color: var(--color-brand); }
+.pill--upcoming { background: var(--color-white); color: var(--color-brand); }
 .pill--concluded { background: rgba(255, 255, 255, 0.15); }
 .pill--meta, .pill--res { background: rgba(255, 255, 255, 0.12); }
 
@@ -614,46 +606,46 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   align-items: center;
   margin-bottom: 2.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px dashed #e7e5e4;
+  border-bottom: 1px dashed var(--color-slate-200);
 }
-:global(.dark) .md__quick-links { border-bottom-color: #292524; }
+:global(.dark) .md__quick-links { border-bottom-color: var(--color-slate-800); }
 .quick-link {
   display: inline-flex; align-items: center; gap: 0.375rem;
   padding: 0.5rem 0.875rem;
-  background: #fff;
-  border: 1px solid #e7e5e4;
+  background: var(--color-white);
+  border: 1px solid var(--color-slate-200);
   border-radius: 0.375rem;
   font-size: 0.875rem; font-weight: 600;
   color: var(--color-blue-accent);
   text-decoration: none;
   transition: all 0.15s;
 }
-:global(.dark) .quick-link { background: #292524; border-color: #44403c; }
+:global(.dark) .quick-link { background: var(--color-slate-800); border-color: var(--color-slate-700); }
 .quick-link:hover { border-color: var(--color-blue-accent); box-shadow: 0 1px 4px rgb(30 58 138 / 0.1); }
 
 .urn-bar {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.375rem 0.5rem 0.375rem 0.75rem;
-  border: 1px dashed #d6d3d1;
+  border: 1px dashed var(--color-slate-300);
   border-radius: 0.375rem;
-  background: #fafaf9;
+  background: var(--color-slate-50);
   font-size: 0.8125rem;
 }
-:global(.dark) .urn-bar { background: #1c1917; border-color: #57534e; }
+:global(.dark) .urn-bar { background: var(--color-slate-900); border-color: var(--color-slate-600); }
 .urn-bar__label {
   font-size: 0.625rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.12em;
-  color: #a8a29e;
+  color: var(--color-slate-400);
 }
 .urn-bar__value {
   font-family: ui-monospace, monospace;
-  color: #57534e;
+  color: var(--color-slate-600);
   font-size: 0.8125rem;
 }
-:global(.dark) .urn-bar__value { color: #d6d3d1; }
+:global(.dark) .urn-bar__value { color: var(--color-slate-300); }
 .urn-bar__copy {
   background: none; border: 0; padding: 0.25rem;
-  cursor: pointer; color: #78716c;
+  cursor: pointer; color: var(--color-slate-500);
   border-radius: 0.25rem;
   display: inline-flex;
 }
@@ -667,42 +659,42 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   border-left: 3px solid;
 }
 .alert--cancelled {
-  background: #fef2f2;
+  background: var(--color-status-error-wash);
   border-left-color: var(--color-iso-red);
 }
 :global(.dark) .alert--cancelled { background: rgb(185 28 28 / 0.08); }
 .alert--reschedule {
-  background: #fffbeb;
-  border-left-color: #d97706;
+  background: var(--color-status-warn-wash);
+  border-left-color: var(--color-status-warn-accent);
 }
 :global(.dark) .alert--reschedule { background: rgb(217 119 6 / 0.1); }
 .alert__title {
   font-size: 0.875rem; font-weight: 700;
   margin: 0 0 0.25rem;
-  color: #1c1917;
+  color: var(--color-slate-900);
 }
-:global(.dark) .alert__title { color: #fafaf9; }
+:global(.dark) .alert__title { color: var(--color-slate-50); }
 .alert__body {
   margin: 0;
   font-size: 0.9375rem;
-  color: #57534e;
+  color: var(--color-slate-600);
 }
-:global(.dark) .alert__body { color: #d6d3d1; }
+:global(.dark) .alert__body { color: var(--color-slate-300); }
 
 /* BLOCKS */
 .block { margin-bottom: 2.5rem; }
 .block__title {
   font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.14em; color: #78716c;
+  letter-spacing: 0.14em; color: var(--color-slate-500);
   margin: 0 0 1rem;
   padding-bottom: 0.625rem;
-  border-bottom: 1px solid #e7e5e4;
+  border-bottom: 1px solid var(--color-slate-200);
 }
-:global(.dark) .block__title { color: #a8a29e; border-bottom-color: #292524; }
-.block__lead { margin: 0 0 1rem; color: #57534e; font-size: 0.9375rem; }
-:global(.dark) .block__lead { color: #d6d3d1; }
-.block__scalar { margin: 0; font-size: 1.0625rem; color: #1c1917; font-weight: 500; }
-:global(.dark) .block__scalar { color: #fafaf9; }
+:global(.dark) .block__title { color: var(--color-slate-400); border-bottom-color: var(--color-slate-800); }
+.block__lead { margin: 0 0 1rem; color: var(--color-slate-600); font-size: 0.9375rem; }
+:global(.dark) .block__lead { color: var(--color-slate-300); }
+.block__scalar { margin: 0; font-size: 1.0625rem; color: var(--color-slate-900); font-weight: 500; }
+:global(.dark) .block__scalar { color: var(--color-slate-50); }
 
 /* VENUE / SECRETARY */
 .venue-layout {
@@ -716,34 +708,34 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
 }
 
 .venue-card {
-  background: #fafaf9;
+  background: var(--color-slate-50);
   border-radius: 0.5rem;
   padding: 1rem 1.25rem;
   border-left: 3px solid var(--color-blue-accent);
 }
 .venue-card--stacked { display: flex; flex-direction: column; }
-:global(.dark) .venue-card { background: #292524; border-left-color: #5379bf; }
+:global(.dark) .venue-card { background: var(--color-slate-800); border-left-color: var(--color-blue-steel); }
 .venue-card__main { display: flex; flex-direction: column; gap: 0.5rem; }
-.venue-card__name { font-weight: 700; margin: 0; color: #1c1917; font-size: 1.0625rem; }
-:global(.dark) .venue-card__name { color: #fafaf9; }
+.venue-card__name { font-weight: 700; margin: 0; color: var(--color-slate-900); font-size: 1.0625rem; }
+:global(.dark) .venue-card__name { color: var(--color-slate-50); }
 .venue-card__address {
   font-family: ui-monospace, monospace;
   font-size: 0.8125rem;
   white-space: pre-wrap;
   margin: 0;
-  color: #57534e;
+  color: var(--color-slate-600);
   line-height: 1.5;
 }
-:global(.dark) .venue-card__address { color: #d6d3d1; }
+:global(.dark) .venue-card__address { color: var(--color-slate-300); }
 .venue-card__note {
   margin: 0;
   font-size: 0.8125rem;
-  color: #78716c;
+  color: var(--color-slate-500);
   line-height: 1.5;
   padding-top: 0.5rem;
-  border-top: 1px dashed #e7e5e4;
+  border-top: 1px dashed var(--color-slate-200);
 }
-:global(.dark) .venue-card__note { color: #a8a29e; border-top-color: #44403c; }
+:global(.dark) .venue-card__note { color: var(--color-slate-400); border-top-color: var(--color-slate-700); }
 .venue-card__links { display: flex; flex-wrap: wrap; gap: 0.875rem; margin-top: auto; padding-top: 0.5rem; }
 .venue-card__links a {
   font-size: 0.8125rem;
@@ -757,11 +749,11 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   flex-direction: column;
   border-radius: 0.5rem;
   overflow: hidden;
-  background: #e7e5e4;
+  background: var(--color-slate-200);
   min-height: 14rem;
   position: relative;
 }
-:global(.dark) .venue-map { background: #1c1917; }
+:global(.dark) .venue-map { background: var(--color-slate-900); }
 .venue-map iframe {
   width: 100%;
   flex: 1;
@@ -772,11 +764,11 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
 .venue-map__credit {
   padding: 0.375rem 0.625rem;
   font-size: 0.625rem;
-  color: #78716c;
+  color: var(--color-slate-500);
   background: rgba(255, 255, 255, 0.7);
   text-align: right;
 }
-:global(.dark) .venue-map__credit { background: rgba(0, 0, 0, 0.4); color: #a8a29e; }
+:global(.dark) .venue-map__credit { background: rgba(0, 0, 0, 0.4); color: var(--color-slate-400); }
 .venue-map__credit a { color: inherit; text-decoration: underline; }
 
 /* HOST CARDS */
@@ -785,15 +777,15 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
   gap: 0.75rem;
 }
-.host-grid__plain { margin: 0; color: #57534e; font-size: 1rem; }
-:global(.dark) .host-grid__plain { color: #d6d3d1; }
+.host-grid__plain { margin: 0; color: var(--color-slate-600); font-size: 1rem; }
+:global(.dark) .host-grid__plain { color: var(--color-slate-300); }
 .host-card {
   display: flex;
   align-items: center;
   gap: 0.875rem;
   padding: 0.875rem 1rem;
-  background: #fafaf9;
-  border: 1px solid #e7e5e4;
+  background: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
   border-radius: 0.5rem;
   transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
   text-decoration: none;
@@ -801,22 +793,22 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
 }
 .host-card--linkable { cursor: pointer; }
 .host-card--linkable:hover {
-  border-color: var(--color-amber-warm, #b45309);
+  border-color: var(--color-amber-warm, var(--color-amber-warm));
   box-shadow: 0 4px 12px rgb(180 83 9 / 0.1);
   transform: translateY(-1px);
 }
-:global(.dark) .host-card { background: #292524; border-color: #44403c; }
+:global(.dark) .host-card { background: var(--color-slate-800); border-color: var(--color-slate-700); }
 .host-card__logo {
-  border: 1px solid #e7e5e4;
+  border: 1px solid var(--color-slate-200);
 }
-:global(.dark) .host-card__logo { border-color: #44403c; }
+:global(.dark) .host-card__logo { border-color: var(--color-slate-700); }
 .host-card__monogram {
   flex-shrink: 0;
   width: 3rem;
   height: 3rem;
   border-radius: 0.375rem;
-  background: linear-gradient(135deg, var(--color-brand), var(--color-amber-warm, #b45309));
-  color: #fff;
+  background: linear-gradient(135deg, var(--color-brand), var(--color-amber-warm, var(--color-amber-warm)));
+  color: var(--color-white);
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 1.125rem;
@@ -826,24 +818,24 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   justify-content: center;
 }
 .host-card__meta { min-width: 0; }
-.host-card__name { margin: 0; font-weight: 600; font-size: 0.9375rem; color: #1c1917; }
-:global(.dark) .host-card__name { color: #fafaf9; }
-.host-card__kind { margin: 0.125rem 0 0; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: #78716c; font-weight: 600; }
-:global(.dark) .host-card__kind { color: #a8a29e; }
+.host-card__name { margin: 0; font-weight: 600; font-size: 0.9375rem; color: var(--color-slate-900); }
+:global(.dark) .host-card__name { color: var(--color-slate-50); }
+.host-card__kind { margin: 0.125rem 0 0; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-slate-500); font-weight: 600; }
+:global(.dark) .host-card__kind { color: var(--color-slate-400); }
 .host-card__link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.25rem; font-size: 0.8125rem; color: var(--color-blue-accent); text-decoration: none; }
 .host-card__link:hover { text-decoration: underline; }
 
 .host-card__contact {
   margin: 0.25rem 0 0;
   font-size: 0.8125rem;
-  color: #57534e;
+  color: var(--color-slate-600);
   line-height: 1.4;
 }
-:global(.dark) .host-card__contact { color: #a8a29e; }
-.host-card__contact-name { font-weight: 600; color: #1c1917; }
-:global(.dark) .host-card__contact-name { color: #fafaf9; }
-.host-card__contact-title { color: #78716c; margin-left: 0.25rem; }
-:global(.dark) .host-card__contact-title { color: #a8a29e; }
+:global(.dark) .host-card__contact { color: var(--color-slate-400); }
+.host-card__contact-name { font-weight: 600; color: var(--color-slate-900); }
+:global(.dark) .host-card__contact-name { color: var(--color-slate-50); }
+.host-card__contact-title { color: var(--color-slate-500); margin-left: 0.25rem; }
+:global(.dark) .host-card__contact-title { color: var(--color-slate-400); }
 
 /* ASSOCIATES (co-organizers, sponsors, partners) */
 .assoc-list {
@@ -855,14 +847,14 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   gap: 0.5rem;
 }
 .assoc {
-  background: #fafaf9;
-  border: 1px solid #e7e5e4;
+  background: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
   border-radius: 0.5rem;
   transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
-:global(.dark) .assoc { background: rgb(28 25 23 / 0.6); border-color: #44403c; }
+:global(.dark) .assoc { background: rgb(28 25 23 / 0.6); border-color: var(--color-slate-700); }
 .assoc--linkable:hover {
-  border-color: var(--color-amber-warm, #b45309);
+  border-color: var(--color-amber-warm, var(--color-amber-warm));
   box-shadow: 0 4px 10px rgb(180 83 9 / 0.08);
   transform: translateY(-1px);
 }
@@ -875,16 +867,16 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   color: inherit;
 }
 .assoc__logo {
-  border: 1px solid #e7e5e4;
+  border: 1px solid var(--color-slate-200);
 }
-:global(.dark) .assoc__logo { border-color: #44403c; }
+:global(.dark) .assoc__logo { border-color: var(--color-slate-700); }
 .assoc__monogram {
   flex-shrink: 0;
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.3125rem;
-  background: linear-gradient(135deg, #78716c, #57534e);
-  color: #fff;
+  background: linear-gradient(135deg, var(--color-slate-500), var(--color-slate-600));
+  color: var(--color-white);
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 0.875rem;
@@ -903,10 +895,10 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
 .assoc__name {
   font-weight: 600;
   font-size: 0.9375rem;
-  color: #1c1917;
+  color: var(--color-slate-900);
   line-height: 1.25;
 }
-:global(.dark) .assoc__name { color: #fafaf9; }
+:global(.dark) .assoc__name { color: var(--color-slate-50); }
 .assoc__role {
   display: inline-block;
   padding: 0.0625rem 0.5rem;
@@ -916,28 +908,28 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   letter-spacing: 0.05em;
   border-radius: 0.1875rem;
   background: rgb(180 83 9 / 0.12);
-  color: var(--color-amber-warm, #b45309);
+  color: var(--color-amber-warm, var(--color-amber-warm));
 }
 :global(.dark) .assoc__role {
   background: rgb(180 83 9 / 0.22);
-  color: #fbbf24;
+  color: var(--color-status-warn-glow);
 }
 .assoc__kind {
   margin: 0;
   font-size: 0.75rem;
-  color: #78716c;
+  color: var(--color-slate-500);
 }
-:global(.dark) .assoc__kind { color: #a8a29e; }
+:global(.dark) .assoc__kind { color: var(--color-slate-400); }
 .assoc__contact {
   margin: 0.25rem 0 0;
   font-size: 0.8125rem;
-  color: #57534e;
+  color: var(--color-slate-600);
 }
-:global(.dark) .assoc__contact { color: #d6d3d1; }
-.assoc__contact-name { font-weight: 600; color: #1c1917; }
-:global(.dark) .assoc__contact-name { color: #fafaf9; }
-.assoc__contact-title { color: #78716c; }
-:global(.dark) .assoc__contact-title { color: #a8a29e; }
+:global(.dark) .assoc__contact { color: var(--color-slate-300); }
+.assoc__contact-name { font-weight: 600; color: var(--color-slate-900); }
+:global(.dark) .assoc__contact-name { color: var(--color-slate-50); }
+.assoc__contact-title { color: var(--color-slate-500); }
+:global(.dark) .assoc__contact-title { color: var(--color-slate-400); }
 .assoc__link {
   margin: 0.25rem 0 0;
   font-size: 0.75rem;
@@ -945,18 +937,18 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
 }
 
 .secretary-card {
-  background: #fafaf9;
+  background: var(--color-slate-50);
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   border-left: 3px solid var(--color-brand);
 }
-:global(.dark) .secretary-card { background: #292524; }
-.secretary-card__name { font-weight: 700; margin: 0 0 0.125rem; color: #1c1917; }
-:global(.dark) .secretary-card__name { color: #fafaf9; }
-.secretary-card__org { font-size: 0.9375rem; color: #57534e; margin: 0 0 0.5rem; }
-:global(.dark) .secretary-card__org { color: #d6d3d1; }
-.secretary-card__contact { font-size: 0.875rem; margin: 0.125rem 0; color: #57534e; }
-:global(.dark) .secretary-card__contact { color: #d6d3d1; }
+:global(.dark) .secretary-card { background: var(--color-slate-800); }
+.secretary-card__name { font-weight: 700; margin: 0 0 0.125rem; color: var(--color-slate-900); }
+:global(.dark) .secretary-card__name { color: var(--color-slate-50); }
+.secretary-card__org { font-size: 0.9375rem; color: var(--color-slate-600); margin: 0 0 0.5rem; }
+:global(.dark) .secretary-card__org { color: var(--color-slate-300); }
+.secretary-card__contact { font-size: 0.875rem; margin: 0.125rem 0; color: var(--color-slate-600); }
+:global(.dark) .secretary-card__contact { color: var(--color-slate-300); }
 .secretary-card__contact a { color: var(--color-blue-accent); }
 
 /* SCHEDULE */
@@ -972,16 +964,16 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
   display: grid; grid-template-columns: 7rem 1fr;
   gap: 1rem;
   padding: 0.625rem 0.875rem;
-  background: #fafaf9;
+  background: var(--color-slate-50);
   border-radius: 0.375rem;
 }
-:global(.dark) .schedule__item { background: #292524; }
-.schedule__time { font-family: ui-monospace, monospace; font-size: 0.8125rem; color: #78716c; }
-:global(.dark) .schedule__time { color: #a8a29e; }
-.schedule__event { font-weight: 600; margin: 0; color: #1c1917; }
-:global(.dark) .schedule__event { color: #fafaf9; }
-.schedule__desc { font-size: 0.875rem; color: #57534e; margin: 0.125rem 0 0; }
-:global(.dark) .schedule__desc { color: #d6d3d1; }
+:global(.dark) .schedule__item { background: var(--color-slate-800); }
+.schedule__time { font-family: ui-monospace, monospace; font-size: 0.8125rem; color: var(--color-slate-500); }
+:global(.dark) .schedule__time { color: var(--color-slate-400); }
+.schedule__event { font-weight: 600; margin: 0; color: var(--color-slate-900); }
+:global(.dark) .schedule__event { color: var(--color-slate-50); }
+.schedule__desc { font-size: 0.875rem; color: var(--color-slate-600); margin: 0.125rem 0 0; }
+:global(.dark) .schedule__desc { color: var(--color-slate-300); }
 
 /* Stack variant: tighter, single column on narrow screens is handled by media query */
 .pnn--stack .pnn__grid {
@@ -991,17 +983,17 @@ const mapUrl = venueMapUrl(rich?.venues?.[0])
 @media (max-width: 640px) {
   .pnn__grid {
     grid-template-columns: 1fr;
-    border-top: 1px solid #e7e5e4;
+    border-top: 1px solid var(--color-slate-200);
   }
   .pnn__divider {
     display: none;
   }
   .pnn__cell {
     padding: 0.625rem 0;
-    border-bottom: 1px solid #e7e5e4;
+    border-bottom: 1px solid var(--color-slate-200);
   }
   :global(.dark) .pnn__cell {
-    border-bottom-color: #44403c;
+    border-bottom-color: var(--color-slate-700);
   }
   .pnn__cell--next {
     padding-left: 0;

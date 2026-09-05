@@ -75,7 +75,7 @@ const eyebrow = `${flagEmoji(nb.iso_country_code)} ${nb.country ?? ''} · ${nb.f
 
 <style>
   .detail { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
-  .detail__loading { color: #78716c; padding: 4rem 0; text-align: center; }
+  .detail__loading { color: var(--color-slate-500); padding: 4rem 0; text-align: center; }
   .detail__body { padding-top: 1.5rem; }
   .detail__back { display: inline-block; font-size: 0.875rem; font-weight: 500; color: var(--color-blue-accent); text-decoration: none; }
   .detail__back:hover { text-decoration: underline; }
@@ -90,28 +90,28 @@ const eyebrow = `${flagEmoji(nb.iso_country_code)} ${nb.country ?? ''} · ${nb.f
     text-transform: uppercase;
     letter-spacing: 0.08em;
     border-radius: 0.1875rem;
-    background: #fee2e2;
-    color: #991b1b;
+    background: var(--color-status-error-bg);
+    color: var(--color-status-error-text);
     align-self: flex-start;
   }
-  :global(.dark) .detail__former-pill { background: rgb(185 28 28 / 0.22); color: #fca5a5; }
+  :global(.dark) .detail__former-pill { background: rgb(185 28 28 / 0.22); color: var(--color-status-error-line); }
   .detail__former-note {
     font-size: 0.875rem;
-    color: #78716c;
+    color: var(--color-slate-500);
     font-style: italic;
     margin: 0;
   }
-  :global(.dark) .detail__former-note { color: #a8a29e; }
+  :global(.dark) .detail__former-note { color: var(--color-slate-400); }
 
   .detail__section { margin-bottom: 2rem; }
-  .detail__section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #78716c; margin: 0 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e7e5e4; }
-  :global(.dark) .detail__section-title { color: #a8a29e; border-bottom-color: #292524; }
+  .detail__section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-slate-500); margin: 0 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-slate-200); }
+  :global(.dark) .detail__section-title { color: var(--color-slate-400); border-bottom-color: var(--color-slate-800); }
 
-  .prose { font-size: 0.9375rem; line-height: 1.7; color: #44403c; margin: 0; }
-  :global(.dark) .prose { color: #d6d3d1; }
+  .prose { font-size: 0.9375rem; line-height: 1.7; color: var(--color-slate-700); margin: 0; }
+  :global(.dark) .prose { color: var(--color-slate-300); }
 
-  .external { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem; background: #fafaf9; border-radius: 0.375rem; font-size: 0.875rem; color: var(--color-blue-accent); text-decoration: none; word-break: break-all; }
-  .external:hover { background: #e0e7ff; }
-  :global(.dark) .external { background: #292524; }
-  :global(.dark) .external:hover { background: #44403c; }
+  .external { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem; background: var(--color-slate-50); border-radius: 0.375rem; font-size: 0.875rem; color: var(--color-blue-accent); text-decoration: none; word-break: break-all; }
+  .external:hover { background: var(--color-status-info-bg); }
+  :global(.dark) .external { background: var(--color-slate-800); }
+  :global(.dark) .external:hover { background: var(--color-slate-700); }
 </style>
