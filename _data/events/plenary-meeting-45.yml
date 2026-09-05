@@ -8,9 +8,9 @@ registration_url: https://sd.iso.org/meetings/182492
 
 time:
   from:
-    date: 2026-08-31
+    date: '2026-08-31'
   to:
-    date: 2026-09-04
+    date: '2026-09-04'
 
 general_area: Berlin, Germany
 country_code: DE
@@ -144,7 +144,7 @@ agenda:
     (opening); (J)WG meetings convene 31 Aug to 3 Sep; items 12-23 are
     discussed on 4 Sep (closing).
   opening_session:
-    date: 2026-08-31
+    date: '2026-08-31'
     items:
       - number: 1
         title: Opening of the meeting
@@ -285,7 +285,7 @@ agenda:
       joining links are circulated separately by each (J)WG convener. See
       N1648 (logistical information) and N1709 (updated schedule).
   closing_session:
-    date: 2026-09-04
+    date: '2026-09-04'
     items:
       - number: 12
         title: ISO/IEC Directives update in 2026
