@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=../schemas/schema.yaml#/$defs/member
+---
+member-id: drexler
+name: Dr. Drexler
+active: false
+deceased: true
+roles:
+- id: member
+  group: wg5
+  to:
+    date: '2026-01-01'
+    precision: year
+affiliation: DIN, Germany
+epitaph: |-
+  It is with deep sadness that ISO/TC 154 learnt of the passing of
+  Dr. Drexler (DIN, Germany).
+
+  A previous member of the DIN delegation to ISO/TC 154/WG 5 and a
+  long-time WG 5 member, Dr. Drexler contributed to the committee's
+  work over many years.
+
+  WG 5 will distribute more information as it becomes available;
+  this obituary will be updated then.
+
+  Members of ISO/TC 154
