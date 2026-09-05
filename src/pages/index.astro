@@ -1,5 +1,4 @@
 ---
-import fs from 'node:fs'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import PageHero from '../components/PageHero.astro'
 import NextPlenaryBanner from '../components/NextPlenaryBanner.astro'
@@ -9,16 +8,7 @@ import { committee } from '../data/committee'
 import { loadData } from '../lib/data'
 import { formatDateCompact, postCategories, postExcerpt, postTitle } from '../lib/presentation'
 
-interface SiteMeta {
-  counts: Record<string, number>
-  current: {
-    latestPublication: { id: string; url: string; name: string; title: string; publication_date: string | null } | null
-    nextPlenary: { id: string; url: string; ordinal: number; general_area: string; from_date: string | null; to_date: string | null; registration_url?: string | null } | null
-    openForComment: { id: string; url: string; name: string; title: string; stage: string }[]
-  }
-}
-
-const meta: SiteMeta = JSON.parse(fs.readFileSync('public/data/meta.json', 'utf-8'))
+const meta = loadData.meta()
 
 const headlineStandards = [
   { num: 'ISO 8601', what: 'Date & time', used: 'Every timestamp on the internet', to: '/standards/iso-8601-1-2019/' },

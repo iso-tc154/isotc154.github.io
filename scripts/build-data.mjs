@@ -10,6 +10,7 @@ import {
   loadYamlList,
 } from './lib/organizations.mjs'
 import { loadPosts, loadPages, buildSiteContext } from './lib/content.mjs'
+import { nextPlenary, latestResolution, buildSearchIndex } from './lib/meta.mjs'
 import { loadResolutions } from './lib/resolutions.mjs'
 import { loadCanonicalMeetings } from './lib/meetings.mjs'
 import { loadGroupEvents } from './lib/groupHistory.mjs'
@@ -107,14 +108,8 @@ function main() {
 
   const openForComment = filterOpenForComment(underDevelopmentStandards)
 
-  const upcomingPlenary = events
-    .filter((e) => e.status === 'upcoming')
-    .sort((a, b) => (a.ordinal || 0) - (b.ordinal || 0))[0]
-
-  const resolutionsSortedNewest = resolutions
-    .slice()
-    .sort((a, b) => toDateStr(b.meeting_date).localeCompare(toDateStr(a.meeting_date)))
-  const latestResolution = resolutionsSortedNewest[0]
+  const upcomingPlenary = nextPlenary(events, toDateStr)
+  const latestRes = latestResolution(resolutions, toDateStr)
 
   // ISO membership roster: P/O counts exclude `former: true` bodies (those have
   // left the committee). `nationalBodies` above includes historical bodies.
@@ -158,13 +153,13 @@ function main() {
             publication_date: toDateStr(latestPub.iso?.publication_date),
           }
         : null,
-      latestResolution: latestResolution
+      latestResolution: latestRes
         ? {
-            id: latestResolution.id,
-            url: latestResolution.url,
-            title: latestResolution.title,
-            meeting_date: toDateStr(latestResolution.meeting_date),
-            source_title: latestResolution.source_title,
+            id: latestRes.id,
+            url: latestRes.url,
+            title: latestRes.title,
+            meeting_date: toDateStr(latestRes.meeting_date),
+            source_title: latestRes.source_title,
           }
         : null,
       openForComment: openForComment.map((s) => ({
@@ -207,12 +202,7 @@ function main() {
 
 // Site-wide search index for the ⌘K omnibar (BaseLayout).
 {
-  const index = []
-  for (const s of standards) index.push({ t: s.iso?.name ?? s.id, s: s.iso?.title ?? '', u: s.url ?? `/standards/${s.id}/`, k: 'Standard' })
-  for (const m of Object.values(members.all ?? {})) index.push({ t: m.name, s: m.affiliation ?? '', u: m.url ?? `/members/${m['member-id']}/`, k: 'Member' })
-  for (const m of meetings) index.push({ t: `${m.ordinal} plenary`, s: `${m.location_label ?? ''} ${m.year ?? ''}`.trim(), u: m.url, k: 'Meeting' })
-  for (const p of posts) index.push({ t: p.frontmatter?.title ?? p.slug, s: '', u: `/posts/${p.slug}/`, k: 'News' })
-  for (const r of resolutions) index.push({ t: r.id, s: r.title ?? '', u: `/decisions/${r.urn}/`, k: 'Resolution' })
+  const index = buildSearchIndex({ standards, members, meetings, posts, resolutions })
   writeJson('search-index.json', index)
   console.log(`[build-data] search-index.json ${JSON.stringify(index).length} bytes, ${index.length} entries`)
 }
