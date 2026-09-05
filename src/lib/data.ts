@@ -39,6 +39,7 @@ export interface Member {
   name: string
   active: boolean
   deceased?: boolean
+  epitaph?: string
   affiliation?: string
   picture?: string
   bio?: string

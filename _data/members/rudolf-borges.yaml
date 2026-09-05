@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=../schemas/schema.yaml#/$defs/member
 ---
 member-id: rudolf-borges
-name: Rudolf Borges
+name: Dr. Rudolf Erich Walter Borges
 active: false
 deceased: true
 roles:
@@ -9,19 +9,63 @@ roles:
 - id: member
   group: wg5
 affiliation: DIN, Germany
+bio: |-
+  Dr. Rudolf Erich Walter Borges was a long-time expert of ISO/TC 154/WG 5
+  and of the DIN delegation, and one of the committee's most steadfast
+  contributors to the ISO 8601 family of date-and-time standards.
+
+  In the German standards system he shaped the work of the DIN national
+  committee for Units and Formula Quantities (AEF, later NA 152-01),
+  serving as its chair from 2007 to 2013. His interests ranged across
+  date and time representations, the mathematical structure of quantity
+  calculus, graphical representations, and logarithmic quantities.
+
+  He passed away on 22 June 2026 at the age of 92.
 epitaph: |-
   It is with deep sadness that ISO/TC 154 learnt of the passing of
-  Dr. Rudolf Borges (DIN, Germany).
+  Dr. Rudolf Erich Walter Borges (DIN, Germany), on 22 June 2026,
+  at the age of 92.
 
-  Dr. Borges heavily contributed to WG 5, in numerous editions of
-  ISO 8601, ISO 8601-1, ISO 8601-2, ISO 8601-1:2019/Amd 1:2025,
-  ISO 8601-2:2019/Amd 1:2025, and ISO 34000.
+  A long-time member of WG 5, Dr. Borges made numerous and significant
+  contributions over the years to the many editions of ISO 8601.
+  Over many years he also shaped the standardization work of the DIN
+  national committee for Units and Formula Quantities (AEF), which he
+  chaired from 2007 to 2013.
 
-  The committee recorded its appreciation in resolution P-2026-13
-  of the 45th plenary meeting (Berlin, 2026).
+  His particular interests included standards relating to date and time
+  representations, the mathematical structure of quantity calculus,
+  graphical representations, and logarithmic quantities. He will be
+  especially remembered for his contributions to ISO 8601-1 "Date and
+  time" and for its adoption at the national level as DIN ISO 8601-1,
+  with significant changes regarding specific national characteristics
+  (e.g. the 00:00 / 24:00 time format).
+
+  Through his dedication, he was one of the main proponents of the
+  ISO 8601-2:2019/Amd 1:2025 amendment, as well as of the international
+  standardization of the 00:00/24:00 time format with the semantic
+  meanings of beginning of day and end of day, adopted in
+  ISO 8601-1:2019/Amd 1:2022. He also contributed heavily to the
+  ISO 34000 date and time vocabulary project.
+
+  Prior to learning of his passing, WG 5 had nominated Dr. Borges for
+  the ISO Excellence Award for his contributions to
+  ISO 8601-2:2019/Amd 1:2025, published in 2025.
+
+  The committee recorded its appreciation in resolution P-2026-13 of
+  the 45th plenary meeting (Berlin, 2026). Our thoughts are with his
+  family, colleagues and friends.
+
+  — With thanks to DIN (NA 152-01-03 AA N 336) and ISO/TC 154/WG 5
+    (meeting report, 2026-09-03) for the obituary and remembrance.
 
   Members of ISO/TC 154
 links:
 - label: In memoriam
   title: Appreciation of the late Dr. Borges Rudolf — 45th plenary resolution P-2026-13
   url: /decisions/urn:iso:tc154:resolution:plenary-45:P-2026-13/
+- label: ISO 8601-1
+  title: ISO 8601-1 — Date and time
+  url: /standards/iso-8601-1-2019/
+- label: ISO 8601-2:2019/Amd 1:2025
+  title: ISO 8601-2:2019/Amd 1:2025 — the amendment he championed
+  url: /standards/iso-8601-2-2019-amd-1-2025/
