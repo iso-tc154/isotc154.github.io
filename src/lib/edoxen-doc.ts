@@ -1,3 +1,6 @@
+import fs from 'node:fs'
+import yaml from 'js-yaml'
+
 // The edoxen DecisionCollection document shape — one definition shared by
 // the meeting page (renders the plenary's resolutions) and the legacy
 // redirect generator (maps old /resolutions/ URLs to /decisions/ URNs).
@@ -45,4 +48,16 @@ export function decisionRedirects(doc: EdoxenDecisionDoc, sub: string, sourceFil
     out[`/resolutions/${sub}/${sourceFile}/${id}`] = `/decisions/${d.urn}/`
   }
   return out
+}
+
+// Load the staged plenary YAML for a meeting page. Returns [] when the
+// file is absent or unparseable — resolutions are optional content.
+export function loadPlenaryDecisions(ordinal: number): ResolutionCard[] {
+  try {
+    const yamlPath = `_data/resolutions-edoxen/plenary-${ordinal}.yaml`
+    if (!fs.existsSync(yamlPath)) return []
+    return resolutionCards(yaml.load(fs.readFileSync(yamlPath, 'utf8')) as EdoxenDecisionDoc)
+  } catch {
+    return []
+  }
 }
