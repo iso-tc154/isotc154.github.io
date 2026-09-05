@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-43/
 
 time:
   from:
-    date: 2024-10-21
+    date: '2024-10-21'
   to:
-    date: 2024-10-25
+    date: '2024-10-25'
 
 general_area: "Bundang, Seongnam, Korea"
 country_code: KR

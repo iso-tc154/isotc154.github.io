@@ -61,6 +61,29 @@ def validate_project(data, file)
   errors
 end
 
+def validate_event(data, file)
+  errors = []
+  name = file.basename.to_s
+  errors << err('filename must be plenary-meeting-N.yml', file) unless name.match?(/\Aplenary-meeting-\d+\.yml\z/)
+  ordinal = data['ordinal']
+  errors << err('missing required field: ordinal', file) unless ordinal.is_a?(Integer) && ordinal.positive?
+  errors << err("filename ordinal must match ordinal field (#{ordinal})", file) if ordinal.is_a?(Integer) && !name.end_with?("-#{ordinal}.yml")
+
+  time = data['time']
+  if time
+    %w[from to].each do |side|
+      d = time[side] && time[side]['date']
+      errors << err("time.#{side}.date must be YYYY-MM-DD", file) unless d.is_a?(String) && d.match?(/\A\d{4}-\d{2}-\d{2}\z/)
+    end
+    from, to = [time.dig('from', 'date'), time.dig('to', 'date')].map { |d| d.is_a?(String) ? d : '' }
+    errors << err('time.from must not be after time.to', file) if !from.empty? && !to.empty? && from > to
+  end
+
+  venues = data['venues']
+  errors << err('venues must be an array', file) if venues && !venues.is_a?(Array)
+  errors
+end
+
 def validate_group(data, file)
   errors = []
   errors << err("missing required field: id", file) unless present?(data['id'])
@@ -223,7 +246,7 @@ ALL_ERRORS = []
   ['Liaisons', '_data/liaisons.yml', nil],
   ['National Bodies', '_data/national_bodies.yml', nil],
   ['Secretariat', '_data/secretariat.yml', nil],
-  ['Projects', '_projects/*.adoc', nil],
+  ['Events', '_data/events/*.yml', method(:validate_event)],
 ].each do |label, pattern, validator|
   puts "Validating #{label}..."
   files = pattern.include?('*') ? glob_files(pattern) : [Pathname.new(pattern)]
@@ -252,17 +275,13 @@ ALL_ERRORS = []
     next
   end
 
-  if label == 'Projects'
+  if label == 'Events'
     files.each do |file|
-      fm = extract_frontmatter(file.read)
-      if fm.nil?
-        ALL_ERRORS << "#{file}: no frontmatter found"
-        next
-      end
-      data = parse_yaml(fm, "#{file} frontmatter")
-      ALL_ERRORS.concat(validate_project(data, file))
+      data = parse_yaml(file.read, file.to_s)
+      next if data.nil?
+      ALL_ERRORS.concat(validate_event(data, file))
     end
-    puts "  ✓ Projects — #{files.size} files validated"
+    puts "  ✓ Events — #{files.size} files validated"
     next
   end
 
