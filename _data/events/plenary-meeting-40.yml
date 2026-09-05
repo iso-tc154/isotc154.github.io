@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-40/
 
 time:
   from:
-    date: 2021-09-02
+    date: '2021-09-02'
   to:
-    date: 2021-10-28
+    date: '2021-10-28'
 
 general_area: "Virtual (Zoom, ISO meeting platform)"
 country_code: ""

@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-28/
 
 time:
   from:
-    date: 2010-08-27
+    date: '2010-08-27'
   to:
-    date: 2010-08-27
+    date: '2010-08-27'
 
 general_area: "Geneva, Switzerland"
 country_code: CH

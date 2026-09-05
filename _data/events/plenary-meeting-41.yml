@@ -7,9 +7,9 @@ landing_url: /events/plenary-meeting-41/
 
 time:
   from:
-    date: 2022-10-12
+    date: '2022-10-12'
   to:
-    date: 2022-10-14
+    date: '2022-10-14'
 
 general_area: "Geneva, Switzerland (hybrid)"
 country_code: CH
