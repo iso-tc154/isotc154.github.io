@@ -2,6 +2,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 import yaml from 'js-yaml'
 import { ordinalText } from '../src/utils/ordinal.ts'
+import {
+  toISODate, parseXlsxDate, groupRowsByOrdinal, deriveStatus, landingUrls,
+  toEdoxenHosts, toEdoxenDeadlines, localize, deepISOStrings, decisionRefs,
+} from './lib/edoxenEvents.mjs'
 
 /**
  * Generate the edoxen event documents (_data/events-edoxen/*.yaml) from
@@ -27,15 +31,6 @@ const OUT = path.join(ROOT, '_data/events-edoxen')
 
 const loadYaml = (p) => (fs.existsSync(p) ? yaml.load(fs.readFileSync(p, 'utf8')) : null)
 
-const toISODate = (value) => {
-  if (!value) return null
-  if (value instanceof Date) {
-    return value.toISOString().slice(0, 10)
-  }
-  const m = String(value).match(/^(\d{4})-(\d{2})-(\d{2})/)
-  return m ? `${m[1]}-${m[2]}-${m[3]}` : null
-}
-
 const canonical = loadYaml(CANONICAL) ?? []
 const seed = loadYaml(SEED) ?? {}
 
@@ -49,24 +44,12 @@ const decisionsByPlenary = new Map()
 if (fs.existsSync(RESOLUTIONS_DIR)) {
   for (const f of fs.readdirSync(RESOLUTIONS_DIR).filter((f) => /^plenary-(\d+)\.yaml$/.test(f))) {
     const ordinal = parseInt(f.match(/^plenary-(\d+)\.yaml$/)[1], 10)
-    const doc = loadYaml(path.join(RESOLUTIONS_DIR, f))
-    const refs = (doc?.decisions ?? [])
-      .map((d) => d.identifier?.[0])
-      .filter((i) => i?.prefix && i?.number != null)
-      .map((i) => ({ prefix: i.prefix, number: String(i.number) }))
+    const refs = decisionRefs(loadYaml(path.join(RESOLUTIONS_DIR, f)))
     if (refs.length) decisionsByPlenary.set(ordinal, refs)
   }
 }
 
-// The xlsx export carries one row per ISO session; plenaries 39–41 held
-// several sessions under one ordinal. Group rows by ordinal so each
-// plenary becomes exactly one doc spanning all of its sessions.
-const byOrdinal = new Map()
-for (const row of canonical) {
-  if (row.ordinal == null) continue
-  if (!byOrdinal.has(row.ordinal)) byOrdinal.set(row.ordinal, [])
-  byOrdinal.get(row.ordinal).push(row)
-}
+const byOrdinal = groupRowsByOrdinal(canonical)
 
 fs.rmSync(OUT, { recursive: true, force: true })
 fs.mkdirSync(OUT, { recursive: true })
@@ -78,20 +61,9 @@ for (const [ordinal, rows] of byOrdinal) {
   const rich = richByOrdinal.get(ordinal) ?? {}
   const sd = seed[String(ordinal)] ?? {}
 
-  const landingUrls = [...new Set(
-    rows.map((r) => r.iso_meeting_url)
-      .filter((u) => typeof u === 'string' && /^https?:\/\//.test(u)),
-  )]
+  const urls = landingUrls(rows)
 
-  const xlsxStarts = rows.map((r) => parseXlsxDate(r.start_date)).filter(Boolean).sort()
-  const xlsxEnds = rows.map((r) => parseXlsxDate(r.end_date)).filter(Boolean).sort()
-  // Rich event dates win when curated; otherwise span the full xlsx window.
-  const start = toISODate(rich.time?.from?.date) ?? xlsxStarts[0] ?? null
-  const end = toISODate(rich.time?.to?.date) ?? xlsxEnds[xlsxEnds.length - 1] ?? start
-
-  const anchor = end ?? start
-  const cancelled = rows.some((r) => r.status === 'cancelled')
-  const status = cancelled ? 'cancelled' : anchor && anchor < today ? 'completed' : 'upcoming'
+  const { start, end, status } = deriveStatus(rows, rich, today)
 
   const countryCode = sd.country_code ?? rich.country_code ?? null
   const unlocode = sd.unlocode ?? null
@@ -120,8 +92,8 @@ for (const [ordinal, rows] of byOrdinal) {
     if (unlocode) venue.unlocode = unlocode
     doc.venues = [venue]
   }
-  if (landingUrls.length) {
-    doc.source_urls = landingUrls.map((ref) => ({ ref, kind: 'landing_page' }))
+  if (urls.length) {
+    doc.source_urls = urls.map((ref) => ({ ref, kind: 'landing_page' }))
   }
   if (start || end) {
     doc.scheduled_date_range = { start: start ?? end, end: end ?? start }
@@ -130,32 +102,12 @@ for (const [ordinal, rows] of byOrdinal) {
   // the edoxen model expects (plain strings in events/ become
   // [{spelling, value}]). Seed extras (hand-doc-only fields, e.g.
   // plenary 42's components/officers/landing_url) override verbatim.
-  const localized = (v) => (typeof v === 'string' ? [{ spelling: 'eng', value: v }] : v)
-  if (rich.general_area != null) doc.general_area = localized(rich.general_area)
-  if (rich.note != null && !sd.extras?.note) doc.note = localized(rich.note)
-  if (rich.hosts != null) {
-    // The edoxen Host shape requires a ref and a closed type set
-    // (national_body, liaison, ...). Rich events use hyphenated and
-    // free-form types; free-form hosts are dropped rather than
-    // misclassified.
-    const TYPE_MAP = { 'national-body': 'national_body', national_body: 'national_body', liaison: 'liaison' }
-    const hosts = rich.hosts
-      .filter((h) => h && (h.ref || h.name) && TYPE_MAP[h.type])
-      .map((h) => ({
-        ref: h.ref ?? String(h.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''),
-        type: TYPE_MAP[h.type],
-        ...(h.role ? { role: h.role } : {}),
-      }))
-    if (hosts.length) doc.hosts = hosts
-  }
-  if (rich.deadlines != null) {
-    // Date-less rich entries are standing instructions, not deadlines;
-    // the edoxen deadline shape requires a date.
-    const deadlines = rich.deadlines
-      .filter((d) => d && d.date != null)
-      .map((d) => ({ date: toISODate(d.date) ?? d.date, description: localized(d.description) }))
-    if (deadlines.length) doc.deadlines = deadlines
-  }
+  if (rich.general_area != null) doc.general_area = localize(rich.general_area)
+  if (rich.note != null && !sd.extras?.note) doc.note = localize(rich.note)
+  const hosts = toEdoxenHosts(rich.hosts)
+  if (hosts) doc.hosts = hosts
+  const deadlines = toEdoxenDeadlines(rich.deadlines)
+  if (deadlines) doc.deadlines = deadlines
   if (sd.extras) {
     for (const [key, value] of Object.entries(sd.extras)) {
       if (value != null) doc[key] = value
@@ -171,21 +123,3 @@ for (const [ordinal, rows] of byOrdinal) {
 
 console.log(`[generate-edoxen-events] ${count} event docs → ${path.relative(ROOT, OUT)}`)
 
-function parseXlsxDate(raw) {
-  if (!raw) return null
-  const m = String(raw).match(/^(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})/)
-  if (!m) return null
-  const months = { Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06', Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12' }
-  return months[m[2]] ? `${m[3]}-${months[m[2]]}-${m[1].padStart(2, '0')}` : null
-}
-
-// js-yaml renders JS Dates as timestamps; the edoxen schema wants plain
-// YYYY-MM-DD strings. Walk the doc and convert every Date.
-function deepISOStrings(value) {
-  if (value instanceof Date) return value.toISOString().slice(0, 10)
-  if (Array.isArray(value)) return value.map(deepISOStrings)
-  if (value && typeof value === 'object') {
-    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, deepISOStrings(v)]))
-  }
-  return value
-}
