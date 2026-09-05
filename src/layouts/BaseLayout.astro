@@ -1,13 +1,11 @@
 ---
-import fs from 'node:fs'
 import '../styles/main.css'
 import SiteSearch from '../components/SiteSearch.astro'
 import { committee } from '../data/committee'
 import { mainNav } from '../data/navigation'
+import { loadData } from '../lib/data'
 
-const meta = JSON.parse(fs.readFileSync('public/data/meta.json', 'utf-8')) as {
-  counts: Record<string, number>
-}
+const meta = loadData.meta()
 
 interface Props {
   title?: string

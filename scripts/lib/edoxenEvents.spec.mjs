@@ -122,3 +122,19 @@ describe('decisionRefs', () => {
     expect(decisionRefs(null)).toEqual([])
   })
 })
+
+// Seed-drift invariant: the generator iterates canonical ordinals only, so
+// a seed entry keyed at anything else would silently never render.
+describe('edoxen-meeting-seed vs data/meetings.yml (repo invariant)', () => {
+  it('every seed key is a canonical plenary ordinal', async () => {
+    const fs = await import('node:fs')
+    const path = await import('node:path')
+    const yaml = (await import('js-yaml')).default
+    const root = path.resolve(import.meta.dirname, '..', '..')
+    const seed = yaml.load(fs.readFileSync(path.join(root, 'scripts/data/edoxen-meeting-seed.yml'), 'utf8'))
+    const canonical = yaml.load(fs.readFileSync(path.join(root, 'data/meetings.yml'), 'utf8'))
+    const ordinals = new Set(canonical.map((r) => String(r.ordinal)))
+    const drift = Object.keys(seed).filter((k) => !ordinals.has(k))
+    expect(drift, `seed keys with no canonical plenary: ${drift.join(', ')}`).toEqual([])
+  })
+})
