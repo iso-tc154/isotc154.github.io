@@ -216,54 +216,54 @@ const sortedFormer = sortBodies(formerBodies)
 </script>
 
 <style>
-  .filter { background: #fff; border: 1px solid #e7e5e4; border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
-  :global(.dark) .filter { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  .filter { background: var(--color-white); border: 1px solid var(--color-slate-200); border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 2rem; }
+  :global(.dark) .filter { background: rgb(15 23 42 / 0.5); border-color: var(--color-slate-700); }
   .filter__search-wrap { position: relative; margin-bottom: 1rem; }
-  .filter__search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: #a8a29e; pointer-events: none; }
-  .filter__search { width: 100%; padding: 0.625rem 0.875rem 0.625rem 2.25rem; border-radius: 0.5rem; border: 1px solid #d6d3d1; background: #fafaf9; color: #1c1917; font-size: 0.9375rem; font-family: inherit; }
-  .filter__search:focus { outline: none; border-color: var(--color-blue-accent); background: #fff; box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15); }
-  :global(.dark) .filter__search { background: #292524; border-color: #57534e; color: #fafaf9; }
-  :global(.dark) .filter__search:focus { border-color: #5379bf; background: #1c1917; }
+  .filter__search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--color-slate-400); pointer-events: none; }
+  .filter__search { width: 100%; padding: 0.625rem 0.875rem 0.625rem 2.25rem; border-radius: 0.5rem; border: 1px solid var(--color-slate-300); background: var(--color-slate-50); color: var(--color-slate-900); font-size: 0.9375rem; font-family: inherit; }
+  .filter__search:focus { outline: none; border-color: var(--color-blue-accent); background: var(--color-white); box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15); }
+  :global(.dark) .filter__search { background: var(--color-slate-800); border-color: var(--color-slate-600); color: var(--color-slate-50); }
+  :global(.dark) .filter__search:focus { border-color: var(--color-blue-steel); background: var(--color-slate-900); }
   .filter__controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; }
   .filter__field { display: flex; flex-direction: column; gap: 0.5rem; }
-  .filter__label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #78716c; }
-  :global(.dark) .filter__label { color: #a8a29e; }
-  .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: #78716c; }
-  :global(.dark) .filter__meta { color: #a8a29e; }
+  .filter__label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-slate-500); }
+  :global(.dark) .filter__label { color: var(--color-slate-400); }
+  .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: var(--color-slate-500); }
+  :global(.dark) .filter__meta { color: var(--color-slate-400); }
 
-  .loading, .empty { padding: 3rem 1rem; text-align: center; color: #78716c; }
-  .empty h3 { color: #1c1917; margin: 0 0 0.75rem; }
-  :global(.dark) .empty h3 { color: #fafaf9; }
-  :global(.dark) .loading, :global(.dark) .empty { color: #a8a29e; }
+  .loading, .empty { padding: 3rem 1rem; text-align: center; color: var(--color-slate-500); }
+  .empty h3 { color: var(--color-slate-900); margin: 0 0 0.75rem; }
+  :global(.dark) .empty h3 { color: var(--color-slate-50); }
+  :global(.dark) .loading, :global(.dark) .empty { color: var(--color-slate-400); }
 
   .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(1, 1fr); gap: 0.75rem; }
   @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 
-  .card { display: flex; gap: 1rem; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e7e5e4; background: #fff; text-decoration: none; color: inherit; transition: all 0.2s; height: 100%; }
-  :global(.dark) .card { background: rgb(15 23 42 / 0.5); border-color: #44403c; }
+  .card { display: flex; gap: 1rem; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid var(--color-slate-200); background: var(--color-white); text-decoration: none; color: inherit; transition: all 0.2s; height: 100%; }
+  :global(.dark) .card { background: rgb(15 23 42 / 0.5); border-color: var(--color-slate-700); }
   .card:hover { border-color: var(--color-blue-accent); box-shadow: 0 4px 12px rgb(30 58 138 / 0.08); transform: translateY(-2px); }
-  :global(.dark) .card:hover { border-color: #5379bf; box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
+  :global(.dark) .card:hover { border-color: var(--color-blue-steel); box-shadow: 0 4px 12px rgb(0 0 0 / 0.25); }
 
   .card__body { flex: 1; min-width: 0; }
-  .card__name { font-size: 1rem; font-weight: 600; color: #1c1917; margin: 0 0 0.125rem; }
-  :global(.dark) .card__name { color: #fafaf9; }
+  .card__name { font-size: 1rem; font-weight: 600; color: var(--color-slate-900); margin: 0 0 0.125rem; }
+  :global(.dark) .card__name { color: var(--color-slate-50); }
   .card__abbr {
     font-family: ui-monospace, SFMono-Regular, monospace;
     font-size: 0.8125rem;
     font-weight: 500;
-    color: #57534e;
+    color: var(--color-slate-600);
     letter-spacing: 0;
     white-space: nowrap;
   }
-  :global(.dark) .card__abbr { color: #a8a29e; }
-  .card__country { font-size: 0.8125rem; color: #78716c; margin: 0 0 0.5rem; }
-  :global(.dark) .card__country { color: #a8a29e; }
+  :global(.dark) .card__abbr { color: var(--color-slate-400); }
+  .card__country { font-size: 0.8125rem; color: var(--color-slate-500); margin: 0 0 0.5rem; }
+  :global(.dark) .card__country { color: var(--color-slate-400); }
   .card__membership { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 700; }
-  .card__membership--P { background: rgb(16 185 129 / 0.15); color: #047857; }
-  :global(.dark) .card__membership--P { background: rgb(16 185 129 / 0.2); color: #6ee7b7; }
-  .card__membership--O { background: #f5f5f4; color: #78716c; }
-  :global(.dark) .card__membership--O { background: #292524; color: #a8a29e; }
+  .card__membership--P { background: rgb(16 185 129 / 0.15); color: var(--color-status-ok-deep); }
+  :global(.dark) .card__membership--P { background: rgb(16 185 129 / 0.2); color: var(--color-status-ok-soft); }
+  .card__membership--O { background: var(--color-wash); color: var(--color-slate-500); }
+  :global(.dark) .card__membership--O { background: var(--color-slate-800); color: var(--color-slate-400); }
 
   /* SECTIONS */
   .bodies { display: flex; flex-direction: column; gap: 3rem; }
@@ -273,40 +273,40 @@ const sortedFormer = sortBodies(formerBodies)
     align-items: baseline;
     gap: 1rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid #e7e5e4;
+    border-bottom: 1px solid var(--color-slate-200);
   }
-  :global(.dark) .bodies__section-header { border-bottom-color: #44403c; }
+  :global(.dark) .bodies__section-header { border-bottom-color: var(--color-slate-700); }
   .bodies__section-title {
     font-family: var(--font-serif);
     font-size: 1.5rem;
     font-weight: 700;
-    color: #1c1917;
+    color: var(--color-slate-900);
     margin: 0;
     letter-spacing: -0.01em;
   }
-  :global(.dark) .bodies__section-title { color: #fafaf9; }
-  .bodies__section-title--former { color: #78716c; }
-  :global(.dark) .bodies__section-title--former { color: #a8a29e; }
+  :global(.dark) .bodies__section-title { color: var(--color-slate-50); }
+  .bodies__section-title--former { color: var(--color-slate-500); }
+  :global(.dark) .bodies__section-title--former { color: var(--color-slate-400); }
   .bodies__section-meta {
     font-size: 0.875rem;
-    color: #78716c;
+    color: var(--color-slate-500);
     margin: 0;
   }
-  :global(.dark) .bodies__section-meta { color: #a8a29e; }
+  :global(.dark) .bodies__section-meta { color: var(--color-slate-400); }
 
   /* FORMER CARD */
   .card--former {
-    background: #fafaf9;
+    background: var(--color-slate-50);
     border-style: dashed;
-    border-color: #d6d3d1;
+    border-color: var(--color-slate-300);
   }
-  :global(.dark) .card--former { background: rgb(28 25 23 / 0.4); border-color: #57534e; }
+  :global(.dark) .card--former { background: rgb(28 25 23 / 0.4); border-color: var(--color-slate-600); }
   .card--former:hover {
-    border-color: #78716c;
+    border-color: var(--color-slate-500);
     box-shadow: 0 2px 8px rgb(0 0 0 / 0.04);
     transform: translateY(-1px);
   }
-  :global(.dark) .card--former:hover { border-color: #78716c; }
+  :global(.dark) .card--former:hover { border-color: var(--color-slate-500); }
   .card--former :global(.org-logo) { filter: grayscale(0.8); opacity: 0.7; }
   :global(.card__logo--former) { filter: grayscale(0.8); opacity: 0.7; }
   .card__name-row {
@@ -325,24 +325,24 @@ const sortedFormer = sortBodies(formerBodies)
     text-transform: uppercase;
     letter-spacing: 0.08em;
     border-radius: 0.1875rem;
-    background: #fee2e2;
-    color: #991b1b;
+    background: var(--color-status-error-bg);
+    color: var(--color-status-error-text);
   }
-  :global(.dark) .card__former-badge { background: rgb(185 28 28 / 0.2); color: #fca5a5; }
+  :global(.dark) .card__former-badge { background: rgb(185 28 28 / 0.2); color: var(--color-status-error-line); }
   .card__former-until {
     font-size: 0.75rem;
-    color: #78716c;
+    color: var(--color-slate-500);
     margin: 0.25rem 0 0;
     font-style: italic;
   }
-  :global(.dark) .card__former-until { color: #a8a29e; }
+  :global(.dark) .card__former-until { color: var(--color-slate-400); }
 
   /* FORMER filter chip variant */
   .chip--former.active,
   .chip--former.chip--active {
-    background: #78716c;
-    border-color: #78716c;
-    color: #fff;
+    background: var(--color-slate-500);
+    border-color: var(--color-slate-500);
+    color: var(--color-white);
   }
-  :global(.dark) .chip--former.chip--active { background: #57534e; border-color: #57534e; }
+  :global(.dark) .chip--former.chip--active { background: var(--color-slate-600); border-color: var(--color-slate-600); }
 </style>

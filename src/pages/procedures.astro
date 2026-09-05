@@ -52,12 +52,12 @@ const procedures = loadData
 
   .procedure-list { display: flex; flex-direction: column; gap: 0.75rem; }
   .procedure-card {
-    border: 1px solid #e7e5e4;
+    border: 1px solid var(--color-slate-200);
     border-radius: 0.5rem;
-    background: #fff;
+    background: var(--color-white);
     transition: border-color 0.2s, transform 0.2s;
   }
-  :global(.dark) .procedure-card { background: #292524; border-color: #44403c; }
+  :global(.dark) .procedure-card { background: var(--color-slate-800); border-color: var(--color-slate-700); }
   .procedure-card:hover {
     border-color: var(--color-brand);
     transform: translateY(-1px);
@@ -68,15 +68,15 @@ const procedures = loadData
   }
   .procedure-card__title {
     font-size: 1.0625rem; font-weight: 700;
-    color: #1c1917;
+    color: var(--color-slate-900);
     margin: 0 0 0.25rem;
   }
-  :global(.dark) .procedure-card__title { color: #fafaf9; }
+  :global(.dark) .procedure-card__title { color: var(--color-slate-50); }
   .procedure-card__wg {
-    font-size: 0.875rem; color: #78716c;
+    font-size: 0.875rem; color: var(--color-slate-500);
     margin: 0;
   }
-  :global(.dark) .procedure-card__wg { color: #a8a29e; }
+  :global(.dark) .procedure-card__wg { color: var(--color-slate-400); }
 
-  .loading, .empty { color: #78716c; padding: 3rem 0; text-align: center; }
+  .loading, .empty { color: var(--color-slate-500); padding: 3rem 0; text-align: center; }
 </style>

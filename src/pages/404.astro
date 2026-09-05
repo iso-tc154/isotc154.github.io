@@ -61,18 +61,18 @@ const suggestions = [
     font-family: var(--font-serif);
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
-    color: #1c1917;
+    color: var(--color-slate-900);
     margin: 1rem 0 0.75rem;
   }
-  :global(.dark) .not-found__title { color: #fafaf9; }
+  :global(.dark) .not-found__title { color: var(--color-slate-50); }
   .not-found__lead {
     font-size: 1.0625rem;
     line-height: 1.6;
-    color: #57534e;
+    color: var(--color-slate-600);
     max-width: 32rem;
     margin: 0 auto 2.5rem;
   }
-  :global(.dark) .not-found__lead { color: #d6d3d1; }
+  :global(.dark) .not-found__lead { color: var(--color-slate-300); }
 
   .not-found__suggestions {
     list-style: none;
@@ -86,15 +86,15 @@ const suggestions = [
   .suggestion {
     display: block;
     padding: 1rem 1.25rem;
-    border: 1px solid #e7e5e4;
+    border: 1px solid var(--color-slate-200);
     border-radius: 0.5rem;
-    background: #fff;
+    background: var(--color-white);
     text-decoration: none;
     transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
   }
   :global(.dark) .suggestion {
-    background: #1c1917;
-    border-color: #292524;
+    background: var(--color-slate-900);
+    border-color: var(--color-slate-800);
   }
   .suggestion:hover {
     border-color: var(--color-blue-accent);
@@ -104,16 +104,16 @@ const suggestions = [
   .suggestion__label {
     display: block;
     font-weight: 700;
-    color: #1c1917;
+    color: var(--color-slate-900);
     margin-bottom: 0.125rem;
   }
-  :global(.dark) .suggestion__label { color: #fafaf9; }
+  :global(.dark) .suggestion__label { color: var(--color-slate-50); }
   .suggestion__desc {
     display: block;
     font-size: 0.875rem;
-    color: #78716c;
+    color: var(--color-slate-500);
   }
-  :global(.dark) .suggestion__desc { color: #a8a29e; }
+  :global(.dark) .suggestion__desc { color: var(--color-slate-400); }
 
   .not-found__home {
     display: inline-block;

@@ -171,7 +171,7 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   .progress__bar {
     height: 100%;
     width: var(--p, 0%);
-    background: linear-gradient(90deg, var(--color-brand), #3b82f6);
+    background: linear-gradient(90deg, var(--color-brand), var(--color-brand-soft));
     transition: width 0.1s linear;
   }
 
@@ -207,9 +207,9 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     gap: 0.5rem;
     margin-bottom: 3rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px dashed #e7e5e4;
+    border-bottom: 1px dashed var(--color-slate-200);
   }
-  :global(.dark) .hchips { border-bottom-color: #44403c; }
+  :global(.dark) .hchips { border-bottom-color: var(--color-slate-700); }
 
   .lvchip {
     display: inline-flex;
@@ -217,9 +217,9 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     gap: 0.375rem;
     padding: 0.375rem 0.875rem;
     border-radius: 9999px;
-    border: 1px solid #d6d3d1;
-    background: #fff;
-    color: #57534e;
+    border: 1px solid var(--color-slate-300);
+    background: var(--color-white);
+    color: var(--color-slate-600);
     font-family: inherit;
     font-size: 0.8125rem;
     font-weight: 500;
@@ -235,20 +235,20 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   .lvchip--active {
     background: var(--color-blue-accent);
     border-color: var(--color-blue-accent);
-    color: #fff;
+    color: var(--color-white);
   }
   .lvchip--active:hover {
-    color: #fff;
+    color: var(--color-white);
     opacity: 0.92;
   }
   :global(.dark) .lvchip {
-    background: #292524;
-    border-color: #44403c;
-    color: #d6d3d1;
+    background: var(--color-slate-800);
+    border-color: var(--color-slate-700);
+    color: var(--color-slate-300);
   }
   :global(.dark) .lvchip:hover {
-    border-color: #5379bf;
-    color: #94b6e8;
+    border-color: var(--color-blue-steel);
+    color: var(--color-blue-soft);
   }
   .lvchip__dot {
     width: 0.5rem;
@@ -259,7 +259,7 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   .lvchip__count {
     font-size: 0.6875rem;
     font-weight: 700;
-    color: #a8a29e;
+    color: var(--color-slate-400);
     background: rgb(0 0 0 / 0.04);
     padding: 0 0.375rem;
     border-radius: 9999px;
@@ -267,8 +267,8 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   :global(.dark) .lvchip__count { background: rgb(255 255 255 / 0.08); }
 
   /* TIMELINE */
-  .loading { padding: 4rem 0; text-align: center; color: #78716c; }
-  :global(.dark) .loading { color: #a8a29e; }
+  .loading { padding: 4rem 0; text-align: center; color: var(--color-slate-500); }
+  :global(.dark) .loading { color: var(--color-slate-400); }
 
   .timeline { list-style: none; margin: 0; padding: 0; }
 
@@ -289,17 +289,17 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     align-self: start;
     font-family: var(--font-serif);
     font-weight: 700;
-    color: #d6d3d1;
+    color: var(--color-slate-300);
     line-height: 1;
     letter-spacing: -0.04em;
     display: flex;
     align-items: flex-start;
     user-select: none;
     padding: 0.5rem 0 0.25rem;
-    border-bottom: 1px solid #e7e5e4;
+    border-bottom: 1px solid var(--color-slate-200);
     margin-bottom: 0.25rem;
   }
-  :global(.dark) .decade__marker { color: #44403c; border-bottom-color: #292524; }
+  :global(.dark) .decade__marker { color: var(--color-slate-700); border-bottom-color: var(--color-slate-800); }
   @media (min-width: 640px) {
     .decade__marker {
       position: sticky;
@@ -330,10 +330,10 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-left: 1px solid #e7e5e4;
+    border-left: 1px solid var(--color-slate-200);
     position: relative;
   }
-  :global(.dark) .decade__events { border-left-color: #44403c; }
+  :global(.dark) .decade__events { border-left-color: var(--color-slate-700); }
 
   .event {
     position: relative;
@@ -357,14 +357,14 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     height: 0.875rem;
     border-radius: 50%;
     background: var(--cat-color, var(--color-brand));
-    border: 3px solid #fafaf9;
+    border: 3px solid var(--color-slate-50);
     margin-left: -0.5rem;
     margin-top: 0.375rem;
     box-shadow: 0 0 0 2px var(--cat-color, var(--color-brand));
     z-index: 2;
     position: relative;
   }
-  :global(.dark) .event__node { border-color: #1c1917; }
+  :global(.dark) .event__node { border-color: var(--color-slate-900); }
   .event__stem {
     position: absolute;
     left: -0.5rem;
@@ -376,8 +376,8 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   }
 
   .event__card {
-    background: #fff;
-    border: 1px solid #e7e5e4;
+    background: var(--color-white);
+    border: 1px solid var(--color-slate-200);
     border-left: 3px solid var(--cat-color, var(--color-brand));
     border-radius: 0.5rem;
     padding: 1rem 1.25rem;
@@ -385,7 +385,7 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   }
   :global(.dark) .event__card {
     background: rgb(15 23 42 / 0.45);
-    border-color: #44403c;
+    border-color: var(--color-slate-700);
     border-left-color: var(--cat-color, var(--color-brand));
   }
   .event__card:hover {
@@ -414,34 +414,34 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #78716c;
-    background: #f5f5f4;
+    color: var(--color-slate-500);
+    background: var(--color-wash);
     padding: 0.1875rem 0.5rem;
     border-radius: 0.1875rem;
   }
-  :global(.dark) .event__cat { color: #a8a29e; background: #292524; }
+  :global(.dark) .event__cat { color: var(--color-slate-400); background: var(--color-slate-800); }
 
   .event__title-link { text-decoration: none; color: inherit; }
   .event__title {
     font-family: var(--font-serif);
     font-size: 1.125rem;
     font-weight: 700;
-    color: #1c1917;
+    color: var(--color-slate-900);
     margin: 0 0 0.5rem;
     line-height: 1.3;
     letter-spacing: -0.012em;
   }
-  :global(.dark) .event__title { color: #fafaf9; }
+  :global(.dark) .event__title { color: var(--color-slate-50); }
   .event__title-link:hover .event__title { color: var(--cat-color, var(--color-brand)); }
 
   .event__desc {
     font-size: 0.9375rem;
     line-height: 1.6;
-    color: #44403c;
+    color: var(--color-slate-700);
     margin: 0;
     white-space: pre-wrap;
   }
-  :global(.dark) .event__desc { color: #d6d3d1; }
+  :global(.dark) .event__desc { color: var(--color-slate-300); }
 
   .event__foot {
     display: flex;
@@ -458,17 +458,17 @@ function resolutionUrl(h: HistoryMilestone): string | null {
   }
   .event__more:hover, .event__res:hover { border-bottom-color: currentColor; }
   .event__res {
-    color: #57534e;
+    color: var(--color-slate-600);
   }
-  :global(.dark) .event__res { color: #a8a29e; }
+  :global(.dark) .event__res { color: var(--color-slate-400); }
 
   /* ERAS (right-rail nav) */
   .eras {
     position: fixed;
     right: 1.5rem;
     bottom: 6rem;
-    background: #fff;
-    border: 1px solid #e7e5e4;
+    background: var(--color-white);
+    border: 1px solid var(--color-slate-200);
     border-radius: 0.5rem;
     padding: 0.75rem 0.875rem;
     box-shadow: 0 4px 16px rgb(0 0 0 / 0.06);
@@ -476,7 +476,7 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     z-index: 50;
     display: none;
   }
-  :global(.dark) .eras { background: #1c1917; border-color: #44403c; }
+  :global(.dark) .eras { background: var(--color-slate-900); border-color: var(--color-slate-700); }
   @media (min-width: 1024px) { .eras { display: block; } }
   .eras__title {
     font-family: var(--font-sans);
@@ -484,10 +484,10 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: #78716c;
+    color: var(--color-slate-500);
     margin: 0 0 0.5rem;
   }
-  :global(.dark) .eras__title { color: #a8a29e; }
+  :global(.dark) .eras__title { color: var(--color-slate-400); }
   .eras ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.125rem; }
   .eras__link {
     display: flex;
@@ -496,7 +496,7 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     gap: 0.75rem;
     padding: 0.25rem 0;
     text-decoration: none;
-    color: #1c1917;
+    color: var(--color-slate-900);
     font-family: var(--font-serif);
     font-weight: 600;
     font-size: 0.875rem;
@@ -504,15 +504,15 @@ function resolutionUrl(h: HistoryMilestone): string | null {
     transition: border-color 0.15s;
   }
   .eras__link:hover { border-bottom-color: var(--color-brand); color: var(--color-brand); }
-  :global(.dark) .eras__link { color: #fafaf9; }
+  :global(.dark) .eras__link { color: var(--color-slate-50); }
   .eras__count {
     font-family: var(--font-sans);
     font-size: 0.625rem;
-    color: #a8a29e;
+    color: var(--color-slate-400);
     font-weight: 700;
-    background: #f5f5f4;
+    background: var(--color-wash);
     padding: 0.0625rem 0.3125rem;
     border-radius: 9999px;
   }
-  :global(.dark) .eras__count { background: #292524; }
+  :global(.dark) .eras__count { background: var(--color-slate-800); }
 </style>

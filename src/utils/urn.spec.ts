@@ -4,6 +4,13 @@ import {
   resolutionRefSearchPath,
   memberPath,
   liaisonPath,
+  resolutionUrn,
+  meetingUrnFromParts,
+  meetingDetailPathFromParts,
+  standardUrn,
+  projectUrn,
+  memberUrn,
+  parseMeetingParam,
 } from './urn'
 
 describe('resolutionPath', () => {
@@ -34,5 +41,55 @@ describe('memberPath', () => {
 describe('liaisonPath', () => {
   it('builds a liaison detail path', () => {
     expect(liaisonPath('unece')).toBe('/liaisons/unece/')
+  })
+})
+
+describe('resolutionUrn', () => {
+  it('composes the registry URN base', () => {
+    expect(resolutionUrn('2023-01')).toBe('urn:iso:tc:154:resolution:2023-01')
+  })
+})
+
+// Meeting URNs compose kind:raw (e.g. meeting:plenary:plenary-31), distinct
+// from the historical dash-form urn:iso-tc154:* that events-edoxen carries.
+describe('meetingUrnFromParts', () => {
+  it('plenary sources compose kind:raw', () => {
+    expect(meetingUrnFromParts('plenary', 'plenary-31')).toBe('urn:iso:tc:154:meeting:plenary:plenary-31')
+  })
+  it('ballot sources carry their year kind', () => {
+    expect(meetingUrnFromParts('ballots', 'ballots-2026')).toBe('urn:iso:tc:154:meeting:ballots:ballots-2026')
+  })
+  it('unknown sources fall back to type:file composition', () => {
+    expect(meetingUrnFromParts('wg', 'wg-4')).toBe('urn:iso:tc:154:meeting:wg:wg-4')
+  })
+})
+
+describe('meetingDetailPathFromParts', () => {
+  it('plenary resolves to the native meeting page', () => {
+    expect(meetingDetailPathFromParts('plenary', 'plenary-45')).toBe('/meetings/45/')
+  })
+  it('non-plenary sources fall back to the list filter path', () => {
+    expect(meetingDetailPathFromParts('ballots', 'ballots-2026')).toBe('/resolutions/?meeting=ballots/ballots-2026')
+  })
+})
+
+describe('standardUrn / projectUrn / memberUrn', () => {
+  it('each kind composes under the shared base', () => {
+    expect(standardUrn('iso-8601')).toBe('urn:iso:tc:154:standard:iso-8601')
+    expect(projectUrn('iso-8601-amd')).toBe('urn:iso:tc:154:project:iso-8601-amd')
+    expect(memberUrn('pan-wei')).toBe('urn:iso:tc:154:member:pan-wei')
+  })
+})
+
+describe('parseMeetingParam', () => {
+  it('splits type/file pairs', () => {
+    expect(parseMeetingParam('plenary/plenary-31')).toEqual({ sourceType: 'plenary', sourceFile: 'plenary-31' })
+  })
+  it('rejects malformed params', () => {
+    expect(parseMeetingParam(null)).toBeNull()
+    expect(parseMeetingParam('')).toBeNull()
+    expect(parseMeetingParam('plenary')).toBeNull()
+    expect(parseMeetingParam('plenary/plenary-31/x')).toBeNull()
+    expect(parseMeetingParam('/plenary-31')).toBeNull()
   })
 })

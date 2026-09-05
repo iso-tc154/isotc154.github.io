@@ -57,13 +57,13 @@ const committeeUrl = committee.links.isoCommittee
   .contact-shell { max-width: 48rem; }
 
   .contact-card {
-    border: 1px solid #e7e5e4;
+    border: 1px solid var(--color-slate-200);
     border-radius: 0.75rem;
     overflow: hidden;
     margin-bottom: 2rem;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
-  :global(.dark) .contact-card { border-color: #44403c; }
+  :global(.dark) .contact-card { border-color: var(--color-slate-700); }
   .contact-card:hover {
     border-color: var(--color-blue-accent);
     transform: translateY(-2px);
@@ -80,12 +80,12 @@ const committeeUrl = committee.links.isoCommittee
   .contact-card__logo {
     flex-shrink: 0;
     width: 4rem; height: 4rem;
-    background: #fff;
+    background: var(--color-white);
     border-radius: 0.5rem;
     display: flex; align-items: center; justify-content: center;
     padding: 0.5rem;
   }
-  :global(.dark) .contact-card__logo { background: #292524; }
+  :global(.dark) .contact-card__logo { background: var(--color-slate-800); }
   .contact-card__iso-logo { width: 100%; height: auto; }
   .contact-card__details { flex: 1; min-width: 0; }
   .contact-card__name {
@@ -93,9 +93,9 @@ const committeeUrl = committee.links.isoCommittee
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0 0 0.25rem;
-    color: #1c1917;
+    color: var(--color-slate-900);
   }
-  :global(.dark) .contact-card__name { color: #fafaf9; }
+  :global(.dark) .contact-card__name { color: var(--color-slate-50); }
   .contact-card__role {
     font-size: 0.9375rem;
     color: var(--color-blue-accent);
@@ -104,32 +104,32 @@ const committeeUrl = committee.links.isoCommittee
   }
   .contact-card__affiliation {
     font-size: 0.875rem;
-    color: #78716c;
+    color: var(--color-slate-500);
     margin: 0;
   }
-  :global(.dark) .contact-card__affiliation { color: #a8a29e; }
+  :global(.dark) .contact-card__affiliation { color: var(--color-slate-400); }
   .contact-card__arrow {
-    color: #a8a29e;
+    color: var(--color-slate-400);
     flex-shrink: 0;
   }
 
   .secretariat {
     padding: 1.5rem;
-    background: #fafaf9;
+    background: var(--color-slate-50);
     border-radius: 0.5rem;
     border-left: 3px solid var(--color-brand);
   }
   :global(.dark) .secretariat {
-    background: #292524;
+    background: var(--color-slate-800);
   }
   .secretariat__title {
     font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.1em; color: #78716c;
+    letter-spacing: 0.1em; color: var(--color-slate-500);
     margin: 0 0 0.5rem;
   }
-  :global(.dark) .secretariat__title { color: #a8a29e; }
-  .secretariat__body { margin: 0; color: #44403c; }
-  :global(.dark) .secretariat__body { color: #d6d3d1; }
+  :global(.dark) .secretariat__title { color: var(--color-slate-400); }
+  .secretariat__body { margin: 0; color: var(--color-slate-700); }
+  :global(.dark) .secretariat__body { color: var(--color-slate-300); }
   .secretariat__body a { color: var(--color-blue-accent); }
 
   @media (max-width: 480px) {

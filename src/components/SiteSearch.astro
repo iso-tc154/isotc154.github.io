@@ -17,6 +17,7 @@
 
 <script>
       // ⌘K omnibar
+      import { omnibarHits } from '../lib/omnibar'
       const dialog = document.getElementById('site-search') as HTMLDialogElement | null
       const input = document.getElementById('omnibar-input') as HTMLInputElement | null
       const list = document.getElementById('omnibar-results')
@@ -31,10 +32,7 @@
 
       function render(q: string) {
         if (!list || !entries) return
-        const needle = q.trim().toLowerCase()
-        const hits = needle
-          ? entries.filter((e) => (e.t + ' ' + (e.s ?? '')).toLowerCase().includes(needle)).slice(0, 10)
-          : entries.slice(0, 6)
+        const hits = omnibarHits(entries, q)
         activeIdx = -1
         list.innerHTML = ''
         for (const e of hits) {
@@ -96,7 +94,7 @@
   }
   .omnibar::backdrop { background: rgb(15 23 42 / 0.5); backdrop-filter: blur(4px); }
   .omnibar__box {
-    background: #fff;
+    background: var(--color-white);
     border: 1px solid var(--color-slate-200);
     border-radius: 0.875rem;
     box-shadow: 0 24px 48px -12px rgb(15 23 42 / 0.25);
