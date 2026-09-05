@@ -1,7 +1,7 @@
 // Meeting-page display language: practical-info labels and the tourist
 // section's data shape. Kept here (not in the page) so every meeting page
 // renders the same vocabulary and no raw YAML key can reach the page.
-import type { AgendaItem, AgendaSession, MeetingSession, RichMeeting } from './data'
+import type { AgendaItem, AgendaSession, Meeting, MeetingSession, RichMeeting } from './data'
 
 const LABEL_OVERRIDES: Record<string, string> = {
   eu_schengen: 'EU Schengen',
@@ -193,6 +193,27 @@ export interface AgendaDrawer {
   date: string
   note?: string
   rows: FlatRow[]
+}
+
+/** First ISO date embedded in an agenda source-doc string, e.g. an "agenda-2026-08-12.pdf" draft marker. */
+export function agendaDraftDate(sourceDoc: string | undefined | null): string | null {
+  const m = (sourceDoc ?? '').match(/\d{4}-\d{2}-\d{2}/)
+  return m ? m[0] : null
+}
+
+/** Prev/next plenary by ordinal for the pager. */
+export function meetingNeighbors(meetings: Meeting[], ordinal: number): { prev: Meeting | null; next: Meeting | null } {
+  const sorted = [...meetings].sort((a, b) => (a.ordinal ?? 0) - (b.ordinal ?? 0))
+  const idx = sorted.findIndex((m) => m.ordinal === ordinal)
+  return {
+    prev: idx > 0 ? sorted[idx - 1] : null,
+    next: idx >= 0 && idx < sorted.length - 1 ? sorted[idx + 1] : null,
+  }
+}
+
+/** Pager caption: general area (or location) · year. */
+export function navCaption(m: Meeting): string {
+  return [m.rich?.general_area || m.location_label || '', m.year ? String(m.year) : ''].filter(Boolean).join(' · ')
 }
 
 export function agendaDrawers(agenda: RichMeeting['agenda'] | undefined): AgendaDrawer[] {

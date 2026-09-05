@@ -85,7 +85,7 @@ const range = fmtRange(np?.from_date, np?.to_date)
     border-radius: 0.875rem;
     background:
       radial-gradient(ellipse at top right, rgb(30 58 138 / 0.5), transparent 65%),
-      linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 55%, #2a4a9c 100%);
+      linear-gradient(135deg, var(--color-hero-deep) 0%, var(--color-brand-strong) 55%, var(--color-hero-azure) 100%);
     border: 1px solid rgb(148 182 232 / 0.4);
     box-shadow: 0 12px 32px -12px rgb(30 58 138 / 0.45);
     position: relative;
@@ -103,7 +103,7 @@ const range = fmtRange(np?.from_date, np?.to_date)
   :global(.dark) .plenary-banner {
     background:
       radial-gradient(ellipse at top right, rgb(148 182 232 / 0.25), transparent 65%),
-      linear-gradient(135deg, #101b30 0%, #16294d 60%, #1d3660 100%);
+      linear-gradient(135deg, var(--color-hero-night) 0%, var(--color-hero-navy) 60%, var(--color-hero-steel) 100%);
   }
 
   .plenary-banner__flag {
@@ -124,13 +124,13 @@ const range = fmtRange(np?.from_date, np?.to_date)
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: #a8c4ee;
+    color: var(--color-hero-mist);
   }
   .plenary-banner__pulse {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background: #7dd3a8;
+    background: var(--color-hero-mint);
     box-shadow: 0 0 0 0 rgb(125 211 168 / 0.6);
     animation: plenary-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
@@ -149,7 +149,7 @@ const range = fmtRange(np?.from_date, np?.to_date)
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;
-    color: #fff;
+    color: var(--color-white);
     margin: 0 0 0.375rem;
   }
   .plenary-banner__amp {
@@ -186,7 +186,7 @@ const range = fmtRange(np?.from_date, np?.to_date)
     font-size: 0.875rem;
     font-weight: 600;
     text-decoration: none;
-    color: #fff;
+    color: var(--color-white);
     border: 1px solid rgb(255 255 255 / 0.35);
     background: rgb(255 255 255 / 0.08);
     backdrop-filter: blur(6px);
@@ -199,13 +199,13 @@ const range = fmtRange(np?.from_date, np?.to_date)
     transform: translateY(-1px);
   }
   .plenary-banner__cta--primary {
-    background: #fff;
-    color: #1e3a8a;
-    border-color: #fff;
+    background: var(--color-white);
+    color: var(--color-brand-strong);
+    border-color: var(--color-white);
   }
   .plenary-banner__cta--primary:hover {
-    background: #e7edf8;
-    border-color: #e7edf8;
+    background: var(--color-hero-panel);
+    border-color: var(--color-hero-panel);
   }
 
   @media (max-width: 640px) {

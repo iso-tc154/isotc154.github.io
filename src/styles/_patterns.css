@@ -97,9 +97,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #78716c;
+  color: var(--color-slate-500);
 }
-.dark .page__stats dd { color: #a8a29e; }
+.dark .page__stats dd { color: var(--color-slate-400); }
 @media (max-width: 640px) {
   .page__stats { gap: 0.5rem 1.25rem; }
 }
@@ -320,7 +320,7 @@
 .admonitionblock td.icon {
   width: 2.5rem;
   background: rgba(30, 58, 138, 0.08);
-  border-left: 3px solid var(--color-blue-accent, #1e3a8a);
+  border-left: 3px solid var(--color-blue-accent, var(--color-brand-strong));
   text-align: center;
 }
 .dark .admonitionblock td.icon {
@@ -332,7 +332,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-blue-accent, #1e3a8a);
+  color: var(--color-blue-accent, var(--color-brand-strong));
   padding: 0.75rem 0;
   writing-mode: vertical-rl;
   text-orientation: mixed;
@@ -342,11 +342,11 @@
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
   line-height: 1.6;
-  color: #44403c;
+  color: var(--color-slate-700);
   background: rgba(30, 58, 138, 0.03);
 }
 .dark .admonitionblock td.content {
-  color: #d6d3d1;
+  color: var(--color-slate-300);
   background: rgba(83, 121, 191, 0.06);
 }
 .admonitionblock td.content > :last-child { margin-bottom: 0; }
@@ -354,22 +354,22 @@
 /* Severity accents */
 .admonitionblock.note td.icon,
 .admonitionblock.tip td.icon {
-  border-left-color: var(--color-blue-accent, #1e3a8a);
+  border-left-color: var(--color-blue-accent, var(--color-brand-strong));
   background: rgba(30, 58, 138, 0.08);
 }
 .admonitionblock.warning td.icon {
-  border-left-color: #b45309;
+  border-left-color: var(--color-amber-warm);
   background: rgba(180, 83, 9, 0.1);
 }
-.admonitionblock.warning td.icon .title { color: #b45309; }
+.admonitionblock.warning td.icon .title { color: var(--color-amber-warm); }
 .admonitionblock.caution td.icon {
-  border-left-color: #b91c1c;
+  border-left-color: var(--color-iso-red);
   background: rgba(185, 28, 28, 0.08);
 }
-.admonitionblock.caution td.icon .title { color: #b91c1c; }
+.admonitionblock.caution td.icon .title { color: var(--color-iso-red); }
 .admonitionblock.important td.icon {
-  border-left-color: #6d28d9;
+  border-left-color: var(--color-admonition-important);
   background: rgba(109, 40, 217, 0.08);
 }
-.admonitionblock.important td.icon .title { color: #6d28d9; }
+.admonitionblock.important td.icon .title { color: var(--color-admonition-important); }
 

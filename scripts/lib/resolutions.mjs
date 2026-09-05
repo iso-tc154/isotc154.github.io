@@ -12,14 +12,14 @@ import {
 // The view layer (transforms.mjs) predates that and expects plain strings.
 // Flatten localized fields once, here, so every downstream consumer sees
 // the legacy shape regardless of which schema a file uses.
-function localized(value) {
+export function localized(value) {
   if (Array.isArray(value) && value.length > 0 && value[0] && typeof value[0] === 'object' && 'value' in value[0]) {
     return value[0].value ?? ''
   }
   return value
 }
 
-function normalizeDecision(res) {
+export function normalizeDecision(res) {
   const identifier = Array.isArray(res.identifier)
     ? (res.identifier[0]?.number ?? String(res.identifier))
     : res.identifier

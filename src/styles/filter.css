@@ -4,7 +4,7 @@
     padding: 1rem;
     border-radius: 0.75rem;
     border: 1px solid rgb(229 231 235 / 0.8);
-    background: #fff;
+    background: var(--color-white);
   }
   .dark .filter-bar {
     border-color: rgb(255 255 255 / 0.06);
@@ -29,10 +29,10 @@
     display: block;
     font-size: 0.75rem;
     font-weight: 500;
-    color: #78716c;
+    color: var(--color-slate-500);
     margin-bottom: 0.25rem;
   }
-  .dark .filter-label { color: #a8a29e; }
+  .dark .filter-label { color: var(--color-slate-400); }
 
   .filter-input,
   .filter-select {
@@ -40,19 +40,19 @@
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
     border-radius: 0.5rem;
-    border: 1px solid #e5e7eb;
-    background: #fff;
-    color: #1c1917;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-white);
+    color: var(--color-slate-900);
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   .dark .filter-input,
   .dark .filter-select {
-    border-color: #44403c;
-    background: #292524;
-    color: #fff;
+    border-color: var(--color-slate-700);
+    background: var(--color-slate-800);
+    color: var(--color-white);
   }
-  .filter-input::placeholder { color: #a8a29e; }
-  .dark .filter-input::placeholder { color: #78716c; }
+  .filter-input::placeholder { color: var(--color-slate-400); }
+  .dark .filter-input::placeholder { color: var(--color-slate-500); }
   .filter-input:focus,
   .filter-select:focus {
     outline: none;
@@ -62,16 +62,16 @@
 
   .filter-count {
     font-size: 0.75rem;
-    color: #a8a29e;
+    color: var(--color-slate-400);
   }
-  .dark .filter-count { color: #78716c; }
+  .dark .filter-count { color: var(--color-slate-500); }
 
   .filter-meta {
     margin-top: 0.75rem;
     font-size: 0.875rem;
-    color: #78716c;
+    color: var(--color-slate-500);
   }
-  .dark .filter-meta { color: #a8a29e; }
+  .dark .filter-meta { color: var(--color-slate-400); }
 
   /* Two spellings exist across pages (filter-chips / filter__chips);
      both are the same family. */
@@ -88,9 +88,9 @@
     align-items: center;
     padding: 0.375rem 0.75rem;
     border-radius: 9999px;
-    border: 1px solid #d6d3d1;
-    background: #fff;
-    color: #57534e;
+    border: 1px solid var(--color-slate-300);
+    background: var(--color-white);
+    color: var(--color-slate-600);
     font-size: 0.8125rem;
     font-weight: 500;
     font-family: inherit;
@@ -107,22 +107,22 @@
   .chip--active:hover {
     background: var(--color-blue-accent);
     border-color: var(--color-blue-accent);
-    color: #fff;
+    color: var(--color-white);
   }
   .dark .chip {
-    background: #292524;
-    border-color: #57534e;
-    color: #d6d3d1;
+    background: var(--color-slate-800);
+    border-color: var(--color-slate-600);
+    color: var(--color-slate-300);
   }
   .dark .chip:hover {
-    border-color: #5379bf;
-    color: #94b6e8;
+    border-color: var(--color-blue-steel);
+    color: var(--color-blue-soft);
   }
   .dark .chip--active,
   .dark .chip--active:hover {
-    background: #5379bf;
-    border-color: #5379bf;
-    color: #fff;
+    background: var(--color-blue-steel);
+    border-color: var(--color-blue-steel);
+    color: var(--color-white);
   }
 
   .filter-toggle {
@@ -130,17 +130,17 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: #57534e;
+    color: var(--color-slate-600);
     cursor: pointer;
   }
-  .dark .filter-toggle { color: #d6d3d1; }
+  .dark .filter-toggle { color: var(--color-slate-300); }
   .filter-toggle input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
     border-radius: 0.25rem;
-    border-color: #d1d5db;
+    border-color: var(--color-hairline-strong);
   }
   .dark .filter-toggle input[type="checkbox"] {
-    border-color: #57534e;
+    border-color: var(--color-slate-600);
   }
 }

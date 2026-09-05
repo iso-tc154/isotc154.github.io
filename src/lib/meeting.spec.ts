@@ -22,6 +22,9 @@ import {
   flattenAgenda,
   normalizeAgendaDate,
   agendaDrawers,
+  agendaDraftDate,
+  meetingNeighbors,
+  navCaption,
 } from './meeting'
 
 describe('practicalLabel', () => {
@@ -196,5 +199,43 @@ describe('agenda flattening', () => {
     expect(drawers[0].rows[0].title).toBe('Call to order')
     expect(drawers[1].note).toBe('Final')
     expect(agendaDrawers(undefined)).toEqual([])
+  })
+})
+
+describe('agendaDraftDate', () => {
+  it('pulls the first ISO date out of a source-doc string', () => {
+    expect(agendaDraftDate('Agenda draft 2026-08-12 rev.2.pdf')).toBe('2026-08-12')
+  })
+  it('yields null for empty or undated strings', () => {
+    expect(agendaDraftDate('final-agenda.pdf')).toBeNull()
+    expect(agendaDraftDate('')).toBeNull()
+    expect(agendaDraftDate(undefined)).toBeNull()
+  })
+})
+
+describe('meetingNeighbors', () => {
+  const ms = (ordinal: number, extra = {}) => ({ ordinal, id: String(ordinal), url: `/m/${ordinal}/`, sessions: [], primary: {}, ...extra })
+  const meetings = [ms(3), ms(1), ms(2)]
+  it('returns prev/next by ordinal regardless of input order', () => {
+    expect(meetingNeighbors(meetings, 2)).toEqual({ prev: ms(1), next: ms(3) })
+  })
+  it('first and last meetings have only one neighbor', () => {
+    expect(meetingNeighbors(meetings, 1).prev).toBeNull()
+    expect(meetingNeighbors(meetings, 3).next).toBeNull()
+  })
+  it('unknown ordinal yields no neighbors', () => {
+    expect(meetingNeighbors(meetings, 99)).toEqual({ prev: null, next: null })
+  })
+})
+
+describe('navCaption', () => {
+  const base = { id: 'x', url: '/x/', sessions: [], primary: {} }
+  it('prefers general area, falls back to location label, joins with year', () => {
+    expect(navCaption({ ...base, rich: { general_area: 'Berlin' }, location_label: 'Germany', year: 2026 } as never)).toBe('Berlin · 2026')
+    expect(navCaption({ ...base, location_label: 'Germany', year: 2023 } as never)).toBe('Germany · 2023')
+  })
+  it('drops empty halves', () => {
+    expect(navCaption({ ...base, location_label: 'Germany' } as never)).toBe('Germany')
+    expect(navCaption(base as never)).toBe('')
   })
 })

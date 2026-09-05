@@ -86,16 +86,16 @@ const forceLightBg = !hasThemeVariants && Boolean(logoUrl)
     overflow: hidden;
     flex-shrink: 0;
     border-radius: var(--org-radius, 0.5rem);
-    background: #fff;
+    background: var(--color-white);
   }
   :global(.dark) .org-logo {
-    background: #292524;
+    background: var(--color-slate-800);
   }
   .org-logo--force-light {
-    background: #fff;
+    background: var(--color-white);
   }
   :global(.dark) .org-logo--force-light {
-    background: #fff;
+    background: var(--color-white);
   }
 
   .org-logo--sm { width: 2.25rem; height: 2.25rem; padding: 0.25rem; }
@@ -114,8 +114,8 @@ const forceLightBg = !hasThemeVariants && Boolean(logoUrl)
     font-weight: 700;
     font-size: 0.875rem;
     letter-spacing: 0.02em;
-    color: #fff;
-    background: linear-gradient(135deg, var(--color-blue-accent), #5379bf);
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-blue-accent), var(--color-blue-steel));
     width: 100%;
     height: 100%;
     display: flex;
