@@ -6,8 +6,14 @@ active: false
 deceased: true
 roles:
 - id: member
+  to:
+    date: '2026-06-22'
+    precision: day
 - id: member
   group: wg5
+  to:
+    date: '2026-06-22'
+    precision: day
 affiliation: DIN, Germany
 bio: |-
   Dr. Rudolf Erich Walter Borges was a long-time expert of ISO/TC 154/WG 5
