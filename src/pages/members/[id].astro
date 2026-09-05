@@ -81,6 +81,15 @@ const eyebrow = member.is_the_chair
     </div>
 
     <div class="detail__body">
+      {member.deceased && member.epitaph && (
+        <section class="detail__section detail__section--memoriam">
+          <h2 class="detail__section-title">In Memoriam</h2>
+          <div class="prose">
+            {member.epitaph.split(/\n\s*\n/).filter(Boolean).map((para) => <p>{para.replace(/\s*\n\s*/g, ' ')}</p>)}
+          </div>
+        </section>
+      )}
+
       {bioHtml && (
         <section class="detail__section">
           <h2 class="detail__section-title">Biography</h2>
