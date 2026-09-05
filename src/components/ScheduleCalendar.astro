@@ -17,13 +17,14 @@ interface Props {
   agendaDates?: string[]
 }
 
-type Category = 'plenary' | 'wg' | 'jwg' | 'pt' | 'social' | 'deadline' | 'ma' | 'nwip' | 'opening' | 'other'
+
+import { buildScheduleDays, type ProcessedEvent, type ScheduleCategory, type ScheduleItem, normalizeScheduleDate } from '../lib/schedule'
 
 const { schedule, venueName, generalArea, agendaDates = [] } = Astro.props
 
 const HOUR_HEIGHT = 56
 
-const CATEGORY_META: Record<Category, { label: string; bar: string; bg: string; bgDark: string; text: string; textDark: string }> = {
+const CATEGORY_META: Record<ScheduleCategory, { label: string; bar: string; bg: string; bgDark: string; text: string; textDark: string }> = {
   plenary:  { label: 'Plenary',            bar: '#b91c1c', bg: '#fef2f3', bgDark: '#3b0a10', text: '#7a0008', textDark: '#ffb8be' },
   wg:       { label: 'Working Group',      bar: '#1e3a8a', bg: '#eef6fd', bgDark: '#0c2438', text: '#003c6a', textDark: '#9ec9ed' },
   jwg:      { label: 'Joint WG',           bar: '#0d9488', bg: '#effbf7', bgDark: '#0a2e2a', text: '#0a5e57', textDark: '#8fd6c9' },
@@ -34,54 +35,6 @@ const CATEGORY_META: Record<Category, { label: string; bar: string; bg: string; 
   nwip:     { label: 'NWIP / PWI',         bar: '#db2777', bg: '#fdf0f6', bgDark: '#3b0e25', text: '#9d1a58', textDark: '#fbb1d0' },
   opening:  { label: 'Opening',            bar: '#b91c1c', bg: '#fef2f3', bgDark: '#3b0a10', text: '#7a0008', textDark: '#ffb8be' },
   other:    { label: 'Other',              bar: '#57534e', bg: '#fafaf9', bgDark: '#292524', text: '#44403c', textDark: '#d6d3d1' },
-}
-
-function normalizeDate(raw: unknown): string {
-  if (!raw) return ''
-  const s = String(raw)
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  return m ? `${m[1]}-${m[2]}-${m[3]}` : s
-}
-
-function parseTime(raw?: string): { startMin: number; endMin: number; allDay: boolean; tzNote?: string } {
-  if (!raw || !raw.trim()) return { startMin: 9 * 60, endMin: 17 * 60, allDay: true }
-  const lower = raw.toLowerCase()
-  if (lower.includes('all day') || lower === 'tbd' || lower === 'tba' || lower.includes('tbc')) {
-    return { startMin: 9 * 60, endMin: 17 * 60, allDay: true }
-  }
-  let tzNote: string | undefined
-  const tzParen = raw.match(/\(([^)]+)\)/)
-  if (tzParen) tzNote = tzParen[1]
-  else if (/utc\s*[+-]\s*\d+/i.test(raw)) tzNote = raw.match(/utc\s*[+-]\s*\d+/i)?.[0]
-  const range = raw.match(/(\d{1,2}):(\d{2})\s*[–\-]\s*(\d{1,2}):(\d{2})/)
-  if (range) {
-    const startMin = parseInt(range[1]) * 60 + parseInt(range[2])
-    let endMin = parseInt(range[3]) * 60 + parseInt(range[4])
-    if (endMin <= startMin) endMin += 24 * 60
-    return { startMin, endMin, allDay: false, tzNote }
-  }
-  const single = raw.match(/(\d{1,2}):(\d{2})/)
-  if (single) {
-    const startMin = parseInt(single[1]) * 60 + parseInt(single[2])
-    return { startMin, endMin: startMin + 60, allDay: false, tzNote }
-  }
-  return { startMin: 9 * 60, endMin: 17 * 60, allDay: true, tzNote }
-}
-
-function categorize(name?: string): Category {
-  if (!name) return 'other'
-  const lower = name.toLowerCase()
-  if (lower.includes('opening')) return 'opening'
-  if (lower.includes('plenary') || lower.includes('closing')) return 'plenary'
-  if (lower.includes('social') || lower.includes('reception') || lower.includes('dinner')) return 'social'
-  if (lower.match(/\bjwg\s*\d/)) return 'jwg'
-  if (lower.match(/\bpt\s*\d/)) return 'pt'
-  if (lower.match(/\bwg\s*\d/) || lower.includes('working group')) return 'wg'
-  if (lower.includes('untbed') || lower.includes('tded') || lower.match(/\bjma\b/)) return 'ma'
-  if (lower.match(/\bma\b/) && !lower.match(/\bmanager\b/)) return 'ma'
-  if (lower.includes('nwip') || lower.includes('pwi')) return 'nwip'
-  if (lower.includes('registration') || lower.includes('deadline')) return 'deadline'
-  return 'other'
 }
 
 interface Processed {
@@ -99,52 +52,7 @@ interface Processed {
   clickable: boolean
 }
 
-const days: { date: string; events: Processed[]; laneCount: number }[] = []
-{
-  const byDate = new Map<string, ScheduleItem[]>()
-  for (const item of schedule) {
-    const d = normalizeDate(item.date)
-    if (!d) continue
-    if (!byDate.has(d)) byDate.set(d, [])
-    byDate.get(d)!.push(item)
-  }
-  for (const [date, items] of byDate) {
-    const parsed: Processed[] = items.map((item) => {
-      const t = parseTime(item.time)
-      const category = categorize(item.event)
-      const clickable =
-        (category === 'plenary' || category === 'opening') && agendaDates.includes(date)
-      return {
-        ...item,
-        date,
-        startMin: t.startMin,
-        endMin: t.endMin,
-        allDay: t.allDay,
-        tzNote: t.tzNote,
-        category,
-        lane: 0,
-        laneCount: 1,
-        clickable,
-      }
-    })
-    parsed.sort((a, b) => a.startMin - b.startMin || a.endMin - b.endMin)
-    const laneEnds: number[] = []
-    for (const ev of parsed) {
-      let laneIdx = laneEnds.findIndex((end) => end <= ev.startMin)
-      if (laneIdx === -1) {
-        laneIdx = laneEnds.length
-        laneEnds.push(ev.endMin)
-      } else {
-        laneEnds[laneIdx] = ev.endMin
-      }
-      ev.lane = laneIdx
-    }
-    const laneCount = Math.max(laneEnds.length, 1)
-    for (const ev of parsed) ev.laneCount = laneCount
-    days.push({ date, events: parsed, laneCount })
-  }
-  days.sort((a, b) => a.date.localeCompare(b.date))
-}
+const days = buildScheduleDays(schedule, agendaDates)
 
 const totalEvents = days.reduce((acc, d) => acc + d.events.length, 0)
 const showAsCalendar = totalEvents >= 2
@@ -173,7 +81,7 @@ for (let h = gridBounds.startHour; h <= gridBounds.endHour; h++) gridHours.push(
 const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 function dayLabel(rawDate: string): { weekday: string; date: string } {
-  const norm = normalizeDate(rawDate)
+  const norm = normalizeScheduleDate(rawDate)
   if (!norm) return { weekday: '', date: '' }
   const d = new Date(norm + 'T00:00:00')
   if (Number.isNaN(d.getTime())) return { weekday: '', date: norm }
@@ -191,7 +99,7 @@ function formatDuration(min: number): string {
   if (m === 0) return `${h}h`
   return `${h}h${m}m`
 }
-function eventStyle(ev: Processed): Record<string, string> {
+function eventStyle(ev: ProcessedEvent): Record<string, string> {
   const startMin = gridBounds.startHour * 60
   const top = ((ev.startMin - startMin) / 60) * HOUR_HEIGHT
   const height = Math.max(((ev.endMin - ev.startMin) / 60) * HOUR_HEIGHT - 4, 32)
@@ -208,7 +116,7 @@ function hourLineTop(hour: number): string {
   return `${(hour - gridBounds.startHour) * HOUR_HEIGHT}px`
 }
 const metaFor = (category: Category) => CATEGORY_META[category]
-function catVars(ev: Processed): string {
+function catVars(ev: ProcessedEvent): string {
   const m = metaFor(ev.category)
   return `--bar:${m.bar};--bg:${m.bg};--bg-dark:${m.bgDark};--text:${m.text};--text-dark:${m.textDark}`
 }
