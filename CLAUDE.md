@@ -10,7 +10,7 @@ The ISO/TC 154 committee website — an **Astro 7 static site** (Vue islands, Ta
 
 ```sh
 pnpm build      # full pipeline: build-data → prepare-edoxen-data → generate-edoxen-events → build-legacy-redirects → astro build (1,123 pages)
-pnpm test       # vitest (spec families: unit specs beside every lib/utils/pipeline module, dist-based page-contract specs incl. redirects/sitemap, staged-fixture specs)
+pnpm test       # vitest (spec families: unit specs beside every lib/utils/pipeline module, dist-based page-contract specs incl. redirects/sitemap/payload budget/page quality, staged-fixture specs)
 pnpm dev        # dev server (runs the data pipeline first)
 pnpm validate   # Ruby validators: YAML schemas + member status vs live ISO Open Data
 pnpm preview    # serve dist/
