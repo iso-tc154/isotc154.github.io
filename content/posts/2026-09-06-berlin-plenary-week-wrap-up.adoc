@@ -1,0 +1,61 @@
+---
+layout: post
+title: "Danke, Berlin! The 45th plenary week wraps up"
+date: 2026-09-06 00:00:00 +0200
+categories: plenary
+---
+:page-liquid:
+
+The 45th plenary week of ISO/TC 154 has come to a close — five productive
+days at DIN in Berlin, from Monday 31 August to Friday 4 September 2026,
+with working group meetings throughout the week and the plenary session
+bracketing it.
+
+== Danke schön, DIN
+
+Our deepest thanks go to our host, **DIN**, and the entire DIN delegation,
+for organizing and running the week so effectively and efficiently — from
+the meeting rooms at Am DIN-Platz to the seamless hybrid setup that kept
+our remote colleagues with us throughout. Our particular appreciation to
+Mr. Gregor Roschkowski and Ms. Kristina Schönebeck for preparing and
+supporting the meetings, as the plenary recorded in its
+link:/decisions/urn:iso:tc154:resolution:plenary-45:P-2026-15/[appreciation
+resolution].
+
+Thank you as well to our convenors, whose preparation made the week's
+discussions so productive, and to all the participants — those who
+travelled to Berlin and those who joined online, in some cases during
+unearthly hours. Your engagement is what makes the committee's work.
+
+== A week of results
+
+The plenary adopted fifteen resolutions, now recorded in the
+link:/decisions/[decision registry]: from the fast-track of the VTL
+specification into DIS ballot, nine-month extensions for the ISO 8601-1
+and ISO 8601-2 revisions and ISO 20197-2, the establishment of the
+"incubator proposal" ad-hoc group, liaison representatives to
+ISO/IEC JTC 5, and the committee's appreciations — including a
+link:/members/rudolf-borges/[memorial to Dr. Rudolf Borges], our
+long-time WG 5 expert who passed away earlier this year.
+
+The full briefing for the week remains on the
+link:/meetings/45/[45th plenary meeting page].
+
+== Pandas! A Wednesday evening at Zoo Berlin
+
+The social programme took us across the street on Wednesday evening for
+an exclusive tour of **Zoo Berlin** — and what a treat it was. The stars
+of the evening were, of course, the **pandas**, enjoying their evening
+bamboo while we crowded the viewing window. Beyond the pandas, the tour
+wandered past numerous other animals of one of the world's most
+species-rich zoos — a genuinely memorable Berlin evening for everyone
+who came along. Our thanks to DIN for arranging it.
+
+== See you online
+
+With the resolutions adopted and the working groups' roadmaps set for
+the months ahead, we now return to our (virtual) desks. We look forward
+to seeing everyone again in the online meetings soon — may they be as
+productive as this week in Berlin.
+
+Danke, Berlin — until next time.
