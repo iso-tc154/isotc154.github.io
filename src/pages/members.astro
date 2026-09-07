@@ -96,26 +96,15 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
     </PageHero>
 
     <div class="page page--wide">
-      <div class="filter">
-        <div class="filter__search-wrap">
-          <svg class="filter__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            type="search"
-            class="filter__search"
-            id="member-search"
-            placeholder="Search by name or affiliation…"
-            autocomplete="off"
-            spellcheck="false"
-            aria-label="Search members"
-          />
-        </div>
-        <div class="filter__controls">
-          <div class="filter__field">
-            <span class="filter__label">Status</span>
-            <div class="filter__chips" data-facet="status">
+      <div class="filter-bar" id="member-filter">
+        <div class="filter-bar__controls">
+          <div class="filter-bar__field">
+            <label class="filter-label" for="member-search">Search members</label>
+            <input type="search" class="filter-input" id="member-search" placeholder="Search by name or affiliation…" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="filter-bar__field filter-bar__field--sm">
+            <span class="filter-label">Status</span>
+            <div class="filter-chips" data-facet="status">
               <button type="button" class="chip" data-value="">All</button>
               <button type="button" class="chip" data-value="current">Current</button>
               <button type="button" class="chip" data-value="past">Past</button>
@@ -123,9 +112,9 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
             </div>
           </div>
           {availableRoles.length > 0 && (
-            <div class="filter__field">
-              <span class="filter__label">Role</span>
-              <div class="filter__chips" data-facet="role">
+            <div class="filter-bar__field filter-bar__field--sm">
+              <span class="filter-label">Role</span>
+              <div class="filter-chips" data-facet="role">
                 <button type="button" class="chip chip--active" data-value="">Any</button>
                 {availableRoles.map((r) => (
                   <button type="button" class="chip" data-value={r}>{roleLabel(r)}</button>
@@ -134,10 +123,10 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
             </div>
           )}
           {availableGroups.length > 0 && (
-            <div class="filter__field">
-              <span class="filter__label">Group</span>
-              <span class="filter__hint"><span class="chip__gdot" aria-hidden="true"></span> current <span class="chip__gdot chip__gdot--off" aria-hidden="true"></span> historical</span>
-              <div class="filter__chips" data-facet="group">
+            <div class="filter-bar__field filter-bar__field--sm">
+              <span class="filter-label">Group</span>
+              <span class="filter-label m-hint"><span class="chip__gdot" aria-hidden="true"></span> current <span class="chip__gdot chip__gdot--off" aria-hidden="true"></span> historical</span>
+              <div class="filter-chips" data-facet="group">
                 <button type="button" class="chip chip--active" data-value="">Any</button>
                 {availableGroups.map((g) => {
                   const lc = groupLifecycle.get(g)
@@ -152,9 +141,7 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
             </div>
           )}
         </div>
-        <div class="filter__meta">
-          <span id="member-count">{stats.current} of {stats.total} members</span>
-        </div>
+        <div class="filter-meta"><span id="member-count">{stats.current} of {stats.total} members</span></div>
       </div>
 
       <ul class="grid" id="member-grid">
@@ -211,7 +198,7 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
   mountListFilter({
     searchInput: '#member-search',
     items: '#member-grid > li',
-    facetWrappers: '.filter__chips[data-facet]',
+    facetWrappers: '.filter-chips[data-facet]',
     count: '#member-count',
     countLabel: 'members',
     empty: '#member-empty',
@@ -221,46 +208,6 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
 </script>
 
 <style>
-  .filter {
-    background: var(--color-white);
-    border: 1px solid var(--color-slate-200);
-    border-radius: 0.75rem;
-    padding: 1.25rem;
-    margin-bottom: 2rem;
-  }
-  :global(.dark) .filter { background: rgb(15 23 42 / 0.5); border-color: var(--color-slate-700); }
-  .filter__search-wrap { position: relative; margin-bottom: 1rem; }
-  .filter__search-icon {
-    position: absolute; left: 0.75rem; top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-slate-400);
-    pointer-events: none;
-  }
-  .filter__search {
-    width: 100%;
-    padding: 0.625rem 0.875rem 0.625rem 2.25rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--color-slate-300);
-    background: var(--color-slate-50);
-    color: var(--color-slate-900);
-    font-size: 0.9375rem;
-    font-family: inherit;
-  }
-  .filter__search:focus {
-    outline: none;
-    border-color: var(--color-blue-accent);
-    background: var(--color-white);
-    box-shadow: 0 0 0 3px rgb(30 58 138 / 0.15);
-  }
-  :global(.dark) .filter__search { background: var(--color-slate-800); border-color: var(--color-slate-600); color: var(--color-slate-50); }
-  :global(.dark) .filter__search:focus { border-color: var(--color-blue-steel); background: var(--color-slate-900); }
-  .filter__controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; }
-  .filter__field { display: flex; flex-direction: column; gap: 0.5rem; }
-  .filter__label {
-    font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--color-slate-500);
-  }
-  :global(.dark) .filter__label { color: var(--color-slate-400); }
   .chip {
     display: inline-flex; align-items: center;
     padding: 0.375rem 0.75rem; border-radius: 9999px;
@@ -272,6 +219,17 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
   /* Group chips carry a lifecycle dot: filled = current group,
      hollow = inactive/dissolved. Historical chips recede (dashed
      border, muted text) so the current groups read first. */
+  .m-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+    font-size: 0.6875rem;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--color-slate-500);
+  }
+  :global(.dark) .m-hint { color: var(--color-slate-400); }
+
   .chip__gdot {
     width: 0.4375rem;
     height: 0.4375rem;
@@ -300,17 +258,6 @@ function hasCurrentRole(records: RoleRecord[] | undefined, past: boolean): boole
     color: var(--color-slate-400);
   }
 
-  .filter__hint {
-    display: flex;
-    align-items: center;
-    gap: 0.3125rem;
-    font-size: 0.6875rem;
-    color: var(--color-slate-500);
-    margin: 0.125rem 0 0.375rem;
-  }
-  :global(.dark) .filter__hint { color: var(--color-slate-400); }
-  .filter__meta { margin-top: 1rem; font-size: 0.875rem; color: var(--color-slate-500); }
-  :global(.dark) .filter__meta { color: var(--color-slate-400); }
 
   .loading, .empty {
     padding: 3rem 1rem;

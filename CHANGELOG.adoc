@@ -1,6 +1,26 @@
 = Changelog
 
+== 1.0 — the Astro site (2026-08-30)
+
+Launched https://www.isotc154.org/[www.isotc154.org] as an Astro 7 static
+site (Vue islands, Tailwind CSS 4), deployed to GitHub Pages from `main`.
+
+* **Decisions registry** — `/decisions/` renders the full resolution
+  lineage from the `iso-tc154/resolutions-data` submodule (Edoxen Model
+  1.0 YAML), with legacy `/resolutions/` redirects for every historical
+  URL shape.
+* **Meetings** — every plenary from the 10th onward has a native meeting
+  page; the edoxen event documents are generated from the canonical
+  meeting list plus rich per-meeting content.
+* **Contract suite** — the deploy is gated by vitest specs over the
+  modules, the built pages (filters, redirects, sitemap, payload budget,
+  page quality), and the registry/member data conventions.
+* **Architecture** — see link:CLAUDE.md[CLAUDE.md] for the module map and
+  link:CONTEXT.md[CONTEXT.md] for the domain glossary; standing design
+  decisions are recorded under `docs/adr/`.
+
 == 0.2
+
 
 * Added custom styling for action point tables used in minutes.
   See “Minutes” in “Content management” section in README.

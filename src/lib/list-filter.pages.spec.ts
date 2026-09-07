@@ -23,7 +23,7 @@ const visibleCount = (sel: string) =>
 const MEMBERS_CFG = {
   searchInput: '#member-search',
   items: '#member-grid > li',
-  facetWrappers: '.filter__chips[data-facet]',
+  facetWrappers: '.filter-chips[data-facet]',
   count: '#member-count',
   empty: '#member-empty',
   clear: '#member-clear',
@@ -101,7 +101,7 @@ describe.skipIf(!built('liaisons'))('liaisons page filters', () => {
     loadPage('liaisons', {
       searchInput: '#liaison-search',
       items: '#liaison-grid > li',
-      facetWrappers: '[data-facet="category"]',
+      facetWrappers: '.filter-chips[data-facet]',
       count: '#liaison-count',
       empty: '#liaison-empty',
       clear: '#liaison-clear',
@@ -121,7 +121,7 @@ describe.skipIf(!built('national-bodies'))('national-bodies page filters', () =>
     loadPage('national-bodies', {
       searchInput: '#nb-search',
       items: '.bodies .card',
-      facetWrappers: '.filter__chips[data-facet]',
+      facetWrappers: '.filter-chips[data-facet]',
       count: '#nb-count',
       empty: '#nb-empty',
       clear: '#nb-clear',
@@ -140,7 +140,7 @@ describe.skipIf(!built('national-bodies'))('national-bodies page filters', () =>
     loadPage('national-bodies', {
       searchInput: '#nb-search',
       items: '.bodies .card',
-      facetWrappers: '.filter__chips[data-facet]',
+      facetWrappers: '.filter-chips[data-facet]',
       count: '#nb-count',
       empty: '#nb-empty',
       clear: '#nb-clear',
@@ -157,7 +157,7 @@ describe.skipIf(!built('projects'))('projects page filters', () => {
     loadPage('projects', {
       searchInput: '#prj-search',
       items: '#prj-grid > li',
-      facetWrappers: '.filter__chips[data-facet]',
+      facetWrappers: '.filter-chips[data-facet]',
       count: '#prj-count',
       empty: '#prj-empty',
       clear: '#prj-clear',
@@ -195,7 +195,7 @@ describe.skipIf(!built('standards'))('standards page search', () => {
     loadPage('standards', {
       searchInput: '#filter-search',
       items: '#std-grid > li',
-      facetWrappers: '.filter__chips[data-facet]',
+      facetWrappers: '.filter-chips[data-facet]',
       count: '#filter-count',
       empty: '#std-empty',
       clear: '#std-clear',
