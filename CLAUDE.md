@@ -9,7 +9,7 @@ The ISO/TC 154 committee website — an **Astro 7 static site** (Vue islands, Ta
 ## Commands
 
 ```sh
-pnpm build      # full pipeline: build-data → prepare-edoxen-data → generate-edoxen-events → build-legacy-redirects → astro build (1,123 pages)
+pnpm build      # full pipeline: build-data → prepare-edoxen-data → generate-edoxen-events → build-legacy-redirects → astro build (1,140 pages)
 pnpm test       # vitest (spec families: unit specs beside every lib/utils/pipeline module, dist-based page-contract specs incl. redirects/sitemap/payload budget/page quality, staged-fixture specs)
 pnpm dev        # dev server (runs the data pipeline first)
 pnpm validate   # Ruby validators: YAML schemas + member status vs live ISO Open Data
@@ -45,7 +45,7 @@ src/data/        navigation.ts, committee.ts (single sources, also consumed by e
 
 `scripts/build-data.mjs` reads `_data/**` + `content/**` and writes `public/data/*.json` (members, meetings, standards, groups, projects, liaisons, national-bodies, posts, history, meta, search-index). Pages read these through `src/lib/data.ts` — **the only** data accessor.
 
-- `scripts/prepare-edoxen-data.mjs` stages the resolutions submodule into `_data/resolutions-edoxen/` (gitignored) — CI runs this before `edoxen-browser check`.
+- `scripts/prepare-edoxen-data.mjs` stages the resolutions submodule into `_data/resolutions-edoxen/` (gitignored) and generates `_data/committee-edoxen/committee.yaml` (gitignored) from `src/data/committee.ts` + `public/data/meta.json` counts — CI runs this before `edoxen-browser check`.
 - `scripts/generate-edoxen-events.mjs` (I/O shell) + `scripts/lib/edoxenEvents.mjs` (pure seams, 13 specs) derive `_data/events-edoxen/*.yaml` (gitignored) from `data/meetings.yml` + `_data/events/` + `scripts/data/edoxen-meeting-seed.yml` (venue facts and hand-doc-only extras for plenaries without rich event files). Never hand-edit `_data/events-edoxen/` — it is generated.
 - `scripts/build-legacy-redirects.mjs` emits `src/data/legacy-redirects.json` (639 entries) → astro.config `redirects`. `src/lib/site-contracts.pages.spec.ts` verifies every redirect source/target pair and the sitemap against dist/ in CI's post-build test run.
 - `scripts/lib/*.mjs` holds the pipeline's pure seams (meetings, meta, transforms, resolutions, edoxenEvents, dates, groupPipeline, members, orgIndex, standardsClassification, groupHistory), each with a sibling spec.
@@ -74,7 +74,12 @@ Transcribe-from-PDF originals into `reference-docs/` and never delete them. Watc
 
 - Role dates are full `YYYY-MM-DD`; year-only knowledge is encoded `YYYY-01-01` + `precision: year` (the Ruby validator rejects bare years).
 - Deceased members: `active: false` + `deceased: true` + every role closed `to:` the date of passing (Morton/Borges convention). `active: false` is authoritative in the pipeline — an open role cannot keep a closed membership current.
-- `epitaph` renders as the In Memoriam section on the member page; `seat` is carried in data but not yet rendered.
+- `epitaph` renders as the In Memoriam section; `seat` (the organization a liaison role holds a seat for) renders as a chip on role rows.
+
+## Images
+
+- Oversized image masters are committed under `_data/image-masters/` (source, never deleted); display-sized derivatives are generated at the original `public/assets/...` paths (see ADR 0004).
+- The shared filter-bar family (`src/styles/filter.css` + the `filter-bar` markup) owns every list page's filters — no page-local filter CSS.
 
 ## Standards sync (unchanged from before)
 

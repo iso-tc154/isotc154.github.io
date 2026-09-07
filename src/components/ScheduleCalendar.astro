@@ -46,7 +46,7 @@ interface Processed {
   endMin: number
   allDay: boolean
   tzNote?: string
-  category: Category
+  category: ScheduleCategory
   lane: number
   laneCount: number
   clickable: boolean
@@ -115,7 +115,7 @@ function eventStyle(ev: ProcessedEvent): Record<string, string> {
 function hourLineTop(hour: number): string {
   return `${(hour - gridBounds.startHour) * HOUR_HEIGHT}px`
 }
-const metaFor = (category: Category) => CATEGORY_META[category]
+const metaFor = (category: ScheduleCategory) => CATEGORY_META[category]
 function catVars(ev: ProcessedEvent): string {
   const m = metaFor(ev.category)
   return `--bar:${m.bar};--bg:${m.bg};--bg-dark:${m.bgDark};--text:${m.text};--text-dark:${m.textDark}`
@@ -471,7 +471,6 @@ function catVars(ev: ProcessedEvent): string {
   opacity: 0.65;
 }
 
-.cal__mobile { display: none; }
 
 .mini-schedule {
   display: flex;
