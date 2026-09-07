@@ -69,6 +69,12 @@ Transcribe-from-PDF originals into `reference-docs/` and never delete them. Watc
 - **`astro check` OOMs** — verify with `pnpm build`. Audit a built site with the link-crawl pattern (see git history) before shipping.
 - `attic/` holds the retired Jekyll and Vue trees (moved with `git mv`, history intact). Nothing in the build may reference it; keep it that way.
 
+## Member data conventions
+
+- Role dates are full `YYYY-MM-DD`; year-only knowledge is encoded `YYYY-01-01` + `precision: year` (the Ruby validator rejects bare years).
+- Deceased members: `active: false` + `deceased: true` + every role closed `to:` the date of passing (Morton/Borges convention). `active: false` is authoritative in the pipeline — an open role cannot keep a closed membership current.
+- `epitaph` renders as the In Memoriam section on the member page; `seat` is carried in data but not yet rendered.
+
 ## Standards sync (unchanged from before)
 
 `scripts/sync_iso_open_data.rb` + `.github/workflows/sync_iso_data.yml` keep `_data/standards/*.yml` aligned with ISO Open Data; placeholder YAMLs are real catalogue entries and **must not be deleted**. `validate_yaml.rb` also validates `_data/events/*.yml` (filename/ordinal agreement, quoted ISO dates, time.from ≤ time.to); `validate_member_status.rb` compares national-body membership against the live ISO dataset — a failure means ISO's data moved (e.g. SA lapsed in 2026) and the YAML needs `former: true`.

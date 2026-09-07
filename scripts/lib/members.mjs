@@ -87,7 +87,10 @@ function buildMemberRecord(data, chairMemberId) {
   }
 
   const allRoles = byRoleId._all.in._all
-  const isCurrent = data.active === true || allRoles.some(r => r && typeof r === 'object' && r.to == null)
+  // Explicit active: false is authoritative — an open role must not
+  // resurrect a membership someone closed (or a deceased member).
+  const isCurrent = data.active !== false
+    && (data.active === true || allRoles.some(r => r && typeof r === 'object' && r.to == null))
   const isTheChair = chairMemberId === id
   const isInLeadership = allRoles.some(
     r => r && typeof r === 'object' && LEADERSHIP_ROLE_IDS.has(r.id) && r.to == null,
