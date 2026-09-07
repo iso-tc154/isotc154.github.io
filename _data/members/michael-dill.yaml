@@ -3,7 +3,7 @@
 member-id: michael-dill
 name: Michael Dill
 picture: michael-dill.jpg
-active: false
+active: true
 roles:
 - id: convenor
   from:
