@@ -120,6 +120,11 @@ const eyebrow = member.is_the_chair
                   )}
                 </div>
                 <span class="role__span">{memberRoleSpan(r)}</span>
+                {r.seat && (
+                  <span class="role__seat" title="Organizational seat held through this role">
+                    Seat: {Array.isArray(r.seat) ? r.seat.join(' · ') : r.seat}
+                  </span>
+                )}
               </li>
             ))}
           </ul>
@@ -254,6 +259,13 @@ const eyebrow = member.is_the_chair
     margin-top: 0.125rem;
   }
   :global(.dark) .role__span { color: var(--color-slate-400); }
+  .role__seat {
+    font-size: 0.75rem; color: var(--color-slate-500);
+    border: 1px solid var(--color-slate-200); border-radius: 999px;
+    padding: 0.0625rem 0.5rem; margin-top: 0.25rem;
+    align-self: flex-start;
+  }
+  :global(.dark) .role__seat { color: var(--color-slate-400); border-color: var(--color-slate-700); }
 
   .links {
     list-style: none; margin: 0; padding: 0;

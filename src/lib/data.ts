@@ -30,6 +30,7 @@ export interface PageDoc {
 export interface RoleRecord {
   id?: string
   group?: string
+  seat?: string | string[]
   from?: { date?: string; precision?: 'day' | 'month' | 'year' }
   to?: { date?: string; precision?: 'day' | 'month' | 'year' } | null
 }

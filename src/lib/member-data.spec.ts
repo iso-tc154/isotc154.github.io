@@ -88,6 +88,21 @@ describe.skipIf(!built)('member output contracts', () => {
     expect(bad).toEqual([])
   })
 
+  it('members with seat on a role render a Seat chip (dist)', () => {
+    const unrendered: string[] = []
+    for (const [id, m] of Object.entries(members().all)) {
+      const hasSeat = Object.values(m?.roles ?? {}).some((byGroup) =>
+        Object.values((byGroup as { in?: Record<string, unknown[]> }).in ?? {})
+          .flat()
+          .some((r: unknown) => Boolean((r as { seat?: unknown }).seat)),
+      )
+      if (!hasSeat) continue
+      const html = readFileSync(`dist/members/${id}/index.html`, 'utf8')
+      if (!html.includes('class="role__seat"')) unrendered.push(id)
+    }
+    expect(unrendered).toEqual([])
+  })
+
   it('deceased members with an epitaph render an In Memoriam section (dist)', () => {
     const unrendered: string[] = []
     for (const [id, m] of Object.entries(members().all)) {
