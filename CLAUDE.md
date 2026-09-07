@@ -66,6 +66,7 @@ Transcribe-from-PDF originals into `reference-docs/` and never delete them. Watc
 - **Astro whitespace**: keep text and inline elements on one line — JSX-like trimming eats the spaces otherwise.
 - **Vue islands**: `defineOptions({ inheritAttrs: false })` or Astro's `data-astro-cid-*` boolean prop breaks hydration.
 - **Colors**: use the `@theme` tokens (`var(--color-slate-…)` etc.), never hex literals, in style blocks. Per-category color palettes (calendar, history) are display data, not theme.
+- **edoxen host** — `src/integrations/edoxen-host.ts` wraps `@edoxen/browser/integration` with `injectRoutes: false` and re-injects only `/decisions` and `/decisions/[urn]` (the single place the scope is defined); it also injects the head-inline theme bridge that keeps `theme`/`edoxen-theme` storage keys and `.dark`/`data-theme` toggles in sync.
 - **`astro check` OOMs** — verify with `pnpm build`. Audit a built site with the link-crawl pattern (see git history) before shipping.
 - `attic/` holds the retired Jekyll and Vue trees (moved with `git mv`, history intact). Nothing in the build may reference it; keep it that way.
 

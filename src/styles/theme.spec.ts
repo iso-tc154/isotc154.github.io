@@ -9,7 +9,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 
-const HEX_RE = /#[0-9a-fA-F]{3}(?![0-9a-fA-F])\b|#[0-9a-fA-F]{6}(?![0-9a-fA-F])/
+const HEX_RE = /#[0-9a-fA-F]{3}(?![0-9a-fA-F])\b|#[0-9a-fA-F]{4}(?![0-9a-fA-F])\b|#[0-9a-fA-F]{6}(?![0-9a-fA-F])|#[0-9a-fA-F]{8}(?![0-9a-fA-F])/
 
 const allowed = (f: string) => f.endsWith('main.css') || f.endsWith('override.css')
 
